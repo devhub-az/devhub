@@ -1,0 +1,33 @@
+.page {
+  position: relative;
+  float: left;
+  padding: 5px 10px;
+  margin: 12px;
+  display: inline-block;
+  margin-left: -1px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+.page:hover {
+  color: var(--color-blue);
+}
+
+.active {
+  background-color: var(--color-blue);
+  color: #fff;
+  border-color: var(--color-blue);
+  z-index: 2;
+}
+.active:hover {
+  color: #fff;
+}
+
+.pagination {
+  font-size: 14px;
+  display: -webkit-box;
+}
+
+.page-ellipsis {
+  pointer-events: none;
+}

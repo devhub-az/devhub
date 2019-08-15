@@ -1,0 +1,144 @@
+.btn:hover {
+    filter: opacity(80%) !important;
+}
+
+.btn{
+    cursor: pointer;
+    display: inline-block;
+    -webkit-appearance: none !important;
+    border-radius: 4px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    vertical-align: middle;
+    background-color: transparent;
+    font-weight: 500;
+    padding: .5rem 1rem;
+}
+
+.btn-sm{
+    line-height: calc(1rem - 1px);
+    letter-spacing: 0.073em;
+    font-size: .7rem;
+    font-weight: 500;
+    padding: .2rem 1rem;
+}
+
+.hub_follow{
+    margin-left: auto;
+}
+
+.btn-s {
+    padding: 5px 10px;
+    box-shadow: 0 1px 1px 0 #eee;
+}
+
+.btn_navbar_registration {
+    color: #fff;
+    background-color: var(--color-blue);
+    text-transform: none;
+    border-radius: 2px;
+    font-size: 14px;
+    margin-left: 12px;
+}
+
+.btn_navbar_registration:hover {
+    color: #fff;
+    border-color: transparent;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--color-blue);
+    color: var(--color-text-contrast);
+    text-transform: none;
+}
+
+.btn-success{
+    background-color: var(--color-green);
+    color: var(--color-white);
+}
+
+.btn-outline{
+    border:1px solid var(--color-btn-border-secondary);
+    background-color: transparent;
+    color: var(--color-btn-text-secondary);
+}
+
+.btn-success-outline{
+    border:1px solid var(--color-green);
+    background-color: transparent;
+    color: var(--color-btn-text-secondary);
+}
+
+.submit{
+    width: fit-content;
+}
+
+.profile_user-connect{
+    display: inline-block;
+    color: var(--color-white) !important;
+    background-color: var(--color-green);
+    border:none;
+    width: 100%;
+    text-align: center;
+}
+
+.profile_user-connected{
+    display: inline-block;
+    color: var(--color-white) !important;
+    background-color: var(--color-gray);
+    border: 1px solid var(--color-btn-border-secondary);
+    width: 100%;
+    text-align: center;
+}
+
+.btn_navbar_login {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    color: var(--color-black);
+    border-radius: 2px;
+    border: 1px solid #dbdbdb;
+    color: var(--color-black);
+    text-transform: none;
+    font-size: 14px;
+    background-color: transparent;
+}
+
+.btn_navbar_login:hover {
+    filter: opacity(80%);
+}
+
+.btn-more{
+    background-color: transparent;
+    border: 1px solid #dbdbdb;
+    color: var(--color-black);
+    margin: 0;
+    margin-left: auto;
+}
+
+.page-header__button{
+    margin: 0;
+    background: var(--color-green);
+    color: #fff;
+}
+
+.btn-folow__user{
+    margin: 0;
+    background: var(--color-green);
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+}
+
+.btn-dashed {
+    color: rgba(0,0,0,0.65);
+    background-color: #fff;
+    border-color: #d9d9d9;
+    border-style: dashed;
+}

@@ -1,0 +1,189 @@
+@import 'variables';
+
+* {
+    box-sizing: border-box;
+}
+
+.PageColumns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.PageColumn__left {
+    width: 50%;
+}
+
+.Art {
+    height: 100vh;
+}
+
+.PageColumn__right {
+    width: 50%;
+}
+
+.ColumnContainer {
+    max-width: 550px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-flex: 0;
+    margin-right: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-preferred-size: auto;
+    flex-basis: auto;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    margin-left: auto;
+    flex: 1;
+    min-width: 260px;
+}
+
+.AnimatedForm__textInput[data-empty=false]+.AnimatedForm__textInputLabel {
+    -webkit-transform: translate3d(0,-8px,0) scale(.83333333);
+    transform: translate3d(0,-8px,0) scale(.83333333);
+    line-height: 14px;
+}
+
+.AnimatedForm__textInputLabel {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 12px;
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    top: 14px;
+    left: 12px;
+    color: #a5a4a4;
+    text-transform: uppercase;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    transition: all .2s ease-in-out;
+    pointer-events: none;
+    line-height: 23px;
+}
+
+.AnimatedForm__textInput {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    outline: 0;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: all .2s ease-in-out;
+    height: 48px;
+    padding: 22px 12px 10px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 4px;
+    background-color: #fcfcfb;
+}
+
+.AnimatedForm__field.m-valid .AnimatedForm__textInput {
+    padding-right: 36px;
+    border-color: #24a0ed;
+}
+
+.hideable {
+    position: relative;
+    max-height: 1000px;
+    opacity: 1;
+    transition: opacity .25s ease-in;
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.AnimatedForm__field+.AnimatedForm__field {
+    margin-top: 24px;
+}
+
+.Title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    margin: 20px 0;
+}
+
+footer {
+    background-color: #f5f5f5;
+    border-top: 1px solid #bdbdbd;
+    min-height: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    margin-top: auto;
+}
+
+.logo_login{
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin: 20px 0;
+    color: var(--color-black);
+    font-family: MontDemo-Heavy;
+    font-size: 26px;
+}
+
+.btn-reg{
+    padding: 12px 15px !important;
+    border-radius: 3px !important;
+}
+
+.btn-reg:hover{
+    background-color: rgba(22, 114, 190, 1);
+}
+
+.right{
+    align-items: center;
+    margin-left: auto;
+}
+
+.default-nav{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 64px;
+    line-height: 64px;
+    padding: 0 16px;
+    z-index: 1030;
+    -webkit-backdrop-filter: blur(20px);
+    transition: 0.3s background-color;
+}
+
+.desc{
+    color: #5b647d;
+    margin-bottom: 12px;
+}

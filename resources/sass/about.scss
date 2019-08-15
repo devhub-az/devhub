@@ -1,0 +1,23 @@
+//body
+
+.about_content{
+	background: #fff;
+	font: inherit;
+
+	.about_body{
+		margin: 0 15%;
+		padding: 12px 0;
+
+		.about_header{
+			text-align: center;
+		}
+
+		.text{
+			line-height: 1.6em;
+			
+			p{
+				margin: 12px 0;
+			}
+		}
+	}
+}
