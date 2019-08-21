@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Hub;
 use Parsedown;
-use Purifier;
+use Mews\Purifier\Facades\Purifier;
 
 class PostCollection extends JsonResource
 {
