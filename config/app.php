@@ -164,14 +164,16 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Parsedown\Providers\ParsedownServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
 
         /*
          * Package Service Providers...
          */
 
         Collective\Html\HtmlServiceProvider::class,
-        
+
         /*
          * Application Service Providers...
          */
@@ -235,6 +237,7 @@ return [
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Numeric' => App\Helpers\Numeric::class,
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
 
     ],
 

@@ -19,13 +19,15 @@
 	</div>
 	<div class="layout_content">
 		<div class="content_left" id="app">
-			<form id="form-hub__search" action="/search-result" class="form-hub__search" accept-charset="UTF-8" method="POST">
-				{!! Form::token() !!}
-				<div class="header_search">
-					<input id="search_input" type="text" class="search" autocomplete="off" name="search" maxlength="48" minlength="3" placeholder="Paylasma ya hub axtar" required="required">
-					<i class="icon feather icon-search"></i>
+			<div class="ui category search form-hub__search">
+				<div class="ui icon input header_search">
+                    <label>
+                        <input class="prompt search" type="text" placeholder="Hub axtar">
+                    </label>
+                    <i class="icon feather icon-search"></i>
 				</div>
-			</form>
+				<div class="results"></div>
+			</div>
 			<div class="post-content__item">
 				<hubs-list></hubs-list>
 			</div>
@@ -77,5 +79,33 @@
 
 @section('scripts')
 <script>
+function axiosHubs() {
+	 return axios.get('/api/hubs/all').then(response => {
+		return response.data;
+	});
+}
+axiosHubs().then(data => {
+	$('.ui.search')
+		.search({
+	  		source: data,
+	  		searchDelay: 500,
+	  		fields: {
+	  			image: 'logo',
+  		    	title : 'name',
+  		    },
+  		    searchFields:[
+  		    	'name'
+  		    ],
+  		    fullTextSearch: false,
+  		    onSelect(result){
+	                window.location.href = '/hubs/' + result.id;
+	            },
+  		    templates: {
+  		        message: function message() {
+                    return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';
+  		        },
+  		    }
+		});
+});
 </script>
 @endsection

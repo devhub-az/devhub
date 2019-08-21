@@ -1,7 +1,8 @@
 <template>
 	<div class="hub_follow">
-		<span @click="follow(hub.id)" v-if="!hubs.follower_check" class="btn btn-success btn-sm">{{ hubs.hub_followers_count }} İzləmək</span>
-		<span @click="follow(hub.id)" v-if="hubs.follower_check" class="btn btn-success-outline btn-sm">{{ hubs.hub_followers_count }} İzləyirsiniz</span>
+		<span @click="follow(hub.id)" v-if="!hubs.follower_check && !loading" class="btn btn-success btn-sm">{{ hubs.hub_followers_count }} İzləmək</span>
+		<span @click="follow(hub.id)" v-if="hubs.follower_check && !loading" class="btn btn-success-outline btn-sm">{{ hubs.hub_followers_count }} İzləyirsiniz</span>
+		<span v-if="loading" class="btn btn-success-outline btn-sm"><i class="icon iconmoon icon-spinner"></i> Gözləyin</span>
 	</div>
 </template>
 
@@ -11,6 +12,7 @@
 		data: function() {
             return {
                 hubs: '',
+                loading: false,
             }
         },
         mounted: function() {
@@ -18,17 +20,19 @@
         },
 		methods: {
 			follow: function(id){
+				this.loading = true;
 			    axios.post('/hubs/follow/' + id, {
 			        id:id,
 			    })
 			    .then(response => {
 			        if (response.data.success) {
-			            this.hubs.followers++;
+			            this.hubs.hub_followers_count++;
 			            this.hubs.follower_check = true;
 			        } else if(response.data.delete){
-			            this.hubs.followers--;
+			            this.hubs.hub_followers_count--;
 			            this.hubs.follower_check = false;
 			        }
+			        this.loading = false;
 			    })
 			    .catch(error => {
 			    	console.log(error);

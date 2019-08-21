@@ -29,9 +29,9 @@
                             <div class="list-hubs__desc loading" style="width: 70%; background: rgb(226, 226, 226); height: 1.2rem;"></div>
                             <div class="list-hubs__desc loading" style="width: 40%; background: rgb(226, 226, 226); height: 1.2rem;"></div>
                         </div>
-                        <div class="list-hubs__stats-value loading" style="width: 20%; background: rgb(226, 226, 226); height: 1.2rem;">
+                        <div class="list-hubs__stats-value loading" style="width: 20%; background: rgb(226, 226, 226); height: 1.2rem; margin: 0 auto;">
                         </div>
-                        <div class="list-hubs__stats-value loading" style="width: 100%; background: rgb(226, 226, 226); height: 1.7rem;">
+                        <div class="list-hubs__stats-value loading" style="width: 60%; background: rgb(226, 226, 226); height: 1.7rem; margin-left: auto;">
                         </div>
                     </div>
                 </li>

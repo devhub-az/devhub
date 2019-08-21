@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class ProfileController extends Controller
 {
@@ -13,12 +14,13 @@ class ProfileController extends Controller
      *
      * @param $profileId
      *
+     * @return RedirectResponse|Redirector
      */
     public function followUser(int $profileId)
     {
     	$user = User::find($profileId);
     	if(!$user) {
-        	return back()->with('error', 'User does not exist.'); 
+        	return back()->with('error', 'User does not exist.');
         }
 
         if(!Auth::check()){
@@ -34,12 +36,13 @@ class ProfileController extends Controller
      *
      * @param $profileId
      *
+     * @return RedirectResponse
      */
     public function unFollowUser(int $profileId)
     {
     	$user = User::find($profileId);
     	if(! $user) {
-        	return redirect()->back()->with('error', 'User does not exist.'); 
+        	return redirect()->back()->with('error', 'User does not exist.');
     	}
 	    $user->followers()->detach(auth()->user()->id);
 	    return redirect()->back()->with('success', 'Successfully unfollowed the user.');

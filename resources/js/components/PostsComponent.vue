@@ -15,18 +15,18 @@
                 </div>
             </div>
             <div class="post__hubs">
-                <div class="tag" v-for="tags in Math.ceil(Math.random()* (5 - 3)) + 3" style="width: 3%; height: 18px"></div>
+                <div class="hub" v-for="tags in Math.ceil(Math.random()* (5 - 3)) + 3" :style="{width: Math.ceil(Math.random()* (5 - 3)) + 3 + '%'}" style="height: 18px"></div>
             </div>
             <div class="post-content__body">
                 <div v-for="text in Math.ceil(Math.random()* (6 - 3 +1)) + 3" :style="{width: Math.floor(Math.random()* (100 - 50 +1)) + 50 +'%'}" style="height: 18px; background: rgb(226, 226, 226); margin-bottom: 12px;" class="loading"></div>
             </div>
             <div class="post-content__footer">
                 <div class="post-content__footer-stats">
-                    <i class="icon feather icon-eye"></i> <i class="icon iconmoon icon-spinner"></i>
-                    <i class="icon feather icon-message-square"></i> <i class="icon iconmoon icon-spinner"></i>
-                    <i class="icon feather icon-bookmark"></i> <i class="icon iconmoon icon-spinner"></i>
+                    <i class="eye icon"></i> <i class="icon iconmoon icon-spinner"></i>
+                    <i class="bookmark outline icon"></i> <i class="icon iconmoon icon-spinner"></i>
+                    <i class="comments outline icon"></i> <i class="icon iconmoon icon-spinner"></i>
                 </div>
-                <div class="btn btn-primary btn-more loading" style="width: 60%; background: rgb(226, 226, 226);"></div>
+                <div class="btn btn-primary btn-more loading" style="width: 60%; background: rgb(226, 226, 226);     padding: 0;"></div>
             </div>
         </div>
         <div v-if="!loading">
@@ -44,33 +44,37 @@
                             </span>
                         </header>
                         <div class="post-content__header">
-                            <div class="post-title">
-                                <h1><a :href="'/post/' +post.data.id">{{ post.data.title }}</a></h1>
-                            </div>
+                            <a :href="'/post/' +post.data.id" class="post-title">
+                                <h1>{{ post.data.title }}</h1>
+                            </a>
                             <vote :posts="post" :auth_check="auth_check"></vote>
                         </div>
-                        <hubs-tags :data="post.data.tags.data"></hubs-tags>
+                        <hubs-tags v-if="post.data.tags.data.length"  :data="post.data.tags.data"></hubs-tags>
                         <div class="post-content__body" v-html="post.data.body">
                         </div>
                         <div class="post-content__footer">
                             <div class="post-content__footer-stats">
                                 <span class="footer_item">
-                                    <i class="icon devhub icon-eye-line"></i> {{ post.data.views }}
+                                    <i class="eye icon"></i> {{ post.data.views }} Baxışların sayı
                                 </span>
                                 <span class="star tooltip footer_item" @click="favorite(post.data.id)" v-if="!post.data.favorite" aria-label="Seçilmişlərə əlavə et" data-balloon-pos="down">
-                                    <i v-if="!post.data.favorite" class="icon devhub icon-bookmark-line"></i> {{ post.data.folowers }}
+                                    <i v-if="!post.data.favorite" class="bookmark outline icon"></i> {{ post.data.followers }} Seçilmiş
                                 </span>
                                 <span class="star tooltip footer_item" @click="favorite(post.data.id)" v-if="post.data.favorite" aria-label="Seçilmişlərdən cixartmag" data-balloon-pos="down">
-                                    <i v-if="post.data.favorite" class="icon devhub icon-bookmark-line"></i>
+                                    <i v-if="post.data.favorite" class="bookmark icon"></i> {{ post.data.follower }} Seçilmiş
                                 </span>
                                 <span class="footer_item">
                                     <a :href="'/post/' + post.data.id + '/#comments'" class="post_comments_link">
-                                        <i class="icon devhub icon-talk-bubbles-line"></i> {{ post.data.comments }}<span v-if="post.data.comments !== 0">{{ post.data.comments }}</span>
+                                        <i class="comments outline icon"></i> {{ post.data.comments }} Komment
+                                        <span v-if="post.data.comments !== 0">{{ post.data.comments }}</span>
                                     </a>
                                 </span>
-                                <span>
+                                <span class="footer_item" @click="copy(post.data.id)" style="cursor: pointer;">
+                                    <i class="share square icon"></i> Paylaş
+                                </span>
+                                <span class="footer_item">
                                     <a href="#" style="color: inherit">
-                                        <i class="icon feather icon-more-horizontal"></i>
+                                        <i class="ellipsis horizontal icon"></i>
                                     </a>
                                 </span>
                             </div>
@@ -94,6 +98,9 @@
 </template>
 
 <script>
+    import Clipboard from 'v-clipboard';
+    import {IziToast as iziToast} from "../../../public/plugins/iziToast/types";
+    Vue.use(Clipboard);
     export default {
         props: ['surveyData', 'auth_check', 'hub'],
         data: function() {
@@ -123,7 +130,7 @@
                             this.pagination.last_page = 50;
                         }
                         this.postsNotEmpty = true;
-                        for (var i = 0; i < this.posts.length; i++) {
+                        for (let i = 0; i < this.posts.length; i++) {
                             this.id[i] = this.posts[i].id;
                         }
                     }
@@ -153,10 +160,10 @@
                 });
             },
             findVillainIdx: function(id){
-                var currindex= null;
-                for(var i=0; i<this.$data.posts.length; i++){
-                  if (id == this.$data.posts[i].data.id)
-                      {currindex = i;
+                let currindex = null;
+                for(let i=0; i<this.$data.posts.length; i++){
+                  if (id === this.$data.posts[i].data.id){
+                      currindex = i;
                        break;}
                 };
                 return currindex;
@@ -168,13 +175,13 @@
                 })
                 .then(response => {
                     if (response.data.success) {
-                        this.posts[index].data.folowers++;
+                        this.posts[index].data.followers++;
                         this.posts[index].data.favorite = true;
                         iziToast.info({
                             message: 'Paylaşma seçilmişlərə elave olundu',
                         })
                     } else if(response.data.delete){
-                        this.posts[index].data.folowers--;
+                        this.posts[index].data.followers--;
                         this.posts[index].data.favorite = false;
                         iziToast.info({
                             message: 'Paylaşma seçilmişlərdən silindi',
@@ -185,8 +192,106 @@
                     iziToast.error({
                         title: 'Xəta',
                         message: 'Qanunsuz əməliyyat',
-                    })
+                    });
                 });
+            },
+            copy: function(id) {
+                var link = window.location.origin + '/post/' + id;
+                try{
+                    this.$clipboard(link);
+                    iziToast.show({
+                        id: null,
+                        class: 'iziSuccess',
+                        title: '',
+                        titleColor: '',
+                        titleSize: '',
+                        titleLineHeight: '',
+                        message: 'Link kopyalandi',
+                        messageColor: 'var(--color-text)',
+                        messageSize: '',
+                        messageLineHeight: '',
+                        backgroundColor: 'var(--color-app-bg)',
+                        theme: 'light', // dark
+                        color: 'var(--color-green)',
+                        icon: "check icon",
+                        iconColor: "var(--color-green)",
+                        iconUrl: null,
+                        imageWidth: 50,
+                        maxWidth: null,
+                        layout: 1,
+                        balloon: false,
+                        close: false,
+                        closeOnEscape: false,
+                        closeOnClick: false,
+                        displayMode: 0, // once, replace
+                        position: 'bottomCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+                        target: '',
+                        targetFirst: true,
+                        timeout: 5000,
+                        rtl: false,
+                        animateInside: true,
+                        drag: true,
+                        pauseOnHover: true,
+                        resetOnHover: false,
+                        progressBar: false,
+                        progressBarColor: '',
+                        progressBarEasing: 'linear',
+                        overlay: false,
+                        overlayClose: false,
+                        overlayColor: 'rgba(0, 0, 0)',
+                        transitionIn: 'fadeInUp',
+                        transitionOut: 'fadeOut',
+                        transitionInMobile: 'fadeInUp',
+                        transitionOutMobile: 'fadeOutDown',
+                    });
+                } catch (error) {
+                    iziToast.show({
+                        id: null,
+                        class: 'iziError',
+                        title: '',
+                        titleColor: '',
+                        titleSize: '',
+                        titleLineHeight: '',
+                        message: 'Nəsə işləmədi...',
+                        messageColor: 'var(--color-text)',
+                        messageSize: '',
+                        messageLineHeight: '',
+                        backgroundColor: 'var(--color-app-bg)',
+                        theme: 'light', // dark
+                        color: 'var(--color-red)',
+                        icon: "x icon",
+                        iconColor: "var(--color-red)",
+                        iconUrl: null,
+                        imageWidth: 50,
+                        maxWidth: null,
+                        layout: 1,
+                        balloon: false,
+                        close: false,
+                        closeOnEscape: false,
+                        closeOnClick: false,
+                        displayMode: 0, // once, replace
+                        position: 'bottomCenter', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+                        target: '',
+                        targetFirst: true,
+                        timeout: 5000,
+                        rtl: false,
+                        animateInside: true,
+                        drag: true,
+                        pauseOnHover: true,
+                        resetOnHover: false,
+                        progressBar: false,
+                        progressBarColor: '',
+                        progressBarEasing: 'linear',
+                        overlay: false,
+                        overlayClose: false,
+                        overlayColor: 'rgba(0, 0, 0)',
+                        transitionIn: 'fadeInUp',
+                        transitionOut: 'fadeOut',
+                        transitionInMobile: 'fadeInUp',
+                        transitionOutMobile: 'fadeOutDown',
+                    });
+                }
+
             }
         },
     }

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Posts;
 use App\Models\User;
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\Events\Notification;
 
 class HomeController extends Controller
@@ -43,7 +42,7 @@ class HomeController extends Controller
     public function favorite()
     {
         if (Auth::check()) {
-            session(['main-page' => '/favorite']);   
+            session(['main-page' => '/favorite']);
         }
         return view('pages.home', ['url' => '/api/posts/favorite']);
     }

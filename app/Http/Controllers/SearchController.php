@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Hubs;
+use App\Models\Hub;
 use App\Http\Resources\PostsCollection;
 use App\Http\Resources\HubsCollection;
-use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
@@ -21,7 +20,7 @@ class SearchController extends Controller
     	$posts = collect();
 
     	if($query){
-    		$hubs = new HubsCollection(Hubs::where('name', 'LIKE', "%{$query}%")->get());
+    		$hubs = new HubsCollection(Hub::where('name', 'LIKE', "%{$query}%")->get());
     		$posts = new PostsCollection(Post::where('name', 'LIKE', "%{$query}%")->get());
     	}
 

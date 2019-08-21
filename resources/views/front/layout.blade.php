@@ -30,6 +30,10 @@
 
 	{{-- CSS --}}
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans|Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/search.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.css" />
 	<link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
 	<link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">
@@ -73,15 +77,31 @@
 	{{-- Footer --}}
 	@include('include.footer')
 
-	
-
 	{{-- Java Script --}}
+	
 	<script src="{{ asset('plugins/iziToast/dist/js/iziToast.min.js') }}"></script>
-	<script src="https://js.pusher.com/4.2/pusher.min.js"></script>
 	<script src="{{ asset('js/stickybits.min.js') }}"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js" integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM=" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.js"></script>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	@yield('scripts')
 	<script>
+		$('.ui.dropdown').dropdown();
+		$('.popup-hub').popup({
+			inline   : true,
+			hoverable  : true,
+    		position : 'bottom center',
+    		delay: {
+    		  show: 50,
+    		  hide: 200,
+    		}
+  		});
+		$('input').popup({
+		    on: 'focus'
+		  });
+
 		var stickymessage = stickybits('.header-message');
 
 		document.addEventListener("DOMNodeInserted", function(event){
@@ -94,8 +114,6 @@
 	    function Lang() {
 	    	document.getElementById("myDropdown").classList.toggle("show");
 	    }
-
-	    window.onscroll = function() {scrollFunction()};
 
 	    $("#scroll_to_top").on("click", function() {
 	     	$('html, body').animate({

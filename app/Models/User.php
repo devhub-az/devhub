@@ -75,7 +75,7 @@ class User extends Authenticatable implements HasMedia
     }
 
     public function userHubFolowing(){
-        return $this->belongsToMany(Hubs::class, 'hub_followers', 'follower_id', 'hub_id');
+        return $this->belongsToMany(Hub::class, 'hub_followers', 'follower_id', 'hub_id');
     }
 
     public function getUserIdsAttribute()

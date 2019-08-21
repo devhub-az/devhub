@@ -2,19 +2,19 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
-use League\CommonMark\CommonMarkConverter;
-use App\Http\Resources\HubsCollection;
-use App\Models\Hubs;
+use App\Models\Hub;
 use Parsedown;
+use Purifier;
 
 class PostCollection extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return array
      */
     public function toArray($request)
@@ -24,19 +24,19 @@ class PostCollection extends JsonResource
             'data' => [
                 'id' => $this->id,
                 'title' => $this->name,
-                'body' => $this->shorten($parsedown->text($this->body), 1000),
+                'body' => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
                 'creator' => $this->creator->username,
                 'profile_image' => $this->creator->getMedia('avatars')->first()->getUrl('small'),
                 'votes' => $this->votes,
-                'tags' => new HubsCollection(Hubs::whereIn('id', $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
+                'tags' => new HubsCollection(Hub::whereIn('id', $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
                 'comments' => count($this->comments),
                 'views' => count($this->views),
                 'created_at' => $this->created_at,
                 'read_time' => $this->readTime($this->body),
                 'upvoted' => $this->statusCheck('upvote'),
                 'downvoted' => $this->statusCheck('downvote'),
-                'favorite' => $this->statusCheck('folowing'),
-                'folowers' => count($this->postFollowers),
+                'favorite' => $this->statusCheck('following'),
+                'followers' => count($this->postFollowers),
             ],
         ];
     }
@@ -55,8 +55,8 @@ class PostCollection extends JsonResource
                     return $this->postIsVoted(Auth::user()) == "upvoted";
                 case 'downvote':
                     return $this->postIsVoted(Auth::user()) == "downvoted";
-                case 'folowing':
-                    return $this->postIsFollowing(Auth::user()) == "folowing";
+                case 'following':
+                    return $this->postIsFollowing(Auth::user()) == "following";
             }
         }
     }

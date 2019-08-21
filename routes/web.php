@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Auth::routes();
 
 Route::get('setlocale/{locale}', function ($locale) {
@@ -35,8 +23,10 @@ Route::prefix('api')->group(function () {
 	Route::get('posts/top/month', 'PostController@indexMonth');
 	Route::get('posts/all', 'PostController@indexAll');
 	Route::get('posts/favorite', 'PostController@favorite');
-	Route::get('hubs/{id}', 'HubsController@hubPosts');
-	Route::get('hubs', 'HubsController@hubs');
+	Route::get('hubs/all', 'HubController@hubsAll');
+	Route::get('hubs/{id}', 'HubController@hubPosts');
+	Route::get('hubs', 'HubController@hubs');
+
 });
 
 Route::prefix('post')->group(function () {
@@ -47,9 +37,9 @@ Route::prefix('post')->group(function () {
 });
 
 Route::prefix('hubs')->group(function () {
-	Route::get('/', 'HubsController@index');
-	Route::get('/{id}', 'HubsController@show');
-	Route::post('/follow/{id}', 'HubsController@follow');
+	Route::get('/', 'HubController@index');
+	Route::get('/{id}', 'HubController@show');
+	Route::post('/follow/{id}', 'HubController@follow');
 });
 
 Route::group([ 'middleware' => 'auth' ], function () {

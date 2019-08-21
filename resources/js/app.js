@@ -12,9 +12,6 @@ window.moment = require('moment');
 window.SimpleMDE = require('simplemde');
 require('moment/locale/az');
 window.moment.locale('az');
-import Echo from 'laravel-echo';
-
-window.Pusher = require('pusher-js');
 
 $(document).ready(function() {
    $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
@@ -45,18 +42,15 @@ Vue.component('vote', require('./components/vote.vue').default);
 Vue.component('notification', require('./components/NotificationComponent.vue').default);
 Vue.component('hubs-tags', require('./components/HubsTagComponent.vue').default);
 Vue.component('hub-follow-button', require('./components/HubsFollowButtonComponent.vue').default);
+Vue.component('tags-input', require('@voerro/vue-tagsinput').default);
+Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').default);
+Vue.component('search', require('./components/search.vue').default);
 
 
 Vue.config.devtools=false;
 Vue.config.productionTip = false;
 Vue.config.silent = false;
-
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+Vue.config.keyCodes.backspace = 8;
 
 Vue.filter('moment', function(value, format) {
     return moment(value).format(format);

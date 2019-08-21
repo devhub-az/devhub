@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
 use Auth;
 use App\Http\Requests\CommentUpload;
+use Illuminate\Http\Response;
 
 class CommentController extends Controller
 {
@@ -18,13 +18,13 @@ class CommentController extends Controller
     protected function total_comments(Post $post){
         return DB::table('comments')->where('post_id', $post->id)->count();
     }
-    
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-    */
+     * @param CommentUpload $request
+     * @return Response
+     */
 
     public function newComment(CommentUpload $request)
     {

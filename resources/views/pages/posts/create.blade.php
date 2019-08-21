@@ -2,6 +2,10 @@
 
 @section('title')Paylaşma yazmag @stop
 
+@section('css')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.default.css" integrity="sha256-08CTv29fptANK7CVsvnTZiZZYF9FHc+qtFzn/3cm4S4=" crossorigin="anonymous" />
+@stop
+
 @section('main')
 <div class="layout_body" id="app">
     <div class="layout_content">
@@ -15,42 +19,43 @@
                 @endif
                 {!! Form::open(['id' => 'form', 'url' => 'posts', 'method' => 'POST']) !!}
                 @csrf
-                <p>
-                    {!! Form::label('title', 'Başlıq:') !!}
-                    
-                    {!! Form::text('title', null, ['class' => 'post__title', 'id' => 'title', 'placeholder' => 'Nəşrin nə olacağını başa düşmək üçün başlıq məna ilə doldurulmalıdır.', 'autocomplete' => 'off']) !!}
+                {!! Form::label('title', 'Başlıq:') !!}
+
+                {!! Form::text('title', null, ['class' => 'post__title', 'id' => 'title', 'placeholder' => 'Nəşrin nə olacağını başa düşmək üçün başlıq məna ilə doldurulmalıdır.', 'autocomplete' => 'off']) !!}
+
+                @if($errors->has('title'))
                     <div class="description">
-                        @if($errors->has('title'))
-                            <p style="color: red"> {{ $errors->first('title') }}</p>
-                        @endif
+                        <p style="color: red"> {{ $errors->first('title') }}</p>
                     </div>
-                </p>
+                @endif
 
-                <p>
-                    {!! Form::label('text', 'Mətn:') !!}
+
+                {!! Form::label('text', 'Mətn:') !!}
+
+                @if($errors->has('body'))
                     <div class="description">
-                        @if($errors->has('body'))
-                            <p style="color: red"> {{ $errors->first('body') }}</p>
-                        @endif
+                        <p style="color: red"> {{ $errors->first('body') }}</p>
                     </div>
-                    <textarea name='body' id="editor-container">
-                        {!! old('body') !!}
-                    </textarea>
-                </p>
+                @endif
 
-                {{-- <p>
-                    <tags :data="menu"
-                                :max-selected="5"
-                                :multiple="true"
-                                key-field="id"
-                                show-field="name"
-                                v-model="value" >
-                    </tags>
-                </p> --}}
-
-                <p>
-                    {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}
-                </p>
+                <textarea name='body' id="editor-container">
+                    {!! old('body') !!}
+                </textarea>
+                {{-- <tags></tags> --}}
+                <div class="ui fluid multiple search selection dropdown">
+                    <input name="tags" type="hidden">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Skills</div>
+                    <div class="menu">
+                        @foreach ($hubs as $hub)
+                            <div class="item" data-value="{{ $hub['id'] }}">
+                                <i class="{{ strtolower($hub['name']) }} icon"></i>
+                                {{ $hub['name'] }}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}
 
                 {!! Form::close() !!}
             </div>
@@ -72,11 +77,17 @@
 @endsection
 
 @section('scripts')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/search.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/input.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
 <script src="https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor-full.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.4/remarkable.min.js" integrity="sha256-xVLIPE8qxiI4dvQKvrrhwkqYjmNEjj5l5n1+/vAtMUo=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script>
+    $('.ui.dropdown')
+      .dropdown()
+    ;
 // $(document).ready(function(){
 //     $("#form").on("submit", function () {
 //         var hvalue = $('.tui-editor-contents').html();
@@ -124,16 +135,14 @@ var simplemde = new SimpleMDE({
         italic: "_"
     },
     forceSync: true,
-    hideIcons: ["guide", "heading"],
+    hideIcons: ["guide"],
     indentWithTabs: true,
     insertTexts: {
         horizontalRule: ["", "\n\n-----\n\n"],
-        image: ["![](http://", ")"],
-        link: ["[", "](http://)"],
+        // link: ["[", "](http://)"],
         table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
-        video:["[", "](http://)"],
     },
-    lineWrapping: false,
+    lineWrapping: true,
     parsingConfig: {
         allowAtxHeaderWithoutSpace: true,
         strikethrough: false,
@@ -142,6 +151,9 @@ var simplemde = new SimpleMDE({
     placeholder: "Type here...",
     promptURLs: true,
     renderingConfig: {
+        markedOptions: {
+            sanitize: true
+        },
         singleLineBreaks: false,
         codeSyntaxHighlighting: true,
     },
@@ -151,16 +163,6 @@ var simplemde = new SimpleMDE({
     showIcons: ["code", "table"],
     spellChecker: false,
     status: true,
-    status: ["autosave", "lines", "words", "cursor", {
-        className: "keystrokes",
-        defaultValue: function(el) {
-            this.keystrokes = 0;
-            el.innerHTML = "0 Keystrokes";
-        },
-        onUpdate: function(el) {
-            el.innerHTML = ++this.keystrokes + " Keystrokes";
-        }
-    }], // Another optional usage, with a custom status bar item that counts keystrokes
     styleSelectedText: false,
     tabSize: 10,
     previewRender: function (plainMD) {return MDConvert.render(plainMD);},
@@ -237,7 +239,7 @@ var simplemde = new SimpleMDE({
             title: "Toggle Preview",
         },
         {
-            name: "side by side",
+            name: "side-by-side",
             action: SimpleMDE.toggleSideBySide,
             className: "icon feather icon-sidebar no-disable no-mobile",
             title: "Toggle Side by Side",
@@ -261,7 +263,7 @@ var simplemde = new SimpleMDE({
             title: "Video add",
         },
     ],
-    element: document.getElementById("editor-container") 
+    element: document.getElementById("editor-container")
 });
 
 function drawRedText(editor) {

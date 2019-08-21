@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Post;
-use App\Models\User;
-use App\Models\PostsVotes;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Parsedown;
 use App\Http\Resources\PostCollection;
+use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostsCollection;
-use App\Models\PostFavorites;
-use App\Models\PostsViews;
-use DB;
+use App\Models\PostFavorite;
+use App\Models\Hub;
+use App\Models\PostView;
+use App\Models\Post;
+use App\Models\PostVote;
+
 
 class PostController extends Controller
 {
@@ -23,7 +27,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return PostsCollection
      */
     public function indexDay()
     {
@@ -36,7 +40,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return PostsCollection
      */
     public function indexWeek()
     {
@@ -49,7 +53,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return PostsCollection
      */
     public function indexMonth()
     {
@@ -61,7 +65,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return PostsCollection
      */
     public function indexAll()
     {
@@ -72,15 +76,14 @@ class PostController extends Controller
     }
 
     /**
-     * @return api
+     * @return PostsCollection
      */
     public function favorite()
     {
-        // dd(Auth::user()->getHubsIdsAttribute());
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->whereIn('author_id', Auth::user()->getUserIdsAttribute())
             ->orWhereHas('tags', function($q) {
-                   $q->whereIn('hubs.id', Auth::user()->getHubsIdsAttribute()); 
+                   $q->whereIn('hubs.id', Auth::user()->getHubsIdsAttribute());
                 })
             ->with('creator:id,username')
             ->with('comments:body')
@@ -90,18 +93,21 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        return view('pages.posts.create');
+        $hubs = new HubsCollection(Hub::get());
+        return view('pages.posts.create', [
+            'hubs' => $hubs,
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -114,26 +120,32 @@ class PostController extends Controller
         $share = new Post([
           'name' => $request->get('title'),
           'body'=> $request->get('body'),
-          'author_id'=> Auth::user()->id, 
+          'author_id'=> Auth::user()->id,
         ]);
 
         $share->save();
-        return redirect('/')->with('success', 'Stock has been added');
+        return redirect('/post/' . $request->get('id'))->with('success', 'Stock has been added');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Request $request, $id)
     {
+        $parsedown = new Parsedown();
+        // dd($parsedown);
         $post = new PostCollection(Post::findOrFail($id));
-        PostsViews::createViewLog($post);
+
+        PostView::createViewLog($post);
+
+        // dd($parsedown->text($post->body));
 
         return view('pages.posts.show', [
             'post' => $post,
+            'body' => Purifier::clean($parsedown->text($post->body)),
             'hubs' => $post->tags()->withCount(['hubFollowers', 'posts'])->get(),
             'comments' => $post->comments()->with('author')->get()
         ]);
@@ -151,12 +163,12 @@ class PostController extends Controller
         ]);
         $share = Post::findOrFail($request->get('id'));
         if (isset($share) && $request->get('status') == 'upvote'){
-            if (PostsVotes::where('post_id', $request->get('id'))->count() > 0) {
-                $vote = PostsVotes::where('post_id', $request->get('id'))->firstOrFail();
+            if (PostVote::where('post_id', $request->get('id'))->count() > 0) {
+                $vote = PostVote::where('post_id', $request->get('id'))->firstOrFail();
                 $vote->status = '1';
                 $vote->save();
             } else {
-                $vote = new PostsVotes([
+                $vote = new PostVote([
                     'post_id' => $request->get('id'),
                     'user_id' => Auth::user()->id,
                     'status' => '1',
@@ -173,12 +185,12 @@ class PostController extends Controller
             $share->save();
             return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
         } else if (isset($share) && $request->get('status') == 'downvote') {
-            if (PostsVotes::where('post_id', $request->get('id'))->count() > 0) {
-                $vote = PostsVotes::where('post_id', $request->get('id'))->firstOrFail();
+            if (PostVote::where('post_id', $request->get('id'))->count() > 0) {
+                $vote = PostVote::where('post_id', $request->get('id'))->firstOrFail();
                 $vote->status = '0';
                 $vote->save();
             } else {
-                $vote = new PostsVotes([
+                $vote = new PostVote([
                     'post_id' => $request->get('id'),
                     'user_id' => Auth::user()->id,
                     'status' => '0',
@@ -195,7 +207,7 @@ class PostController extends Controller
             $share->save();
             return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
         } else if($request->get('status') != 'upvote' && $request->get('status') != 'downvote'){
-            PostsVotes::where([
+            PostVote::where([
                 'post_id' => $request->get('id'),
                 'user_id' => Auth::user()->id,
             ])->delete();
@@ -214,7 +226,8 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request
+     * @param Request $request
+     * @return JsonResponse
      */
     public function addFavorite(Request $request)
     {
@@ -223,14 +236,14 @@ class PostController extends Controller
         ]);
         $share = Post::findOrFail($request->get('id'));
         if (isset($share) && !$share->postIsFollowing(Auth::user())) {
-            $favorite = new PostFavorites([
+            $favorite = new PostFavorite([
                 'post_id' => $request->get('id'),
                 'follower_id' => Auth::user()->id,
             ]);
             $favorite->save();
             return response()->json(['success' => 'success'], 200);
         } else if($share->postIsFollowing(Auth::user())) {
-            PostFavorites::where([
+            PostFavorite::where([
                 'post_id' => $request->get('id'),
                 'follower_id' => Auth::user()->id,
             ])->delete();
@@ -243,8 +256,8 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function edit($id)
     {
@@ -254,9 +267,9 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return void
      */
     public function update(Request $request, $id)
     {
@@ -266,8 +279,8 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return void
      */
     public function destroy($id)
     {

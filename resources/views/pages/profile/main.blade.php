@@ -42,19 +42,19 @@
 							<i class="icon feather icon-mail"></i> Yazmağ
 						</a>
 					@elseif(!$isFollowing)
-						<a href="{{ route('user.follow', $user->id) }}" onclick="event.preventDefault(); document.getElementById('follow').submit();" class="btn profile_user-connect">Abunə olun <span class="folowers">{{ \Numeric::number_format_short(count($user['followers'])) }}</span></a>
+						<a href="{{ route('user.follow', $user->id) }}" onclick="event.preventDefault(); document.getElementById('follow').submit();" class="btn profile_user-connect">Abunə olun <span class="followers">{{ \Numeric::number_format_short(count($user['followers'])) }}</span></a>
 						<a href="{{ route('create_post') }}" class="btn profile_user-message">
 							<i class="icon feather icon-mail"></i> Yazmağ
 						</a>
 					@elseif($isFollowing)
-						<a href="{{ route('user.follow', $user->id) }}" onclick="event.preventDefault(); document.getElementById('unfollow').submit();" class="btn profile_user-connected">Abunəsiz <span class="folowers">{{ \Numeric::number_format_short(count($user['followers'])) }}</span></a>
+						<a href="{{ route('user.follow', $user->id) }}" onclick="event.preventDefault(); document.getElementById('unfollow').submit();" class="btn profile_user-connected">Abunəsiz <span class="followers">{{ \Numeric::number_format_short(count($user['followers'])) }}</span></a>
 						<a href="{{ route('create_post') }}" class="btn profile_user-message">
 							<i class="icon feather icon-mail"></i> Yazmağ
 						</a>
 					@endif
 				@endauth
 				@guest
-					<a href="{{ route('user.follow', $user->id) }}" onclick="event.preventDefault(); document.getElementById('folow').submit();" class="btn profile_user-connect">Abunə olun <span class="folowers">{{ \Numeric::number_format_short(count($user['followers'])) }}</span></a>
+					<a href="{{ route('user.follow', $user->id) }}" onclick="event.preventDefault(); document.getElementById('folow').submit();" class="btn profile_user-connect">Abunə olun <span class="followers">{{ \Numeric::number_format_short(count($user['followers'])) }}</span></a>
 					<a href="{{ route('create_post') }}" class="btn profile_user-message">
 						<i class="icon feather icon-mail"></i> Yazmağ
 					</a>

@@ -28,7 +28,7 @@
 				<i onclick="closeSearch()" class="icon feather icon-x"></i>
 			</div>
 		</form>
-		<div class="main-navbar__section main-navbar__section_right" id="header_app" data-style="display: flex;">
+		<div class="main-navbar__section main-navbar__section_right" id="header_app" style="display: grid;grid-template-columns: repeat(4,auto); grid-gap: 12px;">
 			<i id="search" onclick="search()" class="icon feather icon-search"></i>
 			@guest
 				<a href="{{ route('login') }}" class="btn btn-primary btn_navbar_login">Daxil ol</a>
@@ -36,44 +36,40 @@
 			@else
 				<notification></notification>
 				<a href="{{ route('create_post') }}" class="btn btn-primary button_add">
-					<i class="icon feather icon-plus"></i> Yazmağ
+					Yazmağ
 				</a>
-				<ul id="drop-down">
-					<li class="list">
-						<a href="#" class="link">
-							<img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') }}" alt="user avatar" class="user__avatar">
-						</a>
-						<ul class="child">
-							<li>
-								<span class="user">
-									<img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') ?? '' }}" alt="user avatar" class="user__avatar">
-									<div class="profile_info">
-										<span class="user_name">{{ Auth::user()->name ?? ''}}</span>
-										<br>
-										<div class="profile_text">
-											<div>Karma: <span class="karma-value">123</span></div>
-											<div class="raiting">Reyting: <span class="raiting-value">123</span></div>
-										</div>
-									</div>
-								</span>
-							</li>
-							<li><a href="#">Публикации</a></li>
-							<li><a href="#">Сохранённые</a></li>
-							<hr>
-							<li><a href="#"><i class="icon feather icon-settings"></i> Настройки</a></li>
-							<li>
-								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-									<i class="icon feather icon-power"></i> Выйти
-								</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				
-				<form id="logout-form" action="{{ route('logout') }}" method="POST" {{-- style="display: none;" --}}>
-					{{ csrf_field() }}
-				</form>
+				<div class="ui inline dropdown avatar-dropdown">
+					<img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') }}" alt="user avatar" class="user__avatar">
+					<div class="menu">
+					    <div class="item">Paylaşmalar</div>
+					    <div class="item">Seçilmişlər</div>
+					    <div class="ui divider"></div>
+					    <div class="item"><i class="icon feather icon-settings"></i> Parametrlər</div>
+					    <div class="item"><i class="icon feather icon-power"></i> Çıxmaq</div>
+						{{-- <span class="user" class="item">
+							<img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') ?? '' }}" alt="user avatar" class="user__avatar">
+							<div class="profile_info">
+								<span class="user_name">{{ Auth::user()->name ?? ''}}</span>
+								<br>
+								<div class="profile_text">
+									<div>Karma: <span class="karma-value">123</span></div>
+									<div class="raiting">Reyting: <span class="raiting-value">123</span></div>
+								</div>
+							</div>
+						</span>
+						<a href="#" class="item">Публикации</a>
+						<a href="#" class="item">Сохранённые</a>
+						<hr>
+						<a href="#" class="item"><i class="icon feather icon-settings"></i> Настройки</a>
+						<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="item">
+						<i class="icon feather icon-power"></i> Выйти
+						</a> --}}
+					</div>
+				</div>
             @endguest
 		</div>
 	</div>
 </header>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" {{-- style="display: none;" --}}>
+	{{ csrf_field() }}
+</form>

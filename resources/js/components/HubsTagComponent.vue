@@ -1,15 +1,17 @@
 <template>
-    <div :if="data || !loading" class="post__hubs">
-        <div class="hub" v-for="tag, index in data">
-            {{ tag.name }}
-            <div class="popup" :class="{ 'popup-left': index === 0 }">
-                <div class="content">
+    <div class="post__hubs">
+        <div v-for="hub, index in data">
+            <div class="hub popup-hub" :class="{'active_hub': hub.follower_check}">
+                <i :class="hub.name.toLowerCase() + ' icon'"></i> {{ hub.name }}
+            </div>
+            <div class="ui fluid popup" >
+                <div class="ui four column">
                     <div class="popup_header">
-                        <span class="raiting"><i class="icon feather icon-bar-chart-2"></i> {{ tag.raiting }}</span>
-                        <span class="followers"><i class="icon feather icon-users"></i> {{ tag.hub_followers_count }}</span>
-                        <span class="posts"> <i class="icon devhub icon-file-group-line"></i> {{ tag.posts_count }}</span>
+                        <span class="raiting"><i class="icon feather icon-bar-chart-2"></i> {{ hub.raiting }}</span>
+                        <span class="followers"><i class="icon feather icon-users"></i> {{ hub.hub_followers_count }}</span>
+                        <span class="posts"> <i class="icon devhub icon-file-group-line"></i> {{ hub.posts_count }}</span>
                     </div>
-                    <h4>{{ tag.description }}</h4>
+                    <h4>{{ hub.description }}</h4>
                 </div>
             </div>
         </div>

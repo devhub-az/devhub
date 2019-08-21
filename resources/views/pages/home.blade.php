@@ -64,7 +64,7 @@
                         <a href="https://u.tmtm.ru/kryptonite-startup" rel="nofollow" class="partner-info">
                             <div class="partner-info__head">
                                 <span class="partner-info__title">Azərkosmos</span>
-                                <img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png" class="partner-info__image">
+                                <img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png" class="partner-info__image" alt="Company image">
                             </div>
                             <div class="partner-info__description">
                                 Cənubi Qafqazda ilk peyk operatoru olan “Azərkosmos”.
@@ -75,7 +75,7 @@
                     <a href="https://u.tmtm.ru/ru-rub" rel="nofollow" class="partner-info">
                       <div class="partner-info__head">
                         <span class="partner-info__title">RISK Company</span>
-                        <img src="https://risk.az/site/templates/images/logo_large.jpg" class="partner-info__image">
+                        <img src="https://risk.az/site/templates/images/logo_large.jpg" class="partner-info__image" alt="Company name">
                       </div>
 
                       <div class="partner-info__description">
@@ -107,7 +107,7 @@
 
 @section('scripts')
 <script>
-    var stickyblock = stickybits('#default-block', {
+    const stickyblock = stickybits('#default-block', {
         stickyBitStickyOffset: 10
     });
 </script>

@@ -26,11 +26,11 @@ class Post extends Model
     }
 
     public function tags(){
-        return $this->belongsToMany(Hubs::class, 'post_hubs', 'posts_id', 'hub_id');
+        return $this->belongsToMany(Hub::class, 'post_hubs', 'posts_id', 'hub_id');
     }
 
     public function views(){
-        return $this->hasMany(PostsViews::class);
+        return $this->hasMany(PostView::class);
     }
 
     public function comments()
@@ -39,7 +39,7 @@ class Post extends Model
     }
 
     public function votes(){
-        return $this->hasMany(PostsVotes::class);
+        return $this->hasMany(PostVote::class);
     }
 
     public function postFollowers(){

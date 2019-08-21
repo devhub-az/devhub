@@ -59,16 +59,40 @@
                                 <h1>{{ $post['name'] }}</h1>
                             </div>
                             <div class="post-header__right">
-                                <span class="post__time"><i class="icon feather icon-calendar"></i> {{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }} | {{ Carbon\Carbon::parse($post['created_at'])->format('H:i') }}</span>  
+                                <span class="post__time"><i class="icon feather icon-calendar"></i> {{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }} | {{ Carbon\Carbon::parse($post['created_at'])->format('H:i') }}</span>
                             </div>
                         </div>
                         <hubs-tags :data="{{ json_encode($hubs) }}"></hubs-tags>
                         <div class="post-content__body">
-                        	@parsedown($post['body'])
+                            {!! $body !!}
                         </div>
                     </div>
                     <div id="content_footer" class="post__content-footer">
-                        Test
+                        <span class="footer_item">
+                            <i class="eye icon"></i> {{ $post['views']->count() }} Baxışların sayı
+                        </span>
+                        @auth
+                            @if ($post->postIsFollowing(Auth::user()) != "folowing")
+                                <span class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et" data-balloon-pos="down">
+                                    <i class="bookmark outline icon"></i> {{ $post->postFollowers->count() }} Seçilmiş
+                                </span>
+                            @elseif($post->postIsFollowing(Auth::user()) == "folowing")
+                                <span class="star tooltip footer_item" aria-label="Seçilmişlərdən cixartmag" data-balloon-pos="down">
+                                    <i class="bookmark icon"></i> {{ $post->postFollowers->count() }} Seçilmiş
+                                </span>
+                            @endif
+                        @endauth
+                        @guest
+                            <span class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et" data-balloon-pos="down">
+                                <i class="bookmark outline icon"></i> {{ $post->postFollowers->count() }} Seçilmiş
+                            </span>
+                        @endguest
+                        <span class="footer_item ui inline dropdown">
+                            <i class="ellipsis horizontal icon"></i>
+                            <div class="menu">
+                                <div class="item"><i class="flag icon"></i> Şikayət et</div>
+                            </div>
+                        </span>
                     </div>
                 </div>
                 <div class="post-share">
@@ -146,8 +170,8 @@
                 <div class="user-card">
                     <div class="card-header">
                     	<div></div>
-                    	<div class="image-border" style="background-image: url(https://unsplash.imgix.net/45/ZLSw0SXxThSrkXRIiCdT_DSC_0345.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=form">
-                    		<img class="profile-image" src="{{ asset($post['creator']->getMedia('avatars')->first()->getUrl('big')) }}">
+                    	<div class="image-border" style="background-image: url(https://unsplash.imgix.net/45/ZLSw0SXxThSrkXRIiCdT_DSC_0345.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=form)">
+                    		<img class="profile-image" src="{{ asset($post['creator']->getMedia('avatars')->first()->getUrl('big')) }}" alt="User avatar">
                     	</div>
                     </div>
                     <div class="content">
@@ -171,15 +195,15 @@
                             	@if(Auth::user()->id == $post['creator']['id'])
                             	@elseif(!$isFollowing)
                             		<a href="{{ route('user.follow', $post['creator']['id']) }}" onclick="event.preventDefault(); document.getElementById('follow').submit();" class="btn profile_user-connect">
-                            			<i class="icon feather icon-user-plus"></i> Abunə olun <span class="folowers">{{ \Numeric::number_format_short(count($post['creator']['followers'])) }}</span>
+                            			<i class="icon feather icon-user-plus"></i> Abunə olun <span class="followers">{{ \Numeric::number_format_short(count($post['creator']['followers'])) }}</span>
                             		</a>
                             	@elseif($isFollowing)
-                            		<a href="{{ route('user.follow', $post['creator']['id']) }}" onclick="event.preventDefault(); document.getElementById('unfollow').submit();" class="btn profile_user-connected">Abunəsiz <span class="folowers">{{ \Numeric::number_format_short(count($post['creator']['followers'])) }}</span></a>
+                            		<a href="{{ route('user.follow', $post['creator']['id']) }}" onclick="event.preventDefault(); document.getElementById('unfollow').submit();" class="btn profile_user-connected">Abunəsiz <span class="followers">{{ \Numeric::number_format_short(count($post['creator']['followers'])) }}</span></a>
                             	@endif
                             @endauth
                             @guest
                             	<a href="{{ route('user.follow', $post['creator']['id']) }}" onclick="event.preventDefault(); document.getElementById('folow').submit();" class="btn profile_user-connect">
-                            		<i class="icon feather icon-user-plus"></i> Abunə olun <span class="folowers">{{ \Numeric::number_format_short(count($post['creator']['followers'])) }}</span>
+                            		<i class="icon feather icon-user-plus"></i> Abunə olun <span class="followers">{{ \Numeric::number_format_short(count($post['creator']['followers'])) }}</span>
                             	</a>
                             @endauth
                         </div>
