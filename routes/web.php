@@ -3,7 +3,7 @@ Auth::routes();
 
 Route::get('setlocale/{locale}', function ($locale) {
     if (in_array($locale, \Config::get('app.locales'))) {
-    	Session::put('locale', $locale);
+        Session::put('locale', $locale);
     }
     // Carbon\Carbon::setLocale(config('app.locale'));
     return redirect()->back();
@@ -13,19 +13,19 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/top/week', 'HomeController@indexWeek')->name('top.week');
 Route::get('/top/month', 'HomeController@indexMonth')->name('top.month');
 Route::get('/all', 'HomeController@all')->name('all');
-Route::group(['middleware' => ['auth']], function() {
-	Route::get('/favorite', 'HomeController@favorite')->name('favorite');
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/favorite', 'HomeController@favorite')->name('favorite');
 });
 
 Route::prefix('api')->group(function () {
-	Route::get('posts/top/day', 'PostController@indexDay');
-	Route::get('posts/top/week', 'PostController@indexWeek');
-	Route::get('posts/top/month', 'PostController@indexMonth');
-	Route::get('posts/all', 'PostController@indexAll');
-	Route::get('posts/favorite', 'PostController@favorite');
-	Route::get('hubs/all', 'HubController@hubsAll');
-	Route::get('hubs/{id}', 'HubController@hubPosts');
-	Route::get('hubs', 'HubController@hubs');
+    Route::get('posts/top/day', 'PostController@indexDay');
+    Route::get('posts/top/week', 'PostController@indexWeek');
+    Route::get('posts/top/month', 'PostController@indexMonth');
+    Route::get('posts/all', 'PostController@indexAll');
+    Route::get('posts/favorite', 'PostController@favorite');
+    Route::get('hubs/all', 'HubController@hubsAll');
+    Route::get('hubs/{id}', 'HubController@hubPosts');
+    Route::get('hubs', 'HubController@hubs');
 
 });
 
@@ -37,13 +37,13 @@ Route::prefix('post')->group(function () {
 });
 
 Route::prefix('hubs')->group(function () {
-	Route::get('/', 'HubController@index');
-	Route::get('/{id}', 'HubController@show');
-	Route::post('/follow/{id}', 'HubController@follow');
+    Route::get('/', 'HubController@index');
+    Route::get('/{id}', 'HubController@show');
+    Route::post('/follow/{id}', 'HubController@follow');
 });
 
-Route::group([ 'middleware' => 'auth' ], function () {
-    Route::get('/notifications', 'UsersController@notifications');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/notifications', 'UserController@notifications');
 });
 
 Route::get('search-result', 'SearchController@index')->name('search-result');
@@ -51,8 +51,8 @@ Route::post('search-result', 'SearchController@index');
 
 Route::get('users', 'UserController@userList')->name('user-list');
 
-Route::prefix('comment')->group(function(){
-	Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
+Route::prefix('comment')->group(function () {
+    Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
 });
 
 Route::get('/@{username}', 'UserController@show')->name('user_profile');
@@ -62,17 +62,11 @@ Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('us
 
 Route::resource('posts', 'PostController');
 
-Route::get('about_us', function(){
-	return view('pages.about_us');
+Route::get('about_us', function () {
+    return view('pages.about_us');
 });
 
 // FUTURE
 Route::post('upvote', 'PostController@updateVote');
 
-
-Route::get('/notification', 'PusherNotificationController@sendNotification');
-
-Route::get('welcome', function(){
-	event(new App\Events\Notification('Someone'));
-    return "Event has been sent!";
-});
+Route::get('query', 'HomeController@indexTest');

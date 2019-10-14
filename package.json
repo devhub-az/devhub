@@ -55,13 +55,20 @@
         "turbolinks": "^5.2.0",
         "v-clipboard": "^2.2.2",
         "v-selectmenu": "^1.0.8",
+        "vue-content-placeholders": "^0.2.1",
         "vue-dynamic-select": "^1.0.16",
         "vue-multiselect": "^2.1.6",
+        "vue-router": "^3.1.2",
         "vue-search-select": "^2.8.3",
         "vue-select": "^3.1.0",
         "vue-selectize": "^0.0.3",
         "vue-taggable-select": "^1.0.1",
         "vue2-selectize": "^1.1.7",
         "webpack": "^4.35.3"
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
     }
 }

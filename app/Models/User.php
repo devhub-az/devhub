@@ -3,25 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\Models\Media;
-use App\Models\Posts;
 
 class User extends Authenticatable implements HasMedia
 {
     use HasMediaTrait;
     use Notifiable;
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'username','name', 'email', 'password',
+        'username', 'name', 'email', 'password',
     ];
 
     /**
@@ -58,23 +56,28 @@ class User extends Authenticatable implements HasMedia
             ->height(320);
     }
 
-    public function posts(){
+    public function posts()
+    {
         return $this->hasMany(Posts::class);
     }
 
-    public function followers(){
+    public function followers()
+    {
         return $this->belongsToMany(User::class, 'followers', 'leader_id', 'follower_id');
     }
 
-    public function followings(){
+    public function followings()
+    {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id');
     }
 
-    public function userPostFolowing(){
+    public function userPostFolowing()
+    {
         return $this->belongsToMany(Post::class, 'post_favorites', 'follower_id', 'post_id');
     }
 
-    public function userHubFolowing(){
+    public function userHubFollowing()
+    {
         return $this->belongsToMany(Hub::class, 'hub_followers', 'follower_id', 'hub_id');
     }
 
@@ -85,10 +88,11 @@ class User extends Authenticatable implements HasMedia
 
     public function getHubsIdsAttribute()
     {
-        return $this->userHubFolowing()->pluck('hub_id')->toArray();
+        return $this->userHubFollowing()->pluck('hub_id')->toArray();
     }
 
-    public function isFollowing(User $user){
-        return !! $this->followers()->where('follower_id', $user->id)->count();
+    public function isFollowing(User $user)
+    {
+        return !!$this->followers()->where('follower_id', $user->id)->count();
     }
 }

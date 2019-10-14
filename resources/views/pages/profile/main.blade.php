@@ -24,7 +24,7 @@
 		<div class="profileHeaderInfo sc-media">
 			<div class="profileHeaderInfo__avatar sc-media-image">
     			<div class="image m-user image__noOutline readOnly customImage interactive sc-artwork sc-artwork-placeholder-7 image__rounded m-loaded" tabindex="0" style="height: 200px; width: 200px;">
-					<span style="background-image: url({{ asset($user->getMedia('avatars')->first()->getUrl('big')) }});" class="image__rounded" aria-label="High Music’s avatar" aria-role="img"></span>
+					{{-- <span style="background-image: url({{ asset($user->getMedia('avatars')->first()->getUrl('big')) }});" class="image__rounded" aria-label="High Music’s avatar" aria-role="img"></span> --}}
 				</div>
 
 			</div>

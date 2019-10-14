@@ -9,6 +9,7 @@ class Post extends Model
     protected $table = 'posts';
 
     protected $fillable = [
+        'id',
         'name',
         'body',
         'author_id',
@@ -20,12 +21,12 @@ class Post extends Model
             app(Parsedown::class)->setSafeMode(true)->text($text)
         );
     }
-    
+
     public function creator(){
         return $this->belongsTo(User::class,'author_id')->withDefault();
     }
 
-    public function tags(){
+    public function hubs(){
         return $this->belongsToMany(Hub::class, 'post_hubs', 'posts_id', 'hub_id');
     }
 
@@ -59,11 +60,21 @@ class Post extends Model
             return 'downvoted';
         } else if (!! $this->votes()->where('user_id', $user->id)->where('status', '1')->count()){
             return 'upvoted';
-        } 
+        }
+    }
+
+    public function fields()
+    {
+        return [
+            'id',
+            'name',
+            'body',
+            'author_id',
+        ];
     }
 
     public function getHubsIdsAttribute()
     {
-        return $this->tags()->pluck('hub_id')->toArray();
+        return $this->hubs()->pluck('hub_id')->toArray();
     }
 }

@@ -187,7 +187,7 @@
                                 </div>
 
                                 <div>
-                                    <div class="stacked-counter-rait__value">{{ $post['creator']['raiting'] }}</div>
+                                    <div class="stacked-counter-rait__value">{{ $post['creator']['rating'] }}</div>
                                     <div class="stacked-counter__label">Reytinqi</div>
                                 </div>
                             </div>

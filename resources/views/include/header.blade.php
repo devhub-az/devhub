@@ -39,7 +39,7 @@
 					Yazmağ
 				</a>
 				<div class="ui inline dropdown avatar-dropdown">
-					<img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') }}" alt="user avatar" class="user__avatar">
+					{{-- <img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') }}" alt="user avatar" class="user__avatar"> --}}
 					<div class="menu">
 					    <div class="item">Paylaşmalar</div>
 					    <div class="item">Seçilmişlər</div>

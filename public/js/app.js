@@ -2005,8 +2005,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2253,6 +2251,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2266,7 +2275,8 @@ Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
       postsNotEmpty: false,
       pagination: {
         'current_page': 1
-      }
+      },
+      postsQuery: []
     };
   },
   mounted: function mounted() {
@@ -2323,7 +2333,7 @@ Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
       var currindex = null;
 
       for (var i = 0; i < this.$data.posts.length; i++) {
-        if (id == this.$data.posts[i].data.id) {
+        if (id === this.$data.posts[i].data.id) {
           currindex = i;
           break;
         }
@@ -2340,13 +2350,13 @@ Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
         id: id
       }).then(function (response) {
         if (response.data.success) {
-          _this2.posts[index].data.folowers++;
+          _this2.posts[index].data.followers++;
           _this2.posts[index].data.favorite = true;
           iziToast.info({
             message: 'Paylaşma seçilmişlərə elave olundu'
           });
         } else if (response.data["delete"]) {
-          _this2.posts[index].data.folowers--;
+          _this2.posts[index].data.followers--;
           _this2.posts[index].data.favorite = false;
           iziToast.info({
             message: 'Paylaşma seçilmişlərdən silindi'
@@ -2384,7 +2394,6 @@ Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
           iconUrl: null,
           imageWidth: 50,
           maxWidth: null,
-          zindex: null,
           layout: 1,
           balloon: false,
           close: false,
@@ -2434,7 +2443,6 @@ Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
           iconUrl: null,
           imageWidth: 50,
           maxWidth: null,
-          zindex: null,
           layout: 1,
           balloon: false,
           close: false,
@@ -2685,6 +2693,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -76213,61 +76223,58 @@ var render = function() {
     "div",
     [
       !_vm.loading
-        ? _c("div", { staticClass: "post-content" }, [
-            _c(
-              "div",
-              { staticClass: "content-list" },
-              _vm._l(_vm.hubs, function(hub) {
-                return _c(
-                  "div",
-                  { staticClass: "list-hubs__hub" },
-                  [
-                    hub.logo
-                      ? _c("img", {
-                          staticClass: "list-hubs__hub-image",
-                          attrs: { src: "/" + hub.logo, alt: "" }
-                        })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    !hub.logo
-                      ? _c("img", {
-                          staticClass: "list-hubs__hub-image",
-                          attrs: { src: "/images/empty/code.png", alt: "" }
-                        })
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "list-hubs__obj-body" }, [
-                      _c("div", { staticClass: "list-hubs__title-link" }, [
-                        _c("a", { attrs: { href: "/hubs/" + hub.id } }, [
-                          _vm._v(_vm._s(hub.name))
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-hubs__desc" }, [
-                        _vm._v(_vm._s(hub.description))
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "list-hubs__desc" }, [
-                        _vm._v("Postlar: " + _vm._s(hub.posts_count))
+        ? _c(
+            "div",
+            _vm._l(_vm.hubs, function(hub) {
+              return _c(
+                "div",
+                { staticClass: "list-hubs__hub" },
+                [
+                  hub.logo
+                    ? _c("img", {
+                        staticClass: "list-hubs__hub-image",
+                        attrs: { src: "/" + hub.logo, alt: "" }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !hub.logo
+                    ? _c("img", {
+                        staticClass: "list-hubs__hub-image",
+                        attrs: { src: "/images/empty/code.png", alt: "" }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-hubs__obj-body" }, [
+                    _c("div", { staticClass: "list-hubs__title-link" }, [
+                      _c("a", { attrs: { href: "/hubs/" + hub.id } }, [
+                        _vm._v(_vm._s(hub.name))
                       ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "list-hubs__stats-value" }, [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(hub.raiting) +
-                          "\n                "
-                      )
+                    _c("div", { staticClass: "list-hubs__desc" }, [
+                      _vm._v(_vm._s(hub.description))
                     ]),
                     _vm._v(" "),
-                    _c("hub-follow-button", { attrs: { hub: hub } })
-                  ],
-                  1
-                )
-              }),
-              0
-            )
-          ])
+                    _c("div", { staticClass: "list-hubs__desc" }, [
+                      _vm._v("Postlar: " + _vm._s(hub.posts_count))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "list-hubs__stats-value" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(hub.raiting) +
+                        "\n            "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("hub-follow-button", { attrs: { hub: hub } })
+                ],
+                1
+              )
+            }),
+            0
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.pagination.last_page > 1 && !_vm.loading
@@ -76584,16 +76591,8 @@ var render = function() {
             ? _c(
                 "div",
                 [
-                  _vm._l(_vm.posts, function(post, index) {
+                  _vm._l(_vm.posts, function(post) {
                     return _c("div", { staticClass: "post-content" }, [
-                      (index + 1) % 3 == 0
-                        ? _c("div", [
-                            _vm._v(
-                              "\n                    Reklam!!!\n                "
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
                       _c(
                         "div",
                         { staticClass: "post-content__item" },
@@ -76737,7 +76736,7 @@ var render = function() {
                                           : _vm._e(),
                                         _vm._v(
                                           " " +
-                                            _vm._s(post.data.folowers) +
+                                            _vm._s(post.data.followers) +
                                             " Seçilmiş\n                            "
                                         )
                                       ]
@@ -76768,7 +76767,7 @@ var render = function() {
                                           : _vm._e(),
                                         _vm._v(
                                           " " +
-                                            _vm._s(post.data.folowers) +
+                                            _vm._s(post.data.follower) +
                                             " Seçilmiş\n                            "
                                         )
                                       ]
@@ -77189,10 +77188,12 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ui category search" }, [
       _c("div", { staticClass: "ui icon input" }, [
-        _c("input", {
-          staticClass: "prompt",
-          attrs: { type: "text", placeholder: "Search animals..." }
-        }),
+        _c("label", [
+          _c("input", {
+            staticClass: "prompt",
+            attrs: { type: "text", placeholder: "Search animals..." }
+          })
+        ]),
         _vm._v(" "),
         _c("i", { staticClass: "search icon" })
       ]),

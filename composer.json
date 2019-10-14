@@ -23,9 +23,7 @@
         "league/commonmark-ext-table": "^2.0",
         "mews/purifier": "^2.1",
         "parsedown/laravel": "^1.1",
-        "pusher/pusher-php-server": "^4.0",
         "react/dns": "^1.0",
-        "scrivo/highlight.php": "^9.15",
         "spatie/laravel-medialibrary": "^7.6",
         "spatie/laravel-responsecache": "^6.1",
         "webuni/commonmark-table-extension": "^1.0"

@@ -1,0 +1,42 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel Test OpenApi",
+        "description": "L5 Swagger OpenApi description",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "L5 Swagger OpenApi dynamic host server"
+        },
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "L5 Swagger OpenApi Server"
+        }
+    ],
+    "paths": {
+        "/posts/top/day": {
+            "get": {
+                "tags": [
+                    "Posts"
+                ],
+                "summary": "Get list of books",
+                "description": "Returns list of books",
+                "operationId": "getBooksList",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            }
+        }
+    }
+}

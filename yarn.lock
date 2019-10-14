@@ -7274,6 +7274,11 @@ vue-clickaway@^2.2.2:
   dependencies:
     loose-envify "^1.2.0"
 
+vue-content-placeholders@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/vue-content-placeholders/-/vue-content-placeholders-0.2.1.tgz#5876bda4577c80ff6d396fb33b2dbbf8b8cc140f"
+  integrity sha512-Q+HPjuY98R0fLQ45eOOCYeMY7vpjU1H/Qqs0ptdBI6xe3nDDsPE4r/kN5YA9rVxQFP/PKhG5qQR4rqy02xPabw==
+
 vue-dynamic-select@^1.0.16:
   version "1.0.16"
   resolved "https://registry.yarnpkg.com/vue-dynamic-select/-/vue-dynamic-select-1.0.16.tgz#eea8d7bfdce5387639135bb78194910aeb3e374c"
@@ -7299,6 +7304,11 @@ vue-multiselect@^2.1.6:
   version "2.1.6"
   resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.6.tgz#5be5d811a224804a15c43a4edbb7485028a89c7f"
   integrity sha512-s7jmZPlm9FeueJg1RwJtnE9KNPtME/7C8uRWSfp9/yEN4M8XcS/d+bddoyVwVnvFyRh9msFo0HWeW0vTL8Qv+w==
+
+vue-router@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.1.2.tgz#2e0904703545dabdd42b2b7a2e617f02f99a1969"
+  integrity sha512-WssQEHSEvIS1/CI4CO2T8LJdoK4Q9Ngox28K7FDNMTfzNTk2WS5D0dDlqYCaPG+AG4Z8wJkn1KrBc7AhspZJUQ==
 
 vue-search-select@^2.8.3:
   version "2.8.3"

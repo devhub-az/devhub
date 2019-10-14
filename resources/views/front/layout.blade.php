@@ -8,11 +8,6 @@
 	{{-- basic page needs --}}
 	<meta charset="utf-8">
 	<title>@yield('title', 'DevHub') | DevHub</title>
-	<meta name="description" content="{{ isset($post) && $post->meta_description ? $post->meta_description : __('description') }}">
-	<meta name="author" content="@lang(lcfirst ('Author'))">
-	@if(isset($post) && $post->meta_keywords)
-		<meta name="keywords" content="{{ $post->meta_keywords }}">
-	@endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	@yield('meta')
 	{{-- mobile specific metas --}}
@@ -78,7 +73,7 @@
 	@include('include.footer')
 
 	{{-- Java Script --}}
-	
+
 	<script src="{{ asset('plugins/iziToast/dist/js/iziToast.min.js') }}"></script>
 	<script src="{{ asset('js/stickybits.min.js') }}"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
@@ -110,7 +105,7 @@
 		});
 
 		MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
-		
+
 	    function Lang() {
 	    	document.getElementById("myDropdown").classList.toggle("show");
 	    }
@@ -124,35 +119,35 @@
 	    // Close the dropdown menu if the user clicks outside of it
 	    window.onclick = function(event) {
 	      if (!event.target.matches('.dropbtn')) {
-	        var dropdowns = document.getElementsByClassName("dropdown-content");
-	        var i;
-	        for (i = 0; i < dropdowns.length; i++) {
-	          var openDropdown = dropdowns[i];
-	          if (openDropdown.classList.contains('show')) {
+              const dropdown = document.getElementsByClassName("dropdown-content");
+              let i;
+              for (i = 0; i < dropdown.length; i++) {
+                  const openDropdown = dropdown[i];
+                  if (openDropdown.classList.contains('show')) {
 	            openDropdown.classList.remove('show');
 	          }
 	        }
 	      }
-	    }
+	    };
 
 	    function search(){
-	    	var input = document.getElementById("form_search");
-	    	var icon = document.getElementById("search");
-	    	var nav = document.getElementById("navbar-links");
-	    	var search_input = document.getElementById("search_input");
+            const input = document.getElementById("form_search");
+            const icon = document.getElementById("search");
+            const nav = document.getElementById("navbar-links");
+            const search_input = document.getElementById("search_input");
 
-	    	nav.style.display = "none";
+            nav.style.display = "none";
 	    	input.style.display = "flex";
 	    	icon.style.display = "none";
 	    	search_input.focus();
 	    }
 
 	    function closeSearch() {
-	    	var input = document.getElementById("form_search");
-	    	var icon = document.getElementById("search");
-	    	var nav = document.getElementById("navbar-links");
+            const input = document.getElementById("form_search");
+            const icon = document.getElementById("search");
+            const nav = document.getElementById("navbar-links");
 
-	    	nav.removeAttribute("style");
+            nav.removeAttribute("style");
 	    	input.removeAttribute("style");
 	    	icon.removeAttribute("style");
 	    }

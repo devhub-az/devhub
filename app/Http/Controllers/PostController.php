@@ -20,8 +20,12 @@ use App\Models\PostVote;
 class PostController extends Controller
 {
 
-	public function __construct() {
-        $this->middleware('auth', ['only' => ['create', 'favorite', 'store', 'edit', 'updateVote', 'addFavorite'] ]);
+    /**
+     * PostController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['create', 'favorite', 'store', 'edit', 'updateVote', 'addFavorite']]);
     }
 
     /**
@@ -62,6 +66,7 @@ class PostController extends Controller
             ->with('comments:body')
             ->paginate(5));
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -82,9 +87,9 @@ class PostController extends Controller
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->whereIn('author_id', Auth::user()->getUserIdsAttribute())
-            ->orWhereHas('tags', function($q) {
-                   $q->whereIn('hubs.id', Auth::user()->getHubsIdsAttribute());
-                })
+            ->orWhereHas('tags', function ($q) {
+                $q->whereIn('hubs.id', Auth::user()->getHubsIdsAttribute());
+            })
             ->with('creator:id,username')
             ->with('comments:body')
             ->paginate(5));
@@ -112,15 +117,15 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           'title' => 'required|string',
-           'body' => 'required|string|min:110',
-           // 'tags' => 'required',
+            'title' => 'required|string',
+            'body' => 'required|string|min:110',
+            // 'tags' => 'required',
         ]);
 
         $share = new Post([
-          'name' => $request->get('title'),
-          'body'=> $request->get('body'),
-          'author_id'=> Auth::user()->id,
+            'name' => $request->get('title'),
+            'body' => $request->get('body'),
+            'author_id' => Auth::user()->id,
         ]);
 
         $share->save();
@@ -130,7 +135,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show(Request $request, $id)
@@ -145,14 +150,14 @@ class PostController extends Controller
 
         return view('pages.posts.show', [
             'post' => $post,
-            'body' => Purifier::clean($parsedown->text($post->body)),
-            'hubs' => $post->tags()->withCount(['hubFollowers', 'posts'])->get(),
+            'body' => \Purifier::clean($parsedown->text($post->body)),
+            'hubs' => $post->hubs()->withCount(['hubFollowers', 'posts'])->get(),
             'comments' => $post->comments()->with('author')->get()
         ]);
     }
 
     /**
-     * @param  Request
+     * @param Request
      * @return vote status
      */
     public function updateVote(Request $request)
@@ -162,7 +167,7 @@ class PostController extends Controller
             'vote' => 'required|int',
         ]);
         $share = Post::findOrFail($request->get('id'));
-        if (isset($share) && $request->get('status') == 'upvote'){
+        if (isset($share) && $request->get('status') == 'upvote') {
             if (PostVote::where('post_id', $request->get('id'))->count() > 0) {
                 $vote = PostVote::where('post_id', $request->get('id'))->firstOrFail();
                 $vote->status = '1';
@@ -206,7 +211,7 @@ class PostController extends Controller
             $share->creator->save();
             $share->save();
             return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
-        } else if($request->get('status') != 'upvote' && $request->get('status') != 'downvote'){
+        } else if ($request->get('status') != 'upvote' && $request->get('status') != 'downvote') {
             PostVote::where([
                 'post_id' => $request->get('id'),
                 'user_id' => Auth::user()->id,
@@ -242,7 +247,7 @@ class PostController extends Controller
             ]);
             $favorite->save();
             return response()->json(['success' => 'success'], 200);
-        } else if($share->postIsFollowing(Auth::user())) {
+        } else if ($share->postIsFollowing(Auth::user())) {
             PostFavorite::where([
                 'post_id' => $request->get('id'),
                 'follower_id' => Auth::user()->id,

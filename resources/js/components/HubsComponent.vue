@@ -1,20 +1,18 @@
 <template>
     <div>
-        <div v-if="!loading" class="post-content">
-            <div class="content-list">
-                <div v-for="hub in hubs" class="list-hubs__hub">
-                    <img v-if="hub.logo" class="list-hubs__hub-image" :src="'/' + hub.logo" alt="">
-                    <img v-if="!hub.logo" class="list-hubs__hub-image" src="/images/empty/code.png" alt="">
-                    <div class="list-hubs__obj-body">
-                        <div class="list-hubs__title-link"> <a :href="'/hubs/' + hub.id">{{ hub.name }}</a></div>
-                        <div class="list-hubs__desc">{{ hub.description }}</div>
-                        <div class="list-hubs__desc">Postlar: {{ hub.posts_count }}</div>
-                    </div>
-                    <div class="list-hubs__stats-value">
-                        {{ hub.raiting }}
-                    </div>
-                    <hub-follow-button :hub="hub"></hub-follow-button>
+        <div v-if="!loading">
+            <div v-for="hub in hubs" class="list-hubs__hub">
+                <img v-if="hub.logo" class="list-hubs__hub-image" :src="'/' + hub.logo" alt="">
+                <img v-if="!hub.logo" class="list-hubs__hub-image" src="/images/empty/code.png" alt="">
+                <div class="list-hubs__obj-body">
+                    <div class="list-hubs__title-link"> <a :href="'/hubs/' + hub.id">{{ hub.name }}</a></div>
+                    <div class="list-hubs__desc">{{ hub.description }}</div>
+                    <div class="list-hubs__desc">Postlar: {{ hub.posts_count }}</div>
                 </div>
+                <div class="list-hubs__stats-value">
+                    {{ hub.raiting }}
+                </div>
+                <hub-follow-button :hub="hub"></hub-follow-button>
             </div>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5" @paginate="getHubs()"></pagination>

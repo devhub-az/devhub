@@ -1,13 +1,16 @@
 <template>
     <div class="post-content">
-        <div v-if="loading"  class="post-content__item">
+        <div v-if="loading" class="post-content__item">
             <header class="post__meta">
                 <div style="background-color:#E2E2E2" alt="user avatar" class="user__avatar loading"></div>
-                <div class="user-info__nickname_small loading" style="width: 20%; background: rgb(226, 226, 226); height: 1.2rem;"></div>
-                <span class="post__read-time loading" style="width: 10%; background: rgb(226, 226, 226); height: 1.2rem;"></span>
+                <div class="user-info__nickname_small loading"
+                     style="width: 20%; background: rgb(226, 226, 226); height: 1.2rem;"></div>
+                <span class="post__read-time loading"
+                      style="width: 10%; background: rgb(226, 226, 226); height: 1.2rem;"></span>
             </header>
             <div class="post-content__header">
-                <div class="post-title loading" style="width: 40%; background: rgb(226, 226, 226); height: 1.5rem;"></div>
+                <div class="post-title loading"
+                     style="width: 40%; background: rgb(226, 226, 226); height: 1.5rem;"></div>
                 <div class="post-votes">
                     <i class="icon feather icon-thumbs-up"></i>
                     <span><i class="icon iconmoon icon-spinner"></i></span>
@@ -15,10 +18,13 @@
                 </div>
             </div>
             <div class="post__hubs">
-                <div class="hub" v-for="tags in Math.ceil(Math.random()* (5 - 3)) + 3" :style="{width: Math.ceil(Math.random()* (5 - 3)) + 3 + '%'}" style="height: 18px"></div>
+                <div class="hub" v-for="tags in Math.ceil(Math.random()* (5 - 3)) + 3"
+                     :style="{width: Math.ceil(Math.random()* (5 - 3)) + 3 + '%'}" style="height: 18px"></div>
             </div>
             <div class="post-content__body">
-                <div v-for="text in Math.ceil(Math.random()* (6 - 3 +1)) + 3" :style="{width: Math.floor(Math.random()* (100 - 50 +1)) + 50 +'%'}" style="height: 18px; background: rgb(226, 226, 226); margin-bottom: 12px;" class="loading"></div>
+                <div v-for="text in Math.ceil(Math.random()* (6 - 3 +1)) + 3"
+                     :style="{width: Math.floor(Math.random()* (100 - 50 +1)) + 50 +'%'}"
+                     style="height: 18px; background: rgb(226, 226, 226); margin-bottom: 12px;" class="loading"></div>
             </div>
             <div class="post-content__footer">
                 <div class="post-content__footer-stats">
@@ -26,21 +32,24 @@
                     <i class="bookmark outline icon"></i> <i class="icon iconmoon icon-spinner"></i>
                     <i class="comments outline icon"></i> <i class="icon iconmoon icon-spinner"></i>
                 </div>
-                <div class="btn btn-primary btn-more loading" style="width: 60%; background: rgb(226, 226, 226);     padding: 0;"></div>
+                <div class="btn btn-primary btn-more loading"
+                     style="width: 60%; background: rgb(226, 226, 226);     padding: 0;"></div>
             </div>
         </div>
         <div v-if="!loading">
             <div v-if="postsNotEmpty">
-                <div class="post-content"  v-for="post in posts">
+                <div class="post-content" v-for="post in posts">
                     <div class="post-content__item">
                         <header class="post__meta">
-                            <a v-bind:href="'/@' +post.data.creator" class="post__user-info user-info" title="Автор публикации">
-                            <img :src="post.data.profile_image" alt="user avatar" class="user__avatar">
-                            <span class="user-info__nickname user-info__nickname_small">{{ post.data.creator }}</span>
+                            <a v-bind:href="'/@' +post.data.creator" class="post__user-info user-info"
+                               title="Автор публикации">
+                                <img :src="post.data.profile_image" alt="user avatar" class="user__avatar">
+                                <span
+                                    class="user-info__nickname user-info__nickname_small">{{ post.data.creator }}</span>
                             </a>
                             <span class="post__time">{{ post.data.created_at | timeago }} | {{ post.data.created_at |  moment('DD MMMM, H:mm') }}</span>
                             <span class="post__read-time" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
-                                <i class="icon devhub icon-clock-line" ></i> {{ post.data.read_time }}
+                                <i class="icon devhub icon-clock-line"></i> {{ post.data.read_time }}
                             </span>
                         </header>
                         <div class="post-content__header">
@@ -49,7 +58,7 @@
                             </a>
                             <vote :posts="post" :auth_check="auth_check"></vote>
                         </div>
-                        <hubs-tags v-if="post.data.tags.data.length"  :data="post.data.tags.data"></hubs-tags>
+                        <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data"></hubs-tags>
                         <div class="post-content__body" v-html="post.data.body">
                         </div>
                         <div class="post-content__footer">
@@ -57,10 +66,14 @@
                                 <span class="footer_item">
                                     <i class="eye icon"></i> {{ post.data.views }} Baxışların sayı
                                 </span>
-                                <span class="star tooltip footer_item" @click="favorite(post.data.id)" v-if="!post.data.favorite" aria-label="Seçilmişlərə əlavə et" data-balloon-pos="down">
+                                <span class="star tooltip footer_item" @click="favorite(post.data.id)"
+                                      v-if="!post.data.favorite" aria-label="Seçilmişlərə əlavə et"
+                                      data-balloon-pos="down">
                                     <i v-if="!post.data.favorite" class="bookmark outline icon"></i> {{ post.data.followers }} Seçilmiş
                                 </span>
-                                <span class="star tooltip footer_item" @click="favorite(post.data.id)" v-if="post.data.favorite" aria-label="Seçilmişlərdən cixartmag" data-balloon-pos="down">
+                                <span class="star tooltip footer_item" @click="favorite(post.data.id)"
+                                      v-if="post.data.favorite" aria-label="Seçilmişlərdən cixartmag"
+                                      data-balloon-pos="down">
                                     <i v-if="post.data.favorite" class="bookmark icon"></i> {{ post.data.follower }} Seçilmiş
                                 </span>
                                 <span class="footer_item">
@@ -82,7 +95,8 @@
                         </div>
                     </div>
                 </div>
-                <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5" @paginate="getPosts()"></pagination>
+                <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"
+                            @paginate="getPosts()"></pagination>
             </div>
             <div v-else class="post-content__item" style="text-align: center; display: grid; grid-gap: 12px;">
                 <span style="font-size: 5rem; opacity: .7;"><i class="icon feather icon-inbox"></i></span>
@@ -99,11 +113,10 @@
 
 <script>
     import Clipboard from 'v-clipboard';
-    import {IziToast as iziToast} from "../../../public/plugins/iziToast/types";
     Vue.use(Clipboard);
     export default {
         props: ['surveyData', 'auth_check', 'hub'],
-        data: function() {
+        data: function () {
             return {
                 posts: [],
                 id: [],
@@ -113,16 +126,18 @@
                 pagination: {
                     'current_page': 1
                 },
+                postsQuery: [],
             }
         },
-        mounted: function() {
+        mounted: function () {
             this.getPosts();
         },
         methods: {
-            getPosts: function(){
+            getPosts: function () {
                 this.loading = true;
                 axios.get(this.surveyData+ '?page=' + this.pagination.current_page).then(response => {
                     this.loading = false;
+
                     if (response.data.data.length !== 0) {
                         this.posts = response.data.data;
                         this.pagination = response.data.meta;
@@ -135,69 +150,71 @@
                         }
                     }
                 })
-                .catch(error => {
-                    if (error.response) {
-                        /*
-                         * The request was made and the server responded with a
-                         * status code that falls out of the range of 2xx
-                         */
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                    } else if (error.request) {
-                        /*
-                         * The request was made but no response was received, `error.request`
-                         * is an instance of XMLHttpRequest in the browser and an instance
-                         * of http.ClientRequest in Node.js
-                         */
-                        console.log(error.request);
-                    } else {
-                        // Something happened in setting up the request and triggered an Error
-                        console.log('Error', error.message);
-                    }
-                    console.log(error);
-                    this.loading = true
-                });
+                    .catch(error => {
+                        if (error.response) {
+                            /*
+                             * The request was made and the server responded with a
+                             * status code that falls out of the range of 2xx
+                             */
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        } else if (error.request) {
+                            /*
+                             * The request was made but no response was received, `error.request`
+                             * is an instance of XMLHttpRequest in the browser and an instance
+                             * of http.ClientRequest in Node.js
+                             */
+                            console.log(error.request);
+                        } else {
+                            // Something happened in setting up the request and triggered an Error
+                            console.log('Error', error.message);
+                        }
+                        console.log(error);
+                        this.loading = true
+                    });
             },
-            findVillainIdx: function(id){
+            findVillainIdx: function (id) {
                 let currindex = null;
-                for(let i=0; i<this.$data.posts.length; i++){
-                  if (id === this.$data.posts[i].data.id){
-                      currindex = i;
-                       break;}
-                };
+                for (let i = 0; i < this.$data.posts.length; i++) {
+                    if (id === this.$data.posts[i].data.id) {
+                        currindex = i;
+                        break;
+                    }
+                }
+                ;
                 return currindex;
             },
-            favorite: function(id){
+            favorite: function (id) {
                 var index = this.findVillainIdx(id);
                 axios.post('/post/favorite/' + id, {
-                    id:id,
+                    id: id,
                 })
-                .then(response => {
-                    if (response.data.success) {
-                        this.posts[index].data.followers++;
-                        this.posts[index].data.favorite = true;
-                        iziToast.info({
-                            message: 'Paylaşma seçilmişlərə elave olundu',
-                        })
-                    } else if(response.data.delete){
-                        this.posts[index].data.followers--;
-                        this.posts[index].data.favorite = false;
-                        iziToast.info({
-                            message: 'Paylaşma seçilmişlərdən silindi',
-                        })
-                    }
-                })
-                .catch(error => {
-                    iziToast.error({
-                        title: 'Xəta',
-                        message: 'Qanunsuz əməliyyat',
+                    .then(response => {
+                        if (response.data.success) {
+                            this.posts[index].data.followers++;
+                            this.posts[index].data.favorite = true;
+                            iziToast.info({
+                                message: 'Paylaşma seçilmişlərə elave olundu',
+                            })
+                        } else if (response.data.delete) {
+                            this.posts[index].data.followers--;
+                            this.posts[index].data.favorite = false;
+                            iziToast.info({
+                                message: 'Paylaşma seçilmişlərdən silindi',
+                            })
+                        }
+                    })
+                    .catch(error => {
+                        iziToast.error({
+                            title: 'Xəta',
+                            message: 'Qanunsuz əməliyyat',
+                        });
                     });
-                });
             },
-            copy: function(id) {
-                var link = window.location.origin + '/post/' + id;
-                try{
+            copy: function (id) {
+                const link = window.location.origin + '/post/' + id;
+                try {
                     this.$clipboard(link);
                     iziToast.show({
                         id: null,
