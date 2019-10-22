@@ -43,7 +43,7 @@
                         <header class="post__meta">
                             <a v-bind:href="'/@' +post.data.creator" class="post__user-info user-info"
                                title="Автор публикации">
-                                <img :src="post.data.profile_image" alt="user avatar" class="user__avatar">
+                                <img src="/images/profile/deadpool.png" alt="user avatar" class="user__avatar">
                                 <span
                                     class="user-info__nickname user-info__nickname_small">{{ post.data.creator }}</span>
                             </a>
@@ -74,7 +74,7 @@
                                 <span class="star tooltip footer_item" @click="favorite(post.data.id)"
                                       v-if="post.data.favorite" aria-label="Seçilmişlərdən cixartmag"
                                       data-balloon-pos="down">
-                                    <i v-if="post.data.favorite" class="bookmark icon"></i> {{ post.data.follower }} Seçilmiş
+                                    <i v-if="post.data.favorite" class="bookmark icon"></i> {{ post.data.followers }} Seçilmiş
                                 </span>
                                 <span class="footer_item">
                                     <a :href="'/post/' + post.data.id + '/#comments'" class="post_comments_link">
@@ -113,31 +113,36 @@
 
 <script>
     import Clipboard from 'v-clipboard';
+
     Vue.use(Clipboard);
     export default {
-        props: ['surveyData', 'auth_check', 'hub'],
+        props: ['url', 'auth_check', 'hub', 'content'],
         data: function () {
             return {
                 posts: [],
                 id: [],
+                content: '',
                 loading: false,
                 hovered: false,
                 postsNotEmpty: false,
                 pagination: {
                     'current_page': 1
                 },
-                postsQuery: [],
             }
         },
         mounted: function () {
-            this.getPosts();
+                this.getPosts();
         },
         methods: {
+            getHubPosts: function () {
+                this.loading = true;
+                this.loading = false;
+                this.posts = this.hub;
+            },
             getPosts: function () {
                 this.loading = true;
-                axios.get(this.surveyData+ '?page=' + this.pagination.current_page).then(response => {
+                axios.get(this.url + '?page=' + this.pagination.current_page).then(response => {
                     this.loading = false;
-
                     if (response.data.data.length !== 0) {
                         this.posts = response.data.data;
                         this.pagination = response.data.meta;
@@ -152,22 +157,12 @@
                 })
                     .catch(error => {
                         if (error.response) {
-                            /*
-                             * The request was made and the server responded with a
-                             * status code that falls out of the range of 2xx
-                             */
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
                         } else if (error.request) {
-                            /*
-                             * The request was made but no response was received, `error.request`
-                             * is an instance of XMLHttpRequest in the browser and an instance
-                             * of http.ClientRequest in Node.js
-                             */
                             console.log(error.request);
                         } else {
-                            // Something happened in setting up the request and triggered an Error
                             console.log('Error', error.message);
                         }
                         console.log(error);
@@ -186,7 +181,7 @@
                 return currindex;
             },
             favorite: function (id) {
-                var index = this.findVillainIdx(id);
+                const index = this.findVillainIdx(id);
                 axios.post('/post/favorite/' + id, {
                     id: id,
                 })

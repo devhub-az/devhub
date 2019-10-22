@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Resources\HubCollection;
 use App\Http\Resources\HubsCollection;
@@ -15,10 +16,18 @@ use Illuminate\View\View;
 
 class HubController extends Controller
 {
+
+    /**
+     * @var string
+     */
+    public $content = 'hub_show';
+
+    /**
+     * @return Factory|View
+     */
     public function index(){
-        $top_hubs = new HubsCollection(Hub::orderBy('raiting','DESC')->paginate(5));
+        $top_hubs = new HubsCollection(Hub::orderBy('rating','DESC')->paginate(5));
         $top_followed_hubs = new  HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count', 'desc')->paginate(5));
-        // dd($top_followed_hubs);
     	return view('pages.hubs.hubs', [
             'top_hubs' => $top_hubs,
             'top_followed_hubs' => $top_followed_hubs
@@ -26,49 +35,57 @@ class HubController extends Controller
     }
 
     /**
-     * [show description]
-     * @param Request $request [description]
-     * @param  [type]  $id      [description]
-     * @return Factory|View [type]           [description]
+     * @param int $id
+     * @return Factory|View
      */
-    public function show(Request $request, $id)
+    public function show(int $id)
     {
     	$hub = new HubCollection(Hub::withCount('hubFollowers')->findOrFail($id));
 
     	return view('pages.hubs.show', [
     	    'hub' => $hub,
             'posts_count' => count($hub->posts()->get()),
-    	    'url' => '/api/hubs/' . $id
+    	    'url' => '/api/hubs/' . $id,
+            'content' => $this->content
     	]);
     }
 
     /**
      * API
-     * @param Request $request
-     * @param $id
+     * @param int $id
      * @return PostsCollection
      */
-    public function hubPosts(Request $request, $id)
+    public function hubPosts(int $id)
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
-        	->whereHas('tags', function ($query) use($id) {
+        	->whereHas('hubs', function ($query) use($id) {
     			$query->where('hubs.id', '=', $id);
 			})
             ->with('creator:id,username')
-            ->with('tags:name')
+            ->with('hubs:name')
             ->with('comments:body')
             ->paginate(5));
     }
 
+    /**
+     * @return HubsCollection
+     */
     public function hubs(){
-    	return new HubsCollection(Hub::orderBy('raiting','DESC')->paginate(10));
+    	return new HubsCollection(Hub::orderBy('rating','DESC')->paginate(10));
     }
 
+    /**
+     * @return mixed
+     */
     public function hubsAll(){
         $hubs = new HubsCollection(Hub::get());
         return $hubs->all();
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function follow(Request $request)
     {
         $request->validate([

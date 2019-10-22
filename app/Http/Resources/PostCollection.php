@@ -14,7 +14,7 @@ class PostCollection extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  Request  $request
+     * @param Request $request
      * @return array
      */
     public function toArray($request)
@@ -26,7 +26,7 @@ class PostCollection extends JsonResource
                 'title' => $this->name,
                 'body' => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
                 'creator' => $this->creator->username,
-                'profile_image' => $this->creator->getMedia('avatars')->first()->getUrl('small'),
+                'profile_image' => '',
                 'votes' => $this->votes,
                 'tags' => new HubsCollection(Hub::whereIn('id', $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
                 'comments' => count($this->comments),
@@ -41,7 +41,8 @@ class PostCollection extends JsonResource
         ];
     }
 
-    public function shorten(string $text, int $maxLength) {
+    public function shorten(string $text, int $maxLength)
+    {
         $shortText = substr($text, 0, $maxLength);
 
         return ((strrpos($shortText, ".") ? substr($shortText, 0, strrpos($shortText, ".")) : $shortText) . (strlen($text) > $maxLength ? '...' : ''));
@@ -49,7 +50,7 @@ class PostCollection extends JsonResource
 
     public function statusCheck($status)
     {
-        if (Auth::check()){
+        if (Auth::check()) {
             switch ($status) {
                 case 'upvote':
                     return $this->postIsVoted(Auth::user()) == "upvoted";
@@ -61,7 +62,8 @@ class PostCollection extends JsonResource
         }
     }
 
-    public function readTime($text){
+    public function readTime($text)
+    {
         $word = str_word_count(strip_tags($text));
         $m = floor($word / 200);
         $est = $m . ' dəqiqə';

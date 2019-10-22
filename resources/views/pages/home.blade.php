@@ -48,7 +48,7 @@
                     </ul>
                 </div>
             @endif
-            <posts :survey-data="'{{ $url }}'" @auth :auth_check="true" @endauth></posts>
+            <posts :url="'{{ $url }}'" @auth :auth_check="true" @endauth></posts>
         </div>
 
         {{-- Right --}}

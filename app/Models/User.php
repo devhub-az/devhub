@@ -4,13 +4,9 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\Models\Media;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable
 {
-    use HasMediaTrait;
     use Notifiable;
 
     /**
@@ -42,19 +38,6 @@ class User extends Authenticatable implements HasMedia
     ];
 
     protected $appends = ['user_ids'];
-
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('small')
-            ->width(50)
-            ->height(50);
-        $this->addMediaConversion('big')
-            ->width(120)
-            ->height(120);
-        $this->addMediaConversion('very-big')
-            ->width(320)
-            ->height(320);
-    }
 
     public function posts()
     {

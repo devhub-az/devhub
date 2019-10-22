@@ -3,109 +3,124 @@
 @section('title')Hablar @stop
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
 @stop
 
 @section('main')
-<div class="layout_body">
-	<div class="hubs-page__header">
-		<div class="hubs-header__title">
-			<h1>Hablar</h1>
-			<h4>Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir - yalnız maraqlı olan ocaqlara yazılmaq.</h4>
-		</div>
-		<div>
-			<a href="#" class="btn btn-primary btn-success-outline"><span>Hab təklif etmək</span></a>
-		</div>
-	</div>
-	<div class="layout_content">
-		<div class="content_left" id="app">
-			<div class="ui category search form-hub__search">
-				<div class="ui icon input header_search">
-                    <label>
-                        <input class="prompt search" type="text" placeholder="Hub axtar">
-                    </label>
-                    <i class="icon feather icon-search"></i>
-				</div>
-				<div class="results"></div>
-			</div>
-			<div class="post-content__item">
-				<hubs-list></hubs-list>
-			</div>
-		</div>
-		{{-- Right --}}
-		<div class="content_right">
-		    <div id="default-block" class="default-block default-block_sidebar">
-		        <div class="default-block__header">
-		            <h3 class="default-block__header-title">Ən sevimli hablar</h3>
-		        </div>
+    <div class="layout_body">
+        <div class="hubs-page__header">
+            <div class="hubs-header__title">
+                <h1>Hablar</h1>
+                <h4>
+                    Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün
+                    məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir -
+                    yalnız maraqlı olan ocaqlara yazılmaq.
+                </h4>
+            </div>
+            <div class="hubs-page__right-side">
+                <a href="#" class="btn btn-primary btn-success-outline"><span>Hab təklif etmək</span></a>
+            </div>
+        </div>
+        <div class="layout_content">
+            <div class="content_left" id="app">
+                <div class="ui category search form-hub__search">
+                    <div class="ui icon input header_search">
+                        <label>
+                            <input class="prompt search" type="text" placeholder="Hub axtar">
+                        </label>
+                        <i class="icon feather icon-search"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+                <hubs-list></hubs-list>
+            </div>
+            {{-- Right --}}
+            <div class="content_right">
+                <div id="default-block" class="default-block default-block_sidebar">
+                    <div class="default-block__header">
+                        <h3 class="default-block__header-title">Ən sevimli hablar</h3>
+                    </div>
 
-		        <div class="default-block__content">
-		            <ul>
-		            	@foreach ($top_hubs as $hub)
-		            		<li style="display: grid; grid-template-columns: 30% 70%;">
-		            			<img class="list-hubs__hub-image" src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
-		            			<div class="list-hubs__obj-body">
-		            			    <div class="list-hubs__title-link"> <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] }}</a></div>
-		            			    <div class="list-hubs__desc"><i class="icon feather icon-bar-chart-2"></i> {{ $hub['raiting'] }}</div>
-		            			</div>
-		            		</li>
-		            	@endforeach
-		            </ul>
-		        </div>
-		    </div>
-		    <div id="default-block" class="default-block default-block_sidebar">
-		        <div class="default-block__header">
-		            <h3 class="default-block__header-title">Ən izləninən hablar</h3>
-		        </div>
+                    <div class="default-block__content">
+                        <ul>
+                            @foreach ($top_hubs as $hub)
+                                <li style="display: grid; grid-template-columns: 30% 70%;">
+                                    <img class="list-hubs__hub-image-block"
+                                         src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
+                                    <div class="list-hubs__obj-body">
+                                        <div class="list-hubs__title-link"><a
+                                                href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] }}</a></div>
+                                        <div class="list-hubs__desc"><i
+                                                class="icon feather icon-bar-chart-2"></i> {{ $hub['raiting'] }}</div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+                <div id="default-block" class="default-block default-block_sidebar">
+                    <div class="default-block__header">
+                        <h3 class="default-block__header-title">Ən izləninən hablar</h3>
+                    </div>
 
-		        <div class="default-block__content">
-		            <ul>
-		            	@foreach ($top_followed_hubs as $hub)
-		            		<li style="display: grid; grid-template-columns: 30% 70%;">
-		            			<img class="list-hubs__hub-image" src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
-		            			<div class="list-hubs__obj-body">
-		            			    <div class="list-hubs__title-link"> <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
-		            			    <div class="list-hubs__desc"><i class="icon feather icon-users"></i> {{ $hub['hub_followers_count'] ?? '' }}</div>
-		            			</div>
-		            		</li>
-		            	@endforeach
-		            </ul>
-		        </div>
-		    </div>
-		</div>
-	</div>
-</div>
+                    <div class="default-block__content">
+                        <ul>
+                            @foreach ($top_followed_hubs as $hub)
+                                <li style="display: grid; grid-template-columns: 30% 70%;">
+                                    <img class="list-hubs__hub-image-block"
+                                         src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
+                                    <div class="list-hubs__obj-body">
+                                        <div class="list-hubs__title-link"><a
+                                                href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
+                                        <div class="list-hubs__desc">
+                                            <span
+                                                style="font-size: 11px; color: #848d95;">{{ $hub['description'] }}</span>
+                                            <br>
+                                            <span style="font-size: 11px; color: #3b4045;">
+                                                <i class="icon feather icon-users"></i> Listning {{ $hub['hub_followers_count'] ?? '' }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
-<script>
-function axiosHubs() {
-	 return axios.get('/api/hubs/all').then(response => {
-		return response.data;
-	});
-}
-axiosHubs().then(data => {
-	$('.ui.search')
-		.search({
-	  		source: data,
-	  		searchDelay: 500,
-	  		fields: {
-	  			image: 'logo',
-  		    	title : 'name',
-  		    },
-  		    searchFields:[
-  		    	'name'
-  		    ],
-  		    fullTextSearch: false,
-  		    onSelect(result){
-	                window.location.href = '/hubs/' + result.id;
-	            },
-  		    templates: {
-  		        message: function message() {
-                    return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';
-  		        },
-  		    }
-		});
-});
-</script>
+    <script>
+        function axiosHubs() {
+            return axios.get('/api/hubs/all').then(response => {
+                return response.data;
+            });
+        }
+
+        axiosHubs().then(data => {
+            $('.ui.search')
+                .search({
+                    source: data,
+                    searchDelay: 500,
+                    fields: {
+                        image: 'logo',
+                        title: 'name',
+                    },
+                    searchFields: [
+                        'name'
+                    ],
+                    fullTextSearch: false,
+                    onSelect(result) {
+                        window.location.href = '/hubs/' + result.id;
+                    },
+                    templates: {
+                        message: function message() {
+                            return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';
+                        },
+                    }
+                });
+        });
+    </script>
 @endsection

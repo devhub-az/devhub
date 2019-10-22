@@ -117,13 +117,13 @@
                 </div>
                 <div id="comments" class="post-comments">
                     <div class="comment-header">
-                        <div class="head">Komentler</div>
+                        <div class="head">Komentlər</div>
                         <div class="count">{{ $comments->count() }}</div>
                     </div>
                     @if ($comments)
                         @foreach($comments as $comment)
                             <div class="post-comment" @if($comment->parent_id != null) style="margin-left:40px;" @endif>
-                                <img class="comment-avatar" src="{{ asset($comment->author->getMedia('avatars')->first()->getUrl('small')) }}" alt="">
+                                <img class="comment-avatar" src="" alt="">
                                 <div class="comment-body">
                                     <div class="flex">
                                         <a class="comment-author" href="{{ url('@' . $comment->author->username) }}">
@@ -145,7 +145,7 @@
                     <form method="post" action="{{ route('new-comment') }}">
                         @csrf
                         <div class="post-comment">
-                            <img class="comment-avatar" src="{{ asset(Auth::user()->getMedia('avatars')->first()->getUrl('small')) }}" alt="">
+                            <img class="comment-avatar" src="{{ asset('media/avatars/3/1.png') }}" alt="">
                             <div class="comment-body">
                                 <span class="comment-author">{{ Auth::user()->username }}</span>
                                 <p><small>Перед тем как написать хуйню, подумай,сука!</small></p>
@@ -171,7 +171,7 @@
                     <div class="card-header">
                     	<div></div>
                     	<div class="image-border" style="background-image: url(https://unsplash.imgix.net/45/ZLSw0SXxThSrkXRIiCdT_DSC_0345.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=form)">
-                    		<img class="profile-image" src="{{ asset($post['creator']->getMedia('avatars')->first()->getUrl('big')) }}" alt="User avatar">
+                    		<img class="profile-image" src="{{ asset('media/avatars/3/1.png') }}" alt="User avatar">
                     	</div>
                     </div>
                     <div class="content">
@@ -226,9 +226,10 @@
 
 @section('scripts')
 <script type="text/javascript">
-    var stickybit = stickybits('.stickyVote');
+    const MarkdownIt = require('markdown-it');
+    const stickybit = stickybits('.stickyVote');
 
-    var stickyblock = stickybits('#default-block', {
+    const stickyblock = stickybits('#default-block', {
         stickyBitStickyOffset: 10,
     });
 </script>

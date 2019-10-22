@@ -74,6 +74,7 @@
   --color-red: #dd1313;
   --color-black: #262626;
   --color-green: #22b14e;
+  --color-green-secondary: #55851c;
   --color-gray: #edeeef;
   --color-yellow: #FFC107;
   --color-blue: #197fc9;
@@ -4702,7 +4703,7 @@ input:focus, textarea:focus {
   border-right: 1px solid #d5dddf;
   font-family: MontDemo-Heavy;
   font-size: 26px;
-  padding: 18px;
+  padding: 0 18px;
 }
 
 .logo:hover {
@@ -4721,6 +4722,7 @@ a {
   display: flex;
   align-items: center;
   position: relative;
+  height: 50px;
 }
 .main-navbar__section .icon-search, .main-navbar__section .icon-bell {
   cursor: pointer;
@@ -4842,6 +4844,10 @@ a {
   width: 100%;
   list-style: none;
   grid-auto-rows: auto;
+}
+
+.nav-posts__item-link {
+  font-size: large;
 }
 
 .nav-posts__item-link_current {
@@ -5130,20 +5136,19 @@ a {
   text-align: right;
 }
 .post-content__item .post-content__body {
-  font-size: 16px;
-  line-height: 1.6;
+  font-family: "PT Sans", Segoe UI, Arial, "hiragino sans gb", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
   letter-spacing: -0.003em;
   word-wrap: break-word;
   color: #313131;
 }
 .post-content__item .post-content__body h1 {
   font-size: 20px;
-}
-.post-content__item .post-content__body h2 {
-  font-size: 18px;
-}
-.post-content__item .post-content__body h3 {
-  font-size: 16px;
+  line-height: 28px;
+  margin: 10px 0;
+  font-weight: bold;
 }
 .post-content__item .post-content__body ul {
   padding: 0 3%;
@@ -5155,6 +5160,15 @@ a {
   margin: 0 auto;
   display: block;
   max-width: 100%;
+}
+.post-content__item .post-content__body a {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--color-black);
+  box-shadow: inset 0 -2px 0 var(--color-blue);
+}
+.post-content__item .post-content__body a:hover {
+  color: var(--color-blue);
 }
 
 .post-votes {
@@ -5278,6 +5292,10 @@ a {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+.content_right .default-block .default-block__content .list-hubs__hub-image-block {
+  width: 64px;
+  height: 64px;
 }
 .content_right .default-block .default-block__footer {
   border-top: 1px solid #d5dddf;
@@ -6384,6 +6402,12 @@ i.icon {
   grid-column-gap: 1%;
   padding-bottom: 20px;
 }
+.hubs-page__header .hubs-page__right-side {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+}
 .content-list {
   display: grid;
   grid-gap: 23px;
@@ -6392,9 +6416,18 @@ i.icon {
 .hub-block {
   background: var(--color-white);
   margin-bottom: 15px;
-  padding: 0 3%;
   color: var(--color-app-text);
   border: 1px solid var(--color-border);
+}
+.hub-block .hub-page__header {
+  display: grid;
+  grid-template-columns: 10% 65% 10% 15%;
+  margin: 12px 0;
+}
+.hub-block .list-hubs__hub-image {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
 }
 
 .list-hubs__title-link {
@@ -6413,20 +6446,6 @@ i.icon {
   color: inherit;
 }
 
-.list-hubs__desc {
-  margin-bottom: 5px;
-  color: #555;
-  font-size: 13px;
-  font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
-  line-height: 16px;
-}
-
-.list-hubs__hub-image {
-  width: 64px;
-  height: 64px;
-  margin-right: 12px;
-}
-
 .list-hubs__obj-body {
   position: relative;
   width: 90%;
@@ -6435,22 +6454,37 @@ i.icon {
 .list-hubs__hub {
   display: grid;
   grid-template-columns: 10% 60% 10% 20%;
+  background: white;
+  margin-bottom: 15px;
+  padding: 20px;
 }
-
-.hub-page__header {
-  display: grid;
-  grid-template-columns: 10% 65% 10% 15%;
-  margin: 12px 0;
+.list-hubs__hub .list-hubs__desc {
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 13px;
+  font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
+  line-height: 16px;
+}
+.list-hubs__hub .list-hubs__hub-image {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+}
+.list-hubs__hub .list-hubs__desc-sum {
+  font-size: 11px;
+  color: #3b4045;
+  margin-top: 12px;
 }
 
 .list-hubs__stats-value {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
   font-weight: bold;
   color: var(--color-green);
-  line-height: 22px;
-  text-align: center;
 }
 
 .post-content__footer {

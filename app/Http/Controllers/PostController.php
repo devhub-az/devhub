@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Parsedown;
 use App\Http\Resources\PostCollection;
@@ -141,12 +142,9 @@ class PostController extends Controller
     public function show(Request $request, $id)
     {
         $parsedown = new Parsedown();
-        // dd($parsedown);
         $post = new PostCollection(Post::findOrFail($id));
 
-        PostView::createViewLog($post);
-
-        // dd($parsedown->text($post->body));
+//        PostView::createViewLog($post);
 
         return view('pages.posts.show', [
             'post' => $post,
@@ -157,7 +155,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request
+     * @param Request $request
      * @return vote status
      */
     public function updateVote(Request $request)

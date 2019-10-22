@@ -20,7 +20,7 @@ class HubCollection extends JsonResource
             'id' => $this->id,
             'logo' => $this->logo,
             'description' => $this->description,
-            'raiting' => $this->raiting,
+            'rating' => $this->rating,
             'name' => $this->name,
             'hub_followers_count' => \Numeric::number_format_short(count($this->hubFollowers)),
             'follower_check' => $this->statusCheck('following'),
