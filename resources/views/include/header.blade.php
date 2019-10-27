@@ -33,7 +33,7 @@
             </div>
         </form>
         <div class="main-navbar__section main-navbar__section_right" id="header_app"
-             style="display: grid;grid-template-columns: repeat(4,auto); grid-gap: 12px;">
+             style="display: grid;grid-auto-flow: column; grid-gap: 12px;">
             <i id="search" onclick="search()" class="icon feather icon-search"></i>
             @guest
                 <a href="{{ route('login') }}" class="btn btn-primary btn_navbar_login">Daxil ol</a>

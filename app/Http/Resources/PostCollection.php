@@ -4,10 +4,10 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Hub;
 use Parsedown;
-use Mews\Purifier\Facades\Purifier;
+use Purifier;
+use Auth;
 
 class PostCollection extends JsonResource
 {
@@ -41,6 +41,11 @@ class PostCollection extends JsonResource
         ];
     }
 
+    /**
+     * @param string $text
+     * @param int $maxLength
+     * @return string
+     */
     public function shorten(string $text, int $maxLength)
     {
         $shortText = substr($text, 0, $maxLength);
@@ -48,6 +53,10 @@ class PostCollection extends JsonResource
         return ((strrpos($shortText, ".") ? substr($shortText, 0, strrpos($shortText, ".")) : $shortText) . (strlen($text) > $maxLength ? '...' : ''));
     }
 
+    /**
+     * @param $status
+     * @return bool
+     */
     public function statusCheck($status)
     {
         if (Auth::check()) {
@@ -62,7 +71,11 @@ class PostCollection extends JsonResource
         }
     }
 
-    public function readTime($text)
+    /**
+     * @param $text
+     * @return string
+     */
+    public function readTime(string $text)
     {
         $word = str_word_count(strip_tags($text));
         $m = floor($word / 200);

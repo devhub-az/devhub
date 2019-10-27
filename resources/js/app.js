@@ -6,14 +6,65 @@ window.SimpleMDE = require('simplemde');
 require('moment/locale/az');
 window.moment.locale('az');
 
-$(document).ready(function() {
-   $('pre code').each(function(i, e) {hljs.highlightBlock(e)});
+$(document).ready(function () {
+    $('pre code').each(function (i, e) {
+        hljs.highlightBlock(e)
+    });
 });
 
 axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
+
+const input = document.getElementById("form_search");
+const icon = document.getElementById("search");
+const nav = document.getElementById("navbar-links");
+const search_input = document.getElementById("search_input");
+
+import hotkeys from 'hotkeys-js';
+
+hotkeys.filter = function(event){
+    return true;
+}
+//How to add the filter to edit labels. <div contentEditable="true"></div>
+//"contentEditable" Older browsers that do not support drops
+hotkeys.filter = function(event) {
+    const tagName = (event.target || event.srcElement).tagName;
+    return !(tagName.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
+}
+
+hotkeys.filter = function(event){
+    const tagName = (event.target || event.srcElement).tagName;
+    hotkeys.setScope(/^(INPUT|TEXTAREA|SELECT)$/.test(tagName) ? 'input' : 'other');
+    return true;
+}
+
+hotkeys('/', function (event) {
+    // Prevent the default refresh event under WINDOWS system
+    event.preventDefault()
+
+    nav.style.display = "none";
+    input.style.display = "flex";
+    icon.style.display = "none";
+
+    search_input.focus();
+})
+
+hotkeys('esc', function (event) {
+    event.preventDefault()
+
+    if ($("#search_input").is(':focus')) {
+        const input = document.getElementById("form_search");
+        const icon = document.getElementById("search");
+        const nav = document.getElementById("navbar-links");
+
+        nav.removeAttribute("style");
+        input.removeAttribute("style");
+        icon.removeAttribute("style");
+    }
+})
+
 
 Vue.component('posts', require('./components/PostsComponent.vue').default);
 Vue.component('pagination', require('./components/pagination.vue').default);
@@ -27,7 +78,7 @@ Vue.component('tags-input', require('@voerro/vue-tagsinput').default);
 Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').default);
 Vue.component('search', require('./components/search.vue').default);
 
-Vue.config.devtools=false;
+Vue.config.devtools = false;
 Vue.config.productionTip = false;
 Vue.config.silent = false;
 Vue.config.keyCodes.backspace = 8;
@@ -35,20 +86,20 @@ Vue.config.keyCodes.backspace = 8;
 //Chrome extension
 Vue.config.devtools = true;
 
-Vue.filter('moment', function(value, format) {
+Vue.filter('moment', function (value, format) {
     return moment(value).format(format);
 });
-Vue.filter('timeago', function(value) {
+Vue.filter('timeago', function (value) {
     return moment(value).fromNow();
 });
 
-if (document.getElementById('app')){
+if (document.getElementById('app')) {
     const app = new Vue({
         el: '#app'
     });
 }
 
-if (document.getElementById('header_app')){
+if (document.getElementById('header_app')) {
     const app = new Vue({
         el: '#header_app'
     });

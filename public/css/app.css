@@ -4559,7 +4559,7 @@ a[disabled] {
   display: none;
   font-size: 14px;
   box-sizing: border-box;
-  padding: 12px;
+  padding: 0 12px;
   align-items: center;
   position: relative;
   margin-left: auto;
@@ -4597,20 +4597,13 @@ a[disabled] {
   top: 50%;
   font-size: 16px;
   z-index: 3;
-  padding: 0.5%;
   transform: translateY(-50%);
-  min-width: 24px;
-  min-height: 24px;
 }
 .form-search .header_search .icon-x:hover {
-  box-shadow: none;
   background: rgba(167, 182, 194, 0.3);
   text-decoration: none;
   color: #182026;
-  padding: 0.5%;
   border-radius: 3px;
-  min-width: 24px;
-  min-height: 24px;
 }
 
 input, textarea {
@@ -5705,24 +5698,6 @@ iframe {
   line-height: 20px;
   margin: 0;
 }
-.page-header_wrapper .fonts-loaded .page-header__stats-value {
-  font-weight: 500;
-  font-family: "Fira Sans", sans-serif;
-}
-.page-header_wrapper .page-header__stats-value_branding {
-  display: inline-block;
-  height: auto;
-  vertical-align: top;
-  font-size: 14px;
-}
-.page-header_wrapper .page-header__stats-value {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  font-weight: bold;
-  color: var(--color-green);
-  line-height: 22px;
-}
 .page-header_wrapper .page-header__info-desc {
   color: #343434;
   font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
@@ -6455,8 +6430,9 @@ i.icon {
   display: grid;
   grid-template-columns: 10% 60% 10% 20%;
   background: white;
-  margin-bottom: 15px;
-  padding: 20px;
+  margin-bottom: 1%;
+  padding: 20px 0;
+  border: 1px solid var(--color-border);
 }
 .list-hubs__hub .list-hubs__desc {
   margin-bottom: 5px;
@@ -6474,6 +6450,24 @@ i.icon {
   font-size: 11px;
   color: #3b4045;
   margin-top: 12px;
+}
+
+.page-header__stats-value {
+  font-weight: 500;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.page-header__stats-value_branding {
+  display: inline-block;
+  height: auto;
+  font-size: 14px;
+}
+
+.page-header__stats-value {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold;
+  color: var(--color-green);
 }
 
 .list-hubs__stats-value {

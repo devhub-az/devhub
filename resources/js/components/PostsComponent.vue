@@ -116,7 +116,7 @@
 
     Vue.use(Clipboard);
     export default {
-        props: ['url', 'auth_check', 'hub', 'content'],
+        props: ['url', 'auth_check', 'hub'],
         data: function () {
             return {
                 posts: [],

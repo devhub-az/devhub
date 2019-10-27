@@ -12,7 +12,11 @@
                     <img class="list-hubs__hub-image" src="{{ asset('/images/empty/code.png') }}" alt="">
                 @endif
                 <div class="list-hubs__obj-body">
-                    <div class="list-hubs__title-link">{{ $hub['name'] }}</div>
+                    <div class="list-hubs__title-link">
+                        {{ $hub['name'] }}
+                        <sup class="page-header__stats-value page-header__stats-value_branding"
+                             title="Рейтинг компании">399,64</sup>
+                    </div>
                     <div class="list-hubs__desc">{{ $hub['description'] }}</div>
                     <div class="list-hubs__desc">Postlar: {{ $posts_count }} |
                         Followers: {{ $hub['hub_followers_count'] }}</div>
@@ -66,7 +70,7 @@
                         </ul>
                     </div>
                 @endif
-                <posts :content="'{{ $content }}'" :url="'{{ $url }}'" :hub="'{{ $hub->posts }}'"
+                <posts :url="'{{ $url }}'"
                        @auth :auth_check="true" @endauth></posts>
             </div>
 

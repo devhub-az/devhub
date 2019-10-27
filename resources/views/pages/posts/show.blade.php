@@ -11,7 +11,7 @@
 @section('main')
 {{-- {{ dd($post['creator']->getMedia('avatars')) }} --}}
 <div class="layout_post" id="app">
-    {{-- <header>
+    <header>
         <div class="page-header__banner">
             <a href="https://hh.ru/employer/1212374" target="_blank">
                 <div class="company_banner" style="background-image: url({{ asset('images/wallpaper/baku.jpg') }})" alt="company_banner"></div>
@@ -21,7 +21,7 @@
             <div class="page-header_wrapper">
                 <div class="media-obj media-obj_company">
                     <a href="/company/funcorp/" class="media-obj__image page-header__image">
-                        <img src="{{ $post['creator']->getMedia('avatars')->first()->getUrl('small') }}" width="48" height="48" class="company-info__image-pic">
+                        <img src="{{ asset('images/profile/new_user/1.svg') }}" width="48" height="48" class="company-info__image-pic">
                     </a>
                     <div class="media-obj__body media-obj__body_page-header media-obj__body_page-header_branding">
                         <div class="page-header__info">
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-    </header> --}}
+    </header>
     <div class="post-show">
         <div class="post_left">
             <div class="container">
@@ -226,7 +226,6 @@
 
 @section('scripts')
 <script type="text/javascript">
-    const MarkdownIt = require('markdown-it');
     const stickybit = stickybits('.stickyVote');
 
     const stickyblock = stickybits('#default-block', {
