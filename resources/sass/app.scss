@@ -884,7 +884,7 @@ a {
     }
 
     .post-content__body {
-        font-family: "PT Sans",Segoe UI,Arial,"hiragino sans gb",sans-serif;
+        font-family: "PT Sans", Segoe UI, Arial, "hiragino sans gb", sans-serif;
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.5;
@@ -919,7 +919,7 @@ a {
             color: var(--color-black);
             box-shadow: inset 0 -2px 0 var(--color-blue);
 
-            &:hover{
+            &:hover {
                 color: var(--color-blue);
             }
         }
@@ -2369,7 +2369,7 @@ i.icon {
 
 .list-hubs__hub {
     display: grid;
-    grid-template-columns: 10% 60% 10% 20%;
+    grid-template-columns: 10% 50% 10% 10% 20%;
     background: white;
     margin-bottom: 1%;
     padding: 20px 0;
@@ -2387,12 +2387,6 @@ i.icon {
         width: 64px;
         height: 64px;
         margin: 0 auto;
-    }
-
-    .list-hubs__desc-sum {
-        font-size: 11px;
-        color: #3b4045;
-        margin-top: 12px;
     }
 }
 
@@ -2414,15 +2408,23 @@ i.icon {
     color: var(--color-green);
 }
 
-.list-hubs__stats-value {
+.list-hubs__stats {
     display: flex;
     align-items: center;
     margin: 0 auto;
-    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 100%;
-    font-weight: bold;
-    color: var(--color-green);
+    flex-direction: column;
+    justify-content: center;
+
+    .list-hubs__stats-value {
+        display: flex;
+        align-items: center;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-weight: bold;
+        color: var(--color-black);
+        margin: 0 auto 3px;
+    }
 }
 
 .post-content__footer {

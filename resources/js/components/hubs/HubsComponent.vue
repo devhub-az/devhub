@@ -5,16 +5,21 @@
             <img :id="hub.id" v-if="hub.logo" class="list-hubs__hub-image" :src="'/' + hub.logo" alt="">
             <img :id="hub.id" v-if="!hub.logo" class="list-hubs__hub-image" src="/images/empty/code.png"
                  alt="">
-            <div class="list-hubs__obj-body">
-                <div class="list-hubs__title-link"><a :href="'/hubs/' + hub.id">{{ hub.name }}</a></div>
-                <div class="list-hubs__desc">{{ hub.description }}</div>
-                <div class="list-hubs__desc-sum">Postlar: {{ hub.posts_count }}</div>
+            <a :href="'/hubs/' + hub.id">
+                <div class="list-hubs__obj-body">
+                    <div class="list-hubs__title-link">{{ hub.name }}</div>
+                    <div class="list-hubs__desc">{{ hub.description }}</div>
+                </div>
+            </a>
+            <div class="list-hubs__stats">
+                <div class="list-hubs__stats-value">{{ hub.posts_count }}</div>
+                <small>POSTLAR</small>
             </div>
             <div class="list-hubs__stats">
                 <div class="list-hubs__stats-value">{{ hub.rating }}</div>
-                <div>
-                    Reytinq
-                </div>
+                <small>
+                    REYTINQ
+                </small>
             </div>
             <hub-follow-button :hub="hub"></hub-follow-button>
         </div>

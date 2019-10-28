@@ -2351,6 +2351,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -77315,20 +77320,24 @@ var render = function() {
                     })
                   : _vm._e(),
                 _vm._v(" "),
-                _c("div", { staticClass: "list-hubs__obj-body" }, [
-                  _c("div", { staticClass: "list-hubs__title-link" }, [
-                    _c("a", { attrs: { href: "/hubs/" + hub.id } }, [
+                _c("a", { attrs: { href: "/hubs/" + hub.id } }, [
+                  _c("div", { staticClass: "list-hubs__obj-body" }, [
+                    _c("div", { staticClass: "list-hubs__title-link" }, [
                       _vm._v(_vm._s(hub.name))
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "list-hubs__desc" }, [
+                      _vm._v(_vm._s(hub.description))
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-hubs__desc" }, [
-                    _vm._v(_vm._s(hub.description))
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "list-hubs__desc-sum" }, [
-                    _vm._v("Postlar: " + _vm._s(hub.posts_count))
                   ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-hubs__stats" }, [
+                  _c("div", { staticClass: "list-hubs__stats-value" }, [
+                    _vm._v(_vm._s(hub.posts_count))
+                  ]),
+                  _vm._v(" "),
+                  _c("small", [_vm._v("POSTLAR")])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "list-hubs__stats" }, [
@@ -77336,7 +77345,9 @@ var render = function() {
                     _vm._v(_vm._s(hub.rating))
                   ]),
                   _vm._v(" "),
-                  _c("div", [_vm._v("\n                Reytinq\n            ")])
+                  _c("small", [
+                    _vm._v("\n                REYTINQ\n            ")
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("hub-follow-button", { attrs: { hub: hub } })

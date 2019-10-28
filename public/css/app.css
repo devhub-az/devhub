@@ -6428,7 +6428,7 @@ i.icon {
 
 .list-hubs__hub {
   display: grid;
-  grid-template-columns: 10% 60% 10% 20%;
+  grid-template-columns: 10% 50% 10% 10% 20%;
   background: white;
   margin-bottom: 1%;
   padding: 20px 0;
@@ -6445,11 +6445,6 @@ i.icon {
   width: 64px;
   height: 64px;
   margin: 0 auto;
-}
-.list-hubs__hub .list-hubs__desc-sum {
-  font-size: 11px;
-  color: #3b4045;
-  margin-top: 12px;
 }
 
 .page-header__stats-value {
@@ -6470,15 +6465,22 @@ i.icon {
   color: var(--color-green);
 }
 
-.list-hubs__stats-value {
+.list-hubs__stats {
   display: flex;
   align-items: center;
   margin: 0 auto;
+  -moz-osx-font-smoothing: grayscale;
+  flex-direction: column;
+  justify-content: center;
+}
+.list-hubs__stats .list-hubs__stats-value {
+  display: flex;
+  align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
   font-weight: bold;
-  color: var(--color-green);
+  color: var(--color-black);
+  margin: 0 auto 3px;
 }
 
 .post-content__footer {
