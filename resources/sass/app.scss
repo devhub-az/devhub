@@ -1318,9 +1318,17 @@ a {
     padding: 0 !important;
 }
 
-.CodeMirror {
-    border-radius: 4px;
-}
+//.CodeMirror {
+//    height: 500px !important;
+//    overflow-y: auto;
+//    border-radius: 4px;
+//
+//    &:hover {
+//        border-color: var(--color-blue);
+//        cursor: text;
+//        border-right-width: 1px !important;
+//    }
+//}
 
 pre {
     padding: 0;

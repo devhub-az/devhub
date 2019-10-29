@@ -6,6 +6,21 @@ window.SimpleMDE = require('simplemde');
 require('moment/locale/az');
 window.moment.locale('az');
 
+import 'codemirror/lib/codemirror.css';
+import 'tui-editor/dist/tui-editor.css';
+import 'tui-editor/dist/tui-editor-contents.css';
+import 'highlight.js/styles/github.css';
+
+import Editor from 'tui-editor';
+
+const instance = new Editor({
+    el: document.querySelector('#editorSection'),
+    initialEditType: 'markdown',
+    previewStyle: 'vertical',
+    height: '300px'
+});
+
+
 $(document).ready(function () {
     $('pre code').each(function (i, e) {
         hljs.highlightBlock(e)

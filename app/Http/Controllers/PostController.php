@@ -88,7 +88,7 @@ class PostController extends Controller
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->whereIn('author_id', Auth::user()->getUserIdsAttribute())
-            ->orWhereHas('tags', function ($q) {
+            ->orWhereHas('hubs', function ($q) {
                 $q->whereIn('hubs.id', Auth::user()->getHubsIdsAttribute());
             })
             ->with('creator:id,username')

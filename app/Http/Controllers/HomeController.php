@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -49,7 +48,7 @@ class HomeController extends Controller
      */
     public function favorite()
     {
-        if (Auth::check()) {
+        if (\Auth::check()) {
             session(['main-page' => '/favorite']);
         }
         return view('pages.home', ['url' => '/api/posts/favorite']);

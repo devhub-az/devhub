@@ -56,7 +56,7 @@
         "sticky-sidebar": "^3.3.1",
         "sweetalert": "^2.1.2",
         "timers-browserify": "^2.0.10",
-        "tui-editor": "^1.4.5",
+        "tui-editor": "^1.4.7",
         "turbolinks": "^5.2.0",
         "v-clipboard": "^2.2.2",
         "v-selectmenu": "^1.0.8",
