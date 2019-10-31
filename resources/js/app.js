@@ -6,27 +6,6 @@ window.SimpleMDE = require('simplemde');
 require('moment/locale/az');
 window.moment.locale('az');
 
-import 'codemirror/lib/codemirror.css';
-import 'tui-editor/dist/tui-editor.css';
-import 'tui-editor/dist/tui-editor-contents.css';
-import 'highlight.js/styles/github.css';
-
-import Editor from 'tui-editor';
-
-const instance = new Editor({
-    el: document.querySelector('#editorSection'),
-    initialEditType: 'markdown',
-    previewStyle: 'vertical',
-    height: '300px'
-});
-
-
-$(document).ready(function () {
-    $('pre code').each(function (i, e) {
-        hljs.highlightBlock(e)
-    });
-});
-
 axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
@@ -93,13 +72,10 @@ Vue.component('tags-input', require('@voerro/vue-tagsinput').default);
 Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').default);
 Vue.component('search', require('./components/search.vue').default);
 
-Vue.config.devtools = false;
 Vue.config.productionTip = false;
 Vue.config.silent = false;
 Vue.config.keyCodes.backspace = 8;
-
-//Chrome extension
-Vue.config.devtools = true;
+Vue.config.devtools = false
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);

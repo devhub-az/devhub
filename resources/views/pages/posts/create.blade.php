@@ -5,11 +5,7 @@
 @section('css')
     {{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.default.css"--}}
     {{--          integrity="sha256-08CTv29fptANK7CVsvnTZiZZYF9FHc+qtFzn/3cm4S4=" crossorigin="anonymous"/>--}}
-    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor.css"></link>
-    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor-contents.css"></link>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.css"></link>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/pell/dist/pell.min.css">
 @stop
 
 @section('main')
@@ -44,9 +40,8 @@
                         </div>
                     @endif
 
-                    <div id="editSection">
-                        {{--                        {!! old('body') !!}--}}
-                    </div>
+                    <textarea id="editor" placeholder="Balabala" autofocus></textarea>
+                    <div id="markdown-output" style="white-space:pre-wrap;"></div>
                     {{-- <tags></tags> --}}
                     <div class="ui fluid multiple search selection dropdown">
                         <input name="tags" type="hidden">
@@ -88,27 +83,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/input.min.css">
     {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">--}}
-    <link rel="stylesheet" href="https://uicdn.toast.com/tui-editor/latest/tui-editor.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tui-editor/1.4.6/tui-editor-Editor.min.js"></script>
-    <script src="https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor-full.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.4/remarkable.min.js"
             integrity="sha256-xVLIPE8qxiI4dvQKvrrhwkqYjmNEjj5l5n1+/vAtMUo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
-    <script src="https://uicdn.toast.com/tui-editor/latest/tui-editor-Editor-full.js"></script>
     <script>
-        import Editor from 'tui-editor';
-        const Editor = require('tui-editor');
-        var editor = new Editor({
-            el: document.querySelector('#editSection'),
-            initialEditType: 'markdown',
-            previewStyle: 'vertical',
-            height: '300px'
+        var editor = new Simditor({
+            textarea: $('#editor')
+            //optional options
         });
 
-        $('.ui.dropdown')
-            .dropdown()
-        ;
+        $('.ui.dropdown').dropdown();
         // $(document).ready(function(){
         //     $("#form").on("submit", function () {
         //         var hvalue = $('.tui-editor-contents').html();

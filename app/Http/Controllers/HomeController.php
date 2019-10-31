@@ -4,54 +4,35 @@ namespace App\Http\Controllers;
 
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * @return Factory|View
-     */
-    public function index()
-    {
-        session(['main-page' => '/']);
-        return view('pages.home', ['url' => '/api/posts/top/day']);
-    }
 
     /**
+     * @param Request $request
      * @return Factory|View
      */
-    public function indexWeek()
+    public function postsApiRoute(Request $request)
     {
-        session(['main-page' => '/top/week']);
-        return view('pages.home', ['url' => '/api/posts/top/week']);
-    }
-
-    /**
-     * @return Factory|View
-     */
-    public function indexMonth()
-    {
-        session(['main-page' => '/top/month']);
-        return view('pages.home', ['url' => '/api/posts/top/month']);
-    }
-
-    /**
-     * @return Factory|View
-     */
-    public function all()
-    {
-        session(['main-page' => '/all']);
-        return view('pages.home', ['url' => '/api/posts/all']);
-    }
-
-    /**
-     * @return Factory|View
-     */
-    public function favorite()
-    {
-        if (\Auth::check()) {
-            session(['main-page' => '/favorite']);
+        switch ($request->path()) {
+            case '/':
+                session(['main-page' => '/']);
+                return view('pages.home', ['url' => '/api/posts/top/day']);
+            case 'top/week':
+                session(['main-page' => '/top/week']);
+                return view('pages.home', ['url' => '/api/posts/top/week']);
+            case 'top/month':
+                session(['main-page' => '/top/month']);
+                return view('pages.home', ['url' => '/api/posts/top/month']);
+            case 'all':
+                session(['main-page' => '/all']);
+                return view('pages.home', ['url' => '/api/posts/all']);
+            case 'favorite':
+                session(['main-page' => '/favorite']);
+                return view('pages.home', ['url' => '/api/posts/favorite']);
         }
-        return view('pages.home', ['url' => '/api/posts/favorite']);
+        return abort(404);
     }
 
 }

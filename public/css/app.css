@@ -4840,7 +4840,7 @@ a {
 }
 
 .nav-posts__item-link {
-  font-size: large;
+  font-size: larger;
 }
 
 .nav-posts__item-link_current {
@@ -5230,6 +5230,20 @@ a {
 }
 .content_right .default-block .default-block__content .info .label {
   font-weight: bold;
+}
+.content_right .default-block .default-block__content .block-hubs__title-link {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  color: #444;
+  vertical-align: top;
+  font-weight: 600;
+  font-size: 15px;
+  font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
+  line-height: 18px;
+}
+.content_right .default-block .default-block__content .block-hubs__title-link a {
+  color: inherit;
 }
 .content_right .default-block .default-block__content td {
   width: 50%;

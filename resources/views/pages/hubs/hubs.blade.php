@@ -44,16 +44,25 @@
                     <div class="default-block__content">
                         <ul>
                             @foreach ($top_hubs as $hub)
-                                <li style="display: grid; grid-template-columns: 30% 70%;">
-                                    <img class="list-hubs__hub-image-block"
-                                         src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
-                                    <div class="list-hubs__obj-body">
-                                        <div class="list-hubs__title-link"><a
-                                                href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] }}</a></div>
-                                        <div class="list-hubs__desc"><i
-                                                class="icon feather icon-bar-chart-2"></i> {{ $hub['raiting'] }}</div>
-                                    </div>
-                                </li>
+                                <a href="/hubs/{{ $hub['id'] ?? '' }}">
+                                    <li style="display: grid; grid-template-columns: 20% 80%; margin-bottom: 12px;">
+                                        <img class="list-hubs__hub-image-block"
+                                             src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
+                                        <div class="list-hubs__obj-body">
+                                            <div class="block-hubs__title-link">
+                                                {{ $hub['name'] }}
+                                            </div>
+                                            <div class="list-hubs__desc">
+                                            <span
+                                                style="font-size: 11px; color: #848d95;">{{ $hub['description'] }}</span>
+                                                <br>
+                                                <span style="font-size: 11px; color: #3b4045;">
+                                                <i class="icon feather icon-star"></i> Reyting {{ $hub['rating'] ?? '' }}
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
                             @endforeach
                         </ul>
                     </div>
@@ -66,18 +75,18 @@
                     <div class="default-block__content">
                         <ul>
                             @foreach ($top_followed_hubs as $hub)
-                                <li style="display: grid; grid-template-columns: 30% 70%;">
+                                <li style="display: grid; grid-template-columns: 20% 80%; margin-bottom: 12px;">
                                     <img class="list-hubs__hub-image-block"
                                          src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
                                     <div class="list-hubs__obj-body">
-                                        <div class="list-hubs__title-link"><a
-                                                href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
+                                        <div class="block-hubs__title-link">
+                                            <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
                                         <div class="list-hubs__desc">
                                             <span
                                                 style="font-size: 11px; color: #848d95;">{{ $hub['description'] }}</span>
                                             <br>
                                             <span style="font-size: 11px; color: #3b4045;">
-                                                <i class="icon feather icon-users"></i> Listning {{ $hub['hub_followers_count'] ?? '' }}
+                                                <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}
                                             </span>
                                         </div>
                                     </div>

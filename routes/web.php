@@ -9,24 +9,30 @@ Route::get('setlocale/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/top/week', 'HomeController@indexWeek')->name('top.week');
-Route::get('/top/month', 'HomeController@indexMonth')->name('top.month');
-Route::get('/all', 'HomeController@all')->name('all');
+Route::get('/', 'HomeController@postsApiRoute')->name('home');
+Route::get('/top/week', 'HomeController@postsApiRoute')->name('top.week');
+Route::get('/top/month', 'HomeController@postsApiRoute')->name('top.month');
+Route::get('/all', 'HomeController@postsApiRoute')->name('all');
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/favorite', 'HomeController@favorite')->name('favorite');
+    Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
 });
 
 Route::prefix('api')->group(function () {
-    Route::get('posts/top/day', 'PostController@indexDay');
-    Route::get('posts/top/week', 'PostController@indexWeek');
-    Route::get('posts/top/month', 'PostController@indexMonth');
-    Route::get('posts/all', 'PostController@indexAll');
-    Route::get('posts/favorite', 'PostController@favorite');
-    Route::get('hubs/all', 'HubController@hubsAll');
-    Route::get('hubs/{id}', 'HubController@hubPosts');
-    Route::get('hubs', 'HubController@hubs');
+    /**
+     * Posts Api
+     */
+    Route::get('posts/top/day', 'Api\PostController@posts');
+    Route::get('posts/top/week', 'Api\PostController@posts');
+    Route::get('posts/top/month', 'Api\PostController@posts');
+    Route::get('posts/all', 'Api\PostController@all');
+    Route::get('posts/favorite', 'Api\PostController@favorite');
 
+    /**
+     * Hubs Api
+     */
+    Route::get('hubs/all', 'Api\HubController@search');
+    Route::get('hubs/{id}', 'Api\HubController@posts');
+    Route::get('hubs', 'Api\HubController@hubs');
 });
 
 Route::prefix('post')->group(function () {
@@ -40,10 +46,6 @@ Route::prefix('hubs')->group(function () {
     Route::get('/', 'HubController@index');
     Route::get('/{id}', 'HubController@show');
     Route::post('/follow/{id}', 'HubController@follow');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/notifications', 'UserController@notifications');
 });
 
 Route::get('search-result', 'SearchController@index')->name('search-result');

@@ -20,6 +20,7 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
+        "simditor": "^2.3.28",
         "stickybits": "^3.6.6",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
@@ -58,6 +59,7 @@
         "timers-browserify": "^2.0.10",
         "tui-editor": "^1.4.7",
         "turbolinks": "^5.2.0",
+        "turndown": "^5.0.3",
         "v-clipboard": "^2.2.2",
         "v-selectmenu": "^1.0.8",
         "vibrant": "^0.0.1",

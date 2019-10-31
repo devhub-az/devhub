@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Parsedown;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\HubsCollection;
-use App\Http\Resources\PostsCollection;
 use App\Models\PostFavorite;
 use App\Models\Hub;
-use App\Models\PostView;
 use App\Models\Post;
 use App\Models\PostVote;
 
@@ -27,73 +23,6 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth', ['only' => ['create', 'favorite', 'store', 'edit', 'updateVote', 'addFavorite']]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return PostsCollection
-     */
-    public function indexDay()
-    {
-        return new PostsCollection(Post::where(DB::raw('DATE(created_at)'), '=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 0 DAY)'))->orderBy('votes', 'DESC')->orderBy('created_at', 'DESC')
-            ->with('creator:id,username')
-            ->with('comments')
-            ->paginate(5));
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return PostsCollection
-     */
-    public function indexWeek()
-    {
-        return new PostsCollection(Post::where(DB::raw('DATE(created_at)'), '>', DB::raw('DATE_SUB(CURDATE(), INTERVAL 7 DAY)'))->orderBy('votes', 'DESC')->orderBy('created_at', 'DESC')
-            ->with('creator:id,username')
-            ->with('comments:body')
-            ->paginate(5));
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return PostsCollection
-     */
-    public function indexMonth()
-    {
-        return new PostsCollection(Post::where(DB::raw('DATE(created_at)'), '>', DB::raw('DATE_SUB(CURDATE(), INTERVAL 30 DAY)'))->orderBy('votes', 'DESC')->orderBy('created_at', 'DESC')
-            ->with('creator:id,username')
-            ->with('comments:body')
-            ->paginate(5));
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return PostsCollection
-     */
-    public function indexAll()
-    {
-        return new PostsCollection(Post::orderBy('created_at', 'DESC')
-            ->with('creator:id,username')
-            ->with('comments:body')
-            ->paginate(5));
-    }
-
-    /**
-     * @return PostsCollection
-     */
-    public function favorite()
-    {
-        return new PostsCollection(Post::orderBy('created_at', 'DESC')
-            ->whereIn('author_id', Auth::user()->getUserIdsAttribute())
-            ->orWhereHas('hubs', function ($q) {
-                $q->whereIn('hubs.id', Auth::user()->getHubsIdsAttribute());
-            })
-            ->with('creator:id,username')
-            ->with('comments:body')
-            ->paginate(5));
     }
 
     /**
@@ -112,10 +41,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param \Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(\Request $request)
     {
         $request->validate([
             'title' => 'required|string',
@@ -136,10 +65,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param \Request $request
      * @param int $id
      * @return Response
      */
-    public function show(Request $request, $id)
+    public function show(\Request $request, $id)
     {
         $parsedown = new Parsedown();
         $post = new PostCollection(Post::findOrFail($id));
@@ -155,10 +85,10 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param \Request $request
      * @return vote status
      */
-    public function updateVote(Request $request)
+    public function updateVote(\Request $request)
     {
         $request->validate([
             'id' => 'required|int',
@@ -229,10 +159,10 @@ class PostController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param \Request $request
      * @return JsonResponse
      */
-    public function addFavorite(Request $request)
+    public function addFavorite(\Request $request)
     {
         $request->validate([
             'id' => 'required|int',
@@ -262,7 +192,7 @@ class PostController extends Controller
      * @param int $id
      * @return void
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -270,11 +200,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
+     * @param \Request $request
      * @param int $id
      * @return void
      */
-    public function update(Request $request, $id)
+    public function update(\Request $request, $id)
     {
         //
     }
