@@ -981,11 +981,12 @@ a {
             border-bottom: 1px solid #d5dddf;
 
             .default-block__header-title {
+                width: 100%;
                 font-family: 'Noto Sans', sans-serif;
                 font-weight: bold;
                 margin: 0 20px;
                 padding: 13px 0;
-                font-size: 12px;
+                font-size: 14px;
             }
         }
 
@@ -994,6 +995,49 @@ a {
             background-color: var(--color-block-bg);
             color: var(--color-app-text);
             padding: 20px;
+
+            .default-block__paragraph{
+                margin: 0 0 10px;
+            }
+
+            .create-page__info-block {
+                display: grid;
+                grid-template-columns: 12% 88%;
+
+                .icon-check-circle {
+                    color: var(--color-green);
+                }
+
+                i {
+                    font-size: 200%;
+                    margin-right: auto;
+                }
+            }
+
+            hr {
+                margin: 12px 0;
+            }
+
+            .default-block__list{
+                padding-left: 1.5em;
+                list-style: none;
+                font-size: 14px;
+                line-height: 20px;
+
+                li{
+                    margin: 0 0 7px;
+                    text-indent: 0;
+
+                    &:before{
+                        position: relative;
+                        left: -1.3em;
+                        display: inline-block;
+                        width: 0;
+                        content: '\2014\A0';
+                        text-indent: 0;
+                    }
+                }
+            }
 
             .info {
                 color: var(--color-black);

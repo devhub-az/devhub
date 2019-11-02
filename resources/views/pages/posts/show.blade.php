@@ -145,7 +145,7 @@
                     <form method="post" action="{{ route('new-comment') }}">
                         @csrf
                         <div class="post-comment">
-                            <img class="comment-avatar" src="{{ asset('media/avatars/3/1.png') }}" alt="">
+                            <img class="comment-avatar" src="{{ asset('images/profile/deadpool.gif') }}" alt="">
                             <div class="comment-body">
                                 <span class="comment-author">{{ Auth::user()->username }}</span>
                                 <p><small>Перед тем как написать хуйню, подумай,сука!</small></p>
@@ -171,7 +171,7 @@
                     <div class="card-header">
                     	<div></div>
                     	<div class="image-border" style="background-image: url(https://unsplash.imgix.net/45/ZLSw0SXxThSrkXRIiCdT_DSC_0345.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=form)">
-                    		<img class="profile-image" src="{{ asset('media/avatars/3/1.png') }}" alt="User avatar">
+                    		<img class="profile-image" src="{{ asset('images/profile/deadpool.gif') }}" alt="User avatar">
                     	</div>
                     </div>
                     <div class="content">

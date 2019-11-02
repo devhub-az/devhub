@@ -5210,17 +5210,53 @@ a {
   border-bottom: 1px solid #d5dddf;
 }
 .content_right .default-block .default-block__header .default-block__header-title {
+  width: 100%;
   font-family: "Noto Sans", sans-serif;
   font-weight: bold;
   margin: 0 20px;
   padding: 13px 0;
-  font-size: 12px;
+  font-size: 14px;
 }
 .content_right .default-block .default-block__content {
   overflow: hidden;
   background-color: var(--color-block-bg);
   color: var(--color-app-text);
   padding: 20px;
+}
+.content_right .default-block .default-block__content .default-block__paragraph {
+  margin: 0 0 10px;
+}
+.content_right .default-block .default-block__content .create-page__info-block {
+  display: grid;
+  grid-template-columns: 12% 88%;
+}
+.content_right .default-block .default-block__content .create-page__info-block .icon-check-circle {
+  color: var(--color-green);
+}
+.content_right .default-block .default-block__content .create-page__info-block i {
+  font-size: 200%;
+  margin-right: auto;
+}
+.content_right .default-block .default-block__content hr {
+  margin: 12px 0;
+}
+.content_right .default-block .default-block__content .default-block__list {
+  padding-left: 1.5em;
+  list-style: none;
+  font-size: 14px;
+  line-height: 20px;
+}
+.content_right .default-block .default-block__content .default-block__list li {
+  margin: 0 0 7px;
+  text-indent: 0;
+}
+.content_right .default-block .default-block__content .default-block__list li:before {
+  position: relative;
+  left: -1.3em;
+  display: inline-block;
+  width: 0;
+  content: "\2014\A0";
+  text-indent: 0;
 }
 .content_right .default-block .default-block__content .info {
   color: var(--color-black);

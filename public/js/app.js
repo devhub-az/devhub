@@ -76885,7 +76885,7 @@ var render = function() {
                                 _c("img", {
                                   staticClass: "user__avatar",
                                   attrs: {
-                                    src: "/images/profile/deadpool.png",
+                                    src: "/images/profile/deadpool.gif",
                                     alt: "user avatar"
                                   }
                                 }),

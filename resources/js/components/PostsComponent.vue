@@ -43,7 +43,7 @@
                         <header class="post__meta">
                             <a v-bind:href="'/@' +post.data.creator" class="post__user-info user-info"
                                title="Автор публикации">
-                                <img src="/images/profile/deadpool.png" alt="user avatar" class="user__avatar">
+                                <img src="/images/profile/deadpool.gif" alt="user avatar" class="user__avatar">
                                 <span
                                     class="user-info__nickname user-info__nickname_small">{{ post.data.creator }}</span>
                             </a>
