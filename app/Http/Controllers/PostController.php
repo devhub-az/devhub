@@ -72,15 +72,15 @@ class PostController extends Controller
     public function show(\Request $request, $id)
     {
         $parsedown = new Parsedown();
-        $post = new PostCollection(Post::findOrFail($id));
+        $post = new PostCollection(Post::with('hubs')->with('comments')->findOrFail($id));
 
 //        PostView::createViewLog($post);
 
         return view('pages.posts.show', [
             'post' => $post,
             'body' => \Purifier::clean($parsedown->text($post->body)),
-            'hubs' => $post->hubs()->withCount(['hubFollowers', 'posts'])->get(),
-            'comments' => $post->comments()->with('author')->get()
+            'hubs' => $post->hubs,
+            'comments' => $post->comments
         ]);
     }
 

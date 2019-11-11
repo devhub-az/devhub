@@ -43,7 +43,7 @@
                                    for="loginPassword">{{ __('validation.attributes.password') }}</label>
                             <div class="AnimatedForm__errorMessage"></div>
                         </fieldset>
-                        <div class="form-group row mb-0">
+                        <div class="AnimatedForm__field form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     Daxil ol
@@ -58,20 +58,13 @@
                         </div>
                     </form>
                 </div>
-                {{-- <footer>
-                    <p>test</p>
-                </footer> --}}
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-    <!-- particles.js lib - https://github.com/VincentGarreau/particles.js -->
     <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- stats.js lib -->
-    {{-- <script src="http://threejs.org/examples/js/libs/stats.min.js"></script> --}}
-
     <script>
         particlesJS("particles-js", {
             "particles": {

@@ -190,6 +190,19 @@ a[disabled] {
     text-decoration: none;
 }
 
+.input_settings{
+    display: block;
+    box-sizing: border-box;
+    height: 34px;
+    font-size: 14px;
+    padding: 12px;
+    line-height: 34px;
+}
+
+.text-danger{
+    color: var(--color-red);
+}
+
 .form-hub__search {
     flex: 1 1 0;
     display: block;
@@ -996,7 +1009,7 @@ a {
             color: var(--color-app-text);
             padding: 20px;
 
-            .default-block__paragraph{
+            .default-block__paragraph {
                 margin: 0 0 10px;
             }
 
@@ -1018,17 +1031,17 @@ a {
                 margin: 12px 0;
             }
 
-            .default-block__list{
+            .default-block__list {
                 padding-left: 1.5em;
                 list-style: none;
                 font-size: 14px;
                 line-height: 20px;
 
-                li{
+                li {
                     margin: 0 0 7px;
                     text-indent: 0;
 
-                    &:before{
+                    &:before {
                         position: relative;
                         left: -1.3em;
                         display: inline-block;
@@ -1932,54 +1945,54 @@ ol {
 
 
 /* Dropdown Button */
-.dropbtn {
-    font-size: 13px;
-    line-height: 18px;
-    min-width: 160px;
-    text-align: left;
-    width: 100%;
-    cursor: pointer;
-    padding: 8px 26px 8px 10px;
-    color: #29303b;
-    background-color: #ffffff;
-    border: 1px solid #dbdbdb;
-}
-
 .avatar-dropdown {
     height: 32px;
-}
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    margin-left: auto;
-    position: relative;
-    display: inline-block;
+    .relative {
+        border: none;
+        box-shadow: none;
+    }
 
-    select {
+    button {
+        cursor: pointer;
+        border: none;
+        box-shadow: none;
+
+        img {
+            border: none;
+            box-shadow: none;
+        }
+    }
+
+    .menu {
+        position: absolute;
+        right: 0;
+        margin-top: .5rem;
         font-size: 13px;
         line-height: 18px;
         min-width: 160px;
         text-align: left;
         width: 100%;
+        list-style: none;
         cursor: pointer;
-        padding: 8px 26px 8px 10px;
         color: #29303b;
         background-color: #ffffff;
         border: 1px solid #dbdbdb;
+        z-index: 11;
 
-        &:after {
-            line-height: 1;
-            font-family: Devhub, sans-serif;
-            font-size: 16px;
-            font-weight: 400;
-            font-style: normal;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            content: "eb12";
+        li {
+            padding: 12px 5px;
+
+            &:hover {
+                background: var(--color-block-header-bg);
+            }
+
+            a {
+                color: var(--color-black);
+            }
         }
     }
 }
-
 
 .multiselect__clear {
     position: absolute;
@@ -2537,28 +2550,6 @@ i.icon {
 @keyframes loading {
     100% {
         transform: translateX(100%);
-    }
-}
-
-// Toast
-
-.iziSuccess {
-    border: 1px solid;
-    border-left: 5px var(--color-green);
-    padding-right: 30% !important;
-
-    &:after {
-        box-shadow: unset;
-    }
-}
-
-.iziError {
-    border: 1px solid;
-    border-left: 5px var(--color-red);
-    padding-right: 30% !important;
-
-    &:after {
-        box-shadow: unset;
     }
 }
 

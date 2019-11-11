@@ -58,9 +58,9 @@ class PostController extends Controller
     public function favorite(): PostsCollection
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
-            ->whereIn('author_id', Auth::user()->getUserIdsAttribute())
+            ->whereIn('author_id', \Auth::user()->getUserIdsAttribute())
             ->orWhereHas('hubs', function ($q) {
-                $q->whereIn('hubs.id', Auth::user()->getHubsIdsAttribute());
+                $q->whereIn('hubs.id', \Auth::user()->getHubsIdsAttribute());
             })
             ->with('creator:id,username')
             ->with('comments:body')

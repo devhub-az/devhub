@@ -3,6 +3,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.moment = require('moment');
 window.SimpleMDE = require('simplemde');
+import 'notyf/notyf.min.css'; // for React and Vue
 require('moment/locale/az');
 window.moment.locale('az');
 
@@ -71,6 +72,9 @@ Vue.component('hub-follow-button', require('./components/hubs/HubsFollowButtonCo
 Vue.component('tags-input', require('@voerro/vue-tagsinput').default);
 Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').default);
 Vue.component('search', require('./components/search.vue').default);
+Vue.component('dropdown', require('./components/plugins/Dropdown.vue').default);
+Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
+
 
 Vue.config.productionTip = false;
 Vue.config.silent = false;

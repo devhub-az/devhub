@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Image\Exceptions\InvalidManipulation;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\Models\Media;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use Notifiable;
+    use Notifiable, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -30,8 +34,30 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast to native types.
      *
+     * @return mixed
      * @var array
      */
+
+    public function getCoverAttribute(){
+        return $this->getMedia('avatars')->last();
+    }
+
+    /**
+     * @param Media|null $media
+     * @throws InvalidManipulation
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('small')
+            ->width(50)
+            ->height(50);
+        $this->addMediaConversion('big')
+            ->width(120)
+            ->height(120);
+        $this->addMediaConversion('very-big')
+            ->width(320)
+            ->height(320);
+    }
 
     protected $casts = [
         'email_verified_at' => 'datetime',

@@ -23,8 +23,10 @@
         "league/commonmark-ext-table": "^2.0",
         "mews/purifier": "3.*",
         "parsedown/laravel": "^1.1",
+        "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-responsecache": "^6.1",
-        "webuni/commonmark-table-extension": "^1.0"
+        "webuni/commonmark-table-extension": "^1.0",
+        "ext-http": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

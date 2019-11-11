@@ -4507,6 +4507,19 @@ a[disabled] {
   text-decoration: none;
 }
 
+.input_settings {
+  display: block;
+  box-sizing: border-box;
+  height: 34px;
+  font-size: 14px;
+  padding: 12px;
+  line-height: 34px;
+}
+
+.text-danger {
+  color: var(--color-red);
+}
+
 .form-hub__search {
   flex: 1 1 0;
   display: block;
@@ -6025,50 +6038,46 @@ ol {
 }
 
 /* Dropdown Button */
-.dropbtn {
-  font-size: 13px;
-  line-height: 18px;
-  min-width: 160px;
-  text-align: left;
-  width: 100%;
-  cursor: pointer;
-  padding: 8px 26px 8px 10px;
-  color: #29303b;
-  background-color: #ffffff;
-  border: 1px solid #dbdbdb;
-}
-
 .avatar-dropdown {
   height: 32px;
 }
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  margin-left: auto;
-  position: relative;
-  display: inline-block;
+.avatar-dropdown .relative {
+  border: none;
+  box-shadow: none;
 }
-.dropdown select {
+.avatar-dropdown button {
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+}
+.avatar-dropdown button img {
+  border: none;
+  box-shadow: none;
+}
+.avatar-dropdown .menu {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5rem;
   font-size: 13px;
   line-height: 18px;
   min-width: 160px;
   text-align: left;
   width: 100%;
+  list-style: none;
   cursor: pointer;
-  padding: 8px 26px 8px 10px;
   color: #29303b;
   background-color: #ffffff;
   border: 1px solid #dbdbdb;
+  z-index: 11;
 }
-.dropdown select:after {
-  line-height: 1;
-  font-family: Devhub, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  font-style: normal;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  content: "eb12";
+.avatar-dropdown .menu li {
+  padding: 12px 5px;
+}
+.avatar-dropdown .menu li:hover {
+  background: var(--color-block-header-bg);
+}
+.avatar-dropdown .menu li a {
+  color: var(--color-black);
 }
 
 .multiselect__clear {
@@ -6577,24 +6586,6 @@ i.icon {
     transform: translateX(100%);
   }
 }
-.iziSuccess {
-  border: 1px solid;
-  border-left: 5px var(--color-green);
-  padding-right: 30% !important;
-}
-.iziSuccess:after {
-  box-shadow: unset;
-}
-
-.iziError {
-  border: 1px solid;
-  border-left: 5px var(--color-red);
-  padding-right: 30% !important;
-}
-.iziError:after {
-  box-shadow: unset;
-}
-
 .tooltip {
   position: relative;
   display: inline-block;

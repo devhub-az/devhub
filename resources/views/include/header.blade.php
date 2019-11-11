@@ -43,33 +43,8 @@
                 <a href="{{ route('create_post') }}" class="btn btn-primary button_add">
                     Yazmağ
                 </a>
-                <div class="ui inline dropdown avatar-dropdown">
-                    {{--					 <img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') }}" alt="user avatar" class="user__avatar">--}}
-                    <div class="menu">
-                        <div class="item">Paylaşmalar</div>
-                        <div class="item">Seçilmişlər</div>
-                        <div class="ui divider"></div>
-                        <div class="item"><i class="icon feather icon-settings"></i> Parametrlər</div>
-                        <div class="item"><i class="icon feather icon-power"></i> Çıxmaq</div>
-                        {{-- <span class="user" class="item">
-                            <img src="{{ Auth::user()->getMedia('avatars')->first()->getUrl('small') ?? '' }}" alt="user avatar" class="user__avatar">
-                            <div class="profile_info">
-                                <span class="user_name">{{ Auth::user()->name ?? ''}}</span>
-                                <br>
-                                <div class="profile_text">
-                                    <div>Karma: <span class="karma-value">123</span></div>
-                                    <div class="raiting">Reyting: <span class="raiting-value">123</span></div>
-                                </div>
-                            </div>
-                        </span>
-                        <a href="#" class="item">Публикации</a>
-                        <a href="#" class="item">Сохранённые</a>
-                        <hr>
-                        <a href="#" class="item"><i class="icon feather icon-settings"></i> Настройки</a>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="item">
-                        <i class="icon feather icon-power"></i> Выйти
-                        </a> --}}
-                    </div>
+                <div class="avatar-dropdown">
+                    <dropdown :user="{{Auth::User()}}"></dropdown>
                 </div>
             @endguest
         </div>

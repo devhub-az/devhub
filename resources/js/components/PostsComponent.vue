@@ -98,7 +98,13 @@
                 <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"
                             @paginate="getPosts()"></pagination>
             </div>
-            <div v-else class="post-content__item" style="text-align: center; display: grid; grid-gap: 12px;">
+            <div v-else-if="error" class="post-content__item"
+                 style="text-align: center; display: grid; grid-gap: 12px;">
+                <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
+                <h1 style="font-family: 'Nunito', sans-serif;"><span style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
+            </div>
+            <div v-else class="post-content__item"
+                 style="text-align: center; display: grid; grid-gap: 12px;">
                 <span style="font-size: 5rem; opacity: .7;"><i class="icon feather icon-inbox"></i></span>
                 <span>Paylaşma tapılmadı</span>
                 <span>
@@ -122,6 +128,7 @@
                 posts: [],
                 id: [],
                 content: '',
+                error: false,
                 loading: false,
                 hovered: false,
                 postsNotEmpty: false,
@@ -131,7 +138,7 @@
             }
         },
         mounted: function () {
-                this.getPosts();
+            this.getPosts();
         },
         methods: {
             getHubPosts: function () {
@@ -156,6 +163,9 @@
                     }
                 })
                     .catch(error => {
+                        this.loading = false
+                        this.error = true
+                        // DEVELOPING PART
                         if (error.response) {
                             console.log(error.response.data);
                             console.log(error.response.status);
@@ -165,8 +175,6 @@
                         } else {
                             console.log('Error', error.message);
                         }
-                        console.log(error);
-                        this.loading = true
                     });
             },
             findVillainIdx: function (id) {

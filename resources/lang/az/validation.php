@@ -144,7 +144,7 @@ return [
     */
 
     'attributes' => [
-        'name'                  => 'Имя',
+        'name'                  => 'Ad',
         'username'              => 'Никнейм',
         'email'                 => 'İstifadəçi emailı',
         'first_name'            => 'Имя',
@@ -157,8 +157,8 @@ return [
         'phone'                 => 'Телефон',
         'mobile'                => 'Моб. номер',
         'age'                   => 'Возраст',
-        'sex'                   => 'Пол',
-        'gender'                => 'Пол',
+        'sex'                   => 'Cins',
+        'gender'                => 'Cins',
         'day'                   => 'День',
         'month'                 => 'Месяц',
         'year'                  => 'Год',
@@ -173,6 +173,7 @@ return [
         'time'                  => 'Время',
         'available'             => 'Доступно',
         'size'                  => 'Размер',
-        'body'                  =>  'Mətn',
+        'body'                  => 'Mətn',
+        'specialty'             => 'Ixtisas',
     ],
 ];

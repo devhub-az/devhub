@@ -13,9 +13,14 @@ Route::get('/', 'HomeController@postsApiRoute')->name('home');
 Route::get('/top/week', 'HomeController@postsApiRoute')->name('top.week');
 Route::get('/top/month', 'HomeController@postsApiRoute')->name('top.month');
 Route::get('/all', 'HomeController@postsApiRoute')->name('all');
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
+    Route::get('@{username}/settings', 'Auth\UserSettingsController@index')->name('settings');
+    Route::post('@{username}/settings', 'Auth\UserSettingsController@update');
 });
+
+Route::get('/@{username}', 'UserController@show')->name('user_profile');
 
 Route::prefix('api')->group(function () {
     /**
@@ -56,8 +61,6 @@ Route::get('users', 'UserController@userList')->name('user-list');
 Route::prefix('comment')->group(function () {
     Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
 });
-
-Route::get('/@{username}', 'UserController@show')->name('user_profile');
 
 Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
 Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('user.unfollow');
