@@ -69,10 +69,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        /*
         if (isset($data['avatar'])) {
             $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
         }
-
+        */
         return $user;
     }
 }

@@ -32,6 +32,8 @@
 				</li>
 			</ul>
 		</div>
+        <users-list> </users-list>
+
 	</div>
 </div>
 @endsection

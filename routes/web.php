@@ -38,6 +38,11 @@ Route::prefix('api')->group(function () {
     Route::get('hubs/all', 'Api\HubController@search');
     Route::get('hubs/{id}', 'Api\HubController@posts');
     Route::get('hubs', 'Api\HubController@hubs');
+
+    /**
+     * Users Api
+     */
+    Route::get('users/all','Api\UserController@users');
 });
 
 Route::prefix('post')->group(function () {

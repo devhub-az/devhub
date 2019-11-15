@@ -22,21 +22,21 @@ class PostCollection extends JsonResource
         $parsedown = new Parsedown();
         return [
             'data' => [
-                'id' => $this->id,
-                'title' => $this->name,
-                'body' => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
-                'creator' => $this->creator->username,
+                'id'            => $this->id,
+                'title'         => $this->name,
+                'body'          => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
+                'creator'       => $this->creator->username,
                 'profile_image' => '',
-                'votes' => $this->votes,
-                'tags' => new HubsCollection(Hub::whereIn('id', $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-                'comments' => count($this->comments),
-                'views' => count($this->views),
-                'created_at' => $this->created_at,
-                'read_time' => $this->readTime($this->body),
-                'upvoted' => $this->statusCheck('upvote'),
-                'downvoted' => $this->statusCheck('downvote'),
-                'favorite' => $this->statusCheck('following'),
-                'followers' => count($this->postFollowers),
+                'votes'         => $this->votes,
+                'tags'          => new HubsCollection(Hub::whereIn('id', $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
+                'comments'      => count($this->comments),
+                'views'         => count($this->views),
+                'created_at'    => $this->created_at,
+                'read_time'     => $this->readTime($this->body),
+                'upvoted'       => $this->statusCheck('upvote'),
+                'downvoted'     => $this->statusCheck('downvote'),
+                'favorite'      => $this->statusCheck('following'),
+                'followers'     => count($this->postFollowers),
             ],
         ];
     }
@@ -78,8 +78,8 @@ class PostCollection extends JsonResource
     public function readTime(string $text)
     {
         $word = str_word_count(strip_tags($text));
-        $m = floor($word / 200);
-        $est = $m . ' dəqiqə';
+        $m    = floor($word / 200);
+        $est  = $m . ' dəqiqə';
         return $est;
     }
 }

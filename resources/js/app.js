@@ -74,7 +74,7 @@ Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').defau
 Vue.component('search', require('./components/search.vue').default);
 Vue.component('dropdown', require('./components/plugins/Dropdown.vue').default);
 Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
-
+Vue.component('users-list', require('./components/users/UserComponent.vue').default);
 
 Vue.config.productionTip = false;
 Vue.config.silent = false;
