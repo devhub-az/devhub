@@ -17,6 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/login.scss', 'public/css')
    .sass('resources/sass/pagination.scss', 'public/css')
    .sass('resources/sass/app.scss', 'public/css');
-   mix.copy('resources/assets/images', 'public/images');
 mix.disableNotifications();
 mix.options({ processCssUrls: false });

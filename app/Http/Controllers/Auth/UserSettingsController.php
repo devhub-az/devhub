@@ -36,7 +36,7 @@ class UserSettingsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -47,7 +47,7 @@ class UserSettingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -65,9 +65,9 @@ class UserSettingsController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string',
+            'name'      => 'required|string',
             'specialty' => 'required|string',
-            'body' => 'required',
+            'body'      => 'required',
         ]);
 
         return response()->json(null, 200);
@@ -76,7 +76,7 @@ class UserSettingsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)

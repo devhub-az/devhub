@@ -29,7 +29,7 @@ class CommentController extends Controller
     public function newComment(CommentUpload $request)
     {
         $user = Auth::user();
-        $comment = new Comment;
+        $comment = new Comment();
         $comment->author_id = $user->id;
         $comment->post_id = $request->post_id;
         $comment->body = $request->body;

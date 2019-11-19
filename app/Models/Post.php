@@ -15,7 +15,7 @@ class Post extends Model
         'author_id',
     ];
 
-    public static function getTextAttribute($value)
+    public static function getTextAttribute()
     {
         return new HtmlString(
             app(Parsedown::class)->setSafeMode(true)->text($text)
@@ -58,7 +58,7 @@ class Post extends Model
     public function postIsVoted(User $user){
         if (!! $this->votes()->where('user_id', $user->id)->where('status','0')->count()) {
             return 'downvoted';
-        } else if (!! $this->votes()->where('user_id', $user->id)->where('status', '1')->count()){
+        } elseif (!! $this->votes()->where('user_id', $user->id)->where('status', '1')->count()){
             return 'upvoted';
         }
     }

@@ -43,6 +43,7 @@
         "hotkeys-js": "^3.7.2",
         "laravel-echo": "^1.6.1",
         "laravel-echo-server": "^1.5.9",
+        "markdown-draft-js": "^2.1.1",
         "markdown-it": "^10.0.0",
         "moment": "^2.24.0",
         "notyf": "^3.1.0",
@@ -73,6 +74,7 @@
         "vue-select": "^3.1.0",
         "vue-selectize": "^0.0.3",
         "vue-taggable-select": "^1.0.1",
+        "vue-trumbowyg": "^3.4.2",
         "vue2-selectize": "^1.1.7",
         "webpack": "^4.35.3"
     },

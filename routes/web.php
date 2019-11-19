@@ -61,7 +61,7 @@ Route::prefix('hubs')->group(function () {
 Route::get('search-result', 'SearchController@index')->name('search-result');
 Route::post('search-result', 'SearchController@index');
 
-Route::get('users', 'UserController@userList')->name('user-list');
+Route::get('users', 'UserController@userList')->name('users-list');
 
 Route::prefix('comment')->group(function () {
     Route::post('new-comment', 'CommentController@newComment')->name('new-comment');

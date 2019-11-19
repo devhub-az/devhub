@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 namespace App\Models;
 
-class PostView extends \Eloquent {
-
+class PostView extends \Eloquent
+{
     protected $table = 'posts_views';
 
     public static function createViewLog($post) {
@@ -20,5 +20,4 @@ class PostView extends \Eloquent {
             $postsViews->save();
         }
     }
-
 }

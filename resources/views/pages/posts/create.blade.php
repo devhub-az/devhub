@@ -40,22 +40,21 @@
                         </div>
                     @endif
 
-                    <textarea id="editor" placeholder="Balabala" autofocus></textarea>
-                    <div id="markdown-output" style="white-space:pre-wrap;"></div>
-                    {{-- <tags></tags> --}}
-                    <div class="ui fluid multiple search selection dropdown">
-                        <input name="tags" type="hidden">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Skills</div>
-                        <div class="menu">
-                            @foreach ($hubs as $hub)
-                                <div class="item" data-value="{{ $hub['id'] }}">
-                                    <i class="{{ strtolower($hub['name']) }} icon"></i>
-                                    {{ $hub['name'] }}
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
+                    <editor></editor>
+
+{{--                    <div class="ui fluid multiple search selection dropdown">--}}
+{{--                        <input name="tags" type="hidden">--}}
+{{--                        <i class="dropdown icon"></i>--}}
+{{--                        <div class="default text">Skills</div>--}}
+{{--                        <div class="menu">--}}
+{{--                            @foreach ($hubs as $hub)--}}
+{{--                                <div class="item" data-value="{{ $hub['id'] }}">--}}
+{{--                                    <i class="{{ strtolower($hub['name']) }} icon"></i>--}}
+{{--                                    {{ $hub['name'] }}--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                     {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}
 
                     {!! Form::close() !!}
@@ -120,22 +119,10 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
     <script>
-        var editor = new Simditor({
-            textarea: $('#editor')
-            //optional options
-        });
-
         $('.ui.dropdown').dropdown();
-        // $(document).ready(function(){
-        //     $("#form").on("submit", function () {
-        //         var hvalue = $('.tui-editor-contents').html();
-        //         $(this).append("<textarea name='body' style='display:none'>"+hvalue+"</textarea>");
-        //     });
-        // });
-        // document.getElementsByClassName('editor-preview').addEventListener("change", myScript);
 
         $(document).on('change', '.medName', function () {
-            var val = $('option:selected', this).val()
+            const val = $('option:selected', this).val();
             alert(val);
         });
 
@@ -145,7 +132,7 @@
             });
         }
 
-        var MDConvert = new Remarkable({
+        const MDConvert = new Remarkable({
             highlight: function (str) {
                 lang = hljs.highlightAuto(str).language;
                 console.log(hljs.initHighlighting());

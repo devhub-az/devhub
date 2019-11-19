@@ -105,7 +105,7 @@
             </div>
             <div v-else class="post-content__item"
                  style="text-align: center; display: grid; grid-gap: 12px;">
-                <span style="font-size: 5rem; opacity: .7;"><i class="icon feather icon-inbox"></i></span>
+                <span style="font-size: 5rem; opacity: .7;"><img src="/images/png.svg" alt="" width="250"/></span>
                 <span>Paylaşma tapılmadı</span>
                 <span>
                     <a href="/post/add" class="btn btn-primary">
@@ -137,7 +137,7 @@
                 },
             }
         },
-        mounted: function () {
+        created: function () {
             this.getPosts();
         },
         methods: {

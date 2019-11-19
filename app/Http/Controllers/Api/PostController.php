@@ -23,10 +23,13 @@ class PostController extends Controller
         switch ($request->segment(4)) {
             case 'day':
                 $this->count = $this->day;
+                break;
             case 'week':
                 $this->count = $this->week;
+                break;
             case 'month':
                 $this->count = $this->month;
+                break;
         }
     }
 
@@ -59,8 +62,8 @@ class PostController extends Controller
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->whereIn('author_id', \Auth::user()->getUserIdsAttribute())
-            ->orWhereHas('hubs', function ($q) {
-                $q->whereIn('hubs.id', \Auth::user()->getHubsIdsAttribute());
+            ->orWhereHas('hubs', function ($query) {
+                $query->whereIn('hubs.id', \Auth::user()->getHubsIdsAttribute());
             })
             ->with('creator:id,username')
             ->with('comments:body')

@@ -12,7 +12,7 @@ use App\Models\PostFavorite;
 use App\Models\Hub;
 use App\Models\Post;
 use App\Models\PostVote;
-
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -44,11 +44,12 @@ class PostController extends Controller
      * @param \Request $request
      * @return Response
      */
-    public function store(\Request $request)
+    public function store(Request $request)
     {
+        dd($request->get('body'));
         $request->validate([
             'title' => 'required|string',
-            'body' => 'required|string|min:110',
+            'body' => 'required|string',
             // 'tags' => 'required',
         ]);
 

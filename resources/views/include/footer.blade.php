@@ -19,12 +19,6 @@
                 <a href="/web/20161115054243/https://habrahabr.ru/sandbox/" class="nav-links__item-link ">Haqqımızda</a>
             </li>
         </ul>
-        <div class="dropdown">
-            <select onChange="window.location.href=this.value">
-                <option value="www.google.com">A</option>
-                <option value="www.aol.com">B</option>
-            </select>
-        </div>
         <div class="social-icons">
             <a href="#"><i class="facebook f icon"></i></a>
             <a href="#"><i class="vk icon"></i></a>

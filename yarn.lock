@@ -4548,7 +4548,7 @@ jquery@2.x:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
   integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
 
-jquery@^3.0.0, jquery@^3.2, jquery@^3.3.1, jquery@^3.4.1:
+jquery@>=1.8, jquery@^3.0.0, jquery@^3.2, jquery@^3.3.1, jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -5110,6 +5110,13 @@ map-visit@^1.0.0:
   integrity sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
   dependencies:
     object-visit "^1.0.0"
+
+markdown-draft-js@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/markdown-draft-js/-/markdown-draft-js-2.1.1.tgz#9b45432aa5bd89aeb0fe600ca70202688d3bca9d"
+  integrity sha512-3eJehdYNZ/2WeHINQQU7Smo6NGDFMWHpwM+gHhtmOLBXL8X+RoDNb4SzgxysGuIW+zhuLOHgiEQcOxFyA7Y7zA==
+  dependencies:
+    remarkable "2.0.0"
 
 markdown-it@^10.0.0:
   version "10.0.0"
@@ -6689,9 +6696,9 @@ range-parser@^1.2.1, range-parser@~1.2.1:
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
   integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
 
-"raphael@git+https://github.com/nhn/raphael.git#2.2.0-c":
+"raphael@https://github.com/nhn/raphael.git#2.2.0-c":
   version "2.2.0-c"
-  resolved "git+https://github.com/nhn/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
+  resolved "https://github.com/nhn/raphael.git#78a6ed3ec269f33b6457b0ec66f8c3d1f2ed70e0"
   dependencies:
     eve "git://github.com/adobe-webplatform/eve.git#eef80ed"
 
@@ -6889,7 +6896,7 @@ relateurl@0.2.x:
   resolved "https://registry.yarnpkg.com/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
-remarkable@^2.0.0:
+remarkable@2.0.0, remarkable@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/remarkable/-/remarkable-2.0.0.tgz#795f965bede8300362ce51a716edc322d9e7a4ca"
   integrity sha512-3gvKFAgL4xmmVRKAMNm6UzDo/rO2gPVkZrWagp6AXEA4JvCcMcRx9aapYbb7AJAmLLvi/u06+EhzqoS7ha9qOg==
@@ -8034,6 +8041,11 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
+trumbowyg@^2.14.0:
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.20.0.tgz#4418fc42d628d4763553e9bc97e4efd880113daf"
+  integrity sha512-XdGZtc2eVF7LsMjb/Ilcgqj4ClkPlXz79mxbaQGvBttGodj36JF+HggHGgqtTAcqVXHx0viz9lYPf14zz1rRaA==
+
 tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
@@ -8446,6 +8458,14 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
+
+vue-trumbowyg@^3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/vue-trumbowyg/-/vue-trumbowyg-3.4.2.tgz#46eec0d176f6cec3d91bc0e317f7a9a47b7d2ec2"
+  integrity sha512-5iyuloAQ0F6z8qM9ciZOetQE8FqFxKi3+SAJZkJaEgUUh9Er4nhkwcKWWvbuVl5ie/+NWR8xzklUmTmQRvQBAw==
+  dependencies:
+    jquery ">=1.8"
+    trumbowyg "^2.14.0"
 
 vue2-selectize@^1.1.7:
   version "1.1.7"

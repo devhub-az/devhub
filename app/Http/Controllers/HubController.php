@@ -18,7 +18,7 @@ class HubController extends Controller
     /**
      * @var string
      */
-    public $content = 'hub_show';
+    private $content = 'hub_show';
 
     /**
      * @param int $id
@@ -42,7 +42,7 @@ class HubController extends Controller
     public function index()
     {
         $top_hubs = new HubsCollection(Hub::orderBy('rating', 'DESC')->paginate(5));
-        $top_followed_hubs = new  HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count', 'desc')->paginate(5));
+        $top_followed_hubs = new HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count', 'desc')->paginate(5));
         return view('pages.hubs.hubs', [
             'top_hubs' => $top_hubs,
             'top_followed_hubs' => $top_followed_hubs

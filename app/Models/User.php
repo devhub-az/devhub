@@ -31,34 +31,6 @@ class User extends Authenticatable implements HasMedia
         'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @return mixed
-     * @var array
-     */
-
-    public function getCoverAttribute(){
-        return $this->getMedia('avatars')->last();
-    }
-
-    /**
-     * @param Media|null $media
-     * @throws InvalidManipulation
-     */
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('small')
-            ->width(50)
-            ->height(50);
-        $this->addMediaConversion('big')
-            ->width(120)
-            ->height(120);
-        $this->addMediaConversion('very-big')
-            ->width(320)
-            ->height(320);
-    }
-
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

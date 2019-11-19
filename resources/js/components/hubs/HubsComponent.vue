@@ -65,7 +65,7 @@
                 }
             }
         },
-        mounted: function () {
+        created: function () {
             this.getHubs();
         },
         methods: {

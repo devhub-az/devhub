@@ -129,7 +129,7 @@
 
     function search(){
         const input = document.getElementById("form_search");
-        const icon = document.getElementById("search");
+        const icon = document.getElementById("search-icon");
         const nav = document.getElementById("navbar-links");
         const search_input = document.getElementById("search_input");
 
@@ -141,7 +141,7 @@
 
     function closeSearch() {
         const input = document.getElementById("form_search");
-        const icon = document.getElementById("search");
+        const icon = document.getElementById("search-icon");
         const nav = document.getElementById("navbar-links");
 
         nav.removeAttribute("style");

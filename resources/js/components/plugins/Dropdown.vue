@@ -11,7 +11,7 @@
             @keydown.up.exact.prevent="startArrowKeys"
             @keydown.down.exact.prevent="startArrowKeys"
         >
-            <img src="/images/profile/new_user/1.svg" width="32" height="32" alt="avatar" class="w-8 h-8 rounded-full">
+             text
         </button>
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"

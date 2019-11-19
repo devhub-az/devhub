@@ -13,7 +13,7 @@ axios.defaults.headers.common = {
 };
 
 const input = document.getElementById("form_search");
-const icon = document.getElementById("search");
+
 const nav = document.getElementById("navbar-links");
 const search_input = document.getElementById("search_input");
 
@@ -39,9 +39,11 @@ hotkeys('/', function (event) {
     // Prevent the default refresh event under WINDOWS system
     event.preventDefault()
 
+    const icon = document.getElementById("search-icon");
+
+    icon.style.display = "none";
     nav.style.display = "none";
     input.style.display = "flex";
-    icon.style.display = "none";
 
     search_input.focus();
 })
@@ -51,7 +53,7 @@ hotkeys('esc', function (event) {
 
     if ($("#search_input").is(':focus')) {
         const input = document.getElementById("form_search");
-        const icon = document.getElementById("search");
+        const icon = document.getElementById("search-icon");
         const nav = document.getElementById("navbar-links");
 
         nav.removeAttribute("style");
@@ -75,6 +77,7 @@ Vue.component('search', require('./components/search.vue').default);
 Vue.component('dropdown', require('./components/plugins/Dropdown.vue').default);
 Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
 Vue.component('users-list', require('./components/users/UserComponent.vue').default);
+Vue.component('editor', require('./components/plugins/editor.vue').default);
 
 Vue.config.productionTip = false;
 Vue.config.silent = false;

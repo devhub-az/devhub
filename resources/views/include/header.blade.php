@@ -12,10 +12,7 @@
                        class="nav-links__item-link @if(Request::is('hubs')) nav-links__item-link_current @endif">Hablar</a>
                 </li>
                 <li class="nav-links__item">
-                    <a href="#" class="nav-links__item-link badge" data-badge="6">Şirkətlər</a>
-                </li>
-                <li class="nav-links__item">
-                    <a href="#" class="nav-links__item-link ">İnsanlar</a>
+                    <a href="{{ route('users-list') }}" class="nav-links__item-link ">İnsanlar</a>
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ url('/about_us') }}"
@@ -34,7 +31,7 @@
         </form>
         <div class="main-navbar__section main-navbar__section_right" id="header_app"
              style="display: grid;grid-auto-flow: column; grid-gap: 12px;">
-            <i id="search" onclick="search()" class="icon feather icon-search"></i>
+            <i id="search-icon" onclick="search()" class="icon feather icon-search"></i>
             @guest
                 <a href="{{ route('login') }}" class="btn btn-primary btn_navbar_login">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qeydiyyatdan Keç</a>
