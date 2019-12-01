@@ -37,7 +37,7 @@ Route::prefix('api')->group(function () {
      */
     Route::get('hubs/all', 'Api\HubController@search');
     Route::get('hubs/{id}', 'Api\HubController@posts');
-    Route::get('hubs', 'Api\HubController@hubs');
+    Route::get('hubs', 'Api\HubController@hubs')->name('hubs-list');
 
     /**
      * Users Api

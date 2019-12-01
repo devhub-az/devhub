@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.33 on 2019-08-22 16:52:28.
+ * Generated for Laravel 6.5.1 on 2019-11-30 19:25:33.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1091,6 +1091,21 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Register a shared binding if it hasn't already been registered.
+         *
+         * @param string $abstract
+         * @param \Closure|string|null $concrete
+         * @return void 
+         * @static 
+         */ 
+        public static function singletonIf($abstract, $concrete = null)
+        {
+            //Method inherited from \Illuminate\Container\Container            
+                        /** @var \Illuminate\Foundation\Application $instance */
+                        $instance->singletonIf($abstract, $concrete);
+        }
+        
+        /**
          * "Extend" an abstract type in the container.
          *
          * @param string $abstract
@@ -1780,6 +1795,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Determines if any guards have already been resolved.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasResolvedGuards()
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->hasResolvedGuards();
+        }
+        
+        /**
          * Create the user provider implementation for the driver.
          *
          * @param string|null $provider
@@ -1948,6 +1975,18 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Auth\SessionGuard $instance */
                         $instance->logout();
+        }
+        
+        /**
+         * Log the user out of the application on their current device only.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function logoutCurrentDevice()
+        {
+                        /** @var \Illuminate\Auth\SessionGuard $instance */
+                        $instance->logoutCurrentDevice();
         }
         
         /**
@@ -2503,7 +2542,7 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static \Illuminate\Broadcasting\Broadcasters\Broadcaster channel(string $channel, callable|string  $callback)
+     * @method static \Illuminate\Broadcasting\Broadcasters\Broadcaster channel(string $channel, callable|string  $callback, array $options = [])
      * @method static mixed auth(\Illuminate\Http\Request $request)
      * @see \Illuminate\Contracts\Broadcasting\Factory
      */ 
@@ -2740,6 +2779,20 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
                         $instance->assertDispatched($command, $callback);
+        }
+        
+        /**
+         * Assert if a job was pushed a number of times.
+         *
+         * @param string $command
+         * @param int $times
+         * @return void 
+         * @static 
+         */ 
+        public static function assertDispatchedTimes($command, $times = 1)
+        {
+                        /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
+                        $instance->assertDispatchedTimes($command, $times);
         }
         
         /**
@@ -3210,7 +3263,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the default cache time.
          *
-         * @return int 
+         * @return int|null 
          * @static 
          */ 
         public static function getDefaultCacheTime()
@@ -3637,13 +3690,14 @@ namespace Illuminate\Support\Facades {
          * Determine if a cookie has been queued.
          *
          * @param string $key
+         * @param string|null $path
          * @return bool 
          * @static 
          */ 
-        public static function hasQueued($key)
+        public static function hasQueued($key, $path = null)
         {
                         /** @var \Illuminate\Cookie\CookieJar $instance */
-                        return $instance->hasQueued($key);
+                        return $instance->hasQueued($key, $path);
         }
         
         /**
@@ -3651,13 +3705,14 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param mixed $default
+         * @param string $path
          * @return \Symfony\Component\HttpFoundation\Cookie 
          * @static 
          */ 
-        public static function queued($key, $default = null)
+        public static function queued($key, $default = null, $path = null)
         {
                         /** @var \Illuminate\Cookie\CookieJar $instance */
-                        return $instance->queued($key, $default);
+                        return $instance->queued($key, $default, $path);
         }
         
         /**
@@ -3677,13 +3732,14 @@ namespace Illuminate\Support\Facades {
          * Remove a cookie from the queue.
          *
          * @param string $name
+         * @param string|null $path
          * @return void 
          * @static 
          */ 
-        public static function unqueue($name)
+        public static function unqueue($name, $path = null)
         {
                         /** @var \Illuminate\Cookie\CookieJar $instance */
-                        $instance->unqueue($name);
+                        $instance->unqueue($name, $path);
         }
         
         /**
@@ -4075,15 +4131,16 @@ namespace Illuminate\Support\Facades {
         /**
          * Begin a fluent query against a database table.
          *
-         * @param string $table
+         * @param \Closure|\Illuminate\Database\Query\Builder|string $table
+         * @param string|null $as
          * @return \Illuminate\Database\Query\Builder 
          * @static 
          */ 
-        public static function table($table)
+        public static function table($table, $as = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
                         /** @var \Illuminate\Database\MySqlConnection $instance */
-                        return $instance->table($table);
+                        return $instance->table($table, $as);
         }
         
         /**
@@ -5126,6 +5183,19 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Determine if a file or directory is missing.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($path)
+        {
+                        /** @var \Illuminate\Filesystem\Filesystem $instance */
+                        return $instance->missing($path);
+        }
+        
+        /**
          * Get the contents of a file.
          *
          * @param string $path
@@ -5835,11 +5905,26 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Inspect the user for the given ability.
+         *
+         * @param string $ability
+         * @param array|mixed $arguments
+         * @return \Illuminate\Auth\Access\Response 
+         * @static 
+         */ 
+        public static function inspect($ability, $arguments = array())
+        {
+                        /** @var \Illuminate\Auth\Access\Gate $instance */
+                        return $instance->inspect($ability, $arguments);
+        }
+        
+        /**
          * Get the raw result from the authorization callback.
          *
          * @param string $ability
          * @param array|mixed $arguments
          * @return mixed 
+         * @throws \Illuminate\Auth\Access\AuthorizationException
          * @static 
          */ 
         public static function raw($ability, $arguments = array())
@@ -6120,21 +6205,6 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the translation for a given key.
-         *
-         * @param string $key
-         * @param array $replace
-         * @param string|null $locale
-         * @return string|array 
-         * @static 
-         */ 
-        public static function trans($key, $replace = array(), $locale = null)
-        {
-                        /** @var \Illuminate\Translation\Translator $instance */
-                        return $instance->trans($key, $replace, $locale);
-        }
-        
-        /**
          * Get the translation for the given key.
          *
          * @param string $key
@@ -6151,41 +6221,10 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the translation for a given key from the JSON translation files.
-         *
-         * @param string $key
-         * @param array $replace
-         * @param string|null $locale
-         * @return string|array 
-         * @static 
-         */ 
-        public static function getFromJson($key, $replace = array(), $locale = null)
-        {
-                        /** @var \Illuminate\Translation\Translator $instance */
-                        return $instance->getFromJson($key, $replace, $locale);
-        }
-        
-        /**
          * Get a translation according to an integer value.
          *
          * @param string $key
-         * @param int|array|\Countable $number
-         * @param array $replace
-         * @param string|null $locale
-         * @return string 
-         * @static 
-         */ 
-        public static function transChoice($key, $number, $replace = array(), $locale = null)
-        {
-                        /** @var \Illuminate\Translation\Translator $instance */
-                        return $instance->transChoice($key, $number, $replace, $locale);
-        }
-        
-        /**
-         * Get a translation according to an integer value.
-         *
-         * @param string $key
-         * @param int|array|\Countable $number
+         * @param \Countable|int|array $number
          * @param array $replace
          * @param string|null $locale
          * @return string 
@@ -6443,118 +6482,6 @@ namespace Illuminate\Support\Facades {
     class Log {
         
         /**
-         * Adds a log record at the DEBUG level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function debug($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addDebug($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the INFO level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function info($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addInfo($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the NOTICE level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function notice($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addNotice($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the WARNING level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function warning($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addWarning($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the ERROR level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function error($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addError($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the CRITICAL level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function critical($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addCritical($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the ALERT level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function alert($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addAlert($message, $context);
-        }
-        
-        /**
-         * Adds a log record at the EMERGENCY level.
-         *
-         * @param string $message The log message
-         * @param array $context The log context
-         * @return bool Whether the record has been processed
-         * @static 
-         */ 
-        public static function emergency($message, $context = array())
-        {
-                        /** @var \Monolog\Logger $instance */
-                        return $instance->addEmergency($message, $context);
-        }
-        
-        /**
          * Create a new, on-demand aggregate logger instance.
          *
          * @param array $channels
@@ -6595,6 +6522,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getChannels()
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->getChannels();
+        }
+        
+        /**
          * Get the default log driver name.
          *
          * @return string 
@@ -6631,6 +6570,142 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Log\LogManager $instance */
                         return $instance->extend($driver, $callback);
+        }
+        
+        /**
+         * Unset the given channel instance.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Log\LogManager 
+         * @static 
+         */ 
+        public static function forgetChannel($driver = null)
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->forgetChannel($driver);
+        }
+        
+        /**
+         * System is unusable.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function emergency($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->emergency($message, $context);
+        }
+        
+        /**
+         * Action must be taken immediately.
+         * 
+         * Example: Entire website down, database unavailable, etc. This should
+         * trigger the SMS alerts and wake you up.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function alert($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->alert($message, $context);
+        }
+        
+        /**
+         * Critical conditions.
+         * 
+         * Example: Application component unavailable, unexpected exception.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function critical($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->critical($message, $context);
+        }
+        
+        /**
+         * Runtime errors that do not require immediate action but should typically
+         * be logged and monitored.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function error($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->error($message, $context);
+        }
+        
+        /**
+         * Exceptional occurrences that are not errors.
+         * 
+         * Example: Use of deprecated APIs, poor use of an API, undesirable things
+         * that are not necessarily wrong.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function warning($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->warning($message, $context);
+        }
+        
+        /**
+         * Normal but significant events.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function notice($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->notice($message, $context);
+        }
+        
+        /**
+         * Interesting events.
+         * 
+         * Example: User logs in, SQL logs.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function info($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->info($message, $context);
+        }
+        
+        /**
+         * Detailed debug information.
+         *
+         * @param string $message
+         * @param array $context
+         * @return void 
+         * @static 
+         */ 
+        public static function debug($message, $context = array())
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        $instance->debug($message, $context);
         }
         
         /**
@@ -6799,7 +6874,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Send a new message using a view.
          *
-         * @param string|array|\Illuminate\Contracts\Mail\Mailable $view
+         * @param \Illuminate\Contracts\Mail\Mailable|string|array $view
          * @param array $data
          * @param \Closure|string|null $callback
          * @return void 
@@ -7412,8 +7487,6 @@ namespace Illuminate\Support\Facades {
      *
      * @method static string sendResetLink(array $credentials)
      * @method static mixed reset(array $credentials, \Closure $callback)
-     * @method static void validator(\Closure $callback)
-     * @method static bool validateNewPassword(array $credentials)
      * @see \Illuminate\Auth\Passwords\PasswordBroker
      */ 
     class Password {
@@ -7634,18 +7707,6 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Queue\QueueManager $instance */
                         return $instance->getName($connection);
-        }
-        
-        /**
-         * Determine if the application is in maintenance mode.
-         *
-         * @return bool 
-         * @static 
-         */ 
-        public static function isDownForMaintenance()
-        {
-                        /** @var \Illuminate\Queue\QueueManager $instance */
-                        return $instance->isDownForMaintenance();
         }
         
         /**
@@ -8198,6 +8259,7 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
+     * @method static mixed filterFiles(mixed $files)
      * @see \Illuminate\Http\Request
      */ 
     class Request {
@@ -8614,7 +8676,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string|null $param
          * @param mixed $default
-         * @return \Illuminate\Routing\Route|object|string 
+         * @return \Illuminate\Routing\Route|object|string|null 
          * @static 
          */ 
         public static function route($param = null, $default = null)
@@ -9048,10 +9110,14 @@ namespace Illuminate\Support\Facades {
          * header value is a comma+space separated list of IP addresses, the left-most
          * being the original client, and each successive proxy that passed the request
          * adding the IP address where it received the request from.
+         * 
+         * If your reverse proxy uses a different header name than "X-Forwarded-For",
+         * ("Client-Ip" for instance), configure it via the $trustedHeaderSet
+         * argument of the Request::setTrustedProxies() method instead.
          *
          * @return string|null The client IP address
          * @see getClientIps()
-         * @see http://en.wikipedia.org/wiki/X-Forwarded-For
+         * @see https://wikipedia.org/wiki/X-Forwarded-For
          * @static 
          */ 
         public static function getClientIp()
@@ -9575,7 +9641,6 @@ namespace Illuminate\Support\Facades {
          * Checks whether or not the method is safe.
          *
          * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
-         * @param bool $andCacheable Adds the additional condition that the method should be cacheable. True by default.
          * @return bool 
          * @static 
          */ 
@@ -9745,7 +9810,7 @@ namespace Illuminate\Support\Facades {
          * It works if your JavaScript library sets an X-Requested-With HTTP header.
          * It is known to work with common JavaScript frameworks:
          *
-         * @see http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
+         * @see https://wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
          * @return bool true if the request is an XMLHttpRequest, false otherwise
          * @static 
          */ 
@@ -10076,6 +10141,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->anyFilled($keys);
+        }
+        
+        /**
+         * Determine if the request is missing a given input item key.
+         *
+         * @param string|array $key
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($key)
+        {
+                        /** @var \Illuminate\Http\Request $instance */
+                        return $instance->missing($key);
         }
         
         /**
@@ -10865,7 +10943,7 @@ namespace Illuminate\Support\Facades {
          * Return the response returned by the given route.
          *
          * @param string $name
-         * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse 
+         * @return \Symfony\Component\HttpFoundation\Response 
          * @static 
          */ 
         public static function respondWithRoute($name)
@@ -10878,7 +10956,7 @@ namespace Illuminate\Support\Facades {
          * Dispatch the request to the application.
          *
          * @param \Illuminate\Http\Request $request
-         * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse 
+         * @return \Symfony\Component\HttpFoundation\Response 
          * @static 
          */ 
         public static function dispatch($request)
@@ -10891,7 +10969,7 @@ namespace Illuminate\Support\Facades {
          * Dispatch the request to a route and return the response.
          *
          * @param \Illuminate\Http\Request $request
-         * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse 
+         * @return \Symfony\Component\HttpFoundation\Response 
          * @static 
          */ 
         public static function dispatchToRoute($request)
@@ -10918,7 +10996,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param \Symfony\Component\HttpFoundation\Request $request
          * @param mixed $response
-         * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse 
+         * @return \Symfony\Component\HttpFoundation\Response 
          * @static 
          */ 
         public static function prepareResponse($request, $response)
@@ -10932,7 +11010,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param \Symfony\Component\HttpFoundation\Request $request
          * @param mixed $response
-         * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse 
+         * @return \Symfony\Component\HttpFoundation\Response 
          * @static 
          */ 
         public static function toResponse($request, $response)
@@ -11348,6 +11426,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Register the typical confirm password routes for an application.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        /** @var \Illuminate\Routing\Router $instance */
+                        $instance->confirmPassword();
+        }
+        
+        /**
          * Register the typical email verification routes for an application.
          *
          * @return void 
@@ -11534,6 +11624,18 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
                         $instance->dropAllViews();
+        }
+        
+        /**
+         * Get all of the table names for the database.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getAllTables()
+        {
+                        /** @var \Illuminate\Database\Schema\MySqlBuilder $instance */
+                        return $instance->getAllTables();
         }
         
         /**
@@ -12496,19 +12598,6 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Create an instance of the Rackspace driver.
-         *
-         * @param array $config
-         * @return \Illuminate\Contracts\Filesystem\Cloud 
-         * @static 
-         */ 
-        public static function createRackspaceDriver($config)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemManager $instance */
-                        return $instance->createRackspaceDriver($config);
-        }
-        
-        /**
          * Set the given disk instance.
          *
          * @param string $name
@@ -12610,6 +12699,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
                         return $instance->exists($path);
+        }
+        
+        /**
+         * Determine if a file or directory is missing.
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */ 
+        public static function missing($path)
+        {
+                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
+                        return $instance->missing($path);
         }
         
         /**
@@ -12872,7 +12974,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $path
          * @return resource|null The path resource or null on failure.
-         * @throws FileNotFoundException
+         * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
          * @static 
          */ 
         public static function readStream($path)
@@ -12889,7 +12991,7 @@ namespace Illuminate\Support\Facades {
          * @param array $options
          * @return bool 
          * @throws \InvalidArgumentException If $resource is not a file handle.
-         * @throws FileExistsException
+         * @throws \Illuminate\Contracts\Filesystem\FileExistsException
          * @static 
          */ 
         public static function writeStream($path, $resource, $options = array())
@@ -12928,22 +13030,6 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
                         return $instance->getAwsTemporaryUrl($adapter, $path, $expiration, $options);
-        }
-        
-        /**
-         * Get a temporary URL for the file at the given path.
-         *
-         * @param \League\Flysystem\Rackspace\RackspaceAdapter $adapter
-         * @param string $path
-         * @param \DateTimeInterface $expiration
-         * @param array $options
-         * @return string 
-         * @static 
-         */ 
-        public static function getRackspaceTemporaryUrl($adapter, $path, $expiration, $options)
-        {
-                        /** @var \Illuminate\Filesystem\FilesystemAdapter $instance */
-                        return $instance->getRackspaceTemporaryUrl($adapter, $path, $expiration, $options);
         }
         
         /**
@@ -13188,6 +13274,7 @@ namespace Illuminate\Support\Facades {
          * @param \DateTimeInterface|\DateInterval|int|null $expiration
          * @param bool $absolute
          * @return string 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function signedRoute($name, $parameters = array(), $expiration = null, $absolute = true)
@@ -13227,19 +13314,62 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Determine if the signature from the given request matches the URL.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @param bool $absolute
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasCorrectSignature($request, $absolute = true)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        return $instance->hasCorrectSignature($request, $absolute);
+        }
+        
+        /**
+         * Determine if the expires timestamp from the given request is not from the past.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @return bool 
+         * @static 
+         */ 
+        public static function signatureHasNotExpired($request)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        return $instance->signatureHasNotExpired($request);
+        }
+        
+        /**
          * Get the URL to a named route.
          *
          * @param string $name
          * @param mixed $parameters
          * @param bool $absolute
          * @return string 
-         * @throws \InvalidArgumentException
+         * @throws \Symfony\Component\Routing\Exception\RouteNotFoundException
          * @static 
          */ 
         public static function route($name, $parameters = array(), $absolute = true)
         {
                         /** @var \Illuminate\Routing\UrlGenerator $instance */
                         return $instance->route($name, $parameters, $absolute);
+        }
+        
+        /**
+         * Get the URL for a given route instance.
+         *
+         * @param \Illuminate\Routing\Route $route
+         * @param mixed $parameters
+         * @param bool $absolute
+         * @return string 
+         * @throws \Illuminate\Routing\Exceptions\UrlGenerationException
+         * @static 
+         */ 
+        public static function toRoute($route, $parameters, $absolute)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        return $instance->toRoute($route, $parameters, $absolute);
         }
         
         /**
@@ -16511,257 +16641,6 @@ namespace Intervention\Image\Facades {
  
 }
 
-namespace Rebing\GraphQL\Support\Facades { 
-
-    /**
-     * 
-     *
-     * @method static array<string,object|string> getTypes()
-     */ 
-    class GraphQL {
-        
-        /**
-         * 
-         *
-         * @param \Schema|array|string|null $schema
-         * @return \Schema 
-         * @static 
-         */ 
-        public static function schema($schema = null)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->schema($schema);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $query
-         * @param array|null $params
-         * @param array $opts Additional options, like 'schema', 'context' or 'operationName'
-         * @return array 
-         * @static 
-         */ 
-        public static function query($query, $params = array(), $opts = array())
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->query($query, $params, $opts);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $query
-         * @param array|null $params
-         * @param array $opts Additional options, like 'schema', 'context' or 'operationName'
-         * @return \Rebing\GraphQL\ExecutionResult 
-         * @static 
-         */ 
-        public static function queryAndReturnResult($query, $params = array(), $opts = array())
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->queryAndReturnResult($query, $params, $opts);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function addTypes($types)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->addTypes($types);
-        }
-        
-        /**
-         * 
-         *
-         * @param object|string $class
-         * @param string|null $name
-         * @static 
-         */ 
-        public static function addType($class, $name = null)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->addType($class, $name);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function type($name, $fresh = false)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->type($name, $fresh);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Rebing\GraphQL\ObjectType|array|string $type
-         * @param \Rebing\GraphQL\array<string,string> $opts
-         * @return \Rebing\GraphQL\Type 
-         * @static 
-         */ 
-        public static function objectType($type, $opts = array())
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->objectType($type, $opts);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $name
-         * @param \Schema|array $schema
-         * @static 
-         */ 
-        public static function addSchema($name, $schema)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->addSchema($name, $schema);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $name
-         * @param \Schema|array $schema
-         * @static 
-         */ 
-        public static function mergeSchemas($name, $schema)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->mergeSchemas($name, $schema);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function clearType($name)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->clearType($name);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function clearSchema($name)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->clearSchema($name);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function clearTypes()
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->clearTypes();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function clearSchemas()
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->clearSchemas();
-        }
-        
-        /**
-         * 
-         *
-         * @return \Rebing\GraphQL\array<string,object|\Rebing\GraphQL\string> 
-         * @static 
-         */ 
-        public static function getTypes()
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->getTypes();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getSchemas()
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->getSchemas();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function paginate($typeName, $customName = null)
-        {
-                        /** @var \Rebing\GraphQL\GraphQL $instance */
-                        return $instance->paginate($typeName, $customName);
-        }
-        
-        /**
-         * 
-         *
-         * @see \GraphQL\Executor\ExecutionResult::setErrorFormatter
-         * @param \Error $e
-         * @return array 
-         * @static 
-         */ 
-        public static function formatError($e)
-        {
-                        return \Rebing\GraphQL\GraphQL::formatError($e);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Error[] $errors
-         * @param callable $formatter
-         * @return \Error[] 
-         * @static 
-         */ 
-        public static function handleErrors($errors, $formatter)
-        {
-                        return \Rebing\GraphQL\GraphQL::handleErrors($errors, $formatter);
-        }
-        
-        /**
-         * Check if the schema expects a nest URI name and return the formatted version
-         * Eg. 'user/me'
-         * will open the query path /graphql/user/me.
-         *
-         * @param string $name
-         * @param string $schemaParameterPattern
-         * @param string $queryRoute
-         * @return string mixed
-         * @static 
-         */ 
-        public static function routeNameTransformer($name, $schemaParameterPattern, $queryRoute)
-        {
-                        return \Rebing\GraphQL\GraphQL::routeNameTransformer($name, $schemaParameterPattern, $queryRoute);
-        }
-         
-    }
- 
-}
-
 namespace Spatie\ResponseCache\Facades { 
 
     /**
@@ -16886,7 +16765,7 @@ namespace  {
              * Create and return an un-saved model instance.
              *
              * @param array $attributes
-             * @return \Illuminate\Database\Eloquent\Model 
+             * @return \Illuminate\Database\Eloquent\Model|static 
              * @static 
              */ 
             public static function make($attributes = array())
@@ -16976,7 +16855,7 @@ namespace  {
             /**
              * Add a basic where clause to the query.
              *
-             * @param string|array|\Closure $column
+             * @param \Closure|string|array $column
              * @param mixed $operator
              * @param mixed $value
              * @param string $boolean
@@ -17237,31 +17116,15 @@ namespace  {
             }
          
             /**
-             * Get a generator for the given query.
+             * Get a lazy collection for the given query.
              *
-             * @return \Generator 
+             * @return \Illuminate\Support\LazyCollection 
              * @static 
              */ 
             public static function cursor()
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->cursor();
-            }
-         
-            /**
-             * Chunk the results of a query by comparing numeric IDs.
-             *
-             * @param int $count
-             * @param callable $callback
-             * @param string|null $column
-             * @param string|null $alias
-             * @return bool 
-             * @static 
-             */ 
-            public static function chunkById($count, $callback, $column = null, $alias = null)
-            {
-                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
-                                return $instance->chunkById($count, $callback, $column, $alias);
             }
          
             /**
@@ -17353,7 +17216,7 @@ namespace  {
             /**
              * Call the given local model scopes.
              *
-             * @param array $scopes
+             * @param array|string $scopes
              * @return static|mixed 
              * @static 
              */ 
@@ -17502,6 +17365,43 @@ namespace  {
             }
          
             /**
+             * Checks if a macro is registered.
+             *
+             * @param string $name
+             * @return bool 
+             * @static 
+             */ 
+            public static function hasMacro($name)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->hasMacro($name);
+            }
+         
+            /**
+             * Get the given global macro by name.
+             *
+             * @param string $name
+             * @return \Closure 
+             * @static 
+             */ 
+            public static function getGlobalMacro($name)
+            {
+                                return \Illuminate\Database\Eloquent\Builder::getGlobalMacro($name);
+            }
+         
+            /**
+             * Checks if a global macro is registered.
+             *
+             * @param string $name
+             * @return bool 
+             * @static 
+             */ 
+            public static function hasGlobalMacro($name)
+            {
+                                return \Illuminate\Database\Eloquent\Builder::hasGlobalMacro($name);
+            }
+         
+            /**
              * Chunk the results of the query.
              *
              * @param int $count
@@ -17527,6 +17427,38 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->each($callback, $count);
+            }
+         
+            /**
+             * Chunk the results of a query by comparing IDs.
+             *
+             * @param int $count
+             * @param callable $callback
+             * @param string|null $column
+             * @param string|null $alias
+             * @return bool 
+             * @static 
+             */ 
+            public static function chunkById($count, $callback, $column = null, $alias = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->chunkById($count, $callback, $column, $alias);
+            }
+         
+            /**
+             * Execute a callback over each item while chunking by id.
+             *
+             * @param callable $callback
+             * @param int $count
+             * @param string $column
+             * @param string $alias
+             * @return bool 
+             * @static 
+             */ 
+            public static function eachById($callback, $count = 1000, $column = null, $alias = null)
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->eachById($callback, $count, $column, $alias);
             }
          
             /**
@@ -17588,7 +17520,7 @@ namespace  {
             /**
              * Add a relationship count / exists condition to the query.
              *
-             * @param string|\Illuminate\Database\Eloquent\Relations\Relation $relation
+             * @param \Illuminate\Database\Eloquent\Relations\Relation|string $relation
              * @param string $operator
              * @param int $count
              * @param string $boolean
@@ -17958,14 +17890,15 @@ namespace  {
             /**
              * Set the table which the query is targeting.
              *
-             * @param string $table
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $table
+             * @param string|null $as
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
-            public static function from($table)
+            public static function from($table, $as = null)
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                return $instance->from($table);
+                                return $instance->from($table, $as);
             }
          
             /**
@@ -18348,15 +18281,15 @@ namespace  {
             /**
              * Add a "where not null" clause to the query.
              *
-             * @param string $column
+             * @param string|array $columns
              * @param string $boolean
              * @return \Illuminate\Database\Query\Builder|static 
              * @static 
              */ 
-            public static function whereNotNull($column, $boolean = 'and')
+            public static function whereNotNull($columns, $boolean = 'and')
             {
                                 /** @var \Illuminate\Database\Query\Builder $instance */
-                                return $instance->whereNotNull($column, $boolean);
+                                return $instance->whereNotNull($columns, $boolean);
             }
          
             /**
@@ -18835,7 +18768,7 @@ namespace  {
             /**
              * Add a "group by" clause to the query.
              *
-             * @param array $groups
+             * @param array|string $groups
              * @return \Illuminate\Database\Query\Builder 
              * @static 
              */ 
@@ -18924,7 +18857,7 @@ namespace  {
             /**
              * Add an "order by" clause to the query.
              *
-             * @param string $column
+             * @param \Closure|\Illuminate\Database\Query\Builder|string $column
              * @param string $direction
              * @return \Illuminate\Database\Query\Builder 
              * @throws \InvalidArgumentException
@@ -19200,6 +19133,32 @@ namespace  {
             }
          
             /**
+             * Execute the given callback if no rows exist for the current query.
+             *
+             * @param \Closure $callback
+             * @return mixed 
+             * @static 
+             */ 
+            public static function existsOr($callback)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->existsOr($callback);
+            }
+         
+            /**
+             * Execute the given callback if rows exist for the current query.
+             *
+             * @param \Closure $callback
+             * @return mixed 
+             * @static 
+             */ 
+            public static function doesntExistOr($callback)
+            {
+                                /** @var \Illuminate\Database\Query\Builder $instance */
+                                return $instance->doesntExistOr($callback);
+            }
+         
+            /**
              * Retrieve the "count" result of the query.
              *
              * @param string $columns
@@ -19350,7 +19309,7 @@ namespace  {
              *
              * @param array $columns
              * @param \Closure|\Illuminate\Database\Query\Builder|string $query
-             * @return bool 
+             * @return int 
              * @static 
              */ 
             public static function insertUsing($columns, $query)
@@ -19579,18 +19538,6 @@ namespace  {
             }
          
             /**
-             * Checks if macro is registered.
-             *
-             * @param string $name
-             * @return bool 
-             * @static 
-             */ 
-            public static function hasMacro($name)
-            {
-                                return \Illuminate\Database\Query\Builder::hasMacro($name);
-            }
-         
-            /**
              * Dynamically handle calls to the class.
              *
              * @param string $method
@@ -19662,11 +19609,33 @@ namespace  {
 
     class Html extends \Collective\Html\HtmlFacade {}
 
-    class GraphQL extends \Rebing\GraphQL\Support\Facades\GraphQL {}
-
     class ResponseCache extends \Spatie\ResponseCache\Facades\ResponseCache {}
  
 }
 
 
 
+namespace Illuminate\Support {
+    /**
+     * Methods commonly used in migrations
+     *
+     * @method Fluent after(string $column) Add the after modifier
+     * @method Fluent charset(string $charset) Add the character set modifier
+     * @method Fluent collation(string $collation) Add the collation modifier
+     * @method Fluent comment(string $comment) Add comment
+     * @method Fluent default($value) Add the default modifier
+     * @method Fluent first() Select first row
+     * @method Fluent index(string $name = null) Add the in dex clause
+     * @method Fluent on(string $table) `on` of a foreign key
+     * @method Fluent onDelete(string $action) `on delete` of a foreign key
+     * @method Fluent onUpdate(string $action) `on update` of a foreign key
+     * @method Fluent primary() Add the primary key modifier
+     * @method Fluent references(string $column) `references` of a foreign key
+     * @method Fluent nullable(bool $value = true) Add the nullable modifier
+     * @method Fluent unique(string $name = null) Add unique index clause
+     * @method Fluent unsigned() Add the unsigned modifier
+     * @method Fluent useCurrent() Add the default timestamp value
+     * @method Fluent change() Add the change modifier
+     */
+    class Fluent {}
+}

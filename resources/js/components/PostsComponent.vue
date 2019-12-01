@@ -42,12 +42,12 @@
                     <div class="post-content__item">
                         <header class="post__meta">
                             <a v-bind:href="'/@' +post.data.creator" class="post__user-info user-info"
-                               title="Автор публикации">
+                               title="Paylaşmanın müəllifi">
                                 <img src="/images/profile/deadpool.gif" alt="user avatar" class="user__avatar">
                                 <span
-                                    class="user-info__nickname user-info__nickname_small">{{ post.data.creator }}</span>
+                                    class="user-info__nickname user-info__nickname_small">{{ '@' + post.data.creator }}</span>
                             </a>
-                            <span class="post__time">{{ post.data.created_at | timeago }} | {{ post.data.created_at |  moment('DD MMMM, H:mm') }}</span>
+                            <span class="post__time"> {{ post.data.created_at |  moment('DD MMMM, H:mm') }}</span>
                             <span class="post__read-time" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
                                 <i class="icon devhub icon-clock-line"></i> {{ post.data.read_time }}
                             </span>
@@ -101,7 +101,8 @@
             <div v-else-if="error" class="post-content__item"
                  style="text-align: center; display: grid; grid-gap: 12px;">
                 <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
-                <h1 style="font-family: 'Nunito', sans-serif;"><span style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
+                <h1 style="font-family: 'Nunito', sans-serif;"><span
+                    style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
             </div>
             <div v-else class="post-content__item"
                  style="text-align: center; display: grid; grid-gap: 12px;">
@@ -142,8 +143,6 @@
         },
         methods: {
             getHubPosts: function () {
-                this.loading = true;
-                this.loading = false;
                 this.posts = this.hub;
             },
             getPosts: function () {

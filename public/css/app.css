@@ -5136,17 +5136,18 @@ a {
 }
 .post-content__item .post__meta .user-info:link {
   text-decoration: none;
+  margin-right: 20px;
 }
 .post-content__item .post__meta .user-info {
   font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
 }
 .post-content__item .post__meta .user-info__nickname_small {
   margin-left: 8px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .post-content__item .post__meta .user-info__nickname {
-  color: #548eaa;
-  font-weight: 500;
+  color: black;
+  font-weight: 400;
   font-size: 14px;
   text-decoration: none;
 }
@@ -5249,7 +5250,7 @@ a {
   color: var(--color-app-text);
 }
 .content_right .default-block {
-  border: 1px solid #d3d6db;
+  border: 1px solid var(--color-border);
 }
 .content_right .default-block .default-block__header {
   display: -webkit-box;
@@ -5830,20 +5831,27 @@ iframe {
   font-size: inherit;
 }
 
+.user-card {
+  border: 1px solid var(--color-border);
+}
+.user-card .header {
+  padding: 12px 12px 12px 24.5%;
+  background: none;
+}
 .user-card .card-header {
   width: 100%;
 }
 .user-card .card-header .image-border {
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 3em;
+  height: 48px;
 }
 .user-card .card-header .image-border .profile-image {
-  display: block;
-  margin: 0 auto;
-  border-radius: 10px;
-  border: solid 3px #fff;
-  box-shadow: 0 0 3px 2px #ccc;
+  margin-left: 12px;
+  width: 20.5%;
+  margin-top: 12px;
+  border-radius: 7%;
+  border: solid 2px #fff;
 }
 
 .stacked-counter__value, .stacked-counter__label {
@@ -5858,6 +5866,7 @@ ol {
   font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 16px !important;
   line-height: 22px;
+  padding: 12px;
 }
 
 .stacked-counter-karm__value {

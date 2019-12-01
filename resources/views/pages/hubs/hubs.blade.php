@@ -32,7 +32,10 @@
                     </div>
                     <div class="results"></div>
                 </div>
-                <hubs-list></hubs-list>
+                <hubs-list
+                    fetch-url="{{ route('hubs-list') }}"
+                    :columns="['name', 'posts_count', 'rating']"
+                ></hubs-list>
             </div>
             {{-- Right --}}
             <div class="content_right">

@@ -4,10 +4,9 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Image\Exceptions\InvalidManipulation;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Http\UploadedFile;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -35,7 +34,10 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = ['user_ids'];
+    public function setImageAttribute(string $image)
+    {
+        \Storage::putFileAs('profile', new UploadedFile($image, $image), "{$this->uuid}.jpg");
+    }
 
     public function posts()
     {

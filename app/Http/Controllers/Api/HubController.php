@@ -7,12 +7,25 @@ use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostsCollection;
 use App\Models\Hub;
 use App\Models\Post;
-use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class HubController extends Controller
 {
+    /**
+     * @var Hub
+     */
+    protected $hubs;
+
+    /**
+     * HubController constructor.
+     * @param Hub $hubs
+     */
+    public function __construct(Hub $hubs)
+    {
+        $this->hubs = $hubs;
+    }
     /**
      * API
      * @param int $id
@@ -21,7 +34,7 @@ class HubController extends Controller
     public function posts(int $id)
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
-            ->whereHas('hubs', function ($query) use($id) {
+            ->whereHas('hubs', function ($query) use ($id) {
                 $query->where('hubs.id', '=', $id);
             })
             ->with('creator:id,username')
@@ -31,17 +44,23 @@ class HubController extends Controller
     }
 
     /**
-     * @return HubsCollection
+     * @param Request $request
+     * @return AnonymousResourceCollection
      */
-    public function hubs(){
-        return new HubsCollection(Hub::orderBy('rating','DESC')->paginate(10));
+    public function hubs(Request $request)
+    {
+        $query = $this->hubs->orderBy($request->column, $request->order);
+        $hubs = $query->paginate($request->per_page);
+
+        return HubCollection::collection($hubs);
     }
 
     /**
      * For find Hubs
      * @return mixed
      */
-    public function search(){
+    public function search()
+    {
         $hubs = new HubsCollection(Hub::get());
         return $hubs->all();
     }

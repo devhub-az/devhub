@@ -844,6 +844,7 @@ a {
 
         .user-info:link {
             text-decoration: none;
+            margin-right: 20px;
         }
 
         .user-info {
@@ -852,12 +853,12 @@ a {
 
         .user-info__nickname_small {
             margin-left: 8px;
-            font-size: 13px;
+            font-size: 14px;
         }
 
         .user-info__nickname {
-            color: #548eaa;
-            font-weight: 500;
+            color: black;
+            font-weight: 400;
             font-size: 14px;
             text-decoration: none;
         }
@@ -983,7 +984,7 @@ a {
     }
 
     .default-block {
-        border: 1px solid #d3d6db;
+        border: 1px solid var(--color-border);
 
         .default-block__header {
             display: flex;
@@ -1391,18 +1392,6 @@ a {
     padding: 0 !important;
 }
 
-//.CodeMirror {
-//    height: 500px !important;
-//    overflow-y: auto;
-//    border-radius: 4px;
-//
-//    &:hover {
-//        border-color: var(--color-blue);
-//        cursor: text;
-//        border-right-width: 1px !important;
-//    }
-//}
-
 pre {
     padding: 0;
     border: 0;
@@ -1639,6 +1628,12 @@ iframe {
 // USER CARD
 
 .user-card {
+    border: 1px solid var(--color-border);
+
+    .header{
+        padding: 12px 12px 12px 24.5%;
+        background: none;
+    }
 
     .card-header {
         width: 100%;
@@ -1646,14 +1641,14 @@ iframe {
         .image-border {
             background-size: cover;
             background-repeat: no-repeat;
-            padding: 3em;
+            height: 48px;
 
             .profile-image {
-                display: block;
-                margin: 0 auto;
-                border-radius: 10px;
-                border: solid 3px #fff;
-                box-shadow: 0 0 3px 2px #ccc;
+                margin-left: 12px;
+                width: 20.5%;
+                margin-top: 12px;
+                border-radius: 7%;
+                border: solid 2px #fff;
             }
         }
     }
@@ -1671,6 +1666,7 @@ ol {
     font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
     font-size: 16px !important;
     line-height: 22px;
+    padding: 12px;
 }
 
 .stacked-counter-karm__value {

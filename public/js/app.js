@@ -2086,6 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2109,8 +2110,6 @@ Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
   },
   methods: {
     getHubPosts: function getHubPosts() {
-      this.loading = true;
-      this.loading = false;
       this.posts = this.hub;
     },
     getPosts: function getPosts() {
@@ -2458,9 +2457,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    fetchUrl: {
+      type: String,
+      required: true
+    },
+    columns: {
+      type: Array,
+      required: true
+    }
+  },
   data: function data() {
     return {
+      perPage: 10,
+      sortedColumn: 'rating',
+      order: 'desc',
+      error: false,
       hubs: [],
       loading: false,
       pagination: {
@@ -2469,24 +2496,52 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    this.getHubs();
+    return this.getHubs();
   },
   methods: {
     getHubs: function getHubs() {
       var _this = this;
 
       this.loading = true;
-      axios.get('api/hubs?page=' + this.pagination.current_page).then(function (response) {
+      var dataFetchUrl = "".concat(this.fetchUrl, "?page=").concat(this.pagination.current_page, "&column=").concat(this.sortedColumn, "&order=").concat(this.order, "&per_page=").concat(this.perPage);
+      axios.get(dataFetchUrl).then(function (_ref) {
+        var data = _ref.data;
         _this.loading = false;
-        _this.hubs = response.data.data;
-        _this.pagination = response.data.meta;
+        _this.pagination = data.meta;
+        _this.hubs = data.data;
 
         if (_this.pagination.last_page > 50) {
           _this.pagination.last_page = 50;
         }
       })["catch"](function (error) {
-        _this.loading = true;
+        _this.loading = false;
+        _this.error = true;
+
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          console.log(error.request);
+        } else {
+          console.log('Error', error.message);
+        }
       });
+    },
+    sortByColumn: function sortByColumn(column) {
+      if (column === this.sortedColumn) {
+        this.order = this.order === 'desc' ? 'asc' : 'desc';
+      } else {
+        this.sortedColumn = column;
+        this.order = 'asc';
+      }
+
+      this.getHubs();
+    }
+  },
+  filters: {
+    columnHead: function columnHead(value) {
+      return value.split('_').join(' ').toUpperCase();
     }
   }
 });
@@ -80327,7 +80382,7 @@ var render = function() {
                                 staticClass: "post__user-info user-info",
                                 attrs: {
                                   href: "/@" + post.data.creator,
-                                  title: "Автор публикации"
+                                  title: "Paylaşmanın müəllifi"
                                 }
                               },
                               [
@@ -80345,17 +80400,14 @@ var render = function() {
                                     staticClass:
                                       "user-info__nickname user-info__nickname_small"
                                   },
-                                  [_vm._v(_vm._s(post.data.creator))]
+                                  [_vm._v(_vm._s("@" + post.data.creator))]
                                 )
                               ]
                             ),
                             _vm._v(" "),
                             _c("span", { staticClass: "post__time" }, [
                               _vm._v(
-                                _vm._s(
-                                  _vm._f("timeago")(post.data.created_at)
-                                ) +
-                                  " | " +
+                                " " +
                                   _vm._s(
                                     _vm._f("moment")(
                                       post.data.created_at,
@@ -80948,6 +81000,33 @@ var render = function() {
   return _c(
     "div",
     [
+      _vm._l(_vm.columns, function(column) {
+        return _c(
+          "span",
+          {
+            key: column,
+            staticClass: "table-head",
+            on: {
+              click: function($event) {
+                return _vm.sortByColumn(column)
+              }
+            }
+          },
+          [
+            _vm._v(
+              "\n        " + _vm._s(_vm._f("columnHead")(column)) + "\n        "
+            ),
+            column === _vm.sortedColumn
+              ? _c("span", [
+                  _vm.order === "asc"
+                    ? _c("i", { staticClass: "fas fa-arrow-up" })
+                    : _c("i", { staticClass: "fas fa-arrow-down" })
+                ])
+              : _vm._e()
+          ]
+        )
+      }),
+      _vm._v(" "),
       _vm._l(_vm.hubs, function(hub) {
         return !_vm.loading
           ? _c(
@@ -81022,101 +81101,131 @@ var render = function() {
               }
             }
           })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.loading
-        ? _c("ul", { staticClass: "content-list" }, [_vm._m(0)])
+        : _vm.loading
+        ? _c("ul", { staticClass: "content-list" }, [
+            _c("li", { staticStyle: { "list-style-type": "none" } }, [
+              _c("div", { staticClass: "list-hubs__hub" }, [
+                _c("div", {
+                  staticClass: "list-hubs__hub-image loading",
+                  staticStyle: {
+                    "background-color": "#E2E2E2",
+                    width: "64px",
+                    height: "64px"
+                  }
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "list-hubs__obj-body" }, [
+                  _c("div", {
+                    staticClass: "list-hubs__title-link loading",
+                    staticStyle: {
+                      width: "20%",
+                      background: "rgb(226, 226, 226)",
+                      height: "1.2rem"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "list-hubs__desc loading",
+                    staticStyle: {
+                      width: "70%",
+                      background: "rgb(226, 226, 226)",
+                      height: "1.2rem"
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("div", {
+                    staticClass: "list-hubs__desc loading",
+                    staticStyle: {
+                      width: "40%",
+                      background: "rgb(226, 226, 226)",
+                      height: "1.2rem"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "list-hubs__stats-value",
+                    staticStyle: { width: "100%" }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "loading",
+                      staticStyle: {
+                        width: "20%",
+                        background: "rgb(226, 226, 226)",
+                        height: "1.2rem",
+                        margin: "0 auto"
+                      }
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "list-hubs__stats-value",
+                    staticStyle: { width: "100%" }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "loading",
+                      staticStyle: {
+                        width: "45%",
+                        background: "rgb(226, 226, 226)",
+                        height: "1.7rem",
+                        margin: "0 auto"
+                      }
+                    })
+                  ]
+                )
+              ])
+            ])
+          ])
+        : _vm.error
+        ? _c(
+            "ul",
+            {
+              staticClass: "post-content__item",
+              staticStyle: {
+                "text-align": "center",
+                display: "grid",
+                "grid-gap": "12px"
+              }
+            },
+            [
+              _c(
+                "span",
+                { staticStyle: { "font-size": "5rem", opacity: ".7" } },
+                [_vm._v("¯\\_(ツ)_/¯")]
+              ),
+              _vm._v(" "),
+              _c(
+                "h1",
+                { staticStyle: { "font-family": "'Nunito', sans-serif" } },
+                [
+                  _c(
+                    "span",
+                    {
+                      staticStyle: {
+                        "border-right": "2px solid",
+                        padding: "0 15px 0 15px"
+                      }
+                    },
+                    [_vm._v("500")]
+                  ),
+                  _vm._v(" Server error")
+                ]
+              )
+            ]
+          )
         : _vm._e()
     ],
     2
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticStyle: { "list-style-type": "none" } }, [
-      _c("div", { staticClass: "list-hubs__hub" }, [
-        _c("div", {
-          staticClass: "list-hubs__hub-image loading",
-          staticStyle: {
-            "background-color": "#E2E2E2",
-            width: "64px",
-            height: "64px"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "list-hubs__obj-body" }, [
-          _c("div", {
-            staticClass: "list-hubs__title-link loading",
-            staticStyle: {
-              width: "20%",
-              background: "rgb(226, 226, 226)",
-              height: "1.2rem"
-            }
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "list-hubs__desc loading",
-            staticStyle: {
-              width: "70%",
-              background: "rgb(226, 226, 226)",
-              height: "1.2rem"
-            }
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "list-hubs__desc loading",
-            staticStyle: {
-              width: "40%",
-              background: "rgb(226, 226, 226)",
-              height: "1.2rem"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "list-hubs__stats-value",
-            staticStyle: { width: "100%" }
-          },
-          [
-            _c("span", {
-              staticClass: "loading",
-              staticStyle: {
-                width: "20%",
-                background: "rgb(226, 226, 226)",
-                height: "1.2rem",
-                margin: "0 auto"
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "list-hubs__stats-value",
-            staticStyle: { width: "100%" }
-          },
-          [
-            _c("span", {
-              staticClass: "loading",
-              staticStyle: {
-                width: "45%",
-                background: "rgb(226, 226, 226)",
-                height: "1.7rem",
-                margin: "0 auto"
-              }
-            })
-          ]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

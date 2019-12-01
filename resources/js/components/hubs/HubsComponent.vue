@@ -1,5 +1,13 @@
 <template>
     <div>
+        <span v-for="column in columns" :key="column" @click="sortByColumn(column)"
+              class="table-head">
+            {{ column | columnHead }}
+            <span v-if="column === sortedColumn">
+                    <i v-if="order === 'asc' " class="fas fa-arrow-up"></i>
+                    <i v-else class="fas fa-arrow-down"></i>
+            </span>
+        </span>
         <div v-for="hub in hubs" v-if="!loading"
              class="list-hubs__hub" :id="hub.id + '_block'" :style="'border-left: 3px solid rgb(' + hub.border + ')'">
             <img :id="hub.id" v-if="hub.logo" class="list-hubs__hub-image" :src="'/' + hub.logo" alt="">
@@ -25,7 +33,7 @@
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"></pagination>
-        <ul v-if="loading" class="content-list">
+        <ul v-else-if="loading" class="content-list">
             <li style="list-style-type: none;">
                 <div class="list-hubs__hub">
                     <div class="list-hubs__hub-image loading"
@@ -51,13 +59,27 @@
                 </div>
             </li>
         </ul>
+        <ul v-else-if="error" class="post-content__item"
+            style="text-align: center; display: grid; grid-gap: 12px;">
+            <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
+            <h1 style="font-family: 'Nunito', sans-serif;"><span
+                style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
+        </ul>
     </div>
 </template>
 
 <script>
     export default {
+        props: {
+            fetchUrl: {type: String, required: true},
+            columns: {type: Array, required: true},
+        },
         data: function () {
             return {
+                perPage: 10,
+                sortedColumn: 'rating',
+                order: 'desc',
+                error: false,
                 hubs: [],
                 loading: false,
                 pagination: {
@@ -66,23 +88,49 @@
             }
         },
         created: function () {
-            this.getHubs();
+            return this.getHubs();
         },
         methods: {
-            getHubs: function () {
+            getHubs() {
                 this.loading = true;
-                axios.get('api/hubs?page=' + this.pagination.current_page).then(response => {
-                    this.loading = false;
-                    this.hubs = response.data.data;
-                    this.pagination = response.data.meta;
-                    if (this.pagination.last_page > 50) {
-                        this.pagination.last_page = 50;
-                    }
-                })
+                let dataFetchUrl = `${this.fetchUrl}?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
+                axios.get(dataFetchUrl)
+                    .then(({data}) => {
+                        this.loading = false;
+                        this.pagination = data.meta
+                        this.hubs = data.data
+                        if (this.pagination.last_page > 50) {
+                            this.pagination.last_page = 50;
+                        }
+                    })
                     .catch(error => {
-                        this.loading = true
+                        this.loading = false
+                        this.error = true
+                        if (error.response) {
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        } else if (error.request) {
+                            console.log(error.request);
+                        } else {
+                            console.log('Error', error.message);
+                        }
                     });
             },
+            sortByColumn(column) {
+                if (column === this.sortedColumn) {
+                    this.order = (this.order === 'desc') ? 'asc' : 'desc'
+                } else {
+                    this.sortedColumn = column
+                    this.order = 'asc'
+                }
+                this.getHubs()
+            }
+        },
+        filters: {
+            columnHead(value) {
+                return value.split('_').join(' ').toUpperCase()
+            }
         },
     }
 </script>
