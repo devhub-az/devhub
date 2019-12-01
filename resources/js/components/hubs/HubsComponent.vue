@@ -94,8 +94,7 @@
             getHubs() {
                 this.loading = true;
                 let dataFetchUrl = `${this.fetchUrl}?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
-                axios.get(dataFetchUrl)
-                    .then(({data}) => {
+                axios.get(dataFetchUrl).then(({data}) => {
                         this.loading = false;
                         this.pagination = data.meta
                         this.hubs = data.data

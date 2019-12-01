@@ -26,7 +26,7 @@ class HubCollection extends JsonResource
             'border' => $this->logo ? ColorThief::getColor('./' . $this->logo) :  ColorThief::getColor('.//images/empty/code.png'),
             'hub_followers_count' => \Numeric::number_format_short(count($this->hubFollowers)),
             'follower_check' => $this->statusCheck('following'),
-            'posts_count' => count($this->posts),
+            'posts_count' => $this->posts->count(),
         ];
     }
 

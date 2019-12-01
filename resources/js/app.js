@@ -71,6 +71,7 @@ Vue.component('vote', require('./components/vote.vue').default);
 Vue.component('notification', require('./components/NotificationComponent.vue').default);
 Vue.component('hubs-tags', require('./components/hubs/HubsTagComponent.vue').default);
 Vue.component('hub-follow-button', require('./components/hubs/HubsFollowButtonComponent.vue').default);
+Vue.component('user-follow-button', require('./components/users/UsersFollowButtonComponent.vue').default);
 Vue.component('tags-input', require('@voerro/vue-tagsinput').default);
 Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').default);
 Vue.component('search', require('./components/search.vue').default);

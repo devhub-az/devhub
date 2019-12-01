@@ -12,7 +12,8 @@
                        class="nav-links__item-link @if(Request::is('hubs')) nav-links__item-link_current @endif">Hablar</a>
                 </li>
                 <li class="nav-links__item">
-                    <a href="{{ route('users-list') }}" class="nav-links__item-link ">İnsanlar</a>
+                    <a href="{{ route('users-list') }}"
+                       class="nav-links__item-link @if(Request::is('users') || Request::is('users/*')) nav-links__item-link_current @endif">İnsanlar</a>
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ url('/about_us') }}"

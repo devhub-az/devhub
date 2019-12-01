@@ -10,6 +10,6 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     public function users() {
-        return UserCollection::collection(User::get());
+        return UserCollection::collection(User::paginate(5));
     }
 }

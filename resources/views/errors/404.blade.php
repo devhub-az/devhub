@@ -92,7 +92,8 @@
     <p>* Return to our homepage.<br/>
         * Send us an e-mail about this error and try later.</p>
     <nav class="nav">
-        <a href="{{ URL::previous() }}" class="link">index</a>
+        <a href="{{ route('home') }}" class="link">home</a>
+        <a href="{{ URL::previous() }}" class="link">back</a>
     </nav>
 </main>
 </body>

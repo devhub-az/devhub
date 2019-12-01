@@ -20,8 +20,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('@{username}/settings', 'Auth\UserSettingsController@update');
 });
 
-Route::get('/@{username}', 'UserController@show')->name('user_profile');
-
 Route::prefix('api')->group(function () {
     /**
      * Posts Api
@@ -61,14 +59,17 @@ Route::prefix('hubs')->group(function () {
 Route::get('search-result', 'SearchController@index')->name('search-result');
 Route::post('search-result', 'SearchController@index');
 
-Route::get('users', 'UserController@userList')->name('users-list');
+Route::prefix('users')->group(function(){
+    Route::get('/', 'UserController@userList')->name('users-list');
+    Route::post('{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
+    Route::post('{profileId}/un_follow', 'ProfileController@unFollowUser')->name('user.un_follow');
+    Route::get('@{username}', 'UserController@show')->name('user_profile');
+});
 
 Route::prefix('comment')->group(function () {
     Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
 });
 
-Route::post('profile/{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
-Route::post('/{profileId}/unfollow', 'ProfileController@unFollowUser')->name('user.unfollow');
 
 Route::resource('posts', 'PostController');
 

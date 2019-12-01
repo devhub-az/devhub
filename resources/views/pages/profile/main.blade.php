@@ -124,7 +124,7 @@
 <form id="follow" action="{{ route('user.follow', $user->id) }}" method="POST">
 	{{ csrf_field() }}
 </form>
-<form id="unfollow" action="{{ route('user.unfollow', $user->id) }}" method="POST">
+<form id="unfollow" action="{{ route('user.un_follow', $user->id) }}" method="POST">
 	{{ csrf_field() }}
 </form>
 @endsection

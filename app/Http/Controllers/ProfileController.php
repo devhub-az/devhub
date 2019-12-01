@@ -10,6 +10,14 @@ use Illuminate\Routing\Redirector;
 class ProfileController extends Controller
 {
     /**
+     * ProfileController constructor.
+     */
+    function __construct()
+    {
+        $this->middleware('auth', ['only' => ['unFollowUser']]);
+    }
+
+    /**
      * Follow the user.
      *
      * @param $profileId
@@ -44,7 +52,7 @@ class ProfileController extends Controller
     	if(! $user) {
         	return redirect()->back()->with('error', 'User does not exist.');
     	}
-	    $user->followers()->detach(auth()->user()->id);
-	    return redirect()->back()->with('success', 'Successfully unfollowed the user.');
+        $user->followers()->detach(auth()->user()->id);
+        return redirect()->back()->with('success', 'Successfully unfollowed the user.');
     }
 }
