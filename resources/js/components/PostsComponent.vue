@@ -43,7 +43,7 @@
                         <header class="post__meta">
                             <a v-bind:href="'/@' +post.data.creator" class="post__user-info user-info"
                                title="Paylaşmanın müəllifi">
-                                <img src="/images/profile/deadpool.gif" alt="user avatar" class="user__avatar">
+                                <img v-lazy="post.data.profile_image" alt="user avatar" class="user__avatar">
                                 <span
                                     class="user-info__nickname user-info__nickname_small">{{ '@' + post.data.creator }}</span>
                             </a>
@@ -53,7 +53,7 @@
                             </span>
                         </header>
                         <div class="post-content__header">
-                            <a :href="'/post/' +post.data.id" class="post-title">
+                            <a :href="'/post/' + post.data.id" class="post-title">
                                 <h1>{{ post.data.title }}</h1>
                             </a>
                             <vote :posts="post" :auth_check="auth_check"></vote>
@@ -106,7 +106,7 @@
             </div>
             <div v-else class="post-content__item"
                  style="text-align: center; display: grid; grid-gap: 12px;">
-                <span style="font-size: 5rem; opacity: .7;"><img src="/images/png.svg" alt="" width="250"/></span>
+                <span style="font-size: 5rem; opacity: .7;"><img v-lazy="'/images/png.svg'" alt="" width="250"/></span>
                 <span>Paylaşma tapılmadı</span>
                 <span>
                     <a href="/post/add" class="btn btn-primary">
@@ -119,9 +119,18 @@
 </template>
 
 <script>
-    import Clipboard from 'v-clipboard';
+    import Clipboard from 'v-clipboard'
+    import VueLazyload from 'vue-lazyload'
 
-    Vue.use(Clipboard);
+    Vue.use(Clipboard)
+
+    Vue.use(VueLazyload, {
+        preLoad: 1.3,
+        error: 'dist/error.png',
+        // loading: 'dist/loading.gif',
+        attempt: 1
+    })
+
     export default {
         props: ['url', 'auth_check', 'hub'],
         data: function () {

@@ -11,7 +11,7 @@
             @keydown.up.exact.prevent="startArrowKeys"
             @keydown.down.exact.prevent="startArrowKeys"
         >
-             text
+            <img :src="'/images/profile/new_user/' + (Math.floor(Math.random() * 31) + '.svg')" style="width: 32px" alt="">
         </button>
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"

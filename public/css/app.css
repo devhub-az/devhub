@@ -5393,7 +5393,7 @@ a {
   list-style: none;
 }
 .content_right .default-block .default-block__content .list-hubs__hub-image-block {
-  width: 64px;
+  width: 100%;
   height: 64px;
 }
 .content_right .default-block .default-block__footer {

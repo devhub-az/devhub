@@ -69,8 +69,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-//        if (isset($data['avatar'])) {
-//            $user->addMediaFromRequest('avatar')->toMediaCollection('avatars');
-//        }
+        if($data->hasFile('image') && $data->file('image')->isValid()){
+            $product->addMediaFromRequest('image')->toMediaCollection('images');
+        }
     }
 }

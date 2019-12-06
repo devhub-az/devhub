@@ -48,7 +48,7 @@
                         <ul>
                             @foreach ($top_hubs as $hub)
                                 <a href="/hubs/{{ $hub['id'] ?? '' }}">
-                                    <li style="display: grid; grid-template-columns: 20% 80%; margin-bottom: 12px;">
+                                    <li style="display: grid;grid-template-columns: 23% 75%;gap: 3%;margin-bottom: 12px;">
                                         <img class="list-hubs__hub-image-block"
                                              src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
                                         <div class="list-hubs__obj-body">
@@ -78,7 +78,7 @@
                     <div class="default-block__content">
                         <ul>
                             @foreach ($top_followed_hubs as $hub)
-                                <li style="display: grid; grid-template-columns: 20% 80%; margin-bottom: 12px;">
+                                <li style="display: grid;grid-template-columns: 23% 75%;gap: 3%;margin-bottom: 12px;">
                                     <img class="list-hubs__hub-image-block"
                                          src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
                                     <div class="list-hubs__obj-body">

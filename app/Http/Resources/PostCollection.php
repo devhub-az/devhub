@@ -8,10 +8,14 @@ use App\Models\Hub;
 use Parsedown;
 use Purifier;
 use Auth;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class PostCollection extends JsonResource
+class PostCollection extends JsonResource implements HasMedia
 {
+    use HasMediaTrait;
     /**
+     * TODO profile image add
      * Transform the resource into an array.
      *
      * @param Request $request
@@ -26,7 +30,7 @@ class PostCollection extends JsonResource
                 'title' => $this->name,
                 'body' => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
                 'creator' => $this->creator->username,
-                'profile_image' => '',
+                'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
                 'votes' => $this->votes,
                 'tags' => new HubsCollection(Hub::whereIn('id', $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
                 'comments' => count($this->comments),

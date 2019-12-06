@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Illuminate\Http\UploadedFile;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -34,47 +36,80 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    public function setImageAttribute(string $image)
+    public function registerMediaConversions(Media $media = null)
     {
-        \Storage::putFileAs('profile', new UploadedFile($image, $image), "{$this->uuid}.jpg");
+        $this->addMediaConversion('thumb')
+            ->width(200)
+            ->height(200)
+            ->sharpen(10);
+
+        $this->addMediaConversion('square')
+            ->width(412)
+            ->height(412)
+            ->sharpen(10);
     }
 
-    public function posts()
+    /**
+     * @return HasMany
+     */
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class, 'author_id');
     }
 
-    public function followers()
+    /**
+     * @return BelongsToMany
+     */
+    public function followers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'followers', 'leader_id', 'follower_id');
     }
 
-    public function followings()
+    /**
+     * @return BelongsToMany
+     */
+    public function followings(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id');
     }
 
-    public function userPostFolowing()
+    /**
+     * @return BelongsToMany
+     */
+    public function userPostFolowing(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'post_favorites', 'follower_id', 'post_id');
     }
 
-    public function userHubFollowing()
+    /**
+     * @return BelongsToMany
+     */
+    public function userHubFollowing(): BelongsToMany
     {
         return $this->belongsToMany(Hub::class, 'hub_followers', 'follower_id', 'hub_id');
     }
 
-    public function getUserIdsAttribute()
+    /**
+     * @return array
+     */
+    public function getUserIdsAttribute(): array
     {
         return $this->followers()->pluck('follower_id')->toArray();
     }
 
-    public function getHubsIdsAttribute()
+    /**
+     * @return array
+     */
+    public function getHubsIdsAttribute(): array
     {
         return $this->userHubFollowing()->pluck('hub_id')->toArray();
     }
 
-    public function isFollowing(User $user)
+    /**
+     * @param User $user
+     * @return bool
+     */
+    public function isFollowing(User $user): bool
     {
         return !!$this->followers()->where('follower_id', $user->id)->count();
     }

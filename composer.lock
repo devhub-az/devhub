@@ -4030,16 +4030,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "7.14.2",
+            "version": "7.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "f96fd75f70e893b1b2c85224526e6d4a2c235ef8"
+                "reference": "9fa2989f826da065d098f6f865cc7ad755c35d33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/f96fd75f70e893b1b2c85224526e6d4a2c235ef8",
-                "reference": "f96fd75f70e893b1b2c85224526e6d4a2c235ef8",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/9fa2989f826da065d098f6f865cc7ad755c35d33",
+                "reference": "9fa2989f826da065d098f6f865cc7ad755c35d33",
                 "shasum": ""
             },
             "require": {
@@ -4050,7 +4050,7 @@
                 "illuminate/pipeline": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
                 "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
                 "league/flysystem": "^1.0.8",
-                "maennchen/zipstream-php": "^0.4|^1.0",
+                "maennchen/zipstream-php": "^1.0",
                 "php": "^7.2",
                 "spatie/image": "^1.4.0",
                 "spatie/pdf-to-image": "^1.2",
@@ -4110,7 +4110,7 @@
                 "media",
                 "spatie"
             ],
-            "time": "2019-10-16T13:46:56+00:00"
+            "time": "2019-12-02T20:15:48+00:00"
         },
         {
             "name": "spatie/laravel-responsecache",
