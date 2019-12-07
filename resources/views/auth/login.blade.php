@@ -6,15 +6,13 @@
     <div class="container">
         <div class="PageColumns">
             <div class="PageColumn PageColumn__left">
-                <div class="Art">
-                    <!-- particles.js container -->
-                    <div id="particles-js">
-                        <div class="login__registration">
-                            <div class="login__registration-block">
-                                <h1 class="title title--large">Are you ready to own
-                                    a masterpiece?</h1>
-                                <p>Discover the only independent cloud based platform by collectors for collectors.</p>
-                            </div>
+                <!-- particles.js container -->
+                <div id="particles-js">
+                    <div class="login__registration">
+                        <div class="login__registration-block">
+                            <h1 class="title title--large">Are you ready to own
+                                a masterpiece?</h1>
+                            <p>Discover the only independent cloud based platform by collectors for collectors.</p>
                         </div>
                     </div>
                 </div>
@@ -68,14 +66,8 @@
     <script>
         particlesJS("particles-js", {
             "particles": {
-                "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
+                "number": {"value":20, "density": {"enable": true, "value_area": 800}},
                 "color": {"value": "#ffffff"},
-                "shape": {
-                    "type": "circle",
-                    "stroke": {"width": 0, "color": "#000000"},
-                    "polygon": {"nb_sides": 5},
-                    "image": {"src": "img/github.svg", "width": 100, "height": 100}
-                },
                 "opacity": {
                     "value": 0.12025590456491421,
                     "random": false,
@@ -89,7 +81,7 @@
                 "size": {
                     "value": 4.008530152163807,
                     "random": false,
-                    "anim": {"enable": true, "speed": 17.053621458328248, "size_min": 0.1, "sync": false}
+                    "anim": {"enable": false, "speed": 17.053621458328248, "size_min": 0.1, "sync": false}
                 },
                 "line_linked": {"enable": true, "distance": 150, "color": "#ffffff", "opacity": 1, "width": 1},
                 "move": {
@@ -120,23 +112,5 @@
             },
             "retina_detect": true
         });
-        var count_particles, stats, update;
-        stats = new Stats;
-        stats.setMode(0);
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.left = '0px';
-        stats.domElement.style.top = '0px';
-        document.body.appendChild(stats.domElement);
-        count_particles = document.querySelector('.js-count-particles');
-        update = function () {
-            stats.begin();
-            stats.end();
-            if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-                count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-            }
-            requestAnimationFrame(update);
-        };
-        requestAnimationFrame(update);
-        ;
     </script>
 @endsection

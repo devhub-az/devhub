@@ -18,26 +18,22 @@
         background: var(--color-app-bg);
         width: 50%;
 
-        .Art {
-            height: 99vh;
+        .login__registration {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            vertical-align: middle;
+            justify-content: center;
+            top: 30%;
+            width: 50%;
 
-            .login__registration {
-                position: absolute;
-                display: flex;
-                flex-direction: column;
-                vertical-align: middle;
-                justify-content: center;
-                height: 99vh;
-                width: 50%;
-
-                .login__registration-block{
-                    margin: 0 auto;
-                }
+            .login__registration-block {
+                margin: 0 auto;
             }
+        }
 
-            #particles-js {
-                height: 98vh;
-            }
+        #particles-js {
+            height: 100vh;
         }
     }
 

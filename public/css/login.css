@@ -87,10 +87,7 @@
   background: var(--color-app-bg);
   width: 50%;
 }
-.PageColumns .PageColumn__left .Art {
-  height: 99vh;
-}
-.PageColumns .PageColumn__left .Art .login__registration {
+.PageColumns .PageColumn__left .login__registration {
   position: absolute;
   display: -webkit-box;
   display: flex;
@@ -100,14 +97,14 @@
   vertical-align: middle;
   -webkit-box-pack: center;
           justify-content: center;
-  height: 99vh;
+  top: 30%;
   width: 50%;
 }
-.PageColumns .PageColumn__left .Art .login__registration .login__registration-block {
+.PageColumns .PageColumn__left .login__registration .login__registration-block {
   margin: 0 auto;
 }
-.PageColumns .PageColumn__left .Art #particles-js {
-  height: 98vh;
+.PageColumns .PageColumn__left #particles-js {
+  height: 100vh;
 }
 .PageColumns .PageColumn__right {
   display: -webkit-box;

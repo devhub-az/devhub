@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -22,15 +23,15 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['create', 'favorite', 'store', 'edit', 'updateVote', 'addFavorite']]);
+        $this->middleware('auth', ['only' => ['create', 'favorite', 'store', 'edit', 'vote', 'addFavorite']]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         $hubs = new HubsCollection(Hub::get());
         return view('pages.posts.create', [
@@ -41,12 +42,11 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Request $request
+     * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Request $request): Response
     {
-        dd($request->get('body'));
         $request->validate([
             'title' => 'required|string',
             'body' => 'required|string',
@@ -86,84 +86,92 @@ class PostController extends Controller
     }
 
     /**
-     * @param \Request $request
-     * @return vote status
+     * @param $post
+     * @param $request
+     * @return JsonResponse
+     * @throws \Exception
      */
-    public function updateVote(\Request $request)
+    public function postRatingChanger($post, $request): JsonResponse
+    {
+        $voteStatus = $request->get('status');
+        $vote = PostVote::where('post_id', $request->get('id'));
+        $postVoteCount = $vote->count();
+        $transaction = false;
+
+        if ($postVoteCount == 1 && isset($voteStatus)) {
+            $vote = $vote->firstOrFail();
+            switch ($voteStatus) {
+                case 'upvote':
+                    $vote->status = '1';
+                    break;
+                case 'downvote':
+                    $vote->status = '0';
+                    break;
+            }
+            $transaction = true;
+        } else if ($postVoteCount == 0 && isset($voteStatus)) {
+            switch ($voteStatus) {
+                case 'upvote':
+                    $voteValue = '1';
+                    break;
+                case 'downvote':
+                    $voteValue = '0';
+                    break;
+            }
+            $vote = new PostVote([
+                'post_id' => $request->get('id'),
+                'user_id' => Auth::user()->id,
+                'status' => $voteValue,
+            ]);
+            $transaction = true;
+        } else if (!isset($voteStatus)) {
+            $vote = PostVote::where([
+                'post_id' => $request->get('id'),
+                'user_id' => Auth::user()->id,
+            ]);
+            $transaction = 'delete';
+        }
+        $post->votes = $request->get('vote');
+        foreach ($post->hubs as $hub) {
+            $hub->rating = $hub->rating + $request->get('change_rating');
+            $hub->save();
+        }
+        $post->creator->rating = $post->creator->rating + $request->get('change_rating');
+        if ($transaction == true){
+            $vote->save();
+            $post->creator->save();
+            $post->save();
+        } else if ($transaction == 'delete'){
+            $vote->delete();
+            $post->creator->save();
+            $post->save();
+        }
+        return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse status
+     * @throws \Exception
+     */
+    public function vote(Request $request): JsonResponse
     {
         $request->validate([
             'id' => 'required|int',
             'vote' => 'required|int',
         ]);
-        $share = Post::findOrFail($request->get('id'));
-        if (isset($share) && $request->get('status') == 'upvote') {
-            if (PostVote::where('post_id', $request->get('id'))->count() > 0) {
-                $vote = PostVote::where('post_id', $request->get('id'))->firstOrFail();
-                $vote->status = '1';
-                $vote->save();
-            } else {
-                $vote = new PostVote([
-                    'post_id' => $request->get('id'),
-                    'user_id' => Auth::user()->id,
-                    'status' => '1',
-                ]);
-                $vote->save();
-            }
-            $share->votes = $request->get('vote');
-            foreach ($share->tags as $hub) {
-                $hub->raiting = $hub->raiting + $request->get('change_raiting');
-                $hub->save();
-            }
-            $share->creator->raiting = $share->creator->raiting + $request->get('change_raiting');
-            $share->creator->save();
-            $share->save();
-            return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
-        } else if (isset($share) && $request->get('status') == 'downvote') {
-            if (PostVote::where('post_id', $request->get('id'))->count() > 0) {
-                $vote = PostVote::where('post_id', $request->get('id'))->firstOrFail();
-                $vote->status = '0';
-                $vote->save();
-            } else {
-                $vote = new PostVote([
-                    'post_id' => $request->get('id'),
-                    'user_id' => Auth::user()->id,
-                    'status' => '0',
-                ]);
-                $vote->save();
-            }
-            $share->votes = $request->get('vote');
-            foreach ($share->tags as $hub) {
-                $hub->raiting = $hub->raiting + $request->get('change_raiting');
-                $hub->save();
-            }
-            $share->creator->raiting = $share->creator->raiting + $request->get('change_raiting');
-            $share->creator->save();
-            $share->save();
-            return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
-        } else if ($request->get('status') != 'upvote' && $request->get('status') != 'downvote') {
-            PostVote::where([
-                'post_id' => $request->get('id'),
-                'user_id' => Auth::user()->id,
-            ])->delete();
-            $share->votes = $request->get('vote');
-            foreach ($share->tags as $hub) {
-                $hub->raiting = $hub->raiting + $request->get('change_raiting');
-                $hub->save();
-            }
-            $share->creator->raiting = $share->creator->raiting + $request->get('change_raiting');
-            $share->creator->save();
-            $share->save();
-            return response()->json(['delete' => 'delete'], 200);
-        } else {
-            return response()->json(['error' => 'error', 'status' => $request->get('status')], 500);
-        }
+
+        $post = Post::findOrFail($request->get('id'));
+        $status = self::postRatingChanger($post, $request);
+
+        return $status;
     }
 
     /**
-     * @param \Request $request
+     * @param Request $request
      * @return JsonResponse
      */
-    public function addFavorite(\Request $request)
+    public function addFavorite(Request $request): JsonResponse
     {
         $request->validate([
             'id' => 'required|int',
@@ -201,11 +209,11 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param \Request $request
+     * @param Request $request
      * @param int $id
      * @return void
      */
-    public function update(\Request $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }

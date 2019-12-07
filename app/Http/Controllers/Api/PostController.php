@@ -47,7 +47,7 @@ class PostController extends Controller
     /**
      * @return PostsCollection
      */
-    public function all()
+    public function all(): PostsCollection
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->with('creator:id,username')

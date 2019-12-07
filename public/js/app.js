@@ -2093,7 +2093,7 @@ __webpack_require__.r(__webpack_exports__);
 Vue.use(v_clipboard__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_1__["default"], {
   preLoad: 1.3,
-  error: 'dist/error.png',
+  error: '/images/errors/error.png',
   // loading: 'dist/loading.gif',
   attempt: 1
 });
@@ -3384,7 +3384,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/upvote', {
           id: id,
           vote: vote,
-          change_raiting: '1',
+          change_rating: '1',
           status: 'upvote'
         })["catch"](function (error) {
           console.log(error);
@@ -3395,8 +3395,8 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/upvote', {
           id: id,
           vote: vote,
-          change_raiting: '-1',
-          status: 'null'
+          change_rating: '-1',
+          status: status
         })["catch"](function (error) {
           console.log(error);
         });
@@ -3406,7 +3406,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/upvote', {
           id: id,
           vote: vote,
-          change_raiting: '+2',
+          change_rating: '+2',
           status: 'upvote'
         })["catch"](function (error) {
           console.log(error);
@@ -3433,7 +3433,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/upvote', {
           id: id,
           vote: vote,
-          change_raiting: '-1',
+          change_rating: '-1',
           status: 'downvote'
         })["catch"](function (error) {
           console.log(error);
@@ -3444,8 +3444,8 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/upvote', {
           id: id,
           vote: vote,
-          change_raiting: '1',
-          status: 'null'
+          change_rating: '1',
+          status: status
         })["catch"](function (error) {
           console.log(error);
         });
@@ -3455,7 +3455,7 @@ __webpack_require__.r(__webpack_exports__);
         axios.post('/upvote', {
           id: id,
           vote: vote,
-          change_raiting: '-2',
+          change_rating: '-2',
           status: 'downvote'
         })["catch"](function (error) {
           console.log(error);

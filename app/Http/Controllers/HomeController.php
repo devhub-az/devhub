@@ -28,11 +28,12 @@ class HomeController extends Controller
             case 'all':
                 session(['main-page' => '/all']);
                 return view('pages.home', ['url' => '/api/posts/all']);
-            case 'favorite':
+            case 'favorite' && \Auth::user()->getHubsIdsAttribute() != null && \Auth::user()->getUserIdsAttribute() != null:
                 session(['main-page' => '/favorite']);
                 return view('pages.home', ['url' => '/api/posts/favorite']);
+            default:
+                return abort(404);
         }
-        return abort(404);
     }
 
 }

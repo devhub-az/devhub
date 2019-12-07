@@ -78,6 +78,6 @@ Route::get('about_us', function () {
 });
 
 // FUTURE
-Route::post('upvote', 'PostController@updateVote');
+Route::post('upvote', 'PostController@vote');
 
 Route::get('query', 'HomeController@indexTest');

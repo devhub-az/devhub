@@ -40,7 +40,7 @@
 			        axios.post('/upvote', {
 			            id: id,
 			            vote: vote,
-			            change_raiting: '1',
+			            change_rating: '1',
 			            status: 'upvote',
 			        })
 			        .catch(error => {
@@ -52,8 +52,8 @@
 			        axios.post('/upvote', {
 			            id: id,
 			            vote: vote,
-			            change_raiting: '-1',
-			            status: 'null',
+			            change_rating: '-1',
+			            status
 			        })
 			        .catch(error => {
 			            console.log(error);
@@ -64,7 +64,7 @@
 			        axios.post('/upvote', {
 			            id: id,
 			            vote: vote,
-			            change_raiting: '+2',
+			            change_rating: '+2',
 			            status: 'upvote',
 			        })
 			        .catch(error => {
@@ -77,7 +77,7 @@
 			    	this.colorStatus = 'inherit';
 			    } else if(vote < 0) {
 			    	this.colorStatus = 'var(--color-red)';
-			    } 
+			    }
 			    this.post.data.downvoted = false;
 			    this.post.data.votes = vote;
 			},
@@ -89,7 +89,7 @@
 			        axios.post('/upvote', {
 			            id: id,
 			            vote: vote,
-			            change_raiting: '-1',
+			            change_rating: '-1',
 			            status: 'downvote'
 			        })
 			        .catch(error => {
@@ -101,8 +101,8 @@
 			        axios.post('/upvote', {
 			            id: id,
 			            vote: vote,
-			            change_raiting: '1',
-			            status: 'null'
+			            change_rating: '1',
+			            status
 			        })
 			        .catch(error => {
 			            console.log(error);
@@ -113,7 +113,7 @@
 			        axios.post('/upvote', {
 			            id: id,
 			            vote: vote,
-			            change_raiting: '-2',
+			            change_rating: '-2',
 			            status: 'downvote'
 			        })
 			        .catch(error => {
