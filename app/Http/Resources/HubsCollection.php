@@ -16,7 +16,7 @@ class HubsCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => HubCollection::collection($this->collection)
+            'data' => HubCollection::collection($this->collection),
         ];
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\Hub;
-use App\Http\Resources\PostsCollection;
 use App\Http\Resources\HubsCollection;
+use App\Http\Resources\PostsCollection;
+use App\Models\Hub;
+use App\Models\Post;
 
 class SearchController extends Controller
 {

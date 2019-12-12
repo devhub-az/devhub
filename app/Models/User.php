@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\MediaLibrary\Models\Media;
+use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\Models\Media;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -62,7 +62,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'followers', 'leader_id', 'follower_id');
+        return $this->belongsToMany(self::class, 'followers', 'leader_id', 'follower_id');
     }
 
     /**
@@ -70,7 +70,7 @@ class User extends Authenticatable implements HasMedia
      */
     public function followings(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'leader_id');
+        return $this->belongsToMany(self::class, 'followers', 'follower_id', 'leader_id');
     }
 
     /**
@@ -109,8 +109,8 @@ class User extends Authenticatable implements HasMedia
      * @param User $user
      * @return bool
      */
-    public function isFollowing(User $user): bool
+    public function isFollowing(self $user): bool
     {
-        return !!$this->followers()->where('follower_id', $user->id)->count();
+        return (bool) $this->followers()->where('follower_id', $user->id)->count();
     }
 }
