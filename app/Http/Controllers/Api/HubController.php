@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\HubCollection;
 use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostsCollection;
 use App\Models\Hub;
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class HubController extends Controller
@@ -26,8 +26,9 @@ class HubController extends Controller
     {
         $this->hubs = $hubs;
     }
+
     /**
-     * API
+     * API.
      * @param int $id
      * @return PostsCollection
      */
@@ -56,12 +57,13 @@ class HubController extends Controller
     }
 
     /**
-     * For find Hubs
+     * For find Hubs.
      * @return mixed
      */
     public function search()
     {
         $hubs = new HubsCollection(Hub::get());
+
         return $hubs->all();
     }
 }

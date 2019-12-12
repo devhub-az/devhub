@@ -22,15 +22,18 @@ class Post extends Model
         );
     }
 
-    public function creator(){
-        return $this->belongsTo(User::class,'author_id')->withDefault();
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'author_id')->withDefault();
     }
 
-    public function hubs(){
+    public function hubs()
+    {
         return $this->belongsToMany(Hub::class, 'post_hubs', 'posts_id', 'hub_id');
     }
 
-    public function views(){
+    public function views()
+    {
         return $this->hasMany(PostView::class);
     }
 
@@ -39,26 +42,31 @@ class Post extends Model
         return $this->hasMany(Comment::class)->with('author');
     }
 
-    public function votes(){
+    public function votes()
+    {
         return $this->hasMany(PostVote::class);
     }
 
-    public function postFollowers(){
+    public function postFollowers()
+    {
         return $this->belongsToMany(User::class, 'post_favorites', 'post_id', 'follower_id');
     }
 
-    public function postFollowings(){
+    public function postFollowings()
+    {
         return $this->belongsToMany(User::class, 'post_favorites', 'follower_id', 'post_id');
     }
 
-    public function postIsFollowing(User $user){
-        return !! $this->postFollowers()->where('follower_id', $user->id)->count();
+    public function postIsFollowing(User $user)
+    {
+        return (bool) $this->postFollowers()->where('follower_id', $user->id)->count();
     }
 
-    public function postIsVoted(User $user){
-        if (!! $this->votes()->where('user_id', $user->id)->where('status','0')->count()) {
+    public function postIsVoted(User $user)
+    {
+        if ((bool) $this->votes()->where('user_id', $user->id)->where('status', '0')->count()) {
             return 'downvoted';
-        } elseif (!! $this->votes()->where('user_id', $user->id)->where('status', '1')->count()){
+        } elseif ((bool) $this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
             return 'upvoted';
         }
     }

@@ -12,5 +12,4 @@ class HubFollows extends Model
         'follower_id',
         'hub_id',
     ];
-
 }

@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use App\Models\User;
 
 class LoginTest extends TestCase
 {
@@ -15,6 +15,7 @@ class LoginTest extends TestCase
             ->assertSuccessful()
             ->assertSee('Login');
     }
+
     public function testErrors(): void
     {
         $this->withoutMiddleware();

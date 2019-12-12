@@ -18,7 +18,7 @@ class MinifyHtml
     {
 
         /**
-         * @var $response Response
+         * @var Response
          */
         $response = $next($request);
 
@@ -28,7 +28,6 @@ class MinifyHtml
         }
 
         return $response;
-
     }
 
     public function minify($input)

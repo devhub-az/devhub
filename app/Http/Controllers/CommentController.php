@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CommentUpload;
 use App\Models\Comment;
 use App\Models\Post;
 use Auth;
-use App\Http\Requests\CommentUpload;
 use Illuminate\Http\Response;
 
 class CommentController extends Controller
 {
-
-    public function __construct() {
-        $this->middleware('auth', ['only' => ['newComment'] ]);
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['newComment']]);
     }
 
-    protected function total_comments(Post $post){
+    protected function total_comments(Post $post)
+    {
         return DB::table('comments')->where('post_id', $post->id)->count();
     }
 
@@ -25,7 +26,6 @@ class CommentController extends Controller
      * @param CommentUpload $request
      * @return Response
      */
-
     public function newComment(CommentUpload $request)
     {
         $comment = new Comment();
@@ -33,6 +33,7 @@ class CommentController extends Controller
         $comment->post_id = $request->post_id;
         $comment->body = $request->body;
         $comment->save();
+
         return back();
     }
 }

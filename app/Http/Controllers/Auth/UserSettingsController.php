@@ -17,8 +17,10 @@ class UserSettingsController extends Controller
      */
     public function index(Request $request)
     {
-        if (\Auth::User()->username == $request->username)
+        if (\Auth::User()->username == $request->username) {
             return view('auth.settings.profile');
+        }
+
         return abort(404);
     }
 

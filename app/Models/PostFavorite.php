@@ -12,5 +12,4 @@ class PostFavorite extends Model
         'follower_id',
         'post_id',
     ];
-
 }

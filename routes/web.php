@@ -1,4 +1,5 @@
 <?php
+
 Auth::routes();
 
 Route::get('setlocale/{locale}', function ($locale) {
@@ -21,7 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::prefix('api')->group(function () {
-    /**
+    /*
      * Posts Api
      */
     Route::get('posts/top/day', 'Api\PostController@posts');
@@ -30,17 +31,17 @@ Route::prefix('api')->group(function () {
     Route::get('posts/all', 'Api\PostController@all');
     Route::get('posts/favorite', 'Api\PostController@favorite');
 
-    /**
+    /*
      * Hubs Api
      */
     Route::get('hubs/all', 'Api\HubController@search');
     Route::get('hubs/{id}', 'Api\HubController@posts');
     Route::get('hubs', 'Api\HubController@hubs')->name('hubs-list');
 
-    /**
+    /*
      * Users Api
      */
-    Route::get('users/all','Api\UserController@users');
+    Route::get('users/all', 'Api\UserController@users');
 });
 
 Route::prefix('post')->group(function () {
@@ -59,7 +60,7 @@ Route::prefix('hubs')->group(function () {
 Route::get('search-result', 'SearchController@index')->name('search-result');
 Route::post('search-result', 'SearchController@index');
 
-Route::prefix('users')->group(function(){
+Route::prefix('users')->group(function () {
     Route::get('/', 'UserController@userList')->name('users-list');
     Route::post('{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
     Route::post('{profileId}/un_follow', 'ProfileController@unFollowUser')->name('user.un_follow');
@@ -69,7 +70,6 @@ Route::prefix('users')->group(function(){
 Route::prefix('comment')->group(function () {
     Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
 });
-
 
 Route::resource('posts', 'PostController');
 
