@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
 use App\Models\Post;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function posts(): PostsCollection
     {
-        return new PostsCollection(Post::where(\DB::raw('DATE(created_at)'), '=', \DB::raw('DATE_SUB(CURDATE(), INTERVAL ' . $this->count . ' DAY)'))->orderBy('votes', 'DESC')->orderBy('created_at', 'DESC')
+        return new PostsCollection(Post::where(\DB::raw('DATE(created_at)'), '=', \DB::raw('DATE_SUB(CURDATE(), INTERVAL '.$this->count.' DAY)'))->orderBy('votes', 'DESC')->orderBy('created_at', 'DESC')
             ->with('creator:id,username')
             ->with('comments:body')
             ->paginate(5));

@@ -14,7 +14,7 @@ class PostsCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => PostCollection::collection($this->collection)
+            'data' => PostCollection::collection($this->collection),
         ];
     }
 }

@@ -2,18 +2,19 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Hub;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Models\Hub;
 use Parsedown;
 use Purifier;
-use Auth;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 class PostCollection extends JsonResource implements HasMedia
 {
     use HasMediaTrait;
+
     /**
      * TODO profile image add
      * Transform the resource into an array.
@@ -24,6 +25,7 @@ class PostCollection extends JsonResource implements HasMedia
     public function toArray($request)
     {
         $parsedown = new Parsedown();
+
         return [
             'data' => [
                 'id' => $this->id,
@@ -54,7 +56,7 @@ class PostCollection extends JsonResource implements HasMedia
     {
         $shortText = substr($text, 0, $maxLength);
 
-        return ((strrpos($shortText, ".") ? substr($shortText, 0, strrpos($shortText, ".")) : $shortText) . (strlen($text) > $maxLength ? '...' : ''));
+        return (strrpos($shortText, '.') ? substr($shortText, 0, strrpos($shortText, '.')) : $shortText).(strlen($text) > $maxLength ? '...' : '');
     }
 
     /**
@@ -66,11 +68,11 @@ class PostCollection extends JsonResource implements HasMedia
         if (Auth::check()) {
             switch ($status) {
                 case 'upvote':
-                    return $this->postIsVoted(Auth::user()) === "upvoted";
+                    return $this->postIsVoted(Auth::user()) === 'upvoted';
                 case 'downvote':
-                    return $this->postIsVoted(Auth::user()) === "downvoted";
+                    return $this->postIsVoted(Auth::user()) === 'downvoted';
                 case 'following':
-                    return $this->postIsFollowing(Auth::user()) === "following";
+                    return $this->postIsFollowing(Auth::user()) === 'following';
             }
         }
     }
@@ -83,6 +85,7 @@ class PostCollection extends JsonResource implements HasMedia
     {
         $word = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);
-        return $minutes . ' dəqiqə';
+
+        return $minutes.' dəqiqə';
     }
 }

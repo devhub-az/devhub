@@ -13,5 +13,4 @@ class PostVote extends Model
         'post_id',
         'status',
     ];
-
 }
