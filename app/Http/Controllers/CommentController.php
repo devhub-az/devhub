@@ -11,11 +11,13 @@ use Illuminate\Http\Response;
 class CommentController extends Controller
 {
 
-    public function __construct() {
-        $this->middleware('auth', ['only' => ['newComment'] ]);
+    public function __construct()
+    {
+        $this->middleware('auth', ['only' => ['newComment']]);
     }
 
-    protected function total_comments(Post $post){
+    protected function total_comments(Post $post)
+    {
         return DB::table('comments')->where('post_id', $post->id)->count();
     }
 

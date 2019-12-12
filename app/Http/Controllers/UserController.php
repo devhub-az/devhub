@@ -9,11 +9,11 @@ class UserController extends Controller
 {
     public function show($username)
     {
-    	$user = User::where('username', '=', $username)->get()->first();
+        $user = User::where('username', '=', $username)->get()->first();
         $isFollowing = 'false';
-    	if($user == null)
-    		abort('404');
-        elseif (Auth::check()) {
+        if ($user == null) {
+            abort('404');
+        } elseif (Auth::check()) {
             $isFollowing = $user->isFollowing(Auth::user());
         }
         return view('pages.profile.main', ['user' => $user, 'isFollowing' => $isFollowing]);
@@ -21,6 +21,6 @@ class UserController extends Controller
 
     public function userList()
     {
-    	return view('pages.profile.users');
+        return view('pages.profile.users');
     }
 }

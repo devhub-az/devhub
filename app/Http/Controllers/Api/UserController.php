@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function users() {
+    public function users()
+    {
         return UserCollection::collection(User::paginate(5));
     }
 }

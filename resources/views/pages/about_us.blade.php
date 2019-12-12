@@ -19,7 +19,8 @@
         <section class="about__body">
             <div class="about__info_block">
                 <h1>Haqqımızda</h1>
-                <p>DevHub, Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf qrupudur.</p>
+                <p>DevHub, Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf
+                    qrupudur.</p>
             </div>
             <div class="about__info_block">
                 <h1>Внесите свой вклад</h1>

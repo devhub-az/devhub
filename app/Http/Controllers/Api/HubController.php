@@ -26,6 +26,7 @@ class HubController extends Controller
     {
         $this->hubs = $hubs;
     }
+
     /**
      * API
      * @param int $id

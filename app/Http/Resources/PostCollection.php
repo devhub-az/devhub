@@ -14,6 +14,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 class PostCollection extends JsonResource implements HasMedia
 {
     use HasMediaTrait;
+
     /**
      * TODO profile image add
      * Transform the resource into an array.
@@ -26,21 +27,22 @@ class PostCollection extends JsonResource implements HasMedia
         $parsedown = new Parsedown();
         return [
             'data' => [
-                'id' => $this->id,
-                'title' => $this->name,
-                'body' => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
-                'creator' => $this->creator->username,
+                'id'            => $this->id,
+                'title'         => $this->name,
+                'body'          => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
+                'creator'       => $this->creator->username,
                 'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
-                'votes' => $this->votes,
-                'tags' => new HubsCollection(Hub::whereIn('id', $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-                'comments' => count($this->comments),
-                'views' => count($this->views),
-                'created_at' => $this->created_at,
-                'read_time' => $this->readTime($this->body),
-                'upvoted' => $this->statusCheck('upvote'),
-                'downvoted' => $this->statusCheck('downvote'),
-                'favorite' => $this->statusCheck('following'),
-                'followers' => count($this->postFollowers),
+                'votes'         => $this->votes,
+                'tags'          => new HubsCollection(Hub::whereIn('id',
+                    $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
+                'comments'      => count($this->comments),
+                'views'         => count($this->views),
+                'created_at'    => $this->created_at,
+                'read_time'     => $this->readTime($this->body),
+                'upvoted'       => $this->statusCheck('upvote'),
+                'downvoted'     => $this->statusCheck('downvote'),
+                'favorite'      => $this->statusCheck('following'),
+                'followers'     => count($this->postFollowers),
             ],
         ];
     }
@@ -54,7 +56,8 @@ class PostCollection extends JsonResource implements HasMedia
     {
         $shortText = substr($text, 0, $maxLength);
 
-        return ((strrpos($shortText, ".") ? substr($shortText, 0, strrpos($shortText, ".")) : $shortText) . (strlen($text) > $maxLength ? '...' : ''));
+        return ((strrpos($shortText, ".") ? substr($shortText, 0,
+                strrpos($shortText, ".")) : $shortText) . (strlen($text) > $maxLength ? '...' : ''));
     }
 
     /**

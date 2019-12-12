@@ -11,19 +11,19 @@ class SearchController extends Controller
 {
     public function index()
     {
-    	// $this->validate(request(), [
-    	// 	'name'=>'required|max:40',
-    	// ]);
-    	$query = request()->search;
+        // $this->validate(request(), [
+        // 	'name'=>'required|max:40',
+        // ]);
+        $query = request()->search;
 
-    	$hubs = collect();
-    	$posts = collect();
+        $hubs = collect();
+        $posts = collect();
 
-    	if($query){
-    		$hubs = new HubsCollection(Hub::where('name', 'LIKE', "%{$query}%")->get());
-    		$posts = new PostsCollection(Post::where('name', 'LIKE', "%{$query}%")->get());
-    	}
+        if ($query) {
+            $hubs = new HubsCollection(Hub::where('name', 'LIKE', "%{$query}%")->get());
+            $posts = new PostsCollection(Post::where('name', 'LIKE', "%{$query}%")->get());
+        }
 
-    	return view('pages.search-result', ['hubs' => $hubs, 'posts' => $posts], compact('query'));
+        return view('pages.search-result', ['hubs' => $hubs, 'posts' => $posts], compact('query'));
     }
 }

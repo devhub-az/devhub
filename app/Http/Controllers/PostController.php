@@ -45,32 +45,32 @@ class PostController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         $request->validate([
             'title' => 'required|string',
-            'body' => 'required|string',
+            'body'  => 'required|string',
             // 'tags' => 'required',
         ]);
 
         $share = new Post([
-            'name' => $request->get('title'),
-            'body' => $request->get('body'),
+            'name'      => $request->get('title'),
+            'body'      => $request->get('body'),
             'author_id' => Auth::user()->id,
         ]);
 
         $share->save();
-        return redirect('/post/' . $request->get('id'))->with('success', 'Stock has been added');
+        return back()->with('success', 'Stock has been added');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param \Request $request
+     * @param Request $request
      * @param int $id
      * @return Response
      */
-    public function show(\Request $request, $id)
+    public function show(Request $request, $id)
     {
         $parsedown = new Parsedown();
         $post = new PostCollection(Post::with('hubs')->with('comments')->findOrFail($id));
@@ -78,9 +78,9 @@ class PostController extends Controller
 //        PostView::createViewLog($post);
 
         return view('pages.posts.show', [
-            'post' => $post,
-            'body' => \Purifier::clean($parsedown->text($post->body)),
-            'hubs' => $post->hubs,
+            'post'     => $post,
+            'body'     => \Purifier::clean($parsedown->text($post->body)),
+            'hubs'     => $post->hubs,
             'comments' => $post->comments
         ]);
     }
@@ -109,27 +109,31 @@ class PostController extends Controller
                     break;
             }
             $transaction = true;
-        } else if ($postVoteCount == 0 && isset($voteStatus)) {
-            switch ($voteStatus) {
-                case 'upvote':
-                    $voteValue = '1';
-                    break;
-                case 'downvote':
-                    $voteValue = '0';
-                    break;
+        } else {
+            if ($postVoteCount == 0 && isset($voteStatus)) {
+                switch ($voteStatus) {
+                    case 'upvote':
+                        $voteValue = '1';
+                        break;
+                    case 'downvote':
+                        $voteValue = '0';
+                        break;
+                }
+                $vote = new PostVote([
+                    'post_id' => $request->get('id'),
+                    'user_id' => Auth::user()->id,
+                    'status'  => $voteValue,
+                ]);
+                $transaction = true;
+            } else {
+                if (!isset($voteStatus)) {
+                    $vote = PostVote::where([
+                        'post_id' => $request->get('id'),
+                        'user_id' => Auth::user()->id,
+                    ]);
+                    $transaction = 'delete';
+                }
             }
-            $vote = new PostVote([
-                'post_id' => $request->get('id'),
-                'user_id' => Auth::user()->id,
-                'status' => $voteValue,
-            ]);
-            $transaction = true;
-        } else if (!isset($voteStatus)) {
-            $vote = PostVote::where([
-                'post_id' => $request->get('id'),
-                'user_id' => Auth::user()->id,
-            ]);
-            $transaction = 'delete';
         }
         $post->votes = $request->get('vote');
         foreach ($post->hubs as $hub) {
@@ -137,14 +141,16 @@ class PostController extends Controller
             $hub->save();
         }
         $post->creator->rating = $post->creator->rating + $request->get('change_rating');
-        if ($transaction == true){
+        if ($transaction == true) {
             $vote->save();
             $post->creator->save();
             $post->save();
-        } else if ($transaction == 'delete'){
-            $vote->delete();
-            $post->creator->save();
-            $post->save();
+        } else {
+            if ($transaction == 'delete') {
+                $vote->delete();
+                $post->creator->save();
+                $post->save();
+            }
         }
         return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
     }
@@ -157,7 +163,7 @@ class PostController extends Controller
     public function vote(Request $request): JsonResponse
     {
         $request->validate([
-            'id' => 'required|int',
+            'id'   => 'required|int',
             'vote' => 'required|int',
         ]);
 
@@ -179,19 +185,21 @@ class PostController extends Controller
         $share = Post::findOrFail($request->get('id'));
         if (isset($share) && !$share->postIsFollowing(Auth::user())) {
             $favorite = new PostFavorite([
-                'post_id' => $request->get('id'),
+                'post_id'     => $request->get('id'),
                 'follower_id' => Auth::user()->id,
             ]);
             $favorite->save();
             return response()->json(['success' => 'success'], 200);
-        } else if ($share->postIsFollowing(Auth::user())) {
-            PostFavorite::where([
-                'post_id' => $request->get('id'),
-                'follower_id' => Auth::user()->id,
-            ])->delete();
-            return response()->json(['delete' => 'delete'], 200);
         } else {
-            return response()->json(['error' => 'error'], 401);
+            if ($share->postIsFollowing(Auth::user())) {
+                PostFavorite::where([
+                    'post_id'     => $request->get('id'),
+                    'follower_id' => Auth::user()->id,
+                ])->delete();
+                return response()->json(['delete' => 'delete'], 200);
+            } else {
+                return response()->json(['error' => 'error'], 401);
+            }
         }
     }
 
