@@ -24,4 +24,9 @@ class NotificationController extends Controller
             'top_followed_hubs' => $top_followed_hubs,
         ]);
     }
+
+    public function deleteAll() {
+        \Auth::user()->notifications()->delete();
+        return back();
+    }
 }

@@ -11,6 +11,10 @@
         <div class="layout_content">
             <div class="content_left" id="app">
                 @if (Auth::user()->Notifications->count() > 0)
+                    <div style=" width: 100%">
+                        <h1>Notifications</h1>
+                        <a href="{{ route('delete-all-trackers') }}" style="margin-left: auto;">Delete trackers</a>
+                    </div>
                     @foreach(Auth::user()->Notifications as $notification)
                         <div class="post-content">
                             <div class="post-content__item" style="padding: 2%;">
@@ -75,7 +79,7 @@
                                             </div>
                                             <div class="list-hubs__desc">
                                             <span
-                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                                 <br>
                                                 <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-star"></i> Reyting {{ $hub['rating'] ?? '' }}
@@ -104,7 +108,7 @@
                                             <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
                                         <div class="list-hubs__desc">
                                             <span
-                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                             <br>
                                             <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}

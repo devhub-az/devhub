@@ -12,7 +12,9 @@ use Parsedown;
 class PostNotify extends Notification
 {
     use Queueable;
-    public $post;
+
+    protected $post;
+    const TYPE = "Paylaşma";
 
     /**
      * Create a new notification instance.
@@ -36,33 +38,22 @@ class PostNotify extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return string
-     */
-    public function toMail($notifiable)
-    {
-        return '';
-    }
-
-    /**
      * Get the array representation of the notification.
      *
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray(string $notifiable): array
     {
         $parsedown = new Parsedown();
         return [
-            'type'          => 'Paylaşma',
-            'id'            => $this->post->id,
-            'title'         => $this->post->name,
-            'body'          => $this->shorten(Purifier::clean($parsedown->text($this->post->body)), 250),
-            'creator'       => $this->post->creator->username,
+            'type' => self::TYPE,
+            'id' => $this->post->id,
+            'title' => $this->post->name,
+            'body' => $this->shorten(Purifier::clean($parsedown->text($this->post->body)), 250),
+            'creator' => $this->post->creator->username,
             'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
-            'created_at'    => $this->post->created_at,
+            'created_at' => $this->post->created_at,
         ];
     }
 

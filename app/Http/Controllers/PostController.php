@@ -50,16 +50,15 @@ class PostController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        dd($request->body);
         $request->validate([
             'title' => 'required|string',
-            'body'  => 'required|string',
+            'body'  => 'string',
             // 'tags' => 'required',
         ]);
 
         $share = new Post([
             'name'      => $request->get('title'),
-            'body'      => $request->get('body'),
+//            'body'      => $request->get('body'),
             'author_id' => Auth::user()->id,
         ]);
 

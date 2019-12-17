@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('@{username}/settings', 'Auth\UserSettingsController@index')->name('settings');
     Route::post('@{username}/settings', 'Auth\UserSettingsController@update');
     Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
+    Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
 });
 
 Route::prefix('api')->group(function () {
