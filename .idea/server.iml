@@ -50,6 +50,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/event" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/fractal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/glide" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/oauth2-server" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/maennchen/zipstream-php" />
@@ -69,6 +70,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/object-calisthenics/phpcs-calisthenics-rules" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ocramius/package-versions" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opis/closure" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/orangehill/iseed" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/oscarafdev/laravel-4-generators" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/oscarafdev/migrations-generator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/parsedown/laravel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phar-io/manifest" />
@@ -113,8 +117,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/seld/phar-utils" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sensiolabs/security-checker" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/slevomat/coding-standard" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/fractalistic" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/image-optimizer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-fractal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-medialibrary" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-responsecache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/pdf-to-image" />
@@ -173,5 +179,8 @@
     <orderEntry type="library" name="widgets" level="application" />
     <orderEntry type="library" name="semantic" level="application" />
     <orderEntry type="library" name="dropdown" level="application" />
+    <orderEntry type="library" name="dropdown" level="application" />
+    <orderEntry type="library" name="semantic" level="application" />
+    <orderEntry type="library" name="widgets" level="application" />
   </component>
 </module>
