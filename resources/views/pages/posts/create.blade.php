@@ -39,22 +39,23 @@
                             <p style="color: red"> {{ $errors->first('body') }}</p>
                         </div>
                     @endif
+                    <div class="editable" name="body"></div>
 
-                    <editor></editor>
+                    {{--                    <editor></editor>--}}
 
-{{--                    <div class="ui fluid multiple search selection dropdown">--}}
-{{--                        <input name="tags" type="hidden">--}}
-{{--                        <i class="dropdown icon"></i>--}}
-{{--                        <div class="default text">Skills</div>--}}
-{{--                        <div class="menu">--}}
-{{--                            @foreach ($hubs as $hub)--}}
-{{--                                <div class="item" data-value="{{ $hub['id'] }}">--}}
-{{--                                    <i class="{{ strtolower($hub['name']) }} icon"></i>--}}
-{{--                                    {{ $hub['name'] }}--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
+                    {{--                    <div class="ui fluid multiple search selection dropdown">--}}
+                    {{--                        <input name="tags" type="hidden">--}}
+                    {{--                        <i class="dropdown icon"></i>--}}
+                    {{--                        <div class="default text">Skills</div>--}}
+                    {{--                        <div class="menu">--}}
+                    {{--                            @foreach ($hubs as $hub)--}}
+                    {{--                                <div class="item" data-value="{{ $hub['id'] }}">--}}
+                    {{--                                    <i class="{{ strtolower($hub['name']) }} icon"></i>--}}
+                    {{--                                    {{ $hub['name'] }}--}}
+                    {{--                                </div>--}}
+                    {{--                            @endforeach--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                     {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}
 
                     {!! Form::close() !!}
@@ -85,7 +86,7 @@
                 <div class="default-block default-block_sidebar">
                     <div class="default-block__header">
                         <h3 class="default-block__header-title">
-                                Moderasiya haqqında
+                            Moderasiya haqqında
                         </h3>
                     </div>
                     <div class="default-block__content">
@@ -117,7 +118,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.4/remarkable.min.js"
             integrity="sha256-xVLIPE8qxiI4dvQKvrrhwkqYjmNEjj5l5n1+/vAtMUo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
+          type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/css/medium-editor-insert-plugin-frontend.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/css/medium-editor-insert-plugin.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/js/medium-editor-insert-plugin.min.js"></script>
+    <script>
+        var editor = new MediumEditor('.editable', {
+            toolbar: {
+                /* These are the default options for the toolbar,
+                   if nothing is passed this is what is used */
+                allowMultiParagraphSelection: true,
+                buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'quote'],
+                diffLeft: 0,
+                diffTop: -10,
+                firstButtonClass: 'medium-editor-button-first',
+                lastButtonClass: 'medium-editor-button-last',
+                relativeContainer: null,
+                standardizeSelectionStart: false,
+                static: false,
+                /* options which only apply when static is true */
+                align: 'center',
+                sticky: false,
+                updateOnEmptySelection: false
+            }
+        });
+        $(function () {
+            $('.editable').mediumInsert({
+                editor: editor
+            });
+        });
+    </script>
     <script>
         $('.ui.dropdown').dropdown();
 

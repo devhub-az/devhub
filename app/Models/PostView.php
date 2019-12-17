@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class PostView extends \Eloquent
+use Eloquent;
+
+class PostView extends Eloquent
 {
     protected $table = 'posts_views';
 

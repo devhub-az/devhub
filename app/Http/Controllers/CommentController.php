@@ -6,6 +6,7 @@ use App\Http\Requests\CommentUpload;
 use App\Models\Comment;
 use App\Models\Post;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
 
 class CommentController extends Controller

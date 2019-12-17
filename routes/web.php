@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
     Route::get('@{username}/settings', 'Auth\UserSettingsController@index')->name('settings');
     Route::post('@{username}/settings', 'Auth\UserSettingsController@update');
+    Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
 });
 
 Route::prefix('api')->group(function () {
@@ -81,3 +82,6 @@ Route::get('about_us', function () {
 Route::post('upvote', 'PostController@vote');
 
 Route::get('query', 'HomeController@indexTest');
+
+
+Route::get('test', 'Auth\NotificationController@test');

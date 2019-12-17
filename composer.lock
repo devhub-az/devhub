@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45920c223c25862acb89b4a877f95d9f",
+    "content-hash": "daaf66a7012ada07ecae4e3aa84a1bc4",
     "packages": [
         {
             "name": "alphametric/laravel-validation-rules",
@@ -2505,6 +2505,70 @@
             "time": "2019-12-08T21:46:50+00:00"
         },
         {
+            "name": "league/fractal",
+            "version": "0.18.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/fractal.git",
+                "reference": "4e553dae1a9402adbe11c81430a64675dc97b4fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/fractal/zipball/4e553dae1a9402adbe11c81430a64675dc97b4fc",
+                "reference": "4e553dae1a9402adbe11c81430a64675dc97b4fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "doctrine/orm": "^2.5",
+                "illuminate/contracts": "~5.0",
+                "mockery/mockery": "~0.9",
+                "pagerfanta/pagerfanta": "~1.0.0",
+                "phpunit/phpunit": "^4.8.35 || ^7.5",
+                "squizlabs/php_codesniffer": "~1.5",
+                "zendframework/zend-paginator": "~2.3"
+            },
+            "suggest": {
+                "illuminate/pagination": "The Illuminate Pagination component.",
+                "pagerfanta/pagerfanta": "Pagerfanta Paginator",
+                "zendframework/zend-paginator": "Zend Framework Paginator"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.13-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Fractal\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Phil Sturgeon",
+                    "email": "me@philsturgeon.uk",
+                    "homepage": "http://philsturgeon.uk/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Handle the output of complex data structures ready for API output.",
+            "homepage": "http://fractal.thephpleague.com/",
+            "keywords": [
+                "api",
+                "json",
+                "league",
+                "rest"
+            ],
+            "time": "2019-05-10T02:16:43+00:00"
+        },
+        {
             "name": "league/glide",
             "version": "1.5.0",
             "source": {
@@ -3091,6 +3155,112 @@
             "time": "2019-11-29T22:36:02+00:00"
         },
         {
+            "name": "oscarafdev/laravel-4-generators",
+            "version": "3.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oscarafdev/Laravel-4-Generators.git",
+                "reference": "b610b11e61fa59272b9eb05d8b0508ec49ef4477"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oscarafdev/Laravel-4-Generators/zipball/b610b11e61fa59272b9eb05d8b0508ec49ef4477",
+                "reference": "b610b11e61fa59272b9eb05d8b0508ec49ef4477",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "behat/behat": "^2.5.1",
+                "behat/mink": "^1.5.0",
+                "behat/mink-extension": "^1.2.0",
+                "behat/mink-goutte-driver": "^1.0.9",
+                "behat/mink-selenium2-driver": "^1.1.1",
+                "phpspec/phpspec": "^2.0",
+                "phpunit/phpunit": "^3.7"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Way\\Generators": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Fernandez",
+                    "email": "oscarafdev@gmail.com"
+                }
+            ],
+            "description": "Rapidly generate resources, migrations, models, and much more.",
+            "time": "2019-11-30T02:37:41+00:00"
+        },
+        {
+            "name": "oscarafdev/migrations-generator",
+            "version": "v2.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/oscarafdev/migrations-generator.git",
+                "reference": "192e87b2b10193cc98e41a2946db0f8b1b6c20c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/oscarafdev/migrations-generator/zipball/192e87b2b10193cc98e41a2946db0f8b1b6c20c2",
+                "reference": "192e87b2b10193cc98e41a2946db0f8b1b6c20c2",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "~2.10",
+                "illuminate/support": "^6.0",
+                "oscarafdev/laravel-4-generators": "~3.1.4",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "illuminate/cache": ">=6.0",
+                "illuminate/console": ">=6.0",
+                "mockery/mockery": ">=1.0.3",
+                "phpunit/phpunit": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Way\\Generators\\GeneratorsServiceProvider",
+                        "OscarAFDev\\MigrationsGenerator\\MigrationsGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "OscarAFDev\\MigrationsGenerator": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oscar Fernandez",
+                    "email": "oscarafdev@gmail.com"
+                }
+            ],
+            "description": "Generates Laravel Migrations from an existing database",
+            "keywords": [
+                "artisan",
+                "generator",
+                "laravel",
+                "migration",
+                "migrations"
+            ],
+            "time": "2019-11-30T02:38:28+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v9.99.99",
             "source": {
@@ -3194,28 +3364,29 @@
         },
         {
             "name": "phpoption/phpoption",
-            "version": "1.6.1",
+            "version": "1.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/php-option.git",
-                "reference": "a8593bf5176bf3d3f2966942c530be19b44ec87c"
+                "reference": "100a25207566930efd926cf205542946aa692e01"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/a8593bf5176bf3d3f2966942c530be19b44ec87c",
-                "reference": "a8593bf5176bf3d3f2966942c530be19b44ec87c",
+                "url": "https://api.github.com/repos/schmittjoh/php-option/zipball/100a25207566930efd926cf205542946aa692e01",
+                "reference": "100a25207566930efd926cf205542946aa692e01",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.5.9 || ^7.0"
             },
             "require-dev": {
+                "bamarni/composer-bin-plugin": "^1.3",
                 "phpunit/phpunit": "^4.8.35 || ^5.0 || ^6.0 || ^7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.6-dev"
+                    "dev-master": "1.7-dev"
                 }
             },
             "autoload": {
@@ -3244,7 +3415,7 @@
                 "php",
                 "type"
             ],
-            "time": "2019-12-11T13:45:14+00:00"
+            "time": "2019-12-14T13:46:39+00:00"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -3936,6 +4107,57 @@
             "time": "2015-10-13T18:44:15+00:00"
         },
         {
+            "name": "spatie/fractalistic",
+            "version": "2.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/fractalistic.git",
+                "reference": "9d29952f4552d6fc117e1f44f89d8dfdd36c393d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/fractalistic/zipball/9d29952f4552d6fc117e1f44f89d8dfdd36c393d",
+                "reference": "9d29952f4552d6fc117e1f44f89d8dfdd36c393d",
+                "shasum": ""
+            },
+            "require": {
+                "league/fractal": "^0.18.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "illuminate/pagination": "~5.3.0|~5.4.0",
+                "phpunit/phpunit": "^5.7.21"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Fractalistic\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A developer friendly wrapper around Fractal",
+            "homepage": "https://github.com/spatie/fractalistic",
+            "keywords": [
+                "api",
+                "fractal",
+                "fractalistic",
+                "spatie",
+                "transform"
+            ],
+            "time": "2019-05-13T07:08:06+00:00"
+        },
+        {
             "name": "spatie/image",
             "version": "1.7.5",
             "source": {
@@ -4037,6 +4259,74 @@
                 "spatie"
             ],
             "time": "2019-11-25T12:29:24+00:00"
+        },
+        {
+            "name": "spatie/laravel-fractal",
+            "version": "5.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-fractal.git",
+                "reference": "f8688094e15cea06cc233bc5e2e62d169f656eae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-fractal/zipball/f8688094e15cea06cc233bc5e2e62d169f656eae",
+                "reference": "f8688094e15cea06cc233bc5e2e62d169f656eae",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.7.0|~5.8.0|^6.0",
+                "illuminate/support": "~5.7.0|~5.8.0|^6.0",
+                "php": "^7.2",
+                "spatie/fractalistic": "^2.5"
+            },
+            "require-dev": {
+                "dms/phpunit-arraysubset-asserts": "^0.1.0",
+                "orchestra/testbench": "~3.7.0|~3.8.0|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Fractal\\FractalServiceProvider"
+                    ],
+                    "aliases": {
+                        "Fractal": "Spatie\\Fractal\\FractalFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Fractal\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "An easy to use Fractal integration for Laravel applications",
+            "homepage": "https://github.com/spatie/laravel-fractal",
+            "keywords": [
+                "api",
+                "fractal",
+                "laravel",
+                "laravel-fractal",
+                "lumen",
+                "spatie",
+                "transform"
+            ],
+            "time": "2019-11-19T17:21:37+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -7069,6 +7359,65 @@
             ],
             "description": "PHP CodeSniffer Object Calisthenics rules/sniffs",
             "time": "2019-12-11T15:46:58+00:00"
+        },
+        {
+            "name": "orangehill/iseed",
+            "version": "v2.6.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/orangehill/iseed.git",
+                "reference": "fe8fbf51ab57bcc28282c6b1109e610c4a44fad9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/orangehill/iseed/zipball/fe8fbf51ab57bcc28282c6b1109e610c4a44fad9",
+                "reference": "fe8fbf51ab57bcc28282c6b1109e610c4a44fad9",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "illuminate/filesystem": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "laravel/framework": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0",
+                "mockery/mockery": "^1.0.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Orangehill\\Iseed\\IseedServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Orangehill\\Iseed": "src/"
+                },
+                "classmap": [
+                    "src/Orangehill/Iseed/Exceptions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Tihomir Opacic",
+                    "email": "tihomir.opacic@orangehilldev.com"
+                }
+            ],
+            "description": "Generate a new Laravel database seed file based on data from the existing database table.",
+            "keywords": [
+                "artisan",
+                "generators",
+                "laravel",
+                "seed"
+            ],
+            "time": "2019-09-09T13:18:41+00:00"
         },
         {
             "name": "phar-io/manifest",

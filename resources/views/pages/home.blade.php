@@ -24,7 +24,9 @@
                             @if (Auth::user()->getUserIdsAttribute() != null && Auth::user()->getHubsIdsAttribute() != null)
                                 <a href="{{ route('favorite') }}"
                                    class="nav-posts__item @if(Request::url() === route('favorite')) nav-posts__item-link_current @endif">
-                                    <span class="nav-posts__item-link">Abunə ilə</span>
+                                    <span class="nav-posts__item-link badge" @if (Auth::user()->unreadNotifications->count() > 0)
+                                    data-posts-badge="+{{ Auth::user()->unreadNotifications->count() }}"
+                @endif>Abunə ilə</span>
                                 </a>
                             @endif
                         @endauth
@@ -57,7 +59,10 @@
                         </ul>
                     </div>
                 @endif
-                <posts :url="'{{ $url }}'" @auth :auth_check="true" @endauth></posts>
+                <posts
+                        :url="'{{ $url }}'"
+                        @auth :auth_check="true" @endauth
+                ></posts>
             </div>
 
             {{-- Right --}}
@@ -73,9 +78,8 @@
                                 <a href="https://u.tmtm.ru/kryptonite-startup" rel="nofollow" class="partner-info">
                                     <div class="partner-info__head">
                                         <span class="partner-info__title">Azərkosmos</span>
-                                        <img
-                                            src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png"
-                                            class="partner-info__image" alt="Company image">
+                                        <img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png"
+                                             class="partner-info__image" alt="Company image">
                                     </div>
                                     <div class="partner-info__description">
                                         Cənubi Qafqazda ilk peyk operatoru olan “Azərkosmos”.

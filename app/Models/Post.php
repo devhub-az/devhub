@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
     protected $table = 'posts';
 
     protected $fillable = [
@@ -59,26 +60,17 @@ class Post extends Model
 
     public function postIsFollowing(User $user)
     {
-        return (bool) $this->postFollowers()->where('follower_id', $user->id)->count();
+        return (bool)$this->postFollowers()->where('follower_id', $user->id)->count();
     }
 
     public function postIsVoted(User $user)
     {
-        if ((bool) $this->votes()->where('user_id', $user->id)->where('status', '0')->count()) {
+        if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '0')->count()) {
             return 'downvoted';
-        } elseif ((bool) $this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
+        }
+        if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
             return 'upvoted';
         }
-    }
-
-    public function fields()
-    {
-        return [
-            'id',
-            'name',
-            'body',
-            'author_id',
-        ];
     }
 
     public function getHubsIdsAttribute()

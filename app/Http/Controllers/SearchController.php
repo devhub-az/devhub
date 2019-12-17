@@ -11,9 +11,6 @@ class SearchController extends Controller
 {
     public function index()
     {
-        // $this->validate(request(), [
-        // 	'name'=>'required|max:40',
-        // ]);
         $query = request()->search;
 
         $hubs = collect();

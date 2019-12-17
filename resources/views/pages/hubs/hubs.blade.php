@@ -34,6 +34,7 @@
                 </div>
                 <hubs-list
                     fetch-url="{{ route('hubs-list') }}"
+                    locale="{{ App::getLocale() }}"
                     :columns="['name', 'posts_count', 'rating']"
                 ></hubs-list>
             </div>
@@ -57,7 +58,7 @@
                                             </div>
                                             <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub['description'] }}</span>
+                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                                 <br>
                                                 <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-star"></i> Reyting {{ $hub['rating'] ?? '' }}
@@ -86,7 +87,7 @@
                                             <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
                                         <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub['description'] }}</span>
+                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                             <br>
                                             <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}

@@ -8,11 +8,14 @@ use App\Models\Hub;
 use App\Models\Post;
 use App\Models\PostFavorite;
 use App\Models\PostVote;
+use App\Notifications\PostNotify;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 use Parsedown;
 
 class PostController extends Controller
@@ -45,23 +48,25 @@ class PostController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request): Response
+    public function store(Request $request): RedirectResponse
     {
+        dd($request->body);
         $request->validate([
             'title' => 'required|string',
-            'body' => 'required|string',
+            'body'  => 'required|string',
             // 'tags' => 'required',
         ]);
 
         $share = new Post([
-            'name' => $request->get('title'),
-            'body' => $request->get('body'),
+            'name'      => $request->get('title'),
+            'body'      => $request->get('body'),
             'author_id' => Auth::user()->id,
         ]);
 
         $share->save();
+        Notification::send(Auth::user()->followers, new PostNotify($share));
 
-        return redirect('/post/'.$request->get('id'))->with('success', 'Stock has been added');
+        return redirect('/post/' . $request->get('id'))->with('success', 'Stock has been added');
     }
 
     /**
@@ -79,9 +84,9 @@ class PostController extends Controller
 //        PostView::createViewLog($post);
 
         return view('pages.posts.show', [
-            'post' => $post,
-            'body' => \Purifier::clean($parsedown->text($post->body)),
-            'hubs' => $post->hubs,
+            'post'     => $post,
+            'body'     => \Purifier::clean($parsedown->text($post->body)),
+            'hubs'     => $post->hubs,
             'comments' => $post->comments,
         ]);
     }
@@ -99,7 +104,7 @@ class PostController extends Controller
         $postVoteCount = $vote->count();
         $transaction = false;
 
-        if ($postVoteCount == 1 && isset($voteStatus)) {
+        if ($postVoteCount === 1 && isset($voteStatus)) {
             $vote = $vote->firstOrFail();
             switch ($voteStatus) {
                 case 'upvote':
@@ -110,7 +115,7 @@ class PostController extends Controller
                     break;
             }
             $transaction = true;
-        } elseif ($postVoteCount == 0 && isset($voteStatus)) {
+        } elseif ($postVoteCount === 0 && isset($voteStatus)) {
             switch ($voteStatus) {
                 case 'upvote':
                     $voteValue = '1';
@@ -122,10 +127,10 @@ class PostController extends Controller
             $vote = new PostVote([
                 'post_id' => $request->get('id'),
                 'user_id' => Auth::user()->id,
-                'status' => $voteValue,
+                'status'  => $voteValue,
             ]);
             $transaction = true;
-        } elseif (! isset($voteStatus)) {
+        } elseif (!isset($voteStatus)) {
             $vote = PostVote::where([
                 'post_id' => $request->get('id'),
                 'user_id' => Auth::user()->id,
@@ -134,15 +139,15 @@ class PostController extends Controller
         }
         $post->votes = $request->get('vote');
         foreach ($post->hubs as $hub) {
-            $hub->rating = $hub->rating + $request->get('change_rating');
+            $hub->rating += $request->get('change_rating');
             $hub->save();
         }
-        $post->creator->rating = $post->creator->rating + $request->get('change_rating');
-        if ($transaction == true) {
+        $post->creator->rating += $request->get('change_rating');
+        if ($transaction === true) {
             $vote->save();
             $post->creator->save();
             $post->save();
-        } elseif ($transaction == 'delete') {
+        } elseif ($transaction === 'delete') {
             $vote->delete();
             $post->creator->save();
             $post->save();
@@ -159,14 +164,13 @@ class PostController extends Controller
     public function vote(Request $request): JsonResponse
     {
         $request->validate([
-            'id' => 'required|int',
+            'id'   => 'required|int',
             'vote' => 'required|int',
         ]);
 
         $post = Post::findOrFail($request->get('id'));
-        $status = self::postRatingChanger($post, $request);
 
-        return $status;
+        return self::postRatingChanger($post, $request);
     }
 
     /**
@@ -179,17 +183,18 @@ class PostController extends Controller
             'id' => 'required|int',
         ]);
         $share = Post::findOrFail($request->get('id'));
-        if (isset($share) && ! $share->postIsFollowing(Auth::user())) {
+        if (isset($share) && !$share->postIsFollowing(Auth::user())) {
             $favorite = new PostFavorite([
-                'post_id' => $request->get('id'),
+                'post_id'     => $request->get('id'),
                 'follower_id' => Auth::user()->id,
             ]);
             $favorite->save();
 
             return response()->json(['success' => 'success'], 200);
-        } elseif ($share->postIsFollowing(Auth::user())) {
+        }
+        if ($share->postIsFollowing(Auth::user())) {
             PostFavorite::where([
-                'post_id' => $request->get('id'),
+                'post_id'     => $request->get('id'),
                 'follower_id' => Auth::user()->id,
             ])->delete();
 

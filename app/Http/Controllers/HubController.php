@@ -22,14 +22,13 @@ class HubController extends Controller
      * @param int $id
      * @return Factory|View
      */
-    public function show(int $id)
+    public function show(int $id): View
     {
         $hub = new HubCollection(Hub::withCount('hubFollowers')->findOrFail($id));
-
         return view('pages.hubs.show', [
             'hub'         => $hub,
             'posts_count' => count($hub->posts()->get()),
-            'url'         => '/api/hubs/'.$id,
+            'url'         => '/api/hubs/' . $id,
             'content'     => $this->content,
         ]);
     }
@@ -37,11 +36,11 @@ class HubController extends Controller
     /**
      * @return Factory|View
      */
-    public function index()
+    public function index(): View
     {
-        $top_hubs = new HubsCollection(Hub::orderBy('rating', 'DESC')->paginate(5));
-        $top_followed_hubs = new HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count', 'desc')->paginate(5));
-
+        $top_hubs = new HubsCollection(Hub::orderBy('rating', 'DESC')->take(5)->get());
+        $top_followed_hubs = new HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count',
+            'desc')->take(5)->get());
         return view('pages.hubs.hubs', [
             'top_hubs'          => $top_hubs,
             'top_followed_hubs' => $top_followed_hubs,
@@ -52,13 +51,13 @@ class HubController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function follow(Request $request)
+    public function follow(Request $request): JsonResponse
     {
         $request->validate([
             'id' => 'required|int',
         ]);
         $share = Hub::findOrFail($request->get('id'));
-        if (isset($share) && ! $share->hubIsFollowing(\Auth::user())) {
+        if (isset($share) && !$share->hubIsFollowing(\Auth::user())) {
             $favorite = new HubFollows([
                 'hub_id'      => $request->get('id'),
                 'follower_id' => \Auth::user()->id,
@@ -66,7 +65,8 @@ class HubController extends Controller
             $favorite->save();
 
             return response()->json(['success' => 'success'], 200);
-        } elseif ($share->hubIsFollowing(\Auth::user())) {
+        }
+        if ($share->hubIsFollowing(\Auth::user())) {
             HubFollows::where([
                 'hub_id'      => $request->get('id'),
                 'follower_id' => \Auth::user()->id,

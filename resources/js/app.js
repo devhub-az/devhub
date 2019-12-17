@@ -68,7 +68,6 @@ Vue.component('pagination', require('./components/pagination.vue').default);
 Vue.component('tags', require('./components/tags.vue').default);
 Vue.component('hubs-list', require('./components/hubs/HubsComponent.vue').default);
 Vue.component('vote', require('./components/vote.vue').default);
-Vue.component('notification', require('./components/NotificationComponent.vue').default);
 Vue.component('hubs-tags', require('./components/hubs/HubsTagComponent.vue').default);
 Vue.component('hub-follow-button', require('./components/hubs/HubsFollowButtonComponent.vue').default);
 Vue.component('user-follow-button', require('./components/users/UsersFollowButtonComponent.vue').default);
@@ -94,12 +93,12 @@ Vue.filter('timeago', function (value) {
 
 if (document.getElementById('app')) {
     const app = new Vue({
-        el: '#app'
+        el: '#app',
     });
 }
 
 if (document.getElementById('header_app')) {
     const app = new Vue({
-        el: '#header_app'
+        el: '#header_app',
     });
 }

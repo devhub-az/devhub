@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -31,7 +32,7 @@ class HomeController extends Controller
                 session(['main-page' => '/all']);
 
                 return view('pages.home', ['url' => '/api/posts/all']);
-            case 'favorite' && \Auth::user()->getHubsIdsAttribute() != null && \Auth::user()->getUserIdsAttribute() != null:
+            case 'favorite' && \Auth::user()->getHubsIdsAttribute() !== null && \Auth::user()->getUserIdsAttribute() !== null:
                 session(['main-page' => '/favorite']);
 
                 return view('pages.home', ['url' => '/api/posts/favorite']);

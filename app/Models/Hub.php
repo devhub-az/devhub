@@ -13,6 +13,11 @@ class Hub extends Model
         'name',
     ];
 
+    public function description()
+    {
+        return $this->belongsTo(Localization::class, 'id', 'idx')->withDefault();
+    }
+
     public function posts()
     {
         return $this->belongsToMany(Post::class, 'post_hubs', 'hub_id', 'posts_id');

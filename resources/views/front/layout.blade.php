@@ -77,6 +77,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js" integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.js"></script>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 @yield('scripts')
 <script>

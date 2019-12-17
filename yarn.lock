@@ -686,6 +686,16 @@
   dependencies:
     vue "^2.6.10"
 
+"@kirschbaum-development/laravel-translations-loader@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@kirschbaum-development/laravel-translations-loader/-/laravel-translations-loader-1.0.2.tgz#20aadd3a9e53c25dcf568b2df9aa19d8dae97217"
+  integrity sha512-85FhK4AXZJSgWyjE1wg0+qaT0kL+VYUTY/gk9TmCxPL6qYFW3BXxjQi0pPDr7D6F2X+23s7At7ogf4xK0AEUWw==
+  dependencies:
+    klaw-sync "^6.0.0"
+    loader-utils "^1.1.0"
+    lodash "^4.17.11"
+    php-array-parser "^1.0.1"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -4560,7 +4570,7 @@ jquery@2.x:
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
   integrity sha1-LInWiJterFIqfuoywUUhVZxsvwI=
 
-jquery@>=1.8, jquery@^3.0.0, jquery@^3.2, jquery@^3.3.1, jquery@^3.4.1:
+jquery@^3.0.0, jquery@^3.2, jquery@^3.3.1, jquery@^3.4.1:
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
   integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
@@ -4724,6 +4734,13 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
+
+klaw-sync@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/klaw-sync/-/klaw-sync-6.0.0.tgz#1fd2cfd56ebb6250181114f0a581167099c2b28c"
+  integrity sha512-nIeuVSzdCCs6TDPTqI8w1Yre34sSq7AkZ4B3sfOBbI2CgVSB4Du4aLQijFU2+lhAFCwt9+42Hel6lQNIv6AntQ==
+  dependencies:
+    graceful-fs "^4.1.11"
 
 laravel-echo-server@^1.5.9:
   version "1.5.9"
@@ -5202,6 +5219,13 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
+
+medium-editor-markdown@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/medium-editor-markdown/-/medium-editor-markdown-3.0.1.tgz#210780ddd6be550bd695b3b305428321534e330d"
+  integrity sha512-4gfrPvwgW+Zri9B10vbuRlzhMfz5stFv3i95HgeZbcjxPACQVDhDzhCEVn1g3PkK6rgfJ5y26fxC9JOSgnlq4Q==
+  dependencies:
+    turndown "^4.0.1"
 
 mem@^4.0.0:
   version "4.3.0"
@@ -6085,6 +6109,18 @@ performance-now@^2.1.0:
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
+php-array-parser@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/php-array-parser/-/php-array-parser-1.0.1.tgz#9da12683c3bebbe228a7e238c716435437631eaa"
+  integrity sha512-elnanzvSd/+U2eWD9Hp2MIab6LzWlnp9J+sTrQasDoR6VsWMDa3fDYBS8pojvu3RwPbpgDUHUxV5WGhfJ1NewQ==
+  dependencies:
+    php-parser "^2.0.3"
+
+php-parser@^2.0.3:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/php-parser/-/php-parser-2.2.0.tgz#67384f0a5933dbbef40beab0ab31d0b8c582ff88"
+  integrity sha1-ZzhPClkz2770C+qwqzHQuMWC/4g=
+
 picomatch@^2.0.4:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.1.1.tgz#ecdfbea7704adb5fe6fb47f9866c4c0e15e905c5"
@@ -6545,7 +6581,7 @@ prosemirror-collab@1.2.2:
   dependencies:
     prosemirror-state "^1.0.0"
 
-prosemirror-commands@1.1.2, prosemirror-commands@^1.0.7:
+prosemirror-commands@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prosemirror-commands/-/prosemirror-commands-1.1.2.tgz#6868cabc9f9112fba94c805139473527774b0dea"
   integrity sha512-JBa06kjgX67d9JVUVJbCkxwvSGtQnWAN/85nq9csOMS5Z9WZLEvVDtVvZranNlu8l/XNVBWrZxOOK+pB03eTfA==
@@ -6554,7 +6590,7 @@ prosemirror-commands@1.1.2, prosemirror-commands@^1.0.7:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.0.0"
 
-prosemirror-dropcursor@1.3.2, prosemirror-dropcursor@^1.1.1:
+prosemirror-dropcursor@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/prosemirror-dropcursor/-/prosemirror-dropcursor-1.3.2.tgz#28738c4ed7102e814d7a8a26d70018523fc7cd6d"
   integrity sha512-4c94OUGyobGnwcQI70OXyMhE/9T4aTgjU+CHxkd5c7D+jH/J0mKM/lk+jneFVKt7+E4/M0D9HzRPifu8U28Thw==
@@ -6563,7 +6599,7 @@ prosemirror-dropcursor@1.3.2, prosemirror-dropcursor@^1.1.1:
     prosemirror-transform "^1.1.0"
     prosemirror-view "^1.1.0"
 
-prosemirror-gapcursor@1.1.2, prosemirror-gapcursor@^1.0.3:
+prosemirror-gapcursor@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prosemirror-gapcursor/-/prosemirror-gapcursor-1.1.2.tgz#a1400a86a51d4cccc065e68d5625a9fb5bc623e0"
   integrity sha512-Z+eqk6RysZVxidGWN5aWoSTbn5bTHf1XZ+nQJVwUSdwdBVkfQMFdTHgfrXA8W5MhHHdNg/EEEYG3z3Zi/vE2QQ==
@@ -6582,7 +6618,7 @@ prosemirror-history@1.1.2:
     prosemirror-transform "^1.0.0"
     rope-sequence "^1.3.0"
 
-prosemirror-inputrules@1.1.2, prosemirror-inputrules@^1.0.1:
+prosemirror-inputrules@1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/prosemirror-inputrules/-/prosemirror-inputrules-1.1.2.tgz#487e46c763e1212a4577397aba7706139084f012"
   integrity sha512-Ja5Z3BWestlHYGvtSGqyvxMeB8QEuBjlHM8YnKtLGUXMDp965qdDV4goV8lJb17kIWHk7e7JNj6Catuoa3302g==
@@ -6590,7 +6626,7 @@ prosemirror-inputrules@1.1.2, prosemirror-inputrules@^1.0.1:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.0.0"
 
-prosemirror-keymap@1.1.3, prosemirror-keymap@^1.0.0, prosemirror-keymap@^1.0.1, prosemirror-keymap@^1.1.2:
+prosemirror-keymap@1.1.3, prosemirror-keymap@^1.0.0, prosemirror-keymap@^1.1.2:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/prosemirror-keymap/-/prosemirror-keymap-1.1.3.tgz#be22d6108df2521608e9216a87b1a810f0ed361e"
   integrity sha512-PRA4NzkUMzV/NFf5pyQ6tmlIHiW/qjQ1kGWUlV2rF/dvlOxtpGpTEjIMhWgLuMf+HiDEFnUEP7uhYXu+t+491g==
@@ -6598,7 +6634,7 @@ prosemirror-keymap@1.1.3, prosemirror-keymap@^1.0.0, prosemirror-keymap@^1.0.1, 
     prosemirror-state "^1.0.0"
     w3c-keyname "^2.2.0"
 
-prosemirror-model@1.8.2, prosemirror-model@^1.0.0, prosemirror-model@^1.1.0, prosemirror-model@^1.7.0, prosemirror-model@^1.8.1:
+prosemirror-model@1.8.2, prosemirror-model@^1.0.0, prosemirror-model@^1.1.0, prosemirror-model@^1.8.1:
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.8.2.tgz#c74eaacb0bbfea49b59a6d89fef5516181666a56"
   integrity sha512-piffokzW7opZVCjf/9YaoXvTC0g7zMRWKJib1hpphPfC+4x6ZXe5CiExgycoWZJe59VxxP7uHX8aFiwg2i9mUQ==
@@ -6613,7 +6649,7 @@ prosemirror-schema-list@1.1.2:
     prosemirror-model "^1.0.0"
     prosemirror-transform "^1.0.0"
 
-prosemirror-state@1.3.2, prosemirror-state@^1.0.0, prosemirror-state@^1.2.1, prosemirror-state@^1.2.2, prosemirror-state@^1.3.1:
+prosemirror-state@1.3.2, prosemirror-state@^1.0.0, prosemirror-state@^1.2.2, prosemirror-state@^1.3.1:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/prosemirror-state/-/prosemirror-state-1.3.2.tgz#1b910b0dc01c1f00926bb9ba1589f7b7ac0d658b"
   integrity sha512-t/JqE3aR0SV9QrzFVkAXsQwsgrQBNs/BDbcFH20RssW0xauqNNdjTXxy/J/kM7F+0zYi6+BRmz7cMMQQFU3mwQ==
@@ -6660,7 +6696,7 @@ prosemirror-view@1.13.4:
     prosemirror-state "^1.0.0"
     prosemirror-transform "^1.1.0"
 
-prosemirror-view@^1.0.0, prosemirror-view@^1.1.0, prosemirror-view@^1.13.3, prosemirror-view@^1.8.9:
+prosemirror-view@^1.0.0, prosemirror-view@^1.1.0, prosemirror-view@^1.13.3:
   version "1.13.5"
   resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.13.5.tgz#5e6967d4a30c2fd4b9a7129ba46ff04020c2673d"
   integrity sha512-j4e0a1Wcokx2P8gfIqXNO02f2XwoDQWGg5CPdwJ4esl41gnuiDuYjlY35s49yXit4kLgmbbGjyX78fVCIm1cXg==
@@ -8115,7 +8151,7 @@ timsort@^0.3.0:
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
   integrity sha1-QFQRqOfmM5/mTbmiNN4R3DHgK9Q=
 
-tiptap-commands@^1.12.4, tiptap-commands@^1.7.1:
+tiptap-commands@^1.12.4:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/tiptap-commands/-/tiptap-commands-1.12.4.tgz#03ef3eda290f0d2ed71a54d73d7619452b05dced"
   integrity sha512-szgSZzd/5FHn3Hs02zxySLxNEwNqbyqPOmz5NEAkIJmcyatTkuL+RQDKHA/RNQRUT66SsUCrEXgL1osTqdOSyQ==
@@ -8129,7 +8165,7 @@ tiptap-commands@^1.12.4, tiptap-commands@^1.7.1:
     prosemirror-utils "0.9.6"
     tiptap-utils "^1.8.3"
 
-tiptap-extensions@^1.14.0, tiptap-extensions@^1.28.5:
+tiptap-extensions@^1.28.5:
   version "1.28.5"
   resolved "https://registry.yarnpkg.com/tiptap-extensions/-/tiptap-extensions-1.28.5.tgz#6fba6f7c61abd82729f413f3afa68438b0ba8dd7"
   integrity sha512-WvwRvznzgELeSA9JIFse4xNlDEcQ0JMN2PV2sybyPamKM1cvqrYBwF6fqf+EKGmrvwJzmr33CFZpMuzrMeAmWw==
@@ -8146,7 +8182,7 @@ tiptap-extensions@^1.14.0, tiptap-extensions@^1.28.5:
     tiptap "^1.26.5"
     tiptap-commands "^1.12.4"
 
-tiptap-utils@^1.3.0, tiptap-utils@^1.8.3:
+tiptap-utils@^1.8.3:
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/tiptap-utils/-/tiptap-utils-1.8.3.tgz#fdfc8f7888f6e9ed0dae081f5f66b9f5429608a9"
   integrity sha512-SgqDTCA5ux17KKTpEV2YC54ugBWU2jzpiFlCmVckPjYl5BhmOwuJ1Q5H/8v/XGcnHDqP31Ui4lk31Vts4NmtTA==
@@ -8155,30 +8191,6 @@ tiptap-utils@^1.3.0, tiptap-utils@^1.8.3:
     prosemirror-state "1.3.2"
     prosemirror-tables "1.0.0"
     prosemirror-utils "0.9.6"
-
-tiptap-vuetify@^2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/tiptap-vuetify/-/tiptap-vuetify-2.8.0.tgz#818d128abd08921126d4c991cd287e36ceeb7551"
-  integrity sha512-ZepUNwCTczCl77tslVhfppcQNpjcDMOFW0aXUtaSj8aUFpERUr61XjognXI4NPh9QL3okysD4xWZQIFp+nfgJQ==
-  dependencies:
-    tiptap "1.16.2"
-    tiptap-extensions "^1.14.0"
-
-tiptap@1.16.2:
-  version "1.16.2"
-  resolved "https://registry.yarnpkg.com/tiptap/-/tiptap-1.16.2.tgz#0a94ea8f58cccafd56439bcbd29fa9c6071ed90a"
-  integrity sha512-krMpbrQDvSwcp0FIUFjZgmlZUc65kvno+ASecp2G13DJUoAeYHTUW7AKng53xJP/rMm9ubc3q9XA6e6B5Bf+mA==
-  dependencies:
-    prosemirror-commands "^1.0.7"
-    prosemirror-dropcursor "^1.1.1"
-    prosemirror-gapcursor "^1.0.3"
-    prosemirror-inputrules "^1.0.1"
-    prosemirror-keymap "^1.0.1"
-    prosemirror-model "^1.7.0"
-    prosemirror-state "^1.2.1"
-    prosemirror-view "^1.8.9"
-    tiptap-commands "^1.7.1"
-    tiptap-utils "^1.3.0"
 
 tiptap@^1.26.5:
   version "1.26.5"
@@ -8283,11 +8295,6 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-trumbowyg@^2.14.0:
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.20.0.tgz#4418fc42d628d4763553e9bc97e4efd880113daf"
-  integrity sha512-XdGZtc2eVF7LsMjb/Ilcgqj4ClkPlXz79mxbaQGvBttGodj36JF+HggHGgqtTAcqVXHx0viz9lYPf14zz1rRaA==
-
 tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"
@@ -8350,6 +8357,13 @@ turbolinks@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/turbolinks/-/turbolinks-5.2.0.tgz#e6877a55ea5c1cb3bb225f0a4ae303d6d32ff77c"
   integrity sha512-pMiez3tyBo6uRHFNNZoYMmrES/IaGgMhQQM+VFF36keryjb5ms0XkVpmKHkfW/4Vy96qiGW3K9bz0tF5sK9bBw==
+
+turndown@^4.0.1:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/turndown/-/turndown-4.0.2.tgz#c3ddb8ba32a3665723599be2f4e7860adb6042ae"
+  integrity sha512-pqZ6WrHFGnxXC9q2xJ3Qa7EoLAwrojgFRajWZjxTKwbz9vnNnyi8lLjiD5h86UTPOcMlEyHjm6NMhjEDdlc25A==
+  dependencies:
+    jsdom "^11.9.0"
 
 turndown@^5.0.3:
   version "5.0.3"
@@ -8639,6 +8653,11 @@ vue-hot-reload-api@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
 
+vue-i18n@^8.15.1:
+  version "8.15.1"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.15.1.tgz#90097a08a1e932f645c6b9c404c780d24f6d6224"
+  integrity sha512-GBbz8qYCu0U2LNu4IcuFLZiuyninG4k26knvhL7GZG5Ncp4RR2VKDEH6g8gQ6I+UUBCvH2MBQVPSdxWe4DBkPw==
+
 vue-lazyload@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/vue-lazyload/-/vue-lazyload-1.3.3.tgz#4df50a271bde9b74c3caf7a228d6e0af50d5682f"
@@ -8705,14 +8724,6 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
-
-vue-trumbowyg@^3.4.2:
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/vue-trumbowyg/-/vue-trumbowyg-3.4.2.tgz#46eec0d176f6cec3d91bc0e317f7a9a47b7d2ec2"
-  integrity sha512-5iyuloAQ0F6z8qM9ciZOetQE8FqFxKi3+SAJZkJaEgUUh9Er4nhkwcKWWvbuVl5ie/+NWR8xzklUmTmQRvQBAw==
-  dependencies:
-    jquery ">=1.8"
-    trumbowyg "^2.14.0"
 
 vue2-selectize@^1.1.7:
   version "1.1.7"

@@ -1,10 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "hose1021/devhub",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The DevHub.",
     "keywords": [
-        "framework",
-        "laravel"
+        "social"
     ],
     "license": "MIT",
     "require": {
@@ -22,8 +21,10 @@
         "league/commonmark": "^1.0",
         "league/commonmark-ext-table": "^2.0",
         "mews/purifier": "3.*",
+        "oscarafdev/migrations-generator": "^2.0",
         "parsedown/laravel": "^1.1",
         "renatomarinho/laravel-page-speed": "^1.8",
+        "spatie/laravel-fractal": "^5.6",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-responsecache": "^6.1",
         "webuni/commonmark-table-extension": "^1.0"

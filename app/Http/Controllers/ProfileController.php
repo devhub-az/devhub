@@ -27,11 +27,11 @@ class ProfileController extends Controller
     public function followUser(int $profileId)
     {
         $user = User::find($profileId);
-        if (! $user) {
+        if (!$user) {
             return back()->with('error', 'User does not exist.');
         }
 
-        if (! Auth::check()) {
+        if (!Auth::check()) {
             return redirect('login');
         }
 
@@ -50,7 +50,7 @@ class ProfileController extends Controller
     public function unFollowUser(int $profileId)
     {
         $user = User::find($profileId);
-        if (! $user) {
+        if (!$user) {
             return redirect()->back()->with('error', 'User does not exist.');
         }
         $user->followers()->detach(auth()->user()->id);

@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         $user = User::where('username', '=', $username)->get()->first();
         $isFollowing = 'false';
-        if ($user == null) {
+        if ($user === null) {
             abort('404');
         } elseif (Auth::check()) {
             $isFollowing = $user->isFollowing(Auth::user());

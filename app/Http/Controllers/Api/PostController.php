@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
 use App\Models\Post;
+use App\Transformers\PostTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class PostController extends Controller
+class PostController extends ApiController
 {
     private $count;
     private $day = 1;
@@ -38,9 +39,12 @@ class PostController extends Controller
      */
     public function posts(): PostsCollection
     {
-        return new PostsCollection(Post::where(\DB::raw('DATE(created_at)'), '=', \DB::raw('DATE_SUB(CURDATE(), INTERVAL '.$this->count.' DAY)'))->orderBy('votes', 'DESC')->orderBy('created_at', 'DESC')
+        return new PostsCollection(Post::where('created_at', '>=',
+            DB::raw('DATE_SUB(NOW(), INTERVAL ' . $this->count . ' DAY)'))->orderBy('votes',
+            'DESC')->orderBy('created_at', 'DESC')
             ->with('creator:id,username')
             ->with('comments:body')
+            ->take(50)
             ->paginate(5));
     }
 
@@ -52,6 +56,7 @@ class PostController extends Controller
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->with('creator:id,username')
             ->with('comments:body')
+            ->take(50)
             ->paginate(5));
     }
 
@@ -67,6 +72,15 @@ class PostController extends Controller
             })
             ->with('creator:id,username')
             ->with('comments:body')
+            ->take(50)
             ->paginate(5));
+    }
+
+    public function show(Request $request)
+    {
+        return $this->respondWith(
+            Post::orderBy('created_at', 'DESC')->paginate(10)->appends([ 'include' => $request->input('include')]),
+            new PostTransformer
+        );
     }
 }

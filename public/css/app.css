@@ -5393,8 +5393,9 @@ a {
   list-style: none;
 }
 .content_right .default-block .default-block__content .list-hubs__hub-image-block {
-  width: 100%;
+  width: 64px;
   height: 64px;
+  margin: 0 auto;
 }
 .content_right .default-block .default-block__footer {
   border-top: 1px solid #d5dddf;
@@ -6797,17 +6798,42 @@ i.icon {
 .badge[data-badge]:after {
   content: attr(data-badge);
   position: absolute;
-  top: -65%;
-  right: -20%;
-  font-size: 0.7em;
+  font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: 500;
   background: var(--color-blue);
   color: var(--color-white);
-  width: 18px;
-  height: 18px;
-  text-align: center;
-  line-height: 18px;
-  border-radius: 50%;
-  box-shadow: 0 0 1px #333;
+  top: -50%;
+  right: 0;
+  -webkit-transform: translateX(33%);
+          transform: translateX(33%);
+  height: 17px;
+  border-radius: 22px;
+  border: 2px solid #fff;
+  padding: 0 5px;
+  font-size: 11px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.badge[data-posts-badge]:after {
+  content: attr(data-posts-badge);
+  position: absolute;
+  font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  color: var(--color-green);
+  top: -40%;
+  right: -20%;
+  -webkit-transform: translateX(33%);
+  transform: translateX(33%);
+  height: 17px;
+  padding: 0 5px;
+  font-size: 11px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
 blockquote {

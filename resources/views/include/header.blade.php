@@ -22,7 +22,7 @@
             </ul>
         </div>
         <form id="form_search" action="/search-result" class="form-search" accept-charset="UTF-8" method="POST">
-            {!! Form::token() !!}
+            @csrf
             <div class="header_search">
                 <input id="search_input" type="text" class="search" autocomplete="off" name="search" maxlength="48"
                        minlength="3" placeholder="Paylasma ya hub axtar" required="required">
@@ -37,7 +37,9 @@
                 <a href="{{ route('login') }}" class="btn btn-primary btn_navbar_login">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qeydiyyatdan Keç</a>
             @else
-                <notification></notification>
+                <a href="{{ route('tracker') }}"><i class="icon feather icon-bell badge" @if (Auth::user()->unreadNotifications->count() > 0)
+                    data-badge="{{ Auth::user()->unreadNotifications->count() }}"
+                @endif></i></a>
                 <a href="{{ route('create_post') }}" class="btn btn-primary button_add">
                     Yazmağ
                 </a>
@@ -49,5 +51,5 @@
     </div>
 </header>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" {{-- style="display: none;" --}}>
-    {{ csrf_field() }}
+    @csrf
 </form>
