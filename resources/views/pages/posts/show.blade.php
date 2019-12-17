@@ -151,7 +151,7 @@
                         @if ($comments)
                             @foreach($comments as $comment)
                                 <div class="post-comment"
-                                     @if($comment->parent_id != null) style="margin-left:40px;" @endif>
+                                     @if($comment->parent_id != null) style="margin-left:40px;" @endif id="post_{{$comment->id}}">
                                     <img class="comment-avatar" src="" alt="">
                                     <div class="comment-body">
                                         <div class="flex">

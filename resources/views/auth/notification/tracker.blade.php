@@ -19,7 +19,7 @@
                         <div class="post-content">
                             <div class="post-content__item" style="padding: 2%;">
                                 <header class="post__meta">
-                                    <a href="#" class="post__user-info user-info"
+                                    <a href="{{"/users/@" . $notification->data['creator'] }}" class="post__user-info user-info"
                                        title="Paylaşmanın müəllifi">
                                         <img src="{{ asset('images/profile/deadpool.gif') }}" alt="user avatar"
                                              class="user__avatar">

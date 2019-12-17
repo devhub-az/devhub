@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.symfony.component" name="Tool_based_on_Symfony_Console_14.10.2019, 18:00_a" invoke="C:\xampp\php\php.exe C:\Users\User\Desktop\devhub\artisan" alias="a" enabled="true" version="2">
+<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.symfony.component" name="Tool_based_on_Symfony_Console_13.11.2019, 10:10_a" invoke="php.exe C:\Users\user\Desktop\devhub\artisan" alias="a" enabled="true" version="2">
   <extraData><![CDATA[version:3]]></extraData>
   <command>
     <name>clear-compiled</name>
@@ -135,7 +135,7 @@
   </command>
   <command>
     <name>help</name>
-    <help><![CDATA[The <b>help</b> command displays help for a given command:<br> <br> <b>php C:\Users\User\Desktop\devhub\artisan help list</b><br> <br> You can also output the help in other formats by using the <comment>--format</comment> option:<br> <br> <b>php C:\Users\User\Desktop\devhub\artisan help --format=xml list</b><br> <br> To display the list of available commands, please use the <b>list</b> command.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--format</td><td></td><td>The output format (txt, xml, json, or md)</td></tr> <tr><td>--raw</td><td></td><td>To output raw command help</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
+    <help><![CDATA[The <b>help</b> command displays help for a given command:<br> <br> <b>php C:\Users\user\Desktop\devhub\artisan help list</b><br> <br> You can also output the help in other formats by using the <comment>--format</comment> option:<br> <br> <b>php C:\Users\user\Desktop\devhub\artisan help --format=xml list</b><br> <br> To display the list of available commands, please use the <b>list</b> command.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--format</td><td></td><td>The output format (txt, xml, json, or md)</td></tr> <tr><td>--raw</td><td></td><td>To output raw command help</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
     <params>command_name[=null]</params>
     <optionsBefore>
       <option name="--format" shortcut="" pattern="equals">
@@ -254,7 +254,7 @@
   </command>
   <command>
     <name>list</name>
-    <help><![CDATA[The <b>list</b> command lists all commands:<br> <br> <b>php C:\Users\User\Desktop\devhub\artisan list</b><br> <br> You can also display the commands for a specific namespace:<br> <br> <b>php C:\Users\User\Desktop\devhub\artisan list test</b><br> <br> You can also output the information in other formats by using the <comment>--format</comment> option:<br> <br> <b>php C:\Users\User\Desktop\devhub\artisan list --format=xml</b><br> <br> It's also possible to get raw list of commands (useful for embedding command runner):<br> <br> <b>php C:\Users\User\Desktop\devhub\artisan list --raw</b><br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--raw</td><td></td><td>To output raw command list</td></tr> <tr><td>--format</td><td></td><td>The output format (txt, xml, json, or md)</td></tr> </table> <br/>]]></help>
+    <help><![CDATA[The <b>list</b> command lists all commands:<br> <br> <b>php C:\Users\user\Desktop\devhub\artisan list</b><br> <br> You can also display the commands for a specific namespace:<br> <br> <b>php C:\Users\user\Desktop\devhub\artisan list test</b><br> <br> You can also output the information in other formats by using the <comment>--format</comment> option:<br> <br> <b>php C:\Users\user\Desktop\devhub\artisan list --format=xml</b><br> <br> It's also possible to get raw list of commands (useful for embedding command runner):<br> <br> <b>php C:\Users\user\Desktop\devhub\artisan list --raw</b><br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--raw</td><td></td><td>To output raw command list</td></tr> <tr><td>--format</td><td></td><td>The output format (txt, xml, json, or md)</td></tr> </table> <br/>]]></help>
     <params>namespace[=null]</params>
     <optionsBefore>
       <option name="--raw" shortcut="">
@@ -481,37 +481,6 @@
     </optionsBefore>
   </command>
   <command>
-    <name>app:name</name>
-    <help><![CDATA[Set the application namespace<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
-    <params>name</params>
-    <optionsBefore>
-      <option name="--help" shortcut="-h">
-        <help><![CDATA[Display this help message]]></help>
-      </option>
-      <option name="--quiet" shortcut="-q">
-        <help><![CDATA[Do not output any message]]></help>
-      </option>
-      <option name="--verbose" shortcut="-v">
-        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
-      </option>
-      <option name="--version" shortcut="-V">
-        <help><![CDATA[Display this application version]]></help>
-      </option>
-      <option name="--ansi" shortcut="">
-        <help><![CDATA[Force ANSI output]]></help>
-      </option>
-      <option name="--no-ansi" shortcut="">
-        <help><![CDATA[Disable ANSI output]]></help>
-      </option>
-      <option name="--no-interaction" shortcut="-n">
-        <help><![CDATA[Do not ask any interactive question]]></help>
-      </option>
-      <option name="--env" shortcut="" pattern="equals">
-        <help><![CDATA[The environment the command should run under]]></help>
-      </option>
-    </optionsBefore>
-  </command>
-  <command>
     <name>auth:clear-resets</name>
     <help><![CDATA[Flush expired password reset tokens<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
     <params>name[=null]</params>
@@ -706,6 +675,48 @@
       </option>
       <option name="--database" shortcut="" pattern="equals">
         <help><![CDATA[The database connection to seed]]></help>
+      </option>
+      <option name="--force" shortcut="">
+        <help><![CDATA[Force the operation to run when in production]]></help>
+      </option>
+      <option name="--help" shortcut="-h">
+        <help><![CDATA[Display this help message]]></help>
+      </option>
+      <option name="--quiet" shortcut="-q">
+        <help><![CDATA[Do not output any message]]></help>
+      </option>
+      <option name="--verbose" shortcut="-v">
+        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
+      </option>
+      <option name="--version" shortcut="-V">
+        <help><![CDATA[Display this application version]]></help>
+      </option>
+      <option name="--ansi" shortcut="">
+        <help><![CDATA[Force ANSI output]]></help>
+      </option>
+      <option name="--no-ansi" shortcut="">
+        <help><![CDATA[Disable ANSI output]]></help>
+      </option>
+      <option name="--no-interaction" shortcut="-n">
+        <help><![CDATA[Do not ask any interactive question]]></help>
+      </option>
+      <option name="--env" shortcut="" pattern="equals">
+        <help><![CDATA[The environment the command should run under]]></help>
+      </option>
+    </optionsBefore>
+  </command>
+  <command>
+    <name>db:wipe</name>
+    <help><![CDATA[Drop all tables, views, and types<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--database</td><td></td><td>The database connection to use</td></tr> <tr><td>--drop-views</td><td></td><td>Drop all tables and views</td></tr> <tr><td>--drop-types</td><td></td><td>Drop all tables and types (Postgres only)</td></tr> <tr><td>--force</td><td></td><td>Force the operation to run when in production</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
+    <optionsBefore>
+      <option name="--database" shortcut="" pattern="equals">
+        <help><![CDATA[The database connection to use]]></help>
+      </option>
+      <option name="--drop-views" shortcut="">
+        <help><![CDATA[Drop all tables and views]]></help>
+      </option>
+      <option name="--drop-types" shortcut="">
+        <help><![CDATA[Drop all tables and types (Postgres only)]]></help>
       </option>
       <option name="--force" shortcut="">
         <help><![CDATA[Force the operation to run when in production]]></help>
@@ -1059,42 +1070,6 @@
       </option>
       <option name="--force" shortcut="">
         <help><![CDATA[Force the operation to run when in production]]></help>
-      </option>
-      <option name="--help" shortcut="-h">
-        <help><![CDATA[Display this help message]]></help>
-      </option>
-      <option name="--quiet" shortcut="-q">
-        <help><![CDATA[Do not output any message]]></help>
-      </option>
-      <option name="--verbose" shortcut="-v">
-        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
-      </option>
-      <option name="--version" shortcut="-V">
-        <help><![CDATA[Display this application version]]></help>
-      </option>
-      <option name="--ansi" shortcut="">
-        <help><![CDATA[Force ANSI output]]></help>
-      </option>
-      <option name="--no-ansi" shortcut="">
-        <help><![CDATA[Disable ANSI output]]></help>
-      </option>
-      <option name="--no-interaction" shortcut="-n">
-        <help><![CDATA[Do not ask any interactive question]]></help>
-      </option>
-      <option name="--env" shortcut="" pattern="equals">
-        <help><![CDATA[The environment the command should run under]]></help>
-      </option>
-    </optionsBefore>
-  </command>
-  <command>
-    <name>make:auth</name>
-    <help><![CDATA[Scaffold basic login and registration views and routes<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--views</td><td></td><td>Only scaffold the authentication views</td></tr> <tr><td>--force</td><td></td><td>Overwrite existing views by default</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td></td><td>The environment the command should run under</td></tr> </table> <br/>]]></help>
-    <optionsBefore>
-      <option name="--views" shortcut="">
-        <help><![CDATA[Only scaffold the authentication views]]></help>
-      </option>
-      <option name="--force" shortcut="">
-        <help><![CDATA[Overwrite existing views by default]]></help>
       </option>
       <option name="--help" shortcut="-h">
         <help><![CDATA[Display this help message]]></help>

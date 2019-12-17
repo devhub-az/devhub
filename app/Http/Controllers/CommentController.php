@@ -35,6 +35,6 @@ class CommentController extends Controller
         $comment->body = $request->body;
         $comment->save();
 
-        return back();
+        return \Redirect::to(\URL::previous() . "#post_" . $comment->id);
     }
 }
