@@ -19,8 +19,8 @@
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
     </script>
-    {{-- <script src="{{ asset('js/highlight.min.js') }}"></script> --}}
-    <script src="{{ asset('js/highlight.pack.js') }}"></script>
+    {{-- <script src="{{ secure_asset('js/highlight.min.js') }}"></script> --}}
+    <script src="{{ secure_asset('js/highlight.pack.js') }}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
     {{-- CSS --}}
@@ -28,23 +28,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.css" />
-    <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/feather-font/src/css/iconfont.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/balloon.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('plugins/UI-Icon/icon.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('plugins/feather-font/src/css/iconfont.css') }}">
     {{-- iziToast --}}
-    <link rel="stylesheet" href="{{ asset('plugins/iziToast/dist/css/iziToast.min.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('plugins/iziToast/dist/css/iziToast.min.css') }}">
     {{-- endiziToast --}}
-    <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
     @yield('css')
 
     {{-- favicon --}}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('favicon//site.webmanifest') }}">
-    <link rel="mask-icon" href="{{ asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ secure_asset('favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ secure_asset('favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ secure_asset('favicon//site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ secure_asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
@@ -71,9 +71,9 @@
 {{-- Footer --}}
 @include('include.footer')
 
-<script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('plugins/iziToast/dist/js/iziToast.min.js') }}"></script>
-<script src="{{ asset('js/stickybits.min.js') }}"></script>
+<script src="{{ secure_asset('js/app.js') }}"></script>
+<script src="{{ secure_asset('plugins/iziToast/dist/js/iziToast.min.js') }}"></script>
+<script src="{{ secure_asset('js/stickybits.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js" integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.js"></script>
