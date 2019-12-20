@@ -11,21 +11,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        $this->call(RoleTableSeeder::class);
-//        $this->call(HubsTableSeeder::class);
-//        $this->call(AuthorTableSeeder::class);
-//        $this->call(CommentsTableSeeder::class);
-//        $this->call(FollowersTableSeeder::class);
-//        $this->call(HubFollowersTableSeeder::class);
-//        $this->call(MediaTableSeeder::class);
-//        $this->call(MigrationsTableSeeder::class);
-//        $this->call(NotificationStatusTableSeeder::class);
-//        $this->call(NotificationsTableSeeder::class);
-//        $this->call(PasswordResetsTableSeeder::class);
-//        $this->call(PostFavoritesTableSeeder::class);
-//        $this->call(PostHubsTableSeeder::class);
-//        $this->call(PostVotesTableSeeder::class);
-//        $this->call(PostsTableSeeder::class);
+
+        $this->call(AuthorTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
+        $this->call(FollowersTableSeeder::class);
+        $this->call(HubFollowersTableSeeder::class);
+        $this->call(HubsTableSeeder::class);
+        $this->call(LocalizationTableSeeder::class);
+        $this->call(MediaTableSeeder::class);
+        $this->call(MigrationsTableSeeder::class);
+        $this->call(NotificationStatusTableSeeder::class);
+        $this->call(NotificationsTableSeeder::class);
+        $this->call(OauthAccessTokensTableSeeder::class);
+        $this->call(OauthAuthCodesTableSeeder::class);
+        $this->call(OauthClientsTableSeeder::class);
+        $this->call(OauthPersonalAccessClientsTableSeeder::class);
+        $this->call(OauthRefreshTokensTableSeeder::class);
+        $this->call(PasswordResetsTableSeeder::class);
+        $this->call(PostFavoritesTableSeeder::class);
+        $this->call(PostHubsTableSeeder::class);
+        $this->call(PostVotesTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
+        $this->call(PostsViewsTableSeeder::class);
     }
 }

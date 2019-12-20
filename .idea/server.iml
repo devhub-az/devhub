@@ -66,6 +66,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/nunomaduro/phpinsights" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/object-calisthenics/phpcs-calisthenics-rules" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/opis/closure" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/orangehill/iseed" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/oscarafdev/laravel-4-generators" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/oscarafdev/migrations-generator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/paragonie/random_compat" />
