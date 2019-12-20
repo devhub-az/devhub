@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
 });
 
-Route::prefix('api')->group(function () {
+Route::group(['middleware' => ['cors'], 'prefix' => 'api'], function () {
     /*
      * Posts Api
      */
