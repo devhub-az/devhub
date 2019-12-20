@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \Spatie\ResponseCache\Middlewares\CacheResponse::class,
+        \App\Http\Middleware\Cors::class,
     ];
 
     /**
@@ -66,7 +67,6 @@ class Kernel extends HttpKernel
         'verified'      => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         // 'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
 
-        'cors' => \App\Http\Middleware\Cors::class,
         // Cache
 
         'doNotCacheResponse' => \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class,
