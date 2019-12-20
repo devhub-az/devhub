@@ -7,7 +7,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4.1",
         "alphametric/laravel-validation-rules": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.6",
         "fideloper/proxy": "^4.0",
@@ -27,7 +27,7 @@
         "renatomarinho/laravel-page-speed": "^1.8",
         "spatie/laravel-fractal": "^5.6",
         "spatie/laravel-medialibrary": "^7.0.0",
-        "spatie/laravel-responsecache": "^6.3",
+        "spatie/laravel-responsecache": "^6.1",
         "webuni/commonmark-table-extension": "^1.0"
     },
     "require-dev": {
