@@ -29,13 +29,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.css" />
 
-    <link rel="preload" href="{{ asset('/fonts/icomoon.eot?j8mj0v') }}" as="font" type="font/eot" crossorigin>
-    <link rel="preload" href="{{ asset('/fonts/MontDemo-Heavy.otf') }}" as="font" type="font/otf" crossorigin>
-    <link rel="preload" href="{{ asset('/fonts/nova.ttf') }}" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="{{ asset('/fonts/icomoon.woff') }}" as="font" type="font/woff" crossorigin>
-    <link rel="preload" href="{{ asset('/fonts/Montserrat-black.ttf') }}" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="{{ asset('/fonts/Montserrat-bold.ttf') }}" as="font" type="font/ttf" crossorigin>
-    <link rel="preload" href="{{ asset('/fonts/Montserrat-regular.ttf') }}" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ secure_asset('/fonts/icomoon.eot?j8mj0v') }}" as="font" type="font/eot" crossorigin>
+    <link rel="preload" href="{{ secure_asset('/fonts/MontDemo-Heavy.otf') }}" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="{{ secure_asset('/fonts/nova.ttf') }}" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ secure_asset('/fonts/icomoon.woff') }}" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="{{ secure_asset('/fonts/Montserrat-black.ttf') }}" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ secure_asset('/fonts/Montserrat-bold.ttf') }}" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="{{ secure_asset('/fonts/Montserrat-regular.ttf') }}" as="font" type="font/ttf" crossorigin>
 
     <link rel="stylesheet" href="{{ secure_asset('css/balloon.css') }}">
     <link rel="stylesheet" href="{{ secure_asset('css/normalize.css') }}">

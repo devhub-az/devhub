@@ -24,6 +24,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //check that app is local
+        if ($this->app->isLocal()) {
+            //if local register your services you require for development
+            $this->app->register('Barryvdh\Debugbar\ServiceProvider');
+        }else{
+            //else register your services you require for production
+            $this->app['request']->server->set('HTTPS', true);
+        }
         $this->app->singleton(Parsedown::class);
         \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
