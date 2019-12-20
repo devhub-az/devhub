@@ -7,7 +7,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4.1",
+        "php": "^7.3",
         "alphametric/laravel-validation-rules": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.6",
         "fideloper/proxy": "^4.0",
