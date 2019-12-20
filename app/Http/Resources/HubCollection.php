@@ -22,7 +22,7 @@ class HubCollection extends JsonResource
             'logo'                => $this->logo,
             'rating'              => $this->rating,
             'description'         => $this->description[\App::getLocale()],
-            'name'                => $this->name,
+            'name'                => strtolower($this->name),
             'border'              => $this->logo ? ColorThief::getColor('./' . $this->logo) : ColorThief::getColor('.//images/empty/code.png'),
             'hub_followers_count' => \Numeric::number_format_short(count($this->hubFollowers)),
             'follower_check'      => $this->statusCheck('following'),
