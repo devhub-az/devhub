@@ -40,7 +40,7 @@ class PostController extends ApiController
     public function posts(): PostsCollection
     {
         return new PostsCollection(Post::where('created_at', '>=',
-            DB::raw('DATE_SUB(NOW(), INTERVAL ' . $this->count . ' DAY)'))->orderBy('votes',
+            DB::raw('DATE_SUB(NOW(), INTERVAL "' . $this->count . '" DAY)'))->orderBy('votes',
             'DESC')->orderBy('created_at', 'DESC')
             ->with('creator:id,username')
             ->with('comments:body')
