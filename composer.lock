@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a746d01d54c66510234a1d0bcc119e2",
+    "content-hash": "66ff1eff85e9c6d084edd4d707294abb",
     "packages": [
         {
             "name": "alphametric/laravel-validation-rules",
@@ -9386,7 +9386,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4.1"
+        "php": "^7.3"
     },
     "platform-dev": []
 }
