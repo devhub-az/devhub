@@ -29,7 +29,8 @@
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-responsecache": "^6.1",
         "webuni/commonmark-table-extension": "^1.0",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-imagick": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
