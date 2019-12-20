@@ -27,7 +27,7 @@
         "renatomarinho/laravel-page-speed": "^1.8",
         "spatie/laravel-fractal": "^5.6",
         "spatie/laravel-medialibrary": "^7.0.0",
-        "spatie/laravel-responsecache": "^6.1",
+        "spatie/laravel-responsecache": "^6.3",
         "webuni/commonmark-table-extension": "^1.0"
     },
     "require-dev": {
