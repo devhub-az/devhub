@@ -28,15 +28,14 @@
                         <label>
                             <input class="prompt search" type="text" placeholder="Hub axtar">
                         </label>
-                        <i class="icon feather icon-search"></i>
+                        <i class="icon feather icon-search"/>
                     </div>
                     <div class="results"></div>
                 </div>
                 <hubs-list
-                    fetch-url="{{ route('hubs-list') }}"
-                    locale="{{ App::getLocale() }}"
-                    :columns="['name', 'posts_count', 'rating']"
-                ></hubs-list>
+                        fetch-url="{{ route('hubs-list') }}"
+                        locale="{{ App::getLocale() }}"
+                        :columns="['name', 'posts_count', 'rating']"/>
             </div>
             {{-- Right --}}
             <div class="content_right">
@@ -51,14 +50,14 @@
                                 <a href="/hubs/{{ $hub['id'] ?? '' }}">
                                     <li style="display: grid;grid-template-columns: 23% 75%;gap: 3%;margin-bottom: 12px;">
                                         <img class="list-hubs__hub-image-block"
-                                             src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
+                                             src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
                                         <div class="list-hubs__obj-body">
                                             <div class="block-hubs__title-link">
                                                 {{ $hub['name'] }}
                                             </div>
                                             <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                                 <br>
                                                 <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-star"></i> Reyting {{ $hub['rating'] ?? '' }}
@@ -81,13 +80,13 @@
                             @foreach ($top_followed_hubs as $hub)
                                 <li style="display: grid;grid-template-columns: 23% 75%;gap: 3%;margin-bottom: 12px;">
                                     <img class="list-hubs__hub-image-block"
-                                         src="{{ $hub['logo'] ?? '/images/empty/code.png' }}" alt="">
+                                         src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
                                     <div class="list-hubs__obj-body">
                                         <div class="block-hubs__title-link">
                                             <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
                                         <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                             <br>
                                             <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}
