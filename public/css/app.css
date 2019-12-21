@@ -6931,3 +6931,30 @@ blockquote cite {
 .twitter-tweet {
   margin: 0 auto;
 }
+
+.slide-enter {
+  top: 10px;
+  opacity: 0.5;
+}
+
+.slide-enter-active, .slide-leave-active {
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+
+.slide-enter-to {
+  top: 0px;
+  opacity: 1;
+}
+
+.slide-leave {
+  top: 0px;
+  opacity: 1;
+}
+
+.slide-leave-to {
+  top: -30px;
+  opacity: 0;
+  -webkit-transform: blur(8px);
+          transform: blur(8px);
+}

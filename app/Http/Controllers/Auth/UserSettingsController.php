@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\MessageBag;
+use Illuminate\Validation\ValidationException;
 
 class UserSettingsController extends Controller
 {
@@ -18,7 +20,9 @@ class UserSettingsController extends Controller
     public function index(Request $request)
     {
         if (\Auth::User()->username === $request->username) {
-            return view('auth.settings.profile');
+            $user = \Auth::user();
+            $user->email = substr_replace($user->email, '***', 2, strpos($user->email,"@")-2);
+            return view('auth.settings.profile', compact("user"));
         }
 
         return abort(404);
@@ -60,19 +64,20 @@ class UserSettingsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param int $id
+     * @param UserProfile $request
      * @return void
      */
-    public function update(Request $request)
+    public function update(UserProfile $request)
     {
-        $this->validate($request, [
-            'name'      => 'required|string',
-            'specialty' => 'required|string',
-            'body'      => 'required',
-        ]);
+        $user = \Auth::user();
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email ? $request->email : \Auth::user()->email;
+        $user->about = $request->about;
 
-        return response()->json(null, 200);
+        $user->save();
+
+        return response()->json($user, 200);
     }
 
     /**

@@ -156,7 +156,7 @@
                                     <div class="comment-body">
                                         <div class="flex">
                                             <a class="comment-author"
-                                               href="{{ url('@' . $comment->author->username) }}">
+                                               href="{{ url('users/@' . $comment->author->username) }}">
                                                 <span>{{ $comment->author->username }}</span>
                                             </a>
                                             <div class="comment-time">
@@ -211,7 +211,7 @@
                         <div class="content">
                             <div class="header">
                                 <a class="author_name"
-                                   href="{{ url('@' . $post['creator']['username']) }}">{{ '@' . $post['creator']['username'] }}</a>
+                                   href="{{ url('users/@' . $post['creator']['username']) }}">{{ '@' . $post['creator']['username'] }}</a>
                                 <span class="author">Müəllif</span>
                             </div>
                             <div class="media-obj__body media-obj__body_user-info">

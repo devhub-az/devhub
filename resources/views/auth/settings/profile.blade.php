@@ -6,7 +6,7 @@
             @include('auth.settings.layout.tabs')
         </div>
         <div class="post-content">
-            <profile-settings :auth="{{ Auth::User() }}"></profile-settings>
+            <profile-settings :auth="{{ $user }}"></profile-settings>
         </div>
     </div>
 @endsection

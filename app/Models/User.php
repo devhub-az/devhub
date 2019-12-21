@@ -15,11 +15,20 @@ class User extends Authenticatable implements HasMedia
 {
     use Notifiable, HasMediaTrait, PermissionManager;
 
+    protected $visible = [
+        'username',
+        'name',
+        'surname',
+        'email',
+        'about'
+    ];
 
     protected $fillable = [
         'username',
         'name',
+        'surname',
         'email',
+        'about',
         'password',
     ];
 

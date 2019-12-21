@@ -2825,3 +2825,30 @@ blockquote {
 .twitter-tweet {
     margin: 0 auto;
 }
+
+
+//Slide
+.slide-enter {
+    top: 10px;
+    opacity: 0.5;
+}
+
+.slide-enter-active, .slide-leave-active {
+    transition: all .15s;
+}
+
+.slide-enter-to {
+    top: 0px;
+    opacity: 1;
+}
+
+.slide-leave {
+    top: 0px;
+    opacity: 1;
+}
+
+.slide-leave-to {
+    top: -30px;
+    opacity: 0;
+    transform: blur(8px);
+}

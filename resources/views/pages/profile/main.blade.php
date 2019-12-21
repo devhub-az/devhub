@@ -30,7 +30,7 @@
 			</div>
 			<div class="profileHeaderInfo__content sc-media-content">
   				<h3 class="profileHeaderInfo__userName">
-    				{{ ucfirst($user['name']) }} <i class="icon feather icon-at-sign"></i>{{ $user['username'] }}
+    				{{ ucfirst($user['name'])  . " " . ucfirst($user['surname']) }} <i class="icon feather icon-at-sign"></i>{{ $user['username']}}
   				</h3>
     			<br>
     			<h4 class="profileHeaderInfo__additional" style="margin-top: 12px;">{{ $user['about'] }}</h4>
