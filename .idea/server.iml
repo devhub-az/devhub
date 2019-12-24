@@ -167,5 +167,6 @@
     <orderEntry type="library" name="widgets" level="application" />
     <orderEntry type="library" name="semantic" level="application" />
     <orderEntry type="library" name="dropdown" level="application" />
+    <orderEntry type="library" name="popup" level="application" />
   </component>
 </module>

@@ -6219,6 +6219,11 @@ optionator@^0.8.1:
     type-check "~0.3.2"
     word-wrap "~1.2.3"
 
+orderedmap@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/orderedmap/-/orderedmap-1.1.0.tgz#dc41a147130b51e203e8523ea5ea57724af2b63d"
+  integrity sha512-abUlPCcmyI/17BWWoUWeAbnniTFUZuczP6iowD9XMBcUoD9jRtUO6w+KXkw64TDk+iHdyDfTAjIH7mTRzhXcaw==
+
 original@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/original/-/original-1.0.2.tgz#e442a61cffe1c5fd20a65f3261c26663b303f25f"
@@ -6924,6 +6929,49 @@ promise-polyfill@^6.0.2:
   resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-6.1.0.tgz#dfa96943ea9c121fca4de9b5868cb39d3472e057"
   integrity sha1-36lpQ+qcEh/KTem1hoyznTRy4Fc=
 
+prosemirror-model@^1.0.0, prosemirror-model@^1.1.0, prosemirror-model@^1.2.0:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/prosemirror-model/-/prosemirror-model-1.8.2.tgz#c74eaacb0bbfea49b59a6d89fef5516181666a56"
+  integrity sha512-piffokzW7opZVCjf/9YaoXvTC0g7zMRWKJib1hpphPfC+4x6ZXe5CiExgycoWZJe59VxxP7uHX8aFiwg2i9mUQ==
+  dependencies:
+    orderedmap "^1.1.0"
+
+prosemirror-schema-basic@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/prosemirror-schema-basic/-/prosemirror-schema-basic-1.1.2.tgz#4bde5c339c845e0d08ec8fe473064e372ca51ae3"
+  integrity sha512-G4q8WflNsR1Q33QAV4MQO0xWrHLOJ+BQcKswGXMy626wlQj6c/1n1v4eC9ns+h2y1r/fJHZEgSZnsNhm9lbrDw==
+  dependencies:
+    prosemirror-model "^1.2.0"
+
+prosemirror-state@^1.0.0:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/prosemirror-state/-/prosemirror-state-1.3.2.tgz#1b910b0dc01c1f00926bb9ba1589f7b7ac0d658b"
+  integrity sha512-t/JqE3aR0SV9QrzFVkAXsQwsgrQBNs/BDbcFH20RssW0xauqNNdjTXxy/J/kM7F+0zYi6+BRmz7cMMQQFU3mwQ==
+  dependencies:
+    prosemirror-model "^1.0.0"
+    prosemirror-transform "^1.0.0"
+
+prosemirror-transform@^1.0.0, prosemirror-transform@^1.1.0:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/prosemirror-transform/-/prosemirror-transform-1.2.3.tgz#239d17591af24d39ef3f1999daa09e1f1c76b06a"
+  integrity sha512-PUfayeskQfuUBXktvL6207ZWRwHBFNPNPiek4fR+LgCPnBofuEb2+L0FfbNtrAwffHVs6M3DaFvJB1W2VQdV0A==
+  dependencies:
+    prosemirror-model "^1.0.0"
+
+prosemirror-view@^1.13.4:
+  version "1.13.4"
+  resolved "https://registry.yarnpkg.com/prosemirror-view/-/prosemirror-view-1.13.4.tgz#01d873db7731e0aacc410a9038447d1b7536fd07"
+  integrity sha512-mtgWEK16uYQFk3kijRlkSpAmDuy7rxYuv0pgyEBDmLT1PCPY8380CoaYnP8znUT6BXIGlJ8oTveK3M50U+B0vw==
+  dependencies:
+    prosemirror-model "^1.1.0"
+    prosemirror-state "^1.0.0"
+    prosemirror-transform "^1.1.0"
+
+prosemirror@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/prosemirror/-/prosemirror-0.11.1.tgz#4a2c40b824ededf1b1f56e6ece332621583c0887"
+  integrity sha512-IZ35mmexuo3DNkMXs2A3bAm1jdlAJRVPor/bX1AWT+TdAR9fv6igUjRUFtQDCRUKwxH7ufwL1p6Um/MdgcbVIw==
+
 proxy-addr@~2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.5.tgz#34cbd64a2d81f4b1fd21e76f9f06c8a45299ee34"
@@ -7034,6 +7082,53 @@ querystringify@^2.1.1:
   resolved "https://registry.yarnpkg.com/querystringify/-/querystringify-2.1.1.tgz#60e5a5fd64a7f8bfa4d2ab2ed6fdf4c85bad154e"
   integrity sha512-w7fLxIRCRT7U8Qu53jQnJyPkYZIaR4n5151KMfcJlO/A9397Wxb1amJvROTK6TOnp7PfoAmg/qXiNHI+08jRfA==
 
+<<<<<<< Updated upstream
+=======
+quill-auto-links@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/quill-auto-links/-/quill-auto-links-0.1.3.tgz#7da25a6da7140756b8d31cda3c4897ec6a0e76f9"
+  integrity sha512-BUXpvYfOE1qAxHWJnswUpVKMYzRQMc7GZ8zUIusMhswb0ZnAxSJWcFLeqJ/0MHUXfNwJS9nvBerOjdvb+vX6nA==
+
+quill-delta@^3.6.2:
+  version "3.6.3"
+  resolved "https://registry.yarnpkg.com/quill-delta/-/quill-delta-3.6.3.tgz#b19fd2b89412301c60e1ff213d8d860eac0f1032"
+  integrity sha512-wdIGBlcX13tCHOXGMVnnTVFtGRLoP0imqxM696fIPwIf5ODIYUHIvHbZcyvGlZFiFhK5XzDC2lpjbxRhnM05Tg==
+  dependencies:
+    deep-equal "^1.0.1"
+    extend "^3.0.2"
+    fast-diff "1.1.2"
+
+quill-image-resize-module@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/quill-image-resize-module/-/quill-image-resize-module-3.0.0.tgz#0fd93746a837336d95b2f536140416a623c71771"
+  integrity sha1-D9k3Rqg3M22VsvU2FAQWpiPHF3E=
+  dependencies:
+    lodash "^4.17.4"
+    quill "^1.2.2"
+    raw-loader "^0.5.1"
+
+quill-video-resize-module@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/quill-video-resize-module/-/quill-video-resize-module-1.0.2.tgz#0f1eb7e4fa9a904b76b1272b79b6290c94431acf"
+  integrity sha1-Dx635PqakEt2sScrebYpDJRDGs8=
+  dependencies:
+    lodash "^4.17.4"
+    quill "^1.2.2"
+    raw-loader "^0.5.1"
+
+quill@^1.2.2, quill@^1.3.6:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/quill/-/quill-1.3.7.tgz#da5b2f3a2c470e932340cdbf3668c9f21f9286e8"
+  integrity sha512-hG/DVzh/TiknWtE6QmWAF/pxoZKYxfe3J/d/+ShUWkDvvkZQVTPeVmUJVu1uE6DDooC4fWTiCLh84ul89oNz5g==
+  dependencies:
+    clone "^2.1.1"
+    deep-equal "^1.0.1"
+    eventemitter3 "^2.0.3"
+    extend "^3.0.2"
+    parchment "^1.1.4"
+    quill-delta "^3.6.2"
+
+>>>>>>> Stashed changes
 randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/randombytes/-/randombytes-2.1.0.tgz#df6f84372f0270dc65cdf6291349ab7a473d4f2a"
