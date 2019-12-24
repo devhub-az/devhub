@@ -63,7 +63,7 @@
             style="text-align: center; display: grid; grid-gap: 12px;">
             <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
             <h1 style="font-family: 'Nunito', sans-serif;"><span
-                style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
+                    style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </ul>
     </div>
 </template>
@@ -95,13 +95,13 @@
                 this.loading = true;
                 let dataFetchUrl = `${this.fetchUrl}?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
                 axios.get(dataFetchUrl).then(({data}) => {
-                        this.loading = false;
-                        this.pagination = data.meta
-                        this.hubs = data.data
-                        if (this.pagination.last_page > 50) {
-                            this.pagination.last_page = 50;
-                        }
-                    })
+                    this.loading = false;
+                    this.pagination = data.meta
+                    this.hubs = data.data
+                    if (this.pagination.last_page > 50) {
+                        this.pagination.last_page = 50;
+                    }
+                })
                     .catch(error => {
                         this.loading = false
                         this.error = true

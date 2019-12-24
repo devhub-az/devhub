@@ -17,10 +17,13 @@ Route::get('/all', 'HomeController@postsApiRoute')->name('all');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
-    Route::get('@{username}/settings', 'Auth\UserSettingsController@index')->name('settings');
-    Route::post('@{username}/settings', 'Auth\UserSettingsController@update');
     Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
+
+    Route::prefix('@{username}/settings')->group(function (){
+        Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');
+        Route::post('profile', 'Auth\UserSettingsController@update');
+    });
 });
 
 Route::prefix('api')->group(function () {

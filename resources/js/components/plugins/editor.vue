@@ -1,48 +1,51 @@
 <template>
-    <div>
-        <editor
-                :value="editorText"
-                :options="editorOptions"
-                height="500px"
-                name="body"
-                v-model="data"
-        />
-        <textarea v-model="data" name="body" style="display:none">
-        </textarea>
+    <div style="display: grid;
+    grid-template-columns: 48% 48%;
+    gap: 4%;
+    margin: 12px 0;">
+        <markdown-toolbar for="textarea_id">
+            <md-bold>bold</md-bold>
+            <md-header>header</md-header>
+            <md-italic>italic</md-italic>
+            <md-quote>quote</md-quote>
+            <md-code>code</md-code>
+            <md-link>link</md-link>
+            <md-image>image</md-image>
+            <md-unordered-list>unordered-list</md-unordered-list>
+            <md-ordered-list>ordered-list</md-ordered-list>
+            <md-task-list>task-list</md-task-list>
+            <md-mention>mention</md-mention>
+            <md-ref>ref</md-ref>
+        </markdown-toolbar>
+        <textarea :value="content" @input="update" cols="12" style="height: 200px;" id="textarea_id"></textarea>
+        <div v-html="compiledMarkdown" class="post-content__body"></div>
     </div>
 </template>
+
 <script>
-    import 'tui-editor/dist/tui-editor.css';
-    import 'codemirror/lib/codemirror.css';
-    import "tui-editor/dist/tui-editor-extTable.js";
-    import "tui-editor/dist/tui-editor-extColorSyntax.js";
-    import "tui-editor/dist/tui-editor-extScrollSync.js";
-    import "tui-color-picker/dist/tui-color-picker.css";
+    import markdown from 'markdown-it'
+    import debounce from 'lodash/debounce'
 
-    import {Editor} from '@toast-ui/vue-editor'
+    const md = new markdown().use(require('markdown-it-video')).use(require('markdown-it-highlightjs'))
+    let sanitizeHtml = require('sanitize-html')
 
+    // import 'markdown-it-vue/dist/markdown-it-vue.css'
     export default {
-        name: 'Editor',
-        components: {
-            'editor': Editor
-        },
         data() {
             return {
-                editorText: 'This is initialValue.',
-                data: '',
-                editorOptions: {
-                    minHeight: "500px",
-                    language: 'en_US',
-                    useCommandShortcut: false,
-                    useDefaultHTMLSanitizer: true,
-                    usageStatistics: true,
-                    hideModeSwitch: false,
-                    exts: [
-                        "table", "colorSyntax", "scrollSync"
-                    ]
-                },
-            };
+                content: '# your markdown content',
+            }
         },
+        computed: {
+            compiledMarkdown: function () {
+                return md.render(this.content)
+            },
+        },
+        methods: {
+            update: debounce(function (e) {
+                this.content = e.target.value;
+            }, 300)
+        }
     }
 </script>
 

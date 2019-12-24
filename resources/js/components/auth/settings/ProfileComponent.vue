@@ -1,42 +1,54 @@
 <template>
-    <div class="post-content__item">
-        <div style="height: 90px">
-            <h1 class="page-header__title">Profil parametrləri</h1>
+    <div class="settings__content">
+        <div class="settings__header">
+            <h4 class="settings__header-title">Profil məlumatları</h4>
+        </div>
+        <div class="settings__profile">
+            <img src="/images/profile/deadpool.png" alt="">
+            <div class="settings__description">
+                <div class="settigns__user-name">{{ fields.name }} {{ fields.surname }} {{ '@' + auth.username }}</div>
+                <div class="settings__user-description">{{ fields.about }}</div>
+            </div>
         </div>
         <form @submit.prevent="submit">
             <div class="form-group">
-                <label for="name">Real ad</label>
-                <span style="float:right">{{ count }}/40</span>
-                <input type="text" class="input_settings" name="name" id="name" v-model="fields.name"
-                       @keyup='remaincharCount()' :maxlength="namemaxcharacter"/>
+                <label for="name" class="settings__label">Real ad</label>
+                <span class="settings__lable-info">{{ name_count }}/40</span>
+                <input type="text" class="settings__input" name="name" id="name" v-model="fields.name"
+                       @keyup='nameCount()' :maxlength="namemaxcharacter"/>
                 <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
             </div>
 
             <div class="form-group">
-                <label for="surname">Real familia</label>
-
-                <input type="text" class="input_settings" name="surname" id="surname" v-model="fields.surname"/>
-
+                <label for="surname" class="settings__label">Real familia</label>
+                <span class="settings__lable-info">{{ surname_count }}/40</span>
+                <input type="text" class="settings__input" name="surname" id="surname" v-model="fields.surname"
+                       @keyup='surnameCount()' :maxlength="namemaxcharacter"/>
                 <div v-if="errors && errors.surname" class="text-danger">{{ errors.surname[0] }}</div>
             </div>
 
 
             <div class="form-group">
-                <label for="email">Email</label>
-                <p>Sizin emailiviz: {{email}}</p>
-                <input type="text" class="input_settings" name="email" id="email"
-                       placeholder="Əgər poçtu dəyişdirmək istəyirsinizsə.." v-model="fields.email">
+                <p class="settings__lable-info">Sizin emailiniz: {{email}}</p>
+                <label for="email" class="settings__label">Email</label>
+                <input type="text" class="settings__input" name="email" id="email"
+                       placeholder="Email ünvanı dəyişdir.." v-model="fields.email">
                 <div v-if="errors && errors.email" class="text-danger">{{ errors.email[0] }}</div>
             </div>
 
             <div class="form-group">
-                <label for="about">Ozum haqqda</label>
-                <textarea rows="10" cols="45" name="about" id="about" v-model="fields.about">
-                </textarea>
+                <label for="about" class="settings__label">İxtisas</label>
+                <span class="settings__lable-info">{{ about_count }}/40</span>
+                <input type="text" name="about" class="settings__input" id="about"
+                       placeholder="İxtisasınızı yazın. Məsələn: Database Administrator" autocomplete="off"
+                       @keyup='aboutCount()' :maxlength="namemaxcharacter"
+                       v-model="fields.about">
                 <div v-if="errors && errors.about" class="text-danger">{{ errors.about[0] }}</div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Profili yeniləmək</button>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Profili yeniləmək</button>
+            </div>
         </form>
     </div>
 </template>
@@ -65,9 +77,11 @@
                 email: "",
                 success: false,
                 loaded: true,
-                action: this.auth.username,
+                username: this.auth.username,
                 namemaxcharacter: 40,
-                count: 0,
+                name_count: 0,
+                surname_count: 0,
+                about_count: 0,
                 isChanged: false,
             }
         },
@@ -76,7 +90,9 @@
             this.fields.surname = this.auth.surname
             this.email = this.auth.email
             this.fields.about = this.auth.about
-            this.count = this.auth.name.length
+            this.about_count = this.auth.about.length
+            this.name_count = this.auth.name.length
+            this.surname_count = this.auth.surname.length
         },
         methods: {
             submit() {
@@ -85,7 +101,7 @@
                     this.loaded = false;
                     this.success = false;
                     this.errors = {}
-                    axios.post('/@' + this.action + '/settings', this.fields).then(response => {
+                    axios.post('/@' + this.username + '/settings', this.fields).then(response => {
                         this.loaded = true;
                         this.success = true;
                         if ("email" in this.fields) {
@@ -105,15 +121,30 @@
                     });
                 }
             },
-            remaincharCount: function () {
+            nameCount: function () {
                 if (this.fields.name.length > this.namemaxcharacter) {
-                    this.count = this.namemaxcharacter;
+                    this.name_count = this.namemaxcharacter;
                 } else {
                     const remainCharacters = this.fields.name.length;
-                    this.count = remainCharacters;
+                    this.name_count = remainCharacters;
                 }
             },
-
+            surnameCount: function () {
+                if (this.fields.surname.length > this.namemaxcharacter) {
+                    this.surname_count = this.namemaxcharacter;
+                } else {
+                    const remainCharacters = this.fields.surname.length;
+                    this.surname_count = remainCharacters;
+                }
+            },
+            aboutCount: function () {
+                if (this.fields.about.length > this.namemaxcharacter) {
+                    this.about_count = this.namemaxcharacter;
+                } else {
+                    const remainCharacters = this.fields.about.length;
+                    this.about_count = remainCharacters;
+                }
+            }
         },
     }
 </script>

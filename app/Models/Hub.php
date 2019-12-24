@@ -9,7 +9,6 @@ class Hub extends Model
     protected $table = 'hubs';
 
     protected $fillable = [
-        'id',
         'name',
     ];
 

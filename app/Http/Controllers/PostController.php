@@ -50,6 +50,7 @@ class PostController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+//        dd($request->all());
         $request->validate([
             'title' => 'required|string',
             'body'  => 'string',
@@ -58,14 +59,14 @@ class PostController extends Controller
 
         $share = new Post([
             'name'      => $request->get('title'),
-//            'body'      => $request->get('body'),
+            'body'      => $request->get('body'),
             'author_id' => Auth::user()->id,
         ]);
 
         $share->save();
         Notification::send(Auth::user()->followers, new PostNotify($share));
 
-        return redirect('/post/' . $request->get('id'))->with('success', 'Stock has been added');
+        return redirect('/post/' . $share->id);
     }
 
     /**
@@ -84,6 +85,7 @@ class PostController extends Controller
 
         return view('pages.posts.show', [
             'post'     => $post,
+//            'body'     => $post->body,
             'body'     => \Purifier::clean($parsedown->text($post->body)),
             'hubs'     => $post->hubs,
             'comments' => $post->comments,

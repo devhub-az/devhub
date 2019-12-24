@@ -1,0 +1,105 @@
+.settings__content {
+    font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+    min-height: 75px;
+    width: 100%;
+    color: var(--color-app-text);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background-color: var(--color-section-bg);
+    box-sizing: border-box;
+
+    > div{
+        padding: 1%;
+        border-bottom: 1px solid #d5dddf;
+    }
+
+    .settings__header {
+        color: var(--color-text);
+        background: var(--color-block-header-bg);
+
+
+        .settings__header-title{
+            font-family: "Noto Sans", sans-serif;
+            font-weight: 600;
+            padding: 0;
+        }
+    }
+
+    .settings__profile{
+        display: grid;
+        grid-template-columns: 64px auto;
+        gap: 12px;
+
+        img{
+            height: 64px;
+            width: 64px;
+            border-radius: 50%;
+        }
+
+        .settings__description{
+            line-height: 32px;
+            color: var(--color-text);
+        }
+    }
+
+    .settings__lable-info{
+        position: absolute;
+        right: 12px;
+        margin-top: 12px;
+    }
+
+    .settings__label{
+        position: absolute;
+        transform: translate(6px, -10px) scale(1);
+        color: var(--color-text);
+        transform-origin: top left;
+        display: block;
+        background-color: white;
+        padding: 0 7px;
+
+        .settings__input{
+            display: block;
+            box-sizing: border-box;
+            height: 44px;
+            font-size: 14px;
+            padding: 12px;
+            line-height: 34px;
+        }
+
+        .settings__textarea{
+            display: block;
+            box-sizing: border-box;
+            font-size: 14px;
+            padding: 12px;
+            line-height: 34px;
+        }
+    }
+}
+
+.settings-block__list{
+    color: var(--color-text);
+    list-style: none;
+    font-size: 1em;
+    line-height: 2em;
+
+    a{
+        font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+        display: inline-block;
+        color: var(--color-app-text);
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        box-sizing: border-box;
+        white-space: nowrap;
+        -webkit-font-smoothing: subpixel-antialiased;
+        text-rendering: optimizeLegibility;
+
+        &:hover{
+            background: unset;
+            color: var(--color-header-nav-hover);
+        }
+    }
+
+    .nav-links__item-link_current {
+        color: var(--color-header-nav-hover);
+    }
+}

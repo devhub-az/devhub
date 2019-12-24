@@ -42,7 +42,7 @@
                 </li>
                 <li>
                     <a
-                        :href="'/@'+ auth.username +'/settings'"
+                        :href="'/@'+ auth.username +'/settings/profile'"
                         @keydown.tab.exact="focusNext(false)"
                         @keydown.shift.tab="focusPrevious(false)"
                         @keydown.up.exact.prevent="focusPrevious(true)"

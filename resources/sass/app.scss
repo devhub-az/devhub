@@ -61,6 +61,7 @@
 @import 'mixins';
 @import 'variables';
 @import 'devhub';
+@import 'profile';
 
 * {
     @include x-box-sizing;
@@ -190,13 +191,9 @@ a[disabled] {
     text-decoration: none;
 }
 
-.input_settings{
-    display: block;
-    box-sizing: border-box;
-    height: 34px;
-    font-size: 14px;
-    padding: 12px;
-    line-height: 34px;
+.form-group{
+    position: relative;
+    margin: 22px 12px;
 }
 
 .text-danger{
@@ -322,11 +319,10 @@ a[disabled] {
     }
 }
 
-input, textarea {
+input, textarea, .editable {
     margin: 0;
     outline: 0;
     -webkit-appearance: none;
-    tap-highlight-color: rgba(255, 255, 255, 0);
     line-height: 1.2142em;
     padding: .67861429em 1em;
     font-size: 1em;
@@ -351,6 +347,19 @@ input, textarea {
         outline: 0;
         -webkit-box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
         box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+}
+
+.editable{
+    margin: 12px 0;
+
+    .medium-insert-buttons-show > span{
+        margin-top: 0 !important;
+    }
+
+    .medium-insert-buttons-show, .medium-insert-action{
+        color: rgba(0,0,0,.68) !important;
+        border: 1px solid rgba(0,0,0,.68) !important;
     }
 }
 
@@ -2428,9 +2437,9 @@ i.icon {
     -moz-osx-font-smoothing: grayscale;
     display: inline-block;
     margin-bottom: 5px;
-    color: #444;
+    color: var(--color-blue);
     vertical-align: top;
-    font-weight: 600;
+    font-weight: bold;
     font-size: 15px;
     font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
     line-height: 18px;
@@ -2824,31 +2833,4 @@ blockquote {
 
 .twitter-tweet {
     margin: 0 auto;
-}
-
-
-//Slide
-.slide-enter {
-    top: 10px;
-    opacity: 0.5;
-}
-
-.slide-enter-active, .slide-leave-active {
-    transition: all .15s;
-}
-
-.slide-enter-to {
-    top: 0px;
-    opacity: 1;
-}
-
-.slide-leave {
-    top: 0px;
-    opacity: 1;
-}
-
-.slide-leave-to {
-    top: -30px;
-    opacity: 0;
-    transform: blur(8px);
 }

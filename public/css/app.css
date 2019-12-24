@@ -4378,6 +4378,100 @@
   content: "\ED23";
 }
 
+.settings__content {
+  font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+  min-height: 75px;
+  width: 100%;
+  color: var(--color-app-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-section-bg);
+  box-sizing: border-box;
+}
+.settings__content > div {
+  padding: 1%;
+  border-bottom: 1px solid #d5dddf;
+}
+.settings__content .settings__header {
+  color: var(--color-text);
+  background: var(--color-block-header-bg);
+}
+.settings__content .settings__header .settings__header-title {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 600;
+  padding: 0;
+}
+.settings__content .settings__profile {
+  display: grid;
+  grid-template-columns: 64px auto;
+  gap: 12px;
+}
+.settings__content .settings__profile img {
+  height: 64px;
+  width: 64px;
+  border-radius: 50%;
+}
+.settings__content .settings__profile .settings__description {
+  line-height: 32px;
+  color: var(--color-text);
+}
+.settings__content .settings__lable-info {
+  position: absolute;
+  right: 12px;
+  margin-top: 12px;
+}
+.settings__content .settings__label {
+  position: absolute;
+  -webkit-transform: translate(6px, -10px) scale(1);
+          transform: translate(6px, -10px) scale(1);
+  color: var(--color-text);
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+  display: block;
+  background-color: white;
+  padding: 0 7px;
+}
+.settings__content .settings__label .settings__input {
+  display: block;
+  box-sizing: border-box;
+  height: 44px;
+  font-size: 14px;
+  padding: 12px;
+  line-height: 34px;
+}
+.settings__content .settings__label .settings__textarea {
+  display: block;
+  box-sizing: border-box;
+  font-size: 14px;
+  padding: 12px;
+  line-height: 34px;
+}
+
+.settings-block__list {
+  color: var(--color-text);
+  list-style: none;
+  font-size: 1em;
+  line-height: 2em;
+}
+.settings-block__list a {
+  font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  color: var(--color-app-text);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: optimizeLegibility;
+}
+.settings-block__list a:hover {
+  background: unset;
+  color: var(--color-header-nav-hover);
+}
+.settings-block__list .nav-links__item-link_current {
+  color: var(--color-header-nav-hover);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -4510,13 +4604,9 @@ a[disabled] {
   text-decoration: none;
 }
 
-.input_settings {
-  display: block;
-  box-sizing: border-box;
-  height: 34px;
-  font-size: 14px;
-  padding: 12px;
-  line-height: 34px;
+.form-group {
+  position: relative;
+  margin: 22px 12px;
 }
 
 .text-danger {
@@ -4629,11 +4719,10 @@ a[disabled] {
   border-radius: 3px;
 }
 
-input, textarea {
+input, textarea, .editable {
   margin: 0;
   outline: 0;
   -webkit-appearance: none;
-  tap-highlight-color: rgba(255, 255, 255, 0);
   line-height: 1.2142em;
   padding: 0.67861429em 1em;
   font-size: 1em;
@@ -4647,15 +4736,26 @@ input, textarea {
   -webkit-transition: color 0.1s ease, border-color 0.1s ease;
   transition: color 0.1s ease, border-color 0.1s ease;
 }
-input:hover, textarea:hover {
+input:hover, textarea:hover, .editable:hover {
   border-color: var(--color-blue);
   border-right-width: 1px !important;
 }
-input:focus, textarea:focus {
+input:focus, textarea:focus, .editable:focus {
   border-color: #40a9ff;
   border-right-width: 1px !important;
   outline: 0;
   box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.editable {
+  margin: 12px 0;
+}
+.editable .medium-insert-buttons-show > span {
+  margin-top: 0 !important;
+}
+.editable .medium-insert-buttons-show, .editable .medium-insert-action {
+  color: rgba(0, 0, 0, 0.68) !important;
+  border: 1px solid rgba(0, 0, 0, 0.68) !important;
 }
 
 .layout__navbar {
@@ -6552,9 +6652,9 @@ i.icon {
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
   margin-bottom: 5px;
-  color: #444;
+  color: var(--color-blue);
   vertical-align: top;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 15px;
   font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
   line-height: 18px;
@@ -6930,31 +7030,4 @@ blockquote cite {
 
 .twitter-tweet {
   margin: 0 auto;
-}
-
-.slide-enter {
-  top: 10px;
-  opacity: 0.5;
-}
-
-.slide-enter-active, .slide-leave-active {
-  -webkit-transition: all 0.15s;
-  transition: all 0.15s;
-}
-
-.slide-enter-to {
-  top: 0px;
-  opacity: 1;
-}
-
-.slide-leave {
-  top: 0px;
-  opacity: 1;
-}
-
-.slide-leave-to {
-  top: -30px;
-  opacity: 0;
-  -webkit-transform: blur(8px);
-          transform: blur(8px);
 }

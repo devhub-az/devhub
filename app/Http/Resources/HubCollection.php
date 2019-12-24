@@ -35,7 +35,7 @@ class HubCollection extends JsonResource
         if (Auth::check()) {
             switch ($status) {
                 case 'following':
-                    return $this->hubIsFollowing(Auth::user()) === 'following';
+                    return $this->hubIsFollowing(Auth::user()) == 'following';
             }
         }
     }

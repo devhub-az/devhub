@@ -2,11 +2,13 @@
 
 @section('main')
     <div class="layout_body" id="app">
-        <div class="header">
-            @include('auth.settings.layout.tabs')
-        </div>
-        <div class="post-content">
-            <profile-settings :auth="{{ $user }}"></profile-settings>
+        <div class="layout_content">
+            <div class="content_left">
+                <profile-settings :auth="{{ $user }}"></profile-settings>
+            </div>
+            <div class="content_right">
+                @include('auth.settings.layout.right')
+            </div>
         </div>
     </div>
 @endsection

@@ -6,62 +6,12 @@ window.SimpleMDE = require('simplemde');
 import 'notyf/notyf.min.css'; // for React and Vue
 require('moment/locale/az');
 window.moment.locale('az');
+import '@github/markdown-toolbar-element';
 
 axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',
     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 };
-
-const input = document.getElementById("form_search");
-
-const nav = document.getElementById("navbar-links");
-const search_input = document.getElementById("search_input");
-
-import hotkeys from 'hotkeys-js';
-
-hotkeys.filter = function(event){
-    return true;
-}
-//How to add the filter to edit labels. <div contentEditable="true"></div>
-//"contentEditable" Older browsers that do not support drops
-hotkeys.filter = function(event) {
-    const tagName = (event.target || event.srcElement).tagName;
-    return !(tagName.isContentEditable || tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
-}
-
-hotkeys.filter = function(event){
-    const tagName = (event.target || event.srcElement).tagName;
-    hotkeys.setScope(/^(INPUT|TEXTAREA|SELECT)$/.test(tagName) ? 'input' : 'other');
-    return true;
-}
-
-hotkeys('/', function (event) {
-    // Prevent the default refresh event under WINDOWS system
-    event.preventDefault()
-
-    const icon = document.getElementById("search-icon");
-
-    icon.style.display = "none";
-    nav.style.display = "none";
-    input.style.display = "flex";
-
-    search_input.focus();
-})
-
-hotkeys('esc', function (event) {
-    event.preventDefault()
-
-    if ($("#search_input").is(':focus')) {
-        const input = document.getElementById("form_search");
-        const icon = document.getElementById("search-icon");
-        const nav = document.getElementById("navbar-links");
-
-        nav.removeAttribute("style");
-        input.removeAttribute("style");
-        icon.removeAttribute("style");
-    }
-})
-
 
 Vue.component('posts', require('./components/PostsComponent.vue').default);
 Vue.component('pagination', require('./components/pagination.vue').default);

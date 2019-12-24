@@ -30,7 +30,7 @@ class PostCollection extends JsonResource implements HasMedia
             'data' => [
                 'id'            => $this->id,
                 'title'         => $this->name,
-                'body'          => $this->shorten(Purifier::clean($parsedown->text($this->body)), 1000),
+                'body'          => $this->shorten(Purifier::clean($parsedown->text($this->body)), 600),
                 'creator'       => $this->creator->username,
                 'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
                 'votes'         => $this->votes,
