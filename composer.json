@@ -10,6 +10,7 @@
         "php": "^7.4.1",
         "alphametric/laravel-validation-rules": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "elasticsearch/elasticsearch": "^7.5",
         "fideloper/proxy": "^4.0",
         "graham-campbell/markdown": "^11.0",
         "ksubileau/color-thief-php": "^1.4",

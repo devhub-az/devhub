@@ -15,6 +15,10 @@ class User extends Authenticatable implements HasMedia
 {
     use Notifiable, HasMediaTrait, PermissionManager;
 
+    public const ROLE_USER = 'User';
+    public const ROLE_MANAGER = 'Manager';
+    public const ROLE_ADMIN = 'Admin';
+
     protected $visible = [
         'username',
         'name',
