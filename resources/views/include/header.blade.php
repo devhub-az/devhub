@@ -40,6 +40,7 @@
                 <a href="{{ route('tracker') }}"><i class="icon feather icon-bell badge" @if (Auth::user()->unreadNotifications->count() > 0)
                     data-badge="{{ Auth::user()->unreadNotifications->count() }}"
                 @endif></i></a>
+                <a href="#"><i class="icon feather icon-mail badge"></i></a>
                 <a href="{{ route('create_post') }}" class="btn btn-primary button_add">
                     Yazmağ
                 </a>

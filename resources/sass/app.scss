@@ -52,16 +52,49 @@
     font-style: normal;
 }
 
-/**
- *
- * Mixins
- *
- */
-
 @import 'mixins';
 @import 'variables';
 @import 'devhub';
 @import 'profile';
+
+:root {
+    // font family
+    --font-primary: sans-serif;
+
+    // body font size
+    --text-base-size: 1em;
+
+    // type scale
+    --text-scale-ratio: 1.2;
+    --text-xs: calc((1em / var(--text-scale-ratio)) / var(--text-scale-ratio));
+    --text-sm: calc(var(--text-xs) * var(--text-scale-ratio));
+    --text-md: calc(var(--text-sm) * var(--text-scale-ratio) * var(--text-scale-ratio));
+    --text-lg: calc(var(--text-md) * var(--text-scale-ratio));
+    --text-xl: calc(var(--text-lg) * var(--text-scale-ratio));
+    --text-xxl: calc(var(--text-xl) * var(--text-scale-ratio));
+    --text-xxxl: calc(var(--text-xxl) * var(--text-scale-ratio));
+
+    // line-height
+    --body-line-height: 1.4;
+    --heading-line-height: 1.2;
+
+    // capital letters - used in combo with the lhCrop mixin
+    --font-primary-capital-letter: 1;
+    --space-unit: 1em;
+    --space-xxxxs: calc(0.125 * var(--space-unit));
+    --space-xxxs: calc(0.25 * var(--space-unit));
+    --space-xxs: calc(0.375 * var(--space-unit));
+    --space-xs: calc(0.5 * var(--space-unit));
+    --space-sm: calc(0.75 * var(--space-unit));
+    --space-md: calc(1.25 * var(--space-unit));
+    --space-lg: calc(2 * var(--space-unit));
+    --space-xl: calc(3.25 * var(--space-unit));
+    --space-xxl: calc(5.25 * var(--space-unit));
+    --space-xxxl: calc(8.5 * var(--space-unit));
+    --space-xxxxl: calc(13.75 * var(--space-unit));
+    --component-padding: var(--space-md);
+
+}
 
 * {
     @include x-box-sizing;
@@ -90,55 +123,6 @@ body {
     -moz-osx-font-smoothing: auto;
     text-rendering: optimizeLegibility;
     overflow-y: scroll;
-}
-
-h1 {
-    font-size: 2rem;
-    line-height: 1.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    margin: unset;
-    font-weight: normal;
-}
-
-h2 {
-    font-size: 1.5em;
-    line-height: 1.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    font-weight: normal;
-}
-
-h3 {
-    font-size: 1.17em;
-    line-height: 1.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    font-weight: normal;
-}
-
-h4 {
-    font-size: 1em;
-    line-height: 1.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    font-weight: normal;
-}
-
-h5 {
-    font-size: 0.83em;
-    line-height: 1.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    font-weight: normal;
-}
-
-h6 {
-    font-size: 0.75em;
-    line-height: 1.2em;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-    font-weight: normal;
 }
 
 button {
@@ -191,12 +175,12 @@ a[disabled] {
     text-decoration: none;
 }
 
-.form-group{
+.form-group {
     position: relative;
     margin: 22px 12px;
 }
 
-.text-danger{
+.text-danger {
     color: var(--color-red);
 }
 
@@ -350,16 +334,16 @@ input, textarea, .editable {
     }
 }
 
-.editable{
+.editable {
     margin: 12px 0;
 
-    .medium-insert-buttons-show > span{
+    .medium-insert-buttons-show > span {
         margin-top: 0 !important;
     }
 
-    .medium-insert-buttons-show, .medium-insert-action{
-        color: rgba(0,0,0,.68) !important;
-        border: 1px solid rgba(0,0,0,.68) !important;
+    .medium-insert-buttons-show, .medium-insert-action {
+        color: rgba(0, 0, 0, .68) !important;
+        border: 1px solid rgba(0, 0, 0, .68) !important;
     }
 }
 
@@ -455,7 +439,7 @@ a {
     position: relative;
     height: 50px;
 
-    .icon-search, .icon-bell {
+    .icon-search, .icon-bell, .icon-mail {
         cursor: pointer;
         opacity: .7;
         font-weight: 500;
@@ -844,7 +828,7 @@ a {
     .post__meta {
         display: flex;
         align-items: center;
-        margin-bottom: 5px;
+        margin-bottom: var(--space-xs);
 
         .post__user-info {
             display: inline-flex;
@@ -886,14 +870,7 @@ a {
         margin: 0 0 12px;
 
         .post-title {
-            font-family: 'Fira Sans', sans-serif;
             color: var(--color-post-title) !important;
-            font-size: 23px;
-
-            h1 {
-                font-size: 28px;
-                font-weight: bold;
-            }
         }
     }
 
@@ -1640,7 +1617,7 @@ iframe {
 .user-card {
     border: 1px solid var(--color-border);
 
-    .header{
+    .header {
         padding: 12px 12px 12px 24.5%;
         background: none;
     }
@@ -2713,7 +2690,7 @@ i.icon {
     align-items: center;
 }
 
-.badge[data-posts-badge]:after{
+.badge[data-posts-badge]:after {
     content: attr(data-posts-badge);
     position: absolute;
     font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
@@ -2735,74 +2712,13 @@ i.icon {
 // Blockquote
 
 blockquote {
-    border-left: 3px solid var(--color-blue);
-    color: #1a1a1a;
-    font-size: 1.25em;
-    font-style: italic;
-    line-height: 1.8em;
-    padding: .3em 2em;
-    margin: 1rem 0;
+    color: var(--color-block-text);
+    padding: 1.2em;
+    border-left: 8px solid var(--color-blue);
+    line-height: 1.6;
     position: relative;
-    transition: 0.2s border ease-in-out;
-    z-index: 0;
-
-    &:before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: -4px;
-        height: 2em;
-        background-color: #fff;
-        width: 5px;
-        margin-top: -1em;
-    }
-
-    &:after {
-        content: "\f10e";
-        position: absolute;
-        top: 50%;
-        left: -0.5em;
-        color: var(--color-blue);
-        font-family: "Icons";
-        font-style: normal;
-        line-height: 1em;
-        text-align: center;
-        text-indent: -2px;
-        width: 1em;
-        margin-top: -0.5em;
-        transition: 0.2s all ease-in-out, 0.4s transform ease-in-out;
-    }
-
-    &.format:before, &.format:after {
-        display: none;
-    }
-
-    &.book:after {
-        content: "";
-    }
-
-    &.podcast:after {
-        content: "";
-    }
-
-    &.lyrics:after {
-        content: "";
-    }
-
-    &.favorite:after {
-        content: "";
-    }
-
-    &:hover:after {
-        transform: rotateY(360deg);
-    }
-
-    & cite {
-        display: block;
-        font-size: 0.75em;
-        line-height: 1.8em;
-        margin-top: 1em;
-    }
+    background: var(--color-app-bg);
+    width: 100%;
 }
 
 .header-message {

@@ -30,7 +30,7 @@ class PostCollection extends JsonResource implements HasMedia
             'data' => [
                 'id'            => $this->id,
                 'title'         => $this->name,
-                'body'          => $this->shorten(Purifier::clean($parsedown->text($this->body)), 600),
+                'body'          => $this->shorten(Purifier::clean($parsedown->text($this->body)), 80),
                 'creator'       => $this->creator->username,
                 'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
                 'votes'         => $this->votes,
@@ -55,10 +55,12 @@ class PostCollection extends JsonResource implements HasMedia
      */
     public function shorten(string $text, int $maxLength)
     {
-        $shortText = substr($text, 0, $maxLength);
+        $words = explode(' ', $text);
 
-        return (strrpos($shortText, '.') ? substr($shortText, 0,
-                strrpos($shortText, '.')) : $shortText) . (strlen($text) > $maxLength ? '...' : '');
+        if (count($words) > $maxLength) {
+            return implode(' ', array_slice($words, 0, $maxLength)) . '...';
+        }
+        return $text;
     }
 
     /**

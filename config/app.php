@@ -179,7 +179,6 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
     ],
@@ -237,6 +236,11 @@ return [
         'Numeric' => App\Helpers\Numeric::class,
         'Markdown' => GrahamCampbell\Markdown\Facades\Markdown::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
+
+//        Doctrine
+        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
+        'Registry' => LaravelDoctrine\ORM\Facades\Registry::class,
+        'Doctrine' => LaravelDoctrine\ORM\Facades\Doctrine::class,
 
     ],
 

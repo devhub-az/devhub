@@ -54,7 +54,7 @@
                         </header>
                         <div class="post-content__header">
                             <a :href="'/post/' + post.data.id" class="post-title">
-                                <h1>{{ post.data.title }}</h1>
+                                <h2>{{ post.data.title }}</h2>
                             </a>
                             <vote :posts="post" :auth_check="auth_check"></vote>
                         </div>

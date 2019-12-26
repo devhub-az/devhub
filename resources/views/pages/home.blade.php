@@ -67,47 +67,6 @@
 
             {{-- Right --}}
             <div class="content_right">
-                <div class="default-block default-block_sidebar">
-                    <div class="default-block__header">
-                        <h3 class="default-block__header-title">Sponsorlar</h3>
-                    </div>
-
-                    <div class="default-block__content">
-                        <ul class="content-list content-list_partners-block">
-                            <li class="content-list__item content-list__item_partners-block">
-                                <a href="https://u.tmtm.ru/kryptonite-startup" rel="nofollow" class="partner-info">
-                                    <div class="partner-info__head">
-                                        <span class="partner-info__title">Azərkosmos</span>
-                                        <img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png"
-                                             class="partner-info__image" alt="Company image">
-                                    </div>
-                                    <div class="partner-info__description">
-                                        Cənubi Qafqazda ilk peyk operatoru olan “Azərkosmos”.
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="content-list__item content-list__item_partners-block">
-                                <a href="https://u.tmtm.ru/ru-rub" rel="nofollow" class="partner-info">
-                                    <div class="partner-info__head">
-                                        <span class="partner-info__title">RISK Company</span>
-                                        <img src="https://risk.az/site/templates/images/logo_large.jpg"
-                                             class="partner-info__image" alt="Company name">
-                                    </div>
-
-                                    <div class="partner-info__description">
-                                        R.I.S.K. Company is one of the leading IT companies in the Central Asia and
-                                        Caucasus markets providing solutions in IT consultancy
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="default-block__footer">
-                        <a href="https://habr.com/ru/info/help/sponsorship-info/" class="default-block__footer_link">Necə
-                            sponsor olum?</a>
-                    </div>
-                </div>
                 <div id="default-block" class="default-block default-block_sidebar">
                     <div class="default-block__header">
                         <h3 class="default-block__header-title">Title</h3>

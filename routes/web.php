@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('@{username}/settings')->group(function (){
         Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');
         Route::post('profile', 'Auth\UserSettingsController@update');
+        Route::post('avatar', 'Auth\UserSettingsController@update_avatar');
     });
 });
 

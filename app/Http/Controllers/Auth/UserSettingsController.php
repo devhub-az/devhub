@@ -21,44 +21,32 @@ class UserSettingsController extends Controller
     {
         if (\Auth::User()->username === $request->username) {
             $user = \Auth::user();
-            $user->email = substr_replace($user->email, '***', 2, strpos($user->email,"@")-2);
+            $user->email = substr_replace($user->email, '***', 2, strpos($user->email, "@") - 2);
             return view('auth.settings.profile', compact("user"));
         }
 
         return abort(404);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function store(Request $request)
+    public function update_avatar(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
+//        $request->validate([
+//            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+//        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
+        $user = \Auth::user();
+
+        $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();
+
+        $request->avatar->storeAs('avatars', $avatarName);
+
+        $user->avatar = $avatarName;
+        $user->save();
+
+        return back()
+            ->with('success', 'You have successfully upload image.');
+
     }
 
     /**

@@ -54,7 +54,7 @@ class PostController extends ApiController
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->with('creator:id,username')
-            ->with('comments:body')
+            ->with('comments:beody')
             ->take(50)
             ->paginate(5));
     }

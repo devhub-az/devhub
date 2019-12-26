@@ -5,11 +5,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.moment = require('moment');
-window.SimpleMDE = require('simplemde');
 import 'notyf/notyf.min.css'; // for React and Vue
 require('moment/locale/az');
 window.moment.locale('az');
-import '@github/markdown-toolbar-element';
 
 axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest',

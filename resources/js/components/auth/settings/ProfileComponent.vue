@@ -4,7 +4,12 @@
             <h4 class="settings__header-title">Profil məlumatları</h4>
         </div>
         <div class="settings__profile">
-            <img src="/images/profile/deadpool.png" alt="">
+<!--            <img class="rounded-circle" :src="'/storage/avatars/' + auth.avatar" />-->
+            <div class="form-group">
+                <input type="file"  v-on:change="onImageChange" class="form-control-file">
+                <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
+            </div>
+            <button type="submit" class="btn btn-primary"  @click="uploadImage">Submit</button>
             <div class="settings__description">
                 <div class="settigns__user-name">{{ fields.name }} {{ fields.surname }} {{ '@' + auth.username }}</div>
                 <div class="settings__user-description">{{ fields.about }}</div>
@@ -74,6 +79,7 @@
             return {
                 fields: {},
                 errors: {},
+                avatar: '',
                 email: "",
                 success: false,
                 loaded: true,
@@ -95,13 +101,46 @@
             this.surname_count = this.auth.surname.length
         },
         methods: {
+            onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.avatar = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                console.log(reader.readAsDataURL(file))
+            },
+            uploadImage(){
+                axios.post('/@' + this.username + '/settings/avatar',{avatar: this.avatar}).then(response => {
+                    console.log(response);
+                });
+            },
+            // avatar() {
+            //     axios.post(, this.avatar).then(response => {
+            //         notyf.success('Profil yenilənib');
+            //     }).catch(error => {
+            //         this.loaded = true;
+            //         notyf.open({
+            //             type: 'error',
+            //             message: 'Server error'
+            //         });
+            //         if (error.response.status === 422) {
+            //             this.errors = error.response.data.errors || {};
+            //         }})
+            // },
             submit() {
                 if (this.loaded) {
                     const notyf = new Notyf();
                     this.loaded = false;
                     this.success = false;
                     this.errors = {}
-                    axios.post('/@' + this.username + '/settings', this.fields).then(response => {
+                    axios.post('/@' + this.username + '/settings/profile', this.fields).then(response => {
                         this.loaded = true;
                         this.success = true;
                         if ("email" in this.fields) {
@@ -112,8 +151,8 @@
                     }).catch(error => {
                         this.loaded = true;
                         notyf.open({
-                            type: 'info',
-                            message: 'Send us <b>an email</b> to get support'
+                            type: 'error',
+                            message: 'Server error'
                         });
                         if (error.response.status === 422) {
                             this.errors = error.response.data.errors || {};

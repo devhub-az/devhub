@@ -20,14 +20,11 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
     </script>
     {{-- <script src="{{ asset('js/highlight.min.js') }}"></script> --}}
-    <script src="{{ asset('js/highlight.pack.js') }}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+{{--    <script src="{{ asset('js/highlight.pack.js') }}"></script>--}}
+{{--    <script>hljs.initHighlightingOnLoad();</script>--}}
 
     {{-- CSS --}}
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto|PT+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/search.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:400:500|PT+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">
@@ -74,33 +71,11 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('plugins/iziToast/dist/js/iziToast.min.js') }}"></script>
 <script src="{{ asset('js/stickybits.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/dropdown.min.js" integrity="sha256-uEocYy6a0MpPLLHtYV7QAGdOeMRwE0Am2WtnOg/hBfM=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.js"></script>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 @yield('scripts')
 <script>
-    import {schema} from "prosemirror-schema-basic"
-    import {EditorState} from "prosemirror-state"
-    import {EditorView} from "prosemirror-view"
-
-    let state = EditorState.create({schema})
-    let view = new EditorView(document.body, {state})
-
     $('.ui.dropdown').dropdown();
-    $('.popup-hub').popup({
-        inline   : true,
-        hoverable  : true,
-        position : 'bottom center',
-        delay: {
-            show: 50,
-            hide: 200,
-        }
-    });
-    $('input').popup({
-        on: 'focus'
-    });
 
     var stickymessage = stickybits('.header-message');
 

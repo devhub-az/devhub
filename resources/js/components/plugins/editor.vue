@@ -1,51 +1,32 @@
 <template>
-    <div style="display: grid;
-    grid-template-columns: 48% 48%;
-    gap: 4%;
-    margin: 12px 0;">
-        <markdown-toolbar for="textarea_id">
-            <md-bold>bold</md-bold>
-            <md-header>header</md-header>
-            <md-italic>italic</md-italic>
-            <md-quote>quote</md-quote>
-            <md-code>code</md-code>
-            <md-link>link</md-link>
-            <md-image>image</md-image>
-            <md-unordered-list>unordered-list</md-unordered-list>
-            <md-ordered-list>ordered-list</md-ordered-list>
-            <md-task-list>task-list</md-task-list>
-            <md-mention>mention</md-mention>
-            <md-ref>ref</md-ref>
-        </markdown-toolbar>
-        <textarea :value="content" @input="update" cols="12" style="height: 200px;" id="textarea_id"></textarea>
-        <div v-html="compiledMarkdown" class="post-content__body"></div>
+    <div>
+        <trumbowyg v-model="content" :config="config" class="form-control" name="content"></trumbowyg>
     </div>
 </template>
 
 <script>
-    import markdown from 'markdown-it'
-    import debounce from 'lodash/debounce'
+    // Import this component
+    import Trumbowyg from 'vue-trumbowyg';
 
-    const md = new markdown().use(require('markdown-it-video')).use(require('markdown-it-highlightjs'))
-    let sanitizeHtml = require('sanitize-html')
+    // Import editor css
+    import 'trumbowyg/dist/ui/trumbowyg.css';
 
-    // import 'markdown-it-vue/dist/markdown-it-vue.css'
+    import 'trumbowyg/dist/plugins/cleanpaste/trumbowyg.cleanpaste.min.js';
+
     export default {
-        data() {
+        data () {
             return {
-                content: '# your markdown content',
+                content: null,
+                config: {
+                    advanced: {
+                        autogrow: true,
+                        removeformatPasted: true,
+                    }
+                }
             }
         },
-        computed: {
-            compiledMarkdown: function () {
-                return md.render(this.content)
-            },
-        },
-        methods: {
-            update: debounce(function (e) {
-                this.content = e.target.value;
-            }, 300)
+        components: {
+            Trumbowyg
         }
     }
 </script>
-

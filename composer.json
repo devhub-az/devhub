@@ -15,6 +15,8 @@
         "graham-campbell/markdown": "^11.0",
         "ksubileau/color-thief-php": "^1.4",
         "kylekatarnls/laravel-carbon-2": "^1.0.0",
+        "laravel-doctrine/extensions": "^1.1",
+        "laravel-doctrine/orm": "^1.5",
         "laravel/framework": "6.*",
         "laravel/passport": "^7.3",
         "laravel/tinker": "^1.0",
@@ -33,7 +35,6 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
-        "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "mockery/mockery": "^1.0",
