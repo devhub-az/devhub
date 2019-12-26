@@ -20,6 +20,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
 
+    // Conversations
+    Route::get('/conversations', 'ConversationController@index')->name('conversations');
+    Route::get('/conversations/{id}', 'ConversationController@show')->name('conversations.show');
+
     Route::prefix('@{username}/settings')->group(function (){
         Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');
         Route::post('profile', 'Auth\UserSettingsController@update');
