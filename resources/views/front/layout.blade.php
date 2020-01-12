@@ -34,7 +34,18 @@
     {{-- endiziToast --}}
     <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="{{ asset('css/prettify.css') }}" type="text/css" rel="stylesheet" />
     @yield('css')
+
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+    <script type="text/javascript" src="{{ asset('js/Markdown.Converter.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Markdown.Sanitizer.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/Markdown.Editor.js') }}"></script>
+    <script src="{{ asset('js/prettify.js') }}"></script>
+    <script src="{{ asset('js/Markdown.Extra.js') }}"></script>
 
     {{-- favicon --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">

@@ -39,8 +39,10 @@ class PostController extends ApiController
      */
     public function posts(): PostsCollection
     {
-        return new PostsCollection(Post::where('created_at', '>=', 'NOW() - INTERVAL "'. $this->count .'" DAY')->orderBy('votes',
-            'DESC')->orderBy('created_at', 'DESC')
+        return new PostsCollection(Post::where('created_at', '>=',
+            \DB::raw('NOW() - INTERVAL ' . $this->count . ' DAY'))
+            ->orderBy('votes', 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->with('creator:id,username')
             ->with('comments:body')
             ->take(50)
@@ -54,7 +56,7 @@ class PostController extends ApiController
     {
         return new PostsCollection(Post::orderBy('created_at', 'DESC')
             ->with('creator:id,username')
-            ->with('comments:beody')
+            ->with('comments:body')
             ->take(50)
             ->paginate(5));
     }
@@ -78,7 +80,7 @@ class PostController extends ApiController
     public function show(Request $request)
     {
         return $this->respondWith(
-            Post::orderBy('created_at', 'DESC')->paginate(10)->appends([ 'include' => $request->input('include')]),
+            Post::orderBy('created_at', 'DESC')->paginate(10)->appends(['include' => $request->input('include')]),
             new PostTransformer
         );
     }

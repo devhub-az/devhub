@@ -20,7 +20,7 @@ class PostVotesTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 115,
-                'user_id' => 2,
+                'user_id' => 1,
                 'post_id' => 1,
                 'status' => 1,
                 'created_at' => '2019-08-13 21:25:41',
@@ -29,7 +29,7 @@ class PostVotesTableSeeder extends Seeder
             1 => 
             array (
                 'id' => 116,
-                'user_id' => 2,
+                'user_id' => 1,
                 'post_id' => 55,
                 'status' => 0,
                 'created_at' => '2019-08-21 19:17:55',
@@ -38,7 +38,7 @@ class PostVotesTableSeeder extends Seeder
             2 => 
             array (
                 'id' => 117,
-                'user_id' => 2,
+                'user_id' => 1,
                 'post_id' => 54,
                 'status' => 1,
                 'created_at' => '2019-08-21 19:18:07',

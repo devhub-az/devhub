@@ -10,6 +10,7 @@
 	<title>@yield('title') | DevHub</title>
 	<meta name="description" content="{{ isset($post) && $post->meta_description ? $post->meta_description : __('description') }}">
 	<meta name="author" content="@lang(lcfirst ('Author'))">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	@if(isset($post) && $post->meta_keywords)
 		<meta name="keywords" content="{{ $post->meta_keywords }}">
 	@endif
@@ -20,13 +21,11 @@
 
 	{{-- CSS --}}
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link href="{{ asset('css/a11y-light.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/quill.snow.css') }}" rel="stylesheet">
-	<link rel="stylesheet" href="{{ asset('css/quill.mention.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('plugins/feather-font/src/css/iconfont.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/login.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<link rel="stylesheet" href="{{ mix('css/buttons.css') }}">
+	<link rel="stylesheet" href="{{ mix('css/login.css') }}">
+{{--	<link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
 	@yield('css')
 
 	{{-- favicon --}}
@@ -41,7 +40,7 @@
 		@yield('main')
 	</div>
 	
-	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ mix('js/login.js') }}"></script>
 	@yield('scripts')
 
 </body>

@@ -14,7 +14,7 @@ class Hub extends Model
 
     public function description()
     {
-        return $this->belongsTo(Localization::class, 'id', 'idx')->withDefault();
+        return $this->belongsTo(Localization::class, 'id', 'idx');
     }
 
     public function posts()
@@ -34,6 +34,6 @@ class Hub extends Model
 
     public function hubIsFollowing(User $user)
     {
-        return (bool) $this->hubFollowers()->where('follower_id', $user->id)->count();
+        return (bool)$this->hubFollowers()->where('follower_id', $user->id)->count();
     }
 }

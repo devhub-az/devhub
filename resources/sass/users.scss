@@ -1,0 +1,73 @@
+.layout_body{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    .layout_content {
+        display: grid;
+        grid-template-columns: 74% 25%;
+        grid-gap: 1%;
+        grid-template-areas: "page-header page-header" "edit-content content_right";
+
+        .users__page-header {
+            grid-area: page-header;
+            height: 130px;
+        }
+
+        .list-hubs__hub{
+            display: grid;
+            grid-template-columns: 10% 50% 10% 10% 20%;
+            background: white;
+            margin-bottom: 1%;
+            padding: 20px 0;
+            border: 1px solid var(--color-border);
+
+            .list-hubs__hub-image{
+                width: 64px;
+                height: 64px;
+                margin: 0 auto;
+            }
+
+            .list-hubs__obj-body {
+                position: relative;
+                width: 90%;
+            }
+
+            .list-hubs__stats {
+                display: -webkit-box;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                margin: 0 auto;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                flex-direction: column;
+                -webkit-box-pack: center;
+                justify-content: center;
+
+                .list-hubs__stats-value {
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    font-weight: bold;
+                    color: var(--color-black);
+                    margin: 0 auto 3px;
+                }
+            }
+
+            .hub_follow {
+                margin: auto;
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        .content_right {
+            border-radius: 4px;
+        }
+    }
+}

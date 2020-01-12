@@ -63,7 +63,6 @@ class HubController extends Controller
     public function search()
     {
         $hubs = new HubsCollection(Hub::get());
-
         return $hubs->all();
     }
 }

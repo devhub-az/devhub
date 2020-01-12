@@ -37,7 +37,7 @@ class ProfileController extends Controller
 
         $user->followers()->attach(auth()->user()->id);
 
-        return back()->with('success', 'Successfully followed the user.');
+        return response()->json(['success' => 'success'], 200);
     }
 
     /**
@@ -50,11 +50,12 @@ class ProfileController extends Controller
     public function unFollowUser(int $profileId)
     {
         $user = User::find($profileId);
+
         if (!$user) {
             return redirect()->back()->with('error', 'User does not exist.');
         }
         $user->followers()->detach(auth()->user()->id);
 
-        return redirect()->back()->with('success', 'Successfully unfollowed the user.');
+        return response()->json(['delete' => 'delete'], 200);
     }
 }

@@ -108,6 +108,8 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.compatibility.js"></script>
+    <script src="{{ asset('js/search.min.js') }}"></script>
     <script>
         function axiosHubs() {
             return axios.get('/api/hubs/all').then(response => {
@@ -115,28 +117,36 @@
             });
         }
 
-        axiosHubs().then(data => {
-            $('.ui.search')
-                .search({
-                    source: data,
-                    searchDelay: 500,
-                    fields: {
-                        image: 'logo',
-                        title: 'name',
-                    },
-                    searchFields: [
-                        'name'
-                    ],
-                    fullTextSearch: false,
-                    onSelect(result) {
-                        window.location.href = '/hubs/' + result.id;
-                    },
-                    templates: {
-                        message: function message() {
-                            return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';
+        $('.ui.search').settings.api = {
+            'hubs' : '/api/hubs/all'
+        };
+
+        $(document).ready(function() {
+                $('.ui.search')
+                    .search({
+                        type: 'category',
+                        apiSettings:{
+                            action: 'hubs'
                         },
-                    }
-                });
+                        searchDelay: 500,
+                        fields: {
+                            image: 'logo',
+                            title: 'name',
+                        },
+                        searchFields: [
+                            'name'
+                        ],
+                        fullTextSearch: false,
+                        onSelect(result) {
+                            window.location.href = '/hubs/' + result.id;
+                        },
+                        templates: {
+                            message: function message() {
+                                return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';
+                            },
+                        }
+                    });
         });
+
     </script>
 @endsection

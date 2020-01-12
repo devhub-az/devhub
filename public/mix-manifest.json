@@ -1,8 +1,15 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/about.css": "/css/about.css",
-    "/css/buttons.css": "/css/buttons.css",
-    "/css/login.css": "/css/login.css",
-    "/css/pagination.css": "/css/pagination.css",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=45da5924de25c043fc01",
+    "/css/about.css": "/css/about.css?id=3af6dcc69f73d8e45813",
+    "/css/buttons.css": "/css/buttons.css?id=2671593658162343b1f5",
+    "/css/login.css": "/css/login.css?id=36608b5e0c7f3d3e158f",
+    "/css/pagination.css": "/css/pagination.css?id=ada3f8aacb949b97c809",
+    "/css/app.css": "/css/app.css?id=06837220b14fafb89137",
+    "/css/conversation.css": "/css/conversation.css?id=60bdf216aa16e12fca63",
+    "/css/users.css": "/css/users.css?id=20d432112f04b2d365b6",
+    "/css/header.css": "/css/header.css?id=a986dd41ab54153589ce",
+    "/css/footer.css": "/css/footer.css?id=dc2e218e154fe674f196",
+    "/js/login.js": "/js/login.js?id=c6133dd14421212c4252",
+    "/js/scripts/particles.min.js": "/js/scripts/particles.min.js?id=3a9747ad5a7c6c3b52f3",
+    "/js/scripts/particles.settings.js": "/js/scripts/particles.settings.js?id=87e9c0cccb849b5d3317"
 }

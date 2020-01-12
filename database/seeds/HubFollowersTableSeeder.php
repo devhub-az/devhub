@@ -21,7 +21,7 @@ class HubFollowersTableSeeder extends Seeder
             array (
                 'id' => 29,
                 'hub_id' => 123,
-                'follower_id' => 2,
+                'follower_id' => 1,
                 'created_at' => '2019-08-19 13:40:05',
                 'updated_at' => '2019-08-19 13:40:05',
             ),
@@ -29,7 +29,7 @@ class HubFollowersTableSeeder extends Seeder
             array (
                 'id' => 35,
                 'hub_id' => 22,
-                'follower_id' => 2,
+                'follower_id' => 1,
                 'created_at' => '2019-08-19 13:44:19',
                 'updated_at' => '2019-08-19 13:44:19',
             ),
@@ -37,7 +37,7 @@ class HubFollowersTableSeeder extends Seeder
             array (
                 'id' => 57,
                 'hub_id' => 12,
-                'follower_id' => 2,
+                'follower_id' => 1,
                 'created_at' => '2019-09-26 17:23:02',
                 'updated_at' => '2019-09-26 17:23:02',
             ),

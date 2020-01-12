@@ -1,10 +1,10 @@
 <header class="layout__navbar">
     <div class="main-navbar">
         <div class="main-navbar__section main-navbar__section_left">
-            <a class="logo" href="{{ session('main-page') }}">DevHub <i class="icon devhub icon-beta-line"></i></a>
+            <a class="logo" href="{{ session('main-page') ?? route('home') }}">DevHub <i class="icon devhub icon-beta-line"></i></a>
             <ul class="nav-links" id="navbar-links">
                 <li class="nav-links__item">
-                    <a href="{{ session('main-page') }}"
+                    <a href="{{ session('main-page') ?? route('home') }}"
                        class="nav-links__item-link @if(Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*')) nav-links__item-link_current @endif">Paylaşmalar</a>
                 </li>
                 <li class="nav-links__item">
@@ -13,7 +13,7 @@
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ route('users-list') }}"
-                       class="nav-links__item-link @if(Request::is('users') || Request::is('users/*')) nav-links__item-link_current @endif">İnsanlar</a>
+                       class="nav-links__item-link @if(Request::is('users') || Request::is('users/*')) nav-links__item-link_current @endif">Müəlliflər</a>
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ url('/about_us') }}"
@@ -37,10 +37,14 @@
                 <a href="{{ route('login') }}" class="btn btn-primary btn_navbar_login">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qeydiyyatdan Keç</a>
             @else
-                <a href="{{ route('tracker') }}"><i class="icon feather icon-bell badge" @if (Auth::user()->unreadNotifications->count() > 0)
-                    data-badge="{{ Auth::user()->unreadNotifications->count() }}"
-                @endif></i></a>
-                <a href="#"><i class="icon feather icon-mail badge"></i></a>
+                <a href="{{ route('tracker') }}"><i class="icon feather icon-bell badge"
+                                                    @if (Auth::user()->unreadNotifications->count() > 0)
+                                                    data-badge="{{ Auth::user()->unreadNotifications->count() }}"
+                            @endif></i></a>
+                <a href="{{ route('conversations') }}"><i class="icon feather icon-mail badge"
+                                                          @if (Auth::user()->messagesNotificationsCount() > 0)
+                                                          data-badge="{{ Auth::user()->messagesNotificationsCount() }}"
+                            @endif></i></a>
                 <a href="{{ route('create_post') }}" class="btn btn-primary button_add">
                     Yazmağ
                 </a>

@@ -19,7 +19,8 @@
                         <div class="post-content">
                             <div class="post-content__item" style="padding: 2%;">
                                 <header class="post__meta">
-                                    <a href="{{"/users/@" . $notification->data['creator'] }}" class="post__user-info user-info"
+                                    <a href="{{"/users/@" . $notification->data['creator'] }}"
+                                       class="post__user-info user-info"
                                        title="Paylaşmanın müəllifi">
                                         <img src="{{ asset('images/profile/deadpool.gif') }}" alt="user avatar"
                                              class="user__avatar">
@@ -53,8 +54,9 @@
                 @else
                     <div class="post-content__item"
                          style="text-align: center; display: grid; grid-gap: 12px;">
-                        <span style="font-size: 5rem; opacity: .7;"><img v-lazy="'/images/errors/lazy.png'" alt=""
-                                                                         width="250"/></span>
+                        <span style="font-size: 5rem; opacity: .7;">
+                            <img v-lazy="'/images/errors/lazy.png'" alt="" width="250"/>
+                        </span>
                         <span>Bildirişlər tapılmadı</span>
                     </div>
                 @endif
@@ -79,7 +81,7 @@
                                             </div>
                                             <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                                 <br>
                                                 <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-star"></i> Reyting {{ $hub['rating'] ?? '' }}
@@ -108,7 +110,7 @@
                                             <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
                                         <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                             <br>
                                             <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}

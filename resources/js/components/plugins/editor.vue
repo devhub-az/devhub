@@ -1,6 +1,6 @@
 <template>
     <div>
-        <trumbowyg v-model="content" :config="config" class="form-control" name="content"></trumbowyg>
+        <trumbowyg v-model="content" :config="config" class="form-control" name="body"></trumbowyg>
     </div>
 </template>
 

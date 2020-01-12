@@ -2,24 +2,14 @@
     <div>
         <div v-for="user in users" v-if="!loading"
              class="list-hubs__hub" :id="user.id">
-<<<<<<< Updated upstream
             <img :src="'images/profile/new_user/' + (Math.floor(Math.random() * 31) + '.svg')"
                  class="list-hubs__hub-image" alt="User profile">
             <div class="list-hubs__obj-body">
                 <a :href="'users/@' + user.name">
-                    <div class="list-hubs__title-link">{{ user.name }}</div>
-                    <div class="list-hubs__description-link">{{ user.about }}</div>
+                    <div class="list-users__title-link">{{ user.name }}</div>
+                    <div class="list-users__description-link">{{ user.about }}</div>
                 </a>
             </div>
-=======
-            <div>
-
-            </div>
-            <a class="list-hubs__obj-body" :href="'users/@' + user.name">
-                <div class="list-hubs__title-link">{{ user.name }}</div>
-                <div class="list-hubs__description-link">{{ user.about }}</div>
-            </a>
->>>>>>> Stashed changes
             <div class="list-hubs__stats">
                 <div class="list-hubs__stats-value">{{ user.posts_count }}</div>
                 <small>POSTLAR</small>

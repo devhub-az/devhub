@@ -1,0 +1,156 @@
+body{
+    background: #C5DDEB;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    border: 1px solid var(--color-btn-border-secondary);
+
+    .text-muted{
+        color: #6c757d;
+    }
+
+    .conversations__pagination{
+        text-align: center;
+        padding: 12px 0;
+
+        a{
+            background: white;
+            text-transform: none;
+        }
+    }
+
+    .conversations__users{
+        background: white;
+        border-right: 1px solid var(--color-btn-border-secondary);
+
+        .list-group-item{
+            display: grid;
+            grid-template-columns: 80% auto;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            vertical-align: baseline;
+            background: #fff;
+            transition: 0.3s ease;
+
+            h4{
+                width: max-content;
+
+            }
+
+            .time{
+                font-size: 80%;
+                font-weight: 400;
+                margin-left: auto;
+            }
+
+            &:hover{
+                background: var(--color-blue);
+                cursor: pointer;
+                color: var(--color-white);
+
+                .text-muted{
+                    color: var(--color-white);
+                }
+            }
+        }
+
+        .current{
+            background: var(--color-blue);
+            color: var(--color-white);
+
+            .text-muted{
+                color: var(--color-white);
+            }
+        }
+    }
+
+    .conversations__card-header{
+        display: block;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        text-align: left;
+        border-bottom: 1px solid var(--color-btn-border-secondary);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        box-sizing: border-box;
+        background: white;
+        padding: 10px 15px;
+    }
+
+    .conversations__card-body{
+        background: white;
+        padding: 12px 0;
+        overflow-y: scroll;
+        height: 670px;
+
+        .conversations__message{
+
+            .time_date{
+                color: #747474;
+                display: block;
+                font-size: 10px;
+                text-align: right;
+                margin: 0 30px;
+            }
+
+            .conversations__from{
+                padding: 18px 20px;
+                line-height: 26px;
+                margin: 13px 30px 3px;
+                position: relative;
+                animation: fadeIn 1s ease-in;
+                background: #86BB71;
+                color: white;
+                max-width: 700px;
+                width: max-content;
+                border-radius: 16px 16px 16px 0;
+            }
+
+            .conversations__to {
+                display: block;
+                margin-left: auto;
+                background: var(--color-blue);
+                color: var(--color-white);
+                text-align: right;
+                border-radius: 16px 16px 0 16px;
+            }
+
+            &:first-child > .conversations__from{
+                margin-top: 0;
+            }
+        }
+        .conversations__chat-name{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    }
+
+    form{
+        display: grid;
+        grid-template-columns: 90% 10%;
+        background: #eee;
+
+        button{
+            margin: 24px 12px;
+
+            .icon-send{
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+
+
+

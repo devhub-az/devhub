@@ -21,7 +21,7 @@ class MediaTableSeeder extends Seeder
             array (
                 'id' => 3,
                 'model_type' => 'App\\Models\\User',
-                'model_id' => 2,
+                'model_id' => 1,
                 'collection_name' => 'avatars',
                 'name' => 'logo1',
                 'file_name' => 'logo1.png',

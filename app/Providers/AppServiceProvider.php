@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,8 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        \Session::put('lang', 'az');
         $this->app->singleton(Parsedown::class);
-        \Carbon\Carbon::setLocale('az');
+//        \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
     }
 }

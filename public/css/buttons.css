@@ -1,13 +1,12 @@
 .btn:hover {
-  -webkit-filter: opacity(80%) !important;
-          filter: opacity(80%) !important;
+  -webkit-filter: opacity(90%) !important;
+          filter: opacity(90%) !important;
 }
 
 .btn {
   cursor: pointer;
   display: inline-block;
   -webkit-appearance: none !important;
-  border-radius: 4px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -18,14 +17,31 @@
   background-color: transparent;
   font-weight: 500;
   padding: 0.5rem 1rem;
+  border-radius: 3px;
 }
 
 .btn-sm {
   line-height: calc(1rem - 1px);
-  letter-spacing: 0.073em;
   font-size: 0.7rem;
   font-weight: 500;
   padding: 0.2rem 1rem;
+  letter-spacing: 0.5px;
+  border-color: #4183b7;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  background: -webkit-gradient(linear, left top, left bottom, from(#4183b7), to(#4d7597));
+  background: linear-gradient(#4183b7, #4d7597);
+  background-color: rgba(0, 0, 0, 0);
+  background-color: #4183b7;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 
 .hub_follow {
@@ -57,7 +73,7 @@
   background-color: var(--color-blue);
   color: var(--color-text-contrast);
   text-transform: none;
-  border-radius: 2px;
+  border-radius: 3px;
   font-size: 14px;
 }
 
@@ -76,7 +92,7 @@
 }
 
 .btn-success-outline {
-  background-color: #e2e2e2;
+  background: #e2e2e2 !important;
   color: var(--color-black);
   border-radius: 2px;
   font-size: 13px;
@@ -112,29 +128,26 @@
 }
 
 .btn_navbar_login {
-  font-family: "Fira Sans", sans-serif;
   font-weight: 500;
-  background: transparent;
   color: var(--color-black);
-  border-radius: 2px;
-  border: 1px solid #dbdbdb;
-  color: var(--color-black);
+  border-radius: 3px;
+  border: #b1b1b1 solid 1px;
   text-transform: none;
   font-size: 14px;
-  background-color: transparent;
+  outline: transparent solid;
+  background: transparent;
 }
 
 .btn_navbar_login:hover {
-  -webkit-filter: opacity(80%);
-          filter: opacity(80%);
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(96%, #fbfbfb));
+  background: linear-gradient(#ffffff, #fbfbfb 96%);
 }
 
 .btn-more {
   background-color: transparent;
   border: 1px solid #dbdbdb;
   color: var(--color-black);
-  margin: 0;
-  margin-left: auto;
+  margin: 0 0 0 auto;
 }
 
 .page-header__button {
@@ -144,12 +157,11 @@
 }
 
 .btn-folow__user {
-  margin: 0;
   background: var(--color-green);
   color: #fff;
   width: 100%;
   text-align: center;
-  margin-top: 12px;
+  margin: 12px 0 0;
 }
 
 .btn-dashed {

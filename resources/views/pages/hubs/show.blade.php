@@ -17,7 +17,7 @@
                         <sup class="page-header__stats-value page-header__stats-value_branding"
                              title="Рейтинг компании">399,64</sup>
                     </div>
-                    <div class="list-hubs__desc">{{ $hub['description'] }}</div>
+                    <div class="list-hubs__desc">{{ $hub['description'][session()->get('lang')] }}</div>
                     <div class="list-hubs__desc">Postlar: {{ $posts_count }} |
                         Followers: {{ $hub['hub_followers_count'] }}</div>
                 </div>
@@ -33,36 +33,36 @@
             <div class="content-left">
                 <div class="header">
                     <ul class="nav_posts">
-                        <a href="{{ route('home') }}"
-                           class="nav-posts__item @if(Request::is('hubs/*')) nav-posts__item-link_current @endif">
+                        <a href="{{ url('hubs/'. $hub->id) }}"
+                           class="nav-posts__item @if(Request::is('hubs/'. $hub->id)) nav-posts__item-link_current @endif">
                             <span class="nav-posts__item-link">Ən yaxşı</span>
                         </a>
-                        <a href="{{ route('all') }}"
-                           class="nav-posts__item @if(Request::url() === route('all')) nav-posts__item-link_current @endif">
+                        <a href="{{ url('hubs/'. $hub->id .'/all') }}"
+                           class="nav-posts__item @if(Request::is('hubs/'. $hub->id .'/all')) nav-posts__item-link_current @endif">
                             <span class="nav-posts__item-link">Bütün yazılar</span>
                         </a>
                     </ul>
                 </div>
-                @if (Request::is('hubs/*'))
+                @if (Request::is('hubs/'. $hub->id .'/top/*') || Request::is('hubs/'. $hub->id))
                     <div class="tabs__level tabs__level_bottom">
                         <ul class="toggle-menu ">
                             <li class="toggle-menu__item">
-                                <a href="{{ url('/') }}"
-                                   class="toggle-menu__item-link @if(Request::is('hubs/*')) toggle-menu__item-link_active @endif"
+                                <a href="{{ url('hubs/'. $hub->id) }}"
+                                   class="toggle-menu__item-link @if(Request::is('hubs/'. $hub->id)) toggle-menu__item-link_active @endif"
                                    rel="nofollow" title="Лучшие публикации за сутки">
                                     Gün
                                 </a>
                             </li>
                             <li class="toggle-menu__item">
-                                <a href="{{ url('top/week') }}"
-                                   class="toggle-menu__item-link @if(Request::url() === url('top/week')) toggle-menu__item-link_active @endif"
+                                <a href="{{ url('hubs/'. $hub->id  .'/top/week') }}"
+                                   class="toggle-menu__item-link @if(Request::url() === url('hubs/'. $hub->id  .'/top/week')) toggle-menu__item-link_active @endif"
                                    rel="nofollow" title="Лучшие публикации за неделю">
                                     Həftə
                                 </a>
                             </li>
                             <li class="toggle-menu__item">
-                                <a href="{{ url('top/month') }}"
-                                   class="toggle-menu__item-link @if(Request::url() === url('top/month')) toggle-menu__item-link_active @endif"
+                                <a href="{{ url('hubs/'. $hub->id  .    '/top/month') }}"
+                                   class="toggle-menu__item-link @if(Request::url() === url('hubs/'. $hub->id  .'/top/month')) toggle-menu__item-link_active @endif"
                                    rel="nofollow" title="Лучшие публикации за месяц">
                                     Ay
                                 </a>
@@ -70,8 +70,7 @@
                         </ul>
                     </div>
                 @endif
-                <posts :url="'{{ $url }}'"
-                       @auth :auth_check="true" @endauth></posts>
+                <posts :url="'{{ $url }}'" @auth :auth_check="true" @endauth></posts>
             </div>
 
             {{-- Right --}}
@@ -87,9 +86,8 @@
                                 <a href="https://u.tmtm.ru/kryptonite-startup" rel="nofollow" class="partner-info">
                                     <div class="partner-info__head">
                                         <span class="partner-info__title">Azərkosmos</span>
-                                        <img
-                                            src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png"
-                                            class="partner-info__image">
+                                        <img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png"
+                                             class="partner-info__image">
                                     </div>
                                     <div class="partner-info__description">
                                         Cənubi Qafqazda ilk peyk operatoru olan “Azərkosmos”.

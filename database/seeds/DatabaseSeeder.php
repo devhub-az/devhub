@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HubsTableSeeder::class);
         $this->call(LocalizationTableSeeder::class);
         $this->call(MediaTableSeeder::class);
-        $this->call(MigrationsTableSeeder::class);
         $this->call(NotificationStatusTableSeeder::class);
         $this->call(NotificationsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);

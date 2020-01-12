@@ -1,0 +1,91 @@
+@import "variables";
+
+.footer {
+    flex: 0 0 auto;
+    width: 100%;
+    margin-top: auto;
+    background-color: #242729;
+    border-top: 1px solid #e9e9e9;
+
+    .footer-content {
+        display: flex;
+        margin-left: 10%;
+        align-items: center;
+        height: 54px;
+
+        .nav-links {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            margin: 0;
+            padding: 0 0 0 30px;
+            list-style: none;
+
+            .nav-links__item {
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                -ms-flex-align: center;
+                -ms-grid-row-align: center;
+                align-items: center;
+                margin-right: 23px;
+
+                .nav-links__item-link {
+                    font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
+                    display: inline-block;
+                    color: var(--color-app-text);
+                    font-size: 13px;
+                    font-weight: 700;
+                    letter-spacing: 0.3px;
+                    box-sizing: border-box;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                    -webkit-font-smoothing: subpixel-antialiased;
+                    text-rendering: optimizeLegibility;
+                    -webkit-transition: 0.2s;
+                    transition: 0.2s;
+                    -webkit-transition-property: all;
+                    transition-property: all;
+                    -webkit-transition-duration: 0.2s;
+                    transition-duration: 0.2s;
+                    -webkit-transition-timing-function: ease;
+                    transition-timing-function: ease;
+                    -webkit-transition-delay: 0s;
+                    transition-delay: 0s;
+
+                    &:last-child {
+                        margin-right: 0
+                    }
+
+                    &:hover {
+                        background: unset;
+                        color: var(--color-header-nav-hover);
+                    }
+                }
+            }
+        }
+
+        .logo-footer {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            color: #bbc0c4;
+            font-family: MontDemo-Heavy, serif;
+            font-size: 26px;
+
+            &:hover {
+                color: #f2f3f3;
+            }
+        }
+
+        .nav-links__item-link:hover {
+            color: #bbc0c4;
+        }
+
+        .copyright {
+            margin-right: 28px;
+            padding-left: 22px;
+            position: relative;
+        }
+    }
+}

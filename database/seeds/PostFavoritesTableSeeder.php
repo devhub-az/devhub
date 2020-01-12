@@ -20,7 +20,7 @@ class PostFavoritesTableSeeder extends Seeder
             0 => 
             array (
                 'id' => 33,
-                'follower_id' => 2,
+                'follower_id' => 1,
                 'post_id' => 44,
                 'created_at' => '2019-08-16 02:40:26',
                 'updated_at' => '2019-08-16 02:40:26',

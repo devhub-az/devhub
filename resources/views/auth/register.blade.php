@@ -52,7 +52,7 @@
                             </div>
                         </fieldset>
                         <fieldset class="AnimatedForm__field m-required login hideable">
-                            <input id="avatar" type="file" name="avatar" data-empty="false" required>
+                            <input id="avatar" type="file" name="avatar" data-empty="false">
                             <div class="AnimatedForm__errorMessage">
                                 @if ($errors->has('avatar'))
                                     <span class="invalid-feedback" role="alert">

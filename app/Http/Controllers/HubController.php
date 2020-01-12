@@ -18,6 +18,22 @@ class HubController extends Controller
      */
     private $content = 'hub_show';
 
+    public function postsApiRoute(int $id)
+    {
+        switch (\request()->path()) {
+            case 'hubs/' . $id:
+                return '/api/hubs/'. $id .'/top/day';
+            case 'hubs/'. $id .'/top/week':
+                return '/api/hubs/'. $id .'/top/week';
+            case 'hubs/'. $id .'/top/month':
+                return '/api/hubs/'. $id .'/top/month';
+            case 'hubs/'. $id .'/all':
+                return '/api/hubs/'. $id .'/all';
+            default:
+                return abort(404);
+        }
+    }
+
     /**
      * @param int $id
      * @return Factory|View
@@ -27,8 +43,8 @@ class HubController extends Controller
         $hub = new HubCollection(Hub::withCount('hubFollowers')->findOrFail($id));
         return view('pages.hubs.show', [
             'hub'         => $hub,
-            'posts_count' => count($hub->posts()->get()),
-            'url'         => '/api/hubs/' . $id,
+            'posts_count' => $hub->posts()->count(),
+            'url'         => $this->postsApiRoute($id),
             'content'     => $this->content,
         ]);
     }

@@ -2,26 +2,39 @@
 
 @section('title')Login səhifəsi @stop
 
+@section('css')
+    {{--    <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">--}}
+@stop
+
 @section('main')
     <div class="container">
         <div class="PageColumns">
             <div class="PageColumn PageColumn__left">
-                <!-- particles.js container -->
-                <div id="particles-js">
-                    <div class="login__registration">
-                        <div class="login__registration-block">
-                            <h1 class="title title--large">Are you ready to own
-                                a masterpiece?</h1>
-                            <p>Discover the only independent cloud based platform by collectors for collectors.</p>
+                <div class="login__registration">
+                    <div class="login__registration-block">
+                        <h1 class="title"><span class="logo_login">DevHub</span> cəmiyyətinə qoşulun</h1>
+                        <div class="login__registration-block-info">
+                            <i class="icon feather icon-thumbs-up"></i>
+                            <div class="login__registration-info-text">Səs vermək və şərh yazmaq kimi imkanların
+                                kilidini aç
+                            </div>
+                        </div>
+                        <div class="login__registration-block-info">
+                            <i class="icon feather icon-bookmark"></i>
+                            <div class="login__registration-info-text">Ən sevdiyiniz paylaşmaları qeyd edin</div>
+                        </div>
+                        <div class="login__registration-block-info">
+                            <i class="icon feather icon-award"></i>
+                            <div class="login__registration-info-text">Şöhrət və döş nişanları qazanın</div>
                         </div>
                     </div>
                 </div>
+                <!-- particles.js container -->
+                <div id="particles-js"></div>
             </div>
             <div class="PageColumn PageColumn__right">
                 <div class="ColumnContainer mode-auth">
                     <a href="{{ route('home') }}" class="logo_login">DevHub</a>
-                    <p class="desc">Xoş gəldiniz! Xahiş edirik məlumatlarınızı daxil edin və ya hesabınıza sosial şəbəkə
-                        hesabı ilə daxil olun.</p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <fieldset class="AnimatedForm__field m-required login hideable m-valid">
@@ -42,19 +55,26 @@
                             <div class="AnimatedForm__errorMessage"></div>
                         </fieldset>
                         <div class="AnimatedForm__field form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Daxil ol
-                                </button>
+                            <button type="submit" class="btn btn-primary login-button">
+                                Daxil ol
+                            </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Şifrəni unutmusan?
+                            @if (Route::has('password.request'))
+                                <footer class="login__footer-links">
+                                    <a class="footer__link" data-content-type="requestPasswordForm"
+                                       href="{{ route('password.request') }}">
+                                        Şifrəni sıfırla
                                     </a>
-                                @endif
-                            </div>
+                                    <a class="footer__link js-change-content" data-content-type="registerForm">
+                                        Qeydiyyatdan keçmək
+                                    </a>
+                                </footer>
+                            @endif
                         </div>
                     </form>
+                </div>
+                <div class="login__footer">
+                    © 2020 DevHub
                 </div>
             </div>
         </div>
@@ -62,55 +82,6 @@
 @endsection
 
 @section('scripts')
-    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": {"value":20, "density": {"enable": true, "value_area": 800}},
-                "color": {"value": "#ffffff"},
-                "opacity": {
-                    "value": 0.12025590456491421,
-                    "random": false,
-                    "anim": {
-                        "enable": true,
-                        "speed": 0.9744926547616141,
-                        "opacity_min": 0.09744926547616141,
-                        "sync": true
-                    }
-                },
-                "size": {
-                    "value": 4.008530152163807,
-                    "random": false,
-                    "anim": {"enable": false, "speed": 17.053621458328248, "size_min": 0.1, "sync": false}
-                },
-                "line_linked": {"enable": true, "distance": 150, "color": "#ffffff", "opacity": 1, "width": 1},
-                "move": {
-                    "enable": true,
-                    "speed": 1.5,
-                    "direction": "none",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "bounce",
-                    "bounce": false,
-                    "attract": {"enable": false, "rotateX": 600, "rotateY": 1200}
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {"enable": false, "mode": "repulse"},
-                    "onclick": {"enable": true, "mode": "push"},
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {"distance": 400, "line_linked": {"opacity": 1}},
-                    "bubble": {"distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3},
-                    "repulse": {"distance": 200, "duration": 0.4},
-                    "push": {"particles_nb": 4},
-                    "remove": {"particles_nb": 2}
-                }
-            },
-            "retina_detect": true
-        });
-    </script>
+    <script src="{{ mix('js/scripts/particles.min.js') }}"></script>
+    <script src="{{ mix('js/scripts/particles.settings.js') }}"></script>
 @endsection

@@ -2,13 +2,13 @@
 
 Auth::routes();
 
-Route::get('setlocale/{locale}', function ($locale) {
-    if (in_array($locale, \Config::get('app.locales'))) {
-        Session::put('locale', $locale);
-    }
-    // Carbon\Carbon::setLocale(config('app.locale'));
-    return redirect()->back();
-});
+//Route::get('setlocale/{locale}', function ($locale) {
+//    if (in_array($locale, \Config::get('app.locales'))) {
+//        Session::put('locale', $locale);
+//    }
+//    // Carbon\Carbon::setLocale(config('app.locale'));
+//    return redirect()->back();
+//});
 
 Route::get('/', 'HomeController@postsApiRoute')->name('home');
 Route::get('/top/week', 'HomeController@postsApiRoute')->name('top.week');
@@ -22,9 +22,15 @@ Route::group(['middleware' => ['auth']], function () {
 
     // Conversations
     Route::get('/conversations', 'ConversationController@index')->name('conversations');
-    Route::get('/conversations/{id}', 'ConversationController@show')->name('conversations.show');
+    Route::get('/conversations/{user}', 'ConversationController@show')
+//        ->middleware('can:talkTo,user')
+        ->name('conversations.show');
+    Route::post('/conversations/{user}', 'ConversationController@store')
+        ->middleware('can:talkTo,user')
+        ->name('conversations.show');
 
-    Route::prefix('@{username}/settings')->group(function (){
+
+    Route::prefix('@{username}/settings')->group(function () {
         Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');
         Route::post('profile', 'Auth\UserSettingsController@update');
         Route::post('avatar', 'Auth\UserSettingsController@update_avatar');
@@ -44,8 +50,12 @@ Route::prefix('api')->group(function () {
     /*
      * Hubs Api
      */
-    Route::get('hubs/all', 'Api\HubController@search');
-    Route::get('hubs/{id}', 'Api\HubController@posts');
+    Route::get('hubs/search', 'Api\HubController@search');
+    Route::get('hubs/{id}/top/day', 'Api\PostHubController@posts');
+    Route::get('hubs/{id}/top/week', 'Api\PostHubController@posts');
+    Route::get('hubs/{id}/top/month', 'Api\PostHubController@posts');
+    Route::get('hubs/{id}/all', 'Api\PostHubController@all');
+
     Route::get('hubs', 'Api\HubController@hubs')->name('hubs-list');
 
     /*
@@ -64,6 +74,9 @@ Route::prefix('post')->group(function () {
 Route::prefix('hubs')->group(function () {
     Route::get('/', 'HubController@index');
     Route::get('/{id}', 'HubController@show');
+    Route::get('/{id}/top/week', 'HubController@show');
+    Route::get('/{id}/top/month', 'HubController@show');
+    Route::get('/{id}/all', 'HubController@show');
     Route::post('/follow/{id}', 'HubController@follow');
 });
 

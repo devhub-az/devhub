@@ -1,56 +1,170 @@
+body{
+    font-family: Roboto, Tahoma, sans-serif;
+}
+
 @import 'variables';
 
-* {
-    box-sizing: border-box;
+@font-face {
+    font-family: MontDemo-Heavy;
+    font-style: normal;
+    src: url("/fonts/MontDemo-Heavy.otf");
+}
+
+@media screen and (min-width: 36em) {
+    .PageColumns {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
 }
 
 .PageColumns {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    overflow-x: hidden;
     min-height: 100vh;
+    min-width: 100%;
 
     .PageColumn__left {
-        background: var(--color-app-bg);
-        width: 50%;
+        background: #4183B7;
+        color: #fff;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        position: relative;
+        min-height: 100vh;
+        grid-column: 1;
 
         .login__registration {
-            position: absolute;
+            color: #fff;
             display: flex;
+            max-width: 70%;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
             flex-direction: column;
-            vertical-align: middle;
+            -webkit-box-pack: center;
             justify-content: center;
-            top: 30%;
-            width: 50%;
+            z-index: 99;
 
-            .login__registration-block {
-                margin: 0 auto;
+            .login__registration-block-info {
+                display: flex;
+                margin-bottom: 24px;
+
+                .icon {
+                    //color: ;
+                    margin-right: 8px;
+                    font-size: 1.5em;
+                }
+
+                .icon-thumbs-up:hover {
+                    color: unset;
+                    cursor: inherit;
+                }
+
+                .login__registration-info-text {
+                    line-height: 1.5em;
+                }
+            }
+
+            .title {
+                margin-bottom: 20px;
+                color: var(--color-white);
+
+                .logo_login {
+                    font-size: inherit;
+                    margin: unset;
+                    color: var(--color-black);
+                }
+            }
+
+            .svg-icon {
+                color: var(--color-blue);
+            }
+
+            p {
+                font-size: 13px;
             }
         }
 
         #particles-js {
+            position: absolute;
             height: 100vh;
+            width: 100%;
         }
     }
 
     .PageColumn__right {
-        display: flex;
-        justify-content: center;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        flex-direction: column;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
         background: var(--color-white);
-        vertical-align: middle;
-        height: 100vh;
-        width: 50%;
+        grid-column: 2;
 
         .ColumnContainer {
-            display: flex;
-            max-width: 70%;
-            flex-direction: column;
-            justify-content: center;
-            min-width: 40%;
+            width: 85%;
+            max-width: 60%;
+            margin: 0 auto;
+        }
+
+        &:before {
+            content: '';
+        }
+
+        .login__footer {
+            color: var(--color-text);
+            text-align: center;
+            -webkit-box-direction: normal;
+            box-sizing: inherit;
+            display: block;
+            padding-bottom: 1.5rem;
+        }
+
+        .login-button{
+            width: 100%;
+            border: none;
+            letter-spacing: .5px;
+            height: 36px;
+            padding: 0 10px;
+            line-height: 40px;
+            text-transform: uppercase;
+        }
+
+        .login__footer-links{
+            font-family: Open Sans,sans-serif;
+            white-space: normal;
+            visibility: visible;
+            box-sizing: border-box;
+            text-align: center;
+            margin: 0 auto;
+            padding: 17px 0;
+            width: 100%;
+            border-top: 1px solid #ccc;
+
+            .footer__link{
+                font-family: Open Sans,sans-serif;
+                white-space: normal;
+                visibility: visible;
+                text-align: center;
+                box-sizing: border-box;
+                text-decoration: none;
+                cursor: pointer;
+                color: #4f4f4f;
+                border: none;
+                font-size: 14px;
+                line-height: 16px;
+            }
+
+            a.footer__link.js-change-content:before{
+                content: "\2022";
+                display: inline-block;
+                margin: 0 10px;
+                color: #4f4f4f !important;
+                font-size: 12px;
+            }
         }
     }
 }
@@ -82,23 +196,18 @@
 }
 
 .AnimatedForm__textInput {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.15;
+    overflow: visible;
     outline: 0;
     width: 100%;
     -webkit-appearance: none;
-    appearance: none;
-    transition: all .2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     height: 48px;
     padding: 22px 12px 10px;
-    border: 1px solid rgba(0, 0, 0, .1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 4px;
-    background-color: #fcfcfb;
-}
-
-.AnimatedForm__field.m-valid .AnimatedForm__textInput {
-    padding-right: 36px;
-    border-color: #24a0ed;
 }
 
 .hideable {
@@ -116,6 +225,7 @@ fieldset {
 
 .AnimatedForm__field + .AnimatedForm__field {
     margin-top: 24px;
+    margin-left: 0;
 }
 
 .Title {
@@ -125,31 +235,15 @@ fieldset {
     margin: 20px 0;
 }
 
-footer {
-    background-color: #f5f5f5;
-    border-top: 1px solid #bdbdbd;
-    min-height: 60px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 1rem 2rem;
-    margin-top: auto;
-}
-
 .logo_login {
     display: inline-block;
     vertical-align: middle;
     position: relative;
     margin: 20px 0;
     color: var(--color-black);
-    font-family: MontDemo-Heavy;
+    font-family: MontDemo-Heavy, serif;
     font-size: 26px;
+    text-decoration: none;
 }
 
 .btn-reg {
