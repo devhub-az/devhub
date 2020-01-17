@@ -9,6 +9,7 @@ use App\Models\Post;
 use App\Models\PostFavorite;
 use App\Models\PostVote;
 use App\Notifications\PostNotify;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -74,7 +75,7 @@ class PostController extends Controller
      *
      * @param \Request $request
      * @param int $id
-     * @return Response
+     * @return Factory|\Illuminate\View\View
      */
     public function show(\Request $request, int $id)
     {

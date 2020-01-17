@@ -11,42 +11,24 @@
         <div class="layout_content">
             <div class="content_left" id="app">
                 @if (Auth::user()->Notifications->count() > 0)
-                    <div style=" width: 100%">
-                        <h1>Notifications</h1>
+                    <div style="width: 100%">
+                        <h1>Bildirişlər</h1>
                         <a href="{{ route('delete-all-trackers') }}" style="margin-left: auto;">Delete trackers</a>
                     </div>
                     @foreach(Auth::user()->Notifications as $notification)
                         <div class="post-content">
-                            <div class="post-content__item" style="padding: 2%;">
-                                <header class="post__meta">
-                                    <a href="{{"/users/@" . $notification->data['creator'] }}"
-                                       class="post__user-info user-info"
-                                       title="Paylaşmanın müəllifi">
-                                        <img src="{{ asset('images/profile/deadpool.gif') }}" alt="user avatar"
-                                             class="user__avatar">
-                                        <span class="user-info__nickname user-info__nickname_small">
-                                            {{ $notification->data['creator'] }}
-                                        </span>
-                                    </a>
-                                    <span>yeni paylaşma yazdı:</span>
-                                    <span class="post__time"> {{ Carbon\Carbon::parse($notification->data['created_at'])->diffForHumans() }} | {{ Carbon\Carbon::parse($notification->data['created_at'])->format('H:i') }}</span>
-                                    <span class="post__read-time" data-balloon-pos="left">
-                                        <span style="background: var(--color-blue);
-                                            color: white;
-                                            font-size: .8em;
-                                            padding: 5px;
-                                            border-radius: 3px;">
-                                                {{ $notification->data['type'] }}
-                                        </span>
-                                    </span>
-                                </header>
-                                <div class="post-content__header">
-                                    <a href="/post/{{ $notification->data['id'] }}" class="post-title">
-                                        <h1>{{ $notification->data['title'] }}</h1>
-                                    </a>
-                                </div>
-                                <div class="post-content__body">
-                                    {!! $notification->data['body'] !!}
+                            <div name="js-notify" class="notification">
+                                <span class="notification__image">
+                                    <img src="{{ asset('images/profile/deadpool.gif') }}" alt="user avatar" width="40" height="40">
+                                </span>
+                                <div class="notification__text">
+                                    <p name="js-notification-text">
+                                        <a href="{{"/users/@" . $notification->data['creator'] }}" class="link-author">{{ $notification->data['creator'] }}</a> yeni paylaşma yazdı:
+                                        <a href="/post/{{ $notification->data['id'] }}">{{ $notification->data['title'] }}</a>
+                                    </p>
+                                    <div class="notification__footer">
+                                        {{ Carbon\Carbon::parse($notification->data['created_at'])->diffForHumans() }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +39,9 @@
                         <span style="font-size: 5rem; opacity: .7;">
                             <img v-lazy="'/images/errors/lazy.png'" alt="" width="250"/>
                         </span>
-                        <span>Bildirişlər tapılmadı</span>
+                        <h3>Bildirişlər yoxdu</h3>
+                        Paylaşma
+                        <p>Bura belə boş olmasın deyə, paylaşma və şərhlər yazmağa başlayın</p>
                     </div>
                 @endif
             </div>

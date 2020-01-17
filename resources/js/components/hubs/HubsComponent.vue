@@ -21,7 +21,7 @@
             </a>
             <div class="list-hubs__stats">
                 <div class="list-hubs__stats-value">{{ hub.posts_count }}</div>
-                <small>POSTLAR</small>
+                <small>paylashım</small>
             </div>
             <div class="list-hubs__stats">
                 <div class="list-hubs__stats-value">{{ hub.rating }}</div>

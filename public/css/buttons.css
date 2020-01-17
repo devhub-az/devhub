@@ -4,19 +4,15 @@
 }
 
 .btn {
-  cursor: pointer;
+  position: relative;
   display: inline-block;
-  -webkit-appearance: none !important;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 20px;
   white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
   vertical-align: middle;
-  background-color: transparent;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
+  cursor: pointer;
+  background-size: 110% 110%;
   border-radius: 3px;
 }
 
@@ -24,14 +20,11 @@
   line-height: calc(1rem - 1px);
   font-size: 0.7rem;
   font-weight: 500;
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 0.5rem;
   letter-spacing: 0.5px;
-  border-color: #4183b7;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  background: -webkit-gradient(linear, left top, left bottom, from(#4183b7), to(#4d7597));
-  background: linear-gradient(#4183b7, #4d7597);
-  background-color: rgba(0, 0, 0, 0);
-  background-color: #4183b7;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   -webkit-transition: 0.2s;
   transition: 0.2s;
   -webkit-transition-property: all;
@@ -59,14 +52,10 @@
   color: #fff;
   background-color: var(--color-blue);
   text-transform: none;
-  border-radius: 2px;
   font-size: 14px;
 }
-
 .btn_navbar_registration:hover {
-  color: #fff;
   border-color: transparent;
-  text-decoration: none;
 }
 
 .btn-primary {
@@ -78,9 +67,8 @@
 }
 
 .btn-success {
-  background-color: var(--color-blue);
-  color: var(--color-white);
-  border-radius: 2px;
+  color: var(--color-black);
+  border-radius: 4px;
 }
 
 .btn-outline {
@@ -92,13 +80,15 @@
 }
 
 .btn-success-outline {
-  background: #e2e2e2 !important;
   color: var(--color-black);
   border-radius: 2px;
   font-size: 13px;
 }
 .btn-success-outline:hover {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.9);
+}
+.btn-success-outline i {
+  color: var(--color-green);
 }
 
 .submit {
@@ -128,19 +118,27 @@
 }
 
 .btn_navbar_login {
-  font-weight: 500;
-  color: var(--color-black);
+  border: 1px solid #a4afba;
+  background-color: transparent;
+  box-shadow: none;
+  color: #838a92;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  height: 32px;
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   border-radius: 3px;
-  border: #b1b1b1 solid 1px;
-  text-transform: none;
-  font-size: 14px;
-  outline: transparent solid;
-  background: transparent;
 }
-
 .btn_navbar_login:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), color-stop(96%, #fbfbfb));
-  background: linear-gradient(#ffffff, #fbfbfb 96%);
+  border-color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 .btn-more {

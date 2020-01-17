@@ -24,7 +24,7 @@
 {{--    <script>hljs.initHighlightingOnLoad();</script>--}}
 
     {{-- CSS --}}
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:400:500|PT+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:400:500:600|PT+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">
@@ -90,12 +90,12 @@
 
     var stickymessage = stickybits('.header-message');
 
-    document.addEventListener("DOMNodeInserted", function(event){
-        var element=event.target;
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub,element.parent]);
-    });
-
-    MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    // document.addEventListener("DOMNodeInserted", function(event){
+    //     var element=event.target;
+    //     MathJax.Hub.Queue(["Typeset",MathJax.Hub,element.parent]);
+    // });
+    //
+    // MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
     function Lang() {
         document.getElementById("myDropdown").classList.toggle("show");

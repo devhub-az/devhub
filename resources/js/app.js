@@ -26,9 +26,10 @@ Vue.component('hub-follow-button', require('./components/hubs/HubsFollowButtonCo
 Vue.component('user-follow-button', require('./components/users/UsersFollowButtonComponent.vue').default);
 Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').default);
 Vue.component('search', require('./components/search.vue').default);
-Vue.component('dropdown', require('./components/plugins/Dropdown.vue').default);
+Vue.component('dropdown', require('./components/plugins/dropdown.vue').default);
 Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
 Vue.component('users-list', require('./components/users/UserComponent.vue').default);
+Vue.component('dropdown-notification', require('./components/plugins/dropdown-notification.vue').default);
 
 Vue.config.productionTip = false;
 Vue.config.silent = false;

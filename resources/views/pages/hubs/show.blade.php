@@ -15,7 +15,7 @@
                     <div class="list-hubs__title-link">
                         {{ $hub['name'] }}
                         <sup class="page-header__stats-value page-header__stats-value_branding"
-                             title="Рейтинг компании">399,64</sup>
+                             title="Hab reytingi">{{ $hub['rating'] }}</sup>
                     </div>
                     <div class="list-hubs__desc">{{ $hub['description'][session()->get('lang')] }}</div>
                     <div class="list-hubs__desc">Postlar: {{ $posts_count }} |
@@ -87,7 +87,7 @@
                                     <div class="partner-info__head">
                                         <span class="partner-info__title">Azərkosmos</span>
                                         <img src="https://res-4.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/v1493023812/v9fu3nxdrblcxfxcz6io.png"
-                                             class="partner-info__image">
+                                             class="partner-info__image" alt="">
                                     </div>
                                     <div class="partner-info__description">
                                         Cənubi Qafqazda ilk peyk operatoru olan “Azərkosmos”.
@@ -99,7 +99,7 @@
                                     <div class="partner-info__head">
                                         <span class="partner-info__title">RISK Company</span>
                                         <img src="https://risk.az/site/templates/images/logo_large.jpg"
-                                             class="partner-info__image">
+                                             class="partner-info__image" alt="">
                                     </div>
 
                                     <div class="partner-info__description">

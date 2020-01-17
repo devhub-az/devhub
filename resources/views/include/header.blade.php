@@ -9,7 +9,7 @@
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ url('hubs') }}"
-                       class="nav-links__item-link @if(Request::is('hubs')) nav-links__item-link_current @endif">Hablar</a>
+                       class="nav-links__item-link @if(Request::is('hubs/*') || Request::is('hubs')) nav-links__item-link_current @endif">Hablar</a>
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ route('users-list') }}"
@@ -37,16 +37,15 @@
                 <a href="{{ route('login') }}" class="btn btn-primary btn_navbar_login">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qeydiyyatdan Keç</a>
             @else
-                <a href="{{ route('tracker') }}"><i class="icon feather icon-bell badge"
-                                                    @if (Auth::user()->unreadNotifications->count() > 0)
-                                                    data-badge="{{ Auth::user()->unreadNotifications->count() }}"
-                            @endif></i></a>
+
+                <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}" :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
+
                 <a href="{{ route('conversations') }}"><i class="icon feather icon-mail badge"
                                                           @if (Auth::user()->messagesNotificationsCount() > 0)
                                                           data-badge="{{ Auth::user()->messagesNotificationsCount() }}"
                             @endif></i></a>
                 <a href="{{ route('create_post') }}" class="btn btn-primary button_add">
-                    Yazmağ
+                    Yazmaq
                 </a>
                 <div class="avatar-dropdown">
                     <dropdown :user="{{Auth::User()}}"></dropdown>

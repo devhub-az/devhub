@@ -51,7 +51,7 @@ return [
 
                 // Content model actually excludes several tags, not modelled here
                 ['address', 'Block', 'Flow', 'Common'],
-                ['hgroup', 'Block', 'Required: h1 | h2 | h3 | h4 | h5 | h6', 'Common'],
+                ['hgroup', 'Block', 'Required: h1 | h2 | h3', 'Common'],
 
                 // http://developers.whatwg.org/grouping-content.html
                 ['figure', 'Block', 'Optional: (figcaption, Flow) | (Flow, figcaption) | Flow', 'Common'],

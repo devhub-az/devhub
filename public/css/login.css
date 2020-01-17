@@ -30,7 +30,7 @@ body {
   --color--header_icon__bg: rgba(0, 0, 0, 0.050980392156862744);
   --color--header_icon__text: rgba(0, 0, 0, 0.7019607843137254);
   --color-white: #fff;
-  --color-red: #dd1313;
+  --color-red: #fd5d47;
   --color-black: #262626;
   --color-green: #22b14e;
   --color-green-secondary: #55851c;
@@ -199,7 +199,6 @@ body {
   margin: 0 auto;
   padding: 17px 0;
   width: 100%;
-  border-top: 1px solid #ccc;
 }
 .PageColumns .PageColumn__right .login__footer-links .footer__link {
   font-family: Open Sans, sans-serif;

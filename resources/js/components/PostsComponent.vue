@@ -78,7 +78,7 @@
                                 </span>
                                 <span class="footer_item">
                                     <a :href="'/post/' + post.data.id + '/#comments'" class="post_comments_link">
-                                        <i class="comments outline icon"></i> {{ post.data.comments }} Komment
+                                        <i class="comments outline icon"></i> {{ post.data.comments }} şerh
                                         <span v-if="post.data.comments !== 0">{{ post.data.comments }}</span>
                                     </a>
                                 </span>
