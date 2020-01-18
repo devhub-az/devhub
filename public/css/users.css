@@ -1,0 +1,64 @@
+.layout_body {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.layout_body .layout_content {
+  display: grid;
+  grid-template-columns: 74% 25%;
+  grid-gap: 1%;
+  grid-template-areas: "page-header page-header" "edit-content content_right";
+}
+.layout_body .layout_content .users__page-header {
+  grid-area: page-header;
+  height: 130px;
+}
+.layout_body .layout_content .list-hubs__hub {
+  display: grid;
+  grid-template-columns: 10% 50% 10% 10% 20%;
+  background: white;
+  margin-bottom: 1%;
+  padding: 20px 0;
+  border: 1px solid var(--color-border);
+}
+.layout_body .layout_content .list-hubs__hub .list-hubs__hub-image {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+}
+.layout_body .layout_content .list-hubs__hub .list-hubs__obj-body {
+  position: relative;
+  width: 90%;
+}
+.layout_body .layout_content .list-hubs__hub .list-hubs__stats {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin: 0 auto;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+.layout_body .layout_content .list-hubs__hub .list-hubs__stats .list-hubs__stats-value {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: bold;
+  color: var(--color-black);
+  margin: 0 auto 3px;
+}
+.layout_body .layout_content .list-hubs__hub .hub_follow {
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+.layout_body .layout_content .content_right {
+  border-radius: 4px;
+}

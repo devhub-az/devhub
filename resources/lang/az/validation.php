@@ -146,7 +146,7 @@ return [
     'attributes' => [
         'name'                  => 'Ad',
         'username'              => 'Никнейм',
-        'email'                 => 'İstifadəçi emailı',
+        'email'                 => 'İstifadəçi emaili',
         'first_name'            => 'Имя',
         'last_name'             => 'Фамилия',
         'password'              => 'Şifrə',

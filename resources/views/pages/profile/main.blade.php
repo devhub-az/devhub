@@ -33,14 +33,16 @@
                         </div>
                     </div>
                     <div class="profile__user-button">
+                        <button class="btn"><i class="feather icon icon-mail"></i> Mesaj</button>
                         <button class="btn btn-primary follow">Izlə</button>
                     </div>
 
                 </div>
                 <div class="profile__section grid">
-                    <span class="profile__digital hint"
-                          aria-label="423 760"><b>{{ $user->rating }}</b> <span><span>reyting</span></span></span>
-                    <span class="profile__digital hint" aria-label="15 733"><b>{{ $user->followers->count() }}</b> <span>izləyiciler</span></span>
+                    <span class="profile__digital hint"><b>{{ $user->rating }}</b> <span><span>reyting</span></span></span>
+                    <span class="profile__digital hint"><b>{{ $user->karma }}</b> <span>Karma</span></span>
+                    <span class="profile__digital hint"><b>{{ $user->followers->count() }}</b> <span>Izləyənlər</span></span>
+                    <span class="profile__digital hint"><b>{{ $user->followings->count() }}</b> <span>Izlənən</span></span>
                     <span class="profile__digital"><b>{{ $user->posts->count() }}</b> <span>paylashım</span></span>
                 </div>
             </div>
@@ -71,9 +73,17 @@
                     Content
                 </div>
             </div>
+            <div id="default-block" class="default-block default-block_sidebar" style="top: 10px; position: sticky;">
+                <div class="default-block__header">
+                    <h3 class="default-block__header-title">Məlumat</h3>
+                </div>
+
+                <div class="default-block__content">
+                    Content
+                </div>
+            </div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')

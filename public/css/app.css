@@ -6616,15 +6616,15 @@ blockquote {
 
 textarea.wmd-input, textarea#wmd-input {
   padding: 10px;
-  margin: -1px 0 0;
   height: 200px;
   line-height: 1.3;
   width: 100%;
-  font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, sans-serif;
   font-size: 14px;
+  border-radius: unset;
   -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
+  z-index: 99;
 }
 
 .wmd-button-row {

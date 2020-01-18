@@ -69,7 +69,7 @@ class User extends Authenticatable implements HasMedia
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Post::class, 'author_id');
+        return $this->hasMany(Post::class, 'author_id')->with('hubs');
     }
 
 
