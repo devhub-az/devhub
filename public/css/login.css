@@ -4,7 +4,7 @@ body {
 }
 
 :root, [data-theme=default] {
-  --color-app-bg: #ededed;
+  --color-app-bg: #f4f4f4;
   --color-app-text: #838a92;
   --color-bg: #fff;
   --color-color: #838a92;

@@ -47,7 +47,7 @@ class ProfileController extends Controller
      *
      * @return RedirectResponse
      */
-    public function unFollowUser(int $profileId)
+    public function unFollowUser(int $profileId): RedirectResponse
     {
         $user = User::find($profileId);
 

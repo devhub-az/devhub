@@ -248,7 +248,7 @@
                                     <a href="{{ route('user.follow', $post['creator']['id']) }}"
                                        onclick="event.preventDefault(); document.getElementById('folow').submit();"
                                        class="btn profile_user-connect">
-                                        Abunə olmag</span>
+                                        Abunə olmag
                                     </a>
                                 @endauth
                             </div>

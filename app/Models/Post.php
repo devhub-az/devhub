@@ -40,7 +40,7 @@ class Post extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class)->with('author');
+        return $this->hasMany(Comment::class, 'post_id')->with('author');
     }
 
     public function votes()
@@ -60,7 +60,7 @@ class Post extends Model
 
     public function postIsFollowing(User $user)
     {
-        return (bool)$this->postFollowers()->where('follower_id', $user->id)->count();
+        return $this->postFollowers()->where('follower_id', $user->id)->count();
     }
 
     public function postIsVoted(User $user)

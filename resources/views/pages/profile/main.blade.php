@@ -15,28 +15,27 @@
                         <div class="background__placeholder"
                              style="background-image: url('https://www.elsetge.cat/imagepost/b/77/777342_best-wallpaper-for-facebook.jpg')"></div>
                     </div>
-                    <div class="avatar avatar_large image-lazy"><img alt="admin"
-                                                                     src="{{ asset('images/profile/deadpool.gif') }}"
-                                                                     class="image-loaded"></div>
+                    <div class="avatar avatar_large image-lazy">
+                        <img alt="admin"
+                             src="{{ asset('images/profile/deadpool.gif') }}"
+                             class="image-loaded"></div>
                 </div>
                 <div class="profile__user">
                     <div>
                         <h1 class="profile__nick">
-                            <span itemprop="additionalName">{{ '@' . $user->username }} {{ $user->name ? ' | ' . $user->name . ' ' . $user->surname : ''}}</span>
+                            <span itemprop="additionalName">{{ $user->username }} {{ $user->name ? ' | ' . $user->name . ' ' . $user->surname : ''}}</span>
                         </h1>
-                        <div>
-                            {{ $user->about }}
-                        </div>
                         <div class="profile__user-information">biznen
-                            <time datetime="1977-09-10T13:48:56+03:00"
-                                  class="hint">{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</time>
+                            <time>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</time>
                         </div>
                     </div>
                     <div class="profile__user-button">
                         <button class="btn"><i class="feather icon icon-mail"></i> Mesaj</button>
                         <button class="btn btn-primary follow">Izlə</button>
                     </div>
-
+                    <div class="profile__user-about">
+                        <span class="profile__user-about-content">{{ $user->about }}</span>
+                    </div>
                 </div>
                 <div class="profile__section grid">
                     <span class="profile__digital hint"><b>{{ $user->rating }}</b> <span><span>reyting</span></span></span>
@@ -64,22 +63,36 @@
         </div>
 
         <div class="content_right">
-            <div id="default-block" class="default-block default-block_sidebar" style="top: 10px; position: sticky;">
+            <div id="default-block" class="default-block default-block_sidebar">
                 <div class="default-block__header">
-                    <h3 class="default-block__header-title">Məlumat</h3>
+                    <h3 class="default-block__header-title">Mükafatlar (2)</h3>
                 </div>
 
                 <div class="default-block__content">
-                    Content
-                </div>
-            </div>
-            <div id="default-block" class="default-block default-block_sidebar" style="top: 10px; position: sticky;">
-                <div class="default-block__header">
-                    <h3 class="default-block__header-title">Məlumat</h3>
-                </div>
-
-                <div class="default-block__content">
-                    Content
+                    <div class="trophy-list">
+                        <div class="trophy-list__element">
+                            <img src="{{ asset('images\trophies\nomination.svg') }}" alt="">
+                            <div class="trophy-info">
+                                <div class="trophy-name">
+                                    Məşhur
+                                </div>
+                                <div class="trophy-description">
+                                    1000-dən çox baxış yığan
+                                </div>
+                            </div>
+                        </div>
+                        <div class="trophy-list__element">
+                            <img src="{{ asset('images\trophies\win.svg') }}" alt="" width="40">
+                            <div class="trophy-info">
+                                <div class="trophy-name">
+                                    Bir ill Klub
+                                </div>
+                                <div class="trophy-description">
+                                    Bir ildir ki, DevHub-da.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,4 +100,9 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript">
+        const stickyblock = stickybits('#default-block', {
+            stickyBitStickyOffset: 10,
+        });
+    </script>
 @endsection

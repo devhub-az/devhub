@@ -68,13 +68,52 @@
 
             {{-- Right --}}
             <div class="content_right">
+{{--                <div  class="default-block default-block_sidebar">--}}
+{{--                    <div class="default-block__header">--}}
+{{--                        <h3 class="default-block__header-title">Title</h3>--}}
+{{--                    </div>--}}
+
+{{--                    <div class="default-block__content">--}}
+{{--                        Content--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div id="default-block" class="default-block default-block_sidebar">--}}
+{{--                    <div class="telegram">--}}
+{{--                        <div class="telegram-head">--}}
+{{--                            <img src="{{ asset('images/devhublogo.png') }}" alt="" width="52">--}}
+{{--                            <h1>Devhub</h1>--}}
+{{--                        </div>--}}
+{{--                        <div class="body">--}}
+{{--                            --}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
                 <div id="default-block" class="default-block default-block_sidebar">
                     <div class="default-block__header">
-                        <h3 class="default-block__header-title">Title</h3>
+                        <h3 class="default-block__header-title">Ən izləninən hablar</h3>
                     </div>
 
                     <div class="default-block__content">
-                        Content
+                        <ul>
+                            @foreach ($top_followed_hubs as $hub)
+                                <li style="display: grid;grid-template-columns: 23% 75%;gap: 3%;margin-bottom: 12px;">
+                                    <img class="list-hubs__hub-image-block"
+                                         src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
+                                    <div class="list-hubs__obj-body">
+                                        <div class="block-hubs__title-link">
+                                            <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
+                                        <div class="list-hubs__desc">
+                                            <span
+                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                            <br>
+                                            <span style="font-size: 11px; color: #3b4045;">
+                                                <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
             </div>

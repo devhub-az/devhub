@@ -20,7 +20,7 @@ mix.sass('resources/sass/about.scss', 'public/css')
     .sass('resources/sass/users.scss', 'public/css')
     .sass('resources/sass/header.scss', 'public/css')
     .sass('resources/sass/footer.scss', 'public/css')
-
+    .sass('resources/sass/notification.scss', 'public/css')
     .sourceMaps().version();
 
 mix.js('resources/js/app.js', 'public/js/')

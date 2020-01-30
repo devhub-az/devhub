@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Comment;
 use App\Models\Hub;
 use Auth;
 use Illuminate\Http\Request;
@@ -36,7 +37,7 @@ class PostCollection extends JsonResource implements HasMedia
                 'votes'         => $this->votes,
                 'tags'          => new HubsCollection(Hub::whereIn('id',
                     $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-                'comments'      => $this->comments->count(),
+                'comments'      => Comment::where('post_id', $this->id)->count(),
                 'views'         => $this->views->count(),
                 'created_at'    => $this->created_at,
                 'read_time'     => $this->readTime($this->body),
@@ -76,7 +77,7 @@ class PostCollection extends JsonResource implements HasMedia
                 case 'downvote':
                     return $this->postIsVoted(Auth::user()) === 'downvoted';
                 case 'following':
-                    return $this->postIsFollowing(Auth::user()) === 'following';
+                    return $this->postIsFollowing(Auth::user()) === 1;
             }
         }
     }

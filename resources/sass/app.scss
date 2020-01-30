@@ -556,18 +556,18 @@ a {
     font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
     min-height: 75px;
     width: 100%;
-    padding: 3%;
     color: var(--color-app-text);
     border: 1px solid var(--color-border);
     border-radius: 0 0 2px 2px;
     background-color: var(--color-section-bg);
     box-sizing: border-box;
+    margin-bottom: 15px;
 
     .post__hubs {
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
-        margin: 12px 0;
+        margin: 10px 25px;
         padding: 0;
         list-style: none;
 
@@ -595,7 +595,7 @@ a {
     .post__meta {
         display: flex;
         align-items: center;
-        margin-bottom: var(--space-xs);
+        margin: 10px 25px;
 
         .post__user-info {
             display: inline-flex;
@@ -634,10 +634,14 @@ a {
     .post-content__header {
         display: grid;
         grid-template-columns: 80% 20%;
-        margin: 0 0 12px;
+        margin: 10px 25px;
 
         .post-title {
             color: var(--color-post-title) !important;
+
+            h1{
+                margin: 0;
+            }
         }
     }
 
@@ -658,6 +662,7 @@ a {
         letter-spacing: -0.003em;
         word-wrap: break-word;
         color: #313131;
+        margin: 10px 25px;
 
         h1 {
             font-size: 20px;
@@ -675,9 +680,9 @@ a {
         }
 
         img {
-            margin: 0 auto;
             display: block;
             max-width: 100%;
+            margin: 0 auto;
         }
 
         a {
@@ -685,6 +690,15 @@ a {
             font-weight: 700;
             color: var(--color-black);
             box-shadow: inset 0 -2px 0 var(--color-blue);
+            transition: 0.2s;
+            -webkit-transition-property: all;
+            transition-property: all;
+            -webkit-transition-duration: 0.2s;
+            transition-duration: 0.2s;
+            -webkit-transition-timing-function: ease;
+            transition-timing-function: ease;
+            -webkit-transition-delay: 0s;
+            transition-delay: 0s;
 
             &:hover {
                 color: var(--color-blue);
@@ -1495,6 +1509,44 @@ i.icon {
     grid-gap: 1%;
     padding: 20px 0;
 
+    .content_right{
+
+        .trophy-list{
+
+            .trophy-list__element{
+                display: grid;
+                grid-template-columns: 51px auto;
+                gap: 12px;
+                margin-bottom: 12px;
+                color: var(--color-black);
+
+                .trophy-info{
+                    line-height: 22px;
+                }
+
+                img{
+                    background-color: #f1f1f1;
+                    padding: 6px;
+                    width: 51px;
+                    height: 51px;
+                    border-radius: 3px;
+                }
+
+                &:last-child{
+                    margin-bottom: unset;
+                }
+
+                .trophy-name{
+                    font-weight: bold;
+                }
+
+                .trophy-description{
+                    //font-size: ;
+                }
+            }
+        }
+    }
+
     .profile__left{
 
         .profile__info{
@@ -1503,6 +1555,17 @@ i.icon {
 
         .nav_posts{
             margin: 20px 0;
+        }
+
+        .profile__user-about {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            word-break: break-word;
+        }
+
+        .profile__user-about-content{
+            color: var(--color-black);
         }
 
         .follow{
@@ -1573,6 +1636,7 @@ i.icon {
             align-items: center;
             flex-wrap: wrap;
             justify-content: space-between;
+            line-height: 22px;
 
             .profile__nick{
                 text-rendering: optimizeLegibility;
@@ -1770,14 +1834,15 @@ i.icon {
 .post-content__footer {
     display: grid;
     grid-template-columns: 80% 20%;
-    color: inherit;
-    margin: 12px 0;
+    color: #757575;
+    padding: 8px 25px;
+    border-top: 1px solid #e9e9e9;
+    background-color: #f9f9fb;
 
     .post-content__footer-stats {
         margin-right: auto;
         font-size: 14px;
-        padding: 7px 15px;
-        border: 1px solid #dbdbdb;
+        padding: 7px 0;
 
         .devhub {
             display: inline-block;

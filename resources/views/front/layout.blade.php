@@ -19,9 +19,9 @@
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
     </script>
-    {{-- <script src="{{ asset('js/highlight.min.js') }}"></script> --}}
-{{--    <script src="{{ asset('js/highlight.pack.js') }}"></script>--}}
-{{--    <script>hljs.initHighlightingOnLoad();</script>--}}
+     <script src="{{ asset('js/highlight.min.js') }}"></script>
+    <script src="{{ asset('js/highlight.pack.js') }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
     {{-- CSS --}}
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:400:500:600|PT+Sans&display=swap" rel="stylesheet">
@@ -29,17 +29,11 @@
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/feather-font/src/css/iconfont.css') }}">
-    {{-- iziToast --}}
-    <link rel="stylesheet" href="{{ asset('plugins/iziToast/dist/css/iziToast.min.css') }}">
-    {{-- endiziToast --}}
+    <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ asset('css/prettify.css') }}" type="text/css" rel="stylesheet" />
     @yield('css')
-
-    <link rel="stylesheet"
-          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/default.min.css">
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
 
     <script type="text/javascript" src="{{ asset('js/Markdown.Converter.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/Markdown.Sanitizer.js') }}"></script>

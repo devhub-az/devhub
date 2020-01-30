@@ -1,15 +1,16 @@
 {
-    "/js/app.js": "/js/app.js?id=48f12a636906527a0146",
+    "/js/app.js": "/js/app.js?id=465cc6bd0dee48c14eac",
     "/css/about.css": "/css/about.css?id=3af6dcc69f73d8e45813",
-    "/css/buttons.css": "/css/buttons.css?id=0ff9704040bc6e6897bb",
-    "/css/login.css": "/css/login.css?id=a1bef5bb4e3ea81e5328",
+    "/css/buttons.css": "/css/buttons.css?id=f45c61445bf90df4934d",
+    "/css/login.css": "/css/login.css?id=a6e9264ccb0739ac4e70",
     "/css/pagination.css": "/css/pagination.css?id=ada3f8aacb949b97c809",
-    "/css/app.css": "/css/app.css?id=e4f0109b5b44303bf7c1",
+    "/css/app.css": "/css/app.css?id=7fbc996209e68e35b686",
     "/css/conversation.css": "/css/conversation.css?id=60bdf216aa16e12fca63",
     "/css/users.css": "/css/users.css?id=20d432112f04b2d365b6",
     "/css/header.css": "/css/header.css?id=f80d5c2f86133585e29e",
-    "/css/footer.css": "/css/footer.css?id=9d3d5e672c0f7aae891f",
-    "/js/login.js": "/js/login.js?id=c6133dd14421212c4252",
+    "/css/footer.css": "/css/footer.css?id=2f585998e8802db13e4c",
+    "/css/notification.css": "/css/notification.css?id=1877975879a8929e8c6d",
+    "/js/login.js": "/js/login.js?id=ad3c81e3203c94900043",
     "/js/scripts/particles.min.js": "/js/scripts/particles.min.js?id=3a9747ad5a7c6c3b52f3",
     "/js/scripts/particles.settings.js": "/js/scripts/particles.settings.js?id=87e9c0cccb849b5d3317"
 }

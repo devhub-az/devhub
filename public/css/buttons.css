@@ -52,10 +52,12 @@
   color: #fff;
   background-color: var(--color-blue);
   text-transform: none;
+  -webkit-transition: all 200ms ease-in-out 0s;
+  transition: all 200ms ease-in-out 0s;
   font-size: 14px;
 }
 .btn_navbar_registration:hover {
-  border-color: transparent;
+  box-shadow: rgba(65, 131, 185, 0.3) 0 0 0 4px;
 }
 
 .btn-primary {
@@ -149,12 +151,16 @@
 }
 
 .page-header__button {
-  margin: 0;
-  background: var(--color-green);
-  color: #fff;
+  display: inline-block;
+  color: var(--color-white) !important;
+  background-color: var(--color-blue);
+  border: none;
+  border-radius: 2px;
+  width: 100%;
+  text-align: center;
 }
 
-.btn-folow__user {
+.btn-follow__user {
   background: var(--color-green);
   color: #fff;
   width: 100%;

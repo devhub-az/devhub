@@ -5,16 +5,33 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.moment = require('moment');
-import 'notyf/notyf.min.css';
+
+window.Noty = require('noty');
+import "animate.css/animate.min.css";
+
 require('moment/locale/az');
 window.moment.locale('az');
 
 window.parse = require('./parser');
 
-axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-};
+Noty.overrideDefaults( {
+    layout: 'topLeft',
+    dismissQueue: true, // [boolean] If you want to use queue feature set this true
+    force: false, // [boolean] adds notification to the beginning of queue when set to true
+    maxVisible: 5, // [integer] you can set max visible notification count for dismissQueue true option,
+
+
+    timeout: 3000, // [integer|boolean] delay for closing event in milliseconds. Set false for sticky notifications
+    progressBar: false, // [boolean] - displays a progress bar
+
+    animation: {
+        open: 'animated fadeInLeft', // Animate.css class names
+        close: 'animated fadeOutLeft' // Animate.css class names
+    },
+    closeWith: ['click'], // ['click', 'button', 'hover', 'backdrop'] // backdrop click will close all notifications
+
+    buttons: false // [boolean|array] an array of buttons, for creating confirmation dialogs.
+});
 
 Vue.component('posts', require('./components/PostsComponent.vue').default);
 Vue.component('pagination', require('./components/pagination.vue').default);
@@ -30,6 +47,7 @@ Vue.component('dropdown', require('./components/plugins/dropdown.vue').default);
 Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
 Vue.component('users-list', require('./components/users/UserComponent.vue').default);
 Vue.component('dropdown-notification', require('./components/plugins/dropdown-notification.vue').default);
+Vue.component('posts-loading', require('./components/plugins/loading/PostsLoading').default);
 
 Vue.config.productionTip = false;
 Vue.config.silent = false;

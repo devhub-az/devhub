@@ -51,7 +51,6 @@ class PostController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-//        dd($request->all());
         $request->validate([
             'title' => 'required|string',
             'body'  => 'string',
@@ -200,9 +199,9 @@ class PostController extends Controller
             ])->delete();
 
             return response()->json(['delete' => 'delete'], 200);
-        } else {
-            return response()->json(['error' => 'error'], 401);
         }
+
+        return response()->json(['error' => 'error'], 401);
     }
 
     /**
@@ -211,7 +210,7 @@ class PostController extends Controller
      * @param int $id
      * @return void
      */
-    public function edit(int $id)
+    public function edit(int $id): void
     {
         //
     }
@@ -223,7 +222,7 @@ class PostController extends Controller
      * @param int $id
      * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): void
     {
         //
     }
@@ -234,7 +233,7 @@ class PostController extends Controller
      * @param int $id
      * @return void
      */
-    public function destroy($id)
+    public function destroy($id): void
     {
         //
     }

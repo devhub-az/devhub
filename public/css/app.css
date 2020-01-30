@@ -40,7 +40,7 @@
 }
 /*! sass-mixins - v0.12.0 - 2015-08-26 */
 :root, [data-theme=default] {
-  --color-app-bg: #ededed;
+  --color-app-bg: #f4f4f4;
   --color-app-text: #838a92;
   --color-bg: #fff;
   --color-color: #838a92;
@@ -4468,7 +4468,7 @@
 }
 
 :root, [data-theme=default] {
-  --color-app-bg: #ededed;
+  --color-app-bg: #f4f4f4;
   --color-app-text: #838a92;
   --color-bg: #fff;
   --color-color: #838a92;
@@ -5294,12 +5294,12 @@ a {
   font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
   min-height: 75px;
   width: 100%;
-  padding: 3%;
   color: var(--color-app-text);
   border: 1px solid var(--color-border);
   border-radius: 0 0 2px 2px;
   background-color: var(--color-section-bg);
   box-sizing: border-box;
+  margin-bottom: 15px;
 }
 .post-content__item .post__hubs {
   display: -webkit-box;
@@ -5307,7 +5307,7 @@ a {
   flex-wrap: wrap;
   -webkit-box-align: start;
           align-items: flex-start;
-  margin: 12px 0;
+  margin: 10px 25px;
   padding: 0;
   list-style: none;
 }
@@ -5333,7 +5333,7 @@ a {
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  margin-bottom: var(--space-xs);
+  margin: 10px 25px;
 }
 .post-content__item .post__meta .post__user-info {
   display: -webkit-inline-box;
@@ -5367,10 +5367,13 @@ a {
 .post-content__item .post-content__header {
   display: grid;
   grid-template-columns: 80% 20%;
-  margin: 0 0 12px;
+  margin: 10px 25px;
 }
 .post-content__item .post-content__header .post-title {
   color: var(--color-post-title) !important;
+}
+.post-content__item .post-content__header .post-title h1 {
+  margin: 0;
 }
 .post-content__item .post__time {
   display: block;
@@ -5388,6 +5391,7 @@ a {
   letter-spacing: -0.003em;
   word-wrap: break-word;
   color: #313131;
+  margin: 10px 25px;
 }
 .post-content__item .post-content__body h1 {
   font-size: 20px;
@@ -5402,15 +5406,25 @@ a {
   margin: 10px 0;
 }
 .post-content__item .post-content__body img {
-  margin: 0 auto;
   display: block;
   max-width: 100%;
+  margin: 0 auto;
 }
 .post-content__item .post-content__body a {
   text-decoration: none;
   font-weight: 700;
   color: var(--color-black);
   box-shadow: inset 0 -2px 0 var(--color-blue);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease;
+  transition-timing-function: ease;
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
 }
 .post-content__item .post-content__body a:hover {
   color: var(--color-blue);
@@ -6133,11 +6147,44 @@ i.icon {
   grid-gap: 1%;
   padding: 20px 0;
 }
+.page-profile .content_right .trophy-list .trophy-list__element {
+  display: grid;
+  grid-template-columns: 51px auto;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: var(--color-black);
+}
+.page-profile .content_right .trophy-list .trophy-list__element .trophy-info {
+  line-height: 22px;
+}
+.page-profile .content_right .trophy-list .trophy-list__element img {
+  background-color: #f1f1f1;
+  padding: 6px;
+  width: 51px;
+  height: 51px;
+  border-radius: 3px;
+}
+.page-profile .content_right .trophy-list .trophy-list__element:last-child {
+  margin-bottom: unset;
+}
+.page-profile .content_right .trophy-list .trophy-list__element .trophy-name {
+  font-weight: bold;
+}
 .page-profile .profile__left .profile__info {
   background: white;
 }
 .page-profile .profile__left .nav_posts {
   margin: 20px 0;
+}
+.page-profile .profile__left .profile__user-about {
+  margin-top: 10px;
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  word-break: break-word;
+}
+.page-profile .profile__left .profile__user-about-content {
+  color: var(--color-black);
 }
 .page-profile .profile__left .follow {
   width: 5rem;
@@ -6207,6 +6254,7 @@ i.icon {
   flex-wrap: wrap;
   -webkit-box-pack: justify;
           justify-content: space-between;
+  line-height: 22px;
 }
 .page-profile .profile__left .profile__user .profile__nick {
   text-rendering: optimizeLegibility;
@@ -6393,14 +6441,15 @@ i.icon {
 .post-content__footer {
   display: grid;
   grid-template-columns: 80% 20%;
-  color: inherit;
-  margin: 12px 0;
+  color: #757575;
+  padding: 8px 25px;
+  border-top: 1px solid #e9e9e9;
+  background-color: #f9f9fb;
 }
 .post-content__footer .post-content__footer-stats {
   margin-right: auto;
   font-size: 14px;
-  padding: 7px 15px;
-  border: 1px solid #dbdbdb;
+  padding: 7px 0;
 }
 .post-content__footer .post-content__footer-stats .devhub {
   display: inline-block;
