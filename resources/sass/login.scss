@@ -25,12 +25,8 @@ body{
         background: #4183B7;
         color: #fff;
         display: flex;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
         flex-direction: column;
-        -webkit-box-align: center;
         align-items: center;
-        -webkit-box-pack: center;
         justify-content: center;
         position: relative;
         min-height: 100vh;
@@ -40,10 +36,7 @@ body{
             color: #fff;
             display: flex;
             max-width: 70%;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
             flex-direction: column;
-            -webkit-box-pack: center;
             justify-content: center;
             z-index: 99;
 
@@ -96,10 +89,7 @@ body{
 
     .PageColumn__right {
         display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
         flex-direction: column;
-        -webkit-box-pack: justify;
         justify-content: space-between;
         background: var(--color-white);
         grid-column: 2;
@@ -117,7 +107,6 @@ body{
         .login__footer {
             color: var(--color-text);
             text-align: center;
-            -webkit-box-direction: normal;
             box-sizing: inherit;
             display: block;
             padding-bottom: 1.5rem;
@@ -170,7 +159,6 @@ body{
 }
 
 .AnimatedForm__textInput[data-empty=false] + .AnimatedForm__textInputLabel {
-    -webkit-transform: translate3d(0, -8px, 0) scale(.83333333);
     transform: translate3d(0, -8px, 0) scale(.83333333);
     line-height: 14px;
 }
@@ -186,9 +174,7 @@ body{
     left: 12px;
     color: #a5a4a4;
     text-transform: uppercase;
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
-    -webkit-transform-origin: 0 50%;
     transform-origin: 0 50%;
     transition: all .2s ease-in-out;
     pointer-events: none;
@@ -200,9 +186,8 @@ body{
     font-family: inherit;
     line-height: 1.15;
     overflow: visible;
-    outline: 0;
+    outline: none;
     width: 100%;
-    -webkit-appearance: none;
     transition: all 0.2s ease-in-out;
     height: 48px;
     padding: 22px 12px 10px;
@@ -272,7 +257,6 @@ fieldset {
     line-height: 64px;
     padding: 0 16px;
     z-index: 1030;
-    -webkit-backdrop-filter: blur(20px);
     transition: 0.3s background-color;
 }
 

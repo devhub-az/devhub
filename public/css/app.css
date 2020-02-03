@@ -6920,13 +6920,6 @@ button {
   box-shadow: none;
   outline: none;
 }
-button i {
-  border: none;
-  box-shadow: none;
-}
-button i:focus {
-  outline: none;
-}
 
 .notif-menu {
   position: absolute;

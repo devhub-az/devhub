@@ -98,11 +98,11 @@ body {
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
-  align-items: center;
+          align-items: center;
   -webkit-box-pack: center;
-  justify-content: center;
+          justify-content: center;
   position: relative;
   min-height: 100vh;
   grid-column: 1;
@@ -114,9 +114,9 @@ body {
   max-width: 70%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
-  justify-content: center;
+          justify-content: center;
   z-index: 99;
 }
 .PageColumns .PageColumn__left .login__registration .login__registration-block-info {
@@ -159,9 +159,9 @@ body {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-  flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: justify;
-  justify-content: space-between;
+          justify-content: space-between;
   background: var(--color-white);
   grid-column: 2;
 }
@@ -176,7 +176,6 @@ body {
 .PageColumns .PageColumn__right .login__footer {
   color: var(--color-text);
   text-align: center;
-  -webkit-box-direction: normal;
   box-sizing: inherit;
   display: block;
   padding-bottom: 1.5rem;
@@ -225,7 +224,7 @@ body {
 
 .AnimatedForm__textInput[data-empty=false] + .AnimatedForm__textInputLabel {
   -webkit-transform: translate3d(0, -8px, 0) scale(0.83333333);
-  transform: translate3d(0, -8px, 0) scale(0.83333333);
+          transform: translate3d(0, -8px, 0) scale(0.83333333);
   line-height: 14px;
 }
 
@@ -241,9 +240,9 @@ body {
   color: #a5a4a4;
   text-transform: uppercase;
   -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+          transform: translateZ(0);
   -webkit-transform-origin: 0 50%;
-  transform-origin: 0 50%;
+          transform-origin: 0 50%;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   pointer-events: none;
@@ -255,9 +254,8 @@ body {
   font-family: inherit;
   line-height: 1.15;
   overflow: visible;
-  outline: 0;
+  outline: none;
   width: 100%;
-  -webkit-appearance: none;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   height: 48px;
@@ -332,7 +330,6 @@ fieldset {
   line-height: 64px;
   padding: 0 16px;
   z-index: 1030;
-  -webkit-backdrop-filter: blur(20px);
   -webkit-transition: 0.3s background-color;
   transition: 0.3s background-color;
 }
