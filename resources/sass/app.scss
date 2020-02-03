@@ -1804,19 +1804,15 @@ i.icon {
 .page-header__stats-value {
     font-weight: 500;
     font-family: 'Fira Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--color-green);
 }
 
 .page-header__stats-value_branding {
     display: inline-block;
     height: auto;
     font-size: 14px;
-}
-
-.page-header__stats-value {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: bold;
-    color: var(--color-green);
 }
 
 .list-hubs__stats {
@@ -2071,7 +2067,7 @@ blockquote {
 #wmd-button-bar {
     clear: both;
     background-color: transparent;
-    margin: 10px 0 0 0;
+    margin: 10px 0 0;
     padding: 0;
     width: 100%;
     border: 1px solid #c8ccd0;
