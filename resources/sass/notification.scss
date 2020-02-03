@@ -12,9 +12,7 @@ $noty-top-space: 3rem;
     z-index: 9999999;
     transform: translateZ(0) scale(1.0, 1.0);
     backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
     filter: blur(0);
-    -webkit-filter: blur(0);
     max-width: 90%;
 }
 
@@ -117,10 +115,7 @@ $noty-top-space: 3rem;
 }
 
 .noty_bar {
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translate(0, 0) translateZ(0) scale(1.0, 1.0);
     transform: translate(0, 0) scale(1.0, 1.0);
-    -webkit-font-smoothing: subpixel-antialiased;
     overflow: hidden;
 }
 
@@ -238,7 +233,7 @@ $noty-top-space: 3rem;
         width: 50px;
         height: 50px;
 
-        *{
+        img, span{
             width: 50px;
             height: 50px;
             border: 1px solid #86909a;
