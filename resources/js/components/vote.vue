@@ -1,9 +1,9 @@
 <template>
     <div class="post-votes">
-        <i class="icon feather icon-thumbs-up" :class="{upvoted: posts.data.upvoted}"
+        <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.data.upvoted}"
            @click="upvote(posts.data.id)"/>
         <span id="raiting" :style="{color: colorStatus}" style="font-family: 'Roboto',Tahoma; cursor: default;">{{ posts.data.votes }}</span>
-        <i class="icon feather icon-thumbs-down" :class="{downvoted: posts.data.downvoted}"
+        <span class="mdi mdi-thumb-down-outline" :class="{downvoted: posts.data.downvoted}"
            @click="downvote(posts.data.id)"/>
     </div>
 </template>
@@ -96,7 +96,13 @@
                     }
                     this.post.data.downvoted = false;
                     this.post.data.votes = vote;
-                }
+                } else
+                    new Noty({
+                        type: 'error',
+                        text: '<div class="notification-image"><i class="icon feather icon-x-circle"></i></div> ' +
+                            '<div class="text">Yalnız istifadəçilər səs verə bilər. ' +
+                            '<a href="/register" class="notification-link">Qeydiyyatdan keçmək</a></div>',
+                    }).show();
             },
             downvote: function (id) {
                 if (this.auth_check) {
@@ -159,7 +165,11 @@
                     }
                     this.post.data.upvoted = false;
                     this.post.data.votes = vote;
-                }
+                } else
+                    new Noty({
+                        type: 'error',
+                        text: '<div class="notification-image"><i class="icon feather icon-x-circle"></i></div> Yalnız istifadəçilər səs verə bilər.',
+                    }).show();
             },
         }
     }

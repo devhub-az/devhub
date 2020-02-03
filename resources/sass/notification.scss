@@ -251,6 +251,11 @@ $noty-top-space: 3rem;
 
     }
 
+    .notification-link{
+        display: block;
+        color: var(--color-blue);
+    }
+
     .noty_body {
         display: grid;
         grid-template-columns: 42px auto;
@@ -298,7 +303,7 @@ $noty-top-space: 3rem;
 }
 
 .noty_theme__mint.noty_type__error{
-    background-color: rgb(138, 78, 84, .8);
+    background-color: rgb(138, 78, 84, .5);
 
     &:after{
         content: "";

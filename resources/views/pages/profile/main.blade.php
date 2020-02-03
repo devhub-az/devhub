@@ -7,44 +7,41 @@
 @stop
 
 @section('main')
-    <div class="page-profile">
-        <div class="profile__left" id="app">
-            <div class="profile__info">
-                <div class="profile__header">
-                    <div class="background">
-                        <div class="background__placeholder"
-                             style="background-image: url('https://www.elsetge.cat/imagepost/b/77/777342_best-wallpaper-for-facebook.jpg')"></div>
-                    </div>
-                    <div class="avatar avatar_large image-lazy">
-                        <img alt="admin"
-                             src="{{ asset('images/profile/deadpool.gif') }}"
-                             class="image-loaded"></div>
-                </div>
-                <div class="profile__user">
-                    <div>
-                        <h1 class="profile__nick">
-                            <span itemprop="additionalName">{{ $user->username }} {{ $user->name ? ' | ' . $user->name . ' ' . $user->surname : ''}}</span>
-                        </h1>
-                        <div class="profile__user-information">biznen
-                            <time>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</time>
-                        </div>
-                    </div>
-                    <div class="profile__user-button">
-                        <button class="btn"><i class="feather icon icon-mail"></i> Mesaj</button>
-                        <button class="btn btn-primary follow">Izlə</button>
-                    </div>
-                    <div class="profile__user-about">
-                        <span class="profile__user-about-content">{{ $user->about }}</span>
-                    </div>
-                </div>
-                <div class="profile__section grid">
-                    <span class="profile__digital hint"><b>{{ $user->rating }}</b> <span><span>reyting</span></span></span>
-                    <span class="profile__digital hint"><b>{{ $user->karma }}</b> <span>Karma</span></span>
-                    <span class="profile__digital hint"><b>{{ $user->followers->count() }}</b> <span>Izləyənlər</span></span>
-                    <span class="profile__digital hint"><b>{{ $user->followings->count() }}</b> <span>Izlənən</span></span>
-                    <span class="profile__digital"><b>{{ $user->posts->count() }}</b> <span>paylashım</span></span>
+    <div class="profile__info">
+        <div class="profile__header">
+            <div class="background">
+                <div class="background__placeholder"
+                     style="background-image: url('https://www.elsetge.cat/imagepost/b/77/777342_best-wallpaper-for-facebook.jpg')"></div>
+            </div>
+        </div>
+        <div class="profile__user">
+            <div class="avatar avatar_large image-lazy">
+                <img alt="admin"
+                     src="{{ asset('images/profile/deadpool.gif') }}"
+                     class="image-loaded">
+            </div>
+            <div class="profile__info-name">
+                <div class="profile__nick">
+                    <h2 class="profile__user-about-content">{{ $user->about }}</h2>
+                    <h1 class="additionalName">{{ $user->username }} {{ $user->name ? ' | ' . $user->name . ' ' . $user->surname : ''}}</h1>
                 </div>
             </div>
+            <div class="profile__user-button">
+                <button class="btn"><span class="mdi mdi-email"></span> Mesaj</button>
+                <button class="btn btn-primary follow"><span class="mdi mdi-account-plus"></span> Izlə</button>
+                <button class="btn"><span class="mdi mdi-dots-vertical"></span> </button>
+            </div>
+        </div>
+        <div class="profile__section grid">
+            <span class="profile__digital hint"><b>{{ $user->rating }}</b> <span><span>reyting</span></span></span>
+            <span class="profile__digital hint"><b>{{ $user->karma }}</b> <span>Karma</span></span>
+            <span class="profile__digital hint"><b>{{ $user->followers->count() }}</b> <span>Izləyənlər</span></span>
+            <span class="profile__digital hint"><b>{{ $user->followings->count() }}</b> <span>Izlənən</span></span>
+            <span class="profile__digital"><b>{{ $user->posts->count() }}</b> <span>paylashım</span></span>
+        </div>
+    </div>
+    <div class="page-profile">
+        <div class="profile__left" id="app">
 
             <ul class="nav_posts">
                 <a href="{{ route('all') }}"

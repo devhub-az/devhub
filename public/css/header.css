@@ -84,27 +84,26 @@
 .layout__navbar .main-navbar .form-search .header_search .search:focus-within #navbar-links {
   display: none;
 }
-.layout__navbar .main-navbar .form-search .header_search .icon-search {
+.layout__navbar .main-navbar .form-search .header_search .mdi-magnify {
   left: 22px;
   position: absolute;
   top: 50%;
-  font-size: 16px;
+  font-size: 18px;
   z-index: 3;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
-.layout__navbar .main-navbar .form-search .header_search .icon-x {
+.layout__navbar .main-navbar .form-search .header_search .mdi-file-excel-box {
   cursor: pointer;
   right: 22px;
   position: absolute;
   top: 50%;
-  font-size: 16px;
+  font-size: 18px;
   z-index: 3;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
-.layout__navbar .main-navbar .form-search .header_search .icon-x:hover {
-  background: rgba(167, 182, 194, 0.3);
+.layout__navbar .main-navbar .form-search .header_search .mdi-file-excel-box:hover {
   text-decoration: none;
   color: #182026;
   border-radius: 3px;
@@ -131,14 +130,14 @@
   position: relative;
   height: 50px;
 }
-.layout__navbar .main-navbar .main-navbar__section .icon-search, .layout__navbar .main-navbar .main-navbar__section .icon-bell, .layout__navbar .main-navbar .main-navbar__section .icon-mail {
+.layout__navbar .main-navbar .main-navbar__section .mdi-magnify, .layout__navbar .main-navbar .main-navbar__section .mdi-bell, .layout__navbar .main-navbar .main-navbar__section .mdi-email {
   cursor: pointer;
   opacity: 0.7;
   font-weight: 500;
   font-size: 1.2rem;
   color: var(--color--header_icon__text);
 }
-.layout__navbar .main-navbar .main-navbar__section .icon-search:hover, .layout__navbar .main-navbar .main-navbar__section .icon-bell:hover, .layout__navbar .main-navbar .main-navbar__section .icon-mail:hover {
+.layout__navbar .main-navbar .main-navbar__section .mdi-magnify:hover, .layout__navbar .main-navbar .main-navbar__section .mdi-bell:hover, .layout__navbar .main-navbar .main-navbar__section .mdi-email:hover {
   opacity: 1;
 }
 .layout__navbar .main-navbar .main-navbar__section .nav-links {

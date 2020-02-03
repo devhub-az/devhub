@@ -11,7 +11,7 @@
                 @keydown.down.exact.prevent="startArrowKeys"
                 v-if="count == 0"
         >
-            <i class="icon feather icon-bell badge"></i>
+            <span class="mdi mdi-bell badge"></span>
         </button>
         <button
                 class="flex items-center"
@@ -24,7 +24,7 @@
                 @keydown.down.exact.prevent="startArrowKeys"
                 v-if="count > 0"
         >
-            <i class="icon feather icon-bell badge" :data-badge="count"></i>
+            <span class="mdi mdi-bell badge" :data-badge="count"></span>
         </button>
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"

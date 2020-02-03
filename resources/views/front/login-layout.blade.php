@@ -34,7 +34,7 @@
 
 </head>
 
-<body>
+<body data-theme="default">
 
 	<div id="app">
 		@yield('main')

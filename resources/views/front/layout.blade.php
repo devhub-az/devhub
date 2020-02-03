@@ -15,24 +15,26 @@
 
     <script type="text/x-mathjax-config">
 	 	MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-	</script>
+
+    </script>
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
     </script>
-     <script src="{{ asset('js/highlight.min.js') }}"></script>
+    <script src="{{ asset('js/highlight.min.js') }}"></script>
     <script src="{{ asset('js/highlight.pack.js') }}"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
     {{-- CSS --}}
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:400:500:600|PT+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:300,400,500,700|PT+Sans&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/feather-font/src/css/iconfont.css') }}">
+    {{--    <link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">--}}
+    {{--    <link rel="stylesheet" href="{{ asset('plugins/feather-font/src/css/iconfont.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="{{ asset('css/prettify.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ asset('css/prettify.css') }}" type="text/css" rel="stylesheet"/>
     @yield('css')
 
     <script type="text/javascript" src="{{ asset('js/Markdown.Converter.js') }}"></script>
@@ -76,7 +78,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('plugins/iziToast/dist/js/iziToast.min.js') }}"></script>
 <script src="{{ asset('js/stickybits.min.js') }}"></script>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+{{--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>--}}
 
 @yield('scripts')
 <script>
@@ -95,14 +97,14 @@
         document.getElementById("myDropdown").classList.toggle("show");
     }
 
-    $("#scroll_to_top").on("click", function() {
+    $("#scroll_to_top").on("click", function () {
         $('html, body').animate({
             scrollTop: 0
         }, 600);
     });
 
     // Close the dropdown menu if the user clicks outside of it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (!event.target.matches('.dropbtn')) {
             const dropdown = document.getElementsByClassName("dropdown-content");
             let i;
@@ -115,7 +117,7 @@
         }
     };
 
-    function search(){
+    function search() {
         const input = document.getElementById("form_search");
         const icon = document.getElementById("search-icon");
         const nav = document.getElementById("navbar-links");

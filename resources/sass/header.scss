@@ -94,28 +94,28 @@
                     }
                 }
 
-                .icon-search {
+                .mdi-magnify {
                     left: 22px;
                     position: absolute;
                     top: 50%;
-                    font-size: 16px;
+                    font-size: 18px;
                     z-index: 3;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);
                 }
 
-                .icon-x {
+                .mdi-file-excel-box {
                     cursor: pointer;
                     right: 22px;
                     position: absolute;
                     top: 50%;
-                    font-size: 16px;
+                    font-size: 18px;
                     z-index: 3;
                     -ms-transform: translateY(-50%);
                     transform: translateY(-50%);
 
                     &:hover {
-                        background: rgba(167, 182, 194, .3);
+                        //background: rgba(167, 182, 194, .3);
                         text-decoration: none;
                         color: #182026;
                         border-radius: 3px;
@@ -148,7 +148,7 @@
             position: relative;
             height: 50px;
 
-            .icon-search, .icon-bell, .icon-mail {
+            .mdi-magnify, .mdi-bell, .mdi-email {
                 cursor: pointer;
                 opacity: .7;
                 font-weight: 500;

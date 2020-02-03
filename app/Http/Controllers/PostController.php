@@ -47,7 +47,7 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
     {
@@ -170,7 +170,7 @@ class PostController extends Controller
 
         $post = Post::findOrFail($request->get('id'));
 
-        return self::postRatingChanger($post, $request);
+        return $this->postRatingChanger($post, $request);
     }
 
     /**

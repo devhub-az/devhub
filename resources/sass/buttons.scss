@@ -12,21 +12,8 @@
     vertical-align: middle;
     cursor: pointer;
     background-size: 110% 110%;
-
-    //cursor: pointer;
-    //display: inline-block;
-    //-webkit-appearance: none !important;
-    //white-space: nowrap;
-    //text-overflow: ellipsis;
-    //overflow: hidden;
-    //text-align: center;
-    //text-decoration: none;
-    //text-transform: uppercase;
-    //vertical-align: middle;
-    //background-color: transparent;
-    //font-weight: 500;
-    //padding: .5rem 1rem;
     border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14);
 }
 
 .btn-sm {
@@ -69,7 +56,7 @@
 }
 
 .btn-primary {
-    background-color: var(--color-blue);
+    background-color: var(--color-blue) !important;
     color: var(--color-text-contrast);
     text-transform: none;
     border-radius: 3px;

@@ -14,6 +14,7 @@
   cursor: pointer;
   background-size: 110% 110%;
   border-radius: 3px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.14);
 }
 
 .btn-sm {
@@ -61,7 +62,7 @@
 }
 
 .btn-primary {
-  background-color: var(--color-blue);
+  background-color: var(--color-blue) !important;
   color: var(--color-text-contrast);
   text-transform: none;
   border-radius: 3px;

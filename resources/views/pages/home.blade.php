@@ -68,26 +68,39 @@
 
             {{-- Right --}}
             <div class="content_right">
-{{--                <div  class="default-block default-block_sidebar">--}}
-{{--                    <div class="default-block__header">--}}
-{{--                        <h3 class="default-block__header-title">Title</h3>--}}
-{{--                    </div>--}}
+                <div class="default-block custom-new-post">
+                    <strong>Yeni məqalə yazmağa başla 💬✨</strong>
+                    <p>
+                        Təcrübəniz ilcə bölüşün, mükafat alın və ya sadəcə əylənin.
+                    </p>
+                    <a href="/forums/-/create-thread"
+                       class="button--cta button button--icon button--icon--write rippleButton rippleButton">
+                        <span class="btn btn-primary button-text">
+                            Paylaşmaq
+                        </span>
+                        <div class="ripple-container"></div>
+                    </a>
+                </div>
+                {{--                <div  class="default-block default-block_sidebar">--}}
+                {{--                    <div class="default-block__header">--}}
+                {{--                        <h3 class="default-block__header-title">Title</h3>--}}
+                {{--                    </div>--}}
 
-{{--                    <div class="default-block__content">--}}
-{{--                        Content--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div id="default-block" class="default-block default-block_sidebar">--}}
-{{--                    <div class="telegram">--}}
-{{--                        <div class="telegram-head">--}}
-{{--                            <img src="{{ asset('images/devhublogo.png') }}" alt="" width="52">--}}
-{{--                            <h1>Devhub</h1>--}}
-{{--                        </div>--}}
-{{--                        <div class="body">--}}
-{{--                            --}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                    <div class="default-block__content">--}}
+                {{--                        Content--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
+                {{--                <div id="default-block" class="default-block default-block_sidebar">--}}
+                {{--                    <div class="telegram">--}}
+                {{--                        <div class="telegram-head">--}}
+                {{--                            <img src="{{ asset('images/devhublogo.png') }}" alt="" width="52">--}}
+                {{--                            <h1>Devhub</h1>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="body">--}}
+                {{--                            --}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
                 <div id="default-block" class="default-block default-block_sidebar">
                     <div class="default-block__header">
                         <h3 class="default-block__header-title">Ən izləninən hablar</h3>

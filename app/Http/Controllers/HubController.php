@@ -89,8 +89,8 @@ class HubController extends Controller
             ])->delete();
 
             return response()->json(['delete' => 'delete'], 200);
-        } else {
-            return response()->json(['error' => 'error'], 401);
         }
+
+        return response()->json(['error' => 'error'], 401);
     }
 }

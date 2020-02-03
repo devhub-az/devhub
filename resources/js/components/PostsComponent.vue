@@ -5,7 +5,7 @@
             <div v-if="postsNotEmpty">
                 <div class="post-content__item" v-for="post in posts">
                     <header class="post__meta">
-                        <a v-bind:href="'/@' +post.data.creator" class="post__user-info user-info"
+                        <a v-bind:href="'/users/@' +post.data.creator" class="post__user-info user-info"
                            title="Paylaşmanın müəllifi">
                             <img v-lazy="post.data.profile_image" alt="user avatar" class="user__avatar">
                             <span
@@ -13,7 +13,7 @@
                         </a>
                         <span class="post__time"> {{ post.data.created_at |  moment('DD MMMM, H:mm') }}</span>
                         <span class="post__read-time" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
-                                <i class="icon devhub icon-clock-line"/> {{ post.data.read_time }}
+                            <span class="mdi mdi-clock-outline"/> {{ post.data.read_time }}
                             </span>
                     </header>
                     <div class="post-content__header">
@@ -27,26 +27,26 @@
                     </div>
                     <div class="post-content__footer">
                         <div class="post-content__footer-stats">
-                                <span class="footer_item">
-                                    <i class="eye icon"/> {{ post.data.views }} Baxışların sayı
-                                </span>
                             <span class="footer_item">
-                                    <a :href="'/post/' + post.data.id + '/#comments'" class="post_comments_link">
-                                        <i class="comments outline icon"/> {{ post.data.comments }} Şerh
-                                    </a>
-                                </span>
+                                <span class="mdi mdi-eye-outline"/> {{ post.data.views }} Baxışların sayı
+                            </span>
+                            <span class="footer_item">
+                                <a :href="'/post/' + post.data.id + '/#comments'" class="post_comments_link">
+                                    <span class="mdi mdi-comment-text-multiple-outline"/> {{ post.data.comments }} Şerh
+                                </a>
+                            </span>
                             <span class="footer_item" @click="copy(post.data.id)" style="cursor: pointer;">
-                                    <i class="share square icon"/> Paylaş
-                                </span>
+                                <span class="mdi mdi-share"/> Paylaş
+                            </span>
                             <span class="star tooltip footer_item" @click="favorite(post.data.id)"
                                   v-if="!post.data.favorite" aria-label="Seçilmişlərə əlavə et"
                                   data-balloon-pos="down">
-                                    <i v-if="!post.data.favorite" class="bookmark outline icon"/> {{ post.data.followers }} Seçilmiş
+                                    <span v-if="!post.data.favorite" class="mdi mdi-bookmark-plus"/> {{ post.data.followers }} Seçilmiş
                                 </span>
                             <span class="star tooltip footer_item" @click="favorite(post.data.id)"
                                   v-if="post.data.favorite" aria-label="Seçilmişlərdən cixartmag"
                                   data-balloon-pos="down">
-                                    <i v-if="post.data.favorite" class="bookmark icon"/> {{ post.data.followers }} Seçilmiş
+                                    <span v-if="post.data.favorite" class="mdi mdi-bookmark-check"/> {{ post.data.followers }} Seçilmiş
                                 </span>
                             <span class="footer_item">
                                     <a href="#" style="color: inherit">
@@ -169,14 +169,14 @@
                             this.posts[index].data.favorite = true;
                             new Noty({
                                 type: 'success',
-                                text: '<div class="notification-image"><i class="bookmark outline icon"></i></div> Paylaşma seçilmişlərə əlave olundu',
+                                text: '<div class="notification-image"><i class="mdi mdi-bookmark-plus"></i></div> Paylaşma seçilmişlərə əlave olundu',
                             }).show();
                         } else if (response.data.delete) {
                             this.posts[index].data.followers--;
                             this.posts[index].data.favorite = false;
                             new Noty({
                                 type: 'error',
-                                text: '<div class="notification-image"><i class="bookmark outline icon"></i></div> Paylaşma seçilmişlərdən silindi',
+                                text: '<div class="notification-image"><i class="mdi mdi-bookmark-remove"></i></div> Paylaşma seçilmişlərdən silindi',
                             }).show();
                         }
                     })
