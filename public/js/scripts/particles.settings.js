@@ -104,7 +104,7 @@ eval("particlesJS(\"particles-js\", {\n  \"particles\": {\n    \"number\": {\n  
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\devhub\resources\js\scripts\particles.settings.js */"./resources/js/scripts/particles.settings.js");
+module.exports = __webpack_require__(/*! C:\Users\user\PhpstormProjects\devhub_web\resources\js\scripts\particles.settings.js */"./resources/js/scripts/particles.settings.js");
 
 
 /***/ })

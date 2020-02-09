@@ -87,9 +87,6 @@
                 notifications: this.not,
             }
         },
-        mounted: function () {
-            console.log(this.notifications)
-        },
         methods: {
             toggleVisibility() {
                 this.isVisible = !this.isVisible

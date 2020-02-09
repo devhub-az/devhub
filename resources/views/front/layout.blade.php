@@ -27,7 +27,6 @@
     {{-- CSS --}}
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:300,400,500,700|PT+Sans&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('@mdi/font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/notification.css') }}">

@@ -41,14 +41,14 @@
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}" :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
 
                 <a href="{{ route('conversations') }}"><span class="mdi mdi-email badge"
-                                                          @if (Auth::user()->messagesNotificationsCount() > 0)
-                                                          data-badge="{{ Auth::user()->messagesNotificationsCount() }}"
-                            @endif></span></a>
+                                                             @if (Auth::user()->messagesNotificationsCount() > 0)
+                                                             data-badge="{{ Auth::user()->messagesNotificationsCount() }}"
+                    @endif/></a>
                 <a href="{{ route('create_post') }}" class="btn btn-primary button_add btn-click">
                     Yazmaq
                 </a>
                 <div class="avatar-dropdown">
-                    <dropdown :user="{{Auth::User()}}"></dropdown>
+                    <dropdown :user="{{Auth::User()}}" :fav="'{{route("saved")}}'"></dropdown>
                 </div>
             @endguest
         </div>

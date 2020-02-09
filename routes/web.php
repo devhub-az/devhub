@@ -29,6 +29,9 @@ Route::group(['middleware' => ['auth']], function () {
         ->middleware('can:talkTo,user')
         ->name('conversations.show');
 
+    Route::prefix('saved')->group(function (){
+        Route::get('/', 'Auth\FavoriteController@indexPosts')->name('saved');
+    });
 
     Route::prefix('@{username}/settings')->group(function () {
         Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');

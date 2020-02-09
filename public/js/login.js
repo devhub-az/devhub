@@ -504,7 +504,7 @@ eval("console.log('      Using DevHub at work? Work for DevHub.\\n');\n\n__webpa
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\User\Desktop\devhub\resources\js\login.js */"./resources/js/login.js");
+module.exports = __webpack_require__(/*! C:\Users\user\PhpstormProjects\devhub_web\resources\js\login.js */"./resources/js/login.js");
 
 
 /***/ })
