@@ -7,7 +7,7 @@
   position: relative;
   display: inline-block;
   padding: 6px 12px;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 20px;
   white-space: nowrap;
   vertical-align: middle;
@@ -51,22 +51,22 @@
 
 .btn_navbar_registration {
   color: #fff;
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-main);
   text-transform: none;
   -webkit-transition: all 200ms ease-in-out 0s;
   transition: all 200ms ease-in-out 0s;
-  font-size: 14px;
+  font-size: 13px;
 }
 .btn_navbar_registration:hover {
   box-shadow: rgba(65, 131, 185, 0.3) 0 0 0 4px;
 }
 
 .btn-primary {
-  background-color: var(--color-blue) !important;
-  color: var(--color-text-contrast);
+  background-color: var(--color-primary-main) !important;
+  color: var(--text-white-primary);
   text-transform: none;
   border-radius: 3px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .btn-success {
@@ -79,19 +79,16 @@
   background-color: transparent;
   color: var(--color-green);
   border-radius: 2px;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .btn-success-outline {
-  color: var(--color-black);
+  color: var(--text-white-primary);
   border-radius: 2px;
   font-size: 13px;
 }
 .btn-success-outline:hover {
-  color: rgba(0, 0, 0, 0.9);
-}
-.btn-success-outline i {
-  color: var(--color-green);
+  color: var(--text-white-secondary);
 }
 
 .submit {
@@ -102,8 +99,8 @@
 
 .profile_user-connect {
   display: inline-block;
-  color: var(--color-white) !important;
-  background-color: var(--color-blue);
+  color: var(--text-white-primary) !important;
+  background-color: var(--color-primary-main);
   border: none;
   border-radius: 2px;
   margin-top: 20px;
@@ -121,10 +118,10 @@
 }
 
 .btn_navbar_login {
-  border: 1px solid #a4afba;
+  border: 1px solid var(--text-black-primary);
   background-color: transparent;
   box-shadow: none;
-  color: #838a92;
+  color: var(--text-black-primary);
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -138,10 +135,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   border-radius: 3px;
+  -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 .btn_navbar_login:hover {
-  border-color: var(--color-blue);
-  color: var(--color-blue);
+  border-color: var(--color-primary-main);
+  color: var(--color-primary-main);
+  background-color: rgba(144, 202, 249, 0.08);
 }
 
 .btn-more {
@@ -154,7 +154,7 @@
 .page-header__button {
   display: inline-block;
   color: var(--color-white) !important;
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-main);
   border: none;
   border-radius: 2px;
   width: 100%;

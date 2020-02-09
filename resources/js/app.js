@@ -23,7 +23,7 @@ Noty.overrideDefaults( {
     maxVisible: 5, // [integer] you can set max visible notification count for dismissQueue true option,
 
 
-    timeout: false, // [integer|boolean] delay for closing event in milliseconds. Set false for sticky notifications
+    timeout: 3000, // [integer|boolean] delay for closing event in milliseconds. Set false for sticky notifications
     progressBar: false, // [boolean] - displays a progress bar
 
     animation: {

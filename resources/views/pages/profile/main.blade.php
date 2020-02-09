@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="profile__section grid">
-            <span class="profile__digital hint"><b>{{ $user->rating }}</b> <span><span>reyting</span></span></span>
+            <span class="profile__digital hint"><b>{{ $user->rating }}</b> <span><span>Reyting</span></span></span>
             <span class="profile__digital hint"><b>{{ $user->karma }}</b> <span>Karma</span></span>
             <span class="profile__digital hint"><b>{{ $user->followers->count() }}</b> <span>Izləyənlər</span></span>
             <span class="profile__digital hint"><b>{{ $user->followings->count() }}</b> <span>Izlənən</span></span>

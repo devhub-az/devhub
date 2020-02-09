@@ -17,28 +17,17 @@
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"
                 class="menu">
+                <h3 class="menu-head">Profil</h3>
                 <li>
                     <a
-                            href="#"
+                            :href="'/users/@' + user.username"
                             @keydown.tab.exact="focusNext(false)"
                             @keydown.shift.tab="focusPrevious(false)"
                             @keydown.up.exact.prevent="focusPrevious(true)"
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="icon feather icon-heading"></i> Paylaşmalar</span>
-                    </a>
-                </li>
-                <li>
-                    <a
-                            href="#"
-                            @keydown.tab.exact="focusNext(false)"
-                            @keydown.shift.tab="focusPrevious(false)"
-                            @keydown.up.exact.prevent="focusPrevious(true)"
-                            @keydown.down.exact.prevent="focusNext(true)"
-                            @keydown.esc.exact="hideDropdown"
-                    >
-                        <span class="ml-2"><i class="icon feather icon-bookmark"></i> Seçilmişlər</span>
+                        <span class="ml-2"><i class="mdi mdi-account-badge-horizontal"></i> Profilim</span>
                     </a>
                 </li>
                 <li>
@@ -50,9 +39,35 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="icon feather icon-settings"></i> Parametrlər</span>
+                        <span class="ml-2"><i class="mdi mdi-settings"/> Parametrlər</span>
                     </a>
                 </li>
+                <h3 class="menu-head">Görünüş</h3>
+                <li @click="toggle" class="drop-grid">
+                    <div class="switch-button-control">
+                        <i class="mdi mdi-weather-night"/>
+                        <div class="switch-button-label">
+                            Dark
+                        </div>
+                        <div class="switch-button" :class="{ enabled: isEnabled }">
+                            <div class="button"></div>
+                        </div>
+                    </div>
+                </li>
+                <h3 class="menu-head">Digərləri</h3>
+                <li>
+                    <a
+                            href="#"
+                            @keydown.tab.exact="focusNext(false)"
+                            @keydown.shift.tab="focusPrevious(false)"
+                            @keydown.up.exact.prevent="focusPrevious(true)"
+                            @keydown.down.exact.prevent="focusNext(true)"
+                            @keydown.esc.exact="hideDropdown"
+                    >
+                        <span class="ml-2"><i class="mdi mdi-bookmark"></i> Seçilmişlər</span>
+                    </a>
+                </li>
+                <div class="line"></div>
                 <li @click.prevent="logout">
                     <a
                             href="#"
@@ -62,7 +77,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="icon feather icon-power"></i> Çıxmaq</span>
+                        <span class="ml-2"><i class="mdi mdi-exit-run"/> Çıxmaq</span>
                     </a>
                 </li>
             </ul>
@@ -78,12 +93,34 @@
         props: ['user'],
         data() {
             return {
+                switch: true,
+                body: document.getElementsByTagName('body')[0],
+                atr: document.getElementsByTagName('body')[0].getAttribute('data-theme'),
+                isEnabled: null,
                 isVisible: false,
                 focusedIndex: 0,
                 auth: this.user,
+                isActive: true,
             }
         },
+        created: function (){
+            if (this.atr === 'dark')
+                this.isEnabled = true
+            else if(this.atr === 'default')
+                this.isEnabled = false
+        },
         methods: {
+            toggle: function () {
+                if (this.atr === 'dark') {
+                    this.body.setAttribute("data-theme", 'default')
+                    this.atr = 'default'
+                }
+                else if(this.atr === 'default'){
+                    this.body.setAttribute("data-theme", 'dark')
+                    this.atr = 'dark'
+                }
+                this.isEnabled = !this.isEnabled;
+            },
             toggleVisibility() {
                 this.isVisible = !this.isVisible
             },
@@ -112,6 +149,10 @@
             focusItem() {
                 this.$refs.dropdown.children[this.focusedIndex].children[0].focus()
             },
+            setNewToggleState() {
+                this.isActive = !this.isActive;
+                this.$emit('setIsActive', this.isActive);
+            },
             logout(evt) {
                 axios.post('/logout')
                     .then(({data}) => {
@@ -122,7 +163,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .dropdown-fade-enter-active, .dropdown-fade-leave-active {
         transition: all .1s ease-in-out;
     }
@@ -130,5 +171,69 @@
     .dropdown-fade-enter, .dropdown-fade-leave-to {
         opacity: 0;
         transform: translateY(-12px);
+    }
+
+    .drop-grid{
+        padding: 10px 0;
+    }
+
+    .switch-button-control {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .switch-button {
+            $switch-button-height: 1.6em;
+            $switch-button-color: var(--color-primary-main);
+            $switch-button-border-thickness: 2px;
+            $switch-transition: all 0.3s ease-in-out;
+            $switch-is-rounded: true;
+
+            height: $switch-button-height;
+            width: calc(#{$switch-button-height} * 2);
+            border: $switch-button-border-thickness solid $switch-button-color;
+            box-shadow: inset 0 0 $switch-button-border-thickness 0 rgba(0, 0, 0, 0.33);
+            border-radius: if($switch-is-rounded, $switch-button-height, 0);
+            margin-left: auto;
+            margin-right: 10px;
+
+            transition: $switch-transition;
+
+            $button-side-length: calc(
+                    #{$switch-button-height} - (2 * #{$switch-button-border-thickness})
+            );
+
+            cursor: pointer;
+
+            .button {
+                height: $button-side-length;
+                width: $button-side-length;
+                border: $switch-button-border-thickness solid $switch-button-color;
+                border-radius: if($switch-is-rounded, $button-side-length, 0);
+                background: var(--text-black-secondary);
+
+                transition: $switch-transition;
+            }
+
+            &.enabled {
+                background-color: $switch-button-color;
+                box-shadow: none;
+
+                .button {
+                    background: white;
+                    transform: translateX(
+                                    calc(#{$button-side-length} + (2 * #{$switch-button-border-thickness}))
+                    );
+                }
+            }
+        }
+
+        .switch-button-label {
+            margin-left: 3px;
+        }
+    }
+    .line{
+        border-top: 1px solid var(--text-black-secondary);
+        margin: 0 16px;
     }
 </style>

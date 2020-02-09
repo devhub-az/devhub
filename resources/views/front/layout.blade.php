@@ -27,10 +27,9 @@
     {{-- CSS --}}
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:300,400,500,700|PT+Sans&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('@mdi/font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-    {{--    <link rel="stylesheet" href="{{ asset('plugins/UI-Icon/icon.min.css') }}">--}}
-    {{--    <link rel="stylesheet" href="{{ asset('plugins/feather-font/src/css/iconfont.css') }}">--}}
     <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
     <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -58,17 +57,13 @@
 {{-- Header --}}
 @include('include.header')
 
-{{--@php--}}
-{{-- $errors = new Illuminate\Support\MessageBag();--}}
-{{--     $errors->add('your_custom_error', 'Your custom error message!');--}}
-{{--@endphp--}}
-@if(session()->has('message'))
-    <div class="header-message">
-        <span>
-            Lütfən, hesabınızı qorumaq üçün parametrlərdə parolu dəyişdirin. Şifrə dəyişdirildikdən sonra bu mesaj yox olacaq.
-        </span>
-    </div>
-@endif
+{{--@if(session()->has('message'))--}}
+{{--    <div class="header-message">--}}
+{{--        <span>--}}
+{{--            Lütfən, hesabınızı qorumaq üçün parametrlərdə parolu dəyişdirin. Şifrə dəyişdirildikdən sonra bu mesaj yox olacaq.--}}
+{{--        </span>--}}
+{{--    </div>--}}
+{{--@endif--}}
 
 @yield('main')
 
@@ -76,7 +71,6 @@
 @include('include.footer')
 
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('plugins/iziToast/dist/js/iziToast.min.js') }}"></script>
 <script src="{{ asset('js/stickybits.min.js') }}"></script>
 {{--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>--}}
 

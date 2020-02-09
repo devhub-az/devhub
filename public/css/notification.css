@@ -1,74 +1,76 @@
 :root, [data-theme=default] {
-  --color-app-bg: #f4f4f4;
-  --color-app-text: #838a92;
-  --color-bg: #fff;
-  --color-color: #838a92;
-  --color-text: #263238;
-  --color-text-contrast: #fff;
-  --color-header: #fff;
-  --color-logo: #262626;
-  --color-section-bg: #fff;
-  --color-section-text: #262626;
-  --color-section-gray-bg: #f9f9fb;
-  --color-btn-primary: #197fc9;
-  --color-btn-success: #22b14e;
-  --color-btn-secondary: #e8e8e8;
-  --color-btn-text-secondary: #838a92;
-  --color-btn-border-secondary: #dbdbdb;
-  --color-block-bg: #f9f9fb;
-  --color-block-header: #262626;
-  --color-block-header-bg: #edeeef;
-  --color-block-text: #262626;
-  --color-post-title: #262626;
-  --color-header-nav-hover: #4d80aa;
+  --background-default: #f5f5f5;
+  --background-paper: #fff;
+  --text-black-primary: rgba(0, 0, 0, 0.87);
+  --text-black-secondary: rgba(0, 0, 0, 0.54);
+  --text-black-disabled: rgba(0, 0, 0, 0.38);
+  --text-white-primary: #fff;
+  --text-white-secondary: rgba(255, 255, 255, 0.7);
+  --text-white-disabled: rgba(255, 255, 255, 0.5);
+  --color-primary-main: #0073b1;
+  --color-primary-light: #4791db;
+  --color-primary-dark: #115293;
+  --color-secondary-main: #dc004e;
+  --color-secondary-light: #e33371;
+  --color-secondary-dark: #9a0036;
+  --color-error-main: #f44336;
+  --color-error-light: #e57373;
+  --color-error-dark: #d32f2f;
+  --color-warning-main: #ff9800;
+  --color-warning-light: #ffb74d;
+  --color-warning-dark: #f57c00;
+  --color-info-main: #2196f3;
+  --color-info-light: #64b5f6;
+  --color-info-dark: #1976d2;
+  --color-success-main: #4caf50;
+  --color-success-light: #81c784;
+  --color-success-dark: #388e3c;
   --color-border: #e9e9e9;
-  --color--header_icon__bg: rgba(0, 0, 0, 0.050980392156862744);
-  --color--header_icon__text: rgba(0, 0, 0, 0.7019607843137254);
+  --color-header: #fff;
+  --footer: rgba(255, 255, 255, 0.7);
+  --color-black: rgba(0, 0, 0, 0.87);
+  --color-black-secondary: #757575;
   --color-white: #fff;
-  --color-red: #fd5d47;
-  --color-black: #262626;
-  --color-green: #22b14e;
-  --color-green-secondary: #55851c;
-  --color-gray: #edeeef;
-  --color-yellow: #FFC107;
-  --color-blue: #4183B7;
-  --color-blue-hover: #3F80BC;
-  --color-background-input: #fff;
-  --color-shadow: 0 0 0 0 rgba(19,124,189,0), 0 0 0 0 rgba(19,124,189,0), inset 0 0 0 1px rgba(16,22,26,.15), inset 0 1px 1px rgba(16,22,26,.2);
+  --color-white-secondary: rgba(255, 255, 255, 0.7);
+  --loading-black: #0000002e;
 }
 
 :root, [data-theme=dark] {
-  --color-app-bg: #171c20;
-  --color-app-text: #bfbfbf;
-  --color-bg: #fff;
-  --color-color: #838a92;
-  --color-text: #212121;
-  --color-text-contrast: #fff;
-  --color-header: #095c79;
-  --color-logo: #fff;
-  --color-section-bg: #22272b;
-  --color-section-text: #fff;
-  --color-section-gray-bg: #f9f9fb;
-  --color-btn-primary: #197fc9;
-  --color-btn-success: #22b14e;
-  --color-btn-secondary: #e8e8e8;
-  --color-btn-border-secondary: #dbdbdb;
-  --color-block-bg: #22272b;
-  --color-block-header: #eaeaea;
-  --color-block-header-bg: #1a1e21;
-  --color-block-text: #bfbfbf;
-  --color-post-title: #eaeaea;
-  --color--header_icon__bg: rgba(255, 255, 255, 0.050980392156862744);
-  --color--header_icon__text: rgba(255, 255, 255, 0.7019607843137254);
-  --color-border: #393d41;
-  --color-white: #f5f8fa;
-  --color-red: #dd1313;
-  --color-black: #262626;
-  --color-gray: #edeeef;
-  --color-green: #22b14e;
-  --color-blue: #197fc9;
-  --color-background-input: rgba(16,22,26,.3);
-  --color-shadow: 0 0 0 0 rgba(19,124,189,0), 0 0 0 0 rgba(19,124,189,0), 0 0 0 0 rgba(19,124,189,0), inset 0 0 0 1px rgba(16,22,26,.3), inset 0 1px 1px rgba(16,22,26,.4);
+  --background-default: #303030;
+  --background-paper: #424242;
+  --background: #f9f9fb;
+  --text-white-primary: rgba(0, 0, 0, 0.87);
+  --text-white-secondary: rgba(0, 0, 0, 0.54);
+  --text-white-disabled: rgba(0, 0, 0, 0.38);
+  --text-black-primary: #fff;
+  --text-black-secondary: #aaa;
+  --text-black-disabled: rgba(255, 255, 255, 0.5);
+  --color-primary-main: #90caf9;
+  --color-primary-light: #a6d4fa;
+  --color-primary-dark: #648dae;
+  --color-secondary-main: #f48fb1;
+  --color-secondary-light: #f6a5c0;
+  --color-secondary-dark: #aa647b;
+  --color-error-main: #f44336;
+  --color-error-light: #e57373;
+  --color-error-dark: #d32f2f;
+  --color-warning-main: #ff9800;
+  --color-warning-light: #ffb74d;
+  --color-warning-dark: #f57c00;
+  --color-info-main: #2196f3;
+  --color-info-light: #64b5f6;
+  --color-info-dark: #1976d2;
+  --color-success-main: #4caf50;
+  --color-success-light: #81c784;
+  --color-success-dark: #388e3c;
+  --color-border: #565555;
+  --color-header: #424242;
+  --footer: rgba(255, 255, 255, 0.7);
+  --color-black: rgba(0, 0, 0, 0.87);
+  --color-black-secondary: rgba(0, 0, 0, 0.54);
+  --color-white: #fff;
+  --color-white-secondary: rgba(255, 255, 255, 0.7);
+  --loading-black: #ffffff36;
 }
 
 .noty_layout_mixin, #noty_layout__centerRight, #noty_layout__centerLeft, #noty_layout__center, #noty_layout__bottomRight, #noty_layout__bottomCenter, #noty_layout__bottomLeft, #noty_layout__bottom, #noty_layout__topRight, #noty_layout__topCenter, #noty_layout__topLeft, #noty_layout__top {
@@ -330,15 +332,14 @@
   line-height: unset;
   width: 50px;
   height: 50px;
-}
-.noty_theme__mint.noty_bar .notification-image img, .noty_theme__mint.noty_bar .notification-image span {
-  width: 50px;
-  height: 50px;
   border: 1px solid #86909a;
   background: #8c8c8c;
   background: linear-gradient(45deg, #8c8c8c 0%, #141414 99%, #131313 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#8c8c8c", endColorstr="#131313", GradientType=1 );
-  font-size: 33px;
+}
+.noty_theme__mint.noty_bar .notification-image img, .noty_theme__mint.noty_bar .notification-image i, .noty_theme__mint.noty_bar .notification-image span {
+  width: 50px;
+  height: 50px;
+  font-size: 48px;
   line-height: 48px;
 }
 .noty_theme__mint.noty_bar .notification-link {
@@ -347,8 +348,8 @@
 }
 .noty_theme__mint.noty_bar .noty_body {
   display: grid;
-  grid-template-columns: 42px auto;
-  gap: 15px;
+  grid-template-columns: 50px auto;
+  gap: 9px;
   padding: 5px 5px 5px 0;
   margin-left: -21px;
   max-width: 320px;

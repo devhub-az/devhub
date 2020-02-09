@@ -46,15 +46,15 @@
                             <span class="star tooltip footer_item" @click="favorite(post.data.id)"
                                   v-if="post.data.favorite" aria-label="Seçilmişlərdən cixartmag"
                                   data-balloon-pos="down">
-                                    <span v-if="post.data.favorite" class="mdi mdi-bookmark-check"/> {{ post.data.followers }} Seçilmiş
-                                </span>
+                                <span v-if="post.data.favorite" class="mdi mdi-bookmark-check"/> {{ post.data.followers }} Seçilmiş
+                            </span>
                             <span class="footer_item">
                                     <a href="#" style="color: inherit">
                                         <i class="ellipsis horizontal icon"/>
                                     </a>
                                 </span>
                         </div>
-                        <a v-bind:href="'/post/' +post.data.id" class="btn btn-primary btn-more">Daha ətraflı</a>
+                        <a v-bind:href="'/post/' +post.data.id" class="btn btn-more">Daha ətraflı</a>
                     </div>
                 </div>
                 <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"
@@ -197,7 +197,7 @@
                     this.$clipboard(link);
                     new Noty({
                         type: 'success',
-                        text: '<div class="notification-image"><i class="share square icon"></i></div> Link kopyalandi',
+                        text: '<div class="notification-image"><span class="mdi mdi-share"/></div> Link kopyalandi',
                     }).show();
                 } catch (error) {
                 }

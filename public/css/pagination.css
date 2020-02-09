@@ -1,6 +1,7 @@
 .page {
   position: relative;
   float: left;
+  color: var(--text-black-primary);
   padding: 5px 10px;
   display: inline-block;
   margin: 12px 12px 12px -1px;
@@ -9,17 +10,17 @@
   border-radius: 4px;
 }
 .page:hover {
-  color: var(--color-blue);
+  color: var(--color-primary-dark);
 }
 
 .active {
-  background-color: var(--color-blue);
+  background-color: var(--color-primary-dark);
   color: #fff;
-  border-color: var(--color-blue);
+  border-color: var(--color-primary-dark);
   z-index: 2;
 }
 .active:hover {
-  color: #fff;
+  color: var(--text-black-primary);
 }
 
 .pagination {

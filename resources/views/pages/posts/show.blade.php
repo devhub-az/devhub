@@ -55,6 +55,11 @@
                             </div>
                             <div class="post-votes-sticky">
                                 <vote :posts="{{ json_encode($post) }}" @auth :auth_check="true" @endauth ></vote>
+                                @if(Auth::check() && Auth::user()->id === $post['creator']['id'])
+                                    <div class="post-edit_author">
+                                        <i class="mdi mdi-chevron-down"></i>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="post-content__item">
@@ -63,43 +68,49 @@
                                     <h1>{{ $post['name'] }}</h1>
                                 </div>
                                 <div class="post-header__right">
-                                    <span class="post__time"><i class="icon feather icon-calendar"></i> {{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }} | {{ Carbon\Carbon::parse($post['created_at'])->format('H:i') }}</span>
+                                    <div class="post__time">
+                                        <i class="icon feather icon-calendar"></i>
+                                        {{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}
+                                        | {{ Carbon\Carbon::parse($post['created_at'])->format('H:i') }}
+                                    </div>
                                 </div>
                             </div>
                             <hubs-tags :data="{{ json_encode($hubs) }}"></hubs-tags>
                             <div class="post-content__body">
                                 {!! $body !!}
                             </div>
-                        </div>
-                        <div id="content_footer" class="post__content-footer">
-                        <span class="footer_item">
-                            <i class="eye icon"></i> {{ $post['views']->count() }} Baxışların sayı
-                        </span>
-                            @auth
-                                @if ($post->postIsFollowing(Auth::user()) != "folowing")
-                                    <span class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et"
-                                          data-balloon-pos="down">
-                                    <i class="bookmark outline icon"></i> {{ $post->postFollowers->count() }} Seçilmiş
-                                </span>
-                                @elseif($post->postIsFollowing(Auth::user()) == "folowing")
-                                    <span class="star tooltip footer_item" aria-label="Seçilmişlərdən cixartmag"
-                                          data-balloon-pos="down">
-                                    <i class="bookmark icon"></i> {{ $post->postFollowers->count() }} Seçilmiş
-                                </span>
-                                @endif
-                            @endauth
-                            @guest
-                                <span class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et"
-                                      data-balloon-pos="down">
-                                <i class="bookmark outline icon"></i> {{ $post->postFollowers->count() }} Seçilmiş
-                            </span>
-                            @endguest
-                            <span class="footer_item ui inline dropdown">
-                            <i class="ellipsis horizontal icon"></i>
-                            <div class="menu">
-                                <div class="item"><i class="flag icon"></i> Şikayət et</div>
+                            <div id="content_footer" class="post__content-footer">
+                                <div class="footer_item">
+                                    <i class="mdi mdi-eye-outline"></i> {{ $post['views']->count() }} Baxışların sayı
+                                </div>
+                                @auth
+                                    @if ($post->postIsFollowing(Auth::user()) != "folowing")
+                                        <div class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et"
+                                             data-balloon-pos="down">
+                                            <i class="mdi mdi-bookmark-plus"></i> {{ $post->postFollowers->count() }}
+                                            Seçilmiş
+                                        </div>
+                                    @elseif($post->postIsFollowing(Auth::user()) == "folowing")
+                                        <div class="star tooltip footer_item" aria-label="Seçilmişlərdən cixartmag"
+                                             data-balloon-pos="down">
+                                            <i class="mdi mdi-bookmark-check"></i> {{ $post->postFollowers->count() }}
+                                            Seçilmiş
+                                        </div>
+                                    @endif
+                                @endauth
+                                @guest
+                                    <div class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et"
+                                         data-balloon-pos="down">
+                                        <i class="mdi mdi-bookmark-plus"></i> {{ $post->postFollowers->count() }}
+                                        Seçilmiş
+                                    </div>
+                                @endguest
+                                <div class="footer_item ui inline dropdown">
+                                    <div class="menu">
+                                        <div class="item"><i class="mdi mdi-flag"></i> Şikayət et</div>
+                                    </div>
+                                </div>
                             </div>
-                        </span>
                         </div>
                     </div>
                     <div class="post-share">
@@ -145,7 +156,7 @@
                     </div>
                     <div id="comments" class="post-comments">
                         <div class="comment-header">
-                            <div class="head">Komentlər</div>
+                            <div class="head">Şerhlər</div>
                             <div class="count">{{ $comments->count() }}</div>
                         </div>
                         @if ($comments)
@@ -179,7 +190,6 @@
                                     <img class="comment-avatar" src="{{ asset('images/profile/deadpool.gif') }}" alt="">
                                     <div class="comment-body">
                                         <span class="comment-author">{{ Auth::user()->username }}</span>
-                                        <p><small>Перед тем как написать хуйню, подумай,сука!</small></p>
                                         <p><textarea class="input" style="padding: 5px;" rows="2" cols="20000"
                                                      name="body" class="comment-text"></textarea></p>
                                         <input type="submit" class="btn btn-primary submit btn-sm" value="Yazmag"/>

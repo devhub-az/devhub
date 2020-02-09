@@ -34,7 +34,7 @@
              style="display: grid;grid-auto-flow: column; grid-gap: 12px;">
             <span id="search-icon" onclick="search()" class="mdi mdi-magnify"></span>
             @guest
-                <a href="{{ route('login') }}" class="btn btn-primary btn_navbar_login mdc-ripple-surface">Daxil ol</a>
+                <a href="{{ route('login') }}" class="btn btn_navbar_login mdc-ripple-surface">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qeydiyyatdan Keç</a>
             @else
 

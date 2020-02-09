@@ -232,15 +232,14 @@ $noty-top-space: 3rem;
         line-height: unset;
         width: 50px;
         height: 50px;
+        border: 1px solid #86909a;
+        background: rgba(140,140,140,1);
+        background: linear-gradient(45deg, rgba(140,140,140,1) 0%, rgba(20,20,20,1) 99%, rgba(19,19,19,1) 100%);
 
-        img, span{
+        img, i, span{
             width: 50px;
             height: 50px;
-            border: 1px solid #86909a;
-            background: rgba(140,140,140,1);
-            background: linear-gradient(45deg, rgba(140,140,140,1) 0%, rgba(20,20,20,1) 99%, rgba(19,19,19,1) 100%);
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c8c8c', endColorstr='#131313', GradientType=1 );
-            font-size: 33px;
+            font-size: 48px;
             line-height: 48px;
         }
 
@@ -253,8 +252,8 @@ $noty-top-space: 3rem;
 
     .noty_body {
         display: grid;
-        grid-template-columns: 42px auto;
-        gap: 15px;
+        grid-template-columns: 50px auto;
+        gap: 9px;
         padding: 5px 5px 5px 0;
         margin-left: -21px;
         max-width: 320px;

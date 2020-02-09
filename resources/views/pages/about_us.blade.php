@@ -12,8 +12,8 @@
         <section class="about__head">
             <div class="about__header_block">
                 <h1 class="about__header"><span class="about__logo">DevHub</span> — yaradıcılıq üçün imkanlar</h1>
-                <p>DevHub помогает Азербайджанским программистам без лишних трудностей делиться своими успехами и
-                    уроками.</p>
+                <p>DevHub помогает Азербайджанским программистам без лишних трудностей делиться своими знаниями и
+                    опытом.</p>
             </div>
         </section>
         <section class="about__body">

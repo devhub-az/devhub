@@ -23,11 +23,11 @@
         created: function () {
             this.post = this.posts;
             if (this.post.data.votes > 0) {
-                this.colorStatus = 'var(--color-green)';
+                this.colorStatus = 'var(--color-success-main)';
             } else if (this.post.data.votes == 0) {
                 this.colorStatus = 'inherit';
             } else if (this.post.data.votes < 0) {
-                this.colorStatus = 'var(--color-red)';
+                this.colorStatus = 'var(--color-error-main)';
             }
             if (this.auth_check == 1) {
                 this.vote_status = false;

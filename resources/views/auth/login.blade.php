@@ -14,7 +14,7 @@
                     <div class="login__registration-block">
                         <h1 class="title"><span class="logo_login">DevHub</span> cəmiyyətinə qoşulun</h1>
                         <div class="login__registration-block-info">
-                            <i class="icon feather icon-thumbs-up"></i>
+                            <span class="mdi mdi-thumbs-up-down"></span>
                             <div class="login__registration-info-text">Səs vermək və şərh yazmaq kimi imkanların
                                 kilidini aç
                             </div>

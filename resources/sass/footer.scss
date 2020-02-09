@@ -33,7 +33,6 @@
                 .nav-links__item-link {
                     font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
                     display: inline-block;
-                    color: var(--color-app-text);
                     font-size: 13px;
                     font-weight: 700;
                     letter-spacing: 0.3px;
@@ -56,11 +55,6 @@
                     &:last-child {
                         margin-right: 0
                     }
-
-                    &:hover {
-                        background: unset;
-                        color: var(--color-header-nav-hover);
-                    }
                 }
             }
         }
@@ -70,6 +64,7 @@
             vertical-align: middle;
             position: relative;
             color: #bbc0c4;
+            transition-duration: 0.2s;
             font-family: MontDemo-Heavy, serif;
             font-size: 26px;
 
@@ -78,11 +73,16 @@
             }
         }
 
-        .nav-links__item-link:hover {
-            color: #bbc0c4;
+        .nav-links__item-link{
+            color: var(--footer);
+
+            &:hover {
+                color: var(--color-primary-dark);
+            }
         }
 
         .copyright {
+            color: var(--footer);
             margin-right: 28px;
             padding-left: 22px;
             position: relative;
