@@ -53,11 +53,6 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'post_favorites', 'post_id', 'follower_id');
     }
 
-    public function postFollowings()
-    {
-        return $this->belongsToMany(User::class, 'post_favorites', 'follower_id', 'post_id');
-    }
-
     public function postIsFollowing(User $user)
     {
         return $this->postFollowers()->where('follower_id', $user->id)->count();

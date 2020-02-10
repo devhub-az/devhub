@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+
 class FavoriteController extends Controller
 {
     public function __construct()
@@ -15,6 +16,11 @@ class FavoriteController extends Controller
 
     public function indexPosts(): View
     {
-        return view('auth.favorite.posts');
+        return view('auth.favorite.posts',['url' => '/api/saved/posts']);
+    }
+
+    public function indexComments(): View
+    {
+        return view('auth.favorite.comments' );
     }
 }
