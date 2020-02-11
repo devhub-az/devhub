@@ -104,6 +104,11 @@ class User extends Authenticatable implements HasMedia
         return $this->followers()->pluck('follower_id')->toArray();
     }
 
+    public function getPostsIdsAttribute():array
+    {
+        return $this->userPostFolowing()->pluck('post_id')->toArray();
+    }
+
     public function getHubsIdsAttribute(): array
     {
         return $this->userHubFollowing()->pluck('hub_id')->toArray();

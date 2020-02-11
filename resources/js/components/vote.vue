@@ -51,7 +51,7 @@
                             });
                         new Noty({
                             type: 'success',
-                            text: '<div class="notification-image"><i class="mdi mdi-thumb-up"></i></div> Səs verildi',
+                            text: '<div class="notification-image"><i class="mdi mdi-thumb-up-outline"></i></div> Səs verildi',
                         }).show();
                     } else if (this.post.data.upvoted == true && this.post.data.downvoted == false) {
                         this.post.data.upvoted = false;
@@ -83,7 +83,7 @@
                             });
                         new Noty({
                             type: 'success',
-                            text: '<div class="notification-image"><i class="icon feather icon-thumbs-up"></i></div> Səs verildi',
+                            text: '<div class="notification-image"><i class="mdi mdi-thumb-up-outline"></i></div> Səs verildi',
                         }).show();
                     }
 
@@ -121,7 +121,7 @@
                             });
                         new Noty({
                             type: 'success',
-                            text: '<div class="notification-image"><i class="icon feather icon-thumbs-down"></i></div> Səs verildi',
+                            text: '<div class="notification-image"><i class="mdi mdi-thumb-down-outline"></i></div> Səs verildi',
                         }).show();
                     } else if (this.post.data.downvoted == true && this.post.data.upvoted == false) {
                         this.post.data.downvoted = false;
@@ -153,7 +153,7 @@
                             });
                         new Noty({
                             type: 'success',
-                            text: '<div class="notification-image"><i class="icon feather icon-thumbs-down"></i></div> Səs verildi',
+                            text: '<div class="notification-image"><i class="mdi mdi-thumb-down-outline"></i></div> Səs verildi',
                         }).show();
                     }
                     if (vote > 0) {

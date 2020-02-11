@@ -57,7 +57,7 @@
                 <h3 class="menu-head">Digərləri</h3>
                 <li>
                     <a
-                            href="#"
+                            :href="fav"
                             @keydown.tab.exact="focusNext(false)"
                             @keydown.shift.tab="focusPrevious(false)"
                             @keydown.up.exact.prevent="focusPrevious(true)"
@@ -90,7 +90,7 @@
 
     export default {
         mixins: [clickaway],
-        props: ['user'],
+        props: ['user', 'fav'],
         data() {
             return {
                 switch: true,

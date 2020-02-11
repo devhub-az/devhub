@@ -29,6 +29,12 @@ Route::group(['middleware' => ['auth']], function () {
         ->middleware('can:talkTo,user')
         ->name('conversations.show');
 
+    Route::prefix('saved')->group(function (){
+        Route::get('/posts', 'Auth\FavoriteController@indexPosts')->name('saved-posts');
+
+
+        Route::get('/comments', 'Auth\FavoriteController@indexComments')->name('saved-comments');
+    });
 
     Route::prefix('@{username}/settings')->group(function () {
         Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');
@@ -46,6 +52,15 @@ Route::prefix('api')->group(function () {
     Route::get('posts/top/month', 'Api\PostController@posts');
     Route::get('posts/all', 'Api\PostController@all');
     Route::get('posts/favorite', 'Api\PostController@favorite');
+
+    /*
+     * Favorite Api
+     */
+
+    Route::prefix('saved')->group(function () {
+        Route::get('posts', 'Api\SavedController@allPosts');
+        Route::get('comments', 'Api\SavedController@allComments');
+    });
 
     /*
      * Hubs Api
