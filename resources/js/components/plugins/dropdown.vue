@@ -96,6 +96,7 @@
                 switch: true,
                 body: document.getElementsByTagName('body')[0],
                 atr: document.getElementsByTagName('body')[0].getAttribute('data-theme'),
+                cookatr: Vue.$cookies.get('atr'),
                 isEnabled: null,
                 isVisible: false,
                 focusedIndex: 0,
@@ -104,20 +105,28 @@
             }
         },
         created: function (){
-            if (this.atr === 'dark')
+            if (!this.cookatr){
+                this.cookatr = this.atr
+            }
+            console.log(Vue.$cookies.get('atr'))
+            if (this.cookatr === 'dark')
                 this.isEnabled = true
-            else if(this.atr === 'default')
+            else if(this.cookatr === 'default')
                 this.isEnabled = false
         },
         methods: {
             toggle: function () {
-                if (this.atr === 'dark') {
+                if (this.cookatr === 'dark') {
                     this.body.setAttribute("data-theme", 'default')
                     this.atr = 'default'
+                    this.cookatr = 'default'
+                    Vue.$cookies.set('atr', 'default')
                 }
-                else if(this.atr === 'default'){
+                else if(this.cookatr === 'default'){
                     this.body.setAttribute("data-theme", 'dark')
                     this.atr = 'dark'
+                    this.cookatr = 'dark'
+                    Vue.$cookies.set('atr', 'dark')
                 }
                 this.isEnabled = !this.isEnabled;
             },

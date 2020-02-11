@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         \Session::put('lang', 'az');
         $this->app->singleton(Parsedown::class);
-//        \Carbon\Carbon::setLocale('az');
+        \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
     }
 }

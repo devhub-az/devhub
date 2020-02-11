@@ -110,7 +110,6 @@
             }
         },
         created: function () {
-            console.log(this.$cookies)
             this.getPosts();
         },
         methods: {

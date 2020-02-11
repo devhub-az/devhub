@@ -52,7 +52,8 @@
 
 </head>
 
-<body data-theme="default">
+<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}">
+{{--{{dd(\Cookie::get('atr'))}}--}}
 {{-- Header --}}
 @include('include.header')
 

@@ -5,6 +5,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 window.moment = require('moment');
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies)
 
 window.Noty = require('noty');
 import "animate.css/animate.min.css";
