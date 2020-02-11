@@ -46,7 +46,7 @@
                             <span class="star tooltip footer_item" @click="favorite(post.data.id)"
                                   v-if="post.data.favorite" aria-label="Seçilmişlərdən cixartmag"
                                   data-balloon-pos="down">
-                                <span v-if="post.data.favorite" class="mdi mdi-bookmark-check"/> {{ post.data.followers }} Seçilmiş
+                                <span v-if="post.data.favorite" class="mdi mdi-bookmark-check saved"/> {{ post.data.followers }} Seçilmiş
                             </span>
                             <span class="footer_item">
                                     <a href="#" style="color: inherit">
@@ -110,6 +110,7 @@
             }
         },
         created: function () {
+            console.log(this.$cookies)
             this.getPosts();
         },
         methods: {

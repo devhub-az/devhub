@@ -235,7 +235,7 @@
 
                         &:hover {
                             background: unset;
-                            color: var(--color-primary-dark);
+                            color: var(--color-primary-main);
                         }
                     }
                 }
@@ -245,5 +245,5 @@
 }
 
 .nav-links__item-link_current {
-    color: var(--color-primary-dark) !important;
+    color: var(--color-primary-main) !important;
 }

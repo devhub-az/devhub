@@ -51,7 +51,7 @@
                             });
                         new Noty({
                             type: 'success',
-                            text: '<div class="notification-image"><i class="icon feather icon-thumbs-up"></i></div> Səs verildi',
+                            text: '<div class="notification-image"><i class="mdi mdi-thumb-up"></i></div> Səs verildi',
                         }).show();
                     } else if (this.post.data.upvoted == true && this.post.data.downvoted == false) {
                         this.post.data.upvoted = false;

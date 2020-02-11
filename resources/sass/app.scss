@@ -323,9 +323,9 @@ i {
 }
 
 .nav-posts__item-link_current {
-    border-color: var(--color-primary-dark) !important;
+    border-color: var(--color-primary-main) !important;
     bottom: 0;
-    color: var(--color-primary-dark) !important;
+    color: var(--color-primary-main) !important;
 }
 
 .nav-posts__item {
@@ -775,7 +775,7 @@ i {
 
             .hubs-list {
                 display: grid;
-                grid-template-columns: 23% 75%;
+                grid-template-columns: 64px auto;
                 gap: 3%;
                 margin-bottom: 12px;
 
@@ -1905,13 +1905,12 @@ i.icon {
         font-size: 14px;
         padding: 7px 0;
 
-        .devhub {
-            display: inline-block;
-            vertical-align: middle;
-        }
-
         .footer_item {
             padding: 0 8px;
+
+            .saved{
+                color: var(--color-primary-main);
+            }
         }
     }
 }

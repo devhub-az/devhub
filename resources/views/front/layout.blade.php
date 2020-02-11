@@ -27,7 +27,6 @@
     {{-- CSS --}}
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:300,400,500,700|PT+Sans&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('@mdi/font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
@@ -79,13 +78,6 @@
     $('.ui.dropdown').dropdown();
 
     var stickymessage = stickybits('.header-message');
-
-    // document.addEventListener("DOMNodeInserted", function(event){
-    //     var element=event.target;
-    //     MathJax.Hub.Queue(["Typeset",MathJax.Hub,element.parent]);
-    // });
-    //
-    // MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 
     function Lang() {
         document.getElementById("myDropdown").classList.toggle("show");

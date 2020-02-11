@@ -209,9 +209,9 @@
 }
 .layout__navbar .main-navbar .main-navbar__section .nav-links .nav-links__item .nav-links__item-link:hover {
   background: unset;
-  color: var(--color-primary-dark);
+  color: var(--color-primary-main);
 }
 
 .nav-links__item-link_current {
-  color: var(--color-primary-dark) !important;
+  color: var(--color-primary-main) !important;
 }
