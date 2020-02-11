@@ -11,7 +11,7 @@
         <div class="profile__header">
             <div class="background">
                 <div class="background__placeholder"
-                     style="background-image: url('https://www.elsetge.cat/imagepost/b/77/777342_best-wallpaper-for-facebook.jpg')"></div>
+                     ></div>
             </div>
         </div>
         <div class="profile__user">
@@ -42,19 +42,8 @@
     </div>
     <div class="page-profile">
         <div class="profile__left" id="app">
-
-            <ul class="nav_posts">
-                <a href="{{ route('all') }}"
-                   class="nav-posts__item @if(Request::url() === route('all')) nav-posts__item-link_current @endif">
-                    <span class="nav-posts__item-link">Vaxta görə</span>
-                </a>
-                <a href="{{ route('home') }}"
-                   class="nav-posts__item @if(Request::is('top/*') || Request::is('/')) nav-posts__item-link_current @endif">
-                    <span class="nav-posts__item-link">Ən yaxşı</span>
-                </a>
-            </ul>
             <posts
-                    :url="'http://127.0.0.1:8000/api/posts/all'"
+                    :url="'{{ $url }}'"
                     @auth :auth_check="true" @endauth
             ></posts>
         </div>

@@ -77,6 +77,12 @@ Route::prefix('api')->group(function () {
      * Users Api
      */
     Route::get('users/all', 'Api\UserController@users');
+
+    /*
+     * Profile Api
+     */
+    Route::get('/users/{id}/posts', 'Api\UserController@posts');
+
 });
 
 Route::prefix('post')->group(function () {

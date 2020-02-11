@@ -4914,6 +4914,11 @@ table {
   width: 100%;
 }
 
+ahover {
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
 table thead th:first-child {
   border-radius: calc(.125rem - 1px) 0 0;
 }
@@ -5348,7 +5353,7 @@ i {
   display: flex;
   -webkit-box-align: center;
           align-items: center;
-  margin: 10px 25px;
+  padding: 10px 25px;
 }
 .post-content__item .post__meta .post__user-info {
   display: -webkit-inline-box;
@@ -5382,7 +5387,7 @@ i {
 .post-content__item .post-content__header {
   display: grid;
   grid-template-columns: 80% 20%;
-  margin: 10px 25px;
+  padding: 10px 25px;
 }
 .post-content__item .post-content__header .post-header__right {
   display: grid;
@@ -5436,12 +5441,12 @@ i {
   font-weight: 700;
   color: var(--text-black-primary);
   box-shadow: inset 0 -2px 0 var(--color-primary-light);
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
   -webkit-transition-property: all;
   transition-property: all;
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
   -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
   -webkit-transition-delay: 0s;
@@ -5455,7 +5460,11 @@ i {
   font-size: 23px;
   text-align: right;
   font-weight: bold;
+  margin-left: auto;
   color: var(--text-black-secondary);
+}
+.post-votes .rating {
+  cursor: default;
 }
 .post-votes [class^=icon-] {
   cursor: pointer;
@@ -6008,6 +6017,17 @@ ol {
 .post__content-footer .footer_item {
   padding: 0 8px;
 }
+.post__content-footer span > .mdi {
+  font-size: 1rem;
+}
+.post__content-footer .post-content__footer-stats {
+  margin-right: auto;
+  font-size: 14px;
+  padding: 7px 0;
+}
+.post__content-footer .post-content__footer-stats .footer_item {
+  padding: 0 8px;
+}
 
 .company_banner {
   height: 250px;
@@ -6199,8 +6219,8 @@ i.icon {
 .profile__info .profile__header .background {
   overflow: hidden;
   background-color: #f9f9fb;
-  background-image: url(https://cs.pikabu.ru/apps/desktop/1.37.0/images/sprite_96dpi.png);
-  background-size: 700px 454px;
+  background-image: url("/images/wallpaper/background-user.png");
+  background-size: cover;
   background-position: center;
   height: 360px;
 }
@@ -6527,9 +6547,6 @@ i.icon {
 }
 .post-content__footer .post-content__footer-stats .footer_item {
   padding: 0 8px;
-}
-.post-content__footer .post-content__footer-stats .footer_item .saved {
-  color: var(--color-primary-main);
 }
 
 .loading {

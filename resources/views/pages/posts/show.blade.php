@@ -10,7 +10,7 @@
 
 @section('main')
     {{-- {{ dd($post['creator']->getMedia('avatars')) }} --}}
-    <div class="layout_post" id="app">
+    <div class="layout_post">
         <header>
             <div class="page-header__banner">
                 <a href="https://hh.ru/employer/1212374" target="_blank">
@@ -47,72 +47,15 @@
         </header>
         <div class="post-show">
             <div class="post_left">
-                <div class="container">
-                    <div id="post-content" class="post-content">
-                        <div id="sidebar" class="stickyVote">
-                            <div class="stickyHeader">
-                                <i class="icon feather icon-chevron-right"></i>{{ $post['name'] }}
-                            </div>
-                            <div class="post-votes-sticky">
-                                <vote :posts="{{ json_encode($post) }}" @auth :auth_check="true" @endauth ></vote>
-                                @if(Auth::check() && Auth::user()->id === $post['creator']['id'])
-                                    <div class="post-edit_author">
-                                        <i class="mdi mdi-chevron-down"></i>
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="post-content__item">
-                            <div class="post-content__header">
-                                <div class="post-title">
-                                    <h1>{{ $post['name'] }}</h1>
-                                </div>
-                                <div class="post-header__right">
-                                    <div class="post__time">
-                                        <i class="icon feather icon-calendar"></i>
-                                        {{ Carbon\Carbon::parse($post['created_at'])->diffForHumans() }}
-                                        | {{ Carbon\Carbon::parse($post['created_at'])->format('H:i') }}
-                                    </div>
-                                </div>
-                            </div>
-                            <hubs-tags :data="{{ json_encode($hubs) }}"></hubs-tags>
-                            <div class="post-content__body">
-                                {!! $body !!}
-                            </div>
-                            <div id="content_footer" class="post__content-footer">
-                                <div class="footer_item">
-                                    <i class="mdi mdi-eye-outline"></i> {{ $post['views']->count() }} Baxışların sayı
-                                </div>
-                                @auth
-                                    @if ($post->postIsFollowing(Auth::user()) != "folowing")
-                                        <div class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et"
-                                             data-balloon-pos="down">
-                                            <i class="mdi mdi-bookmark-plus"></i> {{ $post->postFollowers->count() }}
-                                            Seçilmiş
-                                        </div>
-                                    @elseif($post->postIsFollowing(Auth::user()) == "folowing")
-                                        <div class="star tooltip footer_item" aria-label="Seçilmişlərdən cixartmag"
-                                             data-balloon-pos="down">
-                                            <i class="mdi mdi-bookmark-check"></i> {{ $post->postFollowers->count() }}
-                                            Seçilmiş
-                                        </div>
-                                    @endif
-                                @endauth
-                                @guest
-                                    <div class="star tooltip footer_item" aria-label="Seçilmişlərə əlavə et"
-                                         data-balloon-pos="down">
-                                        <i class="mdi mdi-bookmark-plus"></i> {{ $post->postFollowers->count() }}
-                                        Seçilmiş
-                                    </div>
-                                @endguest
-                                <div class="footer_item ui inline dropdown">
-                                    <div class="menu">
-                                        <div class="item"><i class="mdi mdi-flag"></i> Şikayət et</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="container" id="app">
+                    <post-show :post="{{ json_encode($post) }}"
+                        @auth
+                            :auth_check="true"
+                            :user="{{ Auth::user() }}"
+                        @endauth
+                        :body="{{ json_encode($body) }}"
+                        :hubs="{{ json_encode($hubs) }}">
+                    </post-show>
                     <div class="post-share">
                         <span class="post-share__title"><i class="icon feather icon-share"></i> Paylaş</span>
                         <ul class="post-share__buttons social-icons">

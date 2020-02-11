@@ -63,7 +63,7 @@
                 <li v-if="notifications.length === 0" class="post-content__item"
                      style="text-align: center; display: grid; grid-gap: 12px; cursor: default;">
                         <span style="font-size: 5rem; opacity: .7;">
-                            <img src="/images/errors/lazy.png" alt="" width="200"/>
+                            <i class="mdi mdi-bell-outline"></i>
                         </span>
                     <h3>Bildirişlər yoxdu</h3>
                     <p>Bura belə boş olmasın deyə, paylaşma və şərhlər yazmağa başlayın</p>

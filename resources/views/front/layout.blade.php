@@ -20,9 +20,9 @@
     <script type="text/javascript" async
             src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
     </script>
-    <script src="{{ asset('js/highlight.min.js') }}"></script>
-    <script src="{{ asset('js/highlight.pack.js') }}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+{{--    <script src="{{ asset('js/highlight.min.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/highlight.pack.js') }}"></script>--}}
+{{--    <script>hljs.initHighlightingOnLoad();</script>--}}
 
     {{-- CSS --}}
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:300,400,500,700|PT+Sans&display=swap"
@@ -80,30 +80,12 @@
 
     var stickymessage = stickybits('.header-message');
 
-    function Lang() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    $("#scroll_to_top").on("click", function () {
-    $("#scroll_to_top").on("click", function () {
-        $('html, body').animate({
-            scrollTop: 0
-        }, 600);
-    });
-
-    // Close the dropdown menu if the user clicks outside of it
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropbtn')) {
-            const dropdown = document.getElementsByClassName("dropdown-content");
-            let i;
-            for (i = 0; i < dropdown.length; i++) {
-                const openDropdown = dropdown[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    };
+    // $("#scroll_to_top").on("click", function () {
+    // $("#scroll_to_top").on("click", function () {
+    //     $('html, body').animate({
+    //         scrollTop: 0
+    //     }, 600);
+    // })};
 
     function search() {
         const input = document.getElementById("form_search");

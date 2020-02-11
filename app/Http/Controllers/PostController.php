@@ -30,8 +30,6 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
      * @return View
      */
     public function create(): View
@@ -86,7 +84,8 @@ class PostController extends Controller
         return view('pages.posts.show', [
             'post'     => $post,
             'body'     => \Purifier::clean($parsedown->text($post->body)),
-            'hubs'     => $post->hubs,
+            'hubs'     => new HubsCollection(Hub::whereIn('id',
+                $post->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
             'comments' => $post->comments,
         ]);
     }

@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </li>
-                <h3 class="menu-head">Digərləri</h3>
+                <h3 class="menu-head">Digər</h3>
                 <li>
                     <a
                             :href="fav"
@@ -64,7 +64,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-bookmark"></i> Seçilmişlər</span>
+                        <span class="ml-2"><i class="mdi mdi-bookmark-check"></i> Seçilmişlər</span>
                     </a>
                 </li>
                 <div class="line"></div>
@@ -108,7 +108,6 @@
             if (!this.cookatr){
                 this.cookatr = this.atr
             }
-            console.log(Vue.$cookies.get('atr'))
             if (this.cookatr === 'dark')
                 this.isEnabled = true
             else if(this.cookatr === 'default')

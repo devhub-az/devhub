@@ -344,7 +344,7 @@
 }
 .noty_theme__mint.noty_bar .notification-link {
   display: block;
-  color: var(--color-blue);
+  color: var(--color-info-light);
 }
 .noty_theme__mint.noty_bar .noty_body {
   display: grid;

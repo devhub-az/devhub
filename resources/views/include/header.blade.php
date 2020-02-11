@@ -5,7 +5,7 @@
             <ul class="nav-links" id="navbar-links">
                 <li class="nav-links__item">
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class="nav-links__item-link @if(Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*')) nav-links__item-link_current @endif">Paylaşmalar</a>
+                       class="nav-links__item-link @if(Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) nav-links__item-link_current @endif">Paylaşmalar</a>
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ url('hubs') }}"
@@ -35,7 +35,7 @@
             <span id="search-icon" onclick="search()" class="mdi mdi-magnify"></span>
             @guest
                 <a href="{{ route('login') }}" class="btn btn_navbar_login mdc-ripple-surface">Daxil ol</a>
-                <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qeydiyyatdan Keç</a>
+                <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qoşulmaq</a>
             @else
 
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}" :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>

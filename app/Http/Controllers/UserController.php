@@ -16,8 +16,8 @@ class UserController extends Controller
         } elseif (Auth::check()) {
             $isFollowing = $user->isFollowing(Auth::user());
         }
-
-        return view('pages.profile.main', ['user' => $user, 'isFollowing' => $isFollowing]);
+        
+        return view('pages.profile.main', ['user' => $user, 'isFollowing' => $isFollowing, 'url' => '/api/users/'. $user->id .'/posts']);
     }
 
     public function userList()

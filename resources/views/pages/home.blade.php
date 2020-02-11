@@ -26,8 +26,9 @@
                                    class="nav-posts__item @if(Request::url() === route('favorite')) nav-posts__item-link_current @endif">
                                     <span class="nav-posts__item-link badge"
                                           @if (Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() > 0)
-                                          data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"
-                @endif>Abunə ilə</span>
+                                          data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"@endif>
+                                        Abunə ilə
+                                    </span>
                                 </a>
                             @endif
                         @endauth
