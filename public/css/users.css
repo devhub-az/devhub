@@ -31,22 +31,15 @@
   width: 90%;
 }
 .layout_body .layout_content .list-hubs__hub .list-hubs__stats {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   margin: 0 auto;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
   flex-direction: column;
-  -webkit-box-pack: center;
   justify-content: center;
 }
 .layout_body .layout_content .list-hubs__hub .list-hubs__stats .list-hubs__stats-value {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

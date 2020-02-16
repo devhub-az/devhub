@@ -1,5 +1,5 @@
 <template>
-    <span>
+    <span class="footer_item">
         <span class="star tooltip footer_item" @click="favorite(post.id)"
              v-if="!post.favorite" aria-label="Seçilmişlərə əlavə et"
              data-balloon-pos="down">

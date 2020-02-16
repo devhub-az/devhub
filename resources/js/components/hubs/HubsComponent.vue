@@ -29,7 +29,7 @@
                     REYTINQ
                 </small>
             </div>
-            <hub-follow-button :hub="hub"></hub-follow-button>
+            <hub-follow-button :hub="hub" :auth_check="auth_check"></hub-follow-button>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"></pagination>
@@ -73,6 +73,7 @@
         props: {
             fetchUrl: {type: String, required: true},
             columns: {type: Array, required: true},
+            auth_check: {type: Boolean}
         },
         data: function () {
             return {

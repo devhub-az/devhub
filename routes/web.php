@@ -52,6 +52,7 @@ Route::prefix('api')->group(function () {
     Route::get('posts/top/month', 'Api\PostController@posts');
     Route::get('posts/all', 'Api\PostController@all');
     Route::get('posts/favorite', 'Api\PostController@favorite');
+    Route::get('posts/{id}', 'Api\PostController@show');
 
     /*
      * Favorite Api
@@ -71,7 +72,7 @@ Route::prefix('api')->group(function () {
     Route::get('hubs/{id}/top/month', 'Api\PostHubController@posts');
     Route::get('hubs/{id}/all', 'Api\PostHubController@all');
 
-    Route::get('hubs', 'Api\HubController@hubs')->name('hubs-list');
+    Route::get('hubs', 'Api\HubController@hubs')->name('hubs-list-api');
 
     /*
      * Users Api
@@ -93,7 +94,7 @@ Route::prefix('post')->group(function () {
 });
 
 Route::prefix('hubs')->group(function () {
-    Route::get('/', 'HubController@index');
+    Route::get('/', 'HubController@index')->name('hubs-list');
     Route::get('/{id}', 'HubController@show');
     Route::get('/{id}/top/week', 'HubController@show');
     Route::get('/{id}/top/month', 'HubController@show');

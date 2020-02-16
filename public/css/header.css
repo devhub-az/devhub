@@ -1,14 +1,12 @@
 .layout__navbar {
-  border-bottom: 1px solid #d5dddf;
+  border-bottom: 1px solid var(--color-border);
   box-sizing: border-box;
-  background-color: var(--color-header);
+  background-color: var(--background-tertiary);
 }
 .layout__navbar .main-navbar {
-  display: -webkit-box;
   display: flex;
   width: 80%;
   margin: 0 auto;
-  -webkit-box-pack: justify;
   justify-content: space-between;
   box-sizing: border-box;
   /* Dropdown Button */
@@ -81,14 +79,12 @@
   color: inherit;
 }
 .layout__navbar .main-navbar .form-search {
-  -webkit-box-flex: 1;
-          flex: 1 1 0;
+  flex: 1 1 0;
   display: none;
   font-size: 14px;
   box-sizing: border-box;
   padding: 0 12px;
-  -webkit-box-align: center;
-          align-items: center;
+  align-items: center;
   position: relative;
   margin-left: auto;
   width: 100%;
@@ -116,8 +112,7 @@
   top: 50%;
   font-size: 18px;
   z-index: 3;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .layout__navbar .main-navbar .form-search .header_search .mdi-file-excel-box {
   cursor: pointer;
@@ -126,8 +121,7 @@
   top: 50%;
   font-size: 18px;
   z-index: 3;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .layout__navbar .main-navbar .form-search .header_search .mdi-file-excel-box:hover {
   text-decoration: none;
@@ -149,9 +143,7 @@
   color: var(--text-black-secondary);
 }
 .layout__navbar .main-navbar .main-navbar__section {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   position: relative;
   height: 50px;
@@ -167,7 +159,6 @@
   opacity: 1;
 }
 .layout__navbar .main-navbar .main-navbar__section .nav-links {
-  display: -webkit-box;
   display: flex;
   margin: 0;
   padding: 0 0 0 30px;
@@ -184,7 +175,7 @@
 .layout__navbar .main-navbar .main-navbar__section .nav-links .nav-links__item .nav-links__item-link {
   font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
   display: inline-block;
-  color: var(--text-black-secondary);
+  color: var(--color-header);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.3px;
@@ -193,15 +184,10 @@
   white-space: nowrap;
   -webkit-font-smoothing: subpixel-antialiased;
   text-rendering: optimizeLegibility;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
-  -webkit-transition-property: all;
   transition-property: all;
-  -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
-  -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
-  -webkit-transition-delay: 0s;
   transition-delay: 0s;
 }
 .layout__navbar .main-navbar .main-navbar__section .nav-links .nav-links__item .nav-links__item-link:last-child {

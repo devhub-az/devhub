@@ -27,17 +27,17 @@
                 </div>
             </div>
             <div class="profile__user-button">
-                <button class="btn"><span class="mdi mdi-email"></span> Mesaj</button>
-                <button class="btn btn-primary follow"><span class="mdi mdi-account-plus"></span> Izlə</button>
-                <button class="btn"><span class="mdi mdi-dots-vertical"></span> </button>
+                <button class="btn btn-outline"><i class="mdi mdi-email"></i> Mesaj</button>
+                <button class="btn btn-primary follow"><i class="mdi mdi-account-plus"></i> Izlə</button>
+                <button class="btn btn-outline"><i class="mdi mdi-dots-vertical"></i> </button>
             </div>
         </div>
         <div class="profile__section grid">
-            <span class="profile__digital hint"><b>{{ $user->rating }}</b> <span><span>Reyting</span></span></span>
-            <span class="profile__digital hint"><b>{{ $user->karma }}</b> <span>Karma</span></span>
-            <span class="profile__digital hint"><b>{{ $user->followers->count() }}</b> <span>Izləyənlər</span></span>
-            <span class="profile__digital hint"><b>{{ $user->followings->count() }}</b> <span>Izlənən</span></span>
-            <span class="profile__digital"><b>{{ $user->posts->count() }}</b> <span>paylashım</span></span>
+            <span class="profile__digital current"><b>{{ $user->posts->count() }}</b> <span><i class="mdi mdi-file-document-box-multiple-outline"></i> Paylaşım</span></span>
+            <span class="profile__digital"><b>{{ $user->rating }}</b> <span><span><i class="mdi mdi-podium-gold"></i> Reyting</span></span></span>
+            <span class="profile__digital"><b>{{ $user->karma }}</b> <span><i class="mdi mdi-trending-up"></i> Karma</span></span>
+            <span class="profile__digital"><b>{{ $user->followers->count() }}</b> <span><i class="mdi mdi-account-group"></i> Izləyənlər</span></span>
+            <span class="profile__digital"><b>{{ $user->followings->count() }}</b> <span><i class="mdi mdi-target-account"></i> Izlənən</span></span>
         </div>
     </div>
     <div class="page-profile">

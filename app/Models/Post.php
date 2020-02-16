@@ -48,6 +48,16 @@ class Post extends Model
         return $this->hasMany(PostVote::class);
     }
 
+    public function upvotes()
+    {
+        return $this->votes()->where('status', '1')->count();
+    }
+
+    public function downvotes()
+    {
+        return $this->votes()->where('status', '0')->count();
+    }
+
     public function postFollowers()
     {
         return $this->belongsToMany(User::class, 'post_favorites', 'post_id', 'follower_id');

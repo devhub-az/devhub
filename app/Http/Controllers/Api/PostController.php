@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostsCollection;
+use App\Http\Resources\PostShowCollection;
 use App\Models\Post;
 use App\Transformers\PostTransformer;
 use Illuminate\Http\Request;
@@ -77,11 +79,8 @@ class PostController extends ApiController
             ->paginate(5));
     }
 
-    public function show(Request $request)
+    public function show(Request $request, int $id)
     {
-        return $this->respondWith(
-            Post::orderBy('created_at', 'DESC')->paginate(10)->appends(['include' => $request->input('include')]),
-            new PostTransformer
-        );
+        return new PostShowCollection(Post::findorfail($id));
     }
 }

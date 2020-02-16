@@ -197,7 +197,7 @@ input, textarea, .editable {
     max-width: 100%;
     border: 1px solid rgba(34, 36, 38, .15);
     color: rgba(0, 0, 0, .87);
-    border-radius: .28571429rem;
+    border-radius: 2px !important;
     box-shadow: 0 0 0 0 transparent inset;
     -webkit-transition: color .1s ease, border-color .1s ease;
     transition: color .1s ease, border-color .1s ease;
@@ -505,7 +505,7 @@ i {
     font-weight: bold;
     font-size: 100%;
     padding: 10px 22px;
-    background-color: var(--background-paper);
+    background-color: var(--background-tertiary);
     border: 1px solid var(--color-border);
     color: var(--text-black-primary);
     align-items: center;
@@ -1328,16 +1328,64 @@ ol {
 
 .post__content-footer {
     display: grid;
-    grid-template-columns: repeat(4, max-content);
+    grid-auto-flow: column;
     font-size: 14px;
     padding: 15px 22px;
     background-color: #f9f9fb;
     color: var(--color-black-secondary);
-    border-top: none;
+    border-top: 1px solid var(--color-border);
     align-items: center;
     box-sizing: border-box;
     margin: auto;
     width: 100%;
+
+    .balloon{
+        margin-left: auto;
+        width: 225px;
+    }
+
+    .progress{
+        background-color: whiteSmoke;
+        position: relative;
+        height: 3px;
+        width: 225px;
+        margin-left: auto;
+
+        &:before{
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-error-main);
+            border-radius: 2px;
+        }
+
+        .progress-green{
+            z-index: 1;
+            position: absolute;
+            height: 3px;
+            border-bottom-left-radius: 2px;
+            border-top-left-radius: 2px;
+            background-color: var(--color-success-main);
+        }
+    }
+
+    .default::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-black-secondary);
+        border-radius: 2px;
+    }
+
+    .grid{
+        display: grid;
+        grid-auto-flow: column;
+        margin-right: auto;
+    }
 
     .footer_item {
         padding: 0 8px;
@@ -1607,7 +1655,7 @@ i.icon {
             justify-content: center;
             top: -60px;
             width: 120px;
-            border: 2px solid #fff;
+            border: 2px solid var(--color-border);
             height: 120px;
             position: absolute;
 
@@ -1657,7 +1705,6 @@ i.icon {
             margin-left: auto;
 
             button {
-                background: white;
                 min-width: 5rem;
             }
 
@@ -1669,15 +1716,14 @@ i.icon {
     }
 
     .profile__section {
-        border-top: 1px solid #e9e9e9;
         padding: 15px 0;
-        margin: 0 25px;
 
         .profile__digital {
             text-align: center;
             box-sizing: border-box;
             background-repeat: no-repeat;
-            padding: 0;
+            border-top: 1px solid var(--color-border);
+            padding-top: 15px;
             cursor: default;
             display: inline-block;
 
@@ -1691,6 +1737,10 @@ i.icon {
                 display: block;
                 color: var(--text-black-secondary);
             }
+        }
+
+        .current{
+            border-top: 1px solid var(--color-primary-main);
         }
     }
 
@@ -1801,6 +1851,9 @@ i.icon {
 
         h4 {
             font-weight: normal;
+            font-size: .88rem;
+            letter-spacing: .01rem;
+            line-height: 1.4;
             color: var(--text-black-secondary);
         }
     }
@@ -1838,11 +1891,10 @@ i.icon {
     -moz-osx-font-smoothing: grayscale;
     display: inline-block;
     margin-bottom: 5px;
-    color: var(--color-primary-light);
+    color: var(--color-primary-main);
     vertical-align: top;
     font-weight: bold;
     font-size: 15px;
-    font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
     line-height: 18px;
 
     a {
@@ -1862,7 +1914,6 @@ i.icon {
         margin-bottom: 5px;
         color: var(--text-black-secondary);
         font-size: 13px;
-        font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
         line-height: 16px;
     }
 
@@ -1918,7 +1969,7 @@ i.icon {
     grid-template-columns: 80% 20%;
     color: #757575;
     padding: 8px 25px;
-    border-top: 1px solid #e9e9e9;
+    border-top: 1px solid var(--color-border);
     background-color: #f9f9fb;
 
     span > .mdi {
@@ -1934,6 +1985,14 @@ i.icon {
             padding: 0 8px;
         }
     }
+}
+
+.hidden {
+    display: none !important;
+}
+
+div.phpdebugbar-widgets-sqlqueries li.phpdebugbar-widgets-list-item.phpdebugbar-widgets-sql-duplicate {
+    background-color: yellow !important;
 }
 
 .loading {

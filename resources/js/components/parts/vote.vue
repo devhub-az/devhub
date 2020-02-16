@@ -1,12 +1,12 @@
 <template>
-    <div class="post-votes" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
-        <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.data.upvoted}"
-              @click="upvote(posts.data.id)"/>
+    <div class="post-votes" :aria-label="posts.votes + ':  ↑ ' + posts.upvotes + ' ↓ ' + posts.downvotes" data-balloon-pos="left">
+        <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.upvoted}"
+              @click="upvote(posts.id)"/>
         <span id="rating" :style="{color: colorStatus}" class="rating">
-            {{ posts.data.votes }}
+            {{ posts.votes }}
         </span>
-        <span class="mdi mdi-thumb-down-outline" :class="{downvoted: posts.data.downvoted}"
-              @click="downvote(posts.data.id)"/>
+        <span class="mdi mdi-thumb-down-outline" :class="{downvoted: posts.downvoted}"
+              @click="downvote(posts.id)"/>
     </div>
 </template>
 
@@ -15,32 +15,34 @@
         props: ['posts', 'auth_check'],
         data: function () {
             return {
-                post: '',
+                post: [],
                 colorStatus: 'inherit',
                 upvoted: false,
                 downvoted: false,
                 vote_status: true,
             }
         },
-        created: function () {
-            this.post = this.posts;
-            if (this.post.data.votes > 0) {
+        async created () {
+            if (this.posts.votes > 0) {
                 this.colorStatus = 'var(--color-success-main)';
-            } else if (this.post.data.votes == 0) {
+            } else if (this.posts.votes === 0) {
                 this.colorStatus = 'inherit';
-            } else if (this.post.data.votes < 0) {
+            } else if (this.posts.votes < 0) {
                 this.colorStatus = 'var(--color-error-main)';
             }
-            if (this.auth_check == 1) {
+            if (this.auth_check === 1) {
                 this.vote_status = false;
             }
         },
         methods: {
             upvote: function (id) {
                 if (this.auth_check) {
-                    let vote = this.post.data.votes;
-                    if (this.post.data.upvoted == false && this.post.data.downvoted == false) {
-                        this.post.data.upvoted = true;
+                    let vote = this.posts.votes;
+                    let upvotes = this.posts.upvotes;
+                    let downvotes = this.posts.downvotes;
+                    if (this.posts.upvoted == false && this.posts.downvoted == false) {
+                        this.posts.upvoted = true;
+                        upvotes++;
                         vote++;
                         axios.post('/upvote', {
                             id: id,
@@ -55,14 +57,15 @@
                             type: 'success',
                             text: '<div class="notification-image"><i class="mdi mdi-thumb-up-outline"></i></div> Səs verildi',
                         }).show();
-                    } else if (this.post.data.upvoted == true && this.post.data.downvoted == false) {
-                        this.post.data.upvoted = false;
+                    } else if (this.posts.upvoted == true && this.posts.downvoted == false) {
+                        this.posts.upvoted = false;
+                        upvotes--;
                         vote--;
                         axios.post('/upvote', {
                             id: id,
                             vote: vote,
                             change_rating: '-1',
-                            status
+                            status: null
                         })
                             .catch(error => {
                                 console.log(error);
@@ -71,8 +74,10 @@
                             type: 'error',
                             text: '<div class="notification-image" style="color: #ea5f6d"><i class="mdi mdi-minus-box-outline"></i></div> Səs ləğv olundu',
                         }).show();
-                    } else if (this.post.data.upvoted == false && this.post.data.downvoted == true) {
-                        this.post.data.upvoted = true;
+                    } else if (this.posts.upvoted == false && this.posts.downvoted == true) {
+                        this.posts.upvoted = true;
+                        upvotes = upvotes + 1;
+                        downvotes = downvotes - 1;
                         vote = vote + 2;
                         axios.post('/upvote', {
                             id: id,
@@ -90,14 +95,16 @@
                     }
 
                     if (vote > 0) {
-                        this.colorStatus = 'var(--color-green)';
+                        this.colorStatus = 'var(--color-success-main)';
                     } else if (vote == 0) {
                         this.colorStatus = 'inherit';
                     } else if (vote < 0) {
-                        this.colorStatus = 'var(--color-red)';
+                        this.colorStatus = 'var(--color-error-main)';
                     }
-                    this.post.data.downvoted = false;
-                    this.post.data.votes = vote;
+                    this.posts.downvoted = false;
+                    this.posts.upvotes = upvotes;
+                    this.posts.downvotes = downvotes;
+                    this.posts.votes = vote;
                 } else
                     new Noty({
                         type: 'success',
@@ -108,9 +115,12 @@
             },
             downvote: function (id) {
                 if (this.auth_check) {
-                    let vote = this.post.data.votes;
-                    if (this.post.data.downvoted == false && this.post.data.upvoted == false) {
-                        this.post.data.downvoted = true;
+                    let vote = this.posts.votes;
+                    let upvotes = this.posts.upvotes;
+                    let downvotes = this.posts.downvotes;
+                    if (this.posts.downvoted == false && this.posts.upvoted == false) {
+                        this.posts.downvoted = true;
+                        downvotes++;
                         vote--;
                         axios.post('/upvote', {
                             id: id,
@@ -125,14 +135,15 @@
                             type: 'success',
                             text: '<div class="notification-image"><i class="mdi mdi-thumb-down-outline"></i></div> Səs verildi',
                         }).show();
-                    } else if (this.post.data.downvoted == true && this.post.data.upvoted == false) {
-                        this.post.data.downvoted = false;
+                    } else if (this.posts.downvoted == true && this.posts.upvoted == false) {
+                        this.posts.downvoted = false;
+                        downvotes--;
                         vote++;
                         axios.post('/upvote', {
                             id: id,
                             vote: vote,
                             change_rating: '1',
-                            status
+                            status: null
                         })
                             .catch(error => {
                                 console.log(error);
@@ -141,8 +152,10 @@
                             type: 'error',
                             text: '<div class="notification-image" style="color: #ea5f6d"><i class="mdi mdi-minus-box-outline"></i></div> Səs ləğv olundu',
                         }).show();
-                    } else if (this.post.data.downvoted == false && this.post.data.upvoted == true) {
-                        this.post.data.downvoted = true;
+                    } else if (this.posts.downvoted == false && this.posts.upvoted == true) {
+                        this.posts.downvoted = true;
+                        upvotes = upvotes - 1;
+                        downvotes = downvotes + 1;
                         vote = vote - 2;
                         axios.post('/upvote', {
                             id: id,
@@ -159,14 +172,16 @@
                         }).show();
                     }
                     if (vote > 0) {
-                        this.colorStatus = 'var(--color-green)';
+                        this.colorStatus = 'var(--color-success-main)';
                     } else if (vote === 0) {
                         this.colorStatus = 'inherit';
                     } else if (vote < 0) {
-                        this.colorStatus = 'var(--color-red)';
+                        this.colorStatus = 'var(--color-error-main)';
                     }
-                    this.post.data.upvoted = false;
-                    this.post.data.votes = vote;
+                    this.posts.upvoted = false;
+                    this.posts.upvotes = upvotes;
+                    this.posts.downvotes = downvotes;
+                    this.posts.votes = vote;
                 } else
                     new Noty({
                         type: 'success',

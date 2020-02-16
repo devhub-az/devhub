@@ -1,11 +1,12 @@
 @extends('front.layout')
+{{--{{dd($post->creator)}}--}}
 
-@section('title'){{ $post['name'] }} @stop
+@section('title'){{ $post->name }} @stop
 
 @section('meta')
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ URL::current() }}">
-    <meta property="og:title" content="{{ $post['name'] }}">
+    <meta property="og:title" content="{{ $post->name }}">
 @stop
 
 @section('main')
@@ -48,13 +49,11 @@
         <div class="post-show">
             <div class="post_left">
                 <div class="container" id="app">
-                    <post-show :post="{{ json_encode($post) }}"
-                        @auth
+                    <post-show
+                            :id="{{ $post->id }}"
+                            @auth
                             :auth_check="true"
-                            :user="{{ Auth::user() }}"
-                        @endauth
-                        :body="{{ json_encode($body) }}"
-                        :hubs="{{ json_encode($hubs) }}">
+                            @endauth>
                     </post-show>
                     <div class="post-share">
                         <span class="post-share__title"><i class="icon feather icon-share"></i> Paylaş</span>
@@ -78,32 +77,31 @@
                                    onclick="window.open(this.href, 'Опубликовать ссылку во ВКонтакте', 'width=800,height=300,toolbar=0,status=0'); return false">
                                     <svg class="icon-svg" aria-hidden="true" aria-labelledby="title" version="1.1"
                                          role="img" width="24" height="24" viewBox="0 0 24 24">
-                                        <path
-                                                d="M16.066 11.93s1.62-2.286 1.782-3.037c.054-.268-.064-.418-.343-.418h-1.406c-.322 0-.44.139-.537.343 0 0-.76 1.619-1.685 2.64-.297.33-.448.429-.612.429-.132 0-.193-.11-.193-.408v-2.607c0-.365-.043-.472-.343-.472h-2.254c-.172 0-.279.1-.279.236 0 .343.526.421.526 1.352v1.921c0 .386-.022.537-.204.537-.483 0-1.631-1.663-2.274-3.552-.129-.386-.268-.494-.633-.494h-1.406c-.204 0-.354.139-.354.343 0 .375.44 2.114 2.167 4.442 1.159 1.566 2.683 2.414 4.056 2.414.838 0 1.041-.139 1.041-.494v-1.202c0-.301.118-.429.29-.429.193 0 .534.062 1.33.848.945.901 1.01 1.276 1.525 1.276h1.578c.161 0 .311-.075.311-.343 0-.354-.462-.987-1.17-1.738-.29-.386-.762-.805-.912-.998-.215-.226-.151-.354-.001-.59z"></path>
+                                        <path d="M16.066 11.93s1.62-2.286 1.782-3.037c.054-.268-.064-.418-.343-.418h-1.406c-.322 0-.44.139-.537.343 0 0-.76 1.619-1.685 2.64-.297.33-.448.429-.612.429-.132 0-.193-.11-.193-.408v-2.607c0-.365-.043-.472-.343-.472h-2.254c-.172 0-.279.1-.279.236 0 .343.526.421.526 1.352v1.921c0 .386-.022.537-.204.537-.483 0-1.631-1.663-2.274-3.552-.129-.386-.268-.494-.633-.494h-1.406c-.204 0-.354.139-.354.343 0 .375.44 2.114 2.167 4.442 1.159 1.566 2.683 2.414 4.056 2.414.838 0 1.041-.139 1.041-.494v-1.202c0-.301.118-.429.29-.429.193 0 .534.062 1.33.848.945.901 1.01 1.276 1.525 1.276h1.578c.161 0 .311-.075.311-.343 0-.354-.462-.987-1.17-1.738-.29-.386-.762-.805-.912-.998-.215-.226-.151-.354-.001-.59z"></path>
                                     </svg>
                                 </a>
                             </li>
-                            <li class="social-icons__item social-icons__item_post">
-                                <a href="https://t.me/share/url?url={{ URL::current() }}&amp;title={{ $post['name'] }}"
-                                   class="social-icons__item-link social-icons__item-link_normal social-icons__item-link_telegram"
-                                   title="Поделиться ссылкой в Telegram"
-                                   onclick="window.open(this.href, 'Поделиться ссылкой в Telegram', 'width=800,height=300,toolbar=0,status=0'); return false">
-                                    <svg class="icon-svg" aria-hidden="true" aria-labelledby="title" version="1.1"
-                                         role="img" width="24" height="24" viewBox="0 0 24 24">
-                                        <path
-                                                d="M17.17 7.621l-10.498 3.699c-.169.059-.206.205-.006.286l2.257.904 1.338.536 6.531-4.796s.189.057.125.126l-4.68 5.062-.27.299.356.192 2.962 1.594c.173.093.397.016.447-.199.058-.254 1.691-7.29 1.728-7.447.047-.204-.087-.328-.291-.256zm-6.922 8.637c0 .147.082.188.197.084l1.694-1.522-1.891-.978v2.416z"></path>
-                                    </svg>
-                                </a>
-                            </li>
+                            {{--                            <li class="social-icons__item social-icons__item_post">--}}
+                            {{--                                <a href="https://t.me/share/url?url={{ URL::current() }}&amp;title={{ $post['name'] }}"--}}
+                            {{--                                   class="social-icons__item-link social-icons__item-link_normal social-icons__item-link_telegram"--}}
+                            {{--                                   title="Поделиться ссылкой в Telegram"--}}
+                            {{--                                   onclick="window.open(this.href, 'Поделиться ссылкой в Telegram', 'width=800,height=300,toolbar=0,status=0'); return false">--}}
+                            {{--                                    <svg class="icon-svg" aria-hidden="true" aria-labelledby="title" version="1.1"--}}
+                            {{--                                         role="img" width="24" height="24" viewBox="0 0 24 24">--}}
+                            {{--                                        <path--}}
+                            {{--                                                d="M17.17 7.621l-10.498 3.699c-.169.059-.206.205-.006.286l2.257.904 1.338.536 6.531-4.796s.189.057.125.126l-4.68 5.062-.27.299.356.192 2.962 1.594c.173.093.397.016.447-.199.058-.254 1.691-7.29 1.728-7.447.047-.204-.087-.328-.291-.256zm-6.922 8.637c0 .147.082.188.197.084l1.694-1.522-1.891-.978v2.416z"></path>--}}
+                            {{--                                    </svg>--}}
+                            {{--                                </a>--}}
+                            {{--                            </li>--}}
                         </ul>
                     </div>
                     <div id="comments" class="post-comments">
                         <div class="comment-header">
                             <div class="head">Şerhlər</div>
-                            <div class="count">{{ $comments->count() }}</div>
+                            <div class="count">{{ $post->comments->count() }}</div>
                         </div>
-                        @if ($comments)
-                            @foreach($comments as $comment)
+                        @if ($post->comments)
+                            @foreach($post->comments as $comment)
                                 <div class="post-comment"
                                      @if($comment->parent_id != null) style="margin-left:40px;"
                                      @endif id="post_{{$comment->id}}">
@@ -133,11 +131,12 @@
                                     <img class="comment-avatar" src="{{ asset('images/profile/deadpool.gif') }}" alt="">
                                     <div class="comment-body">
                                         <span class="comment-author">{{ Auth::user()->username }}</span>
-                                        <p><textarea class="input" style="padding: 5px;" rows="2" cols="20000"
-                                                     name="body" class="comment-text"></textarea></p>
+                                        <p><textarea class="input comment-text" style="padding: 5px;" rows="2"
+                                                     cols="20000"
+                                                     name="body"></textarea></p>
                                         <input type="submit" class="btn btn-primary submit btn-sm" value="Yazmag"/>
                                     </div>
-                                    <input type="hidden" name="post_id" value="{{ $post['id'] }}"/>
+                                    {{--                                    <input type="hidden" name="post_id" value="{{ $post['id'] }}"/>--}}
                                     {{-- <input type="hidden" name="parent_id" value="{{ $comment->id }}" /> --}}
                                 </div>
                             </form>
@@ -162,20 +161,21 @@
                                      alt="User avatar">
                             </div>
                         </div>
+
                         <div class="content">
                             <div class="header">
                                 <a class="author_name"
-                                   href="{{ url('users/@' . $post['creator']['username']) }}">{{ '@' . $post['creator']['username'] }}</a>
+                                   href="{{ url('users/@' . $post->creator->username) }}">{{ '@' . $post->creator->username }}</a>
                                 <span class="author">Müəllif</span>
                             </div>
                             <div class="media-obj__body media-obj__body_user-info">
                                 <div>
-                                    <div class="stacked-counter-karm__value">{{ $post['creator']['karma'] }}</div>
+                                    <div class="stacked-counter-karm__value">{{ $post->creator->karma }}</div>
                                     <div class="stacked-counter__label">Karma</div>
                                 </div>
 
                                 <div>
-                                    <div class="stacked-counter-rait__value">{{ $post['creator']['rating'] }}</div>
+                                    <div class="stacked-counter-rait__value">{{ $post->creator->rating }}</div>
                                     <div class="stacked-counter__label">Reytinqi</div>
                                 </div>
                             </div>
@@ -183,27 +183,6 @@
                                 <p class="meta-text" style="color:black;">
                                     {{ $post['creator']['about'] }}
                                 </p>
-                                @auth
-                                    @if(Auth::user()->id == $post['creator']['id'])
-                                    @elseif(!$isFollowing)
-                                        <a href="{{ route('user.follow', $post['creator']['id']) }}"
-                                           onclick="event.preventDefault(); document.getElementById('follow').submit();"
-                                           class="btn profile_user-connect">
-                                            Abunə olun
-                                        </a>
-                                    @elseif($isFollowing)
-                                        <a href="{{ route('user.follow', $post['creator']['id']) }}"
-                                           onclick="event.preventDefault(); document.getElementById('unfollow').submit();"
-                                           class="btn profile_user-connected">Abunəsiz</a>
-                                    @endif
-                                @endauth
-                                @guest
-                                    <a href="{{ route('user.follow', $post['creator']['id']) }}"
-                                       onclick="event.preventDefault(); document.getElementById('folow').submit();"
-                                       class="btn profile_user-connect">
-                                        Abunə olmag
-                                    </a>
-                                @endauth
                             </div>
                         </div>
                     </div>

@@ -34,7 +34,7 @@
         "@babel/core": "^7.5.4",
         "@clr/icons": "^2.1.1",
         "@johmun/vue-tags-input": "^2.1.0",
-        "@mdi/font": "^4.8.95",
+        "@mdi/font": "^4.9.95",
         "@riophae/vue-treeselect": "^0.0.38",
         "@types/express": "^4.17.1",
         "@voerro/vue-tagsinput": "^2.0.2",

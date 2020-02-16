@@ -22,10 +22,10 @@
                         <a :href="'/post/' + post.data.id" class="post-title">
                             <h2>{{ post.data.title }}</h2>
                         </a>
-                        <vote :posts="post" :auth_check="auth_check"/>
+                        <vote :posts="post.data" :auth_check="auth_check"/>
                     </div>
                     <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data"/>
-                    <div class="post-content__body" v-html="post.data.body">
+                    <div class="post-content__body" v-html="post.data.body_short">
                     </div>
                     <div class="post-content__footer">
                         <div class="post-content__footer-stats">
@@ -47,7 +47,7 @@
                                     </a>
                                 </span>
                         </div>
-                        <a v-bind:href="'/post/' +post.data.id" class="btn btn-more">Daha ətraflı</a>
+                        <a v-bind:href="'/post/' +post.data.id" class="btn btn-more btn-a">Daha ətraflı</a>
                     </div>
                 </div>
                 <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"

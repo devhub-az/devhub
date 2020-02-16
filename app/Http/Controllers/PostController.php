@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostCollection;
+use App\Http\Resources\PostsCollection;
 use App\Models\Hub;
 use App\Models\Post;
 use App\Models\PostFavorite;
@@ -76,17 +77,12 @@ class PostController extends Controller
      */
     public function show(\Request $request, int $id)
     {
-        $parsedown = new Parsedown();
-        $post = new PostCollection(Post::findOrFail($id));
+        $post = Post::findorfail($id);
 
 //        PostView::createViewLog($post);
 
         return view('pages.posts.show', [
-            'post'     => $post,
-            'body'     => \Purifier::clean($parsedown->text($post->body)),
-            'hubs'     => new HubsCollection(Hub::whereIn('id',
-                $post->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-            'comments' => $post->comments,
+            'post' => $post,
         ]);
     }
 

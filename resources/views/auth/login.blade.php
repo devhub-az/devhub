@@ -20,7 +20,7 @@
                             </div>
                         </div>
                         <div class="login__registration-block-info">
-                            <i class="icon feather icon-bookmark"></i>
+                            <i class="mdi mdi-bookmark-plus-outline"></i>
                             <div class="login__registration-info-text">Ən sevdiyiniz paylaşmaları qeyd edin</div>
                         </div>
                         <div class="login__registration-block-info">
@@ -29,7 +29,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- particles.js container -->
                 <div id="particles-js"></div>
             </div>
             <div class="PageColumn PageColumn__right">
@@ -65,7 +64,7 @@
                                        href="{{ route('password.request') }}">
                                         Şifrəni sıfırla
                                     </a>
-                                    <a class="footer__link js-change-content" data-content-type="registerForm">
+                                    <a href="{{ route('register') }}" class="footer__link js-change-content" data-content-type="registerForm">
                                         Qeydiyyatdan keçmək
                                     </a>
                                 </footer>
@@ -74,7 +73,7 @@
                     </form>
                 </div>
                 <div class="login__footer">
-                    © 2020 DevHub
+                    © 2019 - {{ date('Y') }} DevHub
                 </div>
             </div>
         </div>

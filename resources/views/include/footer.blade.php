@@ -1,7 +1,7 @@
 <div id="footer" class="footer">
     <div class="footer-content">
         <a class="logo-footer" href="/">DevHub</a>
-        <div class="copyright">&copy; {{ date('Y') }} «DevHub»</div>
+        <div class="copyright">&copy; 2019 - {{ date('Y') }} «DevHub»</div>
         <ul class="nav-links" id="navbar-links">
             <li class="nav-links__item">
                 <a href="{{ url('/') }}" class="nav-links__item-link">Paylaşmalar</a>

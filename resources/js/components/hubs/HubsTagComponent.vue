@@ -9,7 +9,6 @@
                     <div class="-container">
                         <div class="-arrow js-source-arrow -top" style="margin-left: 0px;"></div>
                         <h3>{{ hub.name }}</h3>
-                        <br>
                         <p>{{ hub.description}}</p>
                         <hub-follow-button :hub="hub"></hub-follow-button>
                     </div>
@@ -33,11 +32,15 @@
 <style scoped lang="scss">
     .active > .tag-popup{
         position: absolute;
-        top: 27px;
         left: 50%;
         transform: translateX(-50%);
         width: 320px;
+        padding: 12px;
         transition: all .2s ease;
+
+        h3{
+            margin: 4px 0 8px;
+        }
 
         .-container{
             background-color: #fff;
@@ -50,7 +53,7 @@
             .-arrow{
                 display: block;
                 transform: rotate(45deg);
-                top: -1px;
+                top: 11px;
                 position: absolute;
                 left: 50%;
 

@@ -5,15 +5,24 @@
 .btn {
     position: relative;
     display: inline-block;
-    padding: 6px 12px;
     font-size: 13px;
     line-height: 20px;
     white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
     background-size: 110% 110%;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14);
+    border-radius: 2px;
+    align-items: center;
+    justify-content: center;
+    height: 1.88rem;
+    text-align: center;
+    -webkit-transition: border-color 125ms ease-in-out;
+    background: transparent;
+    padding: 0 0.94rem;
+
+    i{
+        margin-right: 4px;
+    }
 }
 
 .btn-sm {
@@ -38,6 +47,10 @@
     width: 100%;
 }
 
+.btn-a{
+    padding: 4px 0.94rem;
+}
+
 .btn-s {
     padding: 5px 10px;
     box-shadow: 0 1px 1px 0 #eee;
@@ -45,7 +58,7 @@
 
 .btn_navbar_registration {
     color: #fff;
-    background-color: var(--color-primary-main);
+    background-color: var(--color-primary-main-button);
     text-transform: none;
     transition: all 200ms ease-in-out 0s;
     font-size: 13px;
@@ -56,33 +69,46 @@
 }
 
 .btn-primary {
-    background-color: var(--color-primary-main) !important;
-    color: var(--text-white-primary);
+    background-color: var(--color-primary-main-button) !important;
+    color: var(--color-white);
     text-transform: none;
-    border-radius: 3px;
-    font-size: 13px;
 }
 
 .btn-success {
-    color: var(--color-black);
+    color: var(--text-black-primary);
     border-radius: 4px;
 }
 
 .btn-outline {
-    border: 1px solid var(--color-btn-border-secondary);
-    background-color: transparent;
-    color: var(--color-green);
     border-radius: 2px;
-    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: .69rem;
+    letter-spacing: .03rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: normal;
+    display: inline-flex;
+    color: var(--text-black-primary);
+    align-items: center;
+    justify-content: center;
+    height: 1.88rem;
+    text-align: center;
+    -webkit-transition: border-color 125ms ease-in-out;
+    background: transparent;
+    border: var(--color-border-button);
+    padding: 0 .94rem;
 }
 
 .btn-success-outline {
-    color: var(--text-white-primary);
+    color: var(--text-black-primary);
     border-radius: 2px;
     font-size: 13px;
 
     &:hover {
-        color: var(--text-white-secondary);
+        color: var(--text-black-primary);
     }
 }
 
@@ -122,7 +148,7 @@
     touch-action: manipulation;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    border-radius: 3px;
+    border-radius: 2px;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
     &:hover {

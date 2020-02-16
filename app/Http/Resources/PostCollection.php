@@ -2,25 +2,21 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Comment;
 use App\Models\Hub;
 use Auth;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Parsedown;
 use Purifier;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
-class PostCollection extends JsonResource implements HasMedia
+class PostCollection extends JsonResource
 {
-    use HasMediaTrait;
 
     /**
      * TODO profile image add
      * Transform the resource into an array.
      *
-     * @param Request $request
+     * @param $request
      * @return array
      */
     public function toArray($request)
@@ -31,13 +27,14 @@ class PostCollection extends JsonResource implements HasMedia
             'data' => [
                 'id'            => $this->id,
                 'title'         => $this->name,
-                'body'          => $this->shorten(Purifier::clean($parsedown->text($this->body)), 80),
+                'body_short'    => $this->shorten(Purifier::clean($parsedown->text($this->body)), 80),
+                'body'          => \Purifier::clean($parsedown->text($this->body)),
                 'creator'       => $this->creator->username,
                 'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
                 'votes'         => $this->votes,
                 'tags'          => new HubsCollection(Hub::whereIn('id',
                     $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-                'comments'      => Comment::where('post_id', $this->id)->count(),
+                'comments'      => $this->comments->count(), //Comment::where('post_id', $this->id)->count(),
                 'views'         => $this->views->count(),
                 'created_at'    => $this->created_at,
                 'read_time'     => $this->readTime($this->body),

@@ -1,7 +1,7 @@
 .layout__navbar {
-    border-bottom: 1px solid #d5dddf;
+    border-bottom: 1px solid var(--color-border);
     box-sizing: border-box;
-    background-color: var(--color-header);
+    background-color: var(--background-tertiary);
 
 
     .main-navbar {
@@ -209,7 +209,7 @@
                     .nav-links__item-link {
                         font-family: "Roboto", "Open Sans", Helvetica, Arial, sans-serif;
                         display: inline-block;
-                        color: var(--text-black-secondary);
+                        color: var(--color-header);
                         font-size: 13px;
                         font-weight: 700;
                         letter-spacing: 0.3px;

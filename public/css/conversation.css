@@ -36,7 +36,6 @@ body {
   padding: 10px 15px;
   vertical-align: baseline;
   background: #fff;
-  -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
 }
 .container .conversations__users .list-group-item h4 {
@@ -118,10 +117,8 @@ body {
   margin-top: 0;
 }
 .container .conversations__card-body .conversations__chat-name {
-  display: -webkit-box;
   display: flex;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 .container form {
@@ -133,6 +130,5 @@ body {
   margin: 24px 12px;
 }
 .container form button .icon-send {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }

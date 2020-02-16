@@ -1,22 +1,32 @@
 @extends('front.login-layout')
 
-@section('title')Login səhifəsi @stop
+@section('title')Registration səhifəsi @stop
 
 @section('main')
     <div class="container">
-        <nav class="default-nav -colorless -session -borderless" data-js-nav-shift="session">
-            <div class="right">
-                <p>
-                    Qeydiyyatdan keçmisən?
-                    <span>
-                <a class="btn btn_navbar_registration btn-reg" href="{{ route('register') }}">Qeydiyyatdan Keç</a>
-            </span>
-                </p>
-            </div>
-        </nav>
         <div class="PageColumns">
             <div class="PageColumn PageColumn__left">
-                <div class="Art"></div>
+                <div class="login__registration">
+                    <div class="login__registration-block">
+                        <h1 class="title"><span class="logo_login">DevHub</span> cəmiyyətinə qoşulun</h1>
+                        <div class="login__registration-block-info">
+                            <span class="mdi mdi-thumbs-up-down"></span>
+                            <div class="login__registration-info-text">
+                                Səs vermək və şərh yazmaq kimi imkanların
+                                kilidini aç
+                            </div>
+                        </div>
+                        <div class="login__registration-block-info">
+                            <i class="mdi mdi-bookmark-multiple-outline"></i>
+                            <div class="login__registration-info-text">Ən sevdiyiniz paylaşmaları qeyd edin</div>
+                        </div>
+                        <div class="login__registration-block-info">
+                            <i class="mdi mdi-trophy-award"></i>
+                            <div class="login__registration-info-text">Şöhrət və döş nişanları qazanın</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="particles-js"></div>
             </div>
             <div class="PageColumn PageColumn__right">
                 <div class="ColumnContainer mode-auth">
@@ -82,110 +92,32 @@
                             <div class="AnimatedForm__errorMessage">
                             </div>
                         </fieldset>
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Daxil ol
-                                </button>
+                        <div class="AnimatedForm__field form-group row mb-0">
+                            <button type="submit" class="btn btn-primary login-button">
+                                Qoşulmaq
+                            </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        Şifrəni unutmusan?
+                            <footer class="login__footer-links register">
+                                <div class="footer__link">
+                                    Qeydiyyatdan keçmisiniz?
+                                    <a data-content-type="requestPasswordForm"
+                                       href="{{ route('login') }}">
+                                        Daxil olun
                                     </a>
-                                @endif
-                            </div>
+                                </div>
+                            </footer>
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-        <footer>
-            Photo by Ilya Pavlov on Unsplash
-        </footer>
-    </div>
-    {{-- <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
-
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                            @csrf
-
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    @if ($errors->has('name'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="new-password">
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar (optional)') }}</label>
-                                <div class="col-md-6">
-                                    <input id="avatar" type="file" class="form-control" name="avatar" required>
-                                    @if ($errors->has('avatar'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('avatar') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                <div class="login__footer">
+                    © 2019 - {{ date('Y') }} DevHub
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ mix('js/scripts/particles.min.js') }}"></script>
+    <script src="{{ mix('js/scripts/particles.settings.js') }}"></script>
 @endsection

@@ -1,15 +1,15 @@
 <template>
     <div class="pagination" role="navigation" aria-label="pagination">
         <a class="page" @click.prevent="changePage(pagination.current_page - 1)" :disabled="pagination.current_page <= 1">
-            <i class="icon feather icon-chevron-left"></i>
+            <i class="mdi mdi-chevron-left"></i>
         </a>
-        <a v-if="pagination.current_page > 5" class="page" @click.prevent="changePage(1)">1</a>
-        <span v-if="pagination.current_page > 5" class="page page-ellipsis">...</span>
+        <a v-if="pagination.current_page > 4" class="page" @click.prevent="changePage(1)">1</a>
+        <span v-if="pagination.current_page > 4" class="page page-ellipsis">...</span>
         <a class="page" v-for="page in pages" :class="isCurrentPage(page) ? 'active' : ''" @click.prevent="changePage(page)">{{ page }}</a>
-        <span v-if="pagination.last_page-pagination.current_page > 5" class="page page-ellipsis">...</span>
-        <a class="page" v-if="pagination.last_page-pagination.current_page > 5" @click.prevent="changePage(pagination.last_page)" :disabled="pagination.current_page >= pagination.last_page">{{pagination.last_page}}</a>
+        <span v-if="pagination.last_page-pagination.current_page > 4" class="page page-ellipsis">...</span>
+        <a class="page" v-if="pagination.last_page-pagination.current_page > 4" @click.prevent="changePage(pagination.last_page)" :disabled="pagination.current_page >= pagination.last_page">{{pagination.last_page}}</a>
         <a class="page" @click.prevent="changePage(pagination.current_page + 1)" :disabled="pagination.current_page >= pagination.last_page">
-            <i class="icon feather icon-chevron-right"></i>
+            <i class="mdi mdi-chevron-right"></i>
         </a>
         
     </div>

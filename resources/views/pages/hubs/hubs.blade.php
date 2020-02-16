@@ -21,7 +21,7 @@
                 </h4>
             </div>
             <div class="hubs-page__right-side">
-                <a href="#" class="btn btn-primary btn-success-outline"><span>Hab təklif etmək</span></a>
+                <a href="#" class="btn btn-primary btn-a"><span>Hab təklif etmək</span></a>
             </div>
         </div>
         <div class="layout_content">
@@ -36,8 +36,9 @@
                     <div class="results"></div>
                 </div>
                 <hubs-list
-                    fetch-url="{{ route('hubs-list') }}"
+                    fetch-url="{{ route('hubs-list-api') }}"
                     locale="{{ App::getLocale() }}"
+                    @auth :auth_check="true" @endauth
                     :columns="['name', 'posts_count', 'rating']"
                 ></hubs-list>
             </div>

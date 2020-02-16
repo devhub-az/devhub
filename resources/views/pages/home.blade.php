@@ -76,7 +76,7 @@
                     </p>
                     <a href="/forums/-/create-thread"
                        class="button--cta button button--icon button--icon--write rippleButton rippleButton">
-                        <span class="btn btn-primary button-text">
+                        <span class="btn btn-primary btn-a">
                             Paylaşmaq
                         </span>
                         <div class="ripple-container"></div>

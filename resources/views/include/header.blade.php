@@ -8,7 +8,7 @@
                        class="nav-links__item-link @if(Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) nav-links__item-link_current @endif">Paylaşmalar</a>
                 </li>
                 <li class="nav-links__item">
-                    <a href="{{ url('hubs') }}"
+                    <a href="{{ route('hubs-list') }}"
                        class="nav-links__item-link @if(Request::is('hubs/*') || Request::is('hubs')) nav-links__item-link_current @endif">Hablar</a>
                 </li>
                 <li class="nav-links__item">
@@ -44,7 +44,7 @@
                                                              @if (Auth::user()->messagesNotificationsCount() > 0)
                                                              data-badge="{{ Auth::user()->messagesNotificationsCount() }}"
                     @endif/></a>
-                <a href="{{ route('create_post') }}" class="btn btn-primary button_add btn-click">
+                <a href="{{ route('create_post') }}" class="btn btn-primary btn-a gif">
                     Yazmaq
                 </a>
                 <div class="avatar-dropdown">
