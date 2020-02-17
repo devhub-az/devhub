@@ -54,7 +54,6 @@
         data: function () {
             return {
                 post: [],
-                percent: 0,
             }
         },
         async created() {

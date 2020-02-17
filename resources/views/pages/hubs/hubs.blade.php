@@ -21,7 +21,7 @@
                 </h4>
             </div>
             <div class="hubs-page__right-side">
-                <a href="#" class="btn btn-primary btn-a"><span>Hab təklif etmək</span></a>
+                <a href="#" class="btn btn-primary btn-a"><span><i class="mdi mdi-tag-plus-outline"></i> Hab təklif etmək</span></a>
             </div>
         </div>
         <div class="layout_content">

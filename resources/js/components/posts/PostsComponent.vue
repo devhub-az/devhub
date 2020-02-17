@@ -24,7 +24,7 @@
                         </a>
                         <vote :posts="post.data" :auth_check="auth_check"/>
                     </div>
-                    <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data"/>
+                    <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data" :auth_check="auth_check"/>
                     <div class="post-content__body" v-html="post.data.body_short">
                     </div>
                     <div class="post-content__footer">
@@ -47,7 +47,11 @@
                                     </a>
                                 </span>
                         </div>
-                        <a v-bind:href="'/post/' +post.data.id" class="btn btn-more btn-a">Daha ətraflı</a>
+                        <div class="balloon" :aria-label="post.data.upvotes + ' plus ' + post.data.downvotes + ' minus'" data-balloon-pos="up">
+                            <div class="progress" :class="{ 'default' : post.data.votes_sum === 0}">
+                                <div class="progress-green" :style="'width:' + [post.data.votes !== 0 ? 100 * post.data.upvotes / post.data.votes_sum : '0'] +'%'"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"
@@ -150,7 +154,6 @@
                         break;
                     }
                 }
-                ;
                 return currindex;
             },
             async copy(id) {

@@ -1,8 +1,8 @@
 <template>
 	<div class="hub_follow">
-		<span @click="follow(hub.id)" v-if="!hubs.follower_check && !loading" class="btn btn-success btn-outline"><i class="mdi mdi-plus"></i> İzləmək</span>
-		<span @click="follow(hub.id)" v-if="hubs.follower_check && !loading" class="btn btn-success-outline btn-outline"><i class="mdi mdi-check"></i> İzləyirsiniz</span>
-		<span v-if="loading" class="btn btn-success-outline btn-outline"><i class="mdi mdi-loading mdi-spin"></i> Gözləyin</span>
+		<span @click="follow(hub.id)" v-if="!hubs.follower_check && !loading" class="btn btn-outline"><i class="mdi mdi-plus"></i> İzləmək</span>
+		<span @click="follow(hub.id)" v-if="hubs.follower_check && !loading" class="btn btn-outline"><i class="mdi mdi-check"></i> İzləyirsiniz</span>
+		<span v-if="loading" class="btn btn-outline"><i class="mdi mdi-loading mdi-spin"></i> Gözləyin</span>
 	</div>
 </template>
 
@@ -27,10 +27,18 @@
 					})
 							.then(response => {
 								if (response.data.success) {
-									this.hubs.hub_followers_count++;
+									new Noty({
+										type: 'success',
+										text: '<div class="notification-image"><i class="mdi mdi-tag-outline"></i></div> ' +
+												'<div class="text">İzləyirsiniz</div>',
+									}).show();
 									this.hubs.follower_check = true;
 								} else if (response.data.delete) {
-									this.hubs.hub_followers_count--;
+									new Noty({
+										type: 'error',
+										text: '<div class="notification-image"><i class="mdi mdi-check"></i></div> ' +
+												'<div class="text">İzləmirsiz</div>',
+									}).show();
 									this.hubs.follower_check = false;
 								}
 								this.loading = false;

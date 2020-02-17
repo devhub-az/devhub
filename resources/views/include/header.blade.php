@@ -34,8 +34,8 @@
              style="display: grid;grid-auto-flow: column; grid-gap: 12px;">
             <span id="search-icon" onclick="search()" class="mdi mdi-magnify"></span>
             @guest
-                <a href="{{ route('login') }}" class="btn btn_navbar_login mdc-ripple-surface">Daxil ol</a>
-                <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qoşulmaq</a>
+                <a href="{{ route('login') }}" class="btn btn-outline btn-a">Daxil ol</a>
+                <a href="{{ route('register') }}" class="btn btn_navbar_registration btn-a">Qoşulmaq</a>
             @else
 
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}" :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
@@ -44,7 +44,7 @@
                                                              @if (Auth::user()->messagesNotificationsCount() > 0)
                                                              data-badge="{{ Auth::user()->messagesNotificationsCount() }}"
                     @endif/></a>
-                <a href="{{ route('create_post') }}" class="btn btn-primary btn-a gif">
+                <a href="{{ route('create_post') }}" class="btn btn-primary">
                     Yazmaq
                 </a>
                 <div class="avatar-dropdown">

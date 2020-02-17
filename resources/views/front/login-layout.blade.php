@@ -34,7 +34,7 @@
 
 </head>
 
-<body data-theme="default">
+<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}">
 
 	<div id="app">
 		@yield('main')

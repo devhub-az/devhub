@@ -1,7 +1,7 @@
 <template>
     <div class="post__hubs">
         <div v-for="hub in data">
-            <div class="hub popup-hub" :class="{'active_hub': hub.follower_check, 'active': hub.hover}"
+            <div class="hub popup-hub" :class="{'active_hub': hub.follower_check, 'popup-active': hub.hover}"
                  @mouseover="hub.hover = true"
                  @mouseleave="hub.hover = false">
                 {{ hub.name }}
@@ -10,7 +10,7 @@
                         <div class="-arrow js-source-arrow -top" style="margin-left: 0px;"></div>
                         <h3>{{ hub.name }}</h3>
                         <p>{{ hub.description}}</p>
-                        <hub-follow-button :hub="hub"></hub-follow-button>
+                        <hub-follow-button :hub="hub" :auth_check="auth_check"/>
                     </div>
                 </div>
             </div>
@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        props: ['data'],
+        props: ['data', 'auth_check'],
         created() {
             this.data.forEach((item) => {
                 this.$set(item, 'hover', false)
@@ -30,7 +30,7 @@
 </script>
 
 <style scoped lang="scss">
-    .active > .tag-popup{
+    .popup-active > .tag-popup{
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
@@ -43,9 +43,10 @@
         }
 
         .-container{
-            background-color: #fff;
-            border: 1px solid #bbc0c4;
+            background-color: var(--background-tertiary);
+            border: 1px solid var(--color-border);
             border-radius: 5px;
+            color: var(--text-black-primary);
             padding: 16px;
             font-size: 13px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.06), 0 3px 8px rgba(0,0,0,0.09);
@@ -60,8 +61,8 @@
                 &:before{
                     position: absolute;
                     content: '';
-                    background: #fff;
-                    border: 1px solid #bbc0c4;
+                    background: var(--background-tertiary);
+                    border: 1px solid var(--color-border);
                     border-bottom: none;
                     border-right: none;
                     top: -6px;
@@ -74,9 +75,9 @@
 
     }
 
-    .active > .tooltip-balloon {
-        background-color: #fff;
-        border: 1px solid #bbc0c4;
+    .popup-active > .tooltip-balloon {
+        background-color: var(--background-tertiary);
+        border: 1px solid var(--color-border);
         border-radius: 5px;
         padding: 16px;
         font-size: 13px;
@@ -104,8 +105,8 @@
             &:after {
                 position: absolute;
                 content: '';
-                background: #fff;
-                border: 1px solid #bbc0c4;
+                background: var(--background-tertiary);
+                border: 1px solid var(--color-border);
                 border-bottom: none;
                 border-right: none;
                 top: -6px;

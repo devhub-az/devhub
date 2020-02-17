@@ -1,5 +1,5 @@
 <template>
-    <div class="post-votes" :aria-label="posts.votes + ':  ↑ ' + posts.upvotes + ' ↓ ' + posts.downvotes" data-balloon-pos="left">
+    <div class="post-votes" :aria-label="posts.votes + ':  ↑ ' + [posts.upvotes === 0 ? '0' : posts.upvotes ] + ' ↓ ' + [posts.downvotes === 0 ? '0' :posts.downvotes]" data-balloon-pos="left">
         <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.upvoted}"
               @click="upvote(posts.id)"/>
         <span id="rating" :style="{color: colorStatus}" class="rating">
@@ -24,7 +24,7 @@
         },
         async created () {
             if (this.posts.votes > 0) {
-                this.colorStatus = 'var(--color-success-main)';
+                this.colorStatus = 'var(--color-primary-main)';
             } else if (this.posts.votes === 0) {
                 this.colorStatus = 'inherit';
             } else if (this.posts.votes < 0) {
@@ -95,7 +95,7 @@
                     }
 
                     if (vote > 0) {
-                        this.colorStatus = 'var(--color-success-main)';
+                        this.colorStatus = 'var(--color-primary-main)';
                     } else if (vote == 0) {
                         this.colorStatus = 'inherit';
                     } else if (vote < 0) {
@@ -172,7 +172,7 @@
                         }).show();
                     }
                     if (vote > 0) {
-                        this.colorStatus = 'var(--color-success-main)';
+                        this.colorStatus = 'var(--color-primary-main)';
                     } else if (vote === 0) {
                         this.colorStatus = 'inherit';
                     } else if (vote < 0) {

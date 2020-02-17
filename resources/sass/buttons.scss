@@ -3,21 +3,26 @@
 }
 
 .btn {
-    position: relative;
-    display: inline-block;
-    font-size: 13px;
-    line-height: 20px;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    background-size: 110% 110%;
     border-radius: 2px;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-size: 0.69rem;
+    letter-spacing: 0.03rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: normal;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     height: 1.88rem;
     text-align: center;
-    -webkit-transition: border-color 125ms ease-in-out;
-    background: transparent;
+    cursor: pointer;
+    transition: all 125ms ease-in-out 0s;
     padding: 0 0.94rem;
 
     i{
@@ -47,10 +52,6 @@
     width: 100%;
 }
 
-.btn-a{
-    padding: 4px 0.94rem;
-}
-
 .btn-s {
     padding: 5px 10px;
     box-shadow: 0 1px 1px 0 #eee;
@@ -59,9 +60,6 @@
 .btn_navbar_registration {
     color: #fff;
     background-color: var(--color-primary-main-button);
-    text-transform: none;
-    transition: all 200ms ease-in-out 0s;
-    font-size: 13px;
 
     &:hover {
         box-shadow: rgba(65, 131, 185, 0.3) 0 0 0 4px;
@@ -71,45 +69,12 @@
 .btn-primary {
     background-color: var(--color-primary-main-button) !important;
     color: var(--color-white);
-    text-transform: none;
-}
-
-.btn-success {
-    color: var(--text-black-primary);
-    border-radius: 4px;
 }
 
 .btn-outline {
-    border-radius: 2px;
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-    text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    font-size: .69rem;
-    letter-spacing: .03rem;
-    text-transform: uppercase;
-    text-decoration: none;
-    line-height: normal;
-    display: inline-flex;
-    color: var(--text-black-primary);
-    align-items: center;
-    justify-content: center;
-    height: 1.88rem;
-    text-align: center;
-    -webkit-transition: border-color 125ms ease-in-out;
-    background: transparent;
     border: var(--color-border-button);
-    padding: 0 .94rem;
-}
-
-.btn-success-outline {
     color: var(--text-black-primary);
-    border-radius: 2px;
-    font-size: 13px;
-
-    &:hover {
-        color: var(--text-black-primary);
-    }
+    background: transparent;
 }
 
 .submit {
@@ -134,28 +99,6 @@
     border: 1px solid var(--color-btn-border-secondary);
     width: 100%;
     text-align: center;
-}
-
-.btn_navbar_login {
-    border: 1px solid var(--text-black-primary);
-    background-color: transparent;
-    box-shadow: none;
-    color: var(--text-black-primary);
-    cursor: pointer;
-    user-select: none;
-    appearance: none;
-    height: 32px;
-    touch-action: manipulation;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    border-radius: 2px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-    &:hover {
-        border-color: var(--color-primary-main);
-        color: var(--color-primary-main);
-        background-color: rgba(144, 202, 249, 0.08);
-    }
 }
 
 .btn-more {

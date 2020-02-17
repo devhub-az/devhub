@@ -766,15 +766,31 @@ i {
             display: flex;
             align-items: center;
             color: var(--text-black-primary);
+            padding: 0 20px;
             background-color: var(--background-paper);
             justify-content: space-between;
             border-bottom: 1px solid #d5dddf;
 
             .default-block__header-title {
                 font-weight: normal;
-                margin: 0 20px;
                 padding: 13px 0;
                 font-size: 14px;
+            }
+
+            a{
+                text-decoration: none;
+                font-size: .79rem;
+                color: var(--text-black-primary);
+                box-shadow: inset 0 -2px 0 var(--color-primary-light);
+                transition: 0.5s;
+                transition-property: all;
+                transition-duration: 0.5s;
+                transition-timing-function: ease;
+                transition-delay: 0s;
+
+                &:hover {
+                    color: var(--color-primary-light);
+                }
             }
         }
 
@@ -783,6 +799,21 @@ i {
             background-color: var(--background-paper);
             color: var(--text-black-primary);
             padding: 20px;
+
+            .user-info-block{
+                display: grid;
+                grid-template-columns: 40% auto;
+                font-size: 1rem;
+                margin-bottom: 12px;
+
+                .user-info-answer{
+                    margin: 0 auto;
+                }
+
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
 
             .hubs-list {
                 display: grid;
@@ -978,7 +1009,7 @@ i {
 }
 
 .upvoted:before {
-    color: var(--color-success-main) !important;
+    color: var(--color-primary-main) !important;
 }
 
 .downvoted:before {
@@ -1328,7 +1359,7 @@ ol {
 
 .post__content-footer {
     display: grid;
-    grid-auto-flow: column;
+    grid-template-columns: 80% 20%;
     font-size: 14px;
     padding: 15px 22px;
     background-color: #f9f9fb;
@@ -1338,48 +1369,6 @@ ol {
     box-sizing: border-box;
     margin: auto;
     width: 100%;
-
-    .balloon{
-        margin-left: auto;
-        width: 225px;
-    }
-
-    .progress{
-        background-color: whiteSmoke;
-        position: relative;
-        height: 3px;
-        width: 225px;
-        margin-left: auto;
-
-        &:before{
-            content: '';
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background-color: var(--color-error-main);
-            border-radius: 2px;
-        }
-
-        .progress-green{
-            z-index: 1;
-            position: absolute;
-            height: 3px;
-            border-bottom-left-radius: 2px;
-            border-top-left-radius: 2px;
-            background-color: var(--color-success-main);
-        }
-    }
-
-    .default::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-black-secondary);
-        border-radius: 2px;
-    }
 
     .grid{
         display: grid;
@@ -1967,10 +1956,11 @@ i.icon {
 .post-content__footer {
     display: grid;
     grid-template-columns: 80% 20%;
-    color: #757575;
-    padding: 8px 25px;
+    color: var(--color-black-secondary);
+    padding: 15px 22px;
     border-top: 1px solid var(--color-border);
     background-color: #f9f9fb;
+    align-items: center;
 
     span > .mdi {
         font-size: 1rem;
@@ -1979,13 +1969,57 @@ i.icon {
     .post-content__footer-stats {
         margin-right: auto;
         font-size: 14px;
-        padding: 7px 0;
 
         .footer_item {
             padding: 0 8px;
         }
     }
 }
+
+//Progress
+
+.balloon{
+    margin-left: auto;
+    width: 100%;
+}
+
+.progress{
+    background-color: whiteSmoke;
+    position: relative;
+    height: 3px;
+    margin-left: auto;
+
+    &:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: var(--color-error-main);
+        border-radius: 2px;
+    }
+
+    .progress-green{
+        z-index: 1;
+        position: absolute;
+        height: 3px;
+        border-bottom-left-radius: 2px;
+        border-top-left-radius: 2px;
+        background-color: var(--color-primary-main);
+    }
+}
+
+.default::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-black-secondary);
+    border-radius: 2px;
+}
+
+// End progress
 
 .hidden {
     display: none !important;

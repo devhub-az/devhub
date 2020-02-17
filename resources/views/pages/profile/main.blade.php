@@ -11,7 +11,7 @@
         <div class="profile__header">
             <div class="background">
                 <div class="background__placeholder"
-                     ></div>
+                ></div>
             </div>
         </div>
         <div class="profile__user">
@@ -23,21 +23,25 @@
             <div class="profile__info-name">
                 <div class="profile__nick">
                     <h2 class="profile__user-about-content">{{ $user->about }}</h2>
-                    <h1 class="additionalName">{{ $user->username }} {{ $user->name ? ' | ' . $user->name . ' ' . $user->surname : ''}}</h1>
+                    <h1 class="additionalName">{{ '@' . $user->username }} {{ $user->name ? ' | ' . $user->name . ' ' . $user->surname : ''}}</h1>
                 </div>
             </div>
             <div class="profile__user-button">
                 <button class="btn btn-outline"><i class="mdi mdi-email"></i> Mesaj</button>
                 <button class="btn btn-primary follow"><i class="mdi mdi-account-plus"></i> Izlə</button>
-                <button class="btn btn-outline"><i class="mdi mdi-dots-vertical"></i> </button>
+                <button class="btn btn-outline"><i class="mdi mdi-dots-vertical"></i></button>
             </div>
         </div>
         <div class="profile__section grid">
-            <span class="profile__digital current"><b>{{ $user->posts->count() }}</b> <span><i class="mdi mdi-file-document-box-multiple-outline"></i> Paylaşım</span></span>
+            <span class="profile__digital current"><b>{{ $user->posts->count() }}</b> <span><i
+                            class="mdi mdi-file-document-box-multiple-outline"></i> Paylaşım</span></span>
             <span class="profile__digital"><b>{{ $user->rating }}</b> <span><span><i class="mdi mdi-podium-gold"></i> Reyting</span></span></span>
-            <span class="profile__digital"><b>{{ $user->karma }}</b> <span><i class="mdi mdi-trending-up"></i> Karma</span></span>
-            <span class="profile__digital"><b>{{ $user->followers->count() }}</b> <span><i class="mdi mdi-account-group"></i> Izləyənlər</span></span>
-            <span class="profile__digital"><b>{{ $user->followings->count() }}</b> <span><i class="mdi mdi-target-account"></i> Izlənən</span></span>
+            <span class="profile__digital"><b>{{ $user->karma }}</b> <span><i
+                            class="mdi mdi-trending-up"></i> Karma</span></span>
+            <span class="profile__digital"><b>{{ $user->followers->count() }}</b> <span><i
+                            class="mdi mdi-account-group"></i> Izləyənlər</span></span>
+            <span class="profile__digital"><b>{{ $user->followings->count() }}</b> <span><i
+                            class="mdi mdi-target-account"></i> Izlənən</span></span>
         </div>
     </div>
     <div class="page-profile">
@@ -49,7 +53,7 @@
         </div>
 
         <div class="content_right">
-            <div id="default-block" class="default-block default-block_sidebar">
+            <div class="default-block default-block_sidebar">
                 <div class="default-block__header">
                     <h3 class="default-block__header-title">Mükafatlar (2)</h3>
                 </div>
@@ -76,6 +80,42 @@
                                 <div class="trophy-description">
                                     Bir ildir ki, DevHub-da.
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="default-block" class="default-block default-block_sidebar">
+                <div class="default-block__header">
+                    <h3 class="default-block__header-title">Haqqında</h3>
+                    <a href="#">ətraflı</a>
+                </div>
+
+                <div class="default-block__content">
+                    <div class="user-info-blocks">
+                        <div class="user-info-block">
+                            <div>
+                                <i class="mdi mdi-worker"></i> Is yeri:
+                            </div>
+                            <div class="user-info-answer">
+                                DevHub
+                            </div>
+                        </div>
+                        <div class="user-info-block">
+                            <div>
+                                <i class="mdi mdi-map-marker-radius-outline"></i> Yaşadığı yer:
+                            </div>
+                            <div class="user-info-answer">
+                                Baku, Azerbaijan
+                            </div>
+                        </div>
+                        <div class="user-info-block">
+                            <div>
+                                <i class="mdi mdi-desk-lamp"></i> Təhsil:
+                            </div>
+                            <div class="user-info-answer">
+                                Baku, Azerbaijan
                             </div>
                         </div>
                     </div>

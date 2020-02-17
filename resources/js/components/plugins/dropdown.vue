@@ -77,7 +77,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-exit-run"/> Çıxmaq</span>
+                        <span class="ml-2"><i class="mdi mdi-exit-to-app"/> Çıxmaq</span>
                     </a>
                 </li>
             </ul>

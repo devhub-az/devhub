@@ -22,7 +22,7 @@ body{
     min-width: 100%;
 
     .PageColumn__left {
-        background: #4183B7;
+        background: var(--color-primary-main-button);
         color: #fff;
         display: flex;
         flex-direction: column;
@@ -88,10 +88,10 @@ body{
     }
 
     .PageColumn__right {
-        display: -webkit-box;
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
-        background: var(--color-white);
+        background: var(--background-default);
         grid-column: 2;
 
         .ColumnContainer {
@@ -105,7 +105,7 @@ body{
         }
 
         .login__footer {
-            color: var(--color-text);
+            color: var(--text-black-primary);
             text-align: center;
             box-sizing: inherit;
             display: block;
@@ -147,7 +147,7 @@ body{
                 box-sizing: border-box;
                 text-decoration: none;
                 cursor: pointer;
-                color: #4f4f4f;
+                color: var(--text-black-secondary);
                 border: none;
                 font-size: 14px;
                 line-height: 16px;
@@ -231,7 +231,7 @@ fieldset {
     vertical-align: middle;
     position: relative;
     margin: 20px 0;
-    color: var(--color-black);
+    color: var(--text-black-primary);
     font-family: MontDemo-Heavy, serif;
     font-size: 26px;
     text-decoration: none;
