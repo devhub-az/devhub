@@ -7,12 +7,18 @@
 @stop
 
 @section('main')
-    <div class="layout_body">
+    <div class="layout_body" id="app">
         <div class="header">
             <div class="nav_posts">
-                <a href="{{ route('saved-posts') }}">nfiskfdkhdkj</a>
-                <a href="{{ route('saved-comments') }}">Posts</a>
+                <a href="{{ route('saved-posts') }}">Posts</a>
+                <a href="{{ route('saved-comments') }}">Comments</a>
             </div>
         </div>
+
+        <comments
+            :url="'{{ $url }}'"
+            @auth :auth_check="true" @endauth
+        ></comments>
+
     </div>
 @endsection

@@ -82,4 +82,10 @@ class Post extends Model
     {
         return $this->hubs()->pluck('hub_id')->toArray();
     }
+
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favoritable')->pluck('following_id')->toArray();
+    }
+
 }

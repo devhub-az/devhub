@@ -54,7 +54,7 @@ Vue.component('dropdown-notification', require('./components/plugins/dropdown-no
 Vue.component('posts-loading', require('./components/plugins/loading/PostsLoading').default);
 Vue.component('favorite', require('./components/plugins/favorite').default);
 Vue.component('post-show', require('./components/posts/PostShowComponent').default);
-
+Vue.component('comments', require('./components/comments/CommentsComponent.vue').default);
 
 Vue.config.productionTip = false;
 Vue.config.silent = false;

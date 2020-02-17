@@ -12,12 +12,12 @@ class PostVotesTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('post_votes')->delete();
-        
+
         \DB::table('post_votes')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 115,
                 'user_id' => 1,
@@ -26,7 +26,7 @@ class PostVotesTableSeeder extends Seeder
                 'created_at' => '2019-08-13 21:25:41',
                 'updated_at' => '2019-08-13 21:25:45',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 116,
                 'user_id' => 1,
@@ -35,7 +35,7 @@ class PostVotesTableSeeder extends Seeder
                 'created_at' => '2019-08-21 19:17:55',
                 'updated_at' => '2019-08-21 19:17:55',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 117,
                 'user_id' => 1,
@@ -45,7 +45,5 @@ class PostVotesTableSeeder extends Seeder
                 'updated_at' => '2019-08-21 19:18:07',
             ),
         ));
-        
-        
     }
 }

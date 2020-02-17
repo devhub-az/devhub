@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration {
 		{
 			$table->bigInteger('id', true)->unsigned();
 			$table->string('name', 191);
-			$table->text('body')->default('0');
+            $table->text('body');
 			$table->integer('author_id')->nullable();
 			$table->integer('votes')->default(0);
 			$table->timestamps();

@@ -28,4 +28,14 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class, 'post_id')->withDefault();
     }
+
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favoritable');
+    }
+
+    public function favoritesIds():array
+    {
+        return $this->favorites()->pluck('following_id')->toArray();
+    }
 }

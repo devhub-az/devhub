@@ -150,7 +150,6 @@
                         break;
                     }
                 }
-                ;
                 return currindex;
             },
             async copy(id) {
