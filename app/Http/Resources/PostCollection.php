@@ -43,8 +43,8 @@ class PostCollection extends JsonResource
                 'read_time'     => $this->readTime($this->body),
                 'upvoted'       => $this->statusCheck('upvote'),
                 'downvoted'     => $this->statusCheck('downvote'),
-                'favorite'      => $this->statusCheck('following'),
-                'followers'     => count($this->postFollowers),
+//                'favorite'      => $this->statusCheck('following'),
+//                'followers'     => count($this->postFollowers),
             ],
         ];
     }

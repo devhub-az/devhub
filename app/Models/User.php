@@ -72,6 +72,10 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Post::class, 'author_id')->with('hubs');
     }
 
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'author_id');
+    }
 
     public function followers(): BelongsToMany
     {
@@ -94,7 +98,7 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Hub::class, 'hub_followers', 'follower_id', 'hub_id');
     }
 
-    public function isFollowing(self $user)
+    public function isFollowing(self $user) : bool
     {
         return (bool)$this->followers()->where('follower_id', $user->id)->count();
     }
@@ -112,5 +116,15 @@ class User extends Authenticatable implements HasMedia
     public function getHubsIdsAttribute(): array
     {
         return $this->userHubFollowing()->pluck('hub_id')->toArray();
+    }
+
+    public function getCommentsIdsAttribute(): array
+    {
+        return $this->comments()->pluck('post_id')->toArray();
+    }
+
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favoritable');
     }
 }

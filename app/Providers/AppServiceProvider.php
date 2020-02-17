@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -30,5 +31,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(Parsedown::class);
         \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
+
+        Relation::morphMap([
+            'posts' => 'App\Models\Post',
+            'comments' => 'App\Models\Comments',
+        ]);
     }
 }
