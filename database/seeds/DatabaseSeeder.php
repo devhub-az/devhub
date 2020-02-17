@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(NotificationStatusTableSeeder::class);
         $this->call(NotificationsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
-        $this->call(PostFavoritesTableSeeder::class);
         $this->call(PostHubsTableSeeder::class);
         $this->call(PostVotesTableSeeder::class);
         $this->call(PostsTableSeeder::class);
