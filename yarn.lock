@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@alfsnd/vue-bootstrap-select@^0.4.4":
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/@alfsnd/vue-bootstrap-select/-/vue-bootstrap-select-0.4.4.tgz#26a2e31c52c855f8f65eb8d37e04141a15c77003"
-  integrity sha512-nF8Fdnw6tKdiaTKonU3P0GQIHz9ok2BQQlrWbQB+cMigd6boqMs+qUhuppVsBMuFp3NnWWsTOWjORet9Er8umA==
-  dependencies:
-    vue-clickaway "^2.2.2"
-
 "@babel/code-frame@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.8.3.tgz#33e25903d7481181534e12ec0a25f16b6fcf419e"
@@ -1667,11 +1660,6 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
-
-bootstrap@^4.1.0:
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.4.1.tgz#8582960eea0c5cd2bede84d8b0baf3789c3e8b01"
-  integrity sha512-tbx5cHubwE6e2ZG7nqM3g/FZ5PQEDMWmMGNrCUBVRPHXTJaH7CBDdsLeu3eCh3B1tzAxTnAbtmrzvWEvT2NNEA==
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.11"

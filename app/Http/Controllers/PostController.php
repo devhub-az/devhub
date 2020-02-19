@@ -50,13 +50,13 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
-            'body'  => 'string',
+            'body' => 'string',
             // 'tags' => 'required',
         ]);
 
         $share = new Post([
-            'name'      => $request->get('title'),
-            'body'      => $request->get('body'),
+            'name' => $request->get('title'),
+            'body' => $request->get('body'),
             'author_id' => Auth::user()->id,
         ]);
 
@@ -117,7 +117,7 @@ class PostController extends Controller
             $vote = new PostVote([
                 'post_id' => $request->get('id'),
                 'user_id' => Auth::user()->id,
-                'status'  => $voteValue,
+                'status' => $voteValue,
             ]);
             $transaction = true;
         } elseif (!isset($voteStatus)) {
@@ -148,7 +148,7 @@ class PostController extends Controller
             'isset($voteStatus)' => isset($voteStatus),
             'count' => $postVoteCount,
             'success' => 'success',
-            'status'  => $request->get('status'),
+            'status' => $request->get('status'),
             'post_id' => $request->get('id'),
             'user_id' => Auth::user()->id
         ], 200);
@@ -162,7 +162,7 @@ class PostController extends Controller
     public function vote(Request $request): JsonResponse
     {
         $request->validate([
-            'id'   => 'required|int',
+            'id' => 'required|int',
             'vote' => 'required|int',
         ]);
 
@@ -183,20 +183,18 @@ class PostController extends Controller
         $share = Post::findOrFail($request->get('id'));
         if (isset($share) && !$share->postIsFollowing(Auth::user())) {
             $share->favorites()->create([
-                'follower_id'    => Auth::user()->id,
-                'favoritable_id' => $request->get('id'),
+                'follower_id' => Auth::user()->id,
+                'following_id' => $request->get('id'),
             ]);
             return response()->json(['success' => 'success'], 200);
-        }
-        if ($share->postIsFollowing(Auth::user())) {
+        }else if ($share->postIsFollowing(Auth::user())) {
             $share->favorites()->where([
-                'follower_id'    => Auth::user()->id,
-                'favoritable_id' => $request->get('id'),
+                'follower_id' => Auth::user()->id,
+                'following_id' => $request->get('id'),
             ])->delete();
 
             return response()->json(['delete' => 'delete'], 200);
         }
-
         return response()->json(['error' => 'error'], 401);
     }
 

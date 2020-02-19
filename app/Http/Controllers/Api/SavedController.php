@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentsCollection;
+use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostsCollection;
+use App\Models\Comment;
 use App\Models\Post;
 
 
@@ -16,13 +19,8 @@ class SavedController extends Controller
 
     function allPosts()
     {
-        $postsIds = \Auth::user()->getPostsIdsAttribute();
-//        var_dump($postsIds);
-//        dd();
-        return new PostsCollection(Post::orderBy('created_at', 'DESC')
-            ->whereIn('id', $postsIds)
-            ->with('creator:id,username')
-            ->with('comments:body')
+        $fav = \Auth::user()->getPostsIds();
+        return new PostsCollection(Post::whereIn('id',$fav)
             ->take(50)
             ->paginate(5));
     }
@@ -34,8 +32,8 @@ class SavedController extends Controller
 //            ->whereIn('post_id', $commetnsIds)
 //            ->with('post')
 //            ->paginate(6));
-        $fav = Post::find(\Auth::user()->id)->favorites();
-        return new PostsCollection(Post::find($fav));
+        $fav = \Auth::user()->getCommentsIdsFavorite();
+        return new CommentsCollection(Comment::find($fav));
 //        dd($posts[1]);
 //
 //        return new CommentsCollection(Comment::orderBy('created_at', 'DESC')

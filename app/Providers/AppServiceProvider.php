@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Hub;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
@@ -37,6 +39,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'posts'    => Post::class,
             'comments' => Comment::class,
+            'users' => User::class,
+            'hubs' => Hub::class,
         ]);
     }
 }

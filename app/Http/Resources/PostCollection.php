@@ -77,7 +77,7 @@ class PostCollection extends JsonResource
                 case 'downvote':
                     return $this->postIsVoted(Auth::user()) === 'downvoted';
                 case 'favorites':
-                    return $this->postIsFollowing(Auth::user()) === 1;
+                    return $this->postIsFollowing(Auth::user()) === true;
             }
         }
     }

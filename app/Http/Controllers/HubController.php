@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HubCollection;
 use App\Http\Resources\HubsCollection;
+use App\Models\Favorite;
 use App\Models\Hub;
 use App\Models\HubFollows;
 use Illuminate\Contracts\View\Factory;
@@ -22,13 +23,13 @@ class HubController extends Controller
     {
         switch (\request()->path()) {
             case 'hubs/' . $id:
-                return '/api/hubs/'. $id .'/top/day';
-            case 'hubs/'. $id .'/top/week':
-                return '/api/hubs/'. $id .'/top/week';
-            case 'hubs/'. $id .'/top/month':
-                return '/api/hubs/'. $id .'/top/month';
-            case 'hubs/'. $id .'/all':
-                return '/api/hubs/'. $id .'/all';
+                return '/api/hubs/' . $id . '/top/day';
+            case 'hubs/' . $id . '/top/week':
+                return '/api/hubs/' . $id . '/top/week';
+            case 'hubs/' . $id . '/top/month':
+                return '/api/hubs/' . $id . '/top/month';
+            case 'hubs/' . $id . '/all':
+                return '/api/hubs/' . $id . '/all';
             default:
                 return abort(404);
         }
@@ -42,10 +43,10 @@ class HubController extends Controller
     {
         $hub = new HubCollection(Hub::withCount('hubFollowers')->findOrFail($id));
         return view('pages.hubs.show', [
-            'hub'         => $hub,
+            'hub' => $hub,
             'posts_count' => $hub->posts()->count(),
-            'url'         => $this->postsApiRoute($id),
-            'content'     => $this->content,
+            'url' => $this->postsApiRoute($id),
+            'content' => $this->content,
         ]);
     }
 
@@ -58,7 +59,7 @@ class HubController extends Controller
         $top_followed_hubs = new HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count',
             'desc')->take(5)->get());
         return view('pages.hubs.hubs', [
-            'top_hubs'          => $top_hubs,
+            'top_hubs' => $top_hubs,
             'top_followed_hubs' => $top_followed_hubs,
         ]);
     }
@@ -72,20 +73,19 @@ class HubController extends Controller
         $request->validate([
             'id' => 'required|int',
         ]);
-        $share = Hub::findOrFail($request->get('id'));
-        if (isset($share) && !$share->hubIsFollowing(\Auth::user())) {
-            $favorite = new HubFollows([
-                'hub_id'      => $request->get('id'),
+        $hub = Hub::findOrFail($request->get('id'));
+        if (isset($hub) && !$hub->hubIsFollowing(\Auth::user())) {
+            $hub->favorites()->create([
+                'following_id' => $request->get('id'),
                 'follower_id' => \Auth::user()->id,
             ]);
-            $favorite->save();
 
             return response()->json(['success' => 'success'], 200);
         }
-        if ($share->hubIsFollowing(\Auth::user())) {
-            HubFollows::where([
-                'hub_id'      => $request->get('id'),
+        if ($hub->hubIsFollowing(\Auth::user())) {
+            $hub->favorites()->where([
                 'follower_id' => \Auth::user()->id,
+                'following_id' => $request->get('id'),
             ])->delete();
 
             return response()->json(['delete' => 'delete'], 200);

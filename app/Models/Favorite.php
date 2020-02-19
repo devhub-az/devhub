@@ -11,7 +11,8 @@ class Favorite extends Model
 
     protected $fillable = [
         'follower_id',
-        'favoritable_id',
+        'following_id',
+        'following_type'
     ];
 
     public function favoritable()

@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends Model
 {
-
     protected $table = 'posts';
 
     protected $fillable = [
@@ -53,41 +53,50 @@ class Post extends Model
         return $this->upvotes() - $this->downvotes();
     }
 
-    public function upvotes()
+    public function upvotes(): int
     {
         return $this->votes()->where('status', '1')->count();
     }
 
-    public function downvotes()
+    public function downvotes(): int
     {
         return $this->votes()->where('status', '0')->count();
     }
 
-    public function postIsFollowing(User $user)
+    public function postIsFollowing(User $user): bool
     {
-        return $this->favorites()->where('follower_id', $user->id)->count();
+        return $this->favorites()->where('follower_id', $user->id)->where('following_type', 'posts')->count();
     }
 
-    public function postIsVoted(User $user)
+    /**
+     * @param User $user
+     * @return string
+     */
+    public function postIsVoted(User $user):string
     {
         if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '0')->count()) {
             return 'downvoted';
-        }
-        if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
+        } else if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
             return 'upvoted';
         }
 
-        return null;
+        return '';
     }
 
-    public function getHubsIdsAttribute()
+    /**
+     * @return array
+     */
+    public function getHubsIdsAttribute(): array
     {
         return $this->hubs()->pluck('hub_id')->toArray();
     }
 
-    public function favorites()
+    /**
+     * @return MorphMany
+     */
+    public function favorites(): MorphMany
     {
-        return $this->morphMany(Favorite::class, 'favoritable');
+        return $this->morphMany(Favorite::class, 'following');
     }
 
 }

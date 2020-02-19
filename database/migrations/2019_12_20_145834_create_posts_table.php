@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration {
 			$table->string('name', 191);
             $table->longText('body');
 			$table->integer('author_id')->nullable();
-			$table->integer('votes')->default(0);
 			$table->timestamps();
 		});
 	}

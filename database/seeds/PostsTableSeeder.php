@@ -119,7 +119,7 @@ class PostsTableSeeder extends Seeder
      */
     private function createTitle(): string
     {
-        $level = random_int(1, 6);
+        $level = random_int(1, 3);
 
         return "\n" .
             str_repeat('#', $level) . ' ' .

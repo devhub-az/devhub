@@ -38,7 +38,7 @@ class HomeController extends Controller
                 session(['main-page' => '/all']);
 
                 return view('pages.home', ['url' => '/api/posts/all', 'top_followed_hubs' => $top_followed_hubs,]);
-            case 'favorite' && \Auth::user()->getHubsIdsAttribute() !== null && \Auth::user()->getUserIdsAttribute() !== null:
+            case 'favorite' && \Auth::user()->getHubsIds() !== null && \Auth::user()->getUserIds() !== null:
                 session(['main-page' => '/favorite']);
 
                 return view('pages.home', ['url' => '/api/posts/favorite', 'top_followed_hubs' => $top_followed_hubs,]);

@@ -31,7 +31,7 @@ class Comment extends Model
 
     public function favorites()
     {
-        return $this->morphMany(Favorite::class, 'favoritable');
+        return $this->morphMany(Favorite::class, 'following');
     }
 
     public function isFavorite(User $user)
@@ -41,6 +41,6 @@ class Comment extends Model
 
     public function favoritesIds():array
     {
-        return $this->favorites()->pluck('following_id')->toArray();
+        return $this->favorites()->pluck('follower_id')->toArray();
     }
 }

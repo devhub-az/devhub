@@ -12,7 +12,6 @@
     "devDependencies": {
         "@kirschbaum-development/laravel-translations-loader": "^1.0.2",
         "axios": "^0.19",
-        "bootstrap": "^4.1.0",
         "cross-env": "^5.1",
         "jquery": "^3.4.0",
         "laravel-elixir-minify-html": "^1.0.5",
@@ -30,7 +29,6 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "@alfsnd/vue-bootstrap-select": "^0.4.4",
         "@babel/core": "^7.5.4",
         "@clr/icons": "^2.1.1",
         "@johmun/vue-tags-input": "^2.1.0",

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Hub extends Model
 {
@@ -24,16 +25,19 @@ class Hub extends Model
 
     public function hubFollowers()
     {
-        return $this->belongsToMany(User::class, 'hub_followers', 'hub_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'favorites', 'following_id', 'follower_id')->where('following_type', 'hubs');
     }
 
-    public function hubFollowings()
+    public function hubIsFollowing(User $user):bool
     {
-        return $this->belongsToMany(User::class, 'hub_followers', 'follower_id', 'hub_id');
+        return (bool)$this->favorites()->where('follower_id', $user->id)->where('following_type', 'hubs')->count();
     }
 
-    public function hubIsFollowing(User $user)
+    /**
+     * @return MorphMany
+     */
+    public function favorites()
     {
-        return (bool)$this->hubFollowers()->where('follower_id', $user->id)->count();
+        return $this->morphMany(Favorite::class, 'following');
     }
 }

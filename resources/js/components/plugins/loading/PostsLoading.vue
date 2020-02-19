@@ -1,7 +1,8 @@
 <template>
     <div class="post-content__item">
         <header class="post__meta">
-            <div style="background-color:#E2E2E2" alt="user avatar" class="user__avatar MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"></div>
+            <div style="background-color:#E2E2E2" alt="user avatar"
+                 class="user__avatar MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"></div>
             <div class="user-info__nickname_small MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                  style="width: 20%; background: rgb(226, 226, 226); height: 1.2rem;"></div>
             <span class="post__read-time MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -34,11 +35,13 @@
                         <span class="mdi mdi-comment-text-multiple-outline"/> <i class="mdi mdi-spin mdi-loading"/> Şerh
                     </span>
                 <span class="footer_item">
+                        <span class="mdi mdi-share"/> Paylaş
+                    </span>
+                <span class="footer_item">
                         <span class="mdi mdi-bookmark"/> <i class="mdi mdi-spin mdi-loading"/> Seçilmiş
                     </span>
             </div>
-            <div class="btn btn-more MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"
-                 style="width: 60%; background: rgb(226, 226, 226);     padding: 0;"></div>
+            <div class="progress default" style="width: 100%"></div>
         </div>
     </div>
 </template>
