@@ -1,9 +1,25 @@
 <?php
 
+use App\Models\Post;
+use Faker\Factory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class PostVotesTableSeeder extends Seeder
 {
+
+    /**
+     * @var Factory
+     */
+    private $faker;
+
+    /**
+     * ArticlesSeeder constructor.
+     */
+    public function __construct()
+    {
+        $this->faker = Factory::create('ru_RU');
+    }
 
     /**
      * Auto generated seed file
@@ -12,38 +28,24 @@ class PostVotesTableSeeder extends Seeder
      */
     public function run()
     {
+        $postIds = Post::all()->pluck('id')->toArray();
+        $userIds = User::all()->pluck('id')->toArray();
 
+        foreach (range(0, 5) as $i) {
+            try {
+                foreach (range(0, random_int(1, count($postIds))) as $j) {
+                    $postId = $this->faker->randomElement($postIds);
+                    $userId = $this->faker->randomElement($userIds);
 
-        \DB::table('post_votes')->delete();
-
-        \DB::table('post_votes')->insert(array (
-            0 =>
-            array (
-                'id' => 115,
-                'user_id' => 1,
-                'post_id' => 1,
-                'status' => 1,
-                'created_at' => '2019-08-13 21:25:41',
-                'updated_at' => '2019-08-13 21:25:45',
-            ),
-            1 =>
-            array (
-                'id' => 116,
-                'user_id' => 1,
-                'post_id' => 55,
-                'status' => 0,
-                'created_at' => '2019-08-21 19:17:55',
-                'updated_at' => '2019-08-21 19:17:55',
-            ),
-            2 =>
-            array (
-                'id' => 117,
-                'user_id' => 1,
-                'post_id' => 54,
-                'status' => 1,
-                'created_at' => '2019-08-21 19:18:07',
-                'updated_at' => '2019-08-21 19:18:07',
-            ),
-        ));
+                    \DB::table('post_votes')->insert([
+                        'user_id' => $userId,
+                        'post_id' => $postId,
+                        'status'  => random_int(0, 1)
+                    ]);
+                }
+            } catch (Throwable $e) {
+                echo 'ERROR: ' . $e->getMessage() . "\n";
+            }
+        }
     }
 }

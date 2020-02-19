@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
 use App\Models\Post;
 use App\Transformers\PostTransformer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class PostHubController extends ApiController
+class PostHubController extends Controller
 {
-    private $count;
-    private $day = 1;
-    private $week = 7;
-    private $month = 30;
+    private int $count;
+    private int $day = 1;
+    private int $week = 7;
+    private int $month = 30;
 
     /**
      * PostController constructor.

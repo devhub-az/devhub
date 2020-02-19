@@ -15,7 +15,7 @@ class UserSettingsController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return Response
+     * @return void
      */
     public function index(Request $request)
     {

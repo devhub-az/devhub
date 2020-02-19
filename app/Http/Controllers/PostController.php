@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CommentCollection;
+use App\Http\Resources\CommentsCollection;
 use App\Http\Resources\HubsCollection;
-use App\Http\Resources\PostCollection;
-use App\Http\Resources\PostsCollection;
+use App\Models\Comment;
 use App\Models\Hub;
 use App\Models\Post;
-use App\Models\PostFavorite;
 use App\Models\PostVote;
 use App\Notifications\PostNotify;
 use Illuminate\Contracts\View\Factory;
@@ -15,10 +15,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
-use Parsedown;
 
 class PostController extends Controller
 {
@@ -71,18 +69,16 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \Request $request
      * @param int $id
      * @return Factory|\Illuminate\View\View
      */
-    public function show(\Request $request, int $id)
+    public function show(int $id): view
     {
-        $post = Post::findorfail($id);
-
 //        PostView::createViewLog($post);
 
         return view('pages.posts.show', [
-            'post' => $post,
+            'post' => Post::findorfail($id),
+//            'comments' => ,
         ]);
     }
 
@@ -95,10 +91,9 @@ class PostController extends Controller
     public function postRatingChanger($post, $request): JsonResponse
     {
         $voteStatus = $request->get('status');
-        $vote = PostVote::where('post_id', $request->get('id'));
+        $vote = PostVote::where('post_id', $request->get('id'))->where('user_id', Auth::user()->id);
         $postVoteCount = $vote->count();
         $transaction = false;
-
         if ($postVoteCount === 1 && isset($voteStatus)) {
             $vote = $vote->firstOrFail();
             switch ($voteStatus) {
@@ -148,7 +143,15 @@ class PostController extends Controller
             $post->save();
         }
 
-        return response()->json(['success' => 'success', 'status' => $request->get('status')], 200);
+        return response()->json([
+            'transaction' => $transaction,
+            'isset($voteStatus)' => isset($voteStatus),
+            'count' => $postVoteCount,
+            'success' => 'success',
+            'status'  => $request->get('status'),
+            'post_id' => $request->get('id'),
+            'user_id' => Auth::user()->id
+        ], 200);
     }
 
     /**
@@ -179,18 +182,16 @@ class PostController extends Controller
         ]);
         $share = Post::findOrFail($request->get('id'));
         if (isset($share) && !$share->postIsFollowing(Auth::user())) {
-            $favorite = new PostFavorite([
-                'post_id'     => $request->get('id'),
-                'follower_id' => Auth::user()->id,
+            $share->favorites()->create([
+                'follower_id'    => Auth::user()->id,
+                'favoritable_id' => $request->get('id'),
             ]);
-            $favorite->save();
-
             return response()->json(['success' => 'success'], 200);
         }
         if ($share->postIsFollowing(Auth::user())) {
-            PostFavorite::where([
-                'post_id'     => $request->get('id'),
-                'follower_id' => Auth::user()->id,
+            $share->favorites()->where([
+                'follower_id'    => Auth::user()->id,
+                'favoritable_id' => $request->get('id'),
             ])->delete();
 
             return response()->json(['delete' => 'delete'], 200);

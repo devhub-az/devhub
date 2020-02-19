@@ -7,10 +7,11 @@ use App\Http\Resources\PostsCollection;
 use App\Http\Resources\UserCollection;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserController extends Controller
 {
-    public function users()
+    public function users(): AnonymousResourceCollection
     {
         return UserCollection::collection(User::paginate(5));
     }

@@ -24,7 +24,7 @@ type User {
 
 type Post {
     id: ID!
-    name: String!
+    title: String!
     body: String
     creator: User
     updated_at: DateTime!

@@ -34,6 +34,11 @@ class Comment extends Model
         return $this->morphMany(Favorite::class, 'favoritable');
     }
 
+    public function isFavorite(User $user)
+    {
+        return $this->favorites()->where('follower_id', $user->id)->count();
+    }
+
     public function favoritesIds():array
     {
         return $this->favorites()->pluck('following_id')->toArray();

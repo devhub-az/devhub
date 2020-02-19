@@ -27,24 +27,24 @@ class PostCollection extends JsonResource
             'data' => [
                 'id'            => $this->id,
                 'title'         => $this->name,
-                'body_short'    => $this->shorten(Purifier::clean($parsedown->text($this->body)), 80),
+                'body_short'    => \Str::words(Purifier::clean($parsedown->text($this->body)), 100, '…'),
                 'body'          => \Purifier::clean($parsedown->text($this->body)),
                 'creator'       => $this->creator->username,
                 'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
-                'votes'         => $this->votes,
+                'votes'         => $this->rating(),
                 'votes_sum'     => $this->votes()->count(),
                 'upvotes'       => $this->upvotes(),
                 'downvotes'     => $this->downvotes(),
                 'tags'          => new HubsCollection(Hub::whereIn('id',
                     $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-                'comments'      => $this->comments->count(), //Comment::where('post_id', $this->id)->count(),
+                'comments'      => $this->comments()->count(), //Comment::where('post_id', $this->id)->count(),
                 'views'         => $this->views->count(),
                 'created_at'    => $this->created_at,
                 'read_time'     => $this->readTime($this->body),
                 'upvoted'       => $this->statusCheck('upvote'),
                 'downvoted'     => $this->statusCheck('downvote'),
-//                'favorite'      => $this->statusCheck('following'),
-//                'followers'     => count($this->postFollowers),
+                'favorite'      => $this->statusCheck('favorites'),
+                'favorites'     => $this->favorites->count(),
             ],
         ];
     }
@@ -76,7 +76,7 @@ class PostCollection extends JsonResource
                     return $this->postIsVoted(Auth::user()) === 'upvoted';
                 case 'downvote':
                     return $this->postIsVoted(Auth::user()) === 'downvoted';
-                case 'following':
+                case 'favorites':
                     return $this->postIsFollowing(Auth::user()) === 1;
             }
         }

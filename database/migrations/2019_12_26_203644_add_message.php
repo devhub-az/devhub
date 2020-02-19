@@ -15,10 +15,10 @@ class AddMessage extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigInteger('id', true)->unsigned();
-            $table->bigInteger('from_id')->unsigned();
-            $table->bigInteger('to_id')->unsigned();
-            $table->foreign('from_id', 'from')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('to_id', 'to')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedInteger('from_id');
+            $table->unsignedInteger('to_id');
+            $table->foreign('from_id', 'from')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');;
+            $table->foreign('to_id', 'to')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');;
             $table->text('content');
             $table->dateTime('read_at')->nullable();
             $table->timestamps();

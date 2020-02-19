@@ -21,7 +21,7 @@
                             <span class="nav-posts__item-link">Bütün yazılar</span>
                         </a>
                         @auth
-                            @if (Auth::user()->getUserIdsAttribute() != null && Auth::user()->getHubsIdsAttribute() != null)
+                            @if (Auth::user()->getUserIdsAttribute() != null || Auth::user()->getHubsIdsAttribute() != null)
                                 <a href="{{ route('favorite') }}"
                                    class="nav-posts__item @if(Request::url() === route('favorite')) nav-posts__item-link_current @endif">
                                     <span class="nav-posts__item-link badge"

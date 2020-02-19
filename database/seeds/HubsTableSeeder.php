@@ -12,8 +12,6 @@ class HubsTableSeeder extends Seeder
      */
     public function run()
     {
-        
-
         \DB::table('hubs')->delete();
         
         \DB::table('hubs')->insert(array (
@@ -1557,7 +1555,6 @@ class HubsTableSeeder extends Seeder
                 'updated_at' => '2019-08-10 15:49:57',
             ),
         ));
-        
         
     }
 }

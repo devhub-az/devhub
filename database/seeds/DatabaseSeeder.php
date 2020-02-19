@@ -11,8 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Eloquent::unguard();
 
-        $this->call(CommentsTableSeeder::class);
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        $this->call(UserTableSeeder::class);
         $this->call(FollowersTableSeeder::class);
         $this->call(HubFollowersTableSeeder::class);
         $this->call(HubsTableSeeder::class);
@@ -21,10 +24,13 @@ class DatabaseSeeder extends Seeder
         $this->call(NotificationStatusTableSeeder::class);
         $this->call(NotificationsTableSeeder::class);
         $this->call(PasswordResetsTableSeeder::class);
-        $this->call(PostHubsTableSeeder::class);
-        $this->call(PostVotesTableSeeder::class);
         $this->call(PostsTableSeeder::class);
         $this->call(PostsViewsTableSeeder::class);
-        $this->call(UserTableSeeder::class);
+        $this->call(PostHubsTableSeeder::class);
+        $this->call(PostVotesTableSeeder::class);
+        $this->call(CommentsTableSeeder::class);
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
     }
 }

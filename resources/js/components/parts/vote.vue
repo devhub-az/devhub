@@ -1,5 +1,5 @@
 <template>
-    <div class="post-votes" :aria-label="posts.votes + ':  ↑ ' + [posts.upvotes === 0 ? '0' : posts.upvotes ] + ' ↓ ' + [posts.downvotes === 0 ? '0' :posts.downvotes]" data-balloon-pos="left">
+    <div class="post-votes" :aria-label="posts.votes_sum + ':  ↑ ' + [posts.upvotes === 0 ? '0' : posts.upvotes ] + ' ↓ ' + [posts.downvotes === 0 ? '0' :posts.downvotes]" data-balloon-pos="left">
         <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.upvoted}"
               @click="upvote(posts.id)"/>
         <span id="rating" :style="{color: colorStatus}" class="rating">
@@ -38,11 +38,14 @@
             upvote: function (id) {
                 if (this.auth_check) {
                     let vote = this.posts.votes;
+                    let votes_sum = this.posts.votes_sum;
                     let upvotes = this.posts.upvotes;
                     let downvotes = this.posts.downvotes;
+                    console.log(this.posts.upvoted)
                     if (this.posts.upvoted == false && this.posts.downvoted == false) {
                         this.posts.upvoted = true;
                         upvotes++;
+                        votes_sum++;
                         vote++;
                         axios.post('/upvote', {
                             id: id,
@@ -60,6 +63,7 @@
                     } else if (this.posts.upvoted == true && this.posts.downvoted == false) {
                         this.posts.upvoted = false;
                         upvotes--;
+                        votes_sum--;
                         vote--;
                         axios.post('/upvote', {
                             id: id,
@@ -79,6 +83,7 @@
                         upvotes = upvotes + 1;
                         downvotes = downvotes - 1;
                         vote = vote + 2;
+                        votes_sum = votes_sum + 2;
                         axios.post('/upvote', {
                             id: id,
                             vote: vote,
@@ -105,6 +110,7 @@
                     this.posts.upvotes = upvotes;
                     this.posts.downvotes = downvotes;
                     this.posts.votes = vote;
+                    this.posts.votes_sum = votes_sum;
                 } else
                     new Noty({
                         type: 'success',
@@ -116,11 +122,13 @@
             downvote: function (id) {
                 if (this.auth_check) {
                     let vote = this.posts.votes;
+                    let votes_sum = this.posts.votes_sum;
                     let upvotes = this.posts.upvotes;
                     let downvotes = this.posts.downvotes;
                     if (this.posts.downvoted == false && this.posts.upvoted == false) {
                         this.posts.downvoted = true;
                         downvotes++;
+                        votes_sum--;
                         vote--;
                         axios.post('/upvote', {
                             id: id,
@@ -138,6 +146,7 @@
                     } else if (this.posts.downvoted == true && this.posts.upvoted == false) {
                         this.posts.downvoted = false;
                         downvotes--;
+                        votes_sum++;
                         vote++;
                         axios.post('/upvote', {
                             id: id,
@@ -157,6 +166,7 @@
                         upvotes = upvotes - 1;
                         downvotes = downvotes + 1;
                         vote = vote - 2;
+                        votes_sum = votes_sum - 2;
                         axios.post('/upvote', {
                             id: id,
                             vote: vote,
@@ -182,6 +192,7 @@
                     this.posts.upvotes = upvotes;
                     this.posts.downvotes = downvotes;
                     this.posts.votes = vote;
+                    this.posts.votes_sum = votes_sum;
                 } else
                     new Noty({
                         type: 'success',

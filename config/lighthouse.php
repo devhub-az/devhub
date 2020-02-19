@@ -17,7 +17,7 @@ return [
         /*
          * The URI the endpoint responds to, e.g. mydomain.com/graphql.
          */
-        'uri' => '/api',
+        'uri' => '/graphql',
 
         /*
          * Lighthouse creates a named route for convenient URL generation and redirects.
@@ -68,7 +68,7 @@ return [
     */
 
     'cache' => [
-        'enable' => env('LIGHTHOUSE_CACHE_ENABLE', false),
+        'enable' => env('LIGHTHOUSE_CACHE_ENABLE', 'false'),
         'key' => env('LIGHTHOUSE_CACHE_KEY', 'lighthouse-schema'),
         'ttl' => env('LIGHTHOUSE_CACHE_TTL', null),
     ],

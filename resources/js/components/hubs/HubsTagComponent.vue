@@ -8,7 +8,7 @@
                 <div class="tag-popup" v-if="hub.hover">
                     <div class="-container">
                         <div class="-arrow js-source-arrow -top" style="margin-left: 0px;"></div>
-                        <h3>{{ hub.name }}</h3>
+                        <h3><a :href="'/hubs/' + hub.id">{{ hub.name }}</a></h3>
                         <p>{{ hub.description}}</p>
                         <hub-follow-button :hub="hub" :auth_check="auth_check"/>
                     </div>

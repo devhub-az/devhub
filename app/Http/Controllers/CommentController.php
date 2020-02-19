@@ -8,6 +8,7 @@ use App\Models\Post;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -36,5 +37,30 @@ class CommentController extends Controller
         $comment->save();
 
         return \Redirect::to(\URL::previous() . "#post_" . $comment->id);
+    }
+
+    public function favorite(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|int',
+        ]);
+        $comment = Comment::findOrFail($request->get('id'));
+        if (isset($comment) && !$comment->isFavorite(Auth::user())) {
+            $comment->favorites()->create([
+                'follower_id'    => Auth::user()->id,
+                'favoritable_id' => $request->get('id'),
+            ]);
+            return response()->json(['success' => 'success'], 200);
+        }
+        if ($comment->isFavorite(Auth::user())) {
+            $comment->favorites()->where([
+                'follower_id'    => Auth::user()->id,
+                'favoritable_id' => $request->get('id'),
+            ])->delete();
+
+            return response()->json(['delete' => 'delete'], 200);
+        }
+
+        return response()->json(['error' => 'error'], 401);
     }
 }

@@ -1,5 +1,19 @@
 <template>
     <div class="post-content">
+        <!--        <ApolloQuery :query="require('@/graphql/queries/posts.graphql')">-->
+        <!--            <template slot-scope="{result: {data, loading}}">-->
+        <!--                <posts-loading v-if="loading"/>-->
+        <!--                <div v-if="postsNotEmpty">-->
+        <!--                    <div class="post-content__item" v-for="post in data.posts">-->
+        <!--                        <header class="post__meta">-->
+
+        <!--                        </header>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </template>-->
+        <!--        </ApolloQuery>-->
+
+
         <posts-loading v-if="loading"/>
         <div v-if="!loading">
             <div v-if="postsNotEmpty">
@@ -40,16 +54,19 @@
                             <span class="footer_item" @click="copy(post.data.id)" style="cursor: pointer;">
                                 <span class="mdi mdi-share"/> Paylaş
                             </span>
-                            <favorite :post="post.data"></favorite>
+                            <favorite :post="post.data"/>
                             <span class="footer_item">
                                     <a href="#" style="color: inherit">
                                         <i class="ellipsis horizontal icon"/>
                                     </a>
                                 </span>
                         </div>
-                        <div class="balloon" :aria-label="post.data.upvotes + ' plus ' + post.data.downvotes + ' minus'" data-balloon-pos="up">
+                        <div class="balloon"
+                             :aria-label="post.data.votes_sum + ' səs: ' + post.data.upvotes + ' plus ' + post.data.downvotes + ' minus'"
+                             data-balloon-pos="up">
                             <div class="progress" :class="{ 'default' : post.data.votes_sum === 0}">
-                                <div class="progress-green" :style="'width:' + [post.data.votes !== 0 ? 100 * post.data.upvotes / post.data.votes_sum : '0'] +'%'"></div>
+                                <div class="progress-green"
+                                     :style="'width:' + [post.data.votes_sum !== 0 ? 100 * post.data.upvotes / post.data.votes_sum : '0'] +'%'"></div>
                             </div>
                         </div>
                     </div>
@@ -66,7 +83,7 @@
             <div v-else class="post-content__item"
                  style="text-align: center; display: grid; grid-gap: 12px;">
                 <span style="font-size: 5rem; opacity: .7;">
-                    <i class="mdi mdi-comment-edit-outline"></i>
+                    <i class="mdi mdi-comment-edit-outline"/>
                 </span>
                 <span>Paylaşma tapılmadı</span>
                 <span>

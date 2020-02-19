@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::prefix('api')->group(function () {
+Route::prefix('api')->group(static function () {
     /*
      * Posts Api
      */
@@ -83,8 +83,8 @@ Route::prefix('api')->group(function () {
      * Profile Api
      */
     Route::get('/users/{id}/posts', 'Api\UserController@posts');
-
 });
+
 
 Route::prefix('post')->group(function () {
     Route::get('/add', 'PostController@create')->name('create_post');
@@ -114,6 +114,7 @@ Route::prefix('users')->group(function () {
 
 Route::prefix('comment')->group(function () {
     Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
+    Route::post('/favorite/{id}', 'CommentController@favorite');
 });
 
 Route::resource('posts', 'PostController');

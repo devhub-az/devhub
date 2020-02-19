@@ -38,9 +38,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="balloon" :aria-label="post.upvotes + ' plus ' + post.downvotes + ' minus'" data-balloon-pos="up">
+
+                <div class="balloon" :aria-label="post.votes_sum + ': ' + post.upvotes + ' plus ' + post.downvotes + ' minus'" data-balloon-pos="up">
                     <div class="progress" :class="{ 'default' : post.votes_sum === 0}">
-                        <div class="progress-green" :style="'width:' + [post.votes !== 0 ? 100 * post.upvotes / post.votes_sum : '0'] +'%'"></div>
+                        <div class="progress-green" :style="'width:' + [post.votes_sum !== 0 ? 100 * post.upvotes / post.votes_sum : '0'] +'%'"></div>
                     </div>
                 </div>
             </div>

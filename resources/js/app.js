@@ -8,6 +8,9 @@ window.moment = require('moment');
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 
+import VueApollo from 'vue-apollo'
+Vue.use(VueApollo)
+
 window.Noty = require('noty');
 import "animate.css/animate.min.css";
 
@@ -52,7 +55,8 @@ Vue.component('profile-settings', require('./components/auth/settings/ProfileCom
 Vue.component('users-list', require('./components/users/UserComponent.vue').default);
 Vue.component('dropdown-notification', require('./components/plugins/dropdown-notification.vue').default);
 Vue.component('posts-loading', require('./components/plugins/loading/PostsLoading').default);
-Vue.component('favorite', require('./components/plugins/favorite').default);
+Vue.component('favorite', require('./components/parts/PostFavorite').default);
+Vue.component('comment-favorite', require('./components/parts/CommentFavorite').default);
 Vue.component('post-show', require('./components/posts/PostShowComponent').default);
 Vue.component('comments', require('./components/comments/CommentsComponent.vue').default);
 

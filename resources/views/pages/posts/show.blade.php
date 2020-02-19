@@ -95,58 +95,60 @@
                             {{--                            </li>--}}
                         </ul>
                     </div>
-                    <div id="comments" class="post-comments">
-                        <div class="comment-header">
-                            <div class="head">Şerhlər</div>
-                            <div class="count">{{ $post->comments->count() }}</div>
-                        </div>
-                        @if ($post->comments)
-                            @foreach($post->comments as $comment)
-                                <div class="post-comment"
-                                     @if($comment->parent_id != null) style="margin-left:40px;"
-                                     @endif id="post_{{$comment->id}}">
-                                    <img class="comment-avatar" src="" alt="">
-                                    <div class="comment-body">
-                                        <div class="flex">
-                                            <a class="comment-author"
-                                               href="{{ url('users/@' . $comment->author->username) }}">
-                                                <span>{{ $comment->author->username }}</span>
-                                            </a>
-                                            <div class="comment-time">
-                                                {{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}
-                                            </div>
-                                            <div class="comment-date">
-                                                {{ Carbon\Carbon::parse($comment->created_at)->locale('az')->isoformat('d MMMM Y H:mm') }}
-                                            </div>
-                                        </div>
-                                        <div class="comment-text">{{ $comment->body }}</div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                        @if(Auth::check())
-                            <form method="post" action="{{ route('new-comment') }}">
-                                @csrf
-                                <div class="post-comment">
-                                    <img class="comment-avatar" src="{{ asset('images/profile/deadpool.gif') }}" alt="">
-                                    <div class="comment-body">
-                                        <span class="comment-author">{{ Auth::user()->username }}</span>
-                                        <p><textarea class="input comment-text" style="padding: 5px;" rows="2"
-                                                     cols="20000"
-                                                     name="body"></textarea></p>
-                                        <input type="submit" class="btn btn-primary submit btn-sm" value="Yazmag"/>
-                                    </div>
-                                    {{--                                    <input type="hidden" name="post_id" value="{{ $post['id'] }}"/>--}}
-                                    {{-- <input type="hidden" name="parent_id" value="{{ $comment->id }}" /> --}}
-                                </div>
-                            </form>
-                        @else
-                            <blockquote class="blockquote">
-                                Yalnız <a href="{{ route('register') }}">istifadəçilər</a> şərh yaza bilər. Xahiş edirik
-                                <a href="{{ route('login') }}">daxil olun</a>.
-                            </blockquote>
-                        @endif
-                    </div>
+{{--                    <div id="comments" class="post-comments">--}}
+{{--                        <div class="comment-header">--}}
+{{--                            <div class="head">Şerhlər</div>--}}
+{{--                            <div class="count">{{ $comments ? $comments->count() : 0 }}</div>--}}
+{{--                        </div>--}}
+{{--                        @if ($comment)--}}
+{{--                            @foreach(json_encode($comments) as $comment)--}}
+{{--                                <div class="post-comment"--}}
+{{--                                     @if($comment->parent_id != null) style="margin-left:40px;"--}}
+{{--                                     @endif --}}
+{{--                                    id="post_{{$comment->id}}">--}}
+{{--                                    <img class="comment-avatar" src="" alt="">--}}
+{{--                                    <div class="comment-body">--}}
+{{--                                        <div class="flex">--}}
+{{--                                            <a class="comment-author"--}}
+{{--                                               href="{{ url('users/@' . $comment->author->username) }}">--}}
+{{--                                                <span>{{ $comment->author->username }}</span>--}}
+{{--                                            </a>--}}
+{{--                                            <comment-favorite :comment="{{ $comment }}"></comment-favorite>--}}
+{{--                                            <div class="comment-time">--}}
+{{--                                                {{ Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}--}}
+{{--                                            </div>--}}
+{{--                                            <div class="comment-date">--}}
+{{--                                                {{ Carbon\Carbon::parse($comment->created_at)->locale('az')->isoformat('d MMMM Y H:mm') }}--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                        <div class="comment-text">{{ $comment->body }}</div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            @endforeach--}}
+{{--                        @endif--}}
+{{--                        @if(Auth::check())--}}
+{{--                            <form method="post" action="{{ route('new-comment') }}">--}}
+{{--                                @csrf--}}
+{{--                                <div class="post-comment">--}}
+{{--                                    <img class="comment-avatar" src="{{ asset('images/profile/deadpool.gif') }}" alt="">--}}
+{{--                                    <div class="comment-body">--}}
+{{--                                        <span class="comment-author">{{ Auth::user()->username }}</span>--}}
+{{--                                        <p><textarea class="input comment-text" style="padding: 5px;" rows="2"--}}
+{{--                                                     cols="20000"--}}
+{{--                                                     name="body"></textarea></p>--}}
+{{--                                        <input type="submit" class="btn btn-primary submit btn-sm" value="Yazmag"/>--}}
+{{--                                    </div>--}}
+{{--                                    --}}{{--                                    <input type="hidden" name="post_id" value="{{ $post['id'] }}"/>--}}
+{{--                                    --}}{{-- <input type="hidden" name="parent_id" value="{{ $comment->id }}" /> --}}
+{{--                                </div>--}}
+{{--                            </form>--}}
+{{--                        @else--}}
+{{--                            <blockquote class="blockquote">--}}
+{{--                                Yalnız <a href="{{ route('register') }}">istifadəçilər</a> şərh yaza bilər. Xahiş edirik--}}
+{{--                                <a href="{{ route('login') }}">daxil olun</a>.--}}
+{{--                            </blockquote>--}}
+{{--                        @endif--}}
+{{--                    </div>--}}
                 </div>
             </div>
 

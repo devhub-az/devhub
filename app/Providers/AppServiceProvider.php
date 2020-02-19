@@ -7,6 +7,8 @@ use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Models\Comment;
+use App\Models\Post;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,8 +35,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Relation::morphMap([
-            'posts' => 'App\Models\Post',
-            'comments' => 'App\Models\Comments',
+            'posts'    => Post::class,
+            'comments' => Comment::class,
         ]);
     }
 }

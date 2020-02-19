@@ -48,6 +48,11 @@ class Post extends Model
         return $this->hasMany(PostVote::class);
     }
 
+    public function rating(): int
+    {
+        return $this->upvotes() - $this->downvotes();
+    }
+
     public function upvotes()
     {
         return $this->votes()->where('status', '1')->count();
@@ -58,14 +63,9 @@ class Post extends Model
         return $this->votes()->where('status', '0')->count();
     }
 
-    public function postFollowers()
-    {
-        return $this->belongsToMany(User::class, 'post_favorites', 'post_id', 'follower_id');
-    }
-
     public function postIsFollowing(User $user)
     {
-        return $this->postFollowers()->where('follower_id', $user->id)->count();
+        return $this->favorites()->where('follower_id', $user->id)->count();
     }
 
     public function postIsVoted(User $user)
@@ -76,6 +76,8 @@ class Post extends Model
         if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
             return 'upvoted';
         }
+
+        return null;
     }
 
     public function getHubsIdsAttribute()
@@ -85,7 +87,7 @@ class Post extends Model
 
     public function favorites()
     {
-        return $this->morphMany(Favorite::class, 'favoritable')->pluck('following_id')->toArray();
+        return $this->morphMany(Favorite::class, 'favoritable');
     }
 
 }

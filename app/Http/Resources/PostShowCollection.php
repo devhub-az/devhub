@@ -25,7 +25,7 @@ class PostShowCollection extends Resource
             'body'          => \Purifier::clean($parsedown->text($this->body)),
             'creator'       => $this->creator->username,
             'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
-            'votes'         => $this->votes,
+            'votes'         => $this->rating(),
             'votes_sum'     => $this->votes()->count(),
             'upvotes'       => $this->upvotes(),
             'downvotes'     => $this->downvotes(),
@@ -37,8 +37,8 @@ class PostShowCollection extends Resource
             'read_time'     => $this->readTime($this->body),
             'upvoted'       => $this->statusCheck('upvote'),
             'downvoted'     => $this->statusCheck('downvote'),
-            'favorite'      => $this->statusCheck('following'),
-            'followers'     => count($this->postFollowers),
+            'favorite'      => $this->statusCheck('favorites'),
+            'favorites'     => $this->favorites->count(),
         ];
     }
 
@@ -50,17 +50,18 @@ class PostShowCollection extends Resource
                     return $this->postIsVoted(Auth::user()) === 'upvoted';
                 case 'downvote':
                     return $this->postIsVoted(Auth::user()) === 'downvoted';
-                case 'following':
+                case 'favorites':
                     return $this->postIsFollowing(Auth::user()) === 1;
             }
         }
+        return null;
     }
 
     /**
      * @param $text
      * @return string
      */
-    public function readTime(string $text)
+    public function readTime(string $text): string
     {
         $word = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);

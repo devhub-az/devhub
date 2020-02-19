@@ -7,13 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\Models\Media;
 
-class User extends Authenticatable implements HasMedia
+class User extends Authenticatable
 {
-    use Notifiable, HasMediaTrait, PermissionManager;
+    use Notifiable, PermissionManager;
 
     protected $visible = [
         'username',
@@ -52,20 +49,6 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->belongsTo(Role::class, 'role_level', 'level');
     }
-
-    public function registerMediaConversions(Media $media = null)
-    {
-        $this->addMediaConversion('thumb')
-            ->width(200)
-            ->height(200)
-            ->sharpen(10);
-
-        $this->addMediaConversion('square')
-            ->width(412)
-            ->height(412)
-            ->sharpen(10);
-    }
-
 
     public function posts(): HasMany
     {

@@ -14,10 +14,11 @@ class CreatePostHubsTable extends Migration {
 	{
 		Schema::create('post_hubs', function(Blueprint $table)
 		{
-			$table->integer('id', true);
-			$table->integer('posts_id')->nullable();
-			$table->integer('hub_id')->nullable();
-			$table->timestamps();
+			$table->increments('id');
+			$table->unsignedInteger('posts_id')->index();
+			$table->unsignedInteger('hub_id')->index();
+			$table->unique(['posts_id', 'hub_id']);
+
 		});
 	}
 

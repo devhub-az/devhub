@@ -2,6 +2,10 @@
 
 @section('title'){{ $hub['name'] }} @stop
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
+@stop
+
 @section('main')
     <div class="layout_body" id="app">
         <div class="hub-block">
