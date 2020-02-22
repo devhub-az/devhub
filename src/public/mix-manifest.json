@@ -1,0 +1,21 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/about.css": "/css/about.css",
+    "/css/buttons.css": "/css/buttons.css",
+    "/css/login.css": "/css/login.css",
+    "/css/pagination.css": "/css/pagination.css",
+    "/css/app.css": "/css/app.css",
+    "/css/conversation.css": "/css/conversation.css",
+    "/css/users.css": "/css/users.css",
+    "/css/header.css": "/css/header.css",
+    "/css/footer.css": "/css/footer.css",
+    "/css/notification.css": "/css/notification.css",
+    "/css/saved.css": "/css/saved.css",
+    "/js/app.js.map": "/js/app.js.map",
+    "/js/login.js": "/js/login.js",
+    "/js/login.js.map": "/js/login.js.map",
+    "/js/scripts/particles.min.js": "/js/scripts/particles.min.js",
+    "/js/scripts/particles.min.js.map": "/js/scripts/particles.min.js.map",
+    "/js/scripts/particles.settings.js": "/js/scripts/particles.settings.js",
+    "/js/scripts/particles.settings.js.map": "/js/scripts/particles.settings.js.map"
+}

@@ -1,0 +1,89 @@
+.layout_body{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    .users__page-header{
+        h1{
+            color: var(--text-black-primary);
+        }
+    }
+
+    .layout_content {
+        display: grid;
+        grid-template-columns: 74% 25%;
+        grid-gap: 1%;
+        grid-template-areas: "page-header page-header" "edit-content content_right";
+
+        .users__page-header {
+            grid-area: page-header;
+            height: 130px;
+        }
+
+        .list-hubs__hub{
+            display: grid;
+            grid-template-columns: 10% 40% 10% 10% 10% auto;
+            background: var(--background-paper);
+            margin-bottom: 1%;
+            padding: 20px 0;
+            border: 1px solid var(--color-border);
+
+            .list-hubs__hub-image{
+                width: 64px;
+                height: 64px;
+                margin: 0 auto;
+            }
+
+            .list-hubs__obj-body {
+                position: relative;
+                width: 90%;
+
+                .list-users__title-link{
+                    display: inline-block;
+                    margin-bottom: 5px;
+                    color: var(--color-primary-main);
+                    vertical-align: top;
+                    font-weight: bold;
+                    font-size: 15px;
+                    line-height: 18px;
+                }
+            }
+
+            .list-hubs__stats {
+                display: -webkit-box;
+                display: flex;
+                -webkit-box-align: center;
+                align-items: center;
+                margin: 0 auto;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                flex-direction: column;
+                -webkit-box-pack: center;
+                justify-content: center;
+
+                .list-hubs__stats-value {
+                    display: -webkit-box;
+                    display: flex;
+                    -webkit-box-align: center;
+                    align-items: center;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    font-weight: bold;
+                    color: var(--text-black-primary);
+                    margin: 0 auto 3px;
+                }
+            }
+
+            .hub_follow {
+                margin: auto;
+                text-align: center;
+                width: 100%;
+            }
+        }
+
+        .content_right {
+            border-radius: 4px;
+        }
+    }
+}
