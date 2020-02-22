@@ -1,4 +1,4 @@
-![alt text](app/Documentation/Logo.png)
+![alt text](src/app/Documentation/Logo.png)
 
 ## Про DevHub
 
