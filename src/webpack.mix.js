@@ -11,16 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.options({
-    cleanCss: {
-        level: {
-            1: {
-                specialComments: 'none'
-            }
-        }
-    },
-    purifyCss: true
-});
+// mix.options({
+//     cleanCss: {
+//         level: {
+//             1: {
+//                 specialComments: 'none'
+//             }
+//         }
+//     },
+//     purifyCss: true
+// });
 
 mix.sass('resources/sass/about.scss', 'public/css')
     .sass('resources/sass/buttons.scss', 'public/css')
@@ -33,7 +33,6 @@ mix.sass('resources/sass/about.scss', 'public/css')
     .sass('resources/sass/footer.scss', 'public/css')
     .sass('resources/sass/notification.scss', 'public/css')
     .sass('resources/sass/saved.scss', 'public/css')
-    .copy('node_modules/material-icons/css/material-icons.min.css', 'public/css/material-icons.min.css')
     .sourceMaps().version();
 
 mix.js('resources/js/app.js', 'public/js/')
@@ -49,7 +48,20 @@ mix.disableNotifications();
 mix.options({processCssUrls: false});
 
 if (mix.inProduction()) {
+    const CompressionPlugin = require('compression-webpack-plugin');
+
     mix.webpackConfig({
+        plugins: [
+
+            new CompressionPlugin({
+                filename: '[path].br[query]',
+                algorithm: 'brotliCompress',
+                test: /\.(js|css|html|svg)$/,
+                compressionOptions: { level: 11 },
+                minRatio: 1,
+                deleteOriginalAssets: false,
+            }),
+        ],
         output: {
             chunkFilename: 'js/[name].js',
         }
@@ -57,18 +69,14 @@ if (mix.inProduction()) {
     mix.version();
 }
 
-const CompressionPlugin = require('compression-webpack-plugin');
-
-mix.webpackConfig({
-    plugins: [
-
-        new CompressionPlugin({
-            filename: '[path].br[query]',
-            algorithm: 'brotliCompress',
-            test: /\.(js|css|html|svg)$/,
-            compressionOptions: { level: 11 },
-            minRatio: 1,
-            deleteOriginalAssets: false,
-        }),
-    ]
-});
+module.exports = {
+    plugins: [new MiniCssExtractPlugin()],
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+        ],
+    },
+};

@@ -4,9 +4,11 @@ console.log(
 require('./bootstrap');
 
 window.Vue = require('vue');
-window.moment = require('moment');
+window.moment = require('moment-mini');
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
+
+import "@mdi/font/css/materialdesignicons.min.css"
 
 window.Noty = require('noty');
 

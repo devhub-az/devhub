@@ -124,7 +124,6 @@ class PostController extends Controller
             ]);
             $transaction = 'delete';
         }
-        $post->votes = $request->get('vote');
         foreach ($post->hubs as $hub) {
             $hub->rating += $request->get('change_rating');
             $hub->save();
@@ -133,11 +132,9 @@ class PostController extends Controller
         if ($transaction === true) {
             $vote->save();
             $post->creator->save();
-            $post->save();
         } elseif ($transaction === 'delete') {
             $vote->delete();
             $post->creator->save();
-            $post->save();
         }
 
         return response()->json([

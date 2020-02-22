@@ -1,1 +1,134 @@
-body{background:#c5ddeb}.container{display:grid;grid-template-columns:20% 80%;border:1px solid var(--color-btn-border-secondary)}.container .text-muted{color:#6c757d}.container .conversations__pagination{text-align:center;padding:12px 0}.container .conversations__pagination a{background:#fff;text-transform:none}.container .conversations__users{background:#fff;border-right:1px solid var(--color-btn-border-secondary)}.container .conversations__users .list-group-item{display:grid;grid-template-columns:80% auto;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;box-sizing:border-box;padding:10px 15px;vertical-align:baseline;background:#fff;transition:.3s ease}.container .conversations__users .list-group-item h4{width:-webkit-max-content;width:-moz-max-content;width:max-content}.container .conversations__users .list-group-item .time{font-size:80%;font-weight:400;margin-left:auto}.container .conversations__users .list-group-item:hover{background:var(--color-blue);cursor:pointer;color:var(--color-white)}.container .conversations__users .list-group-item:hover .text-muted{color:var(--color-white)}.container .conversations__users .current{background:var(--color-blue);color:var(--color-white)}.container .conversations__users .current .text-muted{color:var(--color-white)}.container .conversations__card-header{display:block;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;border-bottom:1px solid var(--color-btn-border-secondary);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;box-sizing:border-box;background:#fff;padding:10px 15px}.container .conversations__card-body{background:#fff;padding:12px 0;overflow-y:scroll;height:670px}.container .conversations__card-body .conversations__message .time_date{color:#747474;display:block;font-size:10px;text-align:right;margin:0 30px}.container .conversations__card-body .conversations__message .conversations__from{padding:18px 20px;line-height:26px;margin:13px 30px 3px;position:relative;-webkit-animation:fadeIn 1s ease-in;animation:fadeIn 1s ease-in;background:#86bb71;color:#fff;max-width:700px;width:-webkit-max-content;width:-moz-max-content;width:max-content;border-radius:16px 16px 16px 0}.container .conversations__card-body .conversations__message .conversations__to{display:block;margin-left:auto;background:var(--color-blue);color:var(--color-white);text-align:right;border-radius:16px 16px 0 16px}.container .conversations__card-body .conversations__message:first-child>.conversations__from{margin-top:0}.container .conversations__card-body .conversations__chat-name{display:flex;justify-content:space-between;margin-bottom:10px}.container form{display:grid;grid-template-columns:90% 10%;background:#eee}.container form button{margin:24px 12px}.container form button .icon-send{transform:rotate(45deg)}
+body {
+  background: #C5DDEB;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  border: 1px solid var(--color-btn-border-secondary);
+}
+.container .text-muted {
+  color: #6c757d;
+}
+.container .conversations__pagination {
+  text-align: center;
+  padding: 12px 0;
+}
+.container .conversations__pagination a {
+  background: white;
+  text-transform: none;
+}
+.container .conversations__users {
+  background: white;
+  border-right: 1px solid var(--color-btn-border-secondary);
+}
+.container .conversations__users .list-group-item {
+  display: grid;
+  grid-template-columns: 80% auto;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  vertical-align: baseline;
+  background: #fff;
+  transition: 0.3s ease;
+}
+.container .conversations__users .list-group-item h4 {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+.container .conversations__users .list-group-item .time {
+  font-size: 80%;
+  font-weight: 400;
+  margin-left: auto;
+}
+.container .conversations__users .list-group-item:hover {
+  background: var(--color-blue);
+  cursor: pointer;
+  color: var(--color-white);
+}
+.container .conversations__users .list-group-item:hover .text-muted {
+  color: var(--color-white);
+}
+.container .conversations__users .current {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+.container .conversations__users .current .text-muted {
+  color: var(--color-white);
+}
+.container .conversations__card-header {
+  display: block;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  border-bottom: 1px solid var(--color-btn-border-secondary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+  background: white;
+  padding: 10px 15px;
+}
+.container .conversations__card-body {
+  background: white;
+  padding: 12px 0;
+  overflow-y: scroll;
+  height: 670px;
+}
+.container .conversations__card-body .conversations__message .time_date {
+  color: #747474;
+  display: block;
+  font-size: 10px;
+  text-align: right;
+  margin: 0 30px;
+}
+.container .conversations__card-body .conversations__message .conversations__from {
+  padding: 18px 20px;
+  line-height: 26px;
+  margin: 13px 30px 3px;
+  position: relative;
+  -webkit-animation: fadeIn 1s ease-in;
+          animation: fadeIn 1s ease-in;
+  background: #86BB71;
+  color: white;
+  max-width: 700px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  border-radius: 16px 16px 16px 0;
+}
+.container .conversations__card-body .conversations__message .conversations__to {
+  display: block;
+  margin-left: auto;
+  background: var(--color-blue);
+  color: var(--color-white);
+  text-align: right;
+  border-radius: 16px 16px 0 16px;
+}
+.container .conversations__card-body .conversations__message:first-child > .conversations__from {
+  margin-top: 0;
+}
+.container .conversations__card-body .conversations__chat-name {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.container form {
+  display: grid;
+  grid-template-columns: 90% 10%;
+  background: #eee;
+}
+.container form button {
+  margin: 24px 12px;
+}
+.container form button .icon-send {
+  transform: rotate(45deg);
+}

@@ -7,7 +7,6 @@
 <head>
     {{-- basic page needs --}}
     <meta charset="utf-8">
-    <meta name="Description" content="Azerbaycan Developers first IT blog.">
     <title>@yield('title', 'DevHub') | DevHub</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('meta')
@@ -27,15 +26,13 @@
     {{--    <script>hljs.initHighlightingOnLoad();</script>--}}
 
     {{-- CSS --}}
-    <link rel="preload" href="{{asset('css/material-icons.min.css')}}">
-    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="{{ asset('css/balloon.css') }}">
-    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="{{ asset('css/normalize.css') }}">
-    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="{{ asset('css/notification.css') }}">
-    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="{{ asset('css/buttons.css') }}">
-    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="{{ asset('css/animate.min.css') }}">
-    <link rel="preload" as="style" onload="this.rel='stylesheet'" href="{{ asset('css/app.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:300,400,500,700|PT+Sans&display=swap"
-          rel="preload">
+    <link rel="stylesheet" href="{{ asset('css/balloon.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/notification.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/buttons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans|Fira+Sans|Roboto:300,400,500,700|PT+Sans&display=swap" rel="stylesheet">
     <link href="{{ asset('css/prettify.css') }}" type="text/css" rel="stylesheet"/>
     @yield('css')
 
