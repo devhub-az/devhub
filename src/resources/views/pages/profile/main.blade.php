@@ -2,10 +2,6 @@
 
 @section('title'){{ ucfirst($user['username']) }} @stop
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
-@stop
-
 @section('main')
     <div class="profile__info">
         <div class="profile__header">
@@ -17,7 +13,7 @@
         <div class="profile__user">
             <div class="avatar avatar_large image-lazy">
                 <img alt="admin"
-                     src="{{ asset('images/profile/deadpool.gif') }}"
+                     src="{{ asset('images/profile/deadpool.png') }}"
                      class="image-loaded">
             </div>
             <div class="profile__info-name">

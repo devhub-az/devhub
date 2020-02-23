@@ -2,13 +2,6 @@
 
 @section('title')Hablar @stop
 
-@section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/transition.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/search.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/popup.min.css" />
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
-@stop
-
 @section('main')
     <div class="layout_body">
         <div class="hubs-page__header">
@@ -26,15 +19,15 @@
         </div>
         <div class="layout_content">
             <div class="content_left" id="app">
-                <div class="ui category search form-hub__search">
-                    <div class="ui icon input header_search">
-                        <label>
-                            <input class="prompt search" type="text" placeholder="Hub axtar">
-                        </label>
-                        <i class="icon feather icon-search"></i>
-                    </div>
-                    <div class="results"></div>
-                </div>
+{{--                <div class="ui category search form-hub__search">--}}
+{{--                    <div class="ui icon input header_search">--}}
+{{--                        <label>--}}
+{{--                            <input class="prompt search" type="text" placeholder="Hub axtar">--}}
+{{--                        </label>--}}
+{{--                        <i class="icon feather icon-search"></i>--}}
+{{--                    </div>--}}
+{{--                    <div class="results"></div>--}}
+{{--                </div>--}}
                 <hubs-list
                     fetch-url="{{ route('hubs-list-api') }}"
                     locale="{{ App::getLocale() }}"
@@ -109,45 +102,45 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.compatibility.js"></script>
-    <script src="{{ asset('js/search.min.js') }}"></script>
-    <script>
-        function axiosHubs() {
-            return axios.get('/api/hubs/all').then(response => {
-                return response.data;
-            });
-        }
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.compatibility.js"></script>--}}
+{{--    <script src="{{ asset('js/search.min.js') }}"></script>--}}
+{{--    <script>--}}
+{{--        function axiosHubs() {--}}
+{{--            return axios.get('/api/hubs/all').then(response => {--}}
+{{--                return response.data;--}}
+{{--            });--}}
+{{--        }--}}
 
-        $('.ui.search').settings.api = {
-            'hubs' : '/api/hubs/all'
-        };
+{{--        $('.ui.search').settings.api = {--}}
+{{--            'hubs' : '/api/hubs/all'--}}
+{{--        };--}}
 
-        $(document).ready(function() {
-                $('.ui.search')
-                    .search({
-                        type: 'category',
-                        apiSettings:{
-                            action: 'hubs'
-                        },
-                        searchDelay: 500,
-                        fields: {
-                            image: 'logo',
-                            title: 'name',
-                        },
-                        searchFields: [
-                            'name'
-                        ],
-                        fullTextSearch: false,
-                        onSelect(result) {
-                            window.location.href = '/hubs/' + result.id;
-                        },
-                        templates: {
-                            message: function message() {
-                                return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';
-                            },
-                        }
-                    });
-        });
+{{--        $(document).ready(function() {--}}
+{{--                $('.ui.search')--}}
+{{--                    .search({--}}
+{{--                        type: 'category',--}}
+{{--                        apiSettings:{--}}
+{{--                            action: 'hubs'--}}
+{{--                        },--}}
+{{--                        searchDelay: 500,--}}
+{{--                        fields: {--}}
+{{--                            image: 'logo',--}}
+{{--                            title: 'name',--}}
+{{--                        },--}}
+{{--                        searchFields: [--}}
+{{--                            'name'--}}
+{{--                        ],--}}
+{{--                        fullTextSearch: false,--}}
+{{--                        onSelect(result) {--}}
+{{--                            window.location.href = '/hubs/' + result.id;--}}
+{{--                        },--}}
+{{--                        templates: {--}}
+{{--                            message: function message() {--}}
+{{--                                return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';--}}
+{{--                            },--}}
+{{--                        }--}}
+{{--                    });--}}
+{{--        });--}}
 
-    </script>
+{{--    </script>--}}
 @endsection

@@ -3,8 +3,6 @@ $noty-default-width: 320px;
 $noty-corner-space: 10px;
 $noty-top-space: 3rem;
 
-@import "variables";
-
 .noty_layout_mixin {
     position: fixed;
     margin: 0;

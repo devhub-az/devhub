@@ -2,10 +2,6 @@
 
 @section('title')Əsas səhifə@stop
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
-@stop
-
 @section('main')
     <div class="layout_body">
         <div class="layout_content">

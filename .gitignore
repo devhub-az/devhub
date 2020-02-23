@@ -13,3 +13,4 @@
 /src/_ide_helper.php
 /src/_ide_helper_models.php
 /.idea/
+!/src/bootstrap/config.php

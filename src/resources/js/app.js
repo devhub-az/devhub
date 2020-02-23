@@ -7,16 +7,16 @@ window.Vue = require('vue');
 window.moment = require('moment-mini');
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
-
+//
 import "@mdi/font/css/materialdesignicons.min.css"
-
+//
 window.Noty = require('noty');
-
+//
 require('moment/locale/az');
 window.moment.locale('az');
-
-window.parse = require('./parser');
-
+//
+// window.parse = require('./parser');
+//
 Noty.overrideDefaults( {
     layout: 'topLeft',
     dismissQueue: true, // [boolean] If you want to use queue feature set this true
@@ -35,9 +35,9 @@ Noty.overrideDefaults( {
 
     buttons: false // [boolean|array] an array of buttons, for creating confirmation dialogs.
 });
-
+//
 import './components'
-
+//
 Vue.config.productionTip = false;
 Vue.config.silent = false;
 Vue.config.keyCodes.backspace = 8;

@@ -22,9 +22,6 @@
         "league/commonmark": "^1.0",
         "league/commonmark-ext-table": "^2.0",
         "mews/purifier": "3.*",
-        "nuwave/lighthouse": "^4.9",
-        "orangehill/iseed": "^2.6",
-        "oscarafdev/migrations-generator": "^2.0",
         "parsedown/laravel": "^1.1",
         "renatomarinho/laravel-page-speed": "^1.8",
         "softonic/graphql-client": "^1.2",
@@ -32,16 +29,12 @@
         "webuni/commonmark-table-extension": "^1.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.2",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
         "haydenpierce/class-finder": "^0.4.0",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^2.0",
-        "nunomaduro/phpinsights": "^1.9",
-        "phploc/phploc": "^5.0",
-        "phpunit/phpunit": "^7.5",
-        "roave/security-advisories": "dev-master"
+        "phpunit/phpunit": "^7.5"
     },
     "config": {
         "optimize-autoloader": true,
