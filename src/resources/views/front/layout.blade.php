@@ -30,7 +30,6 @@
     {{--    <script src="{{ asset('js/prettify.js') }}"></script>--}}
     {{--    <script src="{{ asset('js/Markdown.Extra.js') }}"></script>--}}
 
-    <link rel="dns-prefetch" href="//fonts.googleapis.com"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,400i,700,700i&display=swap&subset=cyrillic"
           rel="stylesheet" media="print" onload="this.media='all'"/>
 </head>

@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Http\Traits\HasWithCountScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends Model
 {
+    use HasWithCountScope;
+
     protected $table = 'posts';
 
     protected $fillable = [

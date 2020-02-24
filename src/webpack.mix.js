@@ -3,10 +3,16 @@ const mix = require('laravel-mix');
 require('laravel-mix-purgecss');
 
 mix
-    .js('resources/js/app.js', 'public/js/',{
+    // JS
+    .js('resources/js/app.js', 'public/js/', {
         sourceMap: true,
         outputStyle: 'compressed',
     })
+    .js('resources/js/login.js', 'public/js/', {
+        sourceMap: true,
+        outputStyle: 'compressed',
+    })
+    // CSS
     .sass('resources/sass/app.scss', 'public/css', {
         sourceMap: true,
         outputStyle: 'compressed',

@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-{{-- [if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif] --}}
-{{-- [if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif] --}}
-{{-- [if (gte IE 9)|!(IE)]><! --}}
 <html lang="{{ config('app.locale') }}">
 {{-- <![endif] --}}
 <head>
-	{{-- basic page needs --}}
 	<meta charset="utf-8">
-	<title>@yield('title') | DevHub</title>
-	<meta name="description" content="{{ isset($post) && $post->meta_description ? $post->meta_description : __('description') }}">
-	<meta name="author" content="@lang(lcfirst ('Author'))">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	@if(isset($post) && $post->meta_keywords)
-		<meta name="keywords" content="{{ $post->meta_keywords }}">
-	@endif
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+	<meta name="viewport" content="width=576, user-scalable=no"/>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 
-	{{-- mobile specific metas --}}
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<meta name="description" content="@yield('description')"/>
+	<meta name="keywords" content="@yield('keywords')"/>
+
+	<title>@yield('title', 'DevHub') | DevHub</title>
+
+	<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
+	<meta name="theme-color" content="#ffffff">
+
+	@yield('meta')
 
 	{{-- CSS --}}
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-	<link rel="stylesheet" href="{{ mix('css/buttons.css') }}">
-	<link rel="stylesheet" href="{{ mix('css/login.css') }}">
-{{--	<link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
+	<link rel="stylesheet" href="{{ mix('css/login.css') }}" media="print" onload="this.media='all'">
 	@yield('css')
 
-	{{-- favicon --}}
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+	{{--    <script type="text/javascript" src="{{ asset('js/Markdown.Converter.js') }}"></script>--}}
+	{{--    <script type="text/javascript" src="{{ asset('js/Markdown.Sanitizer.js') }}"></script>--}}
+	{{--    <script type="text/javascript" src="{{ asset('js/Markdown.Editor.js') }}"></script>--}}
+	{{--    <script src="{{ asset('js/prettify.js') }}"></script>--}}
+	{{--    <script src="{{ asset('js/Markdown.Extra.js') }}"></script>--}}
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400,400i,700,700i&display=swap&subset=cyrillic"
+		  rel="stylesheet" media="print" onload="this.media='all'"/>
 
 </head>
 

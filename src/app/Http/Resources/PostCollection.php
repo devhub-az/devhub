@@ -29,7 +29,7 @@ class PostCollection extends JsonResource
                 'title'          => $this->name,
                 'body_short'     => \Str::words(Purifier::clean($parsedown->text($this->body)), 100, '…'),
                 'body'           => \Purifier::clean($parsedown->text($this->body)),
-                'creator'        => new UserCollection(User::where('id', $this->author_id)->first()),
+                'creator'        => new UserCollection(User::where('id', $this->author_id)->select('username')->first()),
                 'profile_image'  => '', // $this->getFirstMediaUrl('avatars'),
                 'votes'          => $this->rating(),
                 'votes_sum'      => $this->votes()->count(),

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
 use App\Http\Resources\PostShowCollection;
 use App\Models\Post;
+use App\Models\PostVote;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -39,15 +40,15 @@ class PostController extends Controller
      */
     public function posts(): PostsCollection
     {
+
         return new PostsCollection(Post::where('created_at', '>=',
             \DB::raw('NOW() - INTERVAL ' . $this->count . ' DAY'))
+//            ->orderBy('votes', 'DESC')
             ->orderBy('created_at', 'DESC')
+            ->with('creator:id,username')
+            ->with('comments:body')
             ->take(50)
-            ->orderBy(function ($post) {
-                return $post->rating();
-            })
-            ->paginate(5)
-            );
+            ->paginate(5));
     }
 
     /**
@@ -55,7 +56,11 @@ class PostController extends Controller
      */
     public function all(): PostsCollection
     {
-        return new PostsCollection(Post::orderBy('created_at', 'DESC')
+        dd(Post::withCount(['votes'])->take(10)->get());
+        return new PostsCollection(Post::orderBy('votes_count', 'DESC')
+        ->orderBy('created_at', 'DESC')
+            ->with('creator:id,username')
+            ->with('comments:body')
             ->take(50)
             ->paginate(5));
     }

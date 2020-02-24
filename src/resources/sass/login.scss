@@ -1,13 +1,18 @@
-body{
-    font-family: Roboto, Tahoma, sans-serif;
-}
-
-@import 'variables';
-
 @font-face {
     font-family: MontDemo-Heavy;
     font-style: normal;
+    font-display: swap;
     src: url("/fonts/MontDemo-Heavy.otf");
+}
+
+@import '~reset-css';
+@import "kernel";
+
+body{
+    font-family: $font-family;
+    width: 100%;
+    line-height: $ui-min-height;
+    min-height: 100vh;
 }
 
 @media screen and (min-width: 36em) {
@@ -62,6 +67,7 @@ body{
 
             .title {
                 margin-bottom: 20px;
+                font-size: 26px;
                 color: var(--color-white);
 
                 .logo_login {

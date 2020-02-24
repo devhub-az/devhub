@@ -15,4 +15,14 @@ class PostVote extends Model
     ];
 
     public $timestamps = false;
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+    public function postRating()
+    {
+        return $this->post()->where('status', 1)->count() - $this->post()->where('status', 0)->count();
+    }
 }
