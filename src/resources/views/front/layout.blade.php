@@ -52,7 +52,6 @@
 @include('include.footer')
 
 <script src="{{ mix('js/app.js') }}" async="async"></script>
-{{--<script src="{{ asset('js/stickybits.min.js') }}"></script>--}}
 {{--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>--}}
 
 @yield('scripts')

@@ -54,15 +54,11 @@ class PostController extends Controller
     /**
      * @return PostsCollection
      */
-    public function all(): PostsCollection
+    public function all()
     {
-        dd(Post::withCount(['votes'])->take(10)->get());
-        return new PostsCollection(Post::orderBy('votes_count', 'DESC')
-        ->orderBy('created_at', 'DESC')
-            ->with('creator:id,username')
-            ->with('comments:body')
-            ->take(50)
-            ->paginate(5));
+            return new PostsCollection(Post::orderBy('created_at', 'DESC')
+                ->take(50)
+                ->paginate(5));
     }
 
     /**

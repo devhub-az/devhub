@@ -47,23 +47,11 @@ class PostsTableSeeder extends Seeder
     {
         Post::truncate();
 
-        foreach (range(0, 99) as $i) {
+        foreach (range(0, 10000) as $i) {
             $article = Post::create([
                 'author_id' => $this->faker->numberBetween(1, 49),
                 'name'      => $this->sentences(1, true),
-//                'image'          => $this->faker->randomElement([
-//                    '1.png',
-//                    '2.png',
-//                    '3.png',
-//                    '4.png',
-//                    '5.png',
-//                    '6.png',
-//                ]),
                 'body'      => $this->createContent(),
-//                'status'         => $this->faker->randomElement(['Draft', 'Review', 'Published']),
-//                'published_at'   => Carbon::now()
-//                    ->subDays(240)
-//                    ->addDays(random_int(0, 300)),
             ]);
 
             echo ' - ' . $i . ': ' . $article->title . "\n";

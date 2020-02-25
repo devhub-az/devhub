@@ -29,22 +29,23 @@ class PostCollection extends JsonResource
                 'title'          => $this->name,
                 'body_short'     => \Str::words(Purifier::clean($parsedown->text($this->body)), 100, '…'),
                 'body'           => \Purifier::clean($parsedown->text($this->body)),
-                'creator'        => new UserCollection(User::where('id', $this->author_id)->select('username')->first()),
+                'creator'        => new UserCollection(User::where('id',
+                    $this->author_id)->select('username')->first()),
                 'profile_image'  => '', // $this->getFirstMediaUrl('avatars'),
-                'votes'          => $this->rating(),
-                'votes_sum'      => $this->votes()->count(),
-                'upvotes'        => $this->upvotes(),
-                'downvotes'      => $this->downvotes(),
-                'tags'           => new HubsCollection(Hub::whereIn('id',
-                    $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-                'comments_count' => $this->comments()->count(), //Comment::where('post_id', $this->id)->count(),
-                'views'          => $this->views->count(),
+                'votes'          => $this->rating,
+                'votes_sum'      => $this->votes,
+                'upvotes'        => $this->upvotes,
+                'downvotes'      => $this->downvotes,
+                'tags'           => new HubsCollection(Hub::select('name')->whereIn('id',
+                    $this->getHubsIdsAttribute())->get()),
+                'comments_count' => $this->comments_count, //Comment::where('post_id', $this->id)->count(),
+//                'views'          => $this->views->count(),
                 'created_at'     => $this->created_at,
                 'read_time'      => $this->readTime($this->body),
                 'upvoted'        => $this->statusCheck('upvote'),
                 'downvoted'      => $this->statusCheck('downvote'),
                 'favorite'       => $this->statusCheck('favorites'),
-                'favorites'      => $this->favorites->count(),
+                'favorites'      => $this->favorites,
             ],
         ];
     }
@@ -73,9 +74,9 @@ class PostCollection extends JsonResource
         if (Auth::check()) {
             switch ($status) {
                 case 'upvote':
-                    return $this->postIsVoted(Auth::user()) === 'upvoted';
+                    return $this->postIsVoted('upvote',Auth::user()) === 'upvoted';
                 case 'downvote':
-                    return $this->postIsVoted(Auth::user()) === 'downvoted';
+                    return $this->postIsVoted('downvote',Auth::user()) === 'downvoted';
                 case 'favorites':
                     return $this->postIsFollowing(Auth::user()) === true;
             }

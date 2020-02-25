@@ -21,12 +21,12 @@ class HubCollection extends JsonResource
             'id'                  => $this->id,
             'logo'                => strtolower($this->logo),
             'rating'              => $this->rating,
-            'description'         => $this->description[\App::getLocale()],
+//            'description'         => $this->whenLoaded(description[\App::getLocale()]),
             'name'                => $this->name,
-            'border'              => strtolower($this->logo) ? ColorThief::getColor('./' . strtolower($this->logo)) : ColorThief::getColor('.//images/empty/code.png'),
+//            'border'              => strtolower($this->logo) ? ColorThief::getColor('./' . strtolower($this->logo)) : ColorThief::getColor('.//images/empty/code.png'),
             'hub_followers_count' => \Numeric::number_format_short(count($this->hubFollowers)),
             'follower_check'      => $this->statusCheck('following'),
-            'posts_count'         => $this->posts->count(),
+            'posts_count'         => $this->whenLoaded('posts'),
         ];
     }
 

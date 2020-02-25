@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use App\Http\Traits\HasWithCountScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends Model
 {
-    use HasWithCountScope;
 
     protected $table = 'posts';
 
@@ -51,39 +49,34 @@ class Post extends Model
         return $this->hasMany(PostVote::class);
     }
 
-    public function rating(): int
-    {
-        return $this->upvotes() - $this->downvotes();
-    }
-
-    public function upvotes(): int
-    {
-        return $this->votes()->where('status', '1')->count();
-    }
-
-    public function downvotes(): int
-    {
-        return $this->votes()->where('status', '0')->count();
-    }
-
     public function postIsFollowing(User $user): bool
     {
         return $this->favorites()->where('follower_id', $user->id)->where('following_type', 'posts')->count();
     }
 
     /**
+     * @param string $value
      * @param User $user
      * @return string
      */
-    public function postIsVoted(User $user):string
+    public function postIsVoted(string $value,User $user):string
     {
-        if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '0')->count()) {
-            return 'downvoted';
-        } else if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
-            return 'upvoted';
-        }
+        switch ($value){
+            case 'upvote':
+                if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '1')->count()) {
+                    return 'upvoted';
+                }
 
-        return '';
+                return '';
+            case 'downvoted':
+                if ((bool)$this->votes()->where('user_id', $user->id)->where('status', '0')->count()) {
+                    return 'downvoted';
+                }
+
+                return '';
+            default:
+                return '';
+        }
     }
 
     /**

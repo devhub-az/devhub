@@ -114,9 +114,6 @@
 @endsection
 
 @section('scripts')
-    <script>
-        const stickyblock = stickybits('#default-block', {
-            stickyBitStickyOffset: 10
-        });
-    </script>
+    <script src="{{ asset('js/stickybits.min.js') }}"></script>
+    <script src="{{asset('js/stickybitsettings.js') }}"></script>
 @endsection
