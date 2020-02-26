@@ -17,7 +17,7 @@
         "ksubileau/color-thief-php": "^1.4",
         "kylekatarnls/laravel-carbon-2": "^1.0.0",
         "laravel/framework": "6.*",
-        "laravel/tinker": "^1.0",
+        "laravel/tinker": "^2.2",
         "laravelcollective/html": "^6.0",
         "league/commonmark": "^1.0",
         "league/commonmark-ext-table": "^2.0",
