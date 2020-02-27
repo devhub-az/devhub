@@ -12,7 +12,6 @@ src/npm-debug.log
 src/yarn-error.log
 docker/data/
 src/_ide_helper.php
-src/database/factories/
 src/html/
 src/node_modules/.bin/
 src/node_modules/.cache/
