@@ -10,40 +10,40 @@
 
 @section('main')
     <div class="layout_post">
-        <header>
-            <div class="page-header__banner">
-                <a href="https://hh.ru/employer/1212374" target="_blank">
-                    <div class="company_banner" style="background-image: url({{ asset('images/wallpaper/baku.jpg') }})"
-                         alt="company_banner"></div>
-                </a>
-            </div>
-            <div class="page-header page-header_small page-header_bordered" id="company_2198">
-                <div class="page-header_wrapper">
-                    <div class="media-obj media-obj_company">
-                        <a href="/company/funcorp/" class="media-obj__image page-header__image">
-                            <img src="{{ asset('images/profile/new_user/1.svg') }}" width="48" height="48"
-                                 class="company-info__image-pic">
-                        </a>
-                        <div class="media-obj__body media-obj__body_page-header media-obj__body_page-header_branding">
-                            <div class="page-header__info">
-                                <div class="page-header__info-title">FunCorp</div>
-                                <sup class="page-header__stats-value page-header__stats-value_branding"
-                                     title="Рейтинг компании">399,64</sup>
-                                <div class="page-header__info-desc">
-                                    Разработка развлекательных сервисов
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="page-header__buttons">
-                        <button type="button" class="page-header__button btn" data-id="2198" data-state="follow">
-                            <span class="btn__value"><i class="icon feather icon-user-plus"></i> Abunə olun <span
-                                        class="folowers">{{ \Numeric::number_format_short(123) }}</span></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
+        {{--        <header>--}}
+        {{--            <div class="page-header__banner">--}}
+        {{--                <a href="https://hh.ru/employer/1212374" target="_blank">--}}
+        {{--                    <div class="company_banner" style="background-image: url({{ asset('images/wallpaper/baku.jpg') }})"--}}
+        {{--                         alt="company_banner"></div>--}}
+        {{--                </a>--}}
+        {{--            </div>--}}
+        {{--            <div class="page-header page-header_small page-header_bordered" id="company_2198">--}}
+        {{--                <div class="page-header_wrapper">--}}
+        {{--                    <div class="media-obj media-obj_company">--}}
+        {{--                        <a href="/company/funcorp/" class="media-obj__image page-header__image">--}}
+        {{--                            <img src="{{ asset('images/profile/new_user/1.svg') }}" width="48" height="48"--}}
+        {{--                                 class="company-info__image-pic">--}}
+        {{--                        </a>--}}
+        {{--                        <div class="media-obj__body media-obj__body_page-header media-obj__body_page-header_branding">--}}
+        {{--                            <div class="page-header__info">--}}
+        {{--                                <div class="page-header__info-title">FunCorp</div>--}}
+        {{--                                <sup class="page-header__stats-value page-header__stats-value_branding"--}}
+        {{--                                     title="Рейтинг компании">399,64</sup>--}}
+        {{--                                <div class="page-header__info-desc">--}}
+        {{--                                    Разработка развлекательных сервисов--}}
+        {{--                                </div>--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                    <div class="page-header__buttons">--}}
+        {{--                        <button type="button" class="page-header__button btn" data-id="2198" data-state="follow">--}}
+        {{--                            <span class="btn__value"><i class="icon feather icon-user-plus"></i> Abunə olun <span--}}
+        {{--                                        class="folowers">{{ \Numeric::number_format_short(123) }}</span></span>--}}
+        {{--                        </button>--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--            </div>--}}
+        {{--        </header>--}}
         <div class="post-show" id="app">
             <div class="post_left">
                 <div class="container">
@@ -88,7 +88,8 @@
                             {{--                            </li>--}}
                         </ul>
                     </div>
-                    <comments :id="{{ $post['id'] }}" @auth :auth_check="true" :user="{{ Auth::user() }}" @endauth ></comments>
+                    <comments :id="{{ $post['id'] }}" @auth :auth_check="true"
+                              :user="{{ Auth::user() }}" @endauth ></comments>
                 </div>
             </div>
 
@@ -107,7 +108,9 @@
                         <div class="content">
                             <div class="header">
                                 <a class="author_name"
-                                   href="{{ url('users/@' . $post['creator']['username']) }}">{{ '@' . $post['creator']['username'] }}</a>
+                                   href="{{ url('users/@' . $post['creator']['username']) }}">
+                                    {{ '@' . $post['creator']['username'] }}
+                                </a>
                                 <span class="author">Müəllif</span>
                             </div>
                             <div class="media-obj__body media-obj__body_user-info">
@@ -135,10 +138,10 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
-        const stickybit = stickybits('.stickyVote');
+    <script>
+        stickybits('.stickyVote');
 
-        const stickyblock = stickybits('#default-block', {
+        stickybits('#default-block', {
             stickyBitStickyOffset: 10,
         });
     </script>

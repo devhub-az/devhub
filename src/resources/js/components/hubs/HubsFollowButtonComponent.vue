@@ -29,14 +29,14 @@
 								if (response.data.success) {
 									new Noty({
 										type: 'success',
-										text: '<div class="notification-image"><i class="mdi mdi-tag-outline"></i></div> ' +
+										text: '<div class="notification-image"><i class="mdi mdi-check"></i></div> ' +
 												'<div class="text">İzləyirsiniz</div>',
 									}).show();
 									this.hubs.follower_check = true;
 								} else if (response.data.delete) {
 									new Noty({
 										type: 'error',
-										text: '<div class="notification-image"><i class="mdi mdi-check"></i></div> ' +
+										text: '<div class="notification-image"><i class="mdi mdi-tag-outline"></i></div> ' +
 												'<div class="text">İzləmirsiz</div>',
 									}).show();
 									this.hubs.follower_check = false;

@@ -4968,6 +4968,11 @@ laravel-elixir-minify-html@^1.0.5:
     gulp "^3.9.1"
     gulp-htmlmin "^2.0.0"
 
+laravel-mix-alias@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/laravel-mix-alias/-/laravel-mix-alias-1.0.2.tgz#c8ce2273bbb4d82a493c871c8def6e3fc1b6d471"
+  integrity sha512-JmSfZ8RzTYlOYmlcXK4yzyO3B5XbImUTih5FWcOfiObD7F9UE6BsVH9tBmefjk8qiLdTVzZW4xqAWOfo3X+juw==
+
 laravel-mix-purgecss@^5.0.0-rc.1:
   version "5.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/laravel-mix-purgecss/-/laravel-mix-purgecss-5.0.0-rc.1.tgz#e83fd2556353c9fd59a42274c8791d1216eab3fc"
@@ -8072,10 +8077,10 @@ stealthy-require@^1.1.1:
   resolved "https://registry.yarnpkg.com/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
 
-stickybits@^3.6.6:
-  version "3.7.3"
-  resolved "https://registry.yarnpkg.com/stickybits/-/stickybits-3.7.3.tgz#65b9dc3692639c61888b5aa95b96a65d200e0389"
-  integrity sha512-2Od8k7fNdFmpKT6N51BxrQrCZl5zHMZ42dW1Rp78aKNamR2uDWXIrtAtnrWHpbK0eHF4E7c4HCCG05pLJIgSYA==
+stickybits@^3.7.4:
+  version "3.7.4"
+  resolved "https://registry.yarnpkg.com/stickybits/-/stickybits-3.7.4.tgz#7ca93c58fbabf09f9672d5d61d9430debf0e2d2d"
+  integrity sha512-LpafB8R4b2x4b4itMrxl4Geq4Y7Nq7KMrGvM5h2tjjWBaVCGGZtfAhSmVJrUYJRsSzvMjIv4ItS9874BZhW9pA==
 
 stream-browserify@^2.0.1:
   version "2.0.2"

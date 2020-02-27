@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Controllers\Api;
 
@@ -6,15 +7,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
 use App\Http\Resources\PostShowCollection;
 use App\Models\Post;
-use App\Models\PostVote;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    private int $count;
-    private int $day = 1;
-    private int $week = 7;
-    private int $month = 30;
+    /**
+     * @var int
+     */
+    private static int $count;
+
+    private int        $day   = 1;
+
+    private int        $week  = 7;
+
+    private int        $month = 30;
 
     /**
      * PostController constructor.
@@ -24,13 +30,13 @@ class PostController extends Controller
     {
         switch ($request->segment(4)) {
             case 'day':
-                $this->count = $this->day;
+                self::$count = $this->day;
                 break;
             case 'week':
-                $this->count = $this->week;
+                self::$count = $this->week;
                 break;
             case 'month':
-                $this->count = $this->month;
+                self::$count = $this->month;
                 break;
         }
     }
@@ -40,25 +46,45 @@ class PostController extends Controller
      */
     public function posts(): PostsCollection
     {
-
-        return new PostsCollection(Post::where('created_at', '>=',
-            \DB::raw('NOW() - INTERVAL ' . $this->count . ' DAY'))
-//            ->orderBy('votes', 'DESC')
-            ->orderBy('created_at', 'DESC')
-            ->with('creator:id,username')
-            ->with('comments:body')
-            ->take(50)
-            ->paginate(5));
+        return \Cache::remember(
+            'posts_top',
+            60,
+            static function () {
+                return new PostsCollection(
+                    Post::where(
+                        'created_at',
+                        '>=',
+                        \DB::raw('NOW() - INTERVAL ' . self::$count . ' DAY')
+                    )
+                        ->orderByRaw('(upvoters_count - downvoters_count) DESC')
+                        ->orderBy('created_at', 'DESC')
+                        ->with('creator:id,username')
+                        ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
+                        ->take(50)
+                        ->paginate(5)
+                );
+            }
+        );
     }
 
     /**
      * @return PostsCollection
      */
-    public function all()
+    public function all(): PostsCollection
     {
-            return new PostsCollection(Post::orderBy('created_at', 'DESC')
-                ->take(50)
-                ->paginate(5));
+        return \Cache::remember(
+            'posts',
+            60,
+            static function () {
+                return new PostsCollection(
+                    Post::orderBy('created_at', 'DESC')
+                        ->with('creator:id,username')
+                        ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
+                        ->take(50)
+                        ->paginate(5)
+                );
+            }
+        );
     }
 
     /**
@@ -66,17 +92,30 @@ class PostController extends Controller
      */
     public function favorite(): PostsCollection
     {
-        return new PostsCollection(Post::orderBy('created_at', 'DESC')
-            ->whereIn('author_id', \Auth::user()->getUserIds())
-            ->orWhereHas('hubs', static function ($query) {
-                $query->whereIn('hubs.id', \Auth::user()->getHubsIds());
-            })
-            ->take(50)
-            ->paginate(5));
+        return new PostsCollection(
+            Post::orderBy('created_at', 'DESC')
+                ->whereIn('author_id', \Auth::user()->getUserIds())
+                ->orWhereHas(
+                    'hubs',
+                    static function ($query) {
+                        $query->whereIn('hubs.id', \Auth::user()->getHubsIds());
+                    }
+                )
+                ->take(50)
+                ->paginate(5)
+        );
     }
 
-    public function show(Request $request, int $id)
+    /**
+     * @param int $id
+     * @return PostShowCollection
+     */
+    public function show(int $id): PostShowCollection
     {
-        return new PostShowCollection(Post::findorfail($id));
+        return new PostShowCollection(
+            Post::with('creator:id,username')
+                ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')->findorfail($id);
+
+        );
     }
 }

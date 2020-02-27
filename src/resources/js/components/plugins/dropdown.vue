@@ -96,7 +96,7 @@
                 switch: true,
                 body: document.getElementsByTagName('body')[0],
                 atr: document.getElementsByTagName('body')[0].getAttribute('data-theme'),
-                cookatr: Vue.$cookies.get('atr'),
+                cookatr: window.$cookies.get('atr'),
                 isEnabled: null,
                 isVisible: false,
                 focusedIndex: 0,

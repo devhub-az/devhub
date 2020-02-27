@@ -7,14 +7,14 @@
         <div class="layout_content">
             <div class="content_left" id="app">
                 <div class="header">
-                    <ul class="nav_posts">
+                    <div class="nav_posts">
                         <a href="{{ route('home') }}"
                            class="nav-posts__item @if(Request::is('top/*') || Request::is('/')) nav-posts__item-link_current @endif">
                             <span class="nav-posts__item-link">Ən yaxşı</span>
                         </a>
                         <a href="{{ route('all') }}"
                            class="nav-posts__item @if(Request::url() === route('all')) nav-posts__item-link_current @endif">
-                            <span class="nav-posts__item-link">Bütün yazılar</span>
+                            <span class="nav-posts__item-link">Bütün</span>
                         </a>
                         @auth
                             @if (Auth::user()->getUserIds() != null || Auth::user()->getHubsIds() != null)
@@ -28,7 +28,7 @@
                                 </a>
                             @endif
                         @endauth
-                    </ul>
+                    </div>
                 </div>
                 @if (Request::is('top/*') || Request::is('/'))
                     <div class="tabs__level tabs__level_bottom">
@@ -64,50 +64,50 @@
             </div>
 
             {{-- Right --}}
-            <div class="content_right">
-                <div class="default-block custom-new-post">
-                    <strong>Yeni məqalə yazmağa başla 💬✨</strong>
-                    <p>
-                        Təcrübəniz ilcə bölüşün, mükafat alın və ya sadəcə əylənin.
-                    </p>
-                    <a href="/forums/-/create-thread"
-                       class="button--cta button button--icon button--icon--write rippleButton rippleButton">
-                        <span class="btn btn-primary btn-a">
-                            Paylaşmaq
-                        </span>
-                        <div class="ripple-container"></div>
-                    </a>
-                </div>
-                <div id="default-block" class="default-block default-block_sidebar">
-                    <div class="default-block__header">
-                        <h3 class="default-block__header-title">Ən izləninən hablar</h3>
-                    </div>
+{{--            <div class="content_right">--}}
+{{--                <div class="default-block custom-new-post">--}}
+{{--                    <strong>Yeni məqalə yazmağa başla 💬✨</strong>--}}
+{{--                    <p>--}}
+{{--                        Təcrübəniz ilcə bölüşün, mükafat alın və ya sadəcə əylənin.--}}
+{{--                    </p>--}}
+{{--                    <a href="/forums/-/create-thread"--}}
+{{--                       class="button--cta button button--icon button--icon--write rippleButton rippleButton">--}}
+{{--                        <span class="btn btn-primary btn-a">--}}
+{{--                            Paylaşmaq--}}
+{{--                        </span>--}}
+{{--                        <div class="ripple-container"></div>--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div id="default-block" class="default-block default-block_sidebar">--}}
+{{--                    <div class="default-block__header">--}}
+{{--                        <h3 class="default-block__header-title">Ən izləninən hablar</h3>--}}
+{{--                    </div>--}}
 
-                    <div class="default-block__content">
-                        <ul>
-                            @foreach ($top_followed_hubs as $hub)
-                                <li class="hubs-list">
-                                    <img class="list-hubs__hub-image-block"
-                                         src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
-                                    <div class="list-hubs__obj-body">
-                                        <div class="block-hubs__title-link">
-                                            <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
-                                        <div class="list-hubs__desc">
-                                            <div class="hubs-desc">
-                                                {{ $hub->description[\App::getLocale()] }}
-                                            </div>
-                                            <div class="hubs-stats">
-                                                <i class="icon feather icon-users"></i>
-                                                İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
+{{--                    <div class="default-block__content">--}}
+{{--                        <ul>--}}
+{{--                            @foreach ($top_followed_hubs as $hub)--}}
+{{--                                <li class="hubs-list">--}}
+{{--                                    <img class="list-hubs__hub-image-block"--}}
+{{--                                         src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">--}}
+{{--                                    <div class="list-hubs__obj-body">--}}
+{{--                                        <div class="block-hubs__title-link">--}}
+{{--                                            <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>--}}
+{{--                                        <div class="list-hubs__desc">--}}
+{{--                                            <div class="hubs-desc">--}}
+{{--                                                {{ $hub->description[\App::getLocale()] }}--}}
+{{--                                            </div>--}}
+{{--                                            <div class="hubs-stats">--}}
+{{--                                                <i class="icon feather icon-users"></i>--}}
+{{--                                                İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
 

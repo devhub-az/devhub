@@ -2,13 +2,29 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=576, user-scalable=no"/>
+    <meta name="viewport" content="initial-scale=1, user-scalable=1, width=device-width">
+    <meta name="viewport" content="width=576"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta name="description" content="@yield('description')"/>
+    <meta name="description"
+          content="@yield('description', 'DevHub Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf qrupudur.')"/>
     <meta name="keywords" content="@yield('keywords')"/>
+    <link rel="canonical" href="{{ URL::to('/') }}">
+
+    <link rel="preload" as="font" type="font/otf"
+          href="{{ asset('./fonts/MontDemo-Heavy.otf') }}" crossorigin>
+    <link rel="preload" as="font" type="font/woff2"
+          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-100.woff2') }}" crossorigin>
+    <link rel="preload" as="font" type="font/woff2"
+          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-700.woff2') }}" crossorigin>
+    <link rel="preload" as="font" type="font/woff2"
+          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-italic.woff2') }}" crossorigin>
+    <link rel="preload" as="font" type="font/woff2"
+          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-regular.woff2') }}" crossorigin>
+
+    <link rel="preload" href="{{ mix('js/app.js') }}" as="script">
 
     <title>@yield('title', 'DevHub') | DevHub</title>
 
@@ -29,9 +45,6 @@
     {{--    <script type="text/javascript" src="{{ asset('js/Markdown.Editor.js') }}"></script>--}}
     {{--    <script src="{{ asset('js/prettify.js') }}"></script>--}}
     {{--    <script src="{{ asset('js/Markdown.Extra.js') }}"></script>--}}
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,400i,700,700i&display=swap&subset=cyrillic"
-          rel="stylesheet" media="print" onload="this.media='all'"/>
 </head>
 
 <body data-theme="{{ \Cookie::get('atr') ?? 'default' }}">
@@ -51,43 +64,41 @@
 {{-- Footer --}}
 @include('include.footer')
 
-<script src="{{ mix('js/app.js') }}" async="async"></script>
+<script src="{{ mix('js/app.js') }}" async></script>
 {{--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>--}}
 
 @yield('scripts')
-{{--<script>--}}
-{{--    $('.ui.dropdown').dropdown();--}}
+<script>
+    var stickymessage = stickybits('.header-message');
 
-{{--    var stickymessage = stickybits('.header-message');--}}
+    // $("#scroll_to_top").on("click", function () {
+    // $("#scroll_to_top").on("click", function () {
+    //     $('html, body').animate({
+    //         scrollTop: 0
+    //     }, 600);
+    // })};
 
-{{--    // $("#scroll_to_top").on("click", function () {--}}
-{{--    // $("#scroll_to_top").on("click", function () {--}}
-{{--    //     $('html, body').animate({--}}
-{{--    //         scrollTop: 0--}}
-{{--    //     }, 600);--}}
-{{--    // })};--}}
-
-{{--    function search() {--}}
-{{--        const input = document.getElementById("form_search");--}}
-{{--        const icon = document.getElementById("search-icon");--}}
-{{--        const nav = document.getElementById("navbar-links");--}}
-{{--        const search_input = document.getElementById("search_input");--}}
-
-{{--        nav.style.display = "none";--}}
-{{--        input.style.display = "flex";--}}
-{{--        icon.style.display = "none";--}}
-{{--        search_input.focus();--}}
-{{--    }--}}
-
-{{--    function closeSearch() {--}}
-{{--        const input = document.getElementById("form_search");--}}
-{{--        const icon = document.getElementById("search-icon");--}}
-{{--        const nav = document.getElementById("navbar-links");--}}
-
-{{--        nav.removeAttribute("style");--}}
-{{--        input.removeAttribute("style");--}}
-{{--        icon.removeAttribute("style");--}}
-{{--    }--}}
-{{--</script>--}}
+    // function search() {
+    //     const input = document.getElementById("form_search");
+    //     const icon = document.getElementById("search-icon");
+    //     const nav = document.getElementById("navbar-links");
+    //     const search_input = document.getElementById("search_input");
+    //
+    //     nav.style.display = "none";
+    //     input.style.display = "flex";
+    //     icon.style.display = "none";
+    //     search_input.focus();
+    // }
+    //
+    // function closeSearch() {
+    //     const input = document.getElementById("form_search");
+    //     const icon = document.getElementById("search-icon");
+    //     const nav = document.getElementById("navbar-links");
+    //
+    //     nav.removeAttribute("style");
+    //     input.removeAttribute("style");
+    //     icon.removeAttribute("style");
+    // }
+</script>
 </body>
 </html>

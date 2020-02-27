@@ -22,12 +22,6 @@
 	<link rel="stylesheet" href="{{ mix('css/login.css') }}" media="print" onload="this.media='all'">
 	@yield('css')
 
-	{{--    <script type="text/javascript" src="{{ asset('js/Markdown.Converter.js') }}"></script>--}}
-	{{--    <script type="text/javascript" src="{{ asset('js/Markdown.Sanitizer.js') }}"></script>--}}
-	{{--    <script type="text/javascript" src="{{ asset('js/Markdown.Editor.js') }}"></script>--}}
-	{{--    <script src="{{ asset('js/prettify.js') }}"></script>--}}
-	{{--    <script src="{{ asset('js/Markdown.Extra.js') }}"></script>--}}
-
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400,400i,700,700i&display=swap&subset=cyrillic"
 		  rel="stylesheet" media="print" onload="this.media='all'"/>
 
@@ -39,7 +33,7 @@
 		@yield('main')
 	</div>
 	
-	<script src="{{ mix('js/login.js') }}"></script>
+	<script src="{{ mix('js/login.js') }}" async="async"></script>
 	@yield('scripts')
 
 </body>

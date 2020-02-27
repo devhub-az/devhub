@@ -14,7 +14,7 @@
         <div class="post-content__item">
             <div class="post-content__header">
                 <div class="post-title">
-                    <h1>{{ post.title }}</h1>
+                    <h2>{{ post.title }}</h2>
                 </div>
                 <div class="post-header__right">
                     <div class="post__time">

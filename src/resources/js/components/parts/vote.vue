@@ -2,7 +2,7 @@
     <div class="post-votes" :aria-label="posts.votes_sum + ':  ↑ ' + [posts.upvotes === 0 ? '0' : posts.upvotes ] + ' ↓ ' + [posts.downvotes === 0 ? '0' :posts.downvotes]" data-balloon-pos="left">
         <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.upvoted}"
               @click="upvote(posts.id)"/>
-        <span id="rating" :style="{color: colorStatus}" class="rating">
+        <span :style="{color: colorStatus}" class="rating">
             {{ posts.votes }}
         </span>
         <span class="mdi mdi-thumb-down-outline" :class="{downvoted: posts.downvoted}"

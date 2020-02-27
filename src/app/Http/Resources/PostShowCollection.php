@@ -1,62 +1,76 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Resources;
 
-use App\Models\Comment;
-use App\Models\Hub;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Mews\Purifier\Purifier;
+use App\Models\Hub;
+use Auth;
 use Parsedown;
-use Illuminate\Support\Facades\Auth;
+use Purifier;
 
 class PostShowCollection extends JsonResource
 {
     /**
+     * TODO profile image add
      * Transform the resource collection into an array.
      *
+     * @param $request
      * @return array
      */
     public function toArray($request)
     {
         $parsedown = new Parsedown();
+        $body      = Purifier::clean($parsedown->text($this->body));
 
         return [
             'id'             => $this->id,
             'title'          => $this->name,
-            'body'           => \Purifier::clean($parsedown->text($this->body)),
+            'body'           => $body,
             'creator'        => $this->creator->username,
             'profile_image'  => '', // $this->getFirstMediaUrl('avatars'),
-            'votes'          => $this->rating(),
-            'votes_sum'      => $this->votes()->count(),
-            'upvotes'        => $this->upvotes(),
-            'downvotes'      => $this->downvotes(),
-            'tags'           => new HubsCollection(Hub::whereIn('id',
-                $this->getHubsIdsAttribute())->withCount(['hubFollowers', 'posts'])->get()),
-            'comments_count' => $this->comments()->count(),
+            'votes'          => $this->upvoters_count - $this->downvoters_count,
+            'votes_sum'      => $this->voters_count,
+            'upvotes'        => $this->upvoters_count,
+            'downvotes'      => $this->downvoters_count,
+            'tags'           => new HubsCollection(
+                Hub::whereIn(
+                    'id',
+                    $this->getHubsIdsAttribute()
+                )->withCount(['followers as followers_count', 'posts'])->get()
+            ),
+            'comments_count' => $this->comments_count,
             'comments'       => $this->comments()->get(),
-            'views'          => $this->views->count(),
+            'views'          => $this->views_count,
             'created_at'     => $this->created_at,
-            'read_time'      => $this->readTime($this->body),
+            'read_time'      => $this->readTime($body),
             'upvoted'        => $this->statusCheck('upvote'),
             'downvoted'      => $this->statusCheck('downvote'),
             'favorite'       => $this->statusCheck('favorites'),
-            'favorites'      => $this->favorites->count(),
+            'favorites'      => $this->bookmarkers_count,
         ];
     }
 
-    public function statusCheck($status)
+    /**
+     * @param $status
+     * @return bool
+     */
+    public function statusCheck($status): bool
     {
         if (Auth::check()) {
             switch ($status) {
                 case 'upvote':
-                    return $this->postIsVoted(Auth::user()) === 'upvoted';
+                    return (bool) $this->isUpvotedBy(Auth::user()->id);
                 case 'downvote':
-                    return $this->postIsVoted(Auth::user()) === 'downvoted';
+                    return (bool) $this->isDownvotedBy(Auth::user()->id);
                 case 'favorites':
-                    return $this->postIsFollowing(Auth::user()) === 1;
+                    return (bool) $this->isBookmarkedBy(Auth::user()->id);
+                default:
+                    return false;
             }
         }
-        return null;
+
+        return false;
     }
 
     /**
@@ -65,7 +79,7 @@ class PostShowCollection extends JsonResource
      */
     public function readTime(string $text): string
     {
-        $word = str_word_count(strip_tags($text));
+        $word    = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);
 
         return $minutes . ' dəqiqə';

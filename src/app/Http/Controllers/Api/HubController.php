@@ -51,7 +51,7 @@ class HubController extends Controller
     public function hubs(Request $request)
     {
         $query = $this->hubs->orderBy($request->column, $request->order);
-        $hubs = $query->paginate($request->per_page);
+        $hubs = $query->withCount('posts as post_count')->with('description')->paginate($request->per_page);
 
         return HubCollection::collection($hubs);
     }

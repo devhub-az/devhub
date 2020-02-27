@@ -24,7 +24,7 @@
                         </a>
                         <vote :posts="post.data" :auth_check="auth_check"/>
                     </div>
-                    <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data" :auth_check="auth_check"/>
+<!--                    <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data" :auth_check="auth_check"/>-->
                     <div class="post-content__body" v-html="post.data.body_short">
                     </div>
                     <div class="post-content__footer">
@@ -42,9 +42,9 @@
                             </span>
                             <favorite :post="post.data" :auth_check="auth_check"/>
                             <span class="footer_item">
-                                    <a href="#" style="color: inherit">
+                                    <span style="color: inherit">
                                         <i class="ellipsis horizontal icon"/>
-                                    </a>
+                                    </span>
                                 </span>
                         </div>
                         <div class="balloon"

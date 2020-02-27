@@ -9,7 +9,8 @@
 <!--            </span>-->
 <!--        </span>-->
         <div v-for="hub in hubs" v-if="!loading"
-             class="list-hubs__hub" :id="hub.id + '_block'" :style="'border-left: 3px solid rgb(' + hub.border + ')'">
+             class="list-hubs__hub" :id="hub.id + '_block'">
+<!--             :style="'border-left: 3px solid rgb(' + hub.border + ')'"-->
             <img :id="hub.id" v-if="hub.logo" class="list-hubs__hub-image" v-lazy="'/' + hub.logo" alt="">
             <img :id="hub.id" v-if="!hub.logo" class="list-hubs__hub-image" src="/images/empty/code.png"
                  alt="">
@@ -44,6 +45,7 @@
 </template>
 
 <script>
+
     export default {
         props: {
             fetchUrl: {type: String, required: true},

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Repository;
 
@@ -11,12 +12,13 @@ use Illuminate\Database\Eloquent\Collection;
 class ConversationRepository
 {
 
-    private $user;
-    private $message;
+    private User    $user;
+
+    private Message $message;
 
     public function __construct(User $user, Message $message)
     {
-        $this->user = $user;
+        $this->user    = $user;
         $this->message = $message;
     }
 
@@ -26,17 +28,20 @@ class ConversationRepository
             ->select('username', 'id', 'about')
             ->where('id', '!=', $userId)
             ->get();
+
         return $conversations;
     }
 
     public function createMessage(string $content, int $from, int $to)
     {
-        return $this->message->newQuery()->create([
-            'content'    => $content,
-            'from_id'    => $from,
-            'to_id'      => $to,
-            'created_at' => now()
-        ]);
+        return $this->message->newQuery()->create(
+            [
+                'content'    => $content,
+                'from_id'    => $from,
+                'to_id'      => $to,
+                'created_at' => now(),
+            ]
+        );
     }
 
     public function getLastMessage(int $userId)
@@ -52,9 +57,13 @@ class ConversationRepository
         return $this->message->newQuery()
             ->whereRaw("((from_id = $from AND to_id = $to) OR (from_id = $to AND to_id = $from))")
             ->orderBy('created_at', 'desc')
-            ->with([
-                'user' => function($query) { return $query->select('username', 'id');}
-            ]);
+            ->with(
+                [
+                    'user' => static function ($query) {
+                        return $query->select('username', 'id');
+                    },
+                ]
+            );
     }
 
     /**
@@ -72,7 +81,7 @@ class ConversationRepository
             ->pluck('count', 'from_id');
     }
 
-    public function readAllFrom(int $from, int $to)
+    public function readAllFrom(int $from, int $to): int
     {
         return $this->message->newQuery()
             ->where('from_id', $from)

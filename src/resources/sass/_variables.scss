@@ -4,6 +4,8 @@
     --background-paper: #fff;
     --background-tertiary: #fafbfc;
 
+    --background-header: #fafbfc;
+
     //Typography
     --text-black-primary: rgba(0, 0, 0, 0.87);
     --text-black-secondary: #757575;
@@ -62,7 +64,9 @@
     //Background
     --background-default: #121212;
     --background-paper: #202020;
-    --background-tertiary: rgba(43,43,43,1);
+    --background-tertiary: #757575;
+
+    --background-header: rgba(43,43,43,1);
 
     --background: #f9f9fb;
 
@@ -75,7 +79,7 @@
     --text-black-secondary: hsla(0,0%,100%,.5);
     --text-black-disabled: rgba(255, 255, 255, 0.3);
 
-    --color-primary-main: #648dae;
+    --color-primary-main: #85b6de;
     --color-primary-main-button: #2371c1;
     --color-primary-light: #a6d4fa;
     --color-primary-dark: #648dae;

@@ -87,41 +87,21 @@ class PostController extends Controller
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
+        $userId = Auth::user();
         $voteStatus = $request->get('status');
-        $vote = PostVote::where('post_id', $request->get('id'))->where('user_id', Auth::user()->id);
-        $postVoteCount = $vote->count();
         $transaction = false;
-        if ($postVoteCount === 1 && isset($voteStatus)) {
-            $vote = $vote->firstOrFail();
+        if (isset($voteStatus)) {
             switch ($voteStatus) {
                 case 'upvote':
-                    $vote->status = '1';
+                    $userId->upvote($post);
                     break;
                 case 'downvote':
-                    $vote->status = '0';
+                    $userId->downvote($post);
                     break;
             }
-            $transaction = true;
-        } elseif ($postVoteCount === 0 && isset($voteStatus)) {
-            switch ($voteStatus) {
-                case 'upvote':
-                    $voteValue = '1';
-                    break;
-                case 'downvote':
-                    $voteValue = '0';
-                    break;
-            }
-            $vote = new PostVote([
-                'post_id' => $request->get('id'),
-                'user_id' => Auth::user()->id,
-                'status'  => $voteValue,
-            ]);
             $transaction = true;
         } elseif (!isset($voteStatus)) {
-            $vote = PostVote::where([
-                'post_id' => $request->get('id'),
-                'user_id' => Auth::user()->id,
-            ]);
+            $userId->cancelVote($post);
             $transaction = 'delete';
         }
         foreach ($post->hubs as $hub) {
@@ -130,17 +110,15 @@ class PostController extends Controller
         }
         $post->creator->rating += $request->get('change_rating');
         if ($transaction === true) {
-            $vote->save();
             $post->creator->save();
         } elseif ($transaction === 'delete') {
-            $vote->delete();
             $post->creator->save();
         }
 
         return response()->json([
             'transaction'        => $transaction,
             'isset($voteStatus)' => isset($voteStatus),
-            'count'              => $postVoteCount,
+            'count'              => $post->voters()->count(),
             'success'            => 'success',
             'status'             => $request->get('status'),
             'post_id'            => $request->get('id'),
@@ -168,6 +146,7 @@ class PostController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws \Exception
      */
     public function addFavorite(Request $request): JsonResponse
     {
@@ -175,6 +154,23 @@ class PostController extends Controller
             'id' => 'required|int',
         ]);
         $share = Post::findOrFail($request->get('id'));
+        if (\Auth::user()){
+            $user = \Auth::user();
+            if (isset($share) && !$user->hasBookmarked($share)){
+                $user->bookmark($share);
+                return response()->json(['success' => 'success'], 200);
+            }else {
+                if ($user->hasBookmarked($share)) {
+                    $user->unbookmark($share);
+
+                    return response()->json(['delete' => 'delete'], 200);
+                }
+            }
+        }
+
+
+
+
         if (isset($share) && !$share->postIsFollowing(Auth::user())) {
             $share->favorites()->create([
                 'follower_id'  => Auth::user()->id,

@@ -47,7 +47,7 @@ class PostsTableSeeder extends Seeder
     {
         Post::truncate();
 
-        foreach (range(0, 10000) as $i) {
+        foreach (range(0, 100) as $i) {
             $article = Post::create([
                 'author_id' => $this->faker->numberBetween(1, 49),
                 'name'      => $this->sentences(1, true),

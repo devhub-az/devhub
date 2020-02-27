@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <button
+        <span
                 class="flex items-center"
                 style="background: none;"
                 @click="toggleVisibility"
@@ -12,8 +12,8 @@
                 v-if="count == 0"
         >
             <span class="mdi mdi-bell badge"></span>
-        </button>
-        <button
+        </span>
+        <span
                 class="flex items-center"
                 style="background: none;"
                 @click="toggleVisibility"
@@ -25,7 +25,7 @@
                 v-if="count > 0"
         >
             <span class="mdi mdi-bell badge" :data-badge="count"></span>
-        </button>
+        </span>
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"
                 class="notif-menu">

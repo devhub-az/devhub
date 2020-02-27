@@ -19,8 +19,14 @@
     export default {
         name: "favorite",
         props: ['post', 'auth_check'],
+        data: function () {
+            return {
+                loading: false
+            }
+        },
         methods: {
             favorite: function (id) {
+                this.loading = true;
                 if (this.auth_check)
                     axios.post('/post/favorite/' + id, {
                         id: id,

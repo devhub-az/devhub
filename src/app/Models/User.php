@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Http\Traits\Can\CanBeFollowed;
+use App\Http\Traits\Can\CanBookmark;
+use App\Http\Traits\Can\CanFollow;
+use App\Http\Traits\Can\CanVote;
 use App\Http\Traits\PermissionManager;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, PermissionManager;
+    use Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote;
 
     protected $visible = [
         'username',

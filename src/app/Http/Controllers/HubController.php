@@ -10,6 +10,7 @@ use App\Models\HubFollows;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class HubController extends Controller
@@ -56,7 +57,7 @@ class HubController extends Controller
     public function index(): View
     {
         $top_hubs = new HubsCollection(Hub::orderBy('rating', 'DESC')->take(5)->get());
-        $top_followed_hubs = new HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count',
+        $top_followed_hubs = new HubsCollection(Hub::withCount('followers as followers_count')->orderBy('followers_count',
             'desc')->take(5)->get());
         return view('pages.hubs.hubs', [
             'top_hubs' => $top_hubs,
@@ -67,26 +68,22 @@ class HubController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
+     * @throws \Exception
      */
     public function follow(Request $request): JsonResponse
     {
+        $userId = Auth::user();
         $request->validate([
             'id' => 'required|int',
         ]);
         $hub = Hub::findOrFail($request->get('id'));
-        if (isset($hub) && !$hub->hubIsFollowing(\Auth::user())) {
-            $hub->favorites()->create([
-                'following_id' => $request->get('id'),
-                'follower_id' => \Auth::user()->id,
-            ]);
+        if (isset($hub) && !$hub->isFollowedBy($userId)) {
+            $userId->follow($hub);
 
             return response()->json(['success' => 'success'], 200);
         }
-        if ($hub->hubIsFollowing(\Auth::user())) {
-            $hub->favorites()->where([
-                'follower_id' => \Auth::user()->id,
-                'following_id' => $request->get('id'),
-            ])->delete();
+        if ($hub->isFollowedBy($userId)) {
+            $userId->unfollow($hub);
 
             return response()->json(['delete' => 'delete'], 200);
         }

@@ -1,8 +1,8 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Resources;
 
-use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Hub;
 use Auth;
@@ -22,46 +22,52 @@ class PostCollection extends JsonResource
     public function toArray($request)
     {
         $parsedown = new Parsedown();
+        dd($this);
+        $body      = Purifier::clean($parsedown->text($this->body));
 
         return [
             'data' => [
                 'id'             => $this->id,
                 'title'          => $this->name,
-                'body_short'     => \Str::words(Purifier::clean($parsedown->text($this->body)), 100, '…'),
-                'body'           => \Purifier::clean($parsedown->text($this->body)),
-                'creator'        => new UserCollection(User::where('id',
-                    $this->author_id)->select('username')->first()),
+                'body_short'     => \Str::words($body, 100, '…'),
+                'body'           => $body,
+                'creator'        => new UserCollection($this->creator),
                 'profile_image'  => '', // $this->getFirstMediaUrl('avatars'),
-                'votes'          => $this->rating,
-                'votes_sum'      => $this->votes,
-                'upvotes'        => $this->upvotes,
-                'downvotes'      => $this->downvotes,
-                'tags'           => new HubsCollection(Hub::select('name')->whereIn('id',
-                    $this->getHubsIdsAttribute())->get()),
+                'votes'          => $this->upvoters_count - $this->downvoters_count,
+                'votes_sum'      => $this->voters_count,
+                'upvotes'        => $this->upvoters_count,
+                'downvotes'      => $this->downvoters_count,
+                'tags'           => new HubsCollection(
+                    Hub::whereIn(
+                        'id',
+                        $this->getHubsIdsAttribute()
+                    )->select('id', 'name')->get()
+                ),
                 'comments_count' => $this->comments_count, //Comment::where('post_id', $this->id)->count(),
-//                'views'          => $this->views->count(),
+                'views'          => $this->views_count,
                 'created_at'     => $this->created_at,
-                'read_time'      => $this->readTime($this->body),
+                'read_time'      => $this->readTime($body),
                 'upvoted'        => $this->statusCheck('upvote'),
                 'downvoted'      => $this->statusCheck('downvote'),
                 'favorite'       => $this->statusCheck('favorites'),
-                'favorites'      => $this->favorites,
+                'favorites'      => $this->bookmarkers_count,
             ],
         ];
     }
 
     /**
      * @param string $text
-     * @param int $maxLength
+     * @param int    $maxLength
      * @return string
      */
-    public function shorten(string $text, int $maxLength)
+    public function shorten(string $text, int $maxLength): string
     {
         $words = explode(' ', $text);
 
         if (count($words) > $maxLength) {
             return implode(' ', array_slice($words, 0, $maxLength)) . '...';
         }
+
         return $text;
     }
 
@@ -69,18 +75,22 @@ class PostCollection extends JsonResource
      * @param $status
      * @return bool
      */
-    public function statusCheck($status)
+    public function statusCheck($status): bool
     {
         if (Auth::check()) {
             switch ($status) {
                 case 'upvote':
-                    return $this->postIsVoted('upvote',Auth::user()) === 'upvoted';
+                    return (bool) $this->isUpvotedBy(Auth::user()->id);
                 case 'downvote':
-                    return $this->postIsVoted('downvote',Auth::user()) === 'downvoted';
+                    return (bool) $this->isDownvotedBy(Auth::user()->id);
                 case 'favorites':
-                    return $this->postIsFollowing(Auth::user()) === true;
+                    return (bool) $this->isBookmarkedBy(Auth::user()->id);
+                default:
+                    return false;
             }
         }
+
+        return false;
     }
 
     /**
@@ -89,7 +99,7 @@ class PostCollection extends JsonResource
      */
     public function readTime(string $text)
     {
-        $word = str_word_count(strip_tags($text));
+        $word    = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);
 
         return $minutes . ' dəqiqə';

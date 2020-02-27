@@ -21,22 +21,19 @@ class HubCollection extends JsonResource
             'id'                  => $this->id,
             'logo'                => strtolower($this->logo),
             'rating'              => $this->rating,
-//            'description'         => $this->whenLoaded(description[\App::getLocale()]),
+            'description'         => $this->description[\App::getLocale()],
             'name'                => $this->name,
-//            'border'              => strtolower($this->logo) ? ColorThief::getColor('./' . strtolower($this->logo)) : ColorThief::getColor('.//images/empty/code.png'),
-            'hub_followers_count' => \Numeric::number_format_short(count($this->hubFollowers)),
-            'follower_check'      => $this->statusCheck('following'),
-            'posts_count'         => $this->whenLoaded('posts'),
+            'hub_followers_count' => $this->followers ?? \Numeric::number_format_short($this->whenLoaded($this->followers->count())),
+            'follower_check'      => $this->statusCheck(),
+            'posts_count'         => $this->post_count,
         ];
     }
 
-    public function statusCheck($status)
+    public function statusCheck()
     {
         if (Auth::check()) {
-            switch ($status) {
-                case 'following':
-                    return $this->hubIsFollowing(Auth::user()) == 'following';
-            }
+            return $this->isFollowedBy(Auth::user()->id);
         }
+        return false;
     }
 }

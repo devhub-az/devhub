@@ -18,8 +18,7 @@ class HomeController extends Controller
      */
     public function postsApiRoute(Request $request)
     {
-        $top_followed_hubs = new HubsCollection(Hub::withCount('hubFollowers')->orderBy('hub_followers_count',
-            'desc')->take(6)->get());
+        $top_followed_hubs = new HubsCollection(Hub::take(6)->get());
         switch ($request->path()) {
             case '/':
                 session(['main-page' => '/']);
