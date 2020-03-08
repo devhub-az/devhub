@@ -16,17 +16,25 @@ class UserController extends Controller
         return UserCollection::collection(User::paginate(5));
     }
 
+    public function userFollowCheck(int $id)
+    {
+        return new UserCollection(User::findorfail($id));
+    }
+
     /**
      * @param int $id
      * @return PostsCollection
      */
     public function posts(int $id): PostsCollection
     {
-        return new PostsCollection(Post::where('author_id', $id)
-            ->orderBy('created_at', 'DESC')
-            ->with('creator:id,username')
-            ->with('comments:body')
-            ->take(50)
-            ->paginate(5));
+        return new PostsCollection(
+            Post::where('author_id', $id)
+                ->orderByRaw('(upvoters_count - downvoters_count) DESC')
+                ->orderBy('created_at', 'DESC')
+                ->with('creator:id,username,avatar')
+                ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
+                ->take(50)
+                ->paginate(5)
+        );
     }
 }

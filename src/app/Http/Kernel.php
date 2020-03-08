@@ -40,6 +40,8 @@ class Kernel extends HttpKernel
             \Spatie\ResponseCache\Middlewares\CacheResponse::class,
 
             \App\Http\Middleware\Localization::class,
+            \App\Http\Middleware\MinifyHtml::class,
+            \JacobBennett\Http2ServerPush\Middleware\AddHttp2ServerPush::class,
             \App\Http\Middleware\MarkNotificationAsRead::class,
         ],
 
@@ -57,6 +59,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth'          => \App\Http\Middleware\Authenticate::class,
+        'admin'         => \App\Http\Middleware\Admin::class,
         'auth.basic'    => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'bindings'      => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

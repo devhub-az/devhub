@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -14,7 +14,7 @@ class Post extends Model
 {
     use CanBeVoted, CanBeBookmarked;
 
-    protected $table    = 'posts';
+    protected $table = 'posts';
 
     protected $fillable = [
         'id',

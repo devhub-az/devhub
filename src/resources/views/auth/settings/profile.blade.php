@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('layouts.layout')
 
 @section('main')
     <div class="layout_body" id="app">

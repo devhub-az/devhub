@@ -3,7 +3,7 @@
         <button
                 href="#"
                 class="flex items-center"
-                style="background: none;"
+                style="background: none; padding: 0"
                 @click="toggleVisibility"
                 @keydown.space.exact.prevent="toggleVisibility"
                 @keydown.esc.exact="hideDropdown"
@@ -11,8 +11,8 @@
                 @keydown.up.exact.prevent="startArrowKeys"
                 @keydown.down.exact.prevent="startArrowKeys"
         >
-            <img :src="'/images/profile/new_user/' + (Math.floor(Math.random() * 31) + '.svg')" style="width: 32px"
-                 alt="">
+            <img :src="'/images/profile/' + user.avatar" style="width: 30px;border-radius: 2px;"
+                 alt="Profile image">
         </button>
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"
@@ -32,7 +32,7 @@
                 </li>
                 <li>
                     <a
-                            :href="'/@'+ auth.username +'/settings/profile'"
+                            :href="'/@'+ user.username +'/settings/profile'"
                             @keydown.tab.exact="focusNext(false)"
                             @keydown.shift.tab="focusPrevious(false)"
                             @keydown.up.exact.prevent="focusPrevious(true)"
@@ -67,7 +67,7 @@
                         <span class="ml-2"><i class="mdi mdi-bookmark-check"></i> Seçilmişlər</span>
                     </a>
                 </li>
-                <div class="line"></div>
+                <div class="line"/>
                 <li @click.prevent="logout">
                     <a
                             href="#"
@@ -100,17 +100,16 @@
                 isEnabled: null,
                 isVisible: false,
                 focusedIndex: 0,
-                auth: this.user,
                 isActive: true,
             }
         },
-        created: function (){
-            if (!this.cookatr){
+        created: function () {
+            if (!this.cookatr) {
                 this.cookatr = this.atr
             }
             if (this.cookatr === 'dark')
                 this.isEnabled = true
-            else if(this.cookatr === 'default')
+            else if (this.cookatr === 'default')
                 this.isEnabled = false
         },
         methods: {
@@ -120,8 +119,7 @@
                     this.atr = 'default'
                     this.cookatr = 'default'
                     Vue.$cookies.set('atr', 'default')
-                }
-                else if(this.cookatr === 'default'){
+                } else if (this.cookatr === 'default') {
                     this.body.setAttribute("data-theme", 'dark')
                     this.atr = 'dark'
                     this.cookatr = 'dark'
@@ -181,7 +179,7 @@
         transform: translateY(-12px);
     }
 
-    .drop-grid{
+    .drop-grid {
         padding: 10px 0;
     }
 
@@ -240,7 +238,8 @@
             margin-left: 3px;
         }
     }
-    .line{
+
+    .line {
         border-top: 1px solid var(--text-black-secondary);
         margin: 0 16px;
     }

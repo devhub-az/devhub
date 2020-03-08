@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('layouts.layout')
 
 @section('title'){{ $post['title'] }} @stop
 

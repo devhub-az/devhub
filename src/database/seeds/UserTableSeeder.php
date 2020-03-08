@@ -18,18 +18,12 @@ class UserTableSeeder extends Seeder
     {
         User::truncate();
 
-        User::create([
+        $user = User::create([
             'username' => 'admin',
             'email'    => 'admin@admin.com',
             'password' => Hash::make('admin12345'),
         ]);
-
-//        User::create([
-//            'name'         => 'Serafim',
-//            'email'        => 'nesk@xakep.ru',
-//            'password'     => 'password',
-//            'is_confirmed' => true,
-//        ]);
+        $user->assign('admin');
 
         foreach (range(0, 50) as $i) {
             $user = User::create([
@@ -37,7 +31,6 @@ class UserTableSeeder extends Seeder
                 'email'    => $this->faker->email,
                 'password' => Hash::make((string)random_int(0, PHP_INT_MAX)),
             ]);
-            echo ' - ' . $i . ': ' . $user->username . "\n";
         }
     }
 }

@@ -6,7 +6,7 @@
         </div>
         <div class="posts">
             <div class="post-comment" v-if="comments" v-for="comment in comments">
-                <img class="comment-avatar" src="/images/profile/deadpool.gif" alt="">
+                <img class="comment-avatar" :src="'/images/profile/' + comment.author.avatar" alt="">
                 <div class="comment-body">
                     <div class="flex">
                         <a class="comment-author"
@@ -17,9 +17,9 @@
                         <div class="comment-date">
                             {{ comment.created_at | moment('DD MMMM, H:mm') }}
                         </div>
-                        <!--                    <div class="comment-date">-->
-                        <!--                        {{ Carbon\Carbon::parse($comment->created_at)->locale('az')->isoformat('d MMMM Y H:mm') }}-->
-                        <!--                    </div>-->
+<!--                    <div class="comment-date">-->
+<!--                        {{ Carbon\Carbon::parse($comment->created_at)->locale('az')->isoformat('d MMMM Y H:mm') }}-->
+<!--                    </div>-->
                     </div>
                     <div class="comment-text">{{ comment.body }}</div>
                 </div>
@@ -27,7 +27,7 @@
             <hr v-if="auth_check">
             <form method="post" action="" v-if="auth_check">
                 <div class="post-comment">
-                    <img class="comment-avatar" src="/images/profile/deadpool.gif" alt="">
+                    <img class="comment-avatar" :src="'/images/profile/' + user.avatar" alt="">
                     <div class="comment-body">
                         <span class="comment-author">{{ user.username }}</span>
                         <textarea class="input comment-text" style="padding: 5px;" rows="4"

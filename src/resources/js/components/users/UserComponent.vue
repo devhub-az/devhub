@@ -26,7 +26,7 @@
                     REYTINQ
                 </small>
             </div>
-            <user-follow-button :user="user" :auth_check="auth_check"></user-follow-button>
+            <user-follow-button :user="user" :id="user.id" :auth_check="auth_check"></user-follow-button>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getUsers()">

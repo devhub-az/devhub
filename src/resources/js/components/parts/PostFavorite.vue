@@ -1,16 +1,22 @@
 <template>
     <span class="footer_item">
         <span class="star tooltip footer_item" @click="favorite(post.id)"
-              v-if="!post.favorite" aria-label="Seçilmişlərə əlavə et"
+              v-if="!post.favorite && !loading" aria-label="Seçilmişlərə əlavə et"
               data-balloon-pos="down">
-            <span v-if="!post.favorite" class="mdi mdi-bookmark-plus"/>
-            {{ post.favorites }} Seçilmiş
+            <i v-if="!post.favorite" class="mdi mdi-bookmark-plus"/>
+            {{ post.favorites }} <span class="text">Seçilmiş</span>
         </span>
         <span class="star tooltip footer_item" @click="favorite(post.id)"
-              v-if="post.favorite" aria-label="Seçilmişlərdən cixartmag"
+              v-if="post.favorite && !loading" aria-label="Seçilmişlərdən cixartmag"
               data-balloon-pos="down">
-            <span v-if="post.favorite" class="mdi mdi-bookmark-check saved"/>
-            {{ post.favorites }} Seçilmiş
+            <i v-if="post.favorite" class="mdi mdi-bookmark-check saved"/>
+            {{ post.favorites }} <span class="text">Seçilmiş</span>
+        </span>
+        <span class="star tooltip footer_item"
+              v-if="loading" aria-label="Seçilmişlərdən cixartmag"
+              data-balloon-pos="down">
+            <i class="mdi mdi-loading mdi-spin"></i>
+            {{ post.favorites }} <span class="text">Gözləyin</span>
         </span>
     </span>
 </template>
@@ -47,6 +53,7 @@
                                     text: '<div class="notification-image"><i class="mdi mdi-bookmark-remove"></i></div> Paylaşma seçilmişlərdən silindi',
                                 }).show();
                             }
+                            this.loading = false;
                         })
                         .catch(error => {
                             if (error.response.status === 401)
@@ -59,13 +66,15 @@
                                     type: 'error',
                                     text: '<div class="notification-image"><i class="mdi mdi-minus-box-outline"/></div> Qanunsuz əməliyyat',
                                 }).show();
-
+                            this.loading = false;
                         });
-                else
+                else {
                     new Noty({
                         type: 'success',
                         text: '<div class="notification-image"><i class="mdi mdi-account-box"></i></div> <div class="text">Bu funksiyanı istifadə etmək üçün <a href="/register" class="notification-link">qeydiyyatdan keçin</a></div>',
                     }).show();
+                    this.loading = false;
+                }
             },
         }
     }

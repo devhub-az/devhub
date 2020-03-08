@@ -15,7 +15,7 @@ Route::get('/top/week', 'HomeController@postsApiRoute')->name('top.week');
 Route::get('/top/month', 'HomeController@postsApiRoute')->name('top.month');
 Route::get('/all', 'HomeController@postsApiRoute')->name('all');
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'activity']], static function () {
     Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
     Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
         ->middleware('can:talkTo,user')
         ->name('conversations.show');
 
-    Route::prefix('saved')->group(function (){
+    Route::prefix('saved')->group(function () {
         Route::get('/posts', 'Auth\FavoriteController@indexPosts')->name('saved-posts');
 
 
@@ -83,6 +83,7 @@ Route::prefix('api')->group(static function () {
     /*
      * Users Api
      */
+    Route::get('/users/{id}/follow_check', 'Api\UserController@userFollowCheck');
     Route::get('users/all', 'Api\UserController@users');
 
     /*
@@ -92,41 +93,54 @@ Route::prefix('api')->group(static function () {
 });
 
 
-Route::prefix('post')->group(function () {
-    Route::get('/add', 'PostController@create')->name('create_post');
-    Route::get('/{id}', 'PostController@show')->name('show');
-    Route::post('/{post}', 'PostController@updateViews');
-    Route::post('/favorite/{id}', 'PostController@addFavorite');
+Route::group(['middleware' => ['activity']], static function () {
+    Route::prefix('post')->group(static function () {
+        Route::get('/add', 'PostController@create')->name('create_post');
+        Route::get('/{id}', 'PostController@show')->name('show');
+        Route::post('/{post}', 'PostController@updateViews');
+        Route::post('/favorite/{id}', 'PostController@addFavorite');
+    });
+
+    Route::prefix('hubs')->group(static function () {
+        Route::get('/', 'HubController@index')->name('hubs-list');
+        Route::get('/{id}', 'HubController@show');
+        Route::get('/{id}/top/week', 'HubController@show');
+        Route::get('/{id}/top/month', 'HubController@show');
+        Route::get('/{id}/all', 'HubController@show');
+        Route::post('/follow/{id}', 'HubController@follow');
+    });
+
+    Route::get('search-result', 'SearchController@index')->name('search-result');
+    Route::post('search-result', 'SearchController@index');
+
+    Route::prefix('users')->group(static function () {
+        Route::get('/', 'UserController@userList')->name('users-list');
+        Route::post('{profileId}/follow', 'ProfileController@follow');
+        Route::get('@{username}/posts', 'UserController@showPosts')->name('user_posts');
+        Route::get('@{username}', 'UserController@showInfo')->name('user_info');
+    });
+
+    Route::prefix('comment')->group(static function () {
+        Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
+        Route::post('/favorite/{id}', 'CommentController@favorite');
+    });
+
+    Route::resource('posts', 'PostController');
+
+    Route::get('about_us', static function () {
+        return view('pages.about_us');
+    });
 });
 
-Route::prefix('hubs')->group(function () {
-    Route::get('/', 'HubController@index')->name('hubs-list');
-    Route::get('/{id}', 'HubController@show');
-    Route::get('/{id}/top/week', 'HubController@show');
-    Route::get('/{id}/top/month', 'HubController@show');
-    Route::get('/{id}/all', 'HubController@show');
-    Route::post('/follow/{id}', 'HubController@follow');
-});
+Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::post('abilities/destroy', 'AbilitiesController@massDestroy')->name('abilities.massDestroy');
+    Route::resource('abilities', 'AbilitiesController');
+    Route::delete('roles/destroy', 'RolesController@massDestroy')->name('roles.massDestroy');
+    Route::resource('roles', 'RolesController');
+    Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
+    Route::resource('users', 'UsersController');
 
-Route::get('search-result', 'SearchController@index')->name('search-result');
-Route::post('search-result', 'SearchController@index');
-
-Route::prefix('users')->group(function () {
-    Route::get('/', 'UserController@userList')->name('users-list');
-    Route::post('{profileId}/follow', 'ProfileController@followUser')->name('user.follow');
-    Route::post('{profileId}/un_follow', 'ProfileController@unFollowUser')->name('user.un_follow');
-    Route::get('@{username}', 'UserController@show')->name('user_profile');
-});
-
-Route::prefix('comment')->group(function () {
-    Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
-    Route::post('/favorite/{id}', 'CommentController@favorite');
-});
-
-Route::resource('posts', 'PostController');
-
-Route::get('about_us', function () {
-    return view('pages.about_us');
 });
 
 // FUTURE

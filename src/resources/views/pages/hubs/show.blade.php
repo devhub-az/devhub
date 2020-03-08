@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('layouts.layout')
 
 @section('title'){{ $hub['name'] }} @stop
 
@@ -11,7 +11,7 @@
         <div class="hub-block">
             <div class="hub-page__header">
                 @if (isset($hub['logo']))
-                    <img class="list-hubs__hub-image" src="{{ asset($hub['logo']) }}" alt="">
+                    <img class="list-hubs__hub-image" src="{{ asset(strtolower($hub['logo'])) }}" alt="">
                 @else
                     <img class="list-hubs__hub-image" src="{{ asset('/images/empty/code.png') }}" alt="">
                 @endif

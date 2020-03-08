@@ -23,9 +23,10 @@ class HubCollection extends JsonResource
             'rating'              => $this->rating,
             'description'         => $this->description[\App::getLocale()],
             'name'                => $this->name,
-            'hub_followers_count' => $this->followers ?? \Numeric::number_format_short($this->whenLoaded($this->followers->count())),
+            'hub_followers_count' => $this->followers->count() > 0 ?
+                \Numeric::number_format_short($this->followers->count()) : '0',
             'follower_check'      => $this->statusCheck(),
-            'posts_count'         => $this->post_count,
+            'posts_count'         => $this->posts_count,
         ];
     }
 
@@ -34,6 +35,7 @@ class HubCollection extends JsonResource
         if (Auth::check()) {
             return $this->isFollowedBy(Auth::user()->id);
         }
+
         return false;
     }
 }

@@ -159,12 +159,10 @@ class PostController extends Controller
             if (isset($share) && !$user->hasBookmarked($share)){
                 $user->bookmark($share);
                 return response()->json(['success' => 'success'], 200);
-            }else {
-                if ($user->hasBookmarked($share)) {
-                    $user->unbookmark($share);
+            }elseif ($user->hasBookmarked($share)) {
+                $user->unbookmark($share);
 
-                    return response()->json(['delete' => 'delete'], 200);
-                }
+                return response()->json(['delete' => 'delete'], 200);
             }
         }
 

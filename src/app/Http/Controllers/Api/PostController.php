@@ -1,12 +1,14 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
 use App\Http\Resources\PostShowCollection;
+use App\Models\Hub;
 use App\Models\Post;
+use App\Services\PostService;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -16,9 +18,9 @@ class PostController extends Controller
      */
     private static int $count;
 
-    private int        $day   = 1;
+    private int        $day = 1;
 
-    private int        $week  = 7;
+    private int        $week = 7;
 
     private int        $month = 30;
 
@@ -46,25 +48,14 @@ class PostController extends Controller
      */
     public function posts(): PostsCollection
     {
-        return \Cache::remember(
-            'posts_top',
-            60,
-            static function () {
-                return new PostsCollection(
-                    Post::where(
-                        'created_at',
-                        '>=',
-                        \DB::raw('NOW() - INTERVAL ' . self::$count . ' DAY')
-                    )
-                        ->orderByRaw('(upvoters_count - downvoters_count) DESC')
-                        ->orderBy('created_at', 'DESC')
-                        ->with('creator:id,username')
-                        ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
-                        ->take(50)
-                        ->paginate(5)
-                );
-            }
-        );
+        return new PostsCollection(PostService::getPosts()
+            ->orderByRaw('(upvoters_count - downvoters_count) DESC')
+            ->orderBy('created_at',
+                'DESC')->where(
+                'created_at',
+                '>=',
+                \Carbon\Carbon::now()->subDays(self::$count)->startOfDay()
+            )->take(50)->paginate(5));
     }
 
     /**
@@ -76,13 +67,7 @@ class PostController extends Controller
             'posts',
             60,
             static function () {
-                return new PostsCollection(
-                    Post::orderBy('created_at', 'DESC')
-                        ->with('creator:id,username')
-                        ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
-                        ->take(50)
-                        ->paginate(5)
-                );
+                return new PostsCollection(PostService::getPosts('created_at')->take(50)->paginate(5));
             }
         );
     }
@@ -94,13 +79,8 @@ class PostController extends Controller
     {
         return new PostsCollection(
             Post::orderBy('created_at', 'DESC')
-                ->whereIn('author_id', \Auth::user()->getUserIds())
-                ->orWhereHas(
-                    'hubs',
-                    static function ($query) {
-                        $query->whereIn('hubs.id', \Auth::user()->getHubsIds());
-                    }
-                )
+                ->followings(Hub::class)
+                ->followings()
                 ->take(50)
                 ->paginate(5)
         );
@@ -114,7 +94,7 @@ class PostController extends Controller
     {
         return new PostShowCollection(
             Post::with('creator:id,username')
-                ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')->findorfail($id);
+                ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')->findorfail($id)
 
         );
     }

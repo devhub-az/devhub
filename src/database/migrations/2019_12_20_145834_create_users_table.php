@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->string('password', 191);
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();
-            $table->integer('role_level')->unsigned()->default(1)->index('users_role_level_foreign');
         });
     }
 

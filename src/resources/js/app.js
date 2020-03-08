@@ -1,14 +1,24 @@
 console.log(
     '      Using DevHub at work? Work for DevHub.\n')
 
+console.log("%c+",
+    'font-size: 1px; ' +
+    'padding: 150px 87px; ' +
+    'line-height: 0; ' +
+    'background: url("https://cs.pikabu.ru/assets/images/dev.png"); ' +
+    'background-size: 175px 300px; ' +
+    'margin: 0 auto;' +
+    'color: transparent;')
+
 require('./bootstrap');
 
 window.Vue = require('vue');
 window.moment = require('moment-mini');
 import VueCookies from 'vue-cookies'
+
 Vue.use(VueCookies)
 
-import "@mdi/font/css/materialdesignicons.min.css"
+// import "@mdi/font/css/materialdesignicons.min.css"
 
 window.Noty = require('noty');
 
@@ -17,7 +27,7 @@ window.moment.locale('az');
 //
 // window.parse = require('./parser');
 //
-Noty.overrideDefaults( {
+Noty.overrideDefaults({
     layout: 'topLeft',
     dismissQueue: true, // [boolean] If you want to use queue feature set this true
     force: false, // [boolean] adds notification to the beginning of queue when set to true

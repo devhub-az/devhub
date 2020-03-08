@@ -1,16 +1,16 @@
 <template>
     <div>
-<!--        <span v-for="column in columns" :key="column" @click="sortByColumn(column)"-->
-<!--              class="table-head">-->
-<!--            {{ column | columnHead }}-->
-<!--            <span v-if="column === sortedColumn">-->
-<!--                    <i v-if="order === 'asc' " class="fas fa-arrow-up"></i>-->
-<!--                    <i v-else class="fas fa-arrow-down"></i>-->
-<!--            </span>-->
-<!--        </span>-->
+        <span v-for="column in columns[1]" :key="column" @click="sortByColumn(column)"
+              class="table-head">
+            {{ column }}
+            <span v-if="column === sortedColumn">
+                    <i v-if="order === 'asc' " class="fas fa-arrow-up"></i>
+                    <i v-else class="fas fa-arrow-down"></i>
+            </span>
+        </span>
         <div v-for="hub in hubs" v-if="!loading"
              class="list-hubs__hub" :id="hub.id + '_block'">
-<!--             :style="'border-left: 3px solid rgb(' + hub.border + ')'"-->
+            <!--             :style="'border-left: 3px solid rgb(' + hub.border + ')'"-->
             <img :id="hub.id" v-if="hub.logo" class="list-hubs__hub-image" v-lazy="'/' + hub.logo" alt="">
             <img :id="hub.id" v-if="!hub.logo" class="list-hubs__hub-image" src="/images/empty/code.png"
                  alt="">
@@ -18,11 +18,15 @@
                 <div class="list-hubs__obj-body">
                     <div class="list-hubs__title-link">{{ hub.name }}</div>
                     <div class="list-hubs__desc">{{ hub.description}}</div>
+                    <div class="list-hubs__posts">
+                        <i class="mdi mdi-file-document-box-multiple-outline"></i>
+                        Paylaşım {{ hub.posts_count }}
+                    </div>
                 </div>
             </a>
             <div class="list-hubs__stats">
-                <div class="list-hubs__stats-value">{{ hub.posts_count }}</div>
-                <small>Paylaşım</small>
+                <div class="list-hubs__stats-value">{{ hub.hub_followers_count }}</div>
+                <small>IZLƏYƏNLƏR</small>
             </div>
             <div class="list-hubs__stats">
                 <div class="list-hubs__stats-value">{{ hub.rating }}</div>
@@ -96,10 +100,10 @@
             },
             sortByColumn(column) {
                 if (column === this.sortedColumn) {
-                    this.order = (this.order === 'desc') ? 'asc' : 'desc'
+                    this.order = (this.order === 'asc') ? 'desc' : 'asc'
                 } else {
                     this.sortedColumn = column
-                    this.order = 'asc'
+                    this.order = 'desc'
                 }
                 this.getHubs()
             }

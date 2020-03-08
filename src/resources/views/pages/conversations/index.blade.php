@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('layouts.layout')
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/conversation.css') }}">

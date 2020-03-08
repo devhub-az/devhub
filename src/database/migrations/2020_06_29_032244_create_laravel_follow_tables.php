@@ -27,7 +27,6 @@ class CreateLaravelFollowTables extends Migration
 
             $table->unsignedInteger($userForeignKey);
 
-
             $table->bigInteger('followable_id')->unsigned();
             $table->string('followable_type')->index();
             $table->string('relation')->default('follow')->comment('follow/like/subscribe/favorite/upvote/downvote');

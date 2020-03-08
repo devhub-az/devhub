@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Auth;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
@@ -14,48 +14,24 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['unFollowUser']]);
+        $this->middleware('auth', ['only' => ['follow']]);
     }
 
-    /**
-     * Follow the user.
-     *
-     * @param $profileId
-     *
-     * @return RedirectResponse|Redirector
-     */
-    public function followUser(int $profileId)
+    public function follow(Request $request): JsonResponse
     {
-        $user = User::find($profileId);
-        if (!$user) {
-            return back()->with('error', 'User does not exist.');
+        $userId = Auth::user();
+        $followUser = User::findOrFail($request->get('id'));
+        if (isset($followUser) && !$followUser->isFollowedBy($userId)) {
+            $userId->follow($followUser);
+
+            return response()->json(['success' => 'success'], 200);
+        }
+        if ($followUser->isFollowedBy($userId)) {
+            $userId->unfollow($followUser);
+
+            return response()->json(['delete' => 'delete'], 200);
         }
 
-        if (!Auth::check()) {
-            return redirect('login');
-        }
-
-        $user->followers()->attach(auth()->user()->id);
-
-        return response()->json(['success' => 'success'], 200);
-    }
-
-    /**
-     * Follow the user.
-     *
-     * @param $profileId
-     *
-     * @return RedirectResponse
-     */
-    public function unFollowUser(int $profileId): RedirectResponse
-    {
-        $user = User::find($profileId);
-
-        if (!$user) {
-            return redirect()->back()->with('error', 'User does not exist.');
-        }
-        $user->followers()->detach(auth()->user()->id);
-
-        return response()->json(['delete' => 'delete'], 200);
+        return response()->json(['error' => 'error'], 401);
     }
 }

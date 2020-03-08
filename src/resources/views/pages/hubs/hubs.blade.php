@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('layouts.layout')
 
 @section('title')Hablar @stop
 
@@ -19,20 +19,23 @@
         </div>
         <div class="layout_content">
             <div class="content_left" id="app">
-{{--                <div class="ui category search form-hub__search">--}}
-{{--                    <div class="ui icon input header_search">--}}
-{{--                        <label>--}}
-{{--                            <input class="prompt search" type="text" placeholder="Hub axtar">--}}
-{{--                        </label>--}}
-{{--                        <i class="icon feather icon-search"></i>--}}
-{{--                    </div>--}}
-{{--                    <div class="results"></div>--}}
-{{--                </div>--}}
+                {{--                <div class="ui category search form-hub__search">--}}
+                {{--                    <div class="ui icon input header_search">--}}
+                {{--                        <label>--}}
+                {{--                            <input class="prompt search" type="text" placeholder="Hub axtar">--}}
+                {{--                        </label>--}}
+                {{--                        <i class="icon feather icon-search"></i>--}}
+                {{--                    </div>--}}
+                {{--                    <div class="results"></div>--}}
+                {{--                </div>--}}
                 <hubs-list
-                    fetch-url="{{ route('hubs-list-api') }}"
-                    locale="{{ App::getLocale() }}"
-                    @auth :auth_check="true" @endauth
-                    :columns="['name', 'posts_count', 'rating']"
+                        fetch-url="{{ route('hubs-list-api') }}"
+                        locale="{{ App::getLocale() }}"
+                        @auth :auth_check="true" @endauth
+                        :columns="[
+                            ['name', 'posts_count', 'followers_count', 'rating'],
+                            ['Ad', 'Paylaşım', 'IZLƏYƏNLƏR', 'Rating']
+                            ]"
                 ></hubs-list>
             </div>
             {{-- Right --}}
@@ -46,7 +49,7 @@
                         <ul>
                             @foreach ($top_hubs as $hub)
                                 <a href="/hubs/{{ $hub['id'] ?? '' }}">
-                                    <li style="display: grid;grid-template-columns: 23% 75%;gap: 3%;margin-bottom: 12px;">
+                                    <li style="display: grid;grid-template-columns: 74px auto;gap: 3%;margin-bottom: 12px;">
                                         <img class="list-hubs__hub-image-block"
                                              src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
                                         <div class="list-hubs__obj-body">
@@ -55,7 +58,7 @@
                                             </div>
                                             <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                                 <br>
                                                 <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-star"></i> Reyting {{ $hub['rating'] ?? '' }}
@@ -76,7 +79,7 @@
                     <div class="default-block__content">
                         <ul>
                             @foreach ($top_followed_hubs as $hub)
-                                <li style="display: grid;grid-template-columns: 23% 75%;gap: 3%;margin-bottom: 12px;">
+                                <li style="display: grid;grid-template-columns: 74px auto;  gap: 3%;margin-bottom: 12px;">
                                     <img class="list-hubs__hub-image-block"
                                          src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
                                     <div class="list-hubs__obj-body">
@@ -84,7 +87,7 @@
                                             <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
                                         <div class="list-hubs__desc">
                                             <span
-                                                style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
+                                                    style="font-size: 11px; color: #848d95;">{{ $hub->description[\App::getLocale()] }}</span>
                                             <br>
                                             <span style="font-size: 11px; color: #3b4045;">
                                                 <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}
@@ -102,45 +105,45 @@
 @endsection
 
 @section('scripts')
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.compatibility.js"></script>--}}
-{{--    <script src="{{ asset('js/search.min.js') }}"></script>--}}
-{{--    <script>--}}
-{{--        function axiosHubs() {--}}
-{{--            return axios.get('/api/hubs/all').then(response => {--}}
-{{--                return response.data;--}}
-{{--            });--}}
-{{--        }--}}
+    {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.compatibility.js"></script>--}}
+    {{--    <script src="{{ asset('js/search.min.js') }}"></script>--}}
+    {{--    <script>--}}
+    {{--        function axiosHubs() {--}}
+    {{--            return axios.get('/api/hubs/all').then(response => {--}}
+    {{--                return response.data;--}}
+    {{--            });--}}
+    {{--        }--}}
 
-{{--        $('.ui.search').settings.api = {--}}
-{{--            'hubs' : '/api/hubs/all'--}}
-{{--        };--}}
+    {{--        $('.ui.search').settings.api = {--}}
+    {{--            'hubs' : '/api/hubs/all'--}}
+    {{--        };--}}
 
-{{--        $(document).ready(function() {--}}
-{{--                $('.ui.search')--}}
-{{--                    .search({--}}
-{{--                        type: 'category',--}}
-{{--                        apiSettings:{--}}
-{{--                            action: 'hubs'--}}
-{{--                        },--}}
-{{--                        searchDelay: 500,--}}
-{{--                        fields: {--}}
-{{--                            image: 'logo',--}}
-{{--                            title: 'name',--}}
-{{--                        },--}}
-{{--                        searchFields: [--}}
-{{--                            'name'--}}
-{{--                        ],--}}
-{{--                        fullTextSearch: false,--}}
-{{--                        onSelect(result) {--}}
-{{--                            window.location.href = '/hubs/' + result.id;--}}
-{{--                        },--}}
-{{--                        templates: {--}}
-{{--                            message: function message() {--}}
-{{--                                return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';--}}
-{{--                            },--}}
-{{--                        }--}}
-{{--                    });--}}
-{{--        });--}}
+    {{--        $(document).ready(function() {--}}
+    {{--                $('.ui.search')--}}
+    {{--                    .search({--}}
+    {{--                        type: 'category',--}}
+    {{--                        apiSettings:{--}}
+    {{--                            action: 'hubs'--}}
+    {{--                        },--}}
+    {{--                        searchDelay: 500,--}}
+    {{--                        fields: {--}}
+    {{--                            image: 'logo',--}}
+    {{--                            title: 'name',--}}
+    {{--                        },--}}
+    {{--                        searchFields: [--}}
+    {{--                            'name'--}}
+    {{--                        ],--}}
+    {{--                        fullTextSearch: false,--}}
+    {{--                        onSelect(result) {--}}
+    {{--                            window.location.href = '/hubs/' + result.id;--}}
+    {{--                        },--}}
+    {{--                        templates: {--}}
+    {{--                            message: function message() {--}}
+    {{--                                return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';--}}
+    {{--                            },--}}
+    {{--                        }--}}
+    {{--                    });--}}
+    {{--        });--}}
 
-{{--    </script>--}}
+    {{--    </script>--}}
 @endsection

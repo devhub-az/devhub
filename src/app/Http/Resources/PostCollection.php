@@ -22,7 +22,6 @@ class PostCollection extends JsonResource
     public function toArray($request)
     {
         $parsedown = new Parsedown();
-        dd($this);
         $body      = Purifier::clean($parsedown->text($this->body));
 
         return [

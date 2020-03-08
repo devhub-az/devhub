@@ -28,18 +28,18 @@
         </div>
         <div class="post-content__footer">
             <div class="post-content__footer-stats">
-                    <span class="footer_item">
-                        <span class="mdi mdi-eye-outline"/> <i class="mdi mdi-spin mdi-loading"/> Baxışların sayı
-                    </span>
                 <span class="footer_item">
-                        <span class="mdi mdi-comment-text-multiple-outline"/> <i class="mdi mdi-spin mdi-loading"/> Şerh
-                    </span>
+                    <span class="mdi mdi-eye-outline"/> <i class="mdi mdi-spin mdi-loading"/> Baxışların sayı
+                </span>
                 <span class="footer_item">
-                        <span class="mdi mdi-share"/> Paylaş
-                    </span>
+                    <span class="mdi mdi-comment-text-multiple-outline"/> <i class="mdi mdi-spin mdi-loading"/> Şerh
+                </span>
                 <span class="footer_item">
-                        <span class="mdi mdi-bookmark"/> <i class="mdi mdi-spin mdi-loading"/> Seçilmiş
-                    </span>
+                    <span class="mdi mdi-bookmark"/> <i class="mdi mdi-spin mdi-loading"/> Seçilmiş
+                </span>
+                <span class="footer_item">
+                    <span class="mdi mdi-share"/> Paylaş
+                </span>
             </div>
             <div class="progress default" style="width: 100%"></div>
         </div>

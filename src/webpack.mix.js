@@ -16,6 +16,14 @@ mix
         outputStyle: 'compressed',
     })
     // CSS
+    .sass('resources/sass/animate.scss', 'public/css', {
+        sourceMap: true,
+        outputStyle: 'compressed',
+    })
+    .sass('resources/sass/balloon.scss', 'public/css', {
+        sourceMap: true,
+        outputStyle: 'compressed',
+    })
     .sass('resources/sass/app.scss', 'public/css', {
         sourceMap: true,
         outputStyle: 'compressed',
@@ -29,7 +37,6 @@ mix
         outputStyle: 'compressed',
     })
     .sass('resources/sass/about.scss', 'public/css', {
-        sourceMap: true,
         outputStyle: 'compressed',
     })
     .sass('resources/sass/saved.scss', 'public/css', {

@@ -5,9 +5,10 @@
             <div v-if="postsNotEmpty">
                 <div class="post-content__item" v-for="post in posts">
                     <header class="post__meta">
-                        <a v-bind:href="'/users/@' +post.data.creator.username" class="post__user-info user-info"
+                        <a v-bind:href="'/users/@' + post.data.creator.username" class="post__user-info user-info"
                            title="Paylaşmanın müəllifi">
-                            <img v-lazy="post.data.profile_image" alt="user avatar" class="user__avatar">
+                            <img :data-src="'/images/profile/' + post.data.creator.avatar" height="32" width="32"
+                                 alt="user avatar" class="user__avatar lazyload">
                             <span class="user-info__nickname user-info__nickname_small">{{ '@' + post.data.creator.username }}</span>
                         </a>
                         <span class="post__time">
@@ -24,28 +25,24 @@
                         </a>
                         <vote :posts="post.data" :auth_check="auth_check"/>
                     </div>
-<!--                    <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data" :auth_check="auth_check"/>-->
+                    <!--                    <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data" :auth_check="auth_check"/>-->
                     <div class="post-content__body" v-html="post.data.body_short">
                     </div>
                     <div class="post-content__footer">
                         <div class="post-content__footer-stats">
                             <span class="footer_item">
-                                <span class="mdi mdi-eye-outline"/> {{ post.data.views }} Baxışların sayı
+                                <i class="mdi mdi-eye-outline"/> {{ post.data.views }} <span class="text">Baxışların sayı</span>
                             </span>
                             <span class="footer_item">
                                 <a :href="'/post/' + post.data.id + '/#comments'" class="post_comments_link">
-                                    <span class="mdi mdi-comment-text-multiple-outline"/> {{ post.data.comments_count }} Şerh
+                                    <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.data.comments_count }} <span
+                                        class="text">Şerh</span>
                                 </a>
                             </span>
-                            <span class="footer_item" @click="copy(post.data.id)" style="cursor: pointer;">
-                                <span class="mdi mdi-share"/> Paylaş
-                            </span>
                             <favorite :post="post.data" :auth_check="auth_check"/>
-                            <span class="footer_item">
-                                    <span style="color: inherit">
-                                        <i class="ellipsis horizontal icon"/>
-                                    </span>
-                                </span>
+                            <span class="footer_item" @click="copy(post.data.id)" style="cursor: pointer;">
+                                <i class="mdi mdi-share"/> <span class="text">Paylaş</span>
+                            </span>
                         </div>
                         <div class="balloon"
                              :aria-label="post.data.votes_sum + ' səs: ' + post.data.upvotes + ' plus ' + post.data.downvotes + ' minus'"

@@ -1,7 +1,8 @@
 <header class="layout__navbar">
     <div class="main-navbar">
-        <div class="main-navbar__section main-navbar__section_left">
-            <a class="logo" href="{{ session('main-page') ?? route('home') }}">DevHub <i class="icon devhub icon-beta-line"></i></a>
+        <div class="main-navbar__section">
+            <a href="javascript:void(0);" onclick="expand()" class="mdi mdi-menu"></a>
+            <a class="logo" href="{{ session('main-page') ?? route('home') }}">DevHub</a>
             <ul class="nav-links">
                 <li class="nav-links__item">
                     <a href="{{ session('main-page') ?? route('home') }}"
@@ -37,18 +38,18 @@
                 <a href="{{ route('login') }}" class="btn btn-outline btn-a">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qoşulmaq</a>
             @else
+                <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"
+                                       :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
 
-                <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}" :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
-
-{{--                <a href="{{ route('conversations') }}"><span class="mdi mdi-email badge"--}}
-{{--                                                             @if (Auth::user()->messagesNotificationsCount() > 0)--}}
-{{--                                                             data-badge="{{ Auth::user()->messagesNotificationsCount() }}"--}}
-{{--                    @endif/></a>--}}
+                {{--                <a href="{{ route('conversations') }}"><span class="mdi mdi-email badge"--}}
+                {{--                                                             @if (Auth::user()->messagesNotificationsCount() > 0)--}}
+                {{--                                                             data-badge="{{ Auth::user()->messagesNotificationsCount() }}"--}}
+                {{--                    @endif/></a>--}}
                 <a href="{{ route('create_post') }}" class="btn btn-primary">
                     Yazmaq
                 </a>
                 <div class="avatar-dropdown">
-                    <dropdown :user="{{Auth::User()}}" :fav="'{{route("saved-posts")}}'"></dropdown>
+                    <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"></dropdown>
                 </div>
             @endguest
         </div>

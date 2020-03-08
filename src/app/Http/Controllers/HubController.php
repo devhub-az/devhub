@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HubCollection;
 use App\Http\Resources\HubsCollection;
-use App\Models\Favorite;
 use App\Models\Hub;
-use App\Models\HubFollows;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -42,13 +40,17 @@ class HubController extends Controller
      */
     public function show(int $id): View
     {
-        $hub = new HubCollection(Hub::withCount('hubFollowers')->findOrFail($id));
-        return view('pages.hubs.show', [
-            'hub' => $hub,
-            'posts_count' => $hub->posts->count(),
-            'url' => $this->postsApiRoute($id),
-            'content' => $this->content,
-        ]);
+        $hub = new HubCollection(Hub::withCount('followers')->findOrFail($id));
+
+        return view(
+            'pages.hubs.show',
+            [
+                'hub'         => $hub,
+                'posts_count' => $hub->posts->count(),
+                'url'         => $this->postsApiRoute($id),
+                'content'     => $this->content,
+            ]
+        );
     }
 
     /**
@@ -56,13 +58,21 @@ class HubController extends Controller
      */
     public function index(): View
     {
-        $top_hubs = new HubsCollection(Hub::orderBy('rating', 'DESC')->take(5)->get());
-        $top_followed_hubs = new HubsCollection(Hub::withCount('followers as followers_count')->orderBy('followers_count',
-            'desc')->take(5)->get());
-        return view('pages.hubs.hubs', [
-            'top_hubs' => $top_hubs,
-            'top_followed_hubs' => $top_followed_hubs,
-        ]);
+        $top_hubs          = new HubsCollection(Hub::orderBy('rating', 'DESC')->take(5)->get());
+        $top_followed_hubs = new HubsCollection(
+            Hub::withCount('followers')->orderBy(
+                'followers_count',
+                'desc'
+            )->take(5)->get()
+        );
+
+        return view(
+            'pages.hubs.hubs',
+            [
+                'top_hubs'          => $top_hubs,
+                'top_followed_hubs' => $top_followed_hubs,
+            ]
+        );
     }
 
     /**
@@ -73,10 +83,7 @@ class HubController extends Controller
     public function follow(Request $request): JsonResponse
     {
         $userId = Auth::user();
-        $request->validate([
-            'id' => 'required|int',
-        ]);
-        $hub = Hub::findOrFail($request->get('id'));
+        $hub    = Hub::findOrFail($request->get('id'));
         if (isset($hub) && !$hub->isFollowedBy($userId)) {
             $userId->follow($hub);
 

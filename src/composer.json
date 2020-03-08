@@ -15,6 +15,7 @@
         "graham-campbell/markdown": "^11.0",
         "htmlmin/htmlmin": "^6.0",
         "jacobbennett/laravel-http2serverpush": "^4.0",
+        "jeremykenedy/laravel-logger": "^3.2",
         "ksubileau/color-thief-php": "^1.4",
         "kylekatarnls/laravel-carbon-2": "^1.0.0",
         "laravel/framework": "6.*",
@@ -25,6 +26,7 @@
         "mews/purifier": "3.*",
         "parsedown/laravel": "^1.1",
         "renatomarinho/laravel-page-speed": "^1.8",
+        "silber/bouncer": "v1.0.0-rc.7",
         "softonic/graphql-client": "^1.2",
         "spatie/laravel-responsecache": "^6.1",
         "webuni/commonmark-table-extension": "^1.0"

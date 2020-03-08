@@ -1,4 +1,4 @@
-@extends('front.login-layout')
+@extends('layouts.login-layout')
 
 @section('title')Login səhifəsi @stop
 

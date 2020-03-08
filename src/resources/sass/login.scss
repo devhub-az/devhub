@@ -15,21 +15,16 @@ body{
     min-height: 100vh;
 }
 
-@media screen and (min-width: 36em) {
+@media (min-width: 1281px) {
     .PageColumns {
         display: grid;
         grid-template-columns: 50% 50%;
     }
-}
-
-.PageColumns {
-    min-height: 100vh;
-    min-width: 100%;
 
     .PageColumn__left {
         background: var(--color-primary-main-button);
         color: #fff;
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -92,6 +87,15 @@ body{
             width: 100%;
         }
     }
+}
+
+.PageColumns {
+    min-height: 100vh;
+    min-width: 100%;
+
+    .PageColumn__left {
+        display: none;
+    }
 
     .PageColumn__right {
         display: flex;
@@ -99,11 +103,16 @@ body{
         justify-content: space-between;
         background: var(--background-default);
         grid-column: 2;
+        height: 100vh;
 
         .ColumnContainer {
             width: 85%;
-            max-width: 60%;
-            margin: 0 auto;
+            max-width: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            top: 50%;
         }
 
         &:before {

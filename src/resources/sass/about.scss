@@ -1,7 +1,3 @@
-body {
-    background: white;
-}
-
 .about__content {
     color: var(--color-black);
 
@@ -45,21 +41,97 @@ body {
 
             .about__logo {
                 vertical-align: middle;
-                font-family: MontDemo-Heavy;
+                font-family: MontDemo-Heavy, serif;
             }
         }
     }
 
-    .about__body{
+    .about__body {
         padding-left: 20px;
         padding-right: 20px;
-        width: 50%;
-        max-width: 100%;
+        width: 60%;
+        max-width: 80%;
         margin: 2em auto 2em;
-        line-height: 1.6;
 
-        .about__info_block{
-            margin: 1em 0;
+        hr {
+            border-top: var(--color-border);
         }
+
+        .about__info_block {
+            margin: 1em 0;
+
+            h2 {
+                color: var(--text-black-primary);
+                text-align: center;
+                margin-bottom: 1.5em;
+            }
+
+            .tour_desc_right {
+                display: grid;
+                grid-template-columns: 40% auto;
+            }
+
+            .tour_desc_left {
+                display: grid;
+                grid-template-columns: auto 40%;
+            }
+
+            .about__text {
+                color: var(--text-black-primary);
+            }
+
+            .tour_image_block_right {
+                overflow: hidden;
+                width: 100%;
+                position: relative;
+
+                &:before {
+                    z-index: 1;
+                    content: "";
+                    box-shadow: -15px 0px 15px -15px inset;
+                    height: 100%;
+                    position: absolute;
+                    width: 12px;
+                    right: 0;
+                }
+
+                .tour_image_right {
+                    position: relative;
+                    left: 40%;
+                }
+            }
+
+            .tour_image_block_left {
+                overflow: hidden;
+                width: 100%;
+                position: relative;
+
+                &:before {
+                    z-index: 1;
+                    content: "";
+                    box-shadow: 15px 1px 15px -15px inset;
+                    height: 100%;
+                    position: absolute;
+                    width: 15px;
+                }
+
+                .tour_image_left {
+                    position: relative;
+                    right: 40%;
+                }
+            }
+
+            .post-content__item {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1281px) {
+    .about__content .about__body {
+        width: unset !important;
+        max-width: unset !important;
     }
 }

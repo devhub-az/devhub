@@ -12,36 +12,39 @@ class MinifyHtml
      *
      * @param Request $request
      * @param \Closure $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-
-        /**
-         * @var Response
-         */
         $response = $next($request);
-
-        $contentType = $response->headers->get('Content-Type');
-        if (strpos($contentType, 'text/html') !== false) {
-            $response->setContent($this->minify($response->getContent()));
-        }
-
-        return $response;
+        return $this->html($response);
     }
 
-    public function minify($input)
+    public function html($response)
     {
-        $search = [
-            '/\>\s+/s',  // strip whitespaces after tags, except space
-            '/\s+</s',  // strip whitespaces before tags, except space
-        ];
-
+        $buffer = $response->getContent();
         $replace = [
-            '> ',
-            ' <',
+            '/<!--[^\[](.*?)[^\]]-->/s' => '',
+            "/<\?php/"                  => '<?php ',
+            "/\n([\S])/"                => '$1',
+            "/\r/"                      => '',
+            "/\n/"                      => '',
+            "/\t/"                      => '',
+            '/ +/'                      => ' ',
         ];
-
-        return preg_replace($search, $replace, $input);
+        if (false !== strpos($buffer, '<pre>')) {
+            $replace = [
+                '/<!--[^\[](.*?)[^\]]-->/s' => '',
+                "/<\?php/"                  => '<?php ',
+                "/\r/"                      => '',
+                "/>\n</"                    => '><',
+                "/>\s+\n</"                 => '><',
+                "/>\n\s+</"                 => '><',
+            ];
+        }
+        $buffer = preg_replace(array_keys($replace), array_values($replace), $buffer);
+        $response->setContent($buffer);
+        return $response;
     }
 }
