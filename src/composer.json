@@ -12,7 +12,7 @@
         "barryvdh/laravel-ide-helper": "^2.6",
         "elasticsearch/elasticsearch": "^7.5",
         "fideloper/proxy": "^4.0",
-        "graham-campbell/markdown": "^11.0",
+        "graham-campbell/markdown": "^12.0",
         "htmlmin/htmlmin": "^6.0",
         "jacobbennett/laravel-http2serverpush": "^4.0",
         "jeremykenedy/laravel-logger": "^3.2",
