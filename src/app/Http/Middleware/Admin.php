@@ -17,9 +17,6 @@ class Admin
     {
         $user = $request->user();
 
-        if (!$user || !$user->isAn('admin')){
-            abort('404');
-        }
-        return $next($request);
+        return $user && $user->isAn('admin') ? $next($request) : abort(404);
     }
 }

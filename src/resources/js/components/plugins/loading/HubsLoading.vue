@@ -9,10 +9,13 @@
                     <div class="list-hubs__desc MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                          style="width: 90%;  height: 1.2rem;">
                     </div>
+                    <div class="list-hubs__posts MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+                         style="width: 15%;  height: 1.2rem;">
+                    </div>
                 </div>
                 <div class="list-hubs__stats">
                     <div class="list-hubs__stats-value"><i class="mdi mdi-spin mdi-loading"/></div>
-                    <small>Paylaşım</small>
+                    <small>IZLƏYƏNLƏR</small>
                 </div>
                 <div class="list-hubs__stats">
                     <div class="list-hubs__stats-value"><i class="mdi mdi-spin mdi-loading"/></div>

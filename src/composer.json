@@ -14,6 +14,7 @@
         "fideloper/proxy": "^4.0",
         "graham-campbell/markdown": "^11.0",
         "htmlmin/htmlmin": "^6.0",
+        "intervention/image": "^2.5",
         "jacobbennett/laravel-http2serverpush": "^4.0",
         "jeremykenedy/laravel-logger": "^3.2",
         "ksubileau/color-thief-php": "^1.4",

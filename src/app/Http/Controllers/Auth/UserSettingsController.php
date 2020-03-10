@@ -35,6 +35,8 @@ class UserSettingsController extends Controller
 //            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 //        ]);
 
+        dd(request()->avatar);
+
         $user = \Auth::user();
 
         $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();

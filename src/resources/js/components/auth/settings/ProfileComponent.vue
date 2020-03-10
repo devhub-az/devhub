@@ -4,16 +4,21 @@
             <h4 class="settings__header-title">Profil məlumatları</h4>
         </div>
         <div class="settings__profile">
-<!--            <img class="rounded-circle" :src="'/storage/avatars/' + auth.avatar" />-->
-            <div class="form-group">
-                <input type="file"  v-on:change="onImageChange" class="form-control-file">
-                <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image should not be more than 2MB.</small>
-            </div>
-            <button type="submit" class="btn btn-primary"  @click="uploadImage">Submit</button>
-            <div class="settings__description">
-                <div class="settigns__user-name">{{ fields.name }} {{ fields.surname }} {{ '@' + auth.username }}</div>
-                <div class="settings__user-description">{{ fields.about }}</div>
-            </div>
+            <img class="rounded-circle" :src="'/images/profile/' + auth.avatar"/>
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input name="avatar" type="file" v-on:change="onImageChange" class="form-control-file"
+                           @loaded="onLoad">
+                    <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image
+                        should
+                        not be more than 2MB.</small>
+                </div>
+            </form>
+            <!--            <button type="submit" class="btn btn-primary" @click="uploadImage">Submit</button>-->
+        </div>
+        <div class="settings__description">
+            <div class="settigns__user-name">{{ fields.name }} {{ fields.surname }} {{ '@' + auth.username }}</div>
+            <div class="settings__user-description">{{ fields.about }}</div>
         </div>
         <form @submit.prevent="submit">
             <div class="form-group">
@@ -102,10 +107,31 @@
         },
         methods: {
             onImageChange(e) {
-                let files = e.target.files || e.dataTransfer.files;
-                if (!files.length)
-                    return;
-                this.createImage(files[0]);
+                if (!e.target.files.length) return;
+                let file = e.target.files[0];
+                let reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = e => {
+                    let src = e.target.result;
+
+                    this.$emit('loaded', {src, file});
+                };
+            },
+            onLoad(avatar) {
+                this.avatar = avatar.src;
+
+                this.persist(this.auth.avatar.file);
+            },
+            persist(avatar) {
+                let data = new FormData();
+
+                data.append('avatar', avatar);
+
+                axios.post('/@' + this.username + '/settings/avatar', {avatar: this.avatar}).then(response => {
+                    console.log(response);
+                });
+                axios.post(`/api/users/${this.user.name}/avatar`, data)
+                    .then(() => flash('Avatar uploaded!'));
             },
             createImage(file) {
                 let reader = new FileReader();
@@ -116,8 +142,9 @@
                 reader.readAsDataURL(file);
                 console.log(reader.readAsDataURL(file))
             },
-            uploadImage(){
-                axios.post('/@' + this.username + '/settings/avatar',{avatar: this.avatar}).then(response => {
+
+            uploadImage() {
+                axios.post('/@' + this.username + '/settings/avatar', {avatar: this.avatar}).then(response => {
                     console.log(response);
                 });
             },

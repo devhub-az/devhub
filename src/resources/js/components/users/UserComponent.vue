@@ -2,7 +2,7 @@
     <div>
         <div v-for="user in users" v-if="!loading"
              class="list-hubs__hub" :id="user.id">
-            <img :src="'images/profile/new_user/' + (Math.floor(Math.random() * 31) + '.svg')"
+            <img :src="'/images/profile/' + user.avatar"
                  class="list-hubs__hub-image" alt="User profile">
             <div class="list-hubs__obj-body">
                 <a :href="'users/@' + user.username">

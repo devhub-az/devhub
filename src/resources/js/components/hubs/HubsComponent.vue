@@ -43,7 +43,8 @@
             style="text-align: center; display: grid; grid-gap: 12px;">
             <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
             <h1 style="font-family: 'Nunito', sans-serif;"><span
-                    style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
+                    style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error
+            </h1>
         </ul>
     </div>
 </template>

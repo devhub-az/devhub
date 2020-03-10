@@ -642,6 +642,7 @@ a {
             h3 {
                 font-weight: bold;
                 margin: 0;
+                font-size: 24px;
             }
         }
     }
@@ -723,8 +724,8 @@ a {
 }
 
 .post-votes {
-    font-size: 200%;
-    max-height: 23px;
+    font-size: 1.5rem;
+    max-height: 2.5rem;
     line-height: 1.4;
     text-align: right;
     font-weight: bold;

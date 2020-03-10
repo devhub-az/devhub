@@ -5,7 +5,7 @@
     color: var(--color-app-text);
     border: 1px solid var(--color-border);
     border-radius: 4px;
-    background-color: var(--color-section-bg);
+    background-color: var(--background-paper);
     box-sizing: border-box;
 
     > div{
@@ -27,13 +27,13 @@
 
     .settings__profile{
         display: grid;
-        grid-template-columns: 64px auto;
-        gap: 12px;
+        grid-template-columns: 86px auto;
 
         img{
             height: 64px;
             width: 64px;
-            border-radius: 50%;
+            margin: 22px 12px;
+            border-radius: 4px;
         }
 
         .settings__description{
