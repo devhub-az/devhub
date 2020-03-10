@@ -29,11 +29,11 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
     <style>
-{{--        @php--}}
-{{--          include(public_path('css/app.css'));--}}
-{{--        @endphp--}}
+        @php
+            include(public_path('css/app.css'));
+        @endphp
     </style>
     @yield('css')
 
@@ -49,13 +49,13 @@
 {{-- Header --}}
 @include('include.header')
 
-{{--@if(session()->has('message'))--}}
-{{--    <div class="header-message">--}}
-{{--        <span>--}}
-{{--            Lütfən, hesabınızı qorumaq üçün parametrlərdə parolu dəyişdirin. Şifrə dəyişdirildikdən sonra bu mesaj yox olacaq.--}}
-{{--        </span>--}}
-{{--    </div>--}}
-{{--@endif--}}
+@if(Cookie::get('message') !== null)
+    <div class="header-message {{ Cookie::get('alert-class', 'alert-info') }}" onclick="">
+        <span>
+           {{ Cookie::get('message') }}
+        </span>
+    </div>
+@endif
 
 @yield('main')
 

@@ -49,7 +49,8 @@
                     Yazmaq
                 </a>
                 <div class="avatar-dropdown">
-                    <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"></dropdown>
+                    <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"
+                              :admin="{{Auth::user()->isAn('admin')}}"></dropdown>
                 </div>
             @endguest
         </div>

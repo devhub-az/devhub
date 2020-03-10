@@ -3,7 +3,6 @@
 @section('title')Müəlliflər @stop
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
     <link rel="stylesheet" href="{{ asset('css/users.css') }}">
 @stop
 

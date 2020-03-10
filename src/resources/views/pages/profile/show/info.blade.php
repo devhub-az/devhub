@@ -30,12 +30,12 @@
 
                 <div class="main-block">
                     <div class="main-header">
-                        <h3><i class="mdi mdi-worker"></i> İş təcrübəsi</h3>
+                        <h3><i class="mdi mdi-account-tie"></i> İş təcrübəsi</h3>
                         <a href="#">düzəltmək</a>
                     </div>
                     <div class="main-item">
                         <div class="main-item__header">
-                            <h4>Azer Cosmos</h4>
+                            <h4>AzerCosmos</h4>
                             <div class="main-item__years">
                                 Dec 1999 - Nov 2010 ({{ 2010-1999 . ' il' }})
                             </div>
@@ -113,7 +113,7 @@
                         <div class="user-info-blocks">
                             <div class="user-info-block">
                                 <div>
-                                    <i class="mdi mdi-worker"></i> Is yeri:
+                                    <i class="mdi mdi-account-tie"></i> Is yeri:
                                 </div>
                                 <div class="user-info-answer">
                                     DevHub

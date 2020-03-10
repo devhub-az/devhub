@@ -9,7 +9,7 @@
         <li class="tabs__item">
             <a href="{{ route('user_posts', $user->username) }}"
                class="tabs__link  {{ strpos(Route::currentRouteName(), 'user_posts') === 0 ? 'tabs__link_active' : '' }}">
-                <i class="mdi mdi-file-document-box-multiple-outline"></i>
+                <i class="mdi mdi-text-box-multiple"></i>
                 {{ \Numeric::number_format_short($user->posts->count()) }}
                 PAYLAŞMA
             </a>

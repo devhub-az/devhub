@@ -31,7 +31,6 @@ class PostCollection extends JsonResource
                 'body_short'     => \Str::words($body, 100, '…'),
                 'body'           => $body,
                 'creator'        => new UserCollection($this->creator),
-                'profile_image'  => '', // $this->getFirstMediaUrl('avatars'),
                 'votes'          => $this->upvoters_count - $this->downvoters_count,
                 'votes_sum'      => $this->voters_count,
                 'upvotes'        => $this->upvoters_count,
@@ -96,7 +95,7 @@ class PostCollection extends JsonResource
      * @param $text
      * @return string
      */
-    public function readTime(string $text)
+    public function readTime(string $text): string
     {
         $word    = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 use Silber\Bouncer\Database\Role;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreUsersRequest;
 use App\Http\Requests\Admin\UpdateUsersRequest;
@@ -15,7 +17,7 @@ class UsersController extends Controller
     /**
      * Display a listing of User.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function index()
     {
@@ -28,7 +30,7 @@ class UsersController extends Controller
     /**
      * Show the form for creating new User.
      *
-     * @return \Illuminate\Http\Response
+     * @return Factory|View
      */
     public function create()
     {
@@ -40,15 +42,17 @@ class UsersController extends Controller
     /**
      * Store a newly created User in storage.
      *
-     * @param  \App\Http\Requests\StoreUsersRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreUsersRequest $request
+     * @return RedirectResponse
      */
-    public function store(StoreUsersRequest $request)
+    public function store(StoreUsersRequest $request): RedirectResponse
     {
         $user = User::create($request->all());
 
-        foreach ($request->input('roles') as $role) {
-            $user->assign($role);
+        if ($request->input('roles')) {
+            foreach ($request->input('roles') as $role) {
+                $user->assign($role);
+            }
         }
 
         return redirect()->route('admin.users.index');
@@ -58,8 +62,8 @@ class UsersController extends Controller
     /**
      * Show the form for editing User.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Factory|View
      */
     public function edit($id)
     {
@@ -73,19 +77,21 @@ class UsersController extends Controller
     /**
      * Update User in storage.
      *
-     * @param  \App\Http\Requests\UpdateUsersRequest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateUsersRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(UpdateUsersRequest $request, $id)
+    public function update(UpdateUsersRequest $request, $id): RedirectResponse
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
         foreach ($user->roles as $role) {
             $user->retract($role);
         }
-        foreach ($request->input('roles') as $role) {
-            $user->assign($role);
+        if ($request->input('roles')) {
+            foreach ($request->input('roles') as $role) {
+                $user->assign($role);
+            }
         }
 
         return redirect()->route('admin.users.index');
@@ -102,10 +108,10 @@ class UsersController extends Controller
     /**
      * Remove User from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $user = User::findOrFail($id);
         $user->delete();
@@ -116,9 +122,9 @@ class UsersController extends Controller
     /**
      * Delete all selected User at once.
      *
-     * @param Request $request
+     * @return Response
      */
-    public function massDestroy(Request $request)
+    public function massDestroy(): Response
     {
         User::whereIn('id', request('ids'))->delete();
 

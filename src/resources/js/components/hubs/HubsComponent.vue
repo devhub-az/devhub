@@ -19,7 +19,7 @@
                     <div class="list-hubs__title-link">{{ hub.name }}</div>
                     <div class="list-hubs__desc">{{ hub.description}}</div>
                     <div class="list-hubs__posts">
-                        <i class="mdi mdi-file-document-box-multiple-outline"></i>
+                        <i class="mdi mdi-text-box-multiple"></i>
                         Paylaşım {{ hub.posts_count }}
                     </div>
                 </div>

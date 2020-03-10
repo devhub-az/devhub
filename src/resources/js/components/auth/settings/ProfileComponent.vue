@@ -4,7 +4,7 @@
             <h4 class="settings__header-title">Profil məlumatları</h4>
         </div>
         <div class="settings__profile">
-            <img class="rounded-circle" :src="'/images/profile/' + auth.avatar"/>
+            <img class="rounded-circle" :src="'/images/profile/' + auth.avatar" alt="profile image"/>
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <input name="avatar" type="file" v-on:change="onImageChange" class="form-control-file"

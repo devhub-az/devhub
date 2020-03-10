@@ -1,8 +1,7 @@
 <div class="profile__info">
     <div class="profile__header">
         <div class="background">
-            <div class="background__placeholder"
-            ></div>
+            <div class="background__placeholder"></div>
         </div>
     </div>
     <div class="profile__user">
@@ -15,6 +14,17 @@
             <div class="profile__nick">
                 <h2 class="profile__user-about-content">{{ $user->about }}</h2>
                 <h1 class="additionalName">{{ '@' . $user->username }} {{ $user->name ? ' | ' . $user->name . ' ' . $user->surname : ''}}</h1>
+            </div>
+            <div class="profile__rating">
+                <div>
+                    <div class="stacked-counter-karm__value">{{ $user->karma }}</div>
+                    <div class="stacked-counter__label">Karma</div>
+                </div>
+                <div class="line"></div>
+                <div>
+                    <div class="stacked-counter-rait__value">{{ $user->rating }}</div>
+                    <div class="stacked-counter__label">Reytinq</div>
+                </div>
             </div>
         </div>
         <div class="profile__user-button">

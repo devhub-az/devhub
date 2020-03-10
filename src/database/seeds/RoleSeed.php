@@ -11,6 +11,6 @@ class RoleSeed extends Seeder
      */
     public function run()
     {
-        Bouncer::allow('admin')->to('root');
+        Bouncer::allow('admin')->to('users_manage');
     }
 }

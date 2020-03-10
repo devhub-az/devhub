@@ -83,12 +83,12 @@
 @font-face {
     font-family: '#{$mdi-font-name}';
     font-display: swap;
-    src: url('#{$mdi-font-path}/#{$mdi-filename}-webfont.eot');
-    src: url('#{$mdi-font-path}/#{$mdi-filename}-webfont.eot?#iefix') format('embedded-opentype'),
-    url('#{$mdi-font-path}/#{$mdi-filename}-webfont.woff2') format('woff2'),
-    url('#{$mdi-font-path}/#{$mdi-filename}-webfont.woff') format('woff'),
-    url('#{$mdi-font-path}/#{$mdi-filename}-webfont.ttf') format('truetype'),
-    url('#{$mdi-font-path}/#{$mdi-filename}-webfont.svg##{$mdi-filename}#{$mdi-font-weight}') format('svg');
+    src: url('/fonts/#{$mdi-filename}-webfont.eot');
+    src: url('/fonts/#{$mdi-filename}-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/#{$mdi-filename}-webfont.woff2') format('woff2'),
+    url('/fonts/#{$mdi-filename}-webfont.woff') format('woff'),
+    url('/fonts/#{$mdi-filename}-webfont.ttf') format('truetype'),
+    url('/fonts/#{$mdi-filename}-webfont.svg##{$mdi-filename}#{$mdi-font-weight}') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -651,7 +651,7 @@ a {
         display: inline-flex;
         color: var(--text-black-secondary);
         font-weight: 500;
-        font-size: 14px;
+        font-size: 70%;
         margin-left: 8px;
         align-items: center;
     }
@@ -1334,9 +1334,28 @@ ol {
 
 .media-obj__body {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    grid-auto-flow: column;
     font-size: 14px;
+}
+
+.profile__rating{
+    display: grid;
+    position: absolute;
+    top: -60px;
+    grid-auto-flow: column;
+    gap: 22px;
+    padding: 6px 24px;
+    border-radius: 2px;
+    border: 1px solid var(--color-border);
+    background: var(--background-default);
+    font-size: 14px;
+
+    .line{
+        background: var(--color-border);
+        width: 2px;
+        height: 70%;
+        margin: auto 0;
+    }
 }
 
 .author_name {
@@ -2272,8 +2291,9 @@ div.phpdebugbar-widgets-sqlqueries li.phpdebugbar-widgets-list-item.phpdebugbar-
 }
 
 .header-message {
-    background-color: var(--color-error-main);
-    color: #fff;
+    position: sticky;
+    color: var(--text-white-primary);
+    top: 0;
     box-shadow: 0 1px 8px #00000029;
     width: 100%;
     text-align: center;
@@ -2287,6 +2307,10 @@ div.phpdebugbar-widgets-sqlqueries li.phpdebugbar-widgets-list-item.phpdebugbar-
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+.alert-info{
+    background-color: var(--color-info-light);
 }
 
 .popup_header {
@@ -2779,6 +2803,14 @@ textarea.wmd-input, textarea#wmd-input {
         .tooltip {
             display: block;
         }
+    }
+
+    .page-profile, .profile__user{
+        width: 90% !important;
+    }
+
+    .page-profile{
+        display: unset !important;
     }
 
     .post-content__body {

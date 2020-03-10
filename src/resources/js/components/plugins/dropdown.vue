@@ -27,7 +27,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-account-badge-horizontal"></i> Profilim</span>
+                        <span class="ml-2"><i class="mdi mdi-badge-account-horizontal"></i> Profilim</span>
                     </a>
                 </li>
                 <li>
@@ -39,7 +39,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-settings"/> Parametrlər</span>
+                        <span class="ml-2"><i class="mdi mdi-account-cog"/> Parametrlər</span>
                     </a>
                 </li>
                 <h3 class="menu-head">Görünüş</h3>
@@ -55,6 +55,18 @@
                     </div>
                 </li>
                 <h3 class="menu-head">Digər</h3>
+                <li v-if="admin">
+                    <a
+                            href="/admin"
+                            @keydown.tab.exact="focusNext(false)"
+                            @keydown.shift.tab="focusPrevious(false)"
+                            @keydown.up.exact.prevent="focusPrevious(true)"
+                            @keydown.down.exact.prevent="focusNext(true)"
+                            @keydown.esc.exact="hideDropdown"
+                    >
+                        <span class="ml-2"><i class="mdi mdi-account-cowboy-hat"></i> Admin panel</span>
+                    </a>
+                </li>
                 <li>
                     <a
                             :href="fav"
@@ -67,7 +79,7 @@
                         <span class="ml-2"><i class="mdi mdi-bookmark-check"></i> Seçilmişlər</span>
                     </a>
                 </li>
-                <div class="line"/>
+                <hr class="line">
                 <li @click.prevent="logout">
                     <a
                             href="#"
@@ -90,7 +102,7 @@
 
     export default {
         mixins: [clickaway],
-        props: ['user', 'fav'],
+        props: ['user', 'fav', 'admin'],
         data() {
             return {
                 switch: true,

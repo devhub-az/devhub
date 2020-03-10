@@ -54,8 +54,12 @@
         color: var(--color-text);
         transform-origin: top left;
         display: block;
-        background-color: white;
+        background-color: var(--background-tertiary);
         padding: 0 7px;
+
+        &:hover{
+            border: 1px var(--color-primary-main);
+        }
 
         .settings__input{
             display: block;

@@ -1,41 +1,41 @@
 {
-  "lang": "az",
-  "dir": "ltr",
-  "name": "DevHub",
-  "short_name": "DevHub",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "background_color": "#fff",
-  "theme_color": "#1d1d1d",
-  "description": "DevHub Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf qrupudur",
-  "version":"1.0.0",
-  "manifest_version": 2,
-  "icons": [
-    {
-      "src": "/favicon/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon/favicon-70x70.png",
-      "sizes": "70x70",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon/favicon-144x144.png",
-        "sizes": "144x144",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon/favicon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon/favicon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+    "lang": "az",
+    "dir": "ltr",
+    "name": "DevHub",
+    "short_name": "DevHub",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "theme_color": "#1d1d1d",
+    "description": "DevHub Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf qrupudur",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "icons": [
+        {
+            "src": "/favicon/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon/favicon-70x70.png",
+            "sizes": "70x70",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon/favicon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon/favicon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon/favicon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }

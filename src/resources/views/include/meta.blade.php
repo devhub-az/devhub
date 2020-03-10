@@ -87,5 +87,4 @@
 <meta property="og:image:height" content="520">
 <meta property="og:image:alt" content="@yield('image-alt', '')">
 
-<link rel="preload" href="{{ asset('/manifest.json') }}" crossorigin as="manifest">
-<link rel="manifest" href="{{ asset('/manifest.json') }}" crossorigin>
+<link rel="manifest" href="{{ asset('/manifest.json') }}">

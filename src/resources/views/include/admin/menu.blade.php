@@ -24,7 +24,7 @@
                                 <i class="fa-fw fas fa-unlock-alt nav-icon">
 
                                 </i>
-                                {{ trans('cruds.ability.title') }}
+                                {{ trans('cruds.ability.title') }}ability
                             </a>
                         </li>
                         <li class="nav-item">
@@ -32,7 +32,7 @@
                                 <i class="fa-fw fas fa-briefcase nav-icon">
 
                                 </i>
-                                {{ trans('cruds.role.title') }}
+                                {{ trans('cruds.role.title') }}role
                             </a>
                         </li>
                         <li class="nav-item">
@@ -40,20 +40,20 @@
                                 <i class="fa-fw fas fa-user nav-icon">
 
                                 </i>
-                                {{ trans('cruds.user.title') }}
+                                {{ trans('cruds.user.title') }}user
                             </a>
                         </li>
                     </ul>
                 </li>
             @endcan
-            <li class="nav-item">
-                <a href="{{ route('auth.change_password') }}" class="nav-link {{ request()->is('change_password') ? 'active' : '' }}">
-                    <i class="nav-icon fas fa-fw fa-key">
+{{--            <li class="nav-item">--}}
+{{--                <a href="{{ route('auth.change_password') }}" class="nav-link {{ request()->is('change_password') ? 'active' : '' }}">--}}
+{{--                    <i class="nav-icon fas fa-fw fa-key">--}}
 
-                    </i>
-                    Change Password
-                </a>
-            </li>
+{{--                    </i>--}}
+{{--                    Change Password--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <i class="nav-icon fas fa-fw fa-sign-out-alt">
