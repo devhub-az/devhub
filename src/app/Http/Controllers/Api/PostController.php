@@ -63,13 +63,13 @@ class PostController extends Controller
      */
     public function all(): PostsCollection
     {
-        return \Cache::remember(
-            'posts',
-            60,
-            static function () {
-                return new PostsCollection(PostService::getPosts('created_at')->take(50)->paginate(5));
-            }
-        );
+//        return \Cache::remember(
+//            'posts',
+//            60,
+//            static function () {
+        return new PostsCollection(PostService::getPosts('created_at')->take(50)->paginate(5));
+//            }
+//        );
     }
 
     /**

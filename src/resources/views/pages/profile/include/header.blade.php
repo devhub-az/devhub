@@ -17,12 +17,12 @@
             </div>
             <div class="profile__rating">
                 <div>
-                    <div class="stacked-counter-karm__value">{{ $user->karma }}</div>
+                    <div class="stacked-counter-karm__value" title="{{ $user->karma }}">{{ \Numeric::number_format_short($user->karma) }}</div>
                     <div class="stacked-counter__label">Karma</div>
                 </div>
                 <div class="line"></div>
                 <div>
-                    <div class="stacked-counter-rait__value">{{ $user->rating }}</div>
+                    <div class="stacked-counter-rait__value" title="{{ $user->rating }}">{{ \Numeric::number_format_short($user->rating) }}</div>
                     <div class="stacked-counter__label">Reytinq</div>
                 </div>
             </div>
