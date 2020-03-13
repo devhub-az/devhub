@@ -1,2 +1,0 @@
-- name: PHP Lint
-  uses: michaelw90/PHP-Lint@1.0.0
