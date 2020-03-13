@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title')Haqqımızda @stop
+@section('title')Məlumat @stop
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">

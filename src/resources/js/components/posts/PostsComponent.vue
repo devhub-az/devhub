@@ -64,11 +64,11 @@
                         style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
             </div>
             <div v-else class="post-content__item"
-                 style="text-align: center; display: grid; grid-gap: 12px;">
+                 style="text-align: center; display: grid; grid-gap: 12px; padding: 24px;">
                 <span style="font-size: 5rem; opacity: .7;">
                     <i class="mdi mdi-comment-edit-outline"/>
                 </span>
-                <span>Paylaşma tapılmadı</span>
+                <span style="opacity: .7;">Paylaşma tapılmadı</span>
                 <span>
                     <a href="/post/add" class="btn btn-primary">
                         <i class="icon feather icon-plus"/> Yazmağ

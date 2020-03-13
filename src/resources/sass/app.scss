@@ -402,15 +402,14 @@ a {
     height: 40px;
     border: 2px solid transparent;
     border-radius: 3px;
-    color: #6c797f;
+    color: var(--text-black-secondary);
     font-weight: 700;
     font-size: 13px;
-    font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
     text-decoration: none;
 }
 
 .toggle-menu__item-link_active, .toggle-menu__item-link.active {
-    border-color: var(--color-primary-light);
+    border-color: var(--color-primary-main);
     color: var(--color-primary-main);
 }
 
@@ -516,7 +515,7 @@ a {
     font-weight: bold;
     font-size: 100%;
     padding: 10px 22px;
-    background-color: var(--background-tertiary);
+    background-color: var(--background-secondary);
     border: 1px solid var(--color-border);
     color: var(--text-black-primary);
     align-items: center;
@@ -658,12 +657,10 @@ a {
 
     .post-content__body {
         font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-        font-size: 1rem;
-        font-weight: 400;
         line-height: 1.5;
         letter-spacing: -0.003em;
         word-wrap: break-word;
-        color: var(--text-black-primary);
+        color: var(--text-black-secondary);
         margin: 10px 25px 20px;
 
         h1 {
@@ -730,7 +727,7 @@ a {
     text-align: right;
     font-weight: bold;
     margin-left: auto;
-    color: var(--text-black-secondary);
+    color: var(--color-grey);
 
     .rating {
         cursor: default;
@@ -1383,7 +1380,7 @@ ol {
     grid-template-columns: 80% 20%;
     font-size: 14px;
     padding: 15px 22px;
-    background-color: #f9f9fb;
+    background-color: var(--background-secondary);
     color: var(--color-black-secondary);
     border-top: 1px solid var(--color-border);
     align-items: center;
@@ -2057,8 +2054,8 @@ i.icon {
 .post-content__footer {
     display: grid;
     grid-template-columns: 80% 20%;
-    color: var(--text-black-secondary);
-    padding: 15px 22px;
+    color: var(--color-black-secondary);
+    padding: 13px 22px;
     border-top: 1px solid var(--color-border);
     background-color: var(--background-secondary);
     align-items: center;
@@ -2622,7 +2619,7 @@ textarea.wmd-input, textarea#wmd-input {
                 padding: 13px 0;
                 text-transform: uppercase;
                 text-align: center;
-                color: var(--text-black-secondary);
+                color: var(--color-header);
                 font-size: 14px;
                 position: relative;
                 font-weight: 700;

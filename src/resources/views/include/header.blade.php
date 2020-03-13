@@ -18,7 +18,7 @@
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ url('/about_us') }}"
-                       class="nav-links__item-link @if(Request::is('about_us')) nav-links__item-link_current @endif">Haqqımızda</a>
+                       class="nav-links__item-link @if(Request::is('about_us')) nav-links__item-link_current @endif">məlumat</a>
                 </li>
             </ul>
         </div>
