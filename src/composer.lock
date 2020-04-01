@@ -6144,16 +6144,16 @@
         },
         {
             "name": "haydenpierce/class-finder",
-            "version": "0.4.0",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/hpierce1102/ClassFinder.git",
-                "reference": "a813ebb4444789ab8ec36692e24f26991014fcdf"
+                "reference": "5b12fb08f36c51233738ee592a8d2568af0c3794"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=a813ebb4444789ab8ec36692e24f26991014fcdf",
-                "reference": "a813ebb4444789ab8ec36692e24f26991014fcdf",
+                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=5b12fb08f36c51233738ee592a8d2568af0c3794",
+                "reference": "5b12fb08f36c51233738ee592a8d2568af0c3794",
                 "shasum": ""
             },
             "require": {
@@ -6182,7 +6182,7 @@
                 }
             ],
             "description": "A library that can provide of a list of classes in a given namespace",
-            "time": "2019-09-15T14:33:14+00:00"
+            "time": "2020-03-31T16:51:38+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -7141,12 +7141,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "abf855b59c93a92efbebc39107e2a5a6215a0488"
+                "reference": "0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/abf855b59c93a92efbebc39107e2a5a6215a0488",
-                "reference": "abf855b59c93a92efbebc39107e2a5a6215a0488",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f",
+                "reference": "0f73cf4b4b9227eb8845723bc2a8869bc4dd6e8f",
                 "shasum": ""
             },
             "conflict": {
@@ -7187,8 +7187,8 @@
                 "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1",
                 "dolibarr/dolibarr": "<=10.0.6",
                 "dompdf/dompdf": ">=0.6,<0.6.2",
-                "drupal/core": ">=7,<7.69|>=8,<8.7.11|>=8.8,<8.8.1",
-                "drupal/drupal": ">=7,<7.69|>=8,<8.7.11|>=8.8,<8.8.1",
+                "drupal/core": ">=7,<7.69|>=8,<8.7.12|>=8.8,<8.8.4",
+                "drupal/drupal": ">=7,<7.69|>=8,<8.7.12|>=8.8,<8.8.4",
                 "endroid/qr-code-bundle": "<3.4.2",
                 "enshrined/svg-sanitize": "<0.13.1",
                 "erusev/parsedown": "<1.7.2",
@@ -7397,7 +7397,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2020-03-30T15:16:05+00:00"
+            "time": "2020-03-31T14:30:16+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
