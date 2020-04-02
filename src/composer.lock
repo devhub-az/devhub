@@ -6145,16 +6145,16 @@
         },
         {
             "name": "haydenpierce/class-finder",
-            "version": "0.4.0",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://gitlab.com/hpierce1102/ClassFinder.git",
-                "reference": "a813ebb4444789ab8ec36692e24f26991014fcdf"
+                "reference": "5b12fb08f36c51233738ee592a8d2568af0c3794"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=a813ebb4444789ab8ec36692e24f26991014fcdf",
-                "reference": "a813ebb4444789ab8ec36692e24f26991014fcdf",
+                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=5b12fb08f36c51233738ee592a8d2568af0c3794",
+                "reference": "5b12fb08f36c51233738ee592a8d2568af0c3794",
                 "shasum": ""
             },
             "require": {
@@ -6183,7 +6183,7 @@
                 }
             ],
             "description": "A library that can provide of a list of classes in a given namespace",
-            "time": "2019-09-15T14:33:14+00:00"
+            "time": "2020-03-31T16:51:38+00:00"
         },
         {
             "name": "maximebf/debugbar",
