@@ -17,6 +17,7 @@ class User extends Authenticatable
     use Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote, HasRolesAndAbilities;
 
     protected $visible = [
+        'id',
         'username',
         'avatar',
         'name',

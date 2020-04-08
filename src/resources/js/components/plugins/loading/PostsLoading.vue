@@ -1,7 +1,7 @@
 <template>
     <div class="post-content__item">
         <header class="post__meta">
-            <div style="background-color:#E2E2E2" alt="user avatar"
+            <div style="background-color:#E2E2E2"
                  class="user__avatar MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"></div>
             <div class="user-info__nickname MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
                  style="width: 20%; background: rgb(226, 226, 226); height: 1.2rem;"></div>

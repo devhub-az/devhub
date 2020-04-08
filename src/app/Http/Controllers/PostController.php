@@ -67,16 +67,15 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param int $id
      * @return Factory|\Illuminate\View\View
      */
-    public function show(int $id): view
+    public function show(Request $request, int $id): view
     {
-        $data = PostCollection::make(Post::findorfail($id))->jsonSerialize();
+        $post = new PostCollection(Post::findorfail($id));
 
-        $post = $data['data'];
-
-        return view('pages.posts.show', ['post' => $post]);
+        return view('pages.posts.show', ['post' => $post->toResponse($request)]);
     }
 
     /**
@@ -154,19 +153,17 @@ class PostController extends Controller
             'id' => 'required|int',
         ]);
         $share = Post::findOrFail($request->get('id'));
-        if (\Auth::user()){
+        if (\Auth::user()) {
             $user = \Auth::user();
-            if (isset($share) && !$user->hasBookmarked($share)){
+            if (isset($share) && !$user->hasBookmarked($share)) {
                 $user->bookmark($share);
                 return response()->json(['success' => 'success'], 200);
-            }elseif ($user->hasBookmarked($share)) {
+            } elseif ($user->hasBookmarked($share)) {
                 $user->unbookmark($share);
 
                 return response()->json(['delete' => 'delete'], 200);
             }
         }
-
-
 
 
         if (isset($share) && !$share->postIsFollowing(Auth::user())) {

@@ -14,6 +14,7 @@ Route::get('/', 'HomeController@postsApiRoute')->name('home');
 Route::get('/top/week', 'HomeController@postsApiRoute')->name('top.week');
 Route::get('/top/month', 'HomeController@postsApiRoute')->name('top.month');
 Route::get('/all', 'HomeController@postsApiRoute')->name('all');
+Route::get('/downloadPDF/{id}','UserController@downloadPDF');
 
 Route::group(['middleware' => ['auth', 'activity']], static function () {
     Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
@@ -85,11 +86,14 @@ Route::prefix('api')->group(static function () {
      */
     Route::get('/users/{id}/follow_check', 'Api\UserController@userFollowCheck');
     Route::get('users/all', 'Api\UserController@users');
+    Route::get('users/{id}/followings', 'Api\UserController@followings');
+    Route::get('users/{id}/followers', 'Api\UserController@followers');
 
     /*
      * Profile Api
      */
     Route::get('/users/{id}/posts', 'Api\UserController@posts');
+    Route::post('/users/{id}/profile_update', 'Api\UserController@upload');
 });
 
 
@@ -116,8 +120,13 @@ Route::group(['middleware' => ['activity']], static function () {
     Route::prefix('users')->group(static function () {
         Route::get('/', 'UserController@userList')->name('users-list');
         Route::post('{profileId}/follow', 'ProfileController@follow');
-        Route::get('@{username}/posts', 'UserController@showPosts')->name('user_posts');
-        Route::get('@{username}', 'UserController@showInfo')->name('user_info');
+
+        Route::prefix('@{username}')->group(static function(){
+            Route::get('/posts', 'UserController@showPosts')->name('user_posts');
+            Route::get('', 'UserController@showInfo')->name('user_info');
+            Route::get('/followers', 'UserController@showFollowers')->name('user_followers');
+            Route::get('/followings', 'UserController@showFollowings')->name('user_followings');
+        });
     });
 
     Route::prefix('comment')->group(static function () {
@@ -140,7 +149,6 @@ Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'as' => 'admin.', 
     Route::resource('roles', 'RolesController');
     Route::delete('users/destroy', 'UsersController@massDestroy')->name('users.massDestroy');
     Route::resource('users', 'UsersController');
-
 });
 
 // FUTURE

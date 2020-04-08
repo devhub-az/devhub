@@ -156,7 +156,7 @@ return [
         Illuminate\Pagination\PaginationServiceProvider::class,
 //        Illuminate\Pipeline\PipelineServiceProvider::class,
         Illuminate\Queue\QueueServiceProvider::class,
-//        Illuminate\Redis\RedisServiceProvider::class,
+        Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
         Illuminate\Session\SessionServiceProvider::class,
         Illuminate\Translation\TranslationServiceProvider::class,
@@ -241,8 +241,6 @@ return [
 //        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
 //        'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
 //        'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
-
-        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
 
     ],
 

@@ -19,17 +19,19 @@ class ProfileController extends Controller
 
     public function follow(Request $request): JsonResponse
     {
-        $userId = Auth::user();
+        $user = Auth::user();
         $followUser = User::findOrFail($request->get('id'));
-        if (isset($followUser) && !$followUser->isFollowedBy($userId)) {
-            $userId->follow($followUser);
+        if ($user->id !== $followUser->id){
+            if (isset($followUser) && !$followUser->isFollowedBy($user)) {
+                $user->follow($followUser);
 
-            return response()->json(['success' => 'success'], 200);
-        }
-        if ($followUser->isFollowedBy($userId)) {
-            $userId->unfollow($followUser);
+                return response()->json(['success' => 'success'], 200);
+            }
+            if ($followUser->isFollowedBy($user)) {
+                $user->unfollow($followUser);
 
-            return response()->json(['delete' => 'delete'], 200);
+                return response()->json(['delete' => 'delete'], 200);
+            }
         }
 
         return response()->json(['error' => 'error'], 401);

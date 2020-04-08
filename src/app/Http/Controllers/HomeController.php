@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Achievements\UserMadeAPost;
 use App\Http\Resources\HubsCollection;
 use App\Models\Hub;
 use App\Models\Post;
@@ -18,6 +19,7 @@ class HomeController extends Controller
      */
     public function postsApiRoute(Request $request)
     {
+//        \Auth::user()->unlock(new UserMadeAPost());
         $top_followed_hubs = new HubsCollection(Hub::take(6)->get());
         switch ($request->path()) {
             case '/':

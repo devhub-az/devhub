@@ -11,7 +11,8 @@
                 @keydown.up.exact.prevent="startArrowKeys"
                 @keydown.down.exact.prevent="startArrowKeys"
         >
-            <img :src="'/images/profile/' + user.avatar" style="width: 30px;border-radius: 2px;"
+            <img :src="'/upload/user_' + user.id + '/logo/' + user.avatar"
+                 style="width: 30px; height: 30px; border-radius: 2px; object-fit: cover; text-align: center;"
                  alt="Profile image">
         </button>
         <transition name="dropdown-fade">

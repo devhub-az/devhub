@@ -4,17 +4,8 @@
             <h4 class="settings__header-title">Profil məlumatları</h4>
         </div>
         <div class="settings__profile">
-            <img class="rounded-circle" :src="'/images/profile/' + auth.avatar" alt="profile image"/>
-            <form method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input name="avatar" type="file" v-on:change="onImageChange" class="form-control-file"
-                           @loaded="onLoad">
-                    <small id="fileHelp" class="form-text text-muted">Please upload a valid image file. Size of image
-                        should
-                        not be more than 2MB.</small>
-                </div>
-            </form>
-            <!--            <button type="submit" class="btn btn-primary" @click="uploadImage">Submit</button>-->
+            <img class="rounded-circle" :src="'/upload/user_' + auth.id + '/logo/' + auth.avatar" alt="profile image"/>
+            <profile-image-update :avatar="auth.avatar"></profile-image-update>
         </div>
         <div class="settings__description">
             <div class="settigns__user-name">{{ fields.name }} {{ fields.surname }} {{ '@' + auth.username }}</div>
@@ -64,21 +55,7 @@
 </template>
 
 <script>
-    import {Notyf} from 'notyf';
-
-    const notyf = new Notyf({
-        duration: 1000,
-        types: [
-            {
-                type: 'info',
-                backgroundColor: 'blue',
-                icon: false
-            }
-        ]
-    });
-
     export default {
-        mixin: ['Notyf'],
         props: ['auth'],
         data() {
             return {
@@ -106,64 +83,8 @@
             this.surname_count = this.auth.surname.length
         },
         methods: {
-            onImageChange(e) {
-                if (!e.target.files.length) return;
-                let file = e.target.files[0];
-                let reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = e => {
-                    let src = e.target.result;
-
-                    this.$emit('loaded', {src, file});
-                };
-            },
-            onLoad(avatar) {
-                this.avatar = avatar.src;
-
-                this.persist(this.auth.avatar.file);
-            },
-            persist(avatar) {
-                let data = new FormData();
-
-                data.append('avatar', avatar);
-
-                axios.post('/@' + this.username + '/settings/avatar', {avatar: this.avatar}).then(response => {
-                    console.log(response);
-                });
-                axios.post(`/api/users/${this.user.name}/avatar`, data)
-                    .then(() => flash('Avatar uploaded!'));
-            },
-            createImage(file) {
-                let reader = new FileReader();
-                let vm = this;
-                reader.onload = (e) => {
-                    vm.avatar = e.target.result;
-                };
-                reader.readAsDataURL(file);
-                console.log(reader.readAsDataURL(file))
-            },
-
-            uploadImage() {
-                axios.post('/@' + this.username + '/settings/avatar', {avatar: this.avatar}).then(response => {
-                    console.log(response);
-                });
-            },
-            // avatar() {
-            //     axios.post(, this.avatar).then(response => {
-            //         notyf.success('Profil yenilənib');
-            //     }).catch(error => {
-            //         this.loaded = true;
-            //         notyf.open({
-            //             type: 'error',
-            //             message: 'Server error'
-            //         });
-            //         if (error.response.status === 422) {
-            //             this.errors = error.response.data.errors || {};
-            //         }})
-            // },
             submit() {
                 if (this.loaded) {
-                    const notyf = new Notyf();
                     this.loaded = false;
                     this.success = false;
                     this.errors = {}
@@ -174,13 +95,19 @@
                             this.email = this.fields.email
                             delete this.fields.email
                         }
-                        notyf.success('Profil yenilənib');
+                        new Noty({
+                            type: 'success',
+                            text: '<div class="notification-image">' +
+                                '<i class="mdi mdi-account-check-outline"></i>' +
+                                '</div> ' +
+                                '<div class="text">Profil yenilənib</div>',
+                        }).show();
                     }).catch(error => {
                         this.loaded = true;
-                        notyf.open({
+                        new Noty({
                             type: 'error',
-                            message: 'Server error'
-                        });
+                            text: '<div class="notification-image"><span class="mdi mdi-x"/></div> Xəta',
+                        }).show();
                         if (error.response.status === 422) {
                             this.errors = error.response.data.errors || {};
                         }

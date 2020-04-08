@@ -63,6 +63,7 @@
 @include('include.footer')
 
 {{--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>--}}
+<script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
 <script type="text/javascript" src="{{ mix('js/app.js') }}" async></script>
 @yield('scripts')

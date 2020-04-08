@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Http\Resources\PostsCollection;
 use App\Models\Post;
 use Illuminate\Database\Eloquent\Builder;
 

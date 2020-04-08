@@ -17,14 +17,14 @@
                             <span class="nav-posts__item-link">Bütün</span>
                         </a>
                         @auth
-                                <a href="{{ route('favorite') }}"
-                                   class="nav-posts__item @if(Request::url() === route('favorite')) nav-posts__item-link_current @endif">
+                            <a href="{{ route('favorite') }}"
+                               class="nav-posts__item @if(Request::url() === route('favorite')) nav-posts__item-link_current @endif">
                                     <span class="nav-posts__item-link badge"
                                           @if (Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() > 0)
                                           data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"@endif>
                                         Abunə ilə
                                     </span>
-                                </a>
+                            </a>
                         @endauth
                     </div>
                 </div>
@@ -77,7 +77,8 @@
                     </a>
                 </div>
                 <a class="sidebar-banner-telegram" href="https://t.me/devhub_az" target="_blank" rel="noopener">
-                    <div class="logo">DevHub</div> <span>Telegram kanalı <br> izləmək</span>
+                    <div class="logo">DevHub</div>
+                    <span>Telegram kanalı <br> izləmək</span>
                     <svg width="100px" height="100px" viewBox="0 0 50 50" version="1.1"
                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs>
@@ -155,6 +156,6 @@
 @endsection
 
 @section('scripts')
-{{--    <script src="{{ asset('js/stickybits.min.js') }}"></script>--}}
-{{--    <script src="{{asset('js/stickybitsettings.js') }}"></script>--}}
+    {{--    <script src="{{ asset('js/stickybits.min.js') }}"></script>--}}
+    {{--    <script src="{{asset('js/stickybitsettings.js') }}"></script>--}}
 @endsection

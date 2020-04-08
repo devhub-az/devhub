@@ -15,8 +15,25 @@ require('./bootstrap');
 window.Vue = require('vue');
 window.moment = require('moment-mini');
 import VueCookies from 'vue-cookies'
+window.Fingerprint2 = require('fingerprintjs2')
 
 Vue.use(VueCookies)
+
+if (window.requestIdleCallback) {
+    requestIdleCallback(function () {
+        Fingerprint2.get(function (components) {
+            var values = components.map(function (component) { return component.value })
+            var murmur = Fingerprint2.x64hash128(values.join(''), 31)
+            console.log(murmur)
+        })
+    })
+} else {
+    setTimeout(function () {
+        Fingerprint2.get(function (components) {
+            console.log(components) // an array of components: {key: ..., value: ...}
+        })
+    }, 500)
+}
 
 // import "@mdi/font/css/materialdesignicons.min.css"
 

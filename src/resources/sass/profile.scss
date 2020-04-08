@@ -28,12 +28,15 @@
     .settings__profile{
         display: grid;
         grid-template-columns: 86px auto;
+        padding: 0;
 
         img{
             height: 64px;
             width: 64px;
             margin: 22px 12px;
             border-radius: 4px;
+            object-fit: cover;
+            text-align: center;
         }
 
         .settings__description{

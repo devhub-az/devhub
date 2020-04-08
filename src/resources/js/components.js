@@ -11,6 +11,7 @@ Vue.component('post-show', require('./components/posts/PostShowComponent').defau
  */
 Vue.component('posts-loading', require('./components/plugins/loading/PostsLoading').default);
 Vue.component('hubs-loading', require('./components/plugins/loading/HubsLoading').default);
+Vue.component('users-loading', require('./components/plugins/loading/UsersLoading').default);
 
 /**
  * Plugins
@@ -46,6 +47,7 @@ Vue.component('users-list', require('./components/users/UserComponent.vue').defa
 /**
  * Auth
  */
+Vue.component('profile-image-update', require('./components/plugins/profileUpdate').default);
 Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
 
 /**
