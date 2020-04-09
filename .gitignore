@@ -11,6 +11,9 @@ src/Homestead.yaml
 src/npm-debug.log
 src/yarn-error.log
 docker/data/
+src/yarn.lock
+src/package-lock.json
+src/composer.lock
 src/_ide_helper.php
 src/html/
 src/node_modules/.bin/

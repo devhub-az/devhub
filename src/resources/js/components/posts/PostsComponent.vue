@@ -8,7 +8,7 @@
                         <a v-bind:href="'/users/@' + post.data.creator.username" class="post__user-info user-info"
                            title="Paylaşmanın müəllifi">
                             <img :data-src="'/upload/user_'+ post.data.creator.id + '/logo/' + post.data.creator.avatar" height="32" width="32"
-                                 alt="user avatar" class="user__avatar lazyload">
+                                 alt="user avatar" class="user__avatar lazyload" src="">
                             <span class="user-info__nickname user-info__nickname_small">{{ '@' + post.data.creator.username }}</span>
                         </a>
                         <span class="post__time">
