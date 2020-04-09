@@ -15,7 +15,7 @@
         "graham-campbell/markdown": "^12.0",
         "htmlmin/htmlmin": "^6.0",
         "intervention/image": "^2.5",
-        "jacobbennett/laravel-http2serverpush": "^4.0",
+        "jacobbennett/laravel-http2serverpush": "^5.0",
         "jeremykenedy/laravel-logger": "^3.2",
         "ksubileau/color-thief-php": "^1.4",
         "kylekatarnls/laravel-carbon-2": "^1.0.0",
