@@ -17,16 +17,16 @@ class UserCollection extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'             => $this->id,
-            'name'           => $this->name,
-            'username'       => $this->username,
-            'avatar'         => $this->avatar,
-            'about'          => $this->about,
-            'karma'          => $this->karma,
-            'rating'         => $this->rating,
-            'posts_count'    => $this->posts->count(),
-            'follower' => $this->statusCheck(),
-            //            'user_followers_count' => $this->followers->count(),
+            'id'                   => $this->id,
+            'name'                 => $this->name,
+            'username'             => $this->username,
+            'avatar'               => $this->avatar,
+            'about'                => $this->about,
+            'karma'                => $this->karma,
+            'rating'               => $this->rating,
+            'posts_count'          => $this->posts->count(),
+            'follower'             => $this->statusCheck(),
+            'user_followers_count' => $this->followers->count(),
         ];
     }
 

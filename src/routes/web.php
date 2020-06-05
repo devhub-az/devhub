@@ -14,7 +14,7 @@ Route::get('/', 'HomeController@postsApiRoute')->name('home');
 Route::get('/top/week', 'HomeController@postsApiRoute')->name('top.week');
 Route::get('/top/month', 'HomeController@postsApiRoute')->name('top.month');
 Route::get('/all', 'HomeController@postsApiRoute')->name('all');
-Route::get('/downloadPDF/{id}','UserController@downloadPDF');
+Route::get('/downloadPDF/{id}', 'UserController@downloadPDF');
 
 Route::group(['middleware' => ['auth', 'activity']], static function () {
     Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
@@ -54,6 +54,7 @@ Route::prefix('api')->group(static function () {
     Route::get('posts/all', 'Api\PostController@all');
     Route::get('posts/favorite', 'Api\PostController@favorite');
     Route::get('posts/{id}', 'Api\PostController@show');
+    Route::post('post/image/cache', 'Api\PostController@upload_image');
 
     /**
      * Comments Api
@@ -121,7 +122,7 @@ Route::group(['middleware' => ['activity']], static function () {
         Route::get('/', 'UserController@userList')->name('users-list');
         Route::post('{profileId}/follow', 'ProfileController@follow');
 
-        Route::prefix('@{username}')->group(static function(){
+        Route::prefix('@{username}')->group(static function () {
             Route::get('/posts', 'UserController@showPosts')->name('user_posts');
             Route::get('', 'UserController@showInfo')->name('user_info');
             Route::get('/followers', 'UserController@showFollowers')->name('user_followers');

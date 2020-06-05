@@ -6,7 +6,6 @@ use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostCollection;
 use App\Models\Hub;
 use App\Models\Post;
-use App\Models\PostVote;
 use App\Notifications\PostNotify;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -75,7 +74,7 @@ class PostController extends Controller
     {
         $post = new PostCollection(Post::findorfail($id));
 
-        return view('pages.posts.show', ['post' => $post->toResponse($request)]);
+        return view('pages.posts.show', ['post' => $post->toResponse($request)->getData()->data]);
     }
 
     /**

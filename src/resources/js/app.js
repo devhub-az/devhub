@@ -1,41 +1,21 @@
 console.log(
     '      Using DevHub at work? Work for DevHub.\n')
 
-console.log("%c+",
-    'font-size: 1px; ' +
-    'padding: 150px 87px; ' +
-    'line-height: 0; ' +
-    'background: url("https://cs.pikabu.ru/assets/images/dev.png"); ' +
-    'background-size: 175px 300px; ' +
-    'margin: 0 auto;' +
-    'color: transparent;')
+// console.log("%c+",
+//     'font-size: 1px; ' +
+//     'padding: 150px 87px; ' +
+//     'line-height: 0; ' +
+//     'background: url("https://cs.pikabu.ru/assets/images/dev.png"); ' +
+//     'background-size: 175px 300px; ' +
+//     'margin: 0 auto;' +
+//     'color: transparent;')
 
 require('./bootstrap');
 
 window.Vue = require('vue');
 window.moment = require('moment-mini');
 import VueCookies from 'vue-cookies'
-window.Fingerprint2 = require('fingerprintjs2')
-
 Vue.use(VueCookies)
-
-if (window.requestIdleCallback) {
-    requestIdleCallback(function () {
-        Fingerprint2.get(function (components) {
-            var values = components.map(function (component) { return component.value })
-            var murmur = Fingerprint2.x64hash128(values.join(''), 31)
-            console.log(murmur)
-        })
-    })
-} else {
-    setTimeout(function () {
-        Fingerprint2.get(function (components) {
-            console.log(components) // an array of components: {key: ..., value: ...}
-        })
-    }, 500)
-}
-
-// import "@mdi/font/css/materialdesignicons.min.css"
 
 window.Noty = require('noty');
 

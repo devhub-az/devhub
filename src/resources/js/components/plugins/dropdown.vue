@@ -11,9 +11,12 @@
                 @keydown.up.exact.prevent="startArrowKeys"
                 @keydown.down.exact.prevent="startArrowKeys"
         >
-            <img :src="'/upload/user_' + user.id + '/logo/' + user.avatar"
-                 style="width: 30px; height: 30px; border-radius: 2px; object-fit: cover; text-align: center;"
-                 alt="Profile image">
+        <img v-if="user.avatar !== 'user.jpg'" :src="'/upload/user_' + user.id + '/logo/' + user.avatar"
+             style="width: 30px; height: 30px; border-radius: 2px; object-fit: cover; text-align: center;"
+             alt="Profile image">
+        <img v-else-if="user.avatar === 'user.jpg'" :src="'/upload/default/logo/default.png'"
+             style="width: 30px; height: 30px; border-radius: 2px; object-fit: cover; text-align: center;"
+             alt="Profile image">
         </button>
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"

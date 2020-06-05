@@ -1,55 +1,62 @@
 <template>
     <div class="settings__content">
-        <div class="settings__header">
-            <h4 class="settings__header-title">Profil məlumatları</h4>
-        </div>
-        <div class="settings__profile">
-            <img class="rounded-circle" :src="'/upload/user_' + auth.id + '/logo/' + auth.avatar" alt="profile image"/>
-            <profile-image-update :avatar="auth.avatar"></profile-image-update>
-        </div>
-        <div class="settings__description">
-            <div class="settigns__user-name">{{ fields.name }} {{ fields.surname }} {{ '@' + auth.username }}</div>
-            <div class="settings__user-description">{{ fields.about }}</div>
-        </div>
         <form @submit.prevent="submit">
-            <div class="form-group">
-                <label for="name" class="settings__label">Real ad</label>
-                <span class="settings__lable-info">{{ name_count }}/40</span>
-                <input type="text" class="settings__input" name="name" id="name" v-model="fields.name"
-                       @keyup='nameCount()' :maxlength="namemaxcharacter"/>
-                <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
+            <div class="settings__header">
+                ŞƏXSİ MƏLUMAT
             </div>
 
-            <div class="form-group">
-                <label for="surname" class="settings__label">Real familia</label>
-                <span class="settings__lable-info">{{ surname_count }}/40</span>
-                <input type="text" class="settings__input" name="surname" id="surname" v-model="fields.surname"
-                       @keyup='surnameCount()' :maxlength="namemaxcharacter"/>
-                <div v-if="errors && errors.surname" class="text-danger">{{ errors.surname[0] }}</div>
+            <div class="settings-list">
+                <div class="form-group">
+                    <label for="name" class="settings__label">Əsl adınız {{ name_count }}/40</label>
+                    <input type="text" class="settings__input" name="name" id="name" v-model="fields.name"
+                           @keyup='nameCount()' :maxlength="namemaxcharacter" placeholder="Əsl adınızı yazın"
+                           @keydown.space.prevent/>
+                    <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="surname" class="settings__label">Əsl familiyanız {{ surname_count }}/40</label>
+                    <input type="text" class="settings__input" name="surname" id="surname" v-model="fields.surname"
+                           @keyup='surnameCount()' :maxlength="namemaxcharacter" placeholder="Əsl familiyanızı yazın"
+                           @keydown.space.prevent/>
+                    <div v-if="errors && errors.surname" class="text-danger">{{ errors.surname[0] }}</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="about" class="settings__label">İxtisas {{ about_count }}/40</label>
+                    <input type="text" name="about" class="settings__input" id="about"
+                           placeholder="İxtisasınızı yazın. Məsələn: Database Administrator" autocomplete="off"
+                           @keyup='aboutCount()' :maxlength="namemaxcharacter"
+                           v-model="fields.about">
+                    <div v-if="errors && errors.about" class="text-danger">{{ errors.about[0] }}</div>
+                </div>
             </div>
 
-
-            <div class="form-group">
-                <p class="settings__lable-info">Sizin emailiniz: {{email}}</p>
-                <label for="email" class="settings__label">Email</label>
-                <input type="text" class="settings__input" name="email" id="email"
-                       placeholder="Email ünvanı dəyişdir.." v-model="fields.email">
-                <div v-if="errors && errors.email" class="text-danger">{{ errors.email[0] }}</div>
+            <div class="settings__header">
+                REGİONAL Parametrlər
             </div>
 
-            <div class="form-group">
-                <label for="about" class="settings__label">İxtisas</label>
-                <span class="settings__lable-info">{{ about_count }}/40</span>
-                <input type="text" name="about" class="settings__input" id="about"
-                       placeholder="İxtisasınızı yazın. Məsələn: Database Administrator" autocomplete="off"
-                       @keyup='aboutCount()' :maxlength="namemaxcharacter"
-                       v-model="fields.about">
-                <div v-if="errors && errors.about" class="text-danger">{{ errors.about[0] }}</div>
+            <div class="settings-list">
+                <div class="form-group">
+                    <p class="settings__label">Dil</p>
+                    <span>
+                        <i class="mdi input-wrapper__icon mdi-chevron-down"></i>
+                        <select name="user_bday_day" class="settings__input-select">
+                            <option value="az" selected>Azərbaycan</option>
+                            <option value="ru">Русский</option>
+                        </select>
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <p class="settings__label">Sizin emailiniz: {{email}}</p>
+                    <input type="text" class="settings__input" name="email" id="email"
+                           placeholder="Email ünvanı dəyişdir.." v-model="fields.email">
+                    <div v-if="errors && errors.email" class="text-danger">{{ errors.email[0] }}</div>
+                </div>
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Profili yeniləmək</button>
-            </div>
+            <button type="submit" class="btn btn-primary">Profili yeniləmək</button>
         </form>
     </div>
 </template>

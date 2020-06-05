@@ -6,7 +6,7 @@
     <div class="layout_body">
         <div class="layout_content">
             <div class="content_left" id="app">
-                <div class="header">
+                <div class="header-nav">
                     <div class="nav_posts">
                         <a href="{{ route('home') }}"
                            class="nav-posts__item @if(Request::is('top/*') || Request::is('/')) nav-posts__item-link_current @endif">

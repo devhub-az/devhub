@@ -19,16 +19,21 @@
   height: 130px;
 }
 
-.list-hubs__hub {
+.users-list {
   display: grid;
-  grid-template-columns: 10% 50% 10% 10% auto;
+  grid-template-columns: auto auto auto;
+  gap: 16px;
+}
+.users-list .list-users__hub {
+  display: grid;
+  grid-template-columns: 25% 40% 35%;
   position: relative;
   background: var(--background-paper);
   margin-bottom: 1%;
   padding: 14px 0;
   border: 1px solid var(--color-border);
 }
-.list-hubs__hub figure {
+.users-list .list-users__hub figure {
   padding: 0;
   box-sizing: border-box;
   display: block;
@@ -42,7 +47,7 @@
   top: 0;
   left: 0;
 }
-.list-hubs__hub .list-hubs__hub-image {
+.users-list .list-users__hub .list-hubs__hub-image {
   width: 64px;
   height: 64px;
   margin: auto;
@@ -50,11 +55,11 @@
   border: 1px solid var(--color-border);
   z-index: 1;
 }
-.list-hubs__hub .list-hubs__obj-body {
+.users-list .list-users__hub .list-hubs__obj-body {
   position: relative;
   width: 90%;
 }
-.list-hubs__hub .list-hubs__obj-body .list-users__title-link {
+.users-list .list-users__hub .list-hubs__obj-body .list-users__title-link {
   display: inline-block;
   margin-bottom: 5px;
   color: var(--color-primary-main);
@@ -63,7 +68,7 @@
   font-size: 15px;
   line-height: 18px;
 }
-.list-hubs__hub .list-hubs__stats {
+.users-list .list-users__hub .list-hubs__stats {
   display: flex;
   align-items: center;
   margin: 0 auto;
@@ -71,7 +76,7 @@
   flex-direction: column;
   justify-content: center;
 }
-.list-hubs__hub .list-hubs__stats .list-hubs__stats-value {
+.users-list .list-users__hub .list-hubs__stats .list-hubs__stats-value {
   display: flex;
   align-items: center;
   -webkit-font-smoothing: antialiased;
@@ -80,7 +85,7 @@
   color: var(--text-black-primary);
   margin: 0 auto 3px;
 }
-.list-hubs__hub .hub_follow {
+.users-list .list-users__hub .hub_follow {
   margin: auto;
   text-align: center;
   width: 100%;

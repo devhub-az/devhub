@@ -12,54 +12,57 @@
             <div class="page-header page-header_110">
                 <h1 class="page-header__title">Paylaşma yazmag</h1>
             </div>
-            <div class="edit-content">
-                @if($errors->any())
-                    <div id="error" style="display: none"></div>
-                @endif
-                {!! Form::open(['id' => 'form', 'url' => 'posts', 'method' => 'POST']) !!}
-                @csrf
-                {!! Form::label('title', 'Başlıq:') !!}
+            {{--            <div class="edit-content">--}}
+            {{--                @if($errors->any())--}}
+            {{--                    <div id="error" style="display: none"></div>--}}
+            {{--                @endif--}}
+            {{--                {!! Form::open(['id' => 'form', 'url' => 'posts', 'method' => 'POST']) !!}--}}
+            {{--                @csrf--}}
+            {{--                {!! Form::label('title', 'Başlıq:') !!}--}}
 
-                {!! Form::text('title', null, ['class' => 'post__title', 'id' => 'title', 'placeholder' => 'Nəşrin nə olacağını başa düşmək üçün başlıq məna ilə doldurulmalıdır.', 'autocomplete' => 'off']) !!}
+            {{--                {!! Form::text('title', null, ['class' => 'post__title', 'id' => 'title', 'placeholder' => 'Nəşrin nə olacağını başa düşmək üçün başlıq məna ilə doldurulmalıdır.', 'autocomplete' => 'off']) !!}--}}
 
-                @if($errors->has('title'))
-                    <div class="description">
-                        <p style="color: red"> {{ $errors->first('title') }}</p>
-                    </div>
-                @endif
+            {{--                @if($errors->has('title'))--}}
+            {{--                    <div class="description">--}}
+            {{--                        <p style="color: red"> {{ $errors->first('title') }}</p>--}}
+            {{--                    </div>--}}
+            {{--                @endif--}}
 
 
-                {!! Form::label('body', 'Mətn:') !!}
-                <div class="wmd-panel">
-                    <div id="wmd-button-bar"></div>
-                    <textarea class="wmd-input" id="wmd-input" name="body"></textarea>
-                </div>
-                @if($errors->has('body'))
-                    <div class="description">
-                        <p style="color: red"> {{ $errors->first('body') }}</p>
-                    </div>
-                @endif
+            {{--                {!! Form::label('body', 'Mətn:') !!}--}}
+            {{--                <div class="wmd-panel">--}}
+            {{--                    <div id="wmd-button-bar"></div>--}}
+            {{--                    <textarea class="wmd-input" id="wmd-input" name="body"></textarea>--}}
+            {{--                </div>--}}
+            {{--                @if($errors->has('body'))--}}
+            {{--                    <div class="description">--}}
+            {{--                        <p style="color: red"> {{ $errors->first('body') }}</p>--}}
+            {{--                    </div>--}}
+            {{--                @endif--}}
 
-                <div id="content"></div>
-                {{--                <div id="wmd-preview" class="wmd-panel wmd-preview"></div>--}}
+            {{--                <div id="content"></div>--}}
+            {{--                --}}{{--                <div id="wmd-preview" class="wmd-panel wmd-preview"></div>--}}
 
-                {{--                    <div class="ui fluid multiple search selection dropdown">--}}
-                {{--                        <input name="tags" type="hidden">--}}
-                {{--                        <i class="dropdown icon"></i>--}}
-                {{--                        <div class="default text">Skills</div>--}}
-                {{--                        <div class="menu">--}}
-                {{--                            @foreach ($hubs as $hub)--}}
-                {{--                                <div class="item" data-value="{{ $hub['id'] }}">--}}
-                {{--                                    <i class="{{ strtolower($hub['name']) }} icon"></i>--}}
-                {{--                                    {{ $hub['name'] }}--}}
-                {{--                                </div>--}}
-                {{--                            @endforeach--}}
-                {{--                        </div>--}}
-                {{--                    </div>--}}
-                {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}
+            {{--                --}}{{--                    <div class="ui fluid multiple search selection dropdown">--}}
+            {{--                --}}{{--                        <input name="tags" type="hidden">--}}
+            {{--                --}}{{--                        <i class="dropdown icon"></i>--}}
+            {{--                --}}{{--                        <div class="default text">Skills</div>--}}
+            {{--                --}}{{--                        <div class="menu">--}}
+            {{--                --}}{{--                            @foreach ($hubs as $hub)--}}
+            {{--                --}}{{--                                <div class="item" data-value="{{ $hub['id'] }}">--}}
+            {{--                --}}{{--                                    <i class="{{ strtolower($hub['name']) }} icon"></i>--}}
+            {{--                --}}{{--                                    {{ $hub['name'] }}--}}
+            {{--                --}}{{--                                </div>--}}
+            {{--                --}}{{--                            @endforeach--}}
+            {{--                --}}{{--                        </div>--}}
+            {{--                --}}{{--                    </div>--}}
+            {{--                {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}--}}
 
-                {!! Form::close() !!}
-            </div>
+            {{--                {!! Form::close() !!}--}}
+            {{--            </div>--}}
+            <editor></editor>
+
+
             <div class="content_right">
                 <div class="default-block default-block_sidebar">
                     <div class="default-block__header">
@@ -107,40 +110,4 @@
         </div>
     </div>
 
-@endsection
-
-@section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.0.7/dist/purify.min.js"></script>
-    <script type="text/javascript">
-        (function () {
-            var converter = Markdown.getSanitizingConverter();
-            Markdown.Extra.init(converter, {
-                extensions: "all"
-            });
-
-            var editor = new Markdown.Editor(converter);
-            editor.run();
-            $('textarea').bind('input propertychange', function () {
-                document.getElementById('content').innerHTML = DOMPurify.sanitize(window.parse.parse(this.value));
-            });
-
-        })();
-    </script>
-    <script>
-        var stickymessage = stickybits('#rule', {
-            stickyBitStickyOffset: 10,
-        });
-
-        if (document.getElementById('error')) {
-            iziToast.show({
-                title: 'Xəta',
-                icon: 'ico-error',
-                message: 'Qanunsuz əməliyyat',
-                progressBar: true,
-                color: 'red',
-                close: false,
-                position: 'bottomRight',
-            });
-        }
-    </script>
 @endsection

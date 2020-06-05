@@ -28,7 +28,7 @@ class PostCollection extends JsonResource
             'data' => [
                 'id'             => $this->id,
                 'title'          => $this->name,
-                'body_short'     => \Str::words($body, 100, '…'),
+                'body_short'     => \Str::words($body, 150, ''),
                 'body'           => $body,
                 'creator'        => new UserCollection($this->creator),
                 'votes'          => $this->upvoters_count - $this->downvoters_count,

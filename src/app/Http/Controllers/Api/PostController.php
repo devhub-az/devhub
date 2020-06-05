@@ -98,4 +98,15 @@ class PostController extends Controller
 
         );
     }
+
+    public function upload_image(Request $request)
+    {
+        $user = \Auth::user();
+
+        $post_image = $user->id . '_upload' . time() . '.' . request()->avatar->getClientOriginalExtension();
+
+        $request->avatar->storeAs('cache', $post_image);
+
+        return back()->with('success', 'You have successfully upload image.');
+    }
 }

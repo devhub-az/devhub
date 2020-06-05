@@ -23,7 +23,7 @@
     text-align: center;
     cursor: pointer;
     transition: all 125ms ease-in-out 0s;
-    padding: 0 0.94rem;
+    padding: 0 0.84rem;
 
     i{
         margin-right: 4px;
@@ -55,6 +55,16 @@
 .btn-s {
     padding: 5px 10px;
     box-shadow: 0 1px 1px 0 #eee;
+}
+
+.btn_navbar_login{
+    border: var(--color-border-login-button);
+    color: var(--text-white-secondary);
+    background: transparent;
+
+    &:hover{
+        color: var(--text-white-primary);
+    }
 }
 
 .btn_navbar_registration {

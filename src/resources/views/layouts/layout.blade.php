@@ -7,14 +7,8 @@
           href="{{ asset('./fonts/materialdesignicons-webfont.woff2') }}" crossorigin>
     <link rel="preload" as="font" type="font/otf"
           href="{{ asset('./fonts/MontDemo-Heavy.otf') }}" crossorigin>
-    <link rel="preload" as="font" type="font/woff2"
-          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-100.woff2') }}" crossorigin>
-    <link rel="preload" as="font" type="font/woff2"
-          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-700.woff2') }}" crossorigin>
-    <link rel="preload" as="font" type="font/woff2"
-          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-italic.woff2') }}" crossorigin>
-    <link rel="preload" as="font" type="font/woff2"
-          href="{{ asset('./fonts/roboto/roboto-v20-latin_cyrillic-regular.woff2') }}" crossorigin>
+    <link rel="preload" as="font" type="font/ttf"
+          href="{{ asset('./fonts/roboto/Roboto-Regular.ttf') }}" crossorigin>
 
     <title>@yield('title', 'DevHub') | DevHub</title>
 
@@ -29,23 +23,21 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}" media="print" onload="this.media='all'">
-    {{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
     <style>
         @php
             include(public_path('css/app.css'));
         @endphp
     </style>
     @yield('css')
-
-    {{--    <script type="text/javascript" src="{{ asset('js/Markdown.Converter.js') }}"></script>--}}
-    {{--    <script type="text/javascript" src="{{ asset('js/Markdown.Sanitizer.js') }}"></script>--}}
-    {{--    <script type="text/javascript" src="{{ asset('js/Markdown.Editor.js') }}"></script>--}}
-    {{--    <script src="{{ asset('js/prettify.js') }}"></script>--}}
-    {{--    <script src="{{ asset('js/Markdown.Extra.js') }}"></script>--}}
 </head>
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
 <body data-theme="{{ \Cookie::get('atr') ?? 'default' }}">
+
+<button onclick="scrollToTop()" style="position:fixed; top: 50%;">
+    -
+</button>
+
 {{-- Header --}}
 @include('include.header')
 
@@ -62,25 +54,32 @@
 {{-- Footer --}}
 @include('include.footer')
 
-{{--<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>--}}
 <script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
 <script type="text/javascript" src="{{ mix('js/app.js') }}" async></script>
 @yield('scripts')
-<script>
+<script type="text/javascript" async>
     // var stickymessage = stickybits('.header-message');
 
-    function expand() {
-        $(this).toggleClass("on");
-        $(".nav-links").toggleClass("active");
-    }
+    function scrollToTop () {
+        // cancel if already on top
+        if (document.scrollingElement.scrollTop === 0) return;
 
-    // $("#scroll_to_top").on("click", function () {
-    // $("#scroll_to_top").on("click", function () {
-    //     $('html, body').animate({
-    //         scrollTop: 0
-    //     }, 600);
-    // })};
+        const totalScrollDistance = document.scrollingElement.scrollTop;
+        let scrollY = totalScrollDistance, oldTimestamp = null;
+
+        function step (newTimestamp) {
+            if (oldTimestamp !== null) {
+                // if 1000 is 0 scrollY will be -Infinity
+                scrollY -= totalScrollDistance * (newTimestamp - oldTimestamp) / 1000;
+                if (scrollY <= 0) return document.scrollingElement.scrollTop = 0;
+                document.scrollingElement.scrollTop = scrollY;
+            }
+            oldTimestamp = newTimestamp;
+            window.requestAnimationFrame(step);
+        }
+        window.requestAnimationFrame(step);
+    }
 
     // function search() {
     //     const input = document.getElementById("form_search");

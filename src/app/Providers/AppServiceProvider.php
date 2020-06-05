@@ -5,8 +5,6 @@ namespace App\Providers;
 use App\Models\Hub;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Illuminate\Database\Events\QueryExecuted;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Comment;
@@ -21,10 +19,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-//        if ($this->app->environment('local')) {
-//            $this->app->register(\Laravel\Telescope\TelescopeServiceProvider::class);
-//            $this->app->register(\App\Providers\TelescopeServiceProvider::class);
-//        }
     }
 
     /**
@@ -34,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        setcookie('cross-site-cookie', 'name', ['SameSite' => 'None', 'secure' => true]);
         \Session::put('lang', 'az');
         $this->app->singleton(Parsedown::class);
         \Carbon\Carbon::setLocale('az');
@@ -42,8 +37,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'posts'    => Post::class,
             'comments' => Comment::class,
-            'users' => User::class,
-            'hubs' => Hub::class,
+            'users'    => User::class,
+            'hubs'     => Hub::class,
         ]);
     }
 }

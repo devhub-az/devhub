@@ -21,7 +21,7 @@ Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').defau
 Vue.component('search', require('./components/plugins/search.vue').default);
 Vue.component('dropdown', require('./components/plugins/dropdown.vue').default);
 Vue.component('dropdown-notification', require('./components/plugins/dropdown-notification.vue').default);
-
+Vue.component('editor', require('./components/plugins/editor').default);
 
 /**
  * Parts

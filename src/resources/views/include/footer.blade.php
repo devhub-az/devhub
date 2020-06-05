@@ -13,7 +13,7 @@
                 <a href="{{ route('users-list') }}" class="nav-links__item-link ">Müəlliflər</a>
             </li>
             <li class="nav-links__item">
-                <a href="{{ url('/about_us') }}" class="nav-links__item-link ">Haqqımızda</a>
+                <a href="{{ url('/about_us') }}" class="nav-links__item-link ">MƏLUMAT</a>
             </li>
         </ul>
     </div>

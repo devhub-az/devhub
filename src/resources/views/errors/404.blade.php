@@ -87,7 +87,7 @@
 </head>
 <body>
 <main class="bsod container">
-    <h1 class="neg title"><span class="bg">DevHub - 404</span></h1>
+    <img src="{{ asset('images/errors/404.png') }}" alt="">
     <p>An error has occured, to continue:</p>
     <p>* Return to our homepage.<br/>
         * Send us an e-mail about this error and try later.</p>

@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function users(): AnonymousResourceCollection
     {
-        return UserCollection::collection(User::paginate(10));
+        return UserCollection::collection(User::paginate(12));
     }
 
     public function userFollowCheck(int $id)

@@ -4,10 +4,12 @@
         <div v-if="!loading">
             <div v-if="postsNotEmpty">
                 <div class="post-content__item" v-for="post in posts">
-                    <header class="post__meta">
+                    <div class="post__meta">
                         <a v-bind:href="'/users/@' + post.data.creator.username" class="post__user-info user-info"
                            title="Paylaşmanın müəllifi">
-                            <img :data-src="'/upload/user_'+ post.data.creator.id + '/logo/' + post.data.creator.avatar" height="32" width="32"
+                            <img v-if="post.data.creator.avatar !== 'user.jpg'" :data-src="'/upload/user_'+ post.data.creator.id + '/logo/' + post.data.creator.avatar" height="32" width="32"
+                                 alt="user avatar" class="user__avatar lazyload" src="">
+                            <img v-else-if="post.data.creator.avatar === 'user.jpg'" :data-src="'/upload/default/logo/default.png'" height="32" width="32"
                                  alt="user avatar" class="user__avatar lazyload" src="">
                             <span class="user-info__nickname user-info__nickname_small">{{ '@' + post.data.creator.username }}</span>
                         </a>
@@ -18,7 +20,7 @@
                             <span class="mdi mdi-clock-outline"/>
                             {{ post.data.read_time }}
                         </span>
-                    </header>
+                    </div>
                     <div class="post-content__header">
                         <a :href="'/post/' + post.data.id" class="post-title">
                             <h3>{{ post.data.title }}</h3>

@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Achievements\UserMadeAPost;
 use App\Http\Resources\HubsCollection;
 use App\Models\Hub;
-use App\Models\Post;
-use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
 use Illuminate\View\View;

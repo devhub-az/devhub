@@ -1,5 +1,5 @@
-<header class="layout__navbar">
-    <div class="main-navbar">
+<header>
+    <div class="header">
         <div class="main-navbar__section">
             <a href="javascript:void(0);" onclick="expand()" class="mdi mdi-menu"></a>
             <a class="logo" href="{{ session('main-page') ?? route('home') }}">DevHub</a>
@@ -35,7 +35,7 @@
              style="display: grid;grid-auto-flow: column; grid-gap: 12px;">
             <span id="search-icon" onclick="search()" class="mdi mdi-magnify"></span>
             @guest
-                <a href="{{ route('login') }}" class="btn btn-outline btn-a">Daxil ol</a>
+                <a href="{{ route('login') }}" class="btn btn_navbar_login">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qoşulmaq</a>
             @else
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"

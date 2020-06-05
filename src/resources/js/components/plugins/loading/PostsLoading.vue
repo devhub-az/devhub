@@ -1,16 +1,16 @@
 <template>
     <div class="post-content__item">
-        <header class="post__meta">
+        <div class="post__meta">
             <div style="background-color:#E2E2E2"
                  class="user__avatar MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"></div>
             <div class="user-info__nickname MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                 style="width: 20%; background: rgb(226, 226, 226); height: 1.2rem;"></div>
+                 style="width: 20%; height: 1.2rem;"></div>
             <span class="post__read-time MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                  style="width: 10%; background: rgb(226, 226, 226); height: 1.2rem;"/>
-        </header>
+                  style="width: 10%; height: 1.2rem;"/>
+        </div>
         <div class="post-content__header">
             <div class="post-title MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                 style="width: 40%; background: rgb(226, 226, 226); height: 1.5rem;"></div>
+                 style="width: 60%"></div>
             <div class="post-votes">
                 <i class="mdi mdi-thumb-up-outline"/>
                 <span><i class="mdi mdi-spin mdi-loading"/></span>

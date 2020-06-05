@@ -1,41 +1,52 @@
 {
-    "lang": "az",
-    "dir": "ltr",
-    "name": "DevHub",
-    "short_name": "DevHub",
-    "start_url": "/",
-    "scope": "/",
-    "display": "standalone",
-    "background_color": "#fff",
-    "theme_color": "#1d1d1d",
-    "description": "DevHub Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf qrupudur",
-    "version": "1.0.0",
-    "manifest_version": 2,
-    "icons": [
-        {
-            "src": "/favicon/favicon-32x32.png",
-            "sizes": "32x32",
-            "type": "image/png"
-        },
-        {
-            "src": "/favicon/favicon-70x70.png",
-            "sizes": "70x70",
-            "type": "image/png"
-        },
-        {
-            "src": "/favicon/favicon-144x144.png",
-            "sizes": "144x144",
-            "type": "image/png"
-        },
-        {
-            "src": "/favicon/favicon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/favicon/favicon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ]
+  "name": "DevHub",
+  "short_name": "DevHub",
+  "theme_color": "#1f2327",
+  "background_color": "#2d2d2d",
+  "display": "browser",
+  "Scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "favicon/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "splash_pages": null
 }
