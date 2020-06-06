@@ -28,7 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        setcookie('cross-site-cookie', 'name', ['SameSite' => 'None', 'secure' => true]);
         \Session::put('lang', 'az');
         $this->app->singleton(Parsedown::class);
         \Carbon\Carbon::setLocale('az');

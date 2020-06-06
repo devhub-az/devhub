@@ -157,5 +157,8 @@ Route::post('upvote', 'PostController@vote');
 
 Route::get('query', 'HomeController@indexTest');
 
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
 
 Route::get('test', 'Auth\NotificationController@test');

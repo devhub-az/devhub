@@ -33,7 +33,7 @@ return [
 
     'connections' => [
 
-        'sqlite_main' => [
+        'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE_MAIN', database_path('database.sqlite')),
             'prefix' => '',
