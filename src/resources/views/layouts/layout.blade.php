@@ -58,11 +58,11 @@
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
 <script type="text/javascript" src="{{ mix('js/app.js') }}" async></script>
 @yield('scripts')
-<script type="text/javascript" async>
-    // var stickymessage = stickybits('.header-message');
+</body>
+<script type="text/javascript">
+    var stickymessage = stickybits('.header-message');
 
     function scrollToTop () {
-        // cancel if already on top
         if (document.scrollingElement.scrollTop === 0) return;
 
         const totalScrollDistance = document.scrollingElement.scrollTop;
@@ -70,7 +70,6 @@
 
         function step (newTimestamp) {
             if (oldTimestamp !== null) {
-                // if 1000 is 0 scrollY will be -Infinity
                 scrollY -= totalScrollDistance * (newTimestamp - oldTimestamp) / 1000;
                 if (scrollY <= 0) return document.scrollingElement.scrollTop = 0;
                 document.scrollingElement.scrollTop = scrollY;
@@ -81,27 +80,26 @@
         window.requestAnimationFrame(step);
     }
 
-    // function search() {
-    //     const input = document.getElementById("form_search");
-    //     const icon = document.getElementById("search-icon");
-    //     const nav = document.getElementById("navbar-links");
-    //     const search_input = document.getElementById("search_input");
-    //
-    //     nav.style.display = "none";
-    //     input.style.display = "flex";
-    //     icon.style.display = "none";
-    //     search_input.focus();
-    // }
-    //
-    // function closeSearch() {
-    //     const input = document.getElementById("form_search");
-    //     const icon = document.getElementById("search-icon");
-    //     const nav = document.getElementById("navbar-links");
-    //
-    //     nav.removeAttribute("style");
-    //     input.removeAttribute("style");
-    //     icon.removeAttribute("style");
-    // }
+    function search() {
+        const input = document.getElementById("form_search");
+        const icon = document.getElementById("search-icon");
+        const nav = document.getElementById("menu");
+        const search_input = document.getElementById("search_input");
+
+        nav.style.display = "none";
+        input.style.display = "flex";
+        icon.style.display = "none";
+        search_input.focus();
+    }
+
+    function closeSearch() {
+        const input = document.getElementById("form_search");
+        const icon = document.getElementById("search-icon");
+        const nav = document.getElementById("menu");
+
+        nav.removeAttribute("style");
+        input.removeAttribute("style");
+        icon.removeAttribute("style");
+    }
 </script>
-</body>
 </html>

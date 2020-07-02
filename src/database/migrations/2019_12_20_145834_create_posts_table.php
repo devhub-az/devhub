@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration {
 			$table->integer('author_id')->nullable();
 			$table->timestamps();
 		});
+        DB::statement('ALTER TABLE posts ADD FULLTEXT search(name)');
 	}
 
 

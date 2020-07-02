@@ -21,7 +21,7 @@
                                 <div class="list-hubs__hub">
                                     <div class="list-hubs__obj-body">
                                         <div class="list-hubs__title-link">{{ $post->name }}</div>
-                                        <div class="list-hubs__desc">{!! $post->body !!}</div>
+{{--                                        <div class="list-hubs__desc">{!! $post->body !!}</div>--}}
                                         <div class="list-hubs__desc">Baxilib: {{ $post->views }}</div>
                                     </div>
                                     <div class="list-hubs__stats-value">
@@ -31,26 +31,26 @@
                             </li>
                         @endforeach
                     @endif
-                    @if ($hubs->count() !== 0)
-                        <h3>Hablar</h3>
-                        {{-- {{ dd($hubs->posts_count) }} --}}
-                        @foreach ($hubs as $hub)
-                            <li>
-                                <div class="list-hubs__hub">
-                                    <img class="list-hubs__hub-image" src="{{$hub->logo}}" alt="">
-                                    <div class="list-hubs__obj-body">
-                                        <div class="list-hubs__title-link">{{ $hub->name }}</div>
-                                        <div class="list-hubs__desc">{{ $hub->description }}</div>
-                                        <div class="list-hubs__desc">Postlar: {{ $hub->posts_count }}, Followers: 2
-                                        </div>
-                                    </div>
-                                    <div class="list-hubs__stats-value">
-                                        {{ $hub->raiting }}
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    @endif
+{{--                    @if ($hubs->count() !== 0)--}}
+{{--                        <h3>Hablar</h3>--}}
+{{--                        --}}{{-- {{ dd($hubs->posts_count) }} --}}
+{{--                        @foreach ($hubs as $hub)--}}
+{{--                            <li>--}}
+{{--                                <div class="list-hubs__hub">--}}
+{{--                                    <img class="list-hubs__hub-image" src="{{$hub->logo}}" alt="">--}}
+{{--                                    <div class="list-hubs__obj-body">--}}
+{{--                                        <div class="list-hubs__title-link">{{ $hub->name }}</div>--}}
+{{--                                        <div class="list-hubs__desc">{{ $hub->description }}</div>--}}
+{{--                                        <div class="list-hubs__desc">Postlar: {{ $hub->posts_count }}, Followers: 2--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="list-hubs__stats-value">--}}
+{{--                                        {{ $hub->raiting }}--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </li>--}}
+{{--                        @endforeach--}}
+{{--                    @endif--}}
                 </ul>
             </div>
         </div>

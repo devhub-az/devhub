@@ -3,7 +3,7 @@
         <div class="main-navbar__section">
             <a href="javascript:void(0);" onclick="expand()" class="mdi mdi-menu"></a>
             <a class="logo" href="{{ session('main-page') ?? route('home') }}">DevHub</a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="menu">
                 <li class="nav-links__item">
                     <a href="{{ session('main-page') ?? route('home') }}"
                        class="nav-links__item-link @if(Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) nav-links__item-link_current @endif">Paylaşmalar</a>

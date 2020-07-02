@@ -6,21 +6,22 @@ use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostsCollection;
 use App\Models\Hub;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $query = request()->search;
 
-        $hubs = collect();
+        $hubs = [];
         $posts = collect();
 
         if ($query) {
-            $hubs = new HubsCollection(Hub::where('name', 'LIKE', "%{$query}%")->get());
-            $posts = new PostsCollection(Post::where('name', 'LIKE', "%{$query}%")->get());
+            $posts = new PostsCollection(Post::whereraw("MATCH(name) AGAINST ('" . $query . "')")->get());
         }
 
-        return view('pages.search-result', ['hubs' => $hubs, 'posts' => $posts], compact('query'));
+        dd($posts->toResponse($request)->getData());
+        return view('pages.search-result', ['hubs' => $hubs, 'posts' => $posts->toResponse($request)->getData()->data], compact('query'));
     }
 }
