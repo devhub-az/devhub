@@ -1,0 +1,59 @@
+:root {
+    // Breakpoints
+    --phone: 480px;
+    --tablet: 768px;
+    --desktop: 980px;
+    --widescreen: 1200px;
+
+    // Colors
+    --color-white: #fff;
+    --color-black: #000;
+    --color-blue: #0297d3;
+    --color-green: #1cc14f;
+    --color-grey-light: #666;
+    --color-grey-dark: rgba(255,255,255,.6);
+    --color-red: #cc2a23;
+
+    // Fonts
+    --font-sans-serif: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+    --font-serif: 'Times New Roman', Times, Baskerville, Georgia, serif;
+
+    // Body base
+    --base-background-color: #f6f6fb;
+    --base-footer-color: #223645;
+    --base-font-family: var(--font-sans-serif);
+    --base-font-size: 16px;
+    --base-line-height: 1.2;
+    --base-text-color: var(--color-black);
+    --base-min-width: 320px;
+
+    // Links base
+    --base-link: var(--color-blue);
+    --base-link-active: var(--color-red);
+
+    // Buttons base
+    --btn-color: var(--color-white);
+    --btn-background: var(--color-blue);
+    --btn-padding: 0.4em 0.7em;
+    --btn-font-size: 1.6rem;
+    --btn-font-family: var(--font-sans-serif);
+
+    // Forms base
+    --form-font-family: var(--font-sans-serif);
+    --form-element-padding: var(--btn-padding);
+    --form-element-border-color: var(--color-grey);
+    --form-element-focus-border-color: var(--color-black);
+    --placeholder-color: var(--color-grey);
+
+    // Headings base
+    --headings-font-family: var(--font-sans-serif);
+    --headings-color: var(--base-text-color);
+
+    // Base font styles for headings
+    --headings-sizes-h1: 50px;
+    --headings-sizes-h2: 45px;
+    --headings-sizes-h3: 35px;
+    --headings-sizes-h4: 25px;
+    --headings-sizes-h5: 18px;
+    --headings-sizes-h6: 16px;
+}
