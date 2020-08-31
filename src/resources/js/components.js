@@ -47,7 +47,7 @@ Vue.component('users-list', require('./components/users/UserComponent.vue').defa
 /**
  * Auth
  */
-Vue.component('profile-image-update', require('./components/plugins/profileUpdate').default);
+// Vue.component('profile-image-update', require('./components/plugins/profileUpdate').default);
 Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
 
 /**

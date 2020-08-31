@@ -24,30 +24,28 @@ window.Noty = require('noty');
 
 require('moment/locale/az');
 window.moment.locale('az');
-//
-// window.parse = require('./parser');
-//
+
 Noty.overrideDefaults({
     layout: 'topLeft',
-    dismissQueue: true, // [boolean] If you want to use queue feature set this true
-    force: false, // [boolean] adds notification to the beginning of queue when set to true
-    maxVisible: 5, // [integer] you can set max visible notification count for dismissQueue true option,
+    dismissQueue: true,
+    force: false,
+    maxVisible: 5,
 
 
-    timeout: 3000, // [integer|boolean] delay for closing event in milliseconds. Set false for sticky notifications
-    progressBar: false, // [boolean] - displays a progress bar
+    timeout: 3000,
+    progressBar: false,
 
     animation: {
-        open: 'animated fadeInLeft', // Animate.css class names
-        close: 'animated fadeOutLeft' // Animate.css class names
+        open: 'animated fadeInLeft',
+        close: 'animated fadeOutLeft'
     },
-    closeWith: ['click'], // ['click', 'button', 'hover', 'backdrop'] // backdrop click will close all notifications
+    closeWith: ['click'],
 
-    buttons: false // [boolean|array] an array of buttons, for creating confirmation dialogs.
+    buttons: false
 });
-//
+
 import './components'
-//
+
 Vue.config.productionTip = false;
 Vue.config.silent = false;
 Vue.config.keyCodes.backspace = 8;

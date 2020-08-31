@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
-{{-- <![endif] --}}
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=576, user-scalable=no"/>
@@ -19,7 +18,12 @@
 	@yield('meta')
 
 	{{-- CSS --}}
-	<link rel="stylesheet" href="{{ asset('css/login.css') }}" media="print" onload="this.media='all'">
+	<style>
+		@php
+			include(public_path('css/login.css'));
+		@endphp
+	</style>
+{{--	<link rel="stylesheet" href="{{ asset('css/app.css') }}" media="print" onload="this.media='all'">--}}
 	@yield('css')
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400,400i,700,700i&display=swap&subset=cyrillic"
@@ -35,6 +39,5 @@
 	
 	<script src="{{ asset('js/login.js') }}" async="async"></script>
 	@yield('scripts')
-
 </body>
 </html>

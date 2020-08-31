@@ -99,6 +99,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ mix('js/scripts/particles.min.js') }}"></script>
-    <script src="{{ mix('js/scripts/particles.settings.js') }}"></script>
+    <script src="{{ asset('js/scripts/particles.min.js') }}"></script>
+    <script src="{{ asset('js/scripts/particles.settings.js') }}"></script>
 @endsection

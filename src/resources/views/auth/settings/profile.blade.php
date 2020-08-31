@@ -1,12 +1,10 @@
 @extends('layouts.layout')
 
 @section('main')
-    <div class="layout_body" id="app">
-        <div class="layout_content">
-            <div class="content_left">
-                <profile-settings :auth="{{ $user }}"></profile-settings>
-            </div>
-            <div class="content_right">
+    <div class="settings" id="app">
+        <div class="settings__content">
+            <profile-settings :auth="{{ $user }}"></profile-settings>
+            <div class="settings__right">
                 @include('auth.settings.layout.right')
             </div>
         </div>

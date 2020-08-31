@@ -60,7 +60,9 @@
 @yield('scripts')
 </body>
 <script type="text/javascript">
-    var stickymessage = stickybits('.header-message');
+    // if (document.getElementsByClassName('header-message')){
+    //     const stickymessage = stickybits('.header-message');
+    // }
 
     function scrollToTop () {
         if (document.scrollingElement.scrollTop === 0) return;

@@ -21,7 +21,6 @@
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"
                 class="menu">
-                <h3 class="menu-head">Profil</h3>
                 <li>
                     <a
                             :href="'/users/@' + user.username"
@@ -31,7 +30,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-badge-account-horizontal"></i> Profilim</span>
+                        <span class="ml-2">Profilim</span>
                     </a>
                 </li>
                 <li>
@@ -43,22 +42,21 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-account-cog"/> Parametrlər</span>
+                        <span class="ml-2">Parametrlər</span>
                     </a>
                 </li>
-                <h3 class="menu-head">Görünüş</h3>
+                <div class="line"></div>
                 <li @click="toggle" class="drop-grid">
                     <div class="switch-button-control">
-                        <i class="mdi mdi-weather-night"/>
-                        <div class="switch-button-label">
-                            Dark
+                        <div class="switch-button-label ml-2">
+                            Qaranlıq
                         </div>
                         <div class="switch-button" :class="{ enabled: isEnabled }">
                             <div class="button"></div>
                         </div>
                     </div>
                 </li>
-                <h3 class="menu-head">Digər</h3>
+                <div class="line"></div>
                 <li v-if="admin">
                     <a
                             href="/admin"
@@ -68,7 +66,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-account-cowboy-hat"></i> Admin panel</span>
+                        <span class="ml-2">Admin panel</span>
                     </a>
                 </li>
                 <li>
@@ -80,10 +78,10 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-bookmark-check"></i> Seçilmişlər</span>
+                        <span class="ml-2">Seçilmişlər</span>
                     </a>
                 </li>
-                <hr class="line">
+                <div class="line"></div>
                 <li @click.prevent="logout">
                     <a
                             href="#"
@@ -93,7 +91,7 @@
                             @keydown.down.exact.prevent="focusNext(true)"
                             @keydown.esc.exact="hideDropdown"
                     >
-                        <span class="ml-2"><i class="mdi mdi-exit-to-app"/> Çıxmaq</span>
+                        <span class="ml-2">Çıxmaq</span>
                     </a>
                 </li>
             </ul>
@@ -196,7 +194,10 @@
     }
 
     .drop-grid {
-        padding: 10px 0;
+        display: block;
+        padding: 7px 15px;
+        width: 100%;
+        color: inherit;
     }
 
     .switch-button-control {
@@ -256,7 +257,8 @@
     }
 
     .line {
-        border-top: 1px solid var(--text-black-secondary);
-        margin: 0 16px;
+        background: rgb(54, 54, 54);
+        height: 1px;
+        margin: 5px 0;
     }
 </style>

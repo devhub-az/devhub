@@ -5,327 +5,50 @@
   font-display: swap;
   src: url("/fonts/MontDemo-Heavy.otf");
 }
-/* http://meyerweb.com/eric/tools/css/reset/
-   v5.0.1 | 20191019
-   License: none (public domain)
-*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, menu, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-main, menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, main, menu, nav, section {
-  display: block;
-}
-
-/* HTML5 hidden-attribute fix for newer browsers */
-*[hidden] {
-  display: none;
-}
-
 body {
-  line-height: 1;
-}
-
-menu, ol, ul {
-  list-style: none;
-}
-
-blockquote, q {
-  quotes: none;
-}
-
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: "";
-  content: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-/**
- * Base variables list
- */
-/**
- * Kernel variables
- */
-/**
- * Animations
- */
-/**
- * Color variables list
- */
-:root, [data-theme=default] {
-  --background-default: #f5f5f5;
-  --background-paper: #fff;
-  --background-tertiary: #fafbfc;
-  --text-black-primary: rgba(0, 0, 0, 0.87);
-  --text-black-secondary: #757575;
-  --text-black-disabled: #4c4c4e;
-  --text-white-primary: #fff;
-  --text-white-secondary: rgba(255, 255, 255, 0.7);
-  --text-white-disabled: rgba(255, 255, 255, 0.5);
-  --color-primary-main: #428bca;
-  --color-primary-main-button: #428bca;
-  --color-primary-light: #4791db;
-  --color-primary-dark: #115293;
-  --color-secondary-main: #dc004e;
-  --color-secondary-light: #e33371;
-  --color-secondary-dark: #9a0036;
-  --color-error-main: #f44336;
-  --color-error-light: #e57373;
-  --color-error-dark: #d32f2f;
-  --color-warning-main: #ff9800;
-  --color-warning-light: #ffb74d;
-  --color-warning-dark: #f57c00;
-  --color-info-main: #2196f3;
-  --color-info-light: #64b5f6;
-  --color-info-dark: #1976d2;
-  --color-success-main: #4caf50;
-  --color-success-light: #81c784;
-  --color-success-dark: #388e3c;
-  --color-border: #e9e9e9;
-  --color-border-button: .06rem solid hsla(0, 0%, 0%, 0.2);
-  --color-header: rgba(0, 0, 0, 0.7);
-  --footer: rgba(255, 255, 255, 0.7);
-  --color-black: rgba(0, 0, 0, 0.87);
-  --color-black-secondary: #757575;
-  --color-white: #fff;
-  --color-white-secondary: rgba(255, 255, 255, 0.7);
-  --loading-black: #0000002e;
-}
-
-:root, [data-theme=dark] {
-  --background-default: #121212;
-  --background-paper: #202020;
-  --background-tertiary: rgba(43,43,43,1);
-  --background: #f9f9fb;
-  --text-white-primary: rgba(0, 0, 0, 0.87);
-  --text-white-secondary: hsla(0,0%,100%,.5);
-  --text-white-disabled: rgba(255, 255, 255, 0.3);
-  --text-black-primary: #fff;
-  --text-black-secondary: hsla(0,0%,100%,.5);
-  --text-black-disabled: rgba(255, 255, 255, 0.3);
-  --color-primary-main: #648dae;
-  --color-primary-main-button: #2371c1;
-  --color-primary-light: #a6d4fa;
-  --color-primary-dark: #648dae;
-  --color-secondary-main: #f48fb1;
-  --color-secondary-light: #f6a5c0;
-  --color-secondary-dark: #aa647b;
-  --color-error-main: #f44336;
-  --color-error-light: #e57373;
-  --color-error-dark: #d32f2f;
-  --color-warning-main: #ff9800;
-  --color-warning-light: #ffb74d;
-  --color-warning-dark: #f57c00;
-  --color-info-main: #2196f3;
-  --color-info-light: #64b5f6;
-  --color-info-dark: #1976d2;
-  --color-success-main: #4caf50;
-  --color-success-light: #81c784;
-  --color-success-dark: #388e3c;
-  --color-border: #565555;
-  --color-border-button: .06rem solid hsla(0,0%,100%,.2);
-  --color-header: rgba(255, 255, 255, 0.7);
-  --footer: rgba(255, 255, 255, 0.7);
-  --color-black: rgba(0, 0, 0, 0.87);
-  --color-black-secondary: #757575;
-  --color-white: #fff;
-  --color-white-secondary: rgba(255, 255, 255, 0.7);
-  --loading-black: #ffffff36;
-}
-
-/**
- * Font variables and mixins
- */
-/**
- * Fonts Variables
- */
-/**
- * Media queries support
- */
-/**
- * Other mixins
- */
-.btn:hover {
-  -webkit-filter: opacity(90%) !important;
-          filter: opacity(90%) !important;
-}
-
-.btn {
-  border-radius: 2px;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  font-size: 0.69rem;
-  letter-spacing: 0.03rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  line-height: normal;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.88rem;
-  text-align: center;
-  cursor: pointer;
-  transition: all 125ms ease-in-out 0s;
-  padding: 0 0.84rem;
-}
-.btn i {
-  margin-right: 4px;
-}
-
-.btn-sm {
-  line-height: calc(1rem - 1px);
-  font-size: 0.7rem;
-  font-weight: 500;
-  padding: 0.2rem 0.5rem;
-  letter-spacing: 0.5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  transition: 0.2s;
-  transition-property: all;
-  transition-duration: 0.2s;
-  transition-timing-function: ease;
-  transition-delay: 0s;
-}
-
-.hub_follow {
-  margin: auto;
-  text-align: center;
   width: 100%;
-}
-
-.btn-s {
-  padding: 5px 10px;
-  box-shadow: 0 1px 1px 0 #eee;
-}
-
-.btn_navbar_login {
-  border: var(--color-border-login-button);
-  color: var(--text-white-secondary);
-  background: transparent;
-}
-.btn_navbar_login:hover {
-  color: var(--text-white-primary);
-}
-
-.btn_navbar_registration {
-  color: #fff;
-  background-color: var(--color-primary-main-button);
-}
-.btn_navbar_registration:hover {
-  box-shadow: rgba(65, 131, 185, 0.3) 0 0 0 4px;
-}
-
-.btn-primary {
-  background-color: var(--color-primary-main-button) !important;
-  color: var(--color-white);
-}
-
-.btn-outline {
-  border: var(--color-border-button);
-  color: var(--text-black-primary);
-  background: transparent;
-}
-
-.submit {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.profile_user-connect {
-  display: inline-block;
-  color: var(--text-white-primary) !important;
-  background-color: var(--color-primary-main);
-  border: none;
-  border-radius: 2px;
-  margin-top: 20px;
-  width: 100%;
-  text-align: center;
-}
-
-.profile_user-connected {
-  display: inline-block;
-  color: var(--color-white) !important;
-  background-color: var(--color-gray);
-  border: 1px solid var(--color-btn-border-secondary);
-  width: 100%;
-  text-align: center;
-}
-
-.btn-more {
-  background-color: transparent;
-  border: 1px solid #dbdbdb;
-  color: var(--color-black);
-  margin: 0 0 0 auto;
-}
-
-.page-header__button {
-  display: inline-block;
-  color: var(--color-white) !important;
-  background-color: var(--color-primary-main);
-  border: none;
-  border-radius: 2px;
-  width: 100%;
-  text-align: center;
-}
-
-.btn-follow__user {
-  background: var(--color-green);
-  color: #fff;
-  width: 100%;
-  text-align: center;
-  margin: 12px 0 0;
-}
-
-.btn-dashed {
-  color: rgba(0, 0, 0, 0.65);
-  background-color: #fff;
-  border-color: #d9d9d9;
-  border-style: dashed;
-}
-
-.button_about {
-  margin-top: 12px;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  width: 100%;
-  line-height: 1.4;
   min-height: 100vh;
 }
 
-@media (min-width: 1281px) {
+.login {
+  min-height: 100vh;
+  min-width: 100%;
+}
+.login__left {
+  background: var(--color-primary-main-button);
+  color: #fff;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 100vh;
+  grid-column: 1;
+}
+.login__info {
+  color: #fff;
+  display: flex;
+  max-width: 70%;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 99;
+}
+.login__info-block {
+  display: flex;
+  margin-bottom: 24px;
+}
+.login__title {
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: var(--color-white);
+}
+.login__logo {
+  font-size: inherit;
+  margin: unset;
+  color: var(--color-black);
+}
+
+@media (max-width: 991px) {
   .PageColumns {
     display: grid;
     grid-template-columns: 50% 50%;

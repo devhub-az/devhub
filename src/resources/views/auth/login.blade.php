@@ -4,8 +4,8 @@
 
 @section('main')
     <div class="container">
-        <div class="PageColumns">
-            <div class="PageColumn PageColumn__left">
+        <div class="login">
+            <div class="login__left">
                 @include('auth.import.left_side')
                 <div id="particles-js"></div>
             </div>

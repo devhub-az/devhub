@@ -1,6 +1,8 @@
-<div class="login__registration">
-    <div class="login__registration-block">
-        <h1 class="title"><span class="logo_login">DevHub</span> cəmiyyətinə qoşulun</h1>
+<div class="login__info">
+    <div class="login__info-block">
+        <h1 class="login__title">
+            <span class="login__logo">DevHub</span> cəmiyyətinə qoşulun
+        </h1>
         <div class="login__registration-block-info">
             <span class="mdi mdi-thumbs-up-down"></span>
             <div class="login__registration-info-text">

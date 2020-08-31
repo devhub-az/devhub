@@ -40,7 +40,9 @@
         "nunomaduro/collision": "^5.0",
         "pestphp/pest": "^0.2.0",
         "phpunit/phpunit": "^9.0",
-        "roave/security-advisories": "dev-master"
+        "psalm/plugin-laravel": "^1.4",
+        "roave/security-advisories": "dev-master",
+        "vimeo/psalm": "^3.14"
     },
     "config": {
         "optimize-autoloader": true,

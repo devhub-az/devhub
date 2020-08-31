@@ -19,11 +19,11 @@
                         @auth
                             <a href="{{ route('favorite') }}"
                                class="nav-posts__item @if(Request::url() === route('favorite')) nav-posts__item-link_current @endif">
-                                    <span class="nav-posts__item-link badge"
-                                          @if (Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() > 0)
-                                          data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"@endif>
-                                        Abunə ilə
-                                    </span>
+                                <span class="nav-posts__item-link badge"
+                                      @if (Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() > 0)
+                                      data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"@endif>
+                                    Abunə ilə
+                                </span>
                             </a>
                         @endauth
                     </div>
@@ -70,9 +70,9 @@
                     </p>
                     <a href="#"
                        class="button--cta button button--icon button--icon--write rippleButton rippleButton">
-                            <span class="btn btn-primary btn-a">
-                                Paylaşmaq
-                            </span>
+                        <span class="btn btn-primary btn-a">
+                            Paylaşmaq
+                        </span>
                         <div class="ripple-container"></div>
                     </a>
                 </div>

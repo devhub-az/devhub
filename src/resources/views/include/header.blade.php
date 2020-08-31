@@ -18,7 +18,7 @@
                 </li>
                 <li class="nav-links__item">
                     <a href="{{ url('/about_us') }}"
-                       class="nav-links__item-link @if(Request::is('about_us')) nav-links__item-link_current @endif">məlumat</a>
+                       class="nav-links__item-link @if(Request::is('about_us')) nav-links__item-link_current @endif">Məlumat</a>
                 </li>
             </ul>
         </div>
@@ -26,7 +26,7 @@
             @csrf
             <div class="header_search">
                 <input id="search_input" type="text" class="search" autocomplete="off" name="search" maxlength="48"
-                       minlength="3" placeholder="Paylasma ya hub axtar" required="required">
+                       minlength="3" placeholder="Paylaşma ya hab axtar" required="required">
                 <span class="mdi mdi-magnify"></span>
                 <span onclick="closeSearch()" class="mdi mdi-file-excel-box"></span>
             </div>
