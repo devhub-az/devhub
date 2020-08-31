@@ -47,47 +47,30 @@ header{
             width: 100%;
             list-style: none;
             cursor: pointer;
+            transition: opacity 100ms linear, transform 100ms linear, visibility 100ms linear;
+            border-radius: 6px;
+            box-shadow: 0 5px 26px 0 rgba(0,0,0,.32);
             color: #29303b;
-            background-color: var(--text-white-primary);
+            background-color: rgb(39, 39, 39);
             border: 1px solid var(--color-border);
             z-index: 11;
 
-            .menu-head {
-                padding: 0;
-                border: 0;
-                font: inherit;
-                vertical-align: baseline;
-                font-size: 10px;
-                font-weight: 700;
-                letter-spacing: .5px;
-                cursor: default;
-                line-height: 12px;
-                text-transform: uppercase;
-                color: var(--text-black-secondary);
-                margin: 8px 0 4px 10px;
-            }
-
             li {
-                color: var(--text-black-primary);
+                color: rgb(214,214,214);
 
                 i {
                     font-size: 20px;
                     margin: 0 10px;
-                    color: var(--text-black-secondary);
+                    color: rgb(214,214,214);
                 }
 
                 &:hover {
-                    color: var(--text-white-primary);
-                    background: var(--text-black-secondary);
-
-                    i {
-                        color: var(--text-white-secondary);
-                    }
+                    background: rgb(54,54,54);
                 }
 
                 a {
                     display: block;
-                    padding: 10px 0;
+                    padding: 7px 15px;
                     width: 100%;
                     color: inherit;
                 }
@@ -180,7 +163,7 @@ header{
         -ms-flex-align: center;
         align-items: center;
         position: relative;
-        min-height: 50px;
+        min-height: 45px;
 
         .mdi-menu {
             display: none;
@@ -209,15 +192,10 @@ header{
                 margin-right: 23px;
 
                 .nav-links__item-link {
-                    display: inline-block;
-                    color: var(--text-white-secondary);
+                    color: rgb(214, 214, 214);
                     font-size: 13px;
-                    letter-spacing: 0.3px;
-                    box-sizing: border-box;
-                    text-transform: uppercase;
-                    white-space: nowrap;
-                    -webkit-font-smoothing: subpixel-antialiased;
-                    text-rendering: optimizeLegibility;
+                    font-weight: 600;
+                    line-height: 44px;
                     -webkit-transition: 0.2s;
                     transition: 0.2s;
                     -webkit-transition-property: all;

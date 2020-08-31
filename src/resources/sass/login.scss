@@ -5,17 +5,12 @@
     src: url("/fonts/MontDemo-Heavy.otf");
 }
 
-@import '~reset-css';
-@import "kernel";
-
 body{
-    font-family: $font-family;
     width: 100%;
-    line-height: $ui-min-height;
     min-height: 100vh;
 }
 
-@media (min-width: 1281px) {
+@include media-breakpoint-down(md) {
     .PageColumns {
         display: grid;
         grid-template-columns: 50% 50%;
