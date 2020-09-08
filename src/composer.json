@@ -27,7 +27,7 @@
         "mews/purifier": "3.*",
         "parsedown/laravel": "^1.1",
         "renatomarinho/laravel-page-speed": "^1.8",
-        "sentry/sentry-laravel": "1.8.0",
+        "sentry/sentry-laravel": "1.9.0",
         "silber/bouncer": "v1.0.0-rc.8",
         "spatie/laravel-responsecache": "^6.1"
     },
