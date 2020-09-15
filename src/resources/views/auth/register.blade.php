@@ -4,19 +4,19 @@
 
 @section('main')
     <div class="container">
-        <div class="PageColumns">
-            <div class="PageColumn PageColumn__left">
+        <div class="login">
+            <div class="login__left">
                 @include('auth.import.left_side')
                 <div id="particles-js"></div>
             </div>
-            <div class="PageColumn PageColumn__right">
+            <div class="login__right">
                 <div class="ColumnContainer mode-auth">
                     <a href="{{ route('home') }}" class="logo_login" style="margin-top: 0;">DevHub</a>
                     <p class="desc">Xoş gəldiniz! Xahiş edirik məlumatlarınızı daxil edin və ya hesabınıza sosial şəbəkə
                         hesabı ilə daxil olun.</p>
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
-                        <fieldset class="AnimatedForm__field m-required login hideable m-valid">
+                        <fieldset class="AnimatedForm__field m-required hideable m-valid">
                             <input id="name" type="text"
                                    class="AnimatedForm__textInput {{ $errors->has('name') ? ' is-invalid' : '' }}"
                                    data-empty="false" name="name" value="{{ old('name') }}" required autofocus>
@@ -29,7 +29,7 @@
                                 @endif
                             </div>
                         </fieldset>
-                        <fieldset class="AnimatedForm__field m-required login hideable">
+                        <fieldset class="AnimatedForm__field m-required hideable">
                             <input id="email" type="email"
                                    class="AnimatedForm__textInput {{ $errors->has('email') ? ' is-invalid' : '' }}"
                                    name="email" value="{{ old('email') }}" data-empty="false" required>
@@ -42,7 +42,7 @@
                                 @endif
                             </div>
                         </fieldset>
-                        <fieldset class="AnimatedForm__field m-required login hideable">
+                        <fieldset class="AnimatedForm__field m-required hideable">
                             <input id="avatar" type="file" name="avatar" data-empty="false">
                             <div class="AnimatedForm__errorMessage">
                                 @if ($errors->has('avatar'))
@@ -52,7 +52,7 @@
                                 @endif
                             </div>
                         </fieldset>
-                        <fieldset class="AnimatedForm__field m-required password hideable">
+                        <fieldset class="AnimatedForm__field m-required hideable">
                             <input id="password" type="password"
                                    class="AnimatedForm__textInput {{ $errors->has('password') ? ' is-invalid' : '' }}"
                                    name="password" data-empty="false" required>
@@ -65,7 +65,7 @@
                                 @endif
                             </div>
                         </fieldset>
-                        <fieldset class="AnimatedForm__field m-required password hideable">
+                        <fieldset class="AnimatedForm__field m-required hideable">
                             <input id="password-confirm" type="password"
                                    class="AnimatedForm__textInput {{ $errors->has('password') ? ' is-invalid' : '' }}"
                                    name="password_confirmation" data-empty="false" required>

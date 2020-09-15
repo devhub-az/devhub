@@ -35,6 +35,7 @@
              style="display: grid;grid-auto-flow: column; grid-gap: 12px;">
             <span id="search-icon" onclick="search()" class="mdi mdi-magnify"></span>
             @guest
+                <switcher-theme></switcher-theme>
                 <a href="{{ route('login') }}" class="btn btn_navbar_login">Daxil ol</a>
                 <a href="{{ route('register') }}" class="btn btn_navbar_registration">Qoşulmaq</a>
             @else
@@ -56,6 +57,6 @@
         </div>
     </div>
 </header>
-<form id="logout-form" action="{{ route('logout') }}" method="POST" {{-- style="display: none;" --}}>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
 </form>

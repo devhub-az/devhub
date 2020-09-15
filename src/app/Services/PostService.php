@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 class PostService
 {
     /**
-     * @param string $orderBy
+     * @param string|null $orderBy
      * @return Builder
      */
     public static function getPosts(string $orderBy = null): Builder

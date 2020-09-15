@@ -2,10 +2,6 @@
 
 @section('title')Müəlliflər @stop
 
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/users.css') }}">
-@stop
-
 @section('main')
     <div class="layout_body" id="app">
         <div class="users__page-header">

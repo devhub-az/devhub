@@ -16,7 +16,7 @@ Route::get('/top/month', 'HomeController@postsApiRoute')->name('top.month');
 Route::get('/all', 'HomeController@postsApiRoute')->name('all');
 Route::get('/downloadPDF/{id}', 'UserController@downloadPDF');
 
-Route::group(['middleware' => ['auth', 'activity']], static function () {
+Route::group(['middleware' => ['auth']], static function () {
     Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
     Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
@@ -95,10 +95,15 @@ Route::prefix('api')->group(static function () {
      */
     Route::get('/users/{id}/posts', 'Api\UserController@posts');
     Route::post('/users/{id}/profile_update', 'Api\UserController@upload');
+
+    /**
+     * Search Api
+     */
+    Route::get('search{search?}', 'Api\SearchController@results');
 });
 
 
-Route::group(['middleware' => ['activity']], static function () {
+Route::group([], static function () {
     Route::prefix('post')->group(static function () {
         Route::get('/add', 'PostController@create')->name('create_post');
         Route::get('/{id}', 'PostController@show')->name('show');

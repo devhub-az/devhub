@@ -5,11 +5,17 @@ namespace App\Models;
 
 use App\Http\Traits\Can\CanBeBookmarked;
 use App\Http\Traits\Can\CanBeVoted;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Post
+ *
+ * @mixin Eloquent
+ */
 class Post extends Model
 {
     use CanBeVoted, CanBeBookmarked;

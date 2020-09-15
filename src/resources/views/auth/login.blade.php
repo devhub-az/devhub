@@ -9,26 +9,26 @@
                 @include('auth.import.left_side')
                 <div id="particles-js"></div>
             </div>
-            <div class="PageColumn PageColumn__right">
+            <div class="login__right">
                 <div class="ColumnContainer mode-auth">
                     <a href="{{ route('home') }}" class="logo_login">DevHub</a>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        <fieldset class="AnimatedForm__field m-required login hideable m-valid">
+                        <fieldset class="login__form">
                             <input id="email" type="email"
-                                   class="AnimatedForm__textInput {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                   data-empty="false" name="email" value="{{ old('email') }}" required
-                                   autocomplete="email" autofocus>
-                            <label class="AnimatedForm__textInputLabel"
-                                   for="loginUsername">{{ __('validation.attributes.email') }}</label>
+                                   class="login__form-input {{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                   name="email" value="{{ old('email') }}" required
+                                   autocomplete="email">
+                            <label class="login__form-label"
+                                   for="email">{{ __('validation.attributes.email') }}</label>
                             <div class="AnimatedForm__errorMessage"></div>
                         </fieldset>
-                        <fieldset class="AnimatedForm__field m-required password hideable">
+                        <fieldset class="login__form">
                             <input id="password" type="password"
-                                   class="AnimatedForm__textInput {{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                   name="password" data-empty="false" required autocomplete="current-password">
-                            <label class="AnimatedForm__textInputLabel"
-                                   for="loginPassword">{{ __('validation.attributes.password') }}</label>
+                                   class="login__form-input {{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                   name="password" required autocomplete="current-password">
+                            <label class="login__form-label"
+                                   for="password">{{ __('validation.attributes.password') }}</label>
                             <div class="AnimatedForm__errorMessage"></div>
                         </fieldset>
                         <div class="AnimatedForm__field form-group row mb-0">
@@ -42,7 +42,8 @@
                                        href="{{ route('password.request') }}">
                                         Şifrəni sıfırla
                                     </a>
-                                    <a href="{{ route('register') }}" class="footer__link js-change-content" data-content-type="registerForm">
+                                    <a href="{{ route('register') }}" class="footer__link js-change-content"
+                                       data-content-type="registerForm">
                                         Qeydiyyatdan keçmək
                                     </a>
                                 </footer>

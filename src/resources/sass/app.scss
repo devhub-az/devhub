@@ -280,7 +280,6 @@ a {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     width: 100%;
     list-style: none;
-    background: var(--background-paper);
     grid-auto-rows: auto;
 }
 
@@ -591,7 +590,7 @@ a {
             color: var(--color-post-title) !important;
 
             h3 {
-                font-weight: bold;
+                font-weight: 500;
                 margin: 0;
                 font-size: 24px;
             }
@@ -725,9 +724,10 @@ a {
     }
 
     .default-block {
-        box-shadow: 0 2px 8px rgba(60, 65, 70, 0.1);
-        border: 1px solid var(--color-border);
         margin-bottom: 20px;
+        background: var(--background-paper);
+        border-radius: 4px;
+        box-shadow: var(--block-shadow);
 
         .default-block__header {
             display: flex;

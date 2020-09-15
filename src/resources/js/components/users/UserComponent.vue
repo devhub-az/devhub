@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="users-list">
-            <users-loading v-if="loading" v-repeat="9"></users-loading>
+            <users-loading v-if="loading"></users-loading>
             <div v-for="user in users" v-if="!loading && users"
                  class="list-users__hub" :id="user.id">
                 <figure class="user-preview-cover liquid"

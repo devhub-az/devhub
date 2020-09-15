@@ -79,6 +79,7 @@
 .btn-primary {
     background-color: var(--color-primary-main-button) !important;
     color: var(--color-white);
+    box-shadow: 0 1px 3px hsla(0,0%,0%,0.2);
 }
 
 .btn-outline {

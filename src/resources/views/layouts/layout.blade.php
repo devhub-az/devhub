@@ -57,51 +57,13 @@
 <script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
 <script type="text/javascript" src="{{ mix('js/app.js') }}" async></script>
+<script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>
+<script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>
 @yield('scripts')
-</body>
 <script type="text/javascript">
     // if (document.getElementsByClassName('header-message')){
     //     const stickymessage = stickybits('.header-message');
     // }
-
-    function scrollToTop () {
-        if (document.scrollingElement.scrollTop === 0) return;
-
-        const totalScrollDistance = document.scrollingElement.scrollTop;
-        let scrollY = totalScrollDistance, oldTimestamp = null;
-
-        function step (newTimestamp) {
-            if (oldTimestamp !== null) {
-                scrollY -= totalScrollDistance * (newTimestamp - oldTimestamp) / 1000;
-                if (scrollY <= 0) return document.scrollingElement.scrollTop = 0;
-                document.scrollingElement.scrollTop = scrollY;
-            }
-            oldTimestamp = newTimestamp;
-            window.requestAnimationFrame(step);
-        }
-        window.requestAnimationFrame(step);
-    }
-
-    function search() {
-        const input = document.getElementById("form_search");
-        const icon = document.getElementById("search-icon");
-        const nav = document.getElementById("menu");
-        const search_input = document.getElementById("search_input");
-
-        nav.style.display = "none";
-        input.style.display = "flex";
-        icon.style.display = "none";
-        search_input.focus();
-    }
-
-    function closeSearch() {
-        const input = document.getElementById("form_search");
-        const icon = document.getElementById("search-icon");
-        const nav = document.getElementById("menu");
-
-        nav.removeAttribute("style");
-        input.removeAttribute("style");
-        icon.removeAttribute("style");
-    }
 </script>
+</body>
 </html>

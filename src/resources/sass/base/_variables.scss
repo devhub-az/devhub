@@ -1,7 +1,7 @@
 :root, [data-theme="default"] {
     //Background
-    --background-default: #d8d8d8;
-    --background-paper: hsla(0,0%,98%,.6);
+    --background-default: #edeef0;
+    --background-paper: #ffffff;
     --background-tertiary: #fafbfc;
     --background-secondary: hsla(0,0%,98%,.4);
 
@@ -66,16 +66,19 @@
 
     //Loading
     --loading-black: #0000002e;
+
+    //Block
+    --block-shadow: 0 1px 0 0 #d3d9de, 0 0 0 1px #e7e8ec;
 }
 
 :root, [data-theme="dark"] {
     //Background
-    --background-default: rgb(54, 54, 54); //#121212; //#181818
-    --background-paper: #313131;
+    --background-default: #222226;
+    --background-paper: #333336;
     --background-tertiary: #757575;
     --background-secondary: #272727;
 
-    --background-header: #272727;
+    --background-header: #333336;
 
     //Typography
     --text-white-primary: rgba(0, 0, 0, 0.87);
@@ -115,4 +118,7 @@
 
     //Loading
     --loading-black: #ffffff36;
+
+    //Block
+    --block-shadow: none;
 }

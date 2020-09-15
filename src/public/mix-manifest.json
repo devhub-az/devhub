@@ -1,9 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
+    "/css/login.css": "/css/login.css",
     "/js/login.js": "/js/login.js",
     "/fonts/materialdesignicons-webfont.ttf": "/fonts/materialdesignicons-webfont.ttf",
     "/fonts/materialdesignicons-webfont.woff": "/fonts/materialdesignicons-webfont.woff",
-    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2",
-    "/css/login.css": "/css/login.css"
+    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2"
 }

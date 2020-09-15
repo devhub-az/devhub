@@ -41,7 +41,6 @@ class Kernel extends HttpKernel
 
             \App\Http\Middleware\Localization::class,
             \App\Http\Middleware\MinifyHtml::class,
-            \JacobBennett\Http2ServerPush\Middleware\AddHttp2ServerPush::class,
             \App\Http\Middleware\MarkNotificationAsRead::class,
         ],
 

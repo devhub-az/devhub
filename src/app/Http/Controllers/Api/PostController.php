@@ -77,13 +77,33 @@ class PostController extends Controller
      */
     public function favorite(): PostsCollection
     {
+        $hubs = \Auth::user()->followings(Hub::class)->with('posts')->get();
+        $users = \Auth::user()->followings()->with('posts')->get();
+        $hubPostIds = $this->favoriteIds($hubs);
+        $userPostIds = $this->favoriteIds($users);
+        $postIds = array_merge($hubPostIds, $userPostIds);
         return new PostsCollection(
-            Post::orderBy('created_at', 'DESC')
-                ->followings(Hub::class)
-                ->followings()
+            Post::whereIn('id', $postIds)
+                ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
                 ->take(50)
+                ->orderBy('created_at', 'DESC')
                 ->paginate(5)
         );
+    }
+
+    /**
+     * @param object $items
+     * @return array
+     */
+    public function favoriteIds(object $items): array
+    {
+        $itemIds = [];
+        foreach ($items as $item) {
+            foreach ($item->posts as $post) {
+                $itemIds[] = $post->id;
+            }
+        }
+        return $itemIds;
     }
 
     /**
