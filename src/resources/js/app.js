@@ -22,7 +22,6 @@ Vue.use(VueCookies)
 
 window.Noty = require('noty');
 
-require('moment/locale/az');
 window.moment.locale('az');
 
 Noty.overrideDefaults({

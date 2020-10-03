@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+namespace Database\Seeders;
+
 use Faker\Factory;
 use App\Models\Post;
 use Illuminate\Database\Seeder;

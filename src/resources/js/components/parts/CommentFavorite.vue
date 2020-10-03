@@ -1,12 +1,12 @@
 <template>
-    <span class="comment-favorite">
+    <div class="comment-favorite">
         <div class="tooltip" v-if="!comment.favorite">
             <i class="mdi mdi-bookmark-plus" @click="favorite(comment.id)"/> {{ comment.favorites === 0 ? '' : comment.favorites }}
         </div>
         <div class="tooltip" v-else-if="comment.favorite">
             <i class="mdi mdi-bookmark-check saved" @click="favorite(comment.id)"/> {{ comment.favorites }}
         </div>
-    </span>
+    </div>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="hub_follow">
+    <div class="users-list__follow">
         <span @click="follow(following.id)" v-if="!following.follower && !loading" class="btn btn-primary">
             <i class="mdi mdi-account-plus"></i> İzləmək
         </span>

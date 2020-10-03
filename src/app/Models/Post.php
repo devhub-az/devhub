@@ -23,7 +23,6 @@ class Post extends Model
     protected $table = 'posts';
 
     protected $fillable = [
-        'id',
         'name',
         'body',
         'author_id',
@@ -44,9 +43,10 @@ class Post extends Model
         return $this->hasMany(PostView::class);
     }
 
-    public function comments(): HasMany
+    public function comments(): BelongsToMany
     {
-        return $this->hasMany(Comment::class, 'post_id')->with('author');
+        return $this->belongsToMany(Comment::class, 'structure_tree', 'subject_id',
+            'ancestor_id')->with('author')->withPivot('level')->orderBy('ancestor_id');
     }
 
     /**

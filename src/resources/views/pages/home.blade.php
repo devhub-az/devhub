@@ -62,7 +62,7 @@
             </div>
 
             {{-- Right --}}
-            <div class="content_right">
+            <div class="content_right" id="sticky-block">
                 <div class="default-block custom-new-post">
                     <strong>Yeni məqalə yazmağa başla 💬✨</strong>
                     <p>

@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class PostsViewsTableSeeder extends Seeder
@@ -12,12 +14,12 @@ class PostsViewsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('posts_views')->delete();
-        
+
         \DB::table('posts_views')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 19,
                 'post_id' => 1,
@@ -30,7 +32,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-12 22:04:38',
                 'updated_at' => '2019-08-12 22:04:38',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 20,
                 'post_id' => 40,
@@ -43,7 +45,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-15 19:24:44',
                 'updated_at' => '2019-08-15 19:24:44',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 21,
                 'post_id' => 41,
@@ -56,7 +58,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-15 19:54:43',
                 'updated_at' => '2019-08-15 19:54:43',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 22,
                 'post_id' => 42,
@@ -69,7 +71,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-15 20:04:03',
                 'updated_at' => '2019-08-15 20:04:03',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 23,
                 'post_id' => 43,
@@ -82,7 +84,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-15 20:10:59',
                 'updated_at' => '2019-08-15 20:10:59',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 24,
                 'post_id' => 44,
@@ -95,7 +97,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-15 20:24:55',
                 'updated_at' => '2019-08-15 20:24:55',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 25,
                 'post_id' => 45,
@@ -108,7 +110,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 04:25:26',
                 'updated_at' => '2019-08-16 04:25:26',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 26,
                 'post_id' => 46,
@@ -121,7 +123,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 04:27:03',
                 'updated_at' => '2019-08-16 04:27:03',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 27,
                 'post_id' => 47,
@@ -134,7 +136,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 04:32:55',
                 'updated_at' => '2019-08-16 04:32:55',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 28,
                 'post_id' => 48,
@@ -147,7 +149,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 04:34:53',
                 'updated_at' => '2019-08-16 04:34:53',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 29,
                 'post_id' => 49,
@@ -160,7 +162,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 04:35:19',
                 'updated_at' => '2019-08-16 04:35:19',
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 30,
                 'post_id' => 50,
@@ -173,7 +175,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 04:57:31',
                 'updated_at' => '2019-08-16 04:57:31',
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 31,
                 'post_id' => 51,
@@ -186,7 +188,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 04:59:28',
                 'updated_at' => '2019-08-16 04:59:28',
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 32,
                 'post_id' => 52,
@@ -199,7 +201,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-16 05:15:54',
                 'updated_at' => '2019-08-16 05:15:54',
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 33,
                 'post_id' => 53,
@@ -212,7 +214,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-19 15:52:53',
                 'updated_at' => '2019-08-19 15:52:53',
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 34,
                 'post_id' => 54,
@@ -225,7 +227,7 @@ class PostsViewsTableSeeder extends Seeder
                 'created_at' => '2019-08-20 16:07:32',
                 'updated_at' => '2019-08-20 16:07:32',
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 35,
                 'post_id' => 55,
@@ -239,7 +241,7 @@ class PostsViewsTableSeeder extends Seeder
                 'updated_at' => '2019-08-21 14:10:09',
             ),
         ));
-        
-        
+
+
     }
 }

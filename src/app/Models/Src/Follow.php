@@ -55,9 +55,9 @@ class Follow
 
     /**
      * @param Model $model
-     * @param string                                           $relation
+     * @param string $relation
      * @param array|string|Model $target
-     * @param string                                           $class
+     * @param null $class
      *
      * @return bool
      */

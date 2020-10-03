@@ -1,0 +1,187 @@
+.profile {
+
+    &__header {
+        width: 1100px;
+        margin: 15px auto 0;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    }
+
+    &__profile {
+        position: relative;
+        background-position: 0 -40px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: var(--background-paper);
+    }
+
+    &__image {
+        position: absolute;
+        left: 20px;
+        top: 28px;
+
+        div {
+            position: relative;
+
+            img {
+                width: 90px;
+                height: 90px;
+                border: none;
+                vertical-align: middle;
+                background: var(--background-paper);
+                border-radius: 3px;
+            }
+        }
+    }
+
+    &__info{
+        padding-top: 28px;
+        margin-left: 140px;
+        padding-bottom: 28px;
+        min-height: 146px;
+    }
+
+    &__description{
+        font-size: 18px;
+        line-height: 20px;
+        color: var(--color-text);
+        font-weight: 700;
+    }
+
+    &__username{
+        font-size: 30px;
+        line-height: 35px;
+        color: var(--color-text);
+        font-weight: 700;
+        vertical-align: middle;
+    }
+
+    &__user {
+        display: flex;
+        padding: 16px 0;
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        flex-wrap: wrap;
+
+        .avatar {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            overflow: hidden;
+            font-size: 1.25rem;
+            align-items: center;
+            flex-shrink: 0;
+            line-height: 1;
+            user-select: none;
+            border-radius: 3px;
+            justify-content: center;
+            top: -60px;
+            width: 120px;
+            border: 2px solid var(--color-border);
+            height: 120px;
+            position: absolute;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                text-align: center;
+            }
+        }
+
+        &__info-name {
+            margin-left: 133px;
+
+            &__nick {
+                color: #546e7a;
+                font-size: 11px;
+                font-weight: 500;
+                line-height: 13px;
+                letter-spacing: 0.33px;
+            }
+
+            .additionalName {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 24px;
+                letter-spacing: -0.06px;
+                margin: 0;
+                color: var(--text-black-primary);
+            }
+
+            &__user-about-content {
+                margin-bottom: 8px;
+                color: var(--text-black-secondary);
+                font-size: 11px;
+                font-weight: 500;
+                line-height: 13px;
+                letter-spacing: 0.33px;
+                text-transform: uppercase;
+            }
+        }
+
+    }
+
+    &__user-button {
+        margin-top: 10px;
+        font-size: 0;
+        display: grid;
+        right: 12px;
+        grid-auto-flow: column;
+        gap: 12px;
+        max-width: max-content;
+    }
+
+    &__rating {
+        display: grid;
+        position: absolute;
+        right: 20px;
+        grid-auto-flow: column;
+        gap: 22px;
+        max-width: max-content;
+        padding: 6px 24px;
+        border-radius: 2px;
+        border: 1px solid var(--color-border);
+        background: var(--background-default);
+        font-size: 14px;
+
+        .line {
+            background: var(--color-border);
+            width: 2px;
+            height: 70%;
+            margin: auto 0;
+        }
+    }
+
+    &__section {
+        padding: 15px 0;
+
+        &__digital {
+            text-align: center;
+            box-sizing: border-box;
+            background-repeat: no-repeat;
+            padding-top: 15px;
+            cursor: default;
+            display: inline-block;
+
+            b {
+                font-size: 24px;
+                color: var(--text-black-primary);
+                font-weight: 400;
+            }
+
+            span {
+                display: block;
+                color: var(--text-black-secondary);
+            }
+        }
+    }
+
+    .grid {
+        display: grid;
+        grid-auto-flow: column;
+        width: 80%;
+        margin: 0 auto;
+    }
+}

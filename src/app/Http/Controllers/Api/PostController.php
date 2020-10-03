@@ -9,6 +9,8 @@ use App\Http\Resources\PostShowCollection;
 use App\Models\Hub;
 use App\Models\Post;
 use App\Services\PostService;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -54,22 +56,17 @@ class PostController extends Controller
                 'DESC')->where(
                 'created_at',
                 '>=',
-                \Carbon\Carbon::now()->subDays(self::$count)->startOfDay()
+                Carbon::now()->subDays(self::$count)->startOfDay()
             )->take(50)->paginate(5));
     }
 
     /**
      * @return PostsCollection
+     * @throws Exception
      */
     public function all(): PostsCollection
     {
-//        return \Cache::remember(
-//            'posts',
-//            60,
-//            static function () {
         return new PostsCollection(PostService::getPosts('created_at')->take(50)->paginate(5));
-//            }
-//        );
     }
 
     /**

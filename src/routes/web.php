@@ -22,13 +22,13 @@ Route::group(['middleware' => ['auth']], static function () {
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
 
     // Conversations
-    Route::get('/conversations', 'ConversationController@index')->name('conversations');
-    Route::get('/conversations/{user}', 'ConversationController@show')
+//    Route::get('/conversations', 'ConversationController@index')->name('conversations');
+//    Route::get('/conversations/{user}', 'ConversationController@show')
 //        ->middleware('can:talkTo,user')
-        ->name('conversations.show');
-    Route::post('/conversations/{user}', 'ConversationController@store')
-        ->middleware('can:talkTo,user')
-        ->name('conversations.show');
+//        ->name('conversations.show');
+//    Route::post('/conversations/{user}', 'ConversationController@store')
+//        ->middleware('can:talkTo,user')
+//        ->name('conversations.show');
 
     Route::prefix('saved')->group(function () {
         Route::get('/posts', 'Auth\FavoriteController@indexPosts')->name('saved-posts');
@@ -142,9 +142,7 @@ Route::group([], static function () {
 
     Route::resource('posts', 'PostController');
 
-    Route::get('about_us', static function () {
-        return view('pages.about_us');
-    });
+    Route::view('about_us', 'pages.about_us');
 });
 
 Route::group(['middleware' => ['admin'], 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function () {
@@ -165,5 +163,3 @@ Route::get('query', 'HomeController@indexTest');
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
-
-Route::get('test', 'Auth\NotificationController@test');

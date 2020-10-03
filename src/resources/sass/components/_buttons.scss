@@ -67,6 +67,17 @@
     }
 }
 
+.btn_navbar_login, .btn_navbar_registration{
+    display: inline-block;
+    position: relative;
+    height: 26px;
+    margin: 0;
+    padding: 2px 11px 2px 10px;
+    border-radius: 3px;
+    line-height: 20px;
+    white-space: nowrap;
+}
+
 .btn_navbar_registration {
     color: #fff;
     background-color: var(--color-primary-main-button);

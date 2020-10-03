@@ -5,53 +5,52 @@
             <div v-if="postsNotEmpty">
                 <div class="post-content__item" v-for="post in posts">
                     <div class="post__meta">
-                        <a v-bind:href="'/users/@' + post.data.creator.username" class="post__user-info user-info"
+                        <a v-bind:href="'/users/@' + post.creator.username" class="post__user-info user-info"
                            title="Paylaşmanın müəllifi">
-                            <img v-if="post.data.creator.avatar !== 'user.jpg'" :data-src="'/upload/user_'+ post.data.creator.id + '/logo/' + post.data.creator.avatar" height="32" width="32"
+                            <img v-if="post.creator.avatar !== 'user.jpg'" :data-src="'/upload/user_'+ post.creator.id + '/logo/' + post.creator.avatar" height="32" width="32"
                                  alt="user avatar" class="user__avatar lazyload" src="">
-                            <img v-else-if="post.data.creator.avatar === 'user.jpg'" :data-src="'/upload/default/logo/default.png'" height="32" width="32"
+                            <img v-else-if="post.creator.avatar === 'user.jpg'" :data-src="'/upload/default/logo/default.png'" height="32" width="32"
                                  alt="user avatar" class="user__avatar lazyload" src="">
-                            <span class="user-info__nickname user-info__nickname_small">{{ '@' + post.data.creator.username }}</span>
+                            <span class="user-info__nickname user-info__nickname_small">{{ '@' + post.creator.username }}</span>
                         </a>
                         <span class="post__time">
-                            {{ post.data.created_at |  moment('DD MMMM, H:mm') }}
+                            {{ post.created_at |  moment('DD MMMM, H:mm') }}
                         </span>
                         <span class="post__read-time" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
                             <span class="mdi mdi-clock-outline"/>
-                            {{ post.data.read_time }}
+                            {{ post.read_time }}
                         </span>
                     </div>
                     <div class="post-content__header">
-                        <a :href="'/post/' + post.data.id" class="post-title">
-                            <h3>{{ post.data.title }}</h3>
+                        <a :href="'/post/' + post.id" class="post-title">
+                            <h3>{{ post.title }}</h3>
                         </a>
-                        <vote :posts="post.data" :auth_check="auth_check"/>
+                        <vote :posts="post" :auth_check="auth_check"/>
                     </div>
-                    <hubs-tags v-if="post.data.tags.data.length" :data="post.data.tags.data" :auth_check="auth_check"/>
-                    <div class="post-content__body" v-html="post.data.body_short">
+                    <hubs-tags v-if="post.tags.data.length" :data="post.tags.data" :auth_check="auth_check"/>
+                    <div class="post-content__body" v-html="post.body_short">
                     </div>
                     <div class="post-content__footer">
                         <div class="post-content__footer-stats">
                             <span class="footer_item">
-                                <i class="mdi mdi-eye-outline"/> {{ post.data.views }} <span class="text">Baxışların sayı</span>
+                                <i class="mdi mdi-eye-outline"/> {{ post.views }} <span class="text">Baxışların sayı</span>
                             </span>
                             <span class="footer_item">
-                                <a :href="'/post/' + post.data.id + '/#comments'" class="post_comments_link">
-                                    <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.data.comments_count }} <span
+                                <a :href="'/post/' + post.id + '/#comments'" class="post_comments_link">
+                                    <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count }} <span
                                         class="text">Şerh</span>
                                 </a>
                             </span>
-                            <favorite :post="post.data" :auth_check="auth_check"/>
-                            <span class="footer_item" @click="copy(post.data.id)" style="cursor: pointer;">
+                            <favorite :post="post" :auth_check="auth_check"/>
+                            <span class="footer_item" @click="copy(post.id)" style="cursor: pointer;">
                                 <i class="mdi mdi-share"/> <span class="text">Paylaş</span>
                             </span>
                         </div>
                         <div class="balloon"
-                             :aria-label="post.data.votes_sum + ' səs: ' + post.data.upvotes + ' plus ' + post.data.downvotes + ' minus'"
-                             data-balloon-pos="up">
-                            <div class="progress" :class="{ 'default' : post.data.votes_sum === 0}">
+                             :aria-label="post.votes_sum + ' səs: ' + post.upvotes + ' plus ' + post.downvotes + ' minus'" data-balloon-pos="up">
+                            <div class="progress" :class="{ 'default' : post.votes_sum === 0}">
                                 <div class="progress-green"
-                                     :style="'width:' + [post.data.votes_sum !== 0 ? 100 * post.data.upvotes / post.data.votes_sum : '0'] +'%'"></div>
+                                     :style="'width:' + [post.votes_sum !== 0 ? 100 * post.upvotes / post.votes_sum : '0'] +'%'"></div>
                             </div>
                         </div>
                     </div>
@@ -111,7 +110,7 @@
             }
         },
         async created() {
-            this.getPosts();
+            await this.getPosts();
         },
         methods: {
             async getHubPosts() {
@@ -121,7 +120,7 @@
                 this.loading = true;
                 await axios.get(this.url + '?page=' + this.pagination.current_page).then(response => {
                     this.loading = false;
-                    if (response.data.data.length !== 0) {
+                    if (response.data.length !== 0) {
                         this.posts = response.data.data;
                         this.pagination = response.data.meta;
                         if (this.pagination.last_page > 50) {

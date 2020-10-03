@@ -33,10 +33,9 @@
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
 <body data-theme="{{ \Cookie::get('atr') ?? 'default' }}">
-
-<button onclick="scrollToTop()" style="position:fixed; top: 50%;">
-    -
-</button>
+<span class="scroll-top" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">
+    <i class="mdi mdi-chevron-up"></i>
+</span>
 
 {{-- Header --}}
 @include('include.header')

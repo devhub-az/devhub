@@ -13,6 +13,16 @@
                     </div>
                 </div>
                 <div class="settings__block">
+                    <label for="surname">Əsl adınız {{ surname_count }}/40:</label>
+                    <div class="settings__right-block">
+                        <input type="text" class="settings__input" name="name" id="surname" v-model="fields.surname"
+                               @keyup="nameCount()" :maxlength="namemaxcharacter" placeholder="Əsl adınızı yazın"
+                               @keydown.space.prevent/>
+                        <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
+                        <p class="explain">Paylaşmalarda adınız altında göstərilir</p>
+                    </div>
+                </div>
+                <div class="settings__block">
                     <label for="about" class="settings__label">İxtisas {{ about_count }}/40:</label>
                     <div class="settings__right-block">
                         <input type="text" name="about" class="settings__input" id="about"

@@ -24,9 +24,9 @@ class UserCollection extends JsonResource
             'about'                => $this->about,
             'karma'                => $this->karma,
             'rating'               => $this->rating,
-            'posts_count'          => $this->posts->count(),
+            'posts_count'          => $this->posts_count,
             'follower'             => $this->statusCheck(),
-            'user_followers_count' => $this->followers->count(),
+            'user_followers_count' => $this->followers_count,
         ];
     }
 

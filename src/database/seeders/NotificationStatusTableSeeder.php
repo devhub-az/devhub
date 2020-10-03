@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class NotificationStatusTableSeeder extends Seeder
@@ -12,11 +14,11 @@ class NotificationStatusTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('notification_status')->delete();
-        
-        
-        
+
+
+
     }
 }

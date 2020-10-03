@@ -1,5 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
+use DB;
+use Eloquent;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,7 +30,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsTableSeeder::class);
         $this->call(PostsViewsTableSeeder::class);
         $this->call(PostHubsTableSeeder::class);
-        $this->call(CommentsTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

@@ -7,6 +7,7 @@ use App\Http\Resources\PostCollection;
 use App\Models\Hub;
 use App\Models\Post;
 use App\Notifications\PostNotify;
+use DB;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
@@ -14,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Throwable;
 
 class PostController extends Controller
 {
@@ -41,9 +43,10 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return RedirectResponse
+     * @return RedirectResponse|null
+     * @throws Throwable
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): ?RedirectResponse
     {
         $request->validate([
             'title' => 'required|string',
@@ -51,16 +54,20 @@ class PostController extends Controller
             // 'tags' => 'required',
         ]);
 
-        $share = new Post([
-            'name'      => $request->get('title'),
-            'body'      => $request->get('body'),
-            'author_id' => Auth::user()->id,
-        ]);
+        DB::transaction(function () use ($request) {
+            $share = new Post([
+                'name'      => $request->get('title'),
+                'body'      => $request->get('body'),
+                'author_id' => Auth::user()->id,
+            ]);
+            $share->save();
 
-        $share->save();
-        Notification::send(Auth::user()->followers, new PostNotify($share));
+            Notification::send(Auth::user()->followers, new PostNotify($share));
 
-        return redirect('/post/' . $share->id);
+            return redirect('/post/' . $share->id);
+        });
+
+        return null;
     }
 
     /**

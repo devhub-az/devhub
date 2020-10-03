@@ -6,11 +6,11 @@
         </div>
         <div class="posts">
             <div class="post-comment" v-if="comments" v-for="comment in comments">
-                <img class="comment-avatar" :src="'/images/profile/' + comment.author.avatar" alt="">
+                <img class="comment-avatar" :src="'/images/profile/' + comment.avatar" alt="">
                 <div class="comment-body">
                     <div class="flex">
                         <a class="comment-author"
-                           :href="'users/@' + comment.author">
+                           :href="'/users/@' + comment.author">
                             <span>{{ comment.author }}</span>
                         </a>
                         <comment-favorite :comment="comment" :auth_check="auth_check"></comment-favorite>
@@ -21,7 +21,7 @@
 <!--                        {{ Carbon\Carbon::parse($comment->created_at)->locale('az')->isoformat('d MMMM Y H:mm') }}-->
 <!--                    </div>-->
                     </div>
-                    <div class="comment-text">{{ comment.body }}</div>
+                    <div class="comment-text" >{{ comment.body }}</div>
                 </div>
             </div>
             <hr v-if="auth_check">
@@ -32,7 +32,8 @@
                         <span class="comment-author">{{ user.username }}</span>
                         <textarea class="input comment-text" style="padding: 5px;" rows="4"
                                   cols="20000"
-                                  name="body"></textarea>
+                                  name="body" id="editor"></textarea>
+                        <vue3-markdown-it />
                         <button type="submit" class="btn btn-primary">Yazmag</button>
                     </div>
                     <input type="hidden" name="post_id" value="..."/>
@@ -49,7 +50,11 @@
 </template>
 
 <script>
+import VueMarkdownIt from 'vue3-markdown-it';
     export default {
+        components: {
+            VueMarkdownIt
+        },
         props: ['id', 'auth_check', 'user'],
         data: function () {
             return {

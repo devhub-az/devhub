@@ -41,7 +41,6 @@
                     let votes_sum = this.posts.votes_sum;
                     let upvotes = this.posts.upvotes;
                     let downvotes = this.posts.downvotes;
-                    console.log(this.posts.upvoted)
                     if (this.posts.upvoted == false && this.posts.downvoted == false) {
                         this.posts.upvoted = true;
                         upvotes++;

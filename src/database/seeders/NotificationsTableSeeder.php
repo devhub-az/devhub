@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class NotificationsTableSeeder extends Seeder
@@ -12,12 +14,12 @@ class NotificationsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('notifications')->delete();
-        
+
         \DB::table('notifications')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 'a3d84c6c-0ca7-4436-a4bb-2614546c51d5',
                 'type' => 'App\\Notifications\\PostNotify',
@@ -28,7 +30,7 @@ class NotificationsTableSeeder extends Seeder
                 'created_at' => '2019-12-15 21:14:03',
                 'updated_at' => '2019-12-15 21:15:13',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 'ae5e38f2-b35e-4ec6-9da9-11ded038a38f',
                 'type' => 'App\\Notifications\\PostNotify',
@@ -39,7 +41,7 @@ class NotificationsTableSeeder extends Seeder
                 'created_at' => '2019-12-15 21:18:50',
                 'updated_at' => '2019-12-17 18:41:59',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 'e6c0107c-aac9-4b47-960b-5e57351582b9',
                 'type' => 'App\\Notifications\\PostNotify',
@@ -51,7 +53,7 @@ class NotificationsTableSeeder extends Seeder
                 'updated_at' => '2019-12-15 21:15:13',
             ),
         ));
-        
-        
+
+
     }
 }

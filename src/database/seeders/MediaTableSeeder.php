@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class MediaTableSeeder extends Seeder
@@ -12,12 +14,12 @@ class MediaTableSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         \DB::table('media')->delete();
-        
+
         \DB::table('media')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 3,
                 'model_type' => 'App\\Models\\User',
@@ -34,7 +36,7 @@ class MediaTableSeeder extends Seeder
                 'created_at' => '2019-07-22 13:36:12',
                 'updated_at' => '2019-07-22 13:36:13',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 4,
                 'model_type' => 'App\\Models\\User',
@@ -51,7 +53,7 @@ class MediaTableSeeder extends Seeder
                 'created_at' => '2019-07-22 13:36:12',
                 'updated_at' => '2019-07-22 13:36:13',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 5,
                 'model_type' => 'App\\Models\\User',
@@ -69,7 +71,7 @@ class MediaTableSeeder extends Seeder
                 'updated_at' => '2019-08-08 02:15:23',
             ),
         ));
-        
-        
+
+
     }
 }

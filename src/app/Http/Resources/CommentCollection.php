@@ -3,8 +3,10 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Auth;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Mews\Purifier\Facades\Purifier;
+use Parsedown;
 
 class CommentCollection extends JsonResource
 {
@@ -16,14 +18,17 @@ class CommentCollection extends JsonResource
      */
     public function toArray($request)
     {
+        $parsedown = new Parsedown();
+        $body = Purifier::clean($parsedown->text($this->body));
         return [
             'id'        => $this->id,
-            'body'      => $this->body,
+            'body'      => $body,
             'author'    => $this->author->username,
+            'avatar'    => $this->author->avatar,
             'author_id' => $this->author_id,
-            'post_name' => $this->post->name,
-            'favorite'  => $this->statusCheck('favorites'),
-            'favorites' => $this->favorites->count(),
+            'pivot'     => $this->pivot,
+//            'favorite'  => $this->statusCheck('favorites'),
+//            'favorites' => $this->bookmarkers_count,
         ];
     }
 

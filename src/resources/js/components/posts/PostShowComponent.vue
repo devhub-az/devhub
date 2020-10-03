@@ -24,7 +24,7 @@
                 </div>
             </div>
             <hubs-tags v-if="typeof(post.tags) !== `undefined` " :data="post.tags.data"></hubs-tags>
-            <div class="post-content__body" v-html="post.body">
+            <div class="post-content__body-show" v-html="post.body">
             </div>
             <div class="post__content-footer">
                 <div class="grid">

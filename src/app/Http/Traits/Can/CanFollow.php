@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits\Can;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Src\Follow;
 
@@ -13,7 +14,7 @@ trait CanFollow
     /**
      * Follow an item or items.
      *
-     * @param int|array|\Illuminate\Database\Eloquent\Model $targets
+     * @param int|array|Model $targets
      * @param string $class
      *
      * @return bool
@@ -28,7 +29,7 @@ trait CanFollow
     /**
      * Unfollow an item or items.
      *
-     * @param int|array|\Illuminate\Database\Eloquent\Model $targets
+     * @param int|array|Model $targets
      * @param string $class
      *
      * @return array
@@ -41,7 +42,7 @@ trait CanFollow
     /**
      * Toggle follow an item or items.
      *
-     * @param int|array|\Illuminate\Database\Eloquent\Model $targets
+     * @param int|array|Model $targets
      * @param string $class
      *
      * @return array
@@ -56,7 +57,7 @@ trait CanFollow
     /**
      * Check if user is following given item.
      *
-     * @param int|array|\Illuminate\Database\Eloquent\Model $target
+     * @param int|array|Model $target
      * @param string $class
      *
      * @return bool
@@ -69,7 +70,7 @@ trait CanFollow
     /**
      * Check if user and target user is following each other.
      *
-     * @param int|array|\Illuminate\Database\Eloquent\Model $target
+     * @param int|array|Model $target
      * @param string $class
      *
      * @return bool

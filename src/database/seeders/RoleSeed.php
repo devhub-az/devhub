@@ -1,6 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
+use Bouncer;
 
 class RoleSeed extends Seeder
 {

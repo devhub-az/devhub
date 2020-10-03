@@ -7,11 +7,17 @@ use App\Http\Traits\Can\CanBookmark;
 use App\Http\Traits\Can\CanFollow;
 use App\Http\Traits\Can\CanVote;
 use App\Http\Traits\PermissionManager;
+use Eloquent;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 
+/**
+ * Class User
+ * @package App\Models
+ * @mixin Eloquent
+ */
 class User extends Authenticatable
 {
     use Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote, HasRolesAndAbilities;
@@ -73,7 +79,7 @@ class User extends Authenticatable
 
     //Trash
 
-    public function messagesNotificationsCount()
+    public function messagesNotificationsCount(): int
     {
         return $this->hasMany(Message::class, 'to_id', 'id')->whereNull('read_at')->count();
     }

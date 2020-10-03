@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class HubsTableSeeder extends Seeder
@@ -13,9 +15,9 @@ class HubsTableSeeder extends Seeder
     public function run()
     {
         \DB::table('hubs')->delete();
-        
+
         \DB::table('hubs')->insert(array (
-            0 => 
+            0 =>
             array (
                 'id' => 1,
                 'logo' => 'images/hubs/3d-printers.png',
@@ -24,7 +26,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-13 21:25:45',
             ),
-            1 => 
+            1 =>
             array (
                 'id' => 2,
                 'logo' => 'images/hubs/ajax.png',
@@ -33,7 +35,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-10 15:57:02',
             ),
-            2 => 
+            2 =>
             array (
                 'id' => 3,
                 'logo' => 'images/hubs/algoritm.png',
@@ -42,7 +44,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-10 15:57:34',
             ),
-            3 => 
+            3 =>
             array (
                 'id' => 4,
                 'logo' => 'images/hubs/amphp.png',
@@ -51,7 +53,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-10 15:52:02',
             ),
-            4 => 
+            4 =>
             array (
                 'id' => 5,
                 'logo' => 'images/hubs/Android.png',
@@ -60,7 +62,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            5 => 
+            5 =>
             array (
                 'id' => 6,
                 'logo' => 'images/hubs/Angular.png',
@@ -69,7 +71,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            6 => 
+            6 =>
             array (
                 'id' => 7,
                 'logo' => 'images/hubs/Ansible.png',
@@ -78,7 +80,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            7 => 
+            7 =>
             array (
                 'id' => 8,
                 'logo' => 'images/hubs/API.png',
@@ -87,7 +89,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:44',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            8 => 
+            8 =>
             array (
                 'id' => 9,
                 'logo' => 'images/hubs/Arduino.png',
@@ -96,7 +98,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            9 => 
+            9 =>
             array (
                 'id' => 10,
                 'logo' => 'images/hubs/ASPNET.png',
@@ -105,7 +107,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:53:23',
             ),
-            10 => 
+            10 =>
             array (
                 'id' => 11,
                 'logo' => 'images/hubs/Atom.png',
@@ -114,7 +116,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            11 => 
+            11 =>
             array (
                 'id' => 12,
                 'logo' => 'images/hubs/Awesome.png',
@@ -123,7 +125,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-21 19:18:08',
             ),
-            12 => 
+            12 =>
             array (
                 'id' => 13,
                 'logo' => 'images/hubs/aws.png',
@@ -132,7 +134,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:54:01',
             ),
-            13 => 
+            13 =>
             array (
                 'id' => 14,
                 'logo' => 'images/hubs/Azure.png',
@@ -141,7 +143,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            14 => 
+            14 =>
             array (
                 'id' => 15,
                 'logo' => 'images/hubs/Babel.png',
@@ -150,7 +152,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:49:46',
             ),
-            15 => 
+            15 =>
             array (
                 'id' => 16,
                 'logo' => 'images/hubs/Bash.png',
@@ -159,7 +161,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:49:47',
             ),
-            16 => 
+            16 =>
             array (
                 'id' => 17,
                 'logo' => 'images/hubs/Bitcoin.png',
@@ -168,7 +170,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:49:47',
             ),
-            17 => 
+            17 =>
             array (
                 'id' => 18,
                 'logo' => 'images/hubs/Blockchain.png',
@@ -177,7 +179,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-12-14 19:54:20',
             ),
-            18 => 
+            18 =>
             array (
                 'id' => 19,
                 'logo' => 'images/hubs/Bootstrap.png',
@@ -186,7 +188,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:49:47',
             ),
-            19 => 
+            19 =>
             array (
                 'id' => 20,
                 'logo' => 'images/hubs/Bot.png',
@@ -195,7 +197,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:45',
                 'updated_at' => '2019-08-10 15:59:09',
             ),
-            20 => 
+            20 =>
             array (
                 'id' => 21,
                 'logo' => 'images/hubs/C.png',
@@ -204,7 +206,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-10 15:49:47',
             ),
-            21 => 
+            21 =>
             array (
                 'id' => 22,
                 'logo' => 'images/hubs/Chrome.png',
@@ -213,7 +215,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-13 21:25:45',
             ),
-            22 => 
+            22 =>
             array (
                 'id' => 23,
                 'logo' => 'images/hubs/Chrome.png',
@@ -222,7 +224,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-10 15:55:02',
             ),
-            23 => 
+            23 =>
             array (
                 'id' => 25,
                 'logo' => 'images/hubs/Clojure.png',
@@ -231,7 +233,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-13 21:25:45',
             ),
-            24 => 
+            24 =>
             array (
                 'id' => 26,
                 'logo' => 'images/hubs/Code quality.png',
@@ -240,7 +242,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-12-14 19:46:59',
             ),
-            25 => 
+            25 =>
             array (
                 'id' => 27,
                 'logo' => 'images/hubs/Code review.png',
@@ -249,7 +251,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-12-14 19:47:06',
             ),
-            26 => 
+            26 =>
             array (
                 'id' => 28,
                 'logo' => 'images/hubs/Compiler.png',
@@ -258,7 +260,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-12-14 19:47:11',
             ),
-            27 => 
+            27 =>
             array (
                 'id' => 30,
                 'logo' => 'images/hubs/Cpp.png',
@@ -267,7 +269,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-10 15:55:44',
             ),
-            28 => 
+            28 =>
             array (
                 'id' => 31,
                 'logo' => 'images/hubs/cryptocurrency.png',
@@ -276,7 +278,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-12-14 19:10:53',
             ),
-            29 => 
+            29 =>
             array (
                 'id' => 32,
                 'logo' => 'images/hubs/Crystal.png',
@@ -285,7 +287,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-10 15:49:47',
             ),
-            30 => 
+            30 =>
             array (
                 'id' => 33,
                 'logo' => 'images/hubs/csharp.png',
@@ -294,7 +296,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-10 15:56:16',
             ),
-            31 => 
+            31 =>
             array (
                 'id' => 34,
                 'logo' => 'images/hubs/CSS.png',
@@ -303,7 +305,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-08-10 15:49:48',
             ),
-            32 => 
+            32 =>
             array (
                 'id' => 35,
                 'logo' => 'images/hubs/data_structure.png',
@@ -312,7 +314,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:46',
                 'updated_at' => '2019-12-14 19:05:33',
             ),
-            33 => 
+            33 =>
             array (
                 'id' => 36,
                 'logo' => 'images/hubs/data_visualization.png',
@@ -321,7 +323,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-12-14 19:10:11',
             ),
-            34 => 
+            34 =>
             array (
                 'id' => 37,
                 'logo' => 'images/hubs/database.png',
@@ -330,7 +332,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-12-14 19:03:54',
             ),
-            35 => 
+            35 =>
             array (
                 'id' => 38,
                 'logo' => 'images/hubs/deep_learning.png',
@@ -339,7 +341,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-12-14 19:03:51',
             ),
-            36 => 
+            36 =>
             array (
                 'id' => 41,
                 'logo' => 'images/hubs/Django.png',
@@ -348,7 +350,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:48',
             ),
-            37 => 
+            37 =>
             array (
                 'id' => 42,
                 'logo' => 'images/hubs/Docker.png',
@@ -357,7 +359,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:48',
             ),
-            38 => 
+            38 =>
             array (
                 'id' => 43,
                 'logo' => 'images/hubs/Documentation.png',
@@ -366,7 +368,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            39 => 
+            39 =>
             array (
                 'id' => 44,
                 'logo' => 'images/hubs/.NET.png',
@@ -375,7 +377,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            40 => 
+            40 =>
             array (
                 'id' => 45,
                 'logo' => 'images/hubs/Electron.png',
@@ -384,7 +386,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-13 21:25:45',
             ),
-            41 => 
+            41 =>
             array (
                 'id' => 46,
                 'logo' => 'images/hubs/Elixir.png',
@@ -393,7 +395,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            42 => 
+            42 =>
             array (
                 'id' => 47,
                 'logo' => 'images/hubs/Emacs.png',
@@ -402,7 +404,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            43 => 
+            43 =>
             array (
                 'id' => 48,
                 'logo' => 'images/hubs/Ember.png',
@@ -411,7 +413,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            44 => 
+            44 =>
             array (
                 'id' => 49,
                 'logo' => 'images/hubs/Emoji.png',
@@ -420,7 +422,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            45 => 
+            45 =>
             array (
                 'id' => 50,
                 'logo' => 'images/hubs/Emulator.png',
@@ -429,7 +431,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:47',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            46 => 
+            46 =>
             array (
                 'id' => 51,
                 'logo' => 'images/hubs/ES6.png',
@@ -438,7 +440,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            47 => 
+            47 =>
             array (
                 'id' => 52,
                 'logo' => 'images/hubs/ESLint.png',
@@ -447,7 +449,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            48 => 
+            48 =>
             array (
                 'id' => 53,
                 'logo' => 'images/hubs/Ethereum.png',
@@ -456,7 +458,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            49 => 
+            49 =>
             array (
                 'id' => 54,
                 'logo' => 'images/hubs/Express.png',
@@ -465,7 +467,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            50 => 
+            50 =>
             array (
                 'id' => 55,
                 'logo' => 'images/hubs/Firebase.png',
@@ -474,7 +476,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            51 => 
+            51 =>
             array (
                 'id' => 56,
                 'logo' => 'images/hubs/Firefox.png',
@@ -483,7 +485,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            52 => 
+            52 =>
             array (
                 'id' => 57,
                 'logo' => 'images/hubs/Flask.png',
@@ -492,7 +494,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            53 => 
+            53 =>
             array (
                 'id' => 58,
                 'logo' => 'images/hubs/Font.png',
@@ -501,7 +503,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            54 => 
+            54 =>
             array (
                 'id' => 59,
                 'logo' => 'images/hubs/Framework.png',
@@ -510,7 +512,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            55 => 
+            55 =>
             array (
                 'id' => 60,
                 'logo' => 'images/hubs/Front end.png',
@@ -519,7 +521,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            56 => 
+            56 =>
             array (
                 'id' => 61,
                 'logo' => 'images/hubs/Game engine.png',
@@ -528,7 +530,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:49',
             ),
-            57 => 
+            57 =>
             array (
                 'id' => 62,
                 'logo' => 'images/hubs/Git.png',
@@ -537,7 +539,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            58 => 
+            58 =>
             array (
                 'id' => 63,
                 'logo' => 'images/hubs/GitHub API.png',
@@ -546,7 +548,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:48',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            59 => 
+            59 =>
             array (
                 'id' => 64,
                 'logo' => 'images/hubs/Go.png',
@@ -555,7 +557,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            60 => 
+            60 =>
             array (
                 'id' => 65,
                 'logo' => 'images/hubs/Google.png',
@@ -564,7 +566,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            61 => 
+            61 =>
             array (
                 'id' => 66,
                 'logo' => 'images/hubs/Gradle.png',
@@ -573,7 +575,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            62 => 
+            62 =>
             array (
                 'id' => 67,
                 'logo' => 'images/hubs/GraphQL.png',
@@ -582,7 +584,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            63 => 
+            63 =>
             array (
                 'id' => 68,
                 'logo' => 'images/hubs/Gulp.png',
@@ -591,7 +593,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            64 => 
+            64 =>
             array (
                 'id' => 69,
                 'logo' => 'images/hubs/Haskell.png',
@@ -600,7 +602,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            65 => 
+            65 =>
             array (
                 'id' => 70,
                 'logo' => 'images/hubs/Homebrew.png',
@@ -609,7 +611,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            66 => 
+            66 =>
             array (
                 'id' => 71,
                 'logo' => 'images/hubs/Homebridge.png',
@@ -618,7 +620,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            67 => 
+            67 =>
             array (
                 'id' => 72,
                 'logo' => 'images/hubs/HTML.png',
@@ -627,7 +629,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            68 => 
+            68 =>
             array (
                 'id' => 73,
                 'logo' => 'images/hubs/HTTP.png',
@@ -636,7 +638,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            69 => 
+            69 =>
             array (
                 'id' => 74,
                 'logo' => 'images/hubs/Icon font.png',
@@ -645,7 +647,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            70 => 
+            70 =>
             array (
                 'id' => 75,
                 'logo' => 'images/hubs/iOS.png',
@@ -654,7 +656,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            71 => 
+            71 =>
             array (
                 'id' => 76,
                 'logo' => 'images/hubs/IPFS.png',
@@ -663,7 +665,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            72 => 
+            72 =>
             array (
                 'id' => 77,
                 'logo' => 'images/hubs/Java.png',
@@ -672,7 +674,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:50',
             ),
-            73 => 
+            73 =>
             array (
                 'id' => 78,
                 'logo' => 'images/hubs/JavaScript.png',
@@ -681,7 +683,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:49',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            74 => 
+            74 =>
             array (
                 'id' => 79,
                 'logo' => 'images/hubs/Jekyll.png',
@@ -690,7 +692,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            75 => 
+            75 =>
             array (
                 'id' => 80,
                 'logo' => 'images/hubs/jQuery.png',
@@ -699,7 +701,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            76 => 
+            76 =>
             array (
                 'id' => 81,
                 'logo' => 'images/hubs/JSON.png',
@@ -708,7 +710,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            77 => 
+            77 =>
             array (
                 'id' => 84,
                 'logo' => 'images/hubs/Koa.png',
@@ -717,7 +719,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            78 => 
+            78 =>
             array (
                 'id' => 85,
                 'logo' => 'images/hubs/Kotlin.png',
@@ -726,7 +728,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            79 => 
+            79 =>
             array (
                 'id' => 86,
                 'logo' => 'images/hubs/Kubernetes.png',
@@ -735,7 +737,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            80 => 
+            80 =>
             array (
                 'id' => 87,
                 'logo' => 'images/hubs/Laravel.png',
@@ -744,7 +746,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            81 => 
+            81 =>
             array (
                 'id' => 88,
                 'logo' => 'images/hubs/LaTeX.png',
@@ -753,7 +755,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:50',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            82 => 
+            82 =>
             array (
                 'id' => 89,
                 'logo' => 'images/hubs/Library.png',
@@ -762,7 +764,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            83 => 
+            83 =>
             array (
                 'id' => 90,
                 'logo' => 'images/hubs/Linux.png',
@@ -771,7 +773,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            84 => 
+            84 =>
             array (
                 'id' => 91,
                 'logo' => 'images/hubs/Localization.png',
@@ -780,7 +782,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            85 => 
+            85 =>
             array (
                 'id' => 92,
                 'logo' => 'images/hubs/Lua.png',
@@ -789,7 +791,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            86 => 
+            86 =>
             array (
                 'id' => 93,
                 'logo' => 'images/hubs/Machine learning.png',
@@ -798,7 +800,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            87 => 
+            87 =>
             array (
                 'id' => 94,
                 'logo' => 'images/hubs/macOS.png',
@@ -807,7 +809,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:51',
             ),
-            88 => 
+            88 =>
             array (
                 'id' => 95,
                 'logo' => 'images/hubs/Markdown.png',
@@ -816,7 +818,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            89 => 
+            89 =>
             array (
                 'id' => 96,
                 'logo' => 'images/hubs/Mastodon.png',
@@ -825,7 +827,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            90 => 
+            90 =>
             array (
                 'id' => 97,
                 'logo' => 'images/hubs/Material design.png',
@@ -834,7 +836,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            91 => 
+            91 =>
             array (
                 'id' => 98,
                 'logo' => 'images/hubs/MATLAB.png',
@@ -843,7 +845,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            92 => 
+            92 =>
             array (
                 'id' => 99,
                 'logo' => 'images/hubs/Maven.png',
@@ -852,7 +854,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            93 => 
+            93 =>
             array (
                 'id' => 100,
                 'logo' => 'images/hubs/Minecraft.png',
@@ -861,7 +863,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            94 => 
+            94 =>
             array (
                 'id' => 101,
                 'logo' => 'images/hubs/Mobile.png',
@@ -870,7 +872,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            95 => 
+            95 =>
             array (
                 'id' => 102,
                 'logo' => 'images/hubs/Monero.png',
@@ -879,7 +881,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:51',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            96 => 
+            96 =>
             array (
                 'id' => 103,
                 'logo' => 'images/hubs/MongoDB.png',
@@ -888,7 +890,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            97 => 
+            97 =>
             array (
                 'id' => 104,
                 'logo' => 'images/hubs/Mongoose.png',
@@ -897,7 +899,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:52',
             ),
-            98 => 
+            98 =>
             array (
                 'id' => 105,
                 'logo' => 'images/hubs/Monitoring.png',
@@ -906,7 +908,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            99 => 
+            99 =>
             array (
                 'id' => 106,
                 'logo' => 'images/hubs/MvvmCross.png',
@@ -915,7 +917,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            100 => 
+            100 =>
             array (
                 'id' => 107,
                 'logo' => 'images/hubs/MySQL.png',
@@ -924,7 +926,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            101 => 
+            101 =>
             array (
                 'id' => 108,
                 'logo' => 'images/hubs/NativeScript.png',
@@ -933,7 +935,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            102 => 
+            102 =>
             array (
                 'id' => 109,
                 'logo' => 'images/hubs/Nim.png',
@@ -942,7 +944,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            103 => 
+            103 =>
             array (
                 'id' => 111,
                 'logo' => 'images/hubs/Nodejs.png',
@@ -951,7 +953,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-12-14 19:30:47',
             ),
-            104 => 
+            104 =>
             array (
                 'id' => 112,
                 'logo' => 'images/hubs/NoSQL.png',
@@ -960,7 +962,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:52',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            105 => 
+            105 =>
             array (
                 'id' => 113,
                 'logo' => 'images/hubs/npm.png',
@@ -969,7 +971,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            106 => 
+            106 =>
             array (
                 'id' => 114,
                 'logo' => 'images/hubs/Objective-C.png',
@@ -978,7 +980,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            107 => 
+            107 =>
             array (
                 'id' => 115,
                 'logo' => 'images/hubs/OpenGL.png',
@@ -987,34 +989,34 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            108 => 
+            108 =>
             array (
                 'id' => 116,
-                'logo' => 'images/hubs/Operating system.png',
+                'logo' => 'images/hubs/Operating_system.png',
                 'name' => 'Operating system',
                 'rating' => 0,
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            109 => 
+            109 =>
             array (
                 'id' => 118,
-                'logo' => 'images/hubs/Package manager.png',
+                'logo' => 'images/hubs/Package_manager.png',
                 'name' => 'Package manager',
                 'rating' => 0,
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            110 => 
+            110 =>
             array (
                 'id' => 119,
-                'logo' => 'images/hubs/Language parsing.png',
+                'logo' => 'images/hubs/Language_parsing.png',
                 'name' => 'Language parsing',
                 'rating' => 0,
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            111 => 
+            111 =>
             array (
                 'id' => 120,
                 'logo' => 'images/hubs/Perl.png',
@@ -1023,7 +1025,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            112 => 
+            112 =>
             array (
                 'id' => 121,
                 'logo' => 'images/hubs/Perl 6.png',
@@ -1032,7 +1034,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            113 => 
+            113 =>
             array (
                 'id' => 122,
                 'logo' => 'images/hubs/Phaser.png',
@@ -1041,7 +1043,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:53',
             ),
-            114 => 
+            114 =>
             array (
                 'id' => 123,
                 'logo' => 'images/hubs/PHP.png',
@@ -1050,7 +1052,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-15 19:01:47',
             ),
-            115 => 
+            115 =>
             array (
                 'id' => 124,
                 'logo' => 'images/hubs/PICO-8.png',
@@ -1059,7 +1061,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:53',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            116 => 
+            116 =>
             array (
                 'id' => 125,
                 'logo' => 'images/hubs/Pixel Art.png',
@@ -1068,7 +1070,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            117 => 
+            117 =>
             array (
                 'id' => 126,
                 'logo' => 'images/hubs/PostgreSQL.png',
@@ -1077,7 +1079,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            118 => 
+            118 =>
             array (
                 'id' => 127,
                 'logo' => 'images/hubs/Project management.png',
@@ -1086,7 +1088,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            119 => 
+            119 =>
             array (
                 'id' => 129,
                 'logo' => 'images/hubs/PWA.png',
@@ -1095,7 +1097,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            120 => 
+            120 =>
             array (
                 'id' => 130,
                 'logo' => 'images/hubs/Python.png',
@@ -1104,7 +1106,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            121 => 
+            121 =>
             array (
                 'id' => 131,
                 'logo' => 'images/hubs/Qt.png',
@@ -1113,7 +1115,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            122 => 
+            122 =>
             array (
                 'id' => 132,
                 'logo' => 'images/hubs/R.png',
@@ -1122,7 +1124,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            123 => 
+            123 =>
             array (
                 'id' => 133,
                 'logo' => 'images/hubs/Rails.png',
@@ -1131,7 +1133,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:54',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            124 => 
+            124 =>
             array (
                 'id' => 135,
                 'logo' => 'images/hubs/Ratchet.png',
@@ -1140,7 +1142,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            125 => 
+            125 =>
             array (
                 'id' => 136,
                 'logo' => 'images/hubs/React.png',
@@ -1149,7 +1151,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            126 => 
+            126 =>
             array (
                 'id' => 137,
                 'logo' => 'images/hubs/React-Native.png',
@@ -1158,7 +1160,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-12-14 19:40:03',
             ),
-            127 => 
+            127 =>
             array (
                 'id' => 138,
                 'logo' => 'images/hubs/ReactiveUI.png',
@@ -1167,7 +1169,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            128 => 
+            128 =>
             array (
                 'id' => 139,
                 'logo' => 'images/hubs/Redux.png',
@@ -1176,7 +1178,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            129 => 
+            129 =>
             array (
                 'id' => 140,
                 'logo' => 'images/hubs/REST API.png',
@@ -1185,7 +1187,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            130 => 
+            130 =>
             array (
                 'id' => 141,
                 'logo' => 'images/hubs/Ruby.png',
@@ -1194,7 +1196,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:54',
             ),
-            131 => 
+            131 =>
             array (
                 'id' => 142,
                 'logo' => 'images/hubs/Rust.png',
@@ -1203,7 +1205,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            132 => 
+            132 =>
             array (
                 'id' => 143,
                 'logo' => 'images/hubs/Sass.png',
@@ -1212,7 +1214,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            133 => 
+            133 =>
             array (
                 'id' => 144,
                 'logo' => 'images/hubs/Scala.png',
@@ -1221,7 +1223,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            134 => 
+            134 =>
             array (
                 'id' => 145,
                 'logo' => 'images/hubs/scikit-learn.png',
@@ -1230,7 +1232,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            135 => 
+            135 =>
             array (
                 'id' => 146,
                 'logo' => 'images/hubs/Software-defined networking.png',
@@ -1239,7 +1241,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:55',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            136 => 
+            136 =>
             array (
                 'id' => 147,
                 'logo' => 'images/hubs/Security.png',
@@ -1248,7 +1250,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            137 => 
+            137 =>
             array (
                 'id' => 148,
                 'logo' => 'images/hubs/Server.png',
@@ -1257,7 +1259,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            138 => 
+            138 =>
             array (
                 'id' => 149,
                 'logo' => 'images/hubs/Serverless.png',
@@ -1266,7 +1268,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            139 => 
+            139 =>
             array (
                 'id' => 150,
                 'logo' => 'images/hubs/Shell.png',
@@ -1275,7 +1277,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            140 => 
+            140 =>
             array (
                 'id' => 151,
                 'logo' => 'images/hubs/Sketch.png',
@@ -1284,7 +1286,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            141 => 
+            141 =>
             array (
                 'id' => 152,
                 'logo' => 'images/hubs/SpaceVim.png',
@@ -1293,7 +1295,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            142 => 
+            142 =>
             array (
                 'id' => 153,
                 'logo' => 'images/hubs/Spring Boot.png',
@@ -1302,7 +1304,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            143 => 
+            143 =>
             array (
                 'id' => 154,
                 'logo' => 'images/hubs/SQL.png',
@@ -1311,7 +1313,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            144 => 
+            144 =>
             array (
                 'id' => 155,
                 'logo' => 'images/hubs/Storybook.png',
@@ -1320,7 +1322,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            145 => 
+            145 =>
             array (
                 'id' => 156,
                 'logo' => 'images/hubs/Support.png',
@@ -1329,7 +1331,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            146 => 
+            146 =>
             array (
                 'id' => 157,
                 'logo' => 'images/hubs/Swift.png',
@@ -1338,7 +1340,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:55',
             ),
-            147 => 
+            147 =>
             array (
                 'id' => 158,
                 'logo' => 'images/hubs/Symfony.png',
@@ -1347,7 +1349,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:56',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            148 => 
+            148 =>
             array (
                 'id' => 159,
                 'logo' => 'images/hubs/Telegram.png',
@@ -1356,7 +1358,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            149 => 
+            149 =>
             array (
                 'id' => 160,
                 'logo' => 'images/hubs/Tensorflow.png',
@@ -1365,7 +1367,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            150 => 
+            150 =>
             array (
                 'id' => 161,
                 'logo' => 'images/hubs/Terminal.png',
@@ -1374,7 +1376,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            151 => 
+            151 =>
             array (
                 'id' => 162,
                 'logo' => 'images/hubs/Terraform.png',
@@ -1383,7 +1385,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            152 => 
+            152 =>
             array (
                 'id' => 163,
                 'logo' => 'images/hubs/Testing.png',
@@ -1392,7 +1394,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            153 => 
+            153 =>
             array (
                 'id' => 164,
                 'logo' => 'images/hubs/Twitter.png',
@@ -1401,7 +1403,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            154 => 
+            154 =>
             array (
                 'id' => 165,
                 'logo' => 'images/hubs/TypeScript.png',
@@ -1410,7 +1412,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            155 => 
+            155 =>
             array (
                 'id' => 166,
                 'logo' => 'images/hubs/Ubuntu.png',
@@ -1419,7 +1421,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            156 => 
+            156 =>
             array (
                 'id' => 167,
                 'logo' => 'images/hubs/Unity.png',
@@ -1428,7 +1430,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            157 => 
+            157 =>
             array (
                 'id' => 168,
                 'logo' => 'images/hubs/Unreal Engine.png',
@@ -1437,7 +1439,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:57',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            158 => 
+            158 =>
             array (
                 'id' => 169,
                 'logo' => 'images/hubs/Vagrant.png',
@@ -1446,7 +1448,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            159 => 
+            159 =>
             array (
                 'id' => 170,
                 'logo' => 'images/hubs/Vim.png',
@@ -1455,7 +1457,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            160 => 
+            160 =>
             array (
                 'id' => 171,
                 'logo' => 'images/hubs/Virtual reality.png',
@@ -1464,7 +1466,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            161 => 
+            161 =>
             array (
                 'id' => 172,
                 'logo' => 'images/hubs/Vue.png',
@@ -1473,7 +1475,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-12-14 19:45:01',
             ),
-            162 => 
+            162 =>
             array (
                 'id' => 173,
                 'logo' => 'images/hubs/Wagtail.png',
@@ -1482,7 +1484,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            163 => 
+            163 =>
             array (
                 'id' => 174,
                 'logo' => 'images/hubs/Web Components.png',
@@ -1491,7 +1493,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            164 => 
+            164 =>
             array (
                 'id' => 175,
                 'logo' => 'images/hubs/Web app.png',
@@ -1500,7 +1502,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            165 => 
+            165 =>
             array (
                 'id' => 176,
                 'logo' => 'images/hubs/Webpack.png',
@@ -1509,7 +1511,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            166 => 
+            166 =>
             array (
                 'id' => 177,
                 'logo' => 'images/hubs/Windows.png',
@@ -1518,7 +1520,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:58',
                 'updated_at' => '2019-08-10 15:49:56',
             ),
-            167 => 
+            167 =>
             array (
                 'id' => 178,
                 'logo' => 'images/hubs/WordPlate.png',
@@ -1527,7 +1529,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:59',
                 'updated_at' => '2019-08-10 15:49:57',
             ),
-            168 => 
+            168 =>
             array (
                 'id' => 179,
                 'logo' => 'images/hubs/WordPress.png',
@@ -1536,7 +1538,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:59',
                 'updated_at' => '2019-08-10 15:49:57',
             ),
-            169 => 
+            169 =>
             array (
                 'id' => 180,
                 'logo' => 'images/hubs/Xamarin.png',
@@ -1545,7 +1547,7 @@ class HubsTableSeeder extends Seeder
                 'created_at' => '2019-08-10 15:09:59',
                 'updated_at' => '2019-08-10 15:49:57',
             ),
-            170 => 
+            170 =>
             array (
                 'id' => 181,
                 'logo' => 'images/hubs/XML.png',
@@ -1555,6 +1557,6 @@ class HubsTableSeeder extends Seeder
                 'updated_at' => '2019-08-10 15:49:57',
             ),
         ));
-        
+
     }
 }

@@ -1,8 +1,11 @@
 <?php
 
+namespace Database\Seeders;
+
 use Faker\Factory;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Hash;
 
 class UserTableSeeder extends Seeder
 {

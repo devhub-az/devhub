@@ -90,11 +90,14 @@
     --text-black-disabled: rgba(255, 255, 255, 0.3);
 
     --color-primary-main: #648dae;
-    --color-primary-main-button: #22618e;
+    --color-primary-main-button: #22578e;
     --color-primary-light: #a6d4fa;
 
+    --color-red: rgb(136, 68, 68);
+    --color-green: rgb(34,142,93);
+
     // Border
-    --color-border: rgb(54, 54, 54);
+    --color-border: #222226;
     --color-border-settings: rgb(45, 45, 45);
     --color-border-pagination: hsla(0, 0%, 100%, 0.2);
     --color-border-button: .06rem solid hsla(0,0%,100%,.2);

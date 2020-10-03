@@ -3,9 +3,14 @@
 namespace App\Models;
 
 use App\Http\Traits\Can\CanBeFollowed;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
+/**
+ * Class Hub
+ * @package App\Models
+ * @mixin Eloquent
+ */
 class Hub extends Model
 {
     use CanBeFollowed;

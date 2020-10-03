@@ -3,6 +3,7 @@
 namespace App\Http\Traits\Can;
 
 use App\Models\Src\Follow;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -17,7 +18,7 @@ trait CanBeFollowed
      *
      * @return bool
      */
-    public function isFollowedBy($user)
+    public function isFollowedBy($user): bool
     {
         return Follow::isRelationExists($this, 'followers', $user);
     }
@@ -25,9 +26,9 @@ trait CanBeFollowed
     /**
      * Return followers.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function followers()
+    public function followers(): BelongsToMany
     {
         $table = config('follow.followable_table');
         $class = \get_class($this);

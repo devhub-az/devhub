@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\Hub;
 use App\Models\Post;
 use Faker\Factory;
@@ -32,7 +34,7 @@ class PostHubsTableSeeder extends Seeder
 
         foreach (range(0, 5) as $i) {
             try {
-                foreach (range(0, random_int(1, count($postIds))) as $j) {
+                foreach (range(0, random_int(1, 50)) as $j) {
                     $postId = $this->faker->randomElement($postIds);
                     $hubId = $this->faker->randomElement($hubsIds);
 

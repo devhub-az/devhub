@@ -2,20 +2,20 @@
 *:before,
 *:after {
     box-sizing: border-box;
-    transition: all 125ms ease-in-out 0s;
+
 }
 
 html, body{
-    color: var(--base-text-color);
-    background: var(--base-background-color);
+    display: flex;
+    width: 100%;
+    background-color: var(--background-default);
     font: var(--base-font-size) / var(--base-line-height) var(--base-font-family);
     min-width: var(--base-min-width);
-    min-height: 100%;
-    display: flex;
     flex-direction: column;
 }
 
 body{
+    color: var(--text-black-primary);
     min-height: 100vh;
 }
 
