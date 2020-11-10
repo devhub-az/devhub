@@ -29,7 +29,7 @@
                 {{--                    <div class="results"></div>--}}
                 {{--                </div>--}}
                 <hubs-list
-                        fetch-url="{{ route('hubs-list-api') }}"
+                        fetch-url="{{ route('hubs.index') }}"
                         locale="{{ App::getLocale() }}"
                         @auth :auth_check="true" @endauth
                         :columns="[

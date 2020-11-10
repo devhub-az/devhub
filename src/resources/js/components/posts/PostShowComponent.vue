@@ -2,7 +2,7 @@
     <div id="post-content" class="post-content">
         <div id="sidebar" class="stickyVote">
             <div class="stickyHeader">
-                <i class="icon feather icon-chevron-right"></i>{{ post.title }}
+                <i class="icon feather icon-chevron-right"></i>{{ post.attributes.title }}
             </div>
             <div class="post-votes-sticky">
                 <vote :auth_check="auth_check" :posts="post"/>
@@ -14,17 +14,17 @@
         <div class="post-content__item">
             <div class="post-content__header">
                 <div class="post-title">
-                    <h3>{{ post.title }}</h3>
+                    <h3>{{ post.attributes.title }}</h3>
                 </div>
                 <div class="post-header__right">
                     <div class="post__time">
                         <i class="mdi mdi-calendar-month-outline"></i>
-                        {{ post.created_at | moment('DD MMMM, H:mm') }}
+                        {{ post.attributes.created_at | moment('DD MMMM, H:mm') }}
                     </div>
                 </div>
             </div>
-            <hubs-tags v-if="typeof(post.tags) !== `undefined` " :data="post.tags.data"></hubs-tags>
-            <div class="post-content__body-show" v-html="post.body">
+            <hubs-tags v-if="typeof(post.relationships.hubs) !== `undefined` " :data="post.relationships.hubs.data"></hubs-tags>
+            <div class="post-content__body-show" v-html="post.attributes.body">
             </div>
             <div class="post__content-footer">
                 <div class="grid">
@@ -39,9 +39,9 @@
                     </div>
                 </div>
 
-                <div class="balloon" :aria-label="post.votes_sum + ': ' + post.upvotes + ' plus ' + post.downvotes + ' minus'" data-balloon-pos="up">
-                    <div class="progress" :class="{ 'default' : post.votes_sum === 0}">
-                        <div class="progress-green" :style="'width:' + [post.votes_sum !== 0 ? 100 * post.upvotes / post.votes_sum : '0'] +'%'"></div>
+                <div class="balloon" :aria-label="post.attributes.votes_sum + ': ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'" data-balloon-pos="up">
+                    <div class="progress" :class="{ 'default' : post.attributes.votes_sum === 0}">
+                        <div class="progress-green" :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
                     </div>
                 </div>
             </div>
@@ -54,16 +54,19 @@
         props: ['auth_check', 'id'],
         data: function () {
             return {
-                post: [],
+                post: {
+                    attributes: [],
+                    relationships: []
+                },
             }
         },
         async created() {
-            this.getPost()
+            await this.getPost()
         },
         methods: {
             async getPost() {
-                await axios.get('/api/posts/' + this.id).then(response => {
-                    this.post = response.data.data;
+                await axios.get('/api/articles/' + this.id).then(response => {
+                    this.post = response.data;
                 }).catch(error => {
                     this.loading = false
                     this.error = true

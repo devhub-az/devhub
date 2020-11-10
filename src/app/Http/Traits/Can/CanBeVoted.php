@@ -3,6 +3,7 @@
 namespace App\Http\Traits\Can;
 
 use App\Models\Src\Follow;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * Trait CanBeVoted.
@@ -48,7 +49,7 @@ trait CanBeVoted
     /**
      * Return voters.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function voters()
     {
@@ -61,15 +62,10 @@ trait CanBeVoted
             ->withPivot('followable_type', 'relation', 'created_at');
     }
 
-    public function rating()
-    {
-        return $this->upvoters - $this->downvoters;
-    }
-
     /**
      * Return upvoters.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function upvoters()
     {
@@ -85,7 +81,7 @@ trait CanBeVoted
     /**
      * Return downvoters.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
     public function downvoters()
     {

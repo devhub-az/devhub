@@ -80,7 +80,7 @@ Route::prefix('api')->group(static function () {
     Route::get('hubs/{id}/top/month', 'Api\PostHubController@posts');
     Route::get('hubs/{id}/all', 'Api\PostHubController@all');
 
-    Route::get('hubs', 'Api\HubController@hubs')->name('hubs-list-api');
+//    Route::get('hubs', 'Api\HubController@hubs')->name('hubs-list-api');
 
     /*
      * Users Api
@@ -106,8 +106,9 @@ Route::prefix('api')->group(static function () {
 Route::group([], static function () {
     Route::prefix('post')->group(static function () {
         Route::get('/add', 'PostController@create')->name('create_post');
+        Route::post('/create-new-post', 'PostController@store');
         Route::get('/{id}', 'PostController@show')->name('show');
-        Route::post('/{post}', 'PostController@updateViews');
+        Route::post('/update_views/{post}', 'PostController@updateViews');
         Route::post('/favorite/{id}', 'PostController@addFavorite');
     });
 
@@ -136,11 +137,9 @@ Route::group([], static function () {
     });
 
     Route::prefix('comment')->group(static function () {
-        Route::post('new-comment', 'CommentController@newComment')->name('new-comment');
-        Route::post('/favorite/{id}', 'CommentController@favorite');
+        Route::post('new-comment', 'Api\CommentController@newComment')->name('new-comment');
+        Route::post('/favorite/{id}', 'Api\CommentController@favorite');
     });
-
-    Route::resource('posts', 'PostController');
 
     Route::view('about_us', 'pages.about_us');
 });

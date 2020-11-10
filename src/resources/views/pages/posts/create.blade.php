@@ -2,65 +2,61 @@
 
 @section('title')Paylaşma yazmag @stop
 
-@section('css')
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-@stop
-
 @section('main')
     <div class="layout_body" id="app" onload="prettyPrint()">
         <div class="layout_content">
             <div class="page-header page-header_110">
                 <h1 class="page-header__title">Paylaşma yazmag</h1>
             </div>
-            {{--            <div class="edit-content">--}}
-            {{--                @if($errors->any())--}}
-            {{--                    <div id="error" style="display: none"></div>--}}
-            {{--                @endif--}}
-            {{--                {!! Form::open(['id' => 'form', 'url' => 'posts', 'method' => 'POST']) !!}--}}
-            {{--                @csrf--}}
-            {{--                {!! Form::label('title', 'Başlıq:') !!}--}}
+{{--<div class="edit-content">--}}
+{{--                @if($errors->any())--}}
+{{--                    <div id="error" style="display: none"></div>--}}
+{{--                @endif--}}
+{{--                {!! Form::open(['id' => 'form', 'url' => 'posts', 'method' => 'POST']) !!}--}}
+{{--                @csrf--}}
+{{--                {!! Form::label('title', 'Başlıq:') !!}--}}
 
-            {{--                {!! Form::text('title', null, ['class' => 'post__title', 'id' => 'title', 'placeholder' => 'Nəşrin nə olacağını başa düşmək üçün başlıq məna ilə doldurulmalıdır.', 'autocomplete' => 'off']) !!}--}}
+{{--                {!! Form::text('title', null, ['class' => 'post__title', 'id' => 'title', 'placeholder' => 'Nəşrin nə olacağını başa düşmək üçün başlıq məna ilə doldurulmalıdır.', 'autocomplete' => 'off']) !!}--}}
 
-            {{--                @if($errors->has('title'))--}}
-            {{--                    <div class="description">--}}
-            {{--                        <p style="color: red"> {{ $errors->first('title') }}</p>--}}
-            {{--                    </div>--}}
-            {{--                @endif--}}
+{{--                @if($errors->has('title'))--}}
+{{--                    <div class="description">--}}
+{{--                        <p style="color: red"> {{ $errors->first('title') }}</p>--}}
+{{--                    </div>--}}
+{{--                @endif--}}
 
 
-            {{--                {!! Form::label('body', 'Mətn:') !!}--}}
-            {{--                <div class="wmd-panel">--}}
-            {{--                    <div id="wmd-button-bar"></div>--}}
-            {{--                    <textarea class="wmd-input" id="wmd-input" name="body"></textarea>--}}
-            {{--                </div>--}}
-            {{--                @if($errors->has('body'))--}}
-            {{--                    <div class="description">--}}
-            {{--                        <p style="color: red"> {{ $errors->first('body') }}</p>--}}
-            {{--                    </div>--}}
-            {{--                @endif--}}
+{{--                {!! Form::label('body', 'Mətn:') !!}--}}
+{{--                <div class="wmd-panel">--}}
+{{--                    <div id="wmd-button-bar"></div>--}}
+{{--                    <textarea class="wmd-input" id="wmd-input" name="body"></textarea>--}}
+{{--                </div>--}}
+{{--                @if($errors->has('body'))--}}
+{{--                    <div class="description">--}}
+{{--                        <p style="color: red"> {{ $errors->first('body') }}</p>--}}
+{{--                    </div>--}}
+{{--                @endif--}}
 
-            {{--                <div id="content"></div>--}}
-            {{--                --}}{{--                <div id="wmd-preview" class="wmd-panel wmd-preview"></div>--}}
+{{--                <div id="content"></div>--}}
+{{--                <div id="wmd-preview" class="wmd-panel wmd-preview"></div>--}}
 
-            {{--                --}}{{--                    <div class="ui fluid multiple search selection dropdown">--}}
-            {{--                --}}{{--                        <input name="tags" type="hidden">--}}
-            {{--                --}}{{--                        <i class="dropdown icon"></i>--}}
-            {{--                --}}{{--                        <div class="default text">Skills</div>--}}
-            {{--                --}}{{--                        <div class="menu">--}}
-            {{--                --}}{{--                            @foreach ($hubs as $hub)--}}
-            {{--                --}}{{--                                <div class="item" data-value="{{ $hub['id'] }}">--}}
-            {{--                --}}{{--                                    <i class="{{ strtolower($hub['name']) }} icon"></i>--}}
-            {{--                --}}{{--                                    {{ $hub['name'] }}--}}
-            {{--                --}}{{--                                </div>--}}
-            {{--                --}}{{--                            @endforeach--}}
-            {{--                --}}{{--                        </div>--}}
-            {{--                --}}{{--                    </div>--}}
-            {{--                {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}--}}
+{{--                <div class="ui fluid multiple search selection dropdown">--}}
+{{--                    <input name="tags" type="hidden">--}}
+{{--                    <i class="dropdown icon"></i>--}}
+{{--                    <div class="default text">Skills</div>--}}
+{{--                    <div class="menu">--}}
+{{--                        @foreach ($hubs as $hub)--}}
+{{--                            <div class="item" data-value="{{ $hub['id'] }}">--}}
+{{--                                <i class="{{ strtolower($hub['name']) }} icon"></i>--}}
+{{--                                {{ $hub['name'] }}--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                {!! Form::submit('Paylaşımı əlavə etmək', ['id' => 'submit', 'class' => 'btn btn-primary submit']) !!}--}}
 
-            {{--                {!! Form::close() !!}--}}
-            {{--            </div>--}}
-            <editor></editor>
+{{--                {!! Form::close() !!}--}}
+{{--            </div>--}}
+            @include('pages.posts.form')
 
 
             <div class="content_right">

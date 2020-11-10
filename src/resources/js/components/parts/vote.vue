@@ -1,11 +1,11 @@
 <template>
-    <div class="post-votes" :aria-label="posts.votes_sum + ':  ↑ ' + [posts.upvotes === 0 ? '0' : posts.upvotes ] + ' ↓ ' + [posts.downvotes === 0 ? '0' :posts.downvotes]" data-balloon-pos="left">
-        <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.upvoted}"
+    <div class="post-votes" :aria-label="posts.attributes.votes_sum + ':  ↑ ' + [posts.attributes.upvotes === 0 ? '0' : posts.attributes.upvotes ] + ' ↓ ' + [posts.attributes.downvotes === 0 ? '0' :posts.downvotes]" data-balloon-pos="left">
+        <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.attributes.upvoted}"
               @click="upvote(posts.id)"/>
         <span :style="{color: colorStatus}" class="rating">
-            {{ posts.votes }}
+            {{ posts.attributes.votes }}
         </span>
-        <span class="mdi mdi-thumb-down-outline" :class="{downvoted: posts.downvoted}"
+        <span class="mdi mdi-thumb-down-outline" :class="{downvoted: posts.attributes.downvoted}"
               @click="downvote(posts.id)"/>
     </div>
 </template>
@@ -23,11 +23,11 @@
             }
         },
         async created () {
-            if (this.posts.votes > 0) {
+            if (this.posts.attributes.votes > 0) {
                 this.colorStatus = 'var(--color-primary-main)';
-            } else if (this.posts.votes === 0) {
+            } else if (this.posts.attributes.votes === 0) {
                 this.colorStatus = 'inherit';
-            } else if (this.posts.votes < 0) {
+            } else if (this.posts.attributes.votes < 0) {
                 this.colorStatus = 'var(--color-error-main)';
             }
             if (this.auth_check === 1) {
@@ -37,12 +37,12 @@
         methods: {
             upvote: function (id) {
                 if (this.auth_check) {
-                    let vote = this.posts.votes;
-                    let votes_sum = this.posts.votes_sum;
-                    let upvotes = this.posts.upvotes;
-                    let downvotes = this.posts.downvotes;
-                    if (this.posts.upvoted == false && this.posts.downvoted == false) {
-                        this.posts.upvoted = true;
+                    let vote = this.posts.attributes.votes;
+                    let votes_sum = this.posts.attributes.votes_sum;
+                    let upvotes = this.posts.attributes.upvotes;
+                    let downvotes = this.posts.attributes.downvotes;
+                    if (this.posts.attributes.upvoted == false && this.posts.attributes.downvoted == false) {
+                        this.posts.attributes.upvoted = true;
                         upvotes++;
                         votes_sum++;
                         vote++;
@@ -59,8 +59,8 @@
                             type: 'success',
                             text: '<div class="notification-image"><i class="mdi mdi-thumb-up-outline"></i></div> Səs verildi',
                         }).show();
-                    } else if (this.posts.upvoted == true && this.posts.downvoted == false) {
-                        this.posts.upvoted = false;
+                    } else if (this.posts.attributes.upvoted == true && this.posts.attributes.downvoted == false) {
+                        this.posts.attributes.upvoted = false;
                         upvotes--;
                         votes_sum--;
                         vote--;
@@ -77,8 +77,8 @@
                             type: 'error',
                             text: '<div class="notification-image" style="color: #ea5f6d"><i class="mdi mdi-minus-box-outline"></i></div> Səs ləğv olundu',
                         }).show();
-                    } else if (this.posts.upvoted == false && this.posts.downvoted == true) {
-                        this.posts.upvoted = true;
+                    } else if (this.posts.attributes.upvoted == false && this.posts.attributes.downvoted == true) {
+                        this.posts.attributes.upvoted = true;
                         upvotes = upvotes + 1;
                         downvotes = downvotes - 1;
                         vote = vote + 2;
@@ -105,11 +105,11 @@
                     } else if (vote < 0) {
                         this.colorStatus = 'var(--color-error-main)';
                     }
-                    this.posts.downvoted = false;
-                    this.posts.upvotes = upvotes;
-                    this.posts.downvotes = downvotes;
-                    this.posts.votes = vote;
-                    this.posts.votes_sum = votes_sum;
+                    this.posts.attributes.downvoted = false;
+                    this.posts.attributes.upvotes = upvotes;
+                    this.posts.attributes.downvotes = downvotes;
+                    this.posts.attributes.votes = vote;
+                    this.posts.attributes.votes_sum = votes_sum;
                 } else
                     new Noty({
                         type: 'success',
@@ -120,12 +120,12 @@
             },
             downvote: function (id) {
                 if (this.auth_check) {
-                    let vote = this.posts.votes;
-                    let votes_sum = this.posts.votes_sum;
-                    let upvotes = this.posts.upvotes;
-                    let downvotes = this.posts.downvotes;
-                    if (this.posts.downvoted == false && this.posts.upvoted == false) {
-                        this.posts.downvoted = true;
+                    let vote = this.posts.attributes.votes;
+                    let votes_sum = this.posts.attributes.votes_sum;
+                    let upvotes = this.posts.attributes.upvotes;
+                    let downvotes = this.posts.attributes.downvotes;
+                    if (this.posts.attributes.downvoted == false && this.posts.attributes.upvoted == false) {
+                        this.posts.attributes.downvoted = true;
                         downvotes++;
                         votes_sum--;
                         vote--;
@@ -142,8 +142,8 @@
                             type: 'success',
                             text: '<div class="notification-image"><i class="mdi mdi-thumb-down-outline"></i></div> Səs verildi',
                         }).show();
-                    } else if (this.posts.downvoted == true && this.posts.upvoted == false) {
-                        this.posts.downvoted = false;
+                    } else if (this.posts.attributes.downvoted == true && this.posts.attributes.upvoted == false) {
+                        this.posts.attributes.downvoted = false;
                         downvotes--;
                         votes_sum++;
                         vote++;
@@ -160,8 +160,8 @@
                             type: 'error',
                             text: '<div class="notification-image" style="color: #ea5f6d"><i class="mdi mdi-minus-box-outline"></i></div> Səs ləğv olundu',
                         }).show();
-                    } else if (this.posts.downvoted == false && this.posts.upvoted == true) {
-                        this.posts.downvoted = true;
+                    } else if (this.posts.attributes.downvoted == false && this.posts.attributes.upvoted == true) {
+                        this.posts.attributes.downvoted = true;
                         upvotes = upvotes - 1;
                         downvotes = downvotes + 1;
                         vote = vote - 2;
@@ -187,11 +187,11 @@
                     } else if (vote < 0) {
                         this.colorStatus = 'var(--color-error-main)';
                     }
-                    this.posts.upvoted = false;
-                    this.posts.upvotes = upvotes;
-                    this.posts.downvotes = downvotes;
-                    this.posts.votes = vote;
-                    this.posts.votes_sum = votes_sum;
+                    this.posts.attributes.upvoted = false;
+                    this.posts.attributes.upvotes = upvotes;
+                    this.posts.attributes.downvotes = downvotes;
+                    this.posts.attributes.votes = vote;
+                    this.posts.attributes.votes_sum = votes_sum;
                 } else
                     new Noty({
                         type: 'success',

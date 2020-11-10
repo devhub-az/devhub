@@ -180,6 +180,7 @@ return [
 //        App\Providers\BroadcastServiceProvider::class,
 //        App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Jackiedo\DotenvEditor\DotenvEditorServiceProvider::class,
 
     ],
 
@@ -237,6 +238,8 @@ return [
         'Markdown'     => GrahamCampbell\Markdown\Facades\Markdown::class,
         'Purifier'     => Mews\Purifier\Facades\Purifier::class,
         'HTMLMin'      => HTMLMin\HTMLMin\Facades\HTMLMin::class,
+
+        'DotenvEditor' => Jackiedo\DotenvEditor\Facades\DotenvEditor::class,
 
 //        Doctrine
 //        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,

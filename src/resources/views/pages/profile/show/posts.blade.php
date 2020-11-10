@@ -9,10 +9,12 @@
         <div class="page-profile">
             <div class="profile__left">
                 @include('pages.profile.include.tabs')
-                <posts
-                        :url="'{{ $url }}'"
-                        @auth :auth_check="true" @endauth
-                ></posts>
+                <div class="markdown-body">
+                    <posts
+                            :url="'{{ $url }}'"
+                            @auth :auth_check="true" @endauth
+                    ></posts>
+                </div>
             </div>
 
             <div class="content_right">

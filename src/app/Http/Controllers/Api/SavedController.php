@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CommentsCollection;
+use App\Http\Resources\CommentsResource;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostsCollection;
 use App\Models\Comment;
@@ -33,7 +33,7 @@ class SavedController extends Controller
 //            ->with('post')
 //            ->paginate(6));
         $fav = \Auth::user()->getCommentsIdsFavorite();
-        return new CommentsCollection(Comment::find($fav));
+        return new CommentsResource(Comment::find($fav));
 //        dd($posts[1]);
 //
 //        return new CommentsCollection(Comment::orderBy('created_at', 'DESC')

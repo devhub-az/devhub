@@ -8,10 +8,10 @@ use App\Models\Hub;
 use App\Models\Post;
 use App\Notifications\PostNotify;
 use DB;
+use Exception;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -43,10 +43,10 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return RedirectResponse|null
+     * @return JsonResponse
      * @throws Throwable
      */
-    public function store(Request $request): ?RedirectResponse
+    public function store(Request $request): JsonResponse
     {
         $request->validate([
             'title' => 'required|string',
@@ -67,7 +67,9 @@ class PostController extends Controller
             return redirect('/post/' . $share->id);
         });
 
-        return null;
+        return response()->json([
+            'message' => 'New post created'
+        ], 200);
     }
 
     /**
@@ -88,7 +90,7 @@ class PostController extends Controller
      * @param $post
      * @param $request
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
@@ -105,10 +107,9 @@ class PostController extends Controller
                     break;
             }
             $transaction = true;
-        } elseif (!isset($voteStatus)) {
-            $userId->cancelVote($post);
-            $transaction = 'delete';
         }
+        $userId->cancelVote($post);
+        $transaction = 'delete';
         foreach ($post->hubs as $hub) {
             $hub->rating += $request->get('change_rating');
             $hub->save();
@@ -134,7 +135,7 @@ class PostController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse status
-     * @throws \Exception
+     * @throws Exception
      */
     public function vote(Request $request): JsonResponse
     {
@@ -151,7 +152,7 @@ class PostController extends Controller
     /**
      * @param Request $request
      * @return JsonResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function addFavorite(Request $request): JsonResponse
     {
@@ -164,7 +165,9 @@ class PostController extends Controller
             if (isset($share) && !$user->hasBookmarked($share)) {
                 $user->bookmark($share);
                 return response()->json(['success' => 'success'], 200);
-            } elseif ($user->hasBookmarked($share)) {
+            }
+
+            if ($user->hasBookmarked($share)) {
                 $user->unbookmark($share);
 
                 return response()->json(['delete' => 'delete'], 200);
@@ -178,15 +181,15 @@ class PostController extends Controller
                 'following_id' => $request->get('id'),
             ]);
             return response()->json(['success' => 'success'], 200);
-        } else {
-            if ($share->postIsFollowing(Auth::user())) {
-                $share->favorites()->where([
-                    'follower_id'  => Auth::user()->id,
-                    'following_id' => $request->get('id'),
-                ])->delete();
+        }
 
-                return response()->json(['delete' => 'delete'], 200);
-            }
+        if ($share->postIsFollowing(Auth::user())) {
+            $share->favorites()->where([
+                'follower_id'  => Auth::user()->id,
+                'following_id' => $request->get('id'),
+            ])->delete();
+
+            return response()->json(['delete' => 'delete'], 200);
         }
         return response()->json(['error' => 'error'], 401);
     }

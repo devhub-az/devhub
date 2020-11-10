@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\PostsCollection;
 use App\Http\Resources\PostShowCollection;
 use App\Models\Hub;
@@ -12,6 +13,7 @@ use App\Services\PostService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
@@ -46,11 +48,11 @@ class PostController extends Controller
     }
 
     /**
-     * @return PostsCollection
+     * @return ArticlesResource
      */
-    public function posts(): PostsCollection
+    public function posts(): ArticlesResource
     {
-        return new PostsCollection(PostService::getPosts()
+        return new ArticlesResource(Post::withcount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
             ->orderByRaw('(upvoters_count - downvoters_count) DESC')
             ->orderBy('created_at',
                 'DESC')->where(
@@ -66,7 +68,9 @@ class PostController extends Controller
      */
     public function all(): PostsCollection
     {
-        return new PostsCollection(PostService::getPosts('created_at')->take(50)->paginate(5));
+        return Cache::rememberForever('posts.all', function () {
+            return new ArticlesResource(Post::with(['creator', 'comments.author'])->take(50)->paginate(5));
+        });
     }
 
     /**

@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Mews\Purifier\Facades\Purifier;
 use Parsedown;
 
-class CommentCollection extends JsonResource
+class CommentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,6 +17,22 @@ class CommentCollection extends JsonResource
      * @return array
      */
     public function toArray($request)
+    {
+        return [
+            'type'          => 'comments',
+            'id'            => (string)$this->id,
+            'attributes'    => [
+                'body'  => $this->content,
+                'pivot' => $this->pivot,
+            ],
+            'relationships' => new CommentRelationshipResource($this),
+            'links'         => [
+                'self' => route('comments.show', ['comment' => $this->id]),
+            ],
+        ];
+    }
+
+    public function toArray2($request)
     {
         $parsedown = new Parsedown();
         $body = Purifier::clean($parsedown->text($this->body));

@@ -174,8 +174,8 @@
                 this.$emit('setIsActive', this.isActive);
             },
             logout(evt) {
-                axios.post('/logout')
-                    .then(({data}) => {
+                axios.post('api/auth/logout')
+                    .then(() => {
                         window.location.reload();
                     });
             }

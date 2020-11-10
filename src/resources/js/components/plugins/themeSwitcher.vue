@@ -56,17 +56,17 @@ export default {
     color: inherit;
 }
 
-.mdi-weather-sunny, .mdi-moon-waning-crescent{
+.mdi-weather-sunny, .mdi-moon-waning-crescent {
     cursor: pointer;
     opacity: 0.7;
     color: var(--text-white-secondary);
 
-    &:hover{
+    &:hover {
         opacity: 1;
     }
 }
 
-.mdi-moon-waning-crescent{
+.mdi-moon-waning-crescent {
     transform: rotate(-20deg);
 }
 

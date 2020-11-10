@@ -16,26 +16,25 @@ class HomeController extends Controller
      */
     public function postsApiRoute(Request $request)
     {
-//        \Auth::user()->unlock(new UserMadeAPost());
         $top_followed_hubs = new HubsCollection(Hub::take(6)->get());
         switch ($request->path()) {
             case '/':
                 session(['main-page' => '/']);
 
-                return view('pages.home', ['url' => '/api/posts/top/day', 'top_followed_hubs' => $top_followed_hubs,]);
+                return view('pages.home', ['url' => '/api/articles_filter/day', 'top_followed_hubs' => $top_followed_hubs,]);
             case 'top/week':
                 session(['main-page' => '/top/week']);
 
-                return view('pages.home', ['url' => '/api/posts/top/week', 'top_followed_hubs' => $top_followed_hubs,]);
+                return view('pages.home', ['url' => '/api/articles_filter/week', 'top_followed_hubs' => $top_followed_hubs,]);
             case 'top/month':
                 session(['main-page' => '/top/month']);
 
                 return view('pages.home',
-                    ['url' => '/api/posts/top/month', 'top_followed_hubs' => $top_followed_hubs,]);
+                    ['url' => '/api/articles_filter/month', 'top_followed_hubs' => $top_followed_hubs,]);
             case 'all':
                 session(['main-page' => '/all']);
 
-                return view('pages.home', ['url' => '/api/posts/all', 'top_followed_hubs' => $top_followed_hubs,]);
+                return view('pages.home', ['url' => '/api/articles', 'top_followed_hubs' => $top_followed_hubs,]);
             case 'favorite' && \Auth::user()->followings(Hub::class)->count() !== null && \Auth::user()->followings()->count() !== null:
                 session(['main-page' => '/favorite']);
 

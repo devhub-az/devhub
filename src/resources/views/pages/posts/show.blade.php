@@ -88,8 +88,8 @@
                         </li>
                     </ul>
                 </div>
-                <comments :id="{{ $post->id }}" @auth :auth_check="true"
-                          :user="{{ Auth::user() }}" @endauth ></comments>
+{{--                <comments :id="{{ $post->id }}" @auth :auth_check="true"--}}
+{{--                          :user="{{ Auth::user() }}" @endauth ></comments>--}}
             </div>
 
             <div id="sticky-block" class="content_right">

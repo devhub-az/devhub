@@ -2,7 +2,7 @@
     <div>
         <div id="editorjs"></div>
         {{ token }}
-        <button v-on:click="save()">asd</button>
+        <button v-on:click="save()"></button>
     </div>
 </template>
 

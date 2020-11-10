@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
 
+
         Relation::morphMap([
             'posts'    => Post::class,
             'comments' => Comment::class,

@@ -49,9 +49,10 @@
                 <a href="{{ route('create_post') }}" class="btn btn-primary">
                     Yazmaq
                 </a>
+            {{Auth::user()->isA('admin')}}
                 <div class="avatar-dropdown">
                     <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"
-                              :admin="{{Auth::user()->isAn('admin')}}"></dropdown>
+                              {{ Auth::user()->isAn('admin') ? ':admin="' . Auth::user()->isAn('admin') . '"' : null }}></dropdown>
                 </div>
             @endguest
         </div>

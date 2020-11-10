@@ -37,7 +37,7 @@
             }
         },
         async created() {
-            this.getComments();
+            await this.getComments();
         },
         methods: {
             async getComments() {

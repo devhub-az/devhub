@@ -9,9 +9,10 @@
                 @include('auth.import.left_side')
                 <div id="particles-js"></div>
             </div>
-            <div class="login__right">
+            <div class="login__right" id="app">
                 <div class="ColumnContainer mode-auth">
                     <a href="{{ route('home') }}" class="logo_login">DevHub</a>
+{{--                    <login></login>--}}
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <fieldset class="login__form">

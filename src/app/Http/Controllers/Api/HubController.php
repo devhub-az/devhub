@@ -3,66 +3,81 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\HubCollection;
-use App\Http\Resources\HubsCollection;
-use App\Http\Resources\PostsCollection;
+use App\Http\Resources\HubResource;
+use App\Http\Resources\HubsResource;
 use App\Models\Hub;
-use App\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class HubController extends Controller
 {
-    /**
-     * @var Hub
-     */
-    protected $hubs;
 
-    /**
-     * HubController constructor.
-     * @param Hub $hubs
-     */
-    public function __construct(Hub $hubs)
+    public function index()
     {
-        $this->hubs = $hubs;
+        return new HubsResource(Hub::paginate());
     }
 
-    /**
-     * API.
-     * @param int $id
-     * @return PostsCollection
-     */
-    public function posts(int $id)
+    public function show($id)
     {
-        return new PostsCollection(Post::orderBy('created_at', 'DESC')
-            ->whereHas('hubs', function ($query) use ($id) {
-                $query->where('hubs.id', '=', $id);
-            })
-            ->with('creator:id,username')
-            ->with('hubs:name')
-            ->with('comments:body')
-            ->paginate(5));
-    }
+        $hub = Hub::find($id);
 
-    /**
-     * @param Request $request
-     * @return AnonymousResourceCollection
-     */
-    public function hubs(Request $request)
-    {
-        $query = $this->hubs->orderBy($request->column, $request->order);
-        $hubs = $query->withCount('posts', 'followers')->with('description')->paginate($request->per_page);
+        if (is_null($hub)) {
+            return $this->sendError('Post not found.');
+        }
+        HubResource::withoutWrapping();
 
-        return HubCollection::collection($hubs);
-    }
-
-    /**
-     * For find Hubs.
-     * @return mixed
-     */
-    public function search()
-    {
-        $hubs = new HubsCollection(Hub::get());
-        return $hubs->all();
+        return new HubResource($hub);
     }
 }
+
+//    /**
+//     * @var Hub
+//     */
+//    protected $hubs;
+//
+//    /**
+//     * HubController constructor.
+//     * @param Hub $hubs
+//     */
+//    public function __construct(Hub $hubs)
+//    {
+//        $this->hubs = $hubs;
+//    }
+//
+//    /**
+//     * API.
+//     * @param int $id
+//     * @return PostsCollection
+//     */
+//    public function posts(int $id)
+//    {
+//        return new PostsCollection(Post::orderBy('created_at', 'DESC')
+//            ->whereHas('hubs', function ($query) use ($id) {
+//                $query->where('hubs.id', '=', $id);
+//            })
+//            ->with('creator:id,username')
+//            ->with('hubs:name')
+//            ->with('comments:body')
+//            ->paginate(5));
+//    }
+//
+//    /**
+//     * @param Request $request
+//     * @return AnonymousResourceCollection
+//     */
+//    public function hubs(Request $request)
+//    {
+//        $query = $this->hubs->orderBy($request->column, $request->order);
+//        $hubs = $query->withCount('posts', 'followers')->with('description')->paginate($request->per_page);
+//
+//        return HubCollection::collection($hubs);
+//    }
+//
+//    /**
+//     * For find Hubs.
+//     * @return mixed
+//     */
+//    public function search()
+//    {
+//        $hubs = new HubsCollection(Hub::get());
+//        return $hubs->all();
+//    }
+

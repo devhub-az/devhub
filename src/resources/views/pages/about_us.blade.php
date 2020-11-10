@@ -2,7 +2,7 @@
 
 @section('title')Məlumat @stop
 
-@section('css')
+@section('styles')
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 @stop

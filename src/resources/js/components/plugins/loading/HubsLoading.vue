@@ -1,7 +1,7 @@
 <template>
     <ul class="content-list">
         <li style="list-style-type: none;">
-            <div class="list-hubs__hub" :class="{'hub-loading': loading}" style="border-left: 3px solid rgb(226, 226, 226)">
+            <div class="list-hubs__hub hub-loading" style="border-left: 3px solid rgb(226, 226, 226)">
                 <div class="list-hubs__hub-image MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"></div>
                 <div class="list-hubs__obj-body">
                     <div class="list-hubs__title-link MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
@@ -31,12 +31,6 @@
         </li>
     </ul>
 </template>
-
-<script>
-    export default {
-        props:['loading']
-    }
-</script>
 
 <style scoped lang="scss">
     .hub-loading {

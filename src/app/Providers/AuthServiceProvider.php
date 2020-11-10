@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Laravel\Passport\Passport;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -21,8 +22,16 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(GateContract $gate)
+    public function boot()
     {
         $this->registerPolicies();
+
+        if (\Auth::guard('web')->check()) {
+            \Auth::guard('api')->loginUsingId(\Auth::guard('web')->user()->id);
+        }
+
+        Passport::routes();
+        Passport::tokensExpireIn(now()->addDays(5));
+        Passport::refreshTokensExpireIn(now()->addDays(30));
     }
 }

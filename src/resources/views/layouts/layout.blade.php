@@ -15,7 +15,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="preload" href="{{ mix('js/app.js') }}" as="script">
     <link rel="preload" href="{{ asset('js/scripts/lazysizes.min.js') }}" as="script">
 
     @yield('meta')
@@ -23,12 +22,13 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}" media="print" onload="this.media='all'">
+
     <style>
         @php
             include(public_path('css/app.css'));
         @endphp
     </style>
-    @yield('css')
+    @yield('styles')
 </head>
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
@@ -55,14 +55,10 @@
 
 <script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
-<script type="text/javascript" src="{{ mix('js/app.js') }}" async></script>
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>
 @yield('scripts')
-<script type="text/javascript">
-    // if (document.getElementsByClassName('header-message')){
-    //     const stickymessage = stickybits('.header-message');
-    // }
-</script>
 </body>
 </html>

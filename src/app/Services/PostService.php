@@ -14,7 +14,7 @@ class PostService
     public static function getPosts(string $orderBy = null): Builder
     {
         $q = Post::with('creator:id,username,avatar')
-            ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments');
+            ->withcount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments');
 
 
         if ($orderBy !== null) {

@@ -14,8 +14,10 @@
         "graham-campbell/markdown": "^13.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "htmlmin/htmlmin": "dev-master#e67fe976e3fd1e92568341ce84f338fa4c0ffc47",
+        "jackiedo/dotenv-editor": "^1.2",
         "ksubileau/color-thief-php": "^1.4",
         "laravel/framework": "^8.0",
+        "laravel/passport": "^10.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.0",
@@ -26,7 +28,7 @@
         "spatie/laravel-responsecache": "^6.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^v3.5.1",
+        "barryvdh/laravel-debugbar": "^3.3",
         "facade/ignition": "^2.3.6",
         "filp/whoops": "^2.0",
         "fzaninotto/faker": "^1.4",
@@ -70,6 +72,11 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ]
     }
 }
