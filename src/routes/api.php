@@ -1,27 +1,22 @@
 <?php
 
-
-Route::middleware('api')->get('/user', function (Request $request) {
-    return Auth::guard('api')->getUser();
-});
-
-Route::group(['namespace' => 'Api'], function () {
-    Route::group(['namespace' => 'Auth', 'prefix' => 'auth'], function () {
+//Route::group(['namespace' => 'Api'], function () {
+//    Route::group(['namespace' => 'Auth', 'prefix' => 'auth'], function () {
 //        Route::post('register', 'RegisterController');
-        Route::post('login', 'LoginController');
+//        Route::post('login', 'LoginController');
 //        Route::post('/logout', 'Auth\LogoutController')->middleware('auth:api');
-        Route::get('me', 'TestController')->middleware('auth');
+//        Route::get('me', 'TestController')->middleware('auth');
 
 //        Route::post('logout', 'LogoutController')->middleware('auth:api');
-    });
-});
-//Route::get('articles_filter/day', 'Api\ArticleTopController@posts');
-//Route::get('articles_filter/week', 'Api\ArticleTopController@posts');
-//Route::get('articles_filter/month', 'Api\ArticleTopController@posts');
+//    });
+//});
+Route::get('articles_filter/day', 'Api\ArticleTopController@posts');
+Route::get('articles_filter/week', 'Api\ArticleTopController@posts');
+Route::get('articles_filter/month', 'Api\ArticleTopController@posts');
 //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
-//Route::apiResource('articles', 'Api\ArticleController');
-//Route::apiResource('authors', 'Api\AuthorController');
-//Route::apiResource('comments', 'Api\CommentController');
+Route::apiResource('articles', 'Api\ArticleController');
+Route::apiResource('authors', 'Api\AuthorController');
+Route::apiResource('comments', 'Api\CommentController');
 Route::apiResource('hubs', 'Api\HubController');
 
 //Route::group(['prefix' => 'auth'], function () {
