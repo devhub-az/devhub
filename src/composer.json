@@ -7,7 +7,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4.1",
+        "php": "^7.3|^8.0",
         "barryvdh/laravel-ide-helper": "^2.6",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -24,8 +24,7 @@
         "mews/purifier": "~3.0",
         "parsedown/laravel": "^1.1",
         "renatomarinho/laravel-page-speed": "^1.8",
-        "silber/bouncer": "v1.0.0-rc.9",
-        "spatie/laravel-responsecache": "^6.1"
+        "silber/bouncer": "v1.0.0-rc.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
