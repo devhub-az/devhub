@@ -56,6 +56,15 @@ Route::prefix('api')->group(static function () {
     Route::get('posts/{id}', 'Api\PostController@show');
     Route::post('post/image/cache', 'Api\PostController@upload_image');
 
+    Route::group(['prefix' => 'auth'], function () {
+//
+//    // public routes
+        Route::post('/login', 'Api\AuthController@login')->name('login.api');
+//    Route::post('/register','Api\AuthController@register')->name('register.api');
+//    Route::middleware(['auth:api'])->post('/logout', 'Api\AuthController@logout')->name('logout.api');
+//
+    });
+
     /**
      * Comments Api
      */

@@ -19,14 +19,7 @@ Route::apiResource('authors', 'Api\AuthorController');
 Route::apiResource('comments', 'Api\CommentController');
 Route::apiResource('hubs', 'Api\HubController');
 
-//Route::group(['prefix' => 'auth'], function () {
-//
-//    // public routes
-//    Route::post('/login', 'Api\AuthController@login')->name('login.api');
-//    Route::post('/register','Api\AuthController@register')->name('register.api');
-//    Route::middleware(['auth:api'])->post('/logout', 'Api\AuthController@logout')->name('logout.api');
-//
-//});
+
 
 Route::get(
     'articles/{article}/relationships/author',

@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@mdi/font": "^5.5.55",
+        "@websanova/vue-auth": "^3.3.8",
         "animate.css": "^4.1.0",
         "dompurify": "^2.0.12",
         "easydropdown": "^4.2.0",

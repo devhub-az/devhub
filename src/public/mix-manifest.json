@@ -1,13 +1,13 @@
 {
-    "/js/app.js": "/js/app.js?id=15ebe413e2585ec29155",
-    "/css/app.css": "/css/app.css?id=2c6099509db2048e8af6",
-    "/css/login.css": "/css/login.css?id=1b91e05d0cd855699058",
-    "/js/app.js.map": "/js/app.js.map?id=add0ec9941f6ed8f7d6b",
-    "/css/app.css.map": "/css/app.css.map?id=a77118ef412bf9c04304",
-    "/css/login.css.map": "/css/login.css.map?id=2bd8bd2cc35a1f6bbe6a",
-    "/js/login.js": "/js/login.js?id=044d65db982c48de8c58",
-    "/js/login.js.map": "/js/login.js.map?id=f4984f4efc1994a77ef5",
-    "/fonts/materialdesignicons-webfont.ttf": "/fonts/materialdesignicons-webfont.ttf?id=3b679e3557e019520da8",
-    "/fonts/materialdesignicons-webfont.woff": "/fonts/materialdesignicons-webfont.woff?id=0fac7bf52df958eedfbc",
-    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2?id=f205910567ae4f4f4d95"
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/login.css": "/css/login.css",
+    "/js/app.js.map": "/js/app.js.map",
+    "/css/app.css.map": "/css/app.css.map",
+    "/css/login.css.map": "/css/login.css.map",
+    "/js/login.js": "/js/login.js",
+    "/js/login.js.map": "/js/login.js.map",
+    "/fonts/materialdesignicons-webfont.ttf": "/fonts/materialdesignicons-webfont.ttf",
+    "/fonts/materialdesignicons-webfont.woff": "/fonts/materialdesignicons-webfont.woff",
+    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2"
 }

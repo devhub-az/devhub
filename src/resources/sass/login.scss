@@ -18,6 +18,24 @@ body {
     min-height: 100vh;
 }
 
+.error{
+    margin-top: 15px;
+    border-radius: 4px;
+
+    &__text{
+        color: #FFF;
+        font-size: 14px;
+        min-height: 34px;
+        font-weight: normal;
+        line-height: 20px;
+        padding: 12px 30px;
+        border-radius: 4px;
+        background-color: var(--color-error-dark);
+        letter-spacing: 0.5px;
+        text-align: center;
+    }
+}
+
 .login {
     min-height: 100vh;
     min-width: 100%;
@@ -63,20 +81,30 @@ body {
     &__form {
         position: relative;
         margin-bottom: 15px;
+        margin-top: 15px;
 
         &-input {
-            display: block;
-            box-sizing: border-box;
-            font-family: inherit;
-            overflow: visible;
-            outline: none;
+            font: inherit;
+            color: var(--base-text-color);
             width: 100%;
-            transition: all 0.2s ease-in-out;
-            height: 48px;
-            padding: 1.8rem 1rem 0.6rem;
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            font-size: 1rem;
+            -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+            -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+            box-sizing: border-box;         /* Opera/IE 8+ */
+            border: 0;
+            height: 50px;
+            margin: 0;
+            display: block;
+            min-width: 0;
             border-radius: 4px;
+            animation-name: mui-auto-fill-cancel;
+            letter-spacing: inherit;
+            padding-left: 14px;
+            animation-duration: 10ms;
+            -webkit-tap-highlight-color: transparent;
+
+            &:focus{
+                outline: 0;
+            }
         }
 
         &-label {
@@ -231,7 +259,8 @@ body {
 
         .ColumnContainer {
             width: 85%;
-            max-width: 80%;
+            min-width: 320px;
+            max-width: 470px;
             margin: auto;
             display: flex;
             flex-direction: column;
@@ -260,14 +289,28 @@ body {
         }
 
         .login-button {
-            width: 100%;
             border: none;
-            letter-spacing: .5px;
-            height: 36px;
-            transition: all .2s ease-in-out;
-            padding: 0 10px;
-            line-height: 40px;
+            width: 100%;
+            height: 44px;
+            padding: 6px 16px;
+            font-size: 12px;
+            min-width: 40px;
+            box-sizing: border-box;
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            font-family: Brutal, sans-serif;
+            font-weight: 500;
+            line-height: 16px;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
+
+            i{
+                font-size: 24px;
+            }
+
+            &:focus{
+                outline: 0;
+            }
         }
 
         .login__footer-links {
@@ -370,7 +413,7 @@ fieldset {
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    margin: 20px 0;
+    margin: 0 auto;
     color: var(--text-black-primary);
     font-family: MontDemo-Heavy, serif;
     font-size: 26px;

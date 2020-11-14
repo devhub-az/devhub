@@ -9,7 +9,7 @@ window.Vue = require('vue');
 
 import "@mdi/font/css/materialdesignicons.min.css"
 
-Vue.component('login', require('./components/auth/Login.vue').default);
+Vue.component('login', require('./components/auth/login.vue').default);
 
 if (document.getElementById('app')) {
     const app = new Vue({
