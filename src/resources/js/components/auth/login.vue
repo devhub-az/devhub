@@ -6,7 +6,7 @@
         <form autocomplete="off" @submit.prevent="login" method="post">
             <div class="login__form">
                 <input aria-invalid="true" autocomplete="username" id="email" name="email" placeholder="Email Address"
-                       type="text" inputmode="text" class="login__form-input" aria-label="Email Address"
+                       type="text" inputmode="text" class="login__form-input" aria-label="Elektron poçt"
                        autocorrect="off" autocapitalize="none"
                        spellcheck="false"
                        value="" v-model="email">
@@ -14,7 +14,7 @@
             <div class="login__form">
                 <input aria-invalid="true" autocomplete="current-password" id="password" name="password"
                        placeholder="Password"
-                       type="password" inputmode="text" class="login__form-input" aria-label="Password"
+                       type="password" inputmode="text" class="login__form-input" aria-label="Şifrə"
                        autocorrect="off" autocapitalize="none"
                        spellcheck="false"
                        value="" v-model="password">
