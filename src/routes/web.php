@@ -44,26 +44,71 @@ Route::group(['middleware' => ['auth']], static function () {
     });
 });
 
-Route::prefix('api')->group(static function () {
+Route::prefix('api')->group(function () {
     /*
      * Posts Api
      */
-    Route::get('posts/top/day', 'Api\PostController@posts');
-    Route::get('posts/top/week', 'Api\PostController@posts');
-    Route::get('posts/top/month', 'Api\PostController@posts');
-    Route::get('posts/all', 'Api\PostController@all');
-    Route::get('posts/favorite', 'Api\PostController@favorite');
+//    Route::get('posts/top/day', 'Api\PostController@posts');
+//    Route::get('posts/top/week', 'Api\PostController@posts');
+//    Route::get('posts/top/month', 'Api\PostController@posts');
+//    Route::get('posts/all', 'Api\PostController@all');
+//    Route::get('posts/favorite', 'Api\PostController@favorite');
     Route::get('posts/{id}', 'Api\PostController@show');
     Route::post('post/image/cache', 'Api\PostController@upload_image');
 
-    Route::group(['prefix' => 'auth'], function () {
-//
-//    // public routes
-        Route::post('/login', 'Api\AuthController@login')->name('login.api');
-//    Route::post('/register','Api\AuthController@register')->name('register.api');
-//    Route::middleware(['auth:api'])->post('/logout', 'Api\AuthController@logout')->name('logout.api');
-//
-    });
+    Route::get('articles_filter/day', 'Api\ArticleTopController@posts');
+    Route::get('articles_filter/week', 'Api\ArticleTopController@posts');
+    Route::get('articles_filter/month', 'Api\ArticleTopController@posts');
+//Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
+    Route::post('auth/login', 'Api\AuthController@login');
+    Route::apiResource('articles', 'Api\ArticleController');
+    Route::apiResource('authors', 'Api\AuthorController');
+    Route::apiResource('comments', 'Api\CommentController');
+    Route::apiResource('hubs', 'Api\HubController');
+    Route::get('/search_hub', 'Api\HubController@search_hub_by_key');
+
+    Route::get(
+        'articles/{article}/relationships/author',
+        [
+            'uses' => 'Api\ArticleRelationshipController' . '@author',
+            'as'   => 'articles.relationships.author',
+        ]
+    );
+    Route::get(
+        'articles/{article}/author',
+        [
+            'uses' => 'Api\ArticleRelationshipController' . '@author',
+            'as'   => 'articles.author',
+        ]
+    );
+    Route::get(
+        'articles/{article}/relationships/comments',
+        [
+            'uses' => 'Api\ArticleRelationshipController' . '@comments',
+            'as'   => 'articles.relationships.comments',
+        ]
+    );
+    Route::get(
+        'articles/{article}/comments',
+        [
+            'uses' => 'Api\ArticleRelationshipController' . '@comments',
+            'as'   => 'articles.comments',
+        ]
+    );
+    Route::get(
+        'articles/{article}/relationships/hubs',
+        [
+            'uses' => 'Api\ArticleRelationshipController' . '@hubs',
+            'as'   => 'articles.relationships.hubs',
+        ]
+    );
+    Route::get(
+        'articles/{article}/hubs',
+        [
+            'uses' => 'Api\ArticleRelationshipController' . '@hubs',
+            'as'   => 'articles.hubs',
+        ]
+    );
 
     /**
      * Comments Api

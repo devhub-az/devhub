@@ -3,14 +3,6 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-{{--    {{$token = auth()->login(App\Models\User::first())}}--}}
-
-{{ Auth::guard('api')->user() }}
-{{--{{ Request::user('api') }}--}}
-{{--{{ Auth::guard('api')->user() }}--}}
-    @guest
-        {{ 'HAHAHAHAHAHAHA' }}
-    @endguest
     <div class="layout_body">
         <div class="layout_content">
             <div class="content_left" id="app">

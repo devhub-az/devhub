@@ -26,6 +26,14 @@ class HubController extends Controller
 
         return new HubResource($hub);
     }
+
+    public function search_hub_by_key()
+    {
+        $key = \Request::get('q');
+        $hub = Hub::where('name','LIKE',"%{$key}%")->paginate();
+
+        return new HubsResource($hub);
+    }
 }
 
 //    /**

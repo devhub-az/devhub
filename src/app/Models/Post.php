@@ -5,6 +5,7 @@ namespace App\Models;
 
 use App\Http\Traits\Can\CanBeBookmarked;
 use App\Http\Traits\Can\CanBeVoted;
+use Auth;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -47,6 +48,11 @@ class Post extends Model
     {
         return $this->belongsToMany(Comment::class, 'structure_tree', 'subject_id',
             'ancestor_id')->with('author')->withPivot('level')->orderBy('ancestor_id');
+    }
+
+    public function isAuthUserUpvoted()
+    {
+        return (string)$this->isUpvotedBy((int)Auth::user());
     }
 
     /**

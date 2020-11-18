@@ -94,42 +94,51 @@ class PostController extends Controller
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
-        $userId = Auth::user();
+        $user = $request->user();
         $voteStatus = $request->get('status');
-        $transaction = false;
-        if (isset($voteStatus)) {
-            switch ($voteStatus) {
-                case 'upvote':
-                    $userId->upvote($post);
-                    break;
-                case 'downvote':
-                    $userId->downvote($post);
-                    break;
+        try {
+            DB::beginTransaction();
+            if (isset($voteStatus)) {
+                switch ($voteStatus) {
+                    case 'upvote':
+                        $user->upvote($post);
+                        break;
+                    case 'downvote':
+                        $user->downvote($post);
+                        break;
+                    case 'delete':
+                        $user->cancelVote($post);
+                        break;
+                }
+                $post->creator->save();
             }
-            $transaction = true;
-        }
-        $userId->cancelVote($post);
-        $transaction = 'delete';
-        foreach ($post->hubs as $hub) {
-            $hub->rating += $request->get('change_rating');
-            $hub->save();
-        }
-        $post->creator->rating += $request->get('change_rating');
-        if ($transaction === true) {
-            $post->creator->save();
-        } elseif ($transaction === 'delete') {
-            $post->creator->save();
+            foreach ($post->hubs as $hub) {
+                $hub->rating += $request->get('change_rating');
+                $hub->save();
+            }
+            $post->creator->rating += $request->get('change_rating');
+            DB::commit();
+
+        } catch (\Exception $e) {
+            //failed logic here
+            DB::rollback();
+            return response()->json(['error' => 'error'], 500);
         }
 
         return response()->json([
-            'transaction'        => $transaction,
-            'isset($voteStatus)' => isset($voteStatus),
-            'count'              => $post->voters()->count(),
-            'success'            => 'success',
-            'status'             => $request->get('status'),
-            'post_id'            => $request->get('id'),
-            'user_id'            => Auth::user()->id
+            'success' => 'success',
         ], 200);
+
+
+//        return response()->json([
+//            'transaction'        => $voteStatus,
+//            'isset($voteStatus)' => isset($voteStatus),
+//            'count'              => $post->voters->count(),
+//            'success'            => 'success',
+//            'status'             => $request->get('status'),
+//            'post_id'            => $request->get('id'),
+//            'user_id'            => $user->id
+//        ], 200);
     }
 
     /**

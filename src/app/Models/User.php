@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
-use Laravel\Passport\HasApiTokens;
 
 /**
  * Class User
@@ -21,7 +20,7 @@ use Laravel\Passport\HasApiTokens;
  */
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote, HasRolesAndAbilities;
+    use Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote, HasRolesAndAbilities;
 
     protected $visible = [
         'id',
@@ -50,10 +49,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function tokens () {
-        return $this->hasMany(Token::class, 'user_id', 'id');
-    }
 
     /**
      * Get Posts where user is author with hubs(function in post model)

@@ -11,8 +11,43 @@
             <div id="content">
                 {!! isset($post->content) ? $post->content : '' !!}
             </div>
-            <textarea class="form-control" rows="5" name="content" type="textarea" style="display: none"
-                      id="content-textarea">{{ isset($post->content) ? $post->content : ''}}</textarea>
+            <div id="test-editormd">
+                <textarea style="display:none;">[TOC]
+
+#### Disabled options
+
+- TeX (Based on KaTeX);
+- Emoji;
+- Task lists;
+- HTML tags decode;
+- Flowchart and Sequence Diagram;
+
+#### Editor.md directory
+
+    editor.md/
+            lib/
+            css/
+            scss/
+            tests/
+            fonts/
+            images/
+            plugins/
+            examples/
+            languages/
+            editormd.js
+            ...
+
+```html
+&lt;!-- English --&gt;
+&lt;script src="../dist/js/languages/en.js"&gt;&lt;/script&gt;
+
+&lt;!-- 繁體中文 --&gt;
+&lt;script src="../dist/js/languages/zh-tw.js"&gt;&lt;/script&gt;
+```
+</textarea>
+            </div>
+{{--            <textarea class="form-control" rows="5" name="content" type="textarea" style="display: none"--}}
+{{--                      id="content-textarea">{{ isset($post->content) ? $post->content : ''}}</textarea>--}}
             {!! $errors->first('content', '<p class="help-block">:message</p>') !!}
         </div>
         <div class="form-group {{ $errors->has('hubs') ? 'has-error' : ''}}">
@@ -30,6 +65,7 @@
         </div>
 
     </div>
+    <button id="get-md-btn">Get Markdown</button>
     <div class="form-group">
         <input class="btn btn-primary" type="submit" onclick="return foo();" value="Create">
     </div>
@@ -37,15 +73,10 @@
 </div>
 
 @section('styles')
-    <link rel="stylesheet" href="//cdn.quilljs.com/1.3.6/quill.snow.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/monokai-sublime.min.css"/>
+    <link rel="stylesheet" href="{{asset('vendor/editor.md/css/editormd.min.css')}}">
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/to-markdown/3.0.4/to-markdown.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
-    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="{{asset('vendor/editor.md/editormd.min.js')}}"></script>
     <script src="{{asset('js/quill-custom.js')}}"></script>
 @endsection

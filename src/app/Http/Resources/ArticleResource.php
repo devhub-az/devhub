@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Str;
@@ -16,8 +17,6 @@ class ArticleResource extends JsonResource
      */
     public function toArray($request)
     {
-//        dd($request->user());
-
         return [
             'type'          => 'articles',
             'id'            => (string)$this->id,
@@ -62,18 +61,18 @@ class ArticleResource extends JsonResource
      */
     public function statusCheck($status): bool
     {
-//        if (Auth::check()) {
-//            switch ($status) {
-//                case 'upvote':
-//                    return (bool)$this->isUpvotedBy(Auth::user()->id);
-//                case 'downvote':
-//                    return (bool)$this->isDownvotedBy(Auth::user()->id);
-//                case 'favorites':
-//                    return (bool)$this->isBookmarkedBy(Auth::user()->id);
-//                default:
-//                    return false;
-//            }
-//        }
+        if (Auth::check()) {
+            switch ($status) {
+                case 'upvote':
+                    return (bool)$this->isUpvotedBy(Auth::user()->id);
+                case 'downvote':
+                    return (bool)$this->isDownvotedBy(Auth::user()->id);
+                case 'favorites':
+                    return (bool)$this->isBookmarkedBy(Auth::user()->id);
+                default:
+                    return false;
+            }
+        }
 
         return false;
     }

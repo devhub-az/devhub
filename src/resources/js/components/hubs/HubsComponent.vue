@@ -1,13 +1,21 @@
 <template>
     <div>
-        <span v-for="column in columns[1]" :key="column" @click="sortByColumn(column)"
-              class="table-head">
-            {{ column }}
-            <span v-if="column === sortedColumn">
-                <i v-if="order === 'asc' " class="fas fa-arrow-up"></i>
-                <i v-else class="fas fa-arrow-down"></i>
-            </span>
-        </span>
+        <div class="card-header" id="hide">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="text" @keyup="searchUnit" placeholder="Hab axtar" v-model="search"
+                           class="form-control form-control-sm">
+                </div>
+            </div>
+        </div>
+        <!--        <span v-for="column in columns[1]" :key="column" @click="sortByColumn(column)"-->
+        <!--              class="table-head">-->
+        <!--            {{ column }}-->
+        <!--            <span v-if="column === sortedColumn">-->
+        <!--                <i v-if="order === 'asc' " class="fas fa-arrow-up"></i>-->
+        <!--                <i v-else class="fas fa-arrow-down"></i>-->
+        <!--            </span>-->
+        <!--        </span>-->
         <div v-for="hub in hubs" v-if="!loading"
              class="list-hubs__hub" :id="hub.id + '_block'">
             <!--             :style="'border-left: 3px solid rgb(' + hub.border + ')'"-->
@@ -40,7 +48,7 @@
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>
         <hubs-loading v-else-if="loading" :loading="loading"/>
-        <ul v-else-if="!error" class="post-content__item"
+        <ul v-else-if="error" class="post-content__item"
             style="text-align: center; display: grid; grid-gap: 12px;">
             <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
             <h1 style="font-family: 'Nunito', sans-serif;"><span
@@ -52,6 +60,9 @@
 
 <script>
 import VueLazyload from 'vue-lazyload'
+import _ from "lodash";
+
+let timeout = null;
 
 Vue.use(VueLazyload, {
     preLoad: 1.3,
@@ -74,6 +85,7 @@ export default {
             error: false,
             hubs: [],
             loading: false,
+            search: '',
             pagination: {
                 'current_page': 1
             }
@@ -87,7 +99,7 @@ export default {
             this.loading = true;
             let dataFetchUrl = `${this.fetchUrl}?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
             axios.get(dataFetchUrl).then(({data}) => {
-                this.loading = false;
+                this.loading = false
                 this.pagination = data.meta
                 this.hubs = data.data
                 if (this.pagination.last_page > 50) {
@@ -116,7 +128,33 @@ export default {
                 this.order = 'desc'
             }
             this.getHubs()
-        }
+        },
+        searchUnit: _.debounce(function () {
+            clearTimeout(timeout);
+
+            // Make a new timeout set to go off in 800ms
+            timeout = setTimeout(() => {
+                this.loading = true;
+                axios.get('/api/search_hub?q=' + this.search)
+                    .then(({data}) => {
+                        this.loading = false;
+                        this.pagination = data.meta
+                        this.hubs = data.data
+                    }).catch(error => {
+                    this.loading = false
+                    this.error = true
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
+                    }
+                });
+            }, 800);
+        }),
     },
     filters: {
         columnHead(value) {
