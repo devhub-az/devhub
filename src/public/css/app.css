@@ -23835,10 +23835,10 @@ input[type=password],
 textarea {
   max-width: 100%;
   width: 100%;
-  background: #fff;
+  background: var(--background-paper);
   padding: 9px 12px;
   border: 1px solid rgba(19, 28, 33, 0.1);
-  color: #666;
+  color: var(--text-black-secondary);
   transition: 0.2s ease-in-out;
   transition-property: color, background-color, border;
   height: 40px;
@@ -23852,9 +23852,7 @@ input[type=search]:focus,
 input[type=password]:focus,
 textarea:focus {
   outline: none;
-  background-color: #fff;
-  color: #666;
-  border-color: #1e87f0;
+  border-color: var(--color-primary-light);
 }
 
 select {
@@ -28617,30 +28615,6 @@ a[disabled] {
 
 .text-danger {
   color: var(--color-red);
-}
-
-input, textarea, .editable {
-  margin: 0;
-  outline: 0;
-  -webkit-appearance: none;
-  line-height: 1.2142em;
-  padding: 0.67861429em 1em;
-  font-size: 1em;
-  background: #fff;
-  width: 100%;
-  background: var(--background-tertiary);
-  max-width: 100%;
-  border: 1px solid rgba(34, 36, 38, 0.15);
-  color: var(--text-black-primary);
-  border-radius: 2px !important;
-  box-shadow: 0 0 0 0 transparent inset;
-  transition: color 0.1s ease, border-color 0.1s ease;
-}
-input:hover, textarea:hover, .editable:hover {
-  border-color: var(--color-primary-light);
-}
-input:focus, textarea:focus, .editable:focus {
-  box-shadow: 0 0 0 2px var(--color-primary-main-button);
 }
 
 a {

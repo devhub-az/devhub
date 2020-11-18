@@ -170,34 +170,6 @@ a[disabled] {
     color: var(--color-red);
 }
 
-input, textarea, .editable {
-    margin: 0;
-    outline: 0;
-    -webkit-appearance: none;
-    line-height: 1.2142em;
-    padding: .67861429em 1em;
-    font-size: 1em;
-    background: #fff;
-    width: 100%;
-    background: var(--background-tertiary);
-    max-width: 100%;
-    border: 1px solid rgba(34, 36, 38, .15);
-    color: var(--text-black-primary);
-    border-radius: 2px !important;
-    box-shadow: 0 0 0 0 transparent inset;
-    -webkit-transition: color .1s ease, border-color .1s ease;
-    transition: color .1s ease, border-color .1s ease;
-
-    &:hover {
-        border-color: var(--color-primary-light);
-    }
-
-    &:focus {
-        -webkit-box-shadow: 0 0 0 2px var(--color-primary-main-button);
-        box-shadow: 0 0 0 2px var(--color-primary-main-button);
-    }
-}
-
 a {
     background-color: transparent;
     text-decoration: none;
