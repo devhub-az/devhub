@@ -46092,7 +46092,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "post-content" },
+    { staticClass: "mb-3" },
     [
       _vm.loading ? _c("posts-loading") : _vm._e(),
       _vm._v(" "),

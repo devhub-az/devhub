@@ -3,3 +3,9 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@layer components {
+    .button {
+        @apply flex items-center shadow bg-blue px-4 py-2 text-white font-normal rounded text-sm hover:opacity-75;
+    }
+}

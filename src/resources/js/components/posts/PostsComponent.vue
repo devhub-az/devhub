@@ -1,5 +1,5 @@
 <template>
-    <div class="post-content">
+    <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading">
             <div v-if="postsNotEmpty">

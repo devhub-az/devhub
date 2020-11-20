@@ -3,21 +3,25 @@
 @section('title')Hablar @stop
 
 @section('main')
-    <div class="layout_body">
-        <div class="hubs-page__header">
+    <div class="container w-full my-4 mx-auto ">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5">
             <div class="hubs-header__title">
-                <h1>Hablar</h1>
-                <h4>
+                <p class="text-5xl font-medium pb-4">Hablar</p>
+                <h6 class="font-normal">
                     Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün
                     məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir -
                     yalnız maraqlı olan ocaqlara yazılmaq.
-                </h4>
+                </h6>
             </div>
-            <div class="hubs-page__right-side">
-                <a href="#" class="btn btn-primary btn-a"><span><i class="mdi mdi-tag-plus-outline"></i> Hab təklif etmək</span></a>
+            <div class="m-auto">
+                <a href="#" class="button transition delay-100">
+                    <span>
+                        <i class="mdi mdi-tag-plus-outline"></i> Hab təklif etmək
+                    </span>
+                </a>
             </div>
         </div>
-        <div class="layout_content">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-2 md:gap-4 gap-5">
             <div class="content_left" id="app">
                 {{--                <div class="ui category search form-hub__search">--}}
                 {{--                    <div class="ui icon input header_search">--}}
@@ -29,10 +33,10 @@
                 {{--                    <div class="results"></div>--}}
                 {{--                </div>--}}
                 <hubs-list
-                        fetch-url="{{ route('hubs.index') }}"
-                        locale="{{ App::getLocale() }}"
-                        @auth :auth_check="true" @endauth
-                        :columns="[
+                    fetch-url="{{ route('hubs.index') }}"
+                    locale="{{ App::getLocale() }}"
+                    @auth :auth_check="true" @endauth
+                    :columns="[
                             ['name', 'posts_count', 'followers_count', 'rating'],
                             ['Ad', 'Paylaşım', 'IZLƏYƏNLƏR', 'Rating']
                             ]"
@@ -40,27 +44,26 @@
             </div>
             {{-- Right --}}
             <div class="content_right">
-                <div id="default-block" class="default-block default-block_sidebar">
-                    <div class="default-block__header">
-                        <h3 class="default-block__header-title">Ən sevimli hablar</h3>
+                <div id="default-block" class="mb-5 bg-white rounded">
+                    <div class="px-5 h-10 border-b items-center flex">
+                        <p class="m-0 text-sm items-center">Ən sevimli</p>
                     </div>
 
-                    <div class="default-block__content">
+                    <div class="overflow-hidden bg-white text-black px-5 py-2">
                         <ul>
                             @foreach ($top_hubs as $hub)
                                 <a href="/hubs/{{ $hub['id'] ?? '' }}">
-                                    <li style="display: grid;grid-template-columns: 74px auto;gap: 3%;margin-bottom: 12px;">
-                                        <img class="list-hubs__hub-image-block"
-                                             src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
-                                        <div class="list-hubs__obj-body">
-                                            <div class="block-hubs__title-link">
+                                    <li class="grid grid-cols-list gap-3 mb-2">
+                                        <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
+                                             alt="hub image">
+                                        <div>
+                                            <p class="text-lg font-semibold">
                                                 {{ $hub['name'] }}
-                                            </div>
-                                            <div class="list-hubs__desc">
-                                                <span style="font-size: 11px; color: #3b4045;">
-                                                    <i class="icon feather icon-star"></i> Reyting {{ $hub['rating'] ?? '' }}
-                                                </span>
-                                            </div>
+                                            </p>
+                                            <span class="text-xs">
+                                                <i class="icon feather icon-star"></i>
+                                                Reyting {{ $hub['rating'] ?? '' }}
+                                            </span>
                                         </div>
                                     </li>
                                 </a>
@@ -68,27 +71,29 @@
                         </ul>
                     </div>
                 </div>
-                <div id="default-block" class="default-block default-block_sidebar">
-                    <div class="default-block__header">
-                        <h3 class="default-block__header-title">Ən izləninən hablar</h3>
+                <div id="default-block" class="mb-5 bg-white rounded">
+                    <div class="px-5 h-10 border-b items-center flex">
+                        <p class="m-0 text-sm items-center">Ən izləninən</p>
                     </div>
 
-                    <div class="default-block__content">
+                    <div class="overflow-hidden bg-white text-black px-5 py-2">
                         <ul>
                             @foreach ($top_followed_hubs as $hub)
-                                <li style="display: grid;grid-template-columns: 74px auto;  gap: 3%;margin-bottom: 12px;">
-                                    <img class="list-hubs__hub-image-block"
-                                         src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">
-                                    <div class="list-hubs__obj-body">
-                                        <div class="block-hubs__title-link">
-                                            <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>
-                                        <div class="list-hubs__desc">
-                                            <span style="font-size: 11px; color: #3b4045;">
-                                                <i class="icon feather icon-users"></i> İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}
+                                <a href="/hubs/{{ $hub['id'] ?? '' }}">
+                                    <li class="grid grid-cols-list gap-3 mb-2">
+                                        <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
+                                             alt="hub image">
+                                        <div>
+                                            <p class="text-lg font-semibold">
+                                                {{ $hub['name'] }}
+                                            </p>
+                                            <span class="text-xs">
+                                                <i class="icon feather icon-users"></i>
+                                                İzləyicilər {{ $hub['rating'] ?? '' }}
                                             </span>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                </a>
                             @endforeach
                         </ul>
                     </div>
@@ -96,48 +101,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    {{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.compatibility.js"></script>--}}
-    {{--    <script src="{{ asset('js/search.min.js') }}"></script>--}}
-    {{--    <script>--}}
-    {{--        function axiosHubs() {--}}
-    {{--            return axios.get('/api/hubs/all').then(response => {--}}
-    {{--                return response.data;--}}
-    {{--            });--}}
-    {{--        }--}}
-
-    {{--        $('.ui.search').settings.api = {--}}
-    {{--            'hubs' : '/api/hubs/all'--}}
-    {{--        };--}}
-
-    {{--        $(document).ready(function() {--}}
-    {{--                $('.ui.search')--}}
-    {{--                    .search({--}}
-    {{--                        type: 'category',--}}
-    {{--                        apiSettings:{--}}
-    {{--                            action: 'hubs'--}}
-    {{--                        },--}}
-    {{--                        searchDelay: 500,--}}
-    {{--                        fields: {--}}
-    {{--                            image: 'logo',--}}
-    {{--                            title: 'name',--}}
-    {{--                        },--}}
-    {{--                        searchFields: [--}}
-    {{--                            'name'--}}
-    {{--                        ],--}}
-    {{--                        fullTextSearch: false,--}}
-    {{--                        onSelect(result) {--}}
-    {{--                            window.location.href = '/hubs/' + result.id;--}}
-    {{--                        },--}}
-    {{--                        templates: {--}}
-    {{--                            message: function message() {--}}
-    {{--                                return '<div class="message empty"><div class="header">Hub tapilmadi</div><div class="description">Axtarışınız uğurlu alınmadı</div></div>';--}}
-    {{--                            },--}}
-    {{--                        }--}}
-    {{--                    });--}}
-    {{--        });--}}
-
-    {{--    </script>--}}
 @endsection

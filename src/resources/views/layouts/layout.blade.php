@@ -35,7 +35,7 @@
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
 <body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="bg-gray-50">
-<span class="scroll-top" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">
+<span class="scroll-top mb:hidden" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">
     <i class="mdi mdi-chevron-up"></i>
 </span>
 
