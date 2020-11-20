@@ -27,6 +27,7 @@
     "dependencies": {
         "@mdi/font": "^5.5.55",
         "animate.css": "^4.1.0",
+        "autoprefixer": "^9.8.6",
         "dompurify": "^2.0.12",
         "easydropdown": "^4.2.0",
         "editor.md": "^1.5.0",
@@ -34,7 +35,9 @@
         "laravel-mix-purgecss": "^5.0.0",
         "moment-mini": "^2.24.0",
         "noty": "^3.2.0-beta",
+        "postcss": "^7.0.35",
         "reset-css": "^5.0.1",
+        "tailwindcss": "^2.0.1-compat",
         "v-clipboard": "^2.2.3",
         "vue-clickaway": "^2.2.2",
         "vue-cookies": "^1.7.3",

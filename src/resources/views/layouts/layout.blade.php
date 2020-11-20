@@ -22,6 +22,8 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ asset('css/animate.css') }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}" media="print" onload="this.media='all'">
+
 
     <style>
         @php
@@ -32,7 +34,7 @@
 </head>
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
-<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}">
+<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="bg-gray-50">
 <span class="scroll-top" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">
     <i class="mdi mdi-chevron-up"></i>
 </span>

@@ -3,23 +3,23 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-    <div class="layout_body">
-        <div class="layout_content">
-            <div class="content_left" id="app">
-                <div class="header-nav">
-                    <div class="nav_posts">
+    <div class="container w-full my-4 mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-2 md:gap-4 gap-10">
+            <div id="app">
+                <div class="font-bold mb-4 overflow-hidden">
+                    <div class="grid grid-cols-auto-fit">
                         <a href="{{ route('home') }}"
-                           class="nav-posts__item @if(Request::is('top/*') || Request::is('/')) nav-posts__item-link_current @endif">
-                            <span class="nav-posts__item-link">Ən yaxşı</span>
+                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid border-gray-300 mx-auto transition-colors duration-200 @if(Request::is('top/*') || Request::is('/')) bottom-0 border-blue-light text-blue-light @endif">
+                            <span class="text-sm">Ən yaxşı</span>
                         </a>
                         <a href="{{ route('all') }}"
-                           class="nav-posts__item @if(Request::url() === route('all')) nav-posts__item-link_current @endif">
-                            <span class="nav-posts__item-link">Bütün</span>
+                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid border-gray-300 mx-auto transition-colors duration-200 @if(Request::url() === route('all')) bottom-0 border-blue-light text-blue-light @endif">
+                            <span class="text-sm">Bütün</span>
                         </a>
                         @auth
                             <a href="{{ route('favorite') }}"
-                               class="nav-posts__item @if(Request::url() === route('favorite')) nav-posts__item-link_current @endif">
-                                <span class="nav-posts__item-link badge"
+                               class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid border-gray-300 mx-auto transition-colors duration-200 @if(Request::url() === route('favorite')) bottom-0 border-blue-light text-blue-light @endif">
+                                <span class="text-sm badge"
                                       @if (Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() > 0)
                                       data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"@endif>
                                     Abunə ilə
@@ -56,8 +56,8 @@
                     </div>
                 @endif
                 <posts
-                        :url="'{{ $url }}'"
-                        @auth :auth_check="true" @endauth
+                    :url="'{{ $url }}'"
+                    @auth :auth_check="true" @endauth
                 ></posts>
             </div>
 
@@ -96,12 +96,15 @@
                             <g id="banner/normal" transform="translate(-177.000000, -18.000000)" fill-rule="nonzero">
                                 <g id="logo/tg" transform="translate(177.000000, 18.000000)">
                                     <circle id="shape" fill="url(#linearGradient-1)" cx="25" cy="25" r="25"></circle>
-                                    <path d="M20.4166667,36.4583333 C19.60675,36.4583333 19.744375,36.1525208 19.4650417,35.3813542 L17.0833333,27.5428958 L35.4166667,16.6666667"
-                                          id="body-right" fill="#C8DAEA"></path>
-                                    <path d="M20.4166667,36.4583333 C21.0416667,36.4583333 21.3178125,36.1725 21.6666667,35.8333333 L25,32.5920833 L20.8420833,30.0847917"
-                                          id="body-left" fill="#A9C9DD"></path>
-                                    <path d="M20.8416667,30.0854167 L30.9166667,37.5289583 C32.0663542,38.1633125 32.896125,37.834875 33.1825,36.4615625 L37.2835417,17.1359375 C37.7034167,15.4525625 36.6418542,14.6890625 35.542,15.1883958 L11.46075,24.4740208 C9.81697917,25.1333333 9.8265625,26.0503958 11.161125,26.4590208 L17.3409167,28.3878333 L31.6477917,19.3617917 C32.3231875,18.9522292 32.9430625,19.1724187 32.4342917,19.6239583"
-                                          id="wings" fill="url(#linearGradient-2)"></path>
+                                    <path
+                                        d="M20.4166667,36.4583333 C19.60675,36.4583333 19.744375,36.1525208 19.4650417,35.3813542 L17.0833333,27.5428958 L35.4166667,16.6666667"
+                                        id="body-right" fill="#C8DAEA"></path>
+                                    <path
+                                        d="M20.4166667,36.4583333 C21.0416667,36.4583333 21.3178125,36.1725 21.6666667,35.8333333 L25,32.5920833 L20.8420833,30.0847917"
+                                        id="body-left" fill="#A9C9DD"></path>
+                                    <path
+                                        d="M20.8416667,30.0854167 L30.9166667,37.5289583 C32.0663542,38.1633125 32.896125,37.834875 33.1825,36.4615625 L37.2835417,17.1359375 C37.7034167,15.4525625 36.6418542,14.6890625 35.542,15.1883958 L11.46075,24.4740208 C9.81697917,25.1333333 9.8265625,26.0503958 11.161125,26.4590208 L17.3409167,28.3878333 L31.6477917,19.3617917 C32.3231875,18.9522292 32.9430625,19.1724187 32.4342917,19.6239583"
+                                        id="wings" fill="url(#linearGradient-2)"></path>
                                 </g>
                             </g>
                         </g>

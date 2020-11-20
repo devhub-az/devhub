@@ -9,5 +9,7 @@
     "/js/login.js.map": "/js/login.js.map",
     "/fonts/materialdesignicons-webfont.ttf": "/fonts/materialdesignicons-webfont.ttf",
     "/fonts/materialdesignicons-webfont.woff": "/fonts/materialdesignicons-webfont.woff",
-    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2"
+    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2",
+    "/css/tailwind.css": "/css/tailwind.css",
+    "/css/tailwind.css.map": "/css/tailwind.css.map"
 }

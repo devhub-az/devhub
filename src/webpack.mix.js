@@ -1,6 +1,7 @@
 const mix = require('laravel-mix');
 
 require('laravel-mix-purgecss');
+const tailwindcss = require('tailwindcss');
 
 mix.webpackConfig({
     output: {
@@ -14,6 +15,9 @@ mix.setResourceRoot('./');
 mix.copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf', 'public/fonts/')
     .copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff', 'public/fonts/')
     .copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2', 'public/fonts/')
+    .postCss('resources/sass/tailwind.css', 'public/css', [
+        require('tailwindcss'),
+    ])
     // JS
     .js('resources/js/app.js', 'public/js/', {
         sourceMap: true,
