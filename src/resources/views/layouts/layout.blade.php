@@ -16,6 +16,7 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="preload" href="{{ asset('js/scripts/lazysizes.min.js') }}" as="script">
+    <link rel="preload" href="{{ asset('js/app.js') }}" as="script">
 
     @yield('meta')
 
@@ -56,8 +57,6 @@
 
 <script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
-<script type="text/javascript" src="{{ asset('/js/manifest.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>

@@ -3,56 +3,56 @@ window.Vue = require('vue');
 /**
  * Posts
  */
-Vue.component('posts', require('./components/posts/PostsComponent').default);
-Vue.component('post-show', require('./components/posts/PostShowComponent').default);
+Vue.component('posts', () => import('./components/posts/PostsComponent'));
+Vue.component('post-show', () => import('./components/posts/PostShowComponent'));
 
 /**
  * Loading
  */
-Vue.component('posts-loading', require('./components/plugins/loading/PostsLoading').default);
-Vue.component('hubs-loading', require('./components/plugins/loading/HubsLoading').default);
-Vue.component('users-loading', require('./components/plugins/loading/UsersLoading').default);
+Vue.component('posts-loading', () => import('./components/plugins/loading/PostsLoading'));
+Vue.component('hubs-loading', () => import('./components/plugins/loading/HubsLoading'));
+Vue.component('users-loading', () => import('./components/plugins/loading/UsersLoading'));
 
 /**
  * Plugins
  */
-Vue.component('pagination', require('./components/plugins/pagination.vue').default);
-Vue.component('vue-chosen', require('./components/plugins/vue-chosen.vue').default);
-Vue.component('search', require('./components/plugins/search.vue').default);
-Vue.component('dropdown', require('./components/plugins/dropdown.vue').default);
-Vue.component('dropdown-notification', require('./components/plugins/dropdown-notification.vue').default);
-Vue.component('editor', require('./components/plugins/editor').default);
-Vue.component('switcher-theme', require('./components/plugins/themeSwitcher').default);
+Vue.component('pagination', () => import('./components/plugins/pagination.vue'));
+Vue.component('vue-chosen', () => import('./components/plugins/vue-chosen.vue'));
+Vue.component('search', () => import('./components/plugins/search.vue'));
+Vue.component('dropdown', () => import('./components/plugins/dropdown.vue'));
+Vue.component('dropdown-notification', () => import('./components/plugins/dropdown-notification.vue'));
+Vue.component('editor', () => import('./components/plugins/editor'));
+Vue.component('switcher-theme', () => import('./components/plugins/themeSwitcher'));
 
 /**
  * Parts
  */
-Vue.component('tags', require('./components/parts/tags.vue').default);
-Vue.component('vote', require('./components/parts/vote.vue').default);
-Vue.component('favorite', require('./components/parts/PostFavorite').default);
-Vue.component('comment-favorite', require('./components/parts/CommentFavorite').default);
+Vue.component('tags', () => import('./components/parts/tags.vue'));
+Vue.component('vote', () => import('./components/parts/vote.vue'));
+Vue.component('favorite', () => import('./components/parts/PostFavorite'));
+Vue.component('comment-favorite', () => import('./components/parts/CommentFavorite'));
 
 /**
  * Hubs
  */
-Vue.component('hubs-list', require('./components/hubs/HubsComponent.vue').default);
-Vue.component('hubs-tags', require('./components/hubs/HubsTagComponent.vue').default);
-Vue.component('hub-follow-button', require('./components/hubs/HubsFollowButtonComponent.vue').default);
+Vue.component('hubs-list', () => import('./components/hubs/HubsComponent.vue'));
+Vue.component('hubs-tags', () => import('./components/hubs/HubsTagComponent.vue'));
+Vue.component('hub-follow-button', () => import('./components/hubs/HubsFollowButtonComponent.vue'));
 
 /**
  * Users
  */
-Vue.component('user-follow-button', require('./components/users/UsersFollowButtonComponent.vue').default);
-Vue.component('users-list', require('./components/users/UserComponent.vue').default);
+Vue.component('user-follow-button', () => import('./components/users/UsersFollowButtonComponent.vue'));
+Vue.component('users-list', () => import('./components/users/UserComponent.vue'));
 
 /**
  * Auth
  */
-// Vue.component('profile-image-update', require('./components/plugins/profileUpdate').default);
-Vue.component('profile-settings', require('./components/auth/settings/ProfileComponent.vue').default);
+// Vue.component('profile-image-update', () => import('./components/plugins/profileUpdate'));
+Vue.component('profile-settings', () => import('./components/auth/settings/ProfileComponent.vue'));
 
 /**
  * Comments
  */
-Vue.component('comments-favorite', require('./components/comments/FavoriteCommentsComponent.vue').default);
-Vue.component('comments', require('./components/comments/PostCommentsComponent.vue').default);
+Vue.component('comments-favorite', () => import('./components/comments/FavoriteCommentsComponent.vue'));
+Vue.component('comments', () => import('./components/comments/PostCommentsComponent.vue'));
