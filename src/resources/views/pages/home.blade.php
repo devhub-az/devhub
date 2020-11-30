@@ -3,8 +3,8 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-    <div class="container w-full my-4 mx-auto">
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-2 md:gap-4 gap-10">
+    <div class="container my-4 mx-auto">
+        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
             <div id="app">
                 <div class="font-bold mb-4 overflow-hidden">
                     <div class="grid grid-cols-auto-fit">

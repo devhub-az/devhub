@@ -1,5 +1,5 @@
 <template>
-    <div class="post-votes"
+    <div class="ml-auto pl-2 text-2xl xs:text-xl"
          :aria-label="posts.attributes.votes_sum + ':  ↑ ' + [posts.attributes.upvotes === 0 ? '0' : posts.attributes.upvotes ] + ' ↓ ' + [posts.attributes.downvotes === 0 ? '0' :posts.downvotes]"
          data-balloon-pos="left">
         <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.attributes.upvoted}"

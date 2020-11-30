@@ -3,12 +3,7 @@
     "/css/app.css": "/css/app.css",
     "/css/login.css": "/css/login.css",
     "/css/tailwind.css": "/css/tailwind.css",
-    "/js/app.js.map": "/js/app.js.map",
-    "/css/app.css.map": "/css/app.css.map",
-    "/css/login.css.map": "/css/login.css.map",
-    "/css/tailwind.css.map": "/css/tailwind.css.map",
     "/js/login.js": "/js/login.js",
-    "/js/login.js.map": "/js/login.js.map",
     "/fonts/materialdesignicons-webfont.ttf": "/fonts/materialdesignicons-webfont.ttf",
     "/fonts/materialdesignicons-webfont.woff": "/fonts/materialdesignicons-webfont.woff",
     "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2"

@@ -100,46 +100,6 @@ table {
   border-spacing: 0;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-html, body {
-  display: flex;
-  width: 100%;
-  background-color: var(--background-default);
-  font: var(--base-font-size)/var(--base-line-height) var(--base-font-family);
-  min-width: var(--base-min-width);
-  flex-direction: column;
-}
-
-body {
-  color: var(--text-black-primary);
-  min-height: 100vh;
-}
-
-th {
-  text-align: inherit;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-ul, menu, dir, p {
-  display: block;
-  list-style-type: none;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  -webkit-margin-start: 0;
-  -webkit-margin-end: 0;
-  -webkit-padding-start: 0;
-  -moz-padding-start: 0;
-}
-
 h1, .h1,
 h2, .h2,
 h3, .h3,
@@ -793,4 +753,3 @@ fieldset {
   color: #5b647d;
   margin-bottom: 12px;
 }
-/*# sourceMappingURL=login.css.map*/

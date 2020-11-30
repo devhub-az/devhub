@@ -26,18 +26,17 @@
 
 
     <style>
-        @php
-            include(public_path('css/app.css'));
-        @endphp
+{{--        {{ include('css/tailwind.css') }}--}}
+        {{ include('css/app.css') }}
     </style>
     @yield('styles')
 </head>
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
-<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="bg-gray-50">
-<span class="scroll-top mb:hidden" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">
-    <i class="mdi mdi-chevron-up"></i>
-</span>
+<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="bg-gray-50 font-sans">
+{{--<span class="scroll-top mb:hidden" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">--}}
+{{--    <i class="mdi mdi-chevron-up"></i>--}}
+{{--</span>--}}
 
 {{-- Header --}}
 @include('include.header')
@@ -58,7 +57,6 @@
 <script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>
 @yield('scripts')

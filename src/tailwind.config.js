@@ -1,11 +1,11 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-    purge: {
-        content: [
-            './resources/views/**/*.blade.php',
-        ]
-    },
+    purge: [
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue',
+    ],
     darkMode: false, // or 'media' or 'class'
     theme: {
         screens: {
@@ -23,6 +23,9 @@ module.exports = {
             'danger': '#e3342f',
         }),
         colors: {
+            black: colors.black,
+            red: colors.red,
+            header: '#1a1a1ae6',
             blue: {
                 light: '#4791db',
                 DEFAULT: '#3d84a8',
@@ -38,7 +41,8 @@ module.exports = {
             gray: colors.gray,
             border: {
                 DEFAULT: '#222226',
-            }
+            },
+            footer: '#242729'
         },
         extend: {
             gridTemplateColumns: {

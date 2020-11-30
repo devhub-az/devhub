@@ -4,19 +4,19 @@
               v-if="!post.favorite && !loading" aria-label="Seçilmişlərə əlavə et"
               data-balloon-pos="down">
             <i v-if="!post.favorite" class="mdi mdi-bookmark-plus"/>
-            {{ post.favorites }} <span class="text">Seçilmiş</span>
+            {{ post.favorites }} <span class="xs:hidden">Seçilmiş</span>
         </span>
         <span class="star tooltip footer_item" @click="favorite(post.id)"
               v-if="post.favorite && !loading" aria-label="Seçilmişlərdən cixartmag"
               data-balloon-pos="down">
             <i v-if="post.favorite" class="mdi mdi-bookmark-check saved"/>
-            {{ post.favorites }} <span class="text">Seçilmiş</span>
+            {{ post.favorites }} <span class="xs:hidden">Seçilmiş</span>
         </span>
         <span class="star tooltip footer_item"
               v-if="loading" aria-label="Seçilmişlərdən cixartmag"
               data-balloon-pos="down">
             <i class="mdi mdi-loading mdi-spin"></i>
-            {{ post.favorites }} <span class="text">Gözləyin</span>
+            {{ post.favorites }} <span class="xs:hidden">Gözləyin</span>
         </span>
     </span>
 </template>

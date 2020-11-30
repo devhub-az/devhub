@@ -14,15 +14,16 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
     <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}" media="print" onload="this.media='all'">
 
     @yield('meta')
 
     {{-- CSS --}}
-    <style>
-        @php
-include(public_path('css/login.css'));
-        @endphp
-    </style>
+{{--    <style>--}}
+{{--        @php--}}
+{{--            include(public_path('css/login.css'));--}}
+{{--        @endphp--}}
+{{--    </style>--}}
     {{--	<link rel="stylesheet" href="{{ asset('css/app.css') }}" media="print" onload="this.media='all'">--}}
     @yield('css')
 

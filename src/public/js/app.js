@@ -3543,6 +3543,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['pagination', 'offset'],
   methods: {
@@ -4096,7 +4109,7 @@ Vue.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_2__["default"], {
       error: false,
       loading: false,
       hovered: false,
-      postsNotEmpty: false,
+      postsEmpty: true,
       pagination: {
         'current_page': 1
       }
@@ -4161,7 +4174,7 @@ Vue.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_2__["default"], {
                       _this3.pagination.last_page = 50;
                     }
 
-                    _this3.postsNotEmpty = true;
+                    _this3.postsEmpty = false;
 
                     for (var i = 0; i < _this3.posts.length; i++) {
                       _this3.id[i] = _this3.posts[i].id;
@@ -4481,7 +4494,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, ".tag__container[data-v-504a7d77] {\n  background-color: var(--background-tertiary);\n  border: 1px solid var(--color-border);\n  border-radius: 5px;\n  color: var(--text-black-primary);\n  padding: 16px;\n  font-size: 13px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);\n}\n.tag__container .-arrow[data-v-504a7d77] {\n  display: block;\n  transform: rotate(45deg);\n  top: 11px;\n  position: absolute;\n  left: 50%;\n}\n.tag__container .-arrow[data-v-504a7d77]:before {\n  position: absolute;\n  content: \"\";\n  background: var(--background-tertiary);\n  border: 1px solid var(--color-border);\n  border-bottom: none;\n  border-right: none;\n  top: -6px;\n  left: -6px;\n  width: 12px;\n  height: 12px;\n}\n.tag__block-header[data-v-504a7d77] {\n  display: grid;\n  grid-template-columns: 32px auto;\n  gap: 4px;\n}\n.tag__block-header img[data-v-504a7d77] {\n  width: 32px;\n  height: 32px;\n}\n.tag__block-header h4[data-v-504a7d77] {\n  font-weight: 500;\n}\n.tag__block-follow[data-v-504a7d77] {\n  margin: unset;\n  text-align: unset;\n}\n.tag__block p[data-v-504a7d77] {\n  line-height: 1.5;\n  padding-bottom: 12px;\n}\n.popup-active > .tag__popup[data-v-504a7d77] {\n  position: absolute;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 320px;\n  z-index: 99;\n  padding: 12px;\n  transition: all 0.2s ease;\n}\n.popup-active > .tag__popup h3[data-v-504a7d77] {\n  margin: 4px 0 8px;\n}\n.popup-active > .tooltip-balloon[data-v-504a7d77] {\n  background-color: var(--background-tertiary);\n  border: 1px solid var(--color-border);\n  border-radius: 5px;\n  padding: 16px;\n  font-size: 13px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);\n  color: var(--text-black-secondary);\n  position: absolute;\n  min-width: 50px;\n  top: 25px;\n  max-width: 320px;\n}\n.popup-active > .tooltip-balloon .-arrow[data-v-504a7d77] {\n  padding: 0;\n  border: 0;\n  font: inherit;\n  font-size: 100%;\n  vertical-align: baseline;\n  box-sizing: inherit;\n  position: absolute;\n  left: 52%;\n  display: block;\n  transform: rotate(45deg);\n  bottom: -10px;\n  margin: 0 0 0 0;\n}\n.popup-active > .tooltip-balloon .-arrow[data-v-504a7d77]:after {\n  position: absolute;\n  content: \"\";\n  background: var(--background-tertiary);\n  border: 1px solid var(--color-border);\n  border-bottom: none;\n  border-right: none;\n  top: -6px;\n  left: -6px;\n  width: 12px;\n  height: 12px;\n}", ""]);
+exports.push([module.i, ".tag__container[data-v-504a7d77] {\n  background-color: white;\n  border: 1px solid var(--color-border);\n  border-radius: 5px;\n  color: var(--text-black-primary);\n  padding: 16px;\n  font-size: 13px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);\n}\n.tag__container .-arrow[data-v-504a7d77] {\n  display: block;\n  transform: rotate(45deg);\n  top: 11px;\n  position: absolute;\n  left: 50%;\n}\n.tag__container .-arrow[data-v-504a7d77]:before {\n  position: absolute;\n  content: \"\";\n  background: var(--background-tertiary);\n  border: 1px solid var(--color-border);\n  border-bottom: none;\n  border-right: none;\n  top: -6px;\n  left: -6px;\n  width: 12px;\n  height: 12px;\n}\n.tag__block-header[data-v-504a7d77] {\n  display: grid;\n  grid-template-columns: 32px auto;\n  gap: 4px;\n}\n.tag__block-header img[data-v-504a7d77] {\n  width: 32px;\n  height: 32px;\n}\n.tag__block-header h4[data-v-504a7d77] {\n  font-weight: 500;\n}\n.tag__block-follow[data-v-504a7d77] {\n  margin: unset;\n  text-align: unset;\n}\n.tag__block p[data-v-504a7d77] {\n  line-height: 1.5;\n  padding-bottom: 12px;\n}\n.popup-active > .tag__popup[data-v-504a7d77] {\n  position: absolute;\n  transform: translateX(-50%);\n  width: 320px;\n  z-index: 99;\n  padding: 12px;\n  transition: all 0.2s ease;\n}\n.popup-active > .tag__popup h3[data-v-504a7d77] {\n  margin: 4px 0 8px;\n}\n.popup-active > .tooltip-balloon[data-v-504a7d77] {\n  background-color: white;\n  border: 1px solid var(--color-border);\n  border-radius: 5px;\n  padding: 16px;\n  font-size: 13px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);\n  color: var(--text-black-secondary);\n  position: absolute;\n  min-width: 50px;\n  top: 25px;\n  max-width: 320px;\n}\n.popup-active > .tooltip-balloon .-arrow[data-v-504a7d77] {\n  padding: 0;\n  border: 0;\n  font: inherit;\n  font-size: 100%;\n  vertical-align: baseline;\n  box-sizing: inherit;\n  position: absolute;\n  left: 52%;\n  display: block;\n  transform: rotate(45deg);\n  bottom: -10px;\n  margin: 0 0 0 0;\n}\n.popup-active > .tooltip-balloon .-arrow[data-v-504a7d77]:after {\n  position: absolute;\n  content: \"\";\n  background: var(--background-tertiary);\n  border: 1px solid var(--color-border);\n  border-bottom: none;\n  border-right: none;\n  top: -6px;\n  left: -6px;\n  width: 12px;\n  height: 12px;\n}", ""]);
 
 // exports
 
@@ -43646,17 +43659,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "post__hubs" },
+    { staticClass: "flex" },
     _vm._l(_vm.data, function(hub) {
       return _c("div", [
         _c(
           "div",
           {
-            staticClass: "hub popup-hub",
-            class: {
-              active_hub: hub.follower_check,
-              "popup-active": hub.hover
-            },
+            staticClass:
+              "border rounded text-sm cursor-pointer px-2 mr-2 hover:border-blue",
+            class:
+              (hub.follower_check ? "border-blue " : "border-gray-400 ") +
+              (hub.hover ? "popup-active" : ""),
             on: {
               mouseover: function($event) {
                 hub.hover = true
@@ -43695,7 +43708,7 @@ var render = function() {
                         _c("p", [_vm._v(_vm._s(hub.description))]),
                         _vm._v(" "),
                         _c("hub-follow-button", {
-                          staticClass: "tag__block-follow",
+                          staticClass: "button w-max",
                           attrs: { hub: hub, auth_check: _vm.auth_check }
                         })
                       ],
@@ -43808,7 +43821,7 @@ var render = function() {
               ? _c("i", { staticClass: "mdi mdi-bookmark-plus" })
               : _vm._e(),
             _vm._v("\n        " + _vm._s(_vm.post.favorites) + " "),
-            _c("span", { staticClass: "text" }, [_vm._v("Seçilmiş")])
+            _c("span", { staticClass: "xs:hidden" }, [_vm._v("Seçilmiş")])
           ]
         )
       : _vm._e(),
@@ -43833,7 +43846,7 @@ var render = function() {
               ? _c("i", { staticClass: "mdi mdi-bookmark-check saved" })
               : _vm._e(),
             _vm._v("\n        " + _vm._s(_vm.post.favorites) + " "),
-            _c("span", { staticClass: "text" }, [_vm._v("Seçilmiş")])
+            _c("span", { staticClass: "xs:hidden" }, [_vm._v("Seçilmiş")])
           ]
         )
       : _vm._e(),
@@ -43851,7 +43864,7 @@ var render = function() {
           [
             _c("i", { staticClass: "mdi mdi-loading mdi-spin" }),
             _vm._v("\n        " + _vm._s(_vm.post.favorites) + " "),
-            _c("span", { staticClass: "text" }, [_vm._v("Gözləyin")])
+            _c("span", { staticClass: "xs:hidden" }, [_vm._v("Gözləyin")])
           ]
         )
       : _vm._e()
@@ -43906,7 +43919,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "post-votes",
+      staticClass: "ml-auto pl-2 text-2xl xs:text-xl",
       attrs: {
         "aria-label":
           _vm.posts.attributes.votes_sum +
@@ -45472,124 +45485,137 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "post-content__item" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "post__hubs" },
-      _vm._l(Math.ceil(Math.random() * (5 - 3)) + 3, function(tags) {
-        return _c("div", {
-          staticClass: "hub",
-          staticStyle: { height: "18px" },
-          style: { width: Math.ceil(Math.random() * (5 - 3)) + 3 + "%" }
-        })
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "post-content__body" },
-      _vm._l(Math.ceil(Math.random() * (6 - 3 + 1)) + 3, function(text) {
-        return _c("div", {
-          staticClass: "MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse",
-          style: {
-            width: Math.floor(Math.random() * (100 - 50 + 1)) + 50 + "%"
-          }
-        })
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _vm._m(2)
-  ])
+  return _vm._m(0)
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "post__meta" }, [
-      _c("div", {
-        staticClass:
-          "user__avatar MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse",
-        staticStyle: { "background-color": "#E2E2E2" }
-      }),
-      _vm._v(" "),
-      _c("div", {
-        staticClass:
-          "user-info__nickname MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse",
-        staticStyle: { width: "20%", height: "1.2rem" }
-      }),
-      _vm._v(" "),
-      _c("span", {
-        staticClass:
-          "post__read-time MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse",
-        staticStyle: { width: "10%", height: "1.2rem" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "post-content__header" }, [
-      _c("div", {
-        staticClass:
-          "post-title MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse",
-        staticStyle: { width: "60%" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "post-votes" }, [
-        _c("i", { staticClass: "mdi mdi-thumb-up-outline" }),
-        _vm._v(" "),
-        _c("span", [_c("i", { staticClass: "mdi mdi-spin mdi-loading" })]),
-        _vm._v(" "),
-        _c("i", { staticClass: "mdi mdi-thumb-down-outline" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "post-content__footer" }, [
-      _c("div", { staticClass: "post-content__footer-stats" }, [
-        _c("span", { staticClass: "footer_item" }, [
-          _c("span", { staticClass: "mdi mdi-eye-outline" }),
+    return _c(
+      "div",
+      { staticClass: "w-full mb-3 rounded bg-white border animate-pulse" },
+      [
+        _c("div", { staticClass: "px-3.5" }, [
+          _c("div", { staticClass: "flex align-middle pt-3" }, [
+            _c("div", { staticClass: "inline-flex no-underline" }, [
+              _c("div", {
+                staticClass: "w-6 h-6 flex-none bg-gray-300 rounded"
+              }),
+              _vm._v(" "),
+              _c("span", {
+                staticClass: "text-sm pl-2 m-auto bg-gray-300 w-2/6"
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", {
+              staticClass:
+                " my-auto mr-auto pl-2 bg-gray-300 w-1/6 h-4 my-2 rounded"
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "mdi mdi-clock-outline ml-auto" }),
+            _vm._v(" "),
+            _c("span", {
+              staticClass:
+                "my-auto xs:hidden bg-gray-300 w-1/12 h-4 rounded ml-0.5"
+            })
+          ]),
           _vm._v(" "),
-          _c("i", { staticClass: "mdi mdi-spin mdi-loading" }),
-          _vm._v(" Baxışların sayı\n            ")
+          _c("div", { staticClass: "grid grid-flow-col py-2" }, [
+            _c("div", { staticClass: "bg-gray-300 w-2/6 h-5 my-2 rounded" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "ml-auto text-2xl xs:text-xl" }, [
+              _c("span", { staticClass: "mdi mdi-thumb-up-outline" }),
+              _vm._v(" "),
+              _c("span", [
+                _c("i", { staticClass: "mdi mdi-spin mdi-loading" })
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "mdi mdi-thumb-down-outline" })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex" }, [
+            _c("div", {
+              staticClass: "border border-gray-400 rounded h-4 my-2 w-12"
+            }),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "border border-gray-400 rounded h-4 my-2 w-16 ml-2"
+            }),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "border border-gray-400 rounded h-4 my-2 w-12 ml-2"
+            }),
+            _vm._v(" "),
+            _c("div", {
+              staticClass: "border border-gray-400 rounded h-4 my-2 w-16 ml-2"
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "bg-gray-300 w-3/6 h-4 my-2 rounded" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "bg-gray-300 w-4/6 h-4 my-2 rounded" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "bg-gray-300 w-3/6 h-4 my-2 rounded" }),
+          _vm._v(" "),
+          _c("div", { staticClass: "bg-gray-300 w-4/6 h-4 my-2 rounded" })
         ]),
         _vm._v(" "),
-        _c("span", { staticClass: "footer_item" }, [
-          _c("span", { staticClass: "mdi mdi-comment-text-multiple-outline" }),
-          _vm._v(" "),
-          _c("i", { staticClass: "mdi mdi-spin mdi-loading" }),
-          _vm._v(" Şerh\n            ")
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "footer_item" }, [
-          _c("span", { staticClass: "mdi mdi-bookmark" }),
-          _vm._v(" "),
-          _c("i", { staticClass: "mdi mdi-spin mdi-loading" }),
-          _vm._v(" Seçilmiş\n            ")
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "footer_item" }, [
-          _c("span", { staticClass: "mdi mdi-share" }),
-          _vm._v(" Paylaş\n            ")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", {
-        staticClass: "progress default",
-        staticStyle: { width: "100%" }
-      })
-    ])
+        _c(
+          "div",
+          {
+            staticClass:
+              "grid lg:grid-cols-main md:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2"
+          },
+          [
+            _c("div", { staticClass: "xs:flex xs:justify-between" }, [
+              _c("span", [
+                _c("i", { staticClass: "mdi mdi-eye-outline" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "mdi mdi-spin mdi-loading" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "xs:hidden" }, [
+                  _vm._v("Baxışların sayı")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "pl-1" }, [
+                _c("i", {
+                  staticClass: "mdi mdi-comment-text-multiple-outline"
+                }),
+                _vm._v(" "),
+                _c("i", { staticClass: "mdi mdi-spin mdi-loading" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "xs:hidden" }, [_vm._v("Şerh")])
+              ]),
+              _vm._v(" "),
+              _c("span", [
+                _c("i", { staticClass: "mdi mdi-bookmark" }),
+                _vm._v(" "),
+                _c("i", { staticClass: "mdi mdi-spin mdi-loading" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "xs:hidden" }, [_vm._v("Seçilmiş")])
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: "pl-1" }, [
+                _c("i", { staticClass: "mdi mdi-share" }),
+                _vm._v(" "),
+                _c("span", { staticClass: "xs:hidden" }, [_vm._v("Paylaş")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "xs:hidden block" }, [
+              _c("div", { staticClass: "m-auto bg-gray-300" }, [
+                _c("div", {
+                  staticClass: "absolute h-1 bg-blue inset-y-1/2 rounded"
+                })
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -45682,16 +45708,18 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "div",
+    "nav",
     {
-      staticClass: "pagination",
+      staticClass:
+        "relative z-0 inline-flex shadow-sm -space-x-px xs:mx-auto xs:flex xs:justify-center",
       attrs: { role: "navigation", "aria-label": "pagination" }
     },
     [
       _c(
         "a",
         {
-          staticClass: "page",
+          staticClass:
+            "relative inline-flex items-center cursor-pointer px-2 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50",
           attrs: { disabled: _vm.pagination.current_page <= 1 },
           on: {
             click: function($event) {
@@ -45707,7 +45735,8 @@ var render = function() {
         ? _c(
             "a",
             {
-              staticClass: "page",
+              staticClass:
+                "relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50",
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -45720,15 +45749,25 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm.pagination.current_page > 4
-        ? _c("span", { staticClass: "page page-ellipsis" }, [_vm._v("...")])
+        ? _c(
+            "span",
+            {
+              staticClass:
+                "relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            },
+            [_vm._v("...")]
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.pages, function(page) {
         return _c(
           "a",
           {
-            staticClass: "page",
-            class: _vm.isCurrentPage(page) ? "active" : "",
+            staticClass:
+              "relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 text-sm font-medium",
+            class: _vm.isCurrentPage(page)
+              ? "bg-blue text-white hover:bg-blue-light"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-50",
             on: {
               click: function($event) {
                 $event.preventDefault()
@@ -45741,14 +45780,22 @@ var render = function() {
       }),
       _vm._v(" "),
       _vm.pagination.last_page - _vm.pagination.current_page > 4
-        ? _c("span", { staticClass: "page page-ellipsis" }, [_vm._v("...")])
+        ? _c(
+            "span",
+            {
+              staticClass:
+                "relative inline-flex items-center px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            },
+            [_vm._v("...")]
+          )
         : _vm._e(),
       _vm._v(" "),
       _vm.pagination.last_page - _vm.pagination.current_page > 4
         ? _c(
             "a",
             {
-              staticClass: "page",
+              staticClass:
+                "relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50",
               attrs: {
                 disabled:
                   _vm.pagination.current_page >= _vm.pagination.last_page
@@ -45767,7 +45814,8 @@ var render = function() {
       _c(
         "a",
         {
-          staticClass: "page",
+          staticClass:
+            "relative inline-flex items-center cursor-pointer px-2 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50",
           attrs: {
             disabled: _vm.pagination.current_page >= _vm.pagination.last_page
           },
@@ -46096,81 +46144,86 @@ var render = function() {
     [
       _vm.loading ? _c("posts-loading") : _vm._e(),
       _vm._v(" "),
-      !_vm.loading
-        ? _c("div", [
-            _vm.postsNotEmpty
-              ? _c(
+      !_vm.loading && !_vm.postsEmpty
+        ? _c(
+            "div",
+            [
+              _vm._l(_vm.posts, function(post) {
+                return _c(
                   "div",
+                  { staticClass: "w-full mb-3 rounded bg-white border" },
                   [
-                    _vm._l(_vm.posts, function(post) {
-                      return _c(
-                        "div",
-                        { staticClass: "post-content__item" },
-                        [
-                          _c("div", { staticClass: "post__meta" }, [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "post__user-info user-info",
-                                attrs: {
-                                  href:
-                                    "/users/@" +
-                                    post.relationships.author.data.username,
-                                  title: "Paylaşmanın müəllifi"
-                                }
-                              },
-                              [
-                                post.relationships.author.data.avatar !==
-                                "user.jpg"
-                                  ? _c("img", {
-                                      staticClass: "user__avatar lazyload",
-                                      attrs: {
-                                        "data-src":
-                                          "/upload/user_" +
-                                          post.relationships.author.data.id +
-                                          "/logo/" +
-                                          post.relationships.author.data.avatar,
-                                        height: "32",
-                                        width: "32",
-                                        alt: "user avatar",
-                                        src: ""
-                                      }
-                                    })
-                                  : post.relationships.author.data.avatar ===
-                                    "user.jpg"
-                                  ? _c("img", {
-                                      staticClass: "user__avatar lazyload",
-                                      attrs: {
-                                        "data-src":
-                                          "/upload/default/logo/default.png",
-                                        height: "32",
-                                        width: "32",
-                                        alt: "user avatar",
-                                        src: ""
-                                      }
-                                    })
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  {
+                    _c(
+                      "div",
+                      { staticClass: "px-3.5" },
+                      [
+                        _c("div", { staticClass: "flex align-middle pt-3" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "inline-flex no-underline",
+                              attrs: {
+                                href:
+                                  "/users/@" +
+                                  post.relationships.author.data.username,
+                                title: "Paylaşmanın müəllifi"
+                              }
+                            },
+                            [
+                              post.relationships.author.data.avatar !==
+                              "user.jpg"
+                                ? _c("img", {
                                     staticClass:
-                                      "user-info__nickname user-info__nickname_small"
-                                  },
-                                  [
-                                    _vm._v(
+                                      "w-6 h-6 flex-none image-fit rounded lazyload",
+                                    attrs: {
+                                      "data-src":
+                                        "/upload/user_" +
+                                        post.relationships.author.data.id +
+                                        "/logo/" +
+                                        post.relationships.author.data.avatar,
+                                      height: "32",
+                                      width: "32",
+                                      alt: "user avatar",
+                                      src: ""
+                                    }
+                                  })
+                                : post.relationships.author.data.avatar ===
+                                  "user.jpg"
+                                ? _c("img", {
+                                    staticClass:
+                                      "flex-none image-fit rounded lazyload w-6 h-6",
+                                    attrs: {
+                                      "data-src":
+                                        "/upload/default/logo/default.png",
+                                      height: "32",
+                                      width: "32",
+                                      alt: "user avatar",
+                                      src: ""
+                                    }
+                                  })
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                { staticClass: "text-sm pl-2 m-auto" },
+                                [
+                                  _vm._v(
+                                    "\n                            " +
                                       _vm._s(
                                         "@" +
                                           post.relationships.author.data
                                             .username
                                       )
-                                    )
-                                  ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "post__time" }, [
+                                  )
+                                ]
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            { staticClass: "text-xs my-auto mr-auto pl-2" },
+                            [
                               _vm._v(
                                 "\n                        " +
                                   _vm._s(
@@ -46181,249 +46234,247 @@ var render = function() {
                                   ) +
                                   "\n                    "
                               )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-sm my-auto xs:hidden",
+                              attrs: {
+                                "aria-label": "Oxumaq vaxtı",
+                                "data-balloon-pos": "left"
+                              }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "mdi mdi-clock-outline"
+                              }),
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(post.attributes.read_time) +
+                                  "\n                    "
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "grid grid-flow-col py-2" },
+                          [
+                            _c("a", { attrs: { href: "/post/" + post.id } }, [
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "text-2xl xs:text-xl font-medium"
+                                },
+                                [_vm._v(_vm._s(post.attributes.title))]
+                              )
                             ]),
+                            _vm._v(" "),
+                            _c("vote", {
+                              attrs: { posts: post, auth_check: _vm.auth_check }
+                            })
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        post.relationships.hubs.data.length
+                          ? _c("hubs-tags", {
+                              attrs: {
+                                data: post.relationships.hubs.data,
+                                auth_check: _vm.auth_check
+                              }
+                            })
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("div", {
+                          staticClass: "my-2 xs:hidden",
+                          domProps: { innerHTML: _vm._s(post.attributes.body) }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "grid lg:grid-cols-main md:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2"
+                      },
+                      [
+                        _c(
+                          "div",
+                          { staticClass: "xs:flex xs:justify-between" },
+                          [
+                            _c("span", [
+                              _c("i", { staticClass: "mdi mdi-eye-outline" }),
+                              _vm._v(
+                                " " +
+                                  _vm._s(post.views) +
+                                  "\n                        "
+                              ),
+                              _c("span", { staticClass: "xs:hidden" }, [
+                                _vm._v("Baxışların sayı")
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "pl-1" }, [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "post_comments_link",
+                                  attrs: {
+                                    href: "/post/" + post.id + "/#comments"
+                                  }
+                                },
+                                [
+                                  _c("i", {
+                                    staticClass:
+                                      "mdi mdi-comment-text-multiple-outline"
+                                  }),
+                                  _vm._v(
+                                    " " + _vm._s(post.comments_count) + " "
+                                  ),
+                                  _c("span", { staticClass: "xs:hidden" }, [
+                                    _vm._v("Şerh")
+                                  ])
+                                ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("favorite", {
+                              attrs: { post: post, auth_check: _vm.auth_check }
+                            }),
                             _vm._v(" "),
                             _c(
                               "span",
                               {
-                                staticClass: "post__read-time",
-                                attrs: {
-                                  "aria-label": "Oxumaq vaxtı",
-                                  "data-balloon-pos": "left"
+                                staticClass: "pl-1",
+                                staticStyle: { cursor: "pointer" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.copy(post.id)
+                                  }
                                 }
                               },
                               [
-                                _c("span", {
-                                  staticClass: "mdi mdi-clock-outline"
-                                }),
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(post.attributes.read_time) +
-                                    "\n                    "
-                                )
+                                _c("i", { staticClass: "mdi mdi-share" }),
+                                _vm._v(" "),
+                                _c("span", { staticClass: "xs:hidden" }, [
+                                  _vm._v("Paylaş")
+                                ])
                               ]
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "post-content__header" },
-                            [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "post-title",
-                                  attrs: { href: "/post/" + post.id }
-                                },
-                                [
-                                  _c("h3", [
-                                    _vm._v(_vm._s(post.attributes.title))
-                                  ])
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("vote", {
-                                attrs: {
-                                  posts: post,
-                                  auth_check: _vm.auth_check
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          post.relationships.hubs.data.length
-                            ? _c("hubs-tags", {
-                                attrs: {
-                                  data: post.relationships.hubs.data,
-                                  auth_check: _vm.auth_check
-                                }
-                              })
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c("div", {
-                            staticClass: "post-content__body",
-                            domProps: {
-                              innerHTML: _vm._s(post.attributes.body)
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "balloon xs:hidden",
+                            attrs: {
+                              "aria-label":
+                                post.attributes.votes_sum +
+                                " səs: " +
+                                post.attributes.upvotes +
+                                " plus " +
+                                post.attributes.downvotes +
+                                " minus",
+                              "data-balloon-pos": "up"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "post-content__footer" }, [
-                            _c(
-                              "div",
-                              { staticClass: "post-content__footer-stats" },
-                              [
-                                _c("span", { staticClass: "footer_item" }, [
-                                  _c("i", {
-                                    staticClass: "mdi mdi-eye-outline"
-                                  }),
-                                  _vm._v(" " + _vm._s(post.views) + " "),
-                                  _c("span", { staticClass: "text" }, [
-                                    _vm._v(
-                                      "Baxışların\n                                                                                                 sayı"
-                                    )
-                                  ])
-                                ]),
-                                _vm._v(" "),
-                                _c("span", { staticClass: "footer_item" }, [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "post_comments_link",
-                                      attrs: {
-                                        href: "/post/" + post.id + "/#comments"
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass:
-                                          "mdi mdi-comment-text-multiple-outline"
-                                      }),
-                                      _vm._v(
-                                        " " + _vm._s(post.comments_count) + " "
-                                      ),
-                                      _c("span", { staticClass: "text" }, [
-                                        _vm._v("Şerh")
-                                      ])
-                                    ]
-                                  )
-                                ]),
-                                _vm._v(" "),
-                                _c("favorite", {
-                                  attrs: {
-                                    post: post,
-                                    auth_check: _vm.auth_check
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  {
-                                    staticClass: "footer_item",
-                                    staticStyle: { cursor: "pointer" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.copy(post.id)
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c("i", { staticClass: "mdi mdi-share" }),
-                                    _vm._v(" "),
-                                    _c("span", { staticClass: "text" }, [
-                                      _vm._v("Paylaş")
-                                    ])
-                                  ]
-                                )
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
+                          },
+                          [
                             _c(
                               "div",
                               {
-                                staticClass: "balloon",
-                                attrs: {
-                                  "aria-label":
-                                    post.attributes.votes_sum +
-                                    " səs: " +
-                                    post.attributes.upvotes +
-                                    " plus " +
-                                    post.attributes.downvotes +
-                                    " minus",
-                                  "data-balloon-pos": "up"
+                                staticClass: "m-auto bg-gray-300",
+                                class: {
+                                  default: post.attributes.votes_sum === 0
                                 }
                               },
                               [
-                                _c(
-                                  "div",
-                                  {
-                                    staticClass: "progress",
-                                    class: {
-                                      default: post.attributes.votes_sum === 0
-                                    }
-                                  },
-                                  [
-                                    _c("div", {
-                                      staticClass: "progress-green",
-                                      style:
-                                        "width:" +
-                                        [
-                                          post.attributes.votes_sum !== 0
-                                            ? (100 * post.attributes.upvotes) /
-                                              post.attributes.votes_sum
-                                            : "0"
-                                        ] +
-                                        "%"
-                                    })
-                                  ]
-                                )
+                                _c("div", {
+                                  staticClass:
+                                    "absolute h-1 bg-blue inset-y-1/2 rounded",
+                                  style:
+                                    "width:" +
+                                    [
+                                      post.attributes.votes_sum !== 0
+                                        ? (100 * post.attributes.upvotes) /
+                                          post.attributes.votes_sum
+                                        : "0"
+                                    ] +
+                                    "%"
+                                })
                               ]
                             )
-                          ])
-                        ],
-                        1
-                      )
-                    }),
-                    _vm._v(" "),
-                    _vm.pagination.last_page > 1
-                      ? _c("pagination", {
-                          attrs: { pagination: _vm.pagination, offset: 5 },
-                          on: {
-                            paginate: function($event) {
-                              return _vm.getPosts()
-                            }
-                          }
-                        })
-                      : _vm._e()
-                  ],
-                  2
-                )
-              : _vm.error
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "post-content__item",
-                    staticStyle: {
-                      "text-align": "center",
-                      display: "grid",
-                      "grid-gap": "12px"
-                    }
-                  },
-                  [
-                    _c(
-                      "span",
-                      { staticStyle: { "font-size": "5rem", opacity: ".7" } },
-                      [_vm._v("¯\\_(ツ)_/¯")]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(0)
+                          ]
+                        )
+                      ]
+                    )
                   ]
                 )
-              : !_vm.postsNotEmpty
-              ? _c(
-                  "div",
-                  {
-                    staticClass: "post-content__item",
-                    staticStyle: {
-                      "text-align": "center",
-                      display: "grid",
-                      "grid-gap": "12px",
-                      padding: "24px"
+              }),
+              _vm._v(" "),
+              _vm.pagination.last_page > 1
+                ? _c("pagination", {
+                    attrs: { pagination: _vm.pagination, offset: 5 },
+                    on: {
+                      paginate: function($event) {
+                        return _vm.getPosts()
+                      }
                     }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("span", { staticStyle: { opacity: ".7" } }, [
-                      _vm._v("Paylaşma tapılmadı")
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2)
-                  ]
-                )
-              : _vm._e()
-          ])
+                  })
+                : _vm._e()
+            ],
+            2
+          )
+        : _vm.error
+        ? _c(
+            "div",
+            {
+              staticClass: "post-content__item",
+              staticStyle: {
+                "text-align": "center",
+                display: "grid",
+                "grid-gap": "12px"
+              }
+            },
+            [
+              _c(
+                "span",
+                { staticStyle: { "font-size": "5rem", opacity: ".7" } },
+                [_vm._v("¯\\_(ツ)_/¯")]
+              ),
+              _vm._v(" "),
+              _vm._m(0)
+            ]
+          )
+        : !_vm.postsEmpty
+        ? _c(
+            "div",
+            {
+              staticClass: "post-content__item",
+              staticStyle: {
+                "text-align": "center",
+                display: "grid",
+                "grid-gap": "12px",
+                padding: "24px"
+              }
+            },
+            [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("span", { staticStyle: { opacity: ".7" } }, [
+                _vm._v("Paylaşma tapılmadı")
+              ]),
+              _vm._v(" "),
+              _vm._m(2)
+            ]
+          )
         : _vm._e()
     ],
     1
@@ -46470,7 +46521,7 @@ var staticRenderFns = [
         { staticClass: "btn btn-primary", attrs: { href: "/post/add" } },
         [
           _c("i", { staticClass: "icon feather icon-plus" }),
-          _vm._v(" Yazmağ\n                ")
+          _vm._v(" Yazmağ\n            ")
         ]
       )
     ])
@@ -60966,4 +61017,3 @@ module.exports = __webpack_require__(/*! C:\Users\User\Desktop\devhub\src\resour
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.js.map

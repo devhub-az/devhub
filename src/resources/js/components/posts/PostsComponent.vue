@@ -1,89 +1,89 @@
 <template>
     <div class="mb-3">
         <posts-loading v-if="loading"/>
-        <div v-if="!loading">
-            <div v-if="postsNotEmpty">
-                <div class="post-content__item" v-for="post in posts">
-                    <div class="post__meta">
+        <div v-if="!loading && !postsEmpty">
+            <div class="w-full mb-3 rounded bg-white border" v-for="post in posts">
+                <div class="px-3.5">
+                    <div class="flex align-middle pt-3">
                         <a v-bind:href="'/users/@' + post.relationships.author.data.username"
-                           class="post__user-info user-info"
+                           class="inline-flex no-underline"
                            title="Paylaşmanın müəllifi">
                             <img v-if="post.relationships.author.data.avatar !== 'user.jpg'"
                                  :data-src="'/upload/user_'+ post.relationships.author.data.id + '/logo/' + post.relationships.author.data.avatar"
                                  height="32" width="32"
-                                 alt="user avatar" class="user__avatar lazyload" src="">
+                                 alt="user avatar" class="w-6 h-6 flex-none image-fit rounded lazyload" src="">
                             <img v-else-if="post.relationships.author.data.avatar === 'user.jpg'"
                                  :data-src="'/upload/default/logo/default.png'" height="32" width="32"
-                                 alt="user avatar" class="user__avatar lazyload" src="">
-                            <span class="user-info__nickname user-info__nickname_small">{{
-                                    '@' + post.relationships.author.data.username
-                                                                                        }}</span>
+                                 alt="user avatar" class="flex-none image-fit rounded lazyload w-6 h-6" src="">
+                            <span class="text-sm pl-2 m-auto">
+                                {{ '@' + post.relationships.author.data.username }}</span>
                         </a>
-                        <span class="post__time">
+                        <span class="text-xs my-auto mr-auto pl-2">
                             {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
                         </span>
-                        <span class="post__read-time" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
+                        <span class="text-sm my-auto xs:hidden" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
                             <span class="mdi mdi-clock-outline"/>
                             {{ post.attributes.read_time }}
                         </span>
                     </div>
-                    <div class="post-content__header">
-                        <a :href="'/post/' + post.id" class="post-title">
-                            <h3>{{ post.attributes.title }}</h3>
+                    <div class="grid grid-flow-col py-2">
+                        <a :href="'/post/' + post.id">
+                            <p class="text-2xl xs:text-xl font-medium">{{ post.attributes.title }}</p>
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
                     </div>
-                    <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data" :auth_check="auth_check"/>
-                    <div class="post-content__body" v-html="post.attributes.body">
+                    <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data"
+                               :auth_check="auth_check"/>
+                    <div class="my-2 xs:hidden" v-html="post.attributes.body">
                     </div>
-                    <div class="post-content__footer">
-                        <div class="post-content__footer-stats">
-                            <span class="footer_item">
-                                <i class="mdi mdi-eye-outline"/> {{ post.views }} <span class="text">Baxışların
-                                                                                                     sayı</span>
-                            </span>
-                            <span class="footer_item">
-                                <a :href="'/post/' + post.id + '/#comments'" class="post_comments_link">
-                                    <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count }} <span
-                                    class="text">Şerh</span>
-                                </a>
-                            </span>
-                            <favorite :post="post" :auth_check="auth_check"/>
-                            <span class="footer_item" @click="copy(post.id)" style="cursor: pointer;">
-                                <i class="mdi mdi-share"/> <span class="text">Paylaş</span>
-                            </span>
-                        </div>
-                        <div class="balloon"
-                             :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
-                             data-balloon-pos="up">
-                            <div class="progress" :class="{ 'default' : post.attributes.votes_sum === 0}">
-                                <div class="progress-green"
-                                     :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
-                            </div>
+                </div>
+                <div class="grid lg:grid-cols-main md:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
+                    <div class="xs:flex xs:justify-between">
+                        <span>
+                            <i class="mdi mdi-eye-outline"/> {{ post.views }}
+                            <span class="xs:hidden">Baxışların sayı</span>
+                        </span>
+                        <span class="pl-1">
+                            <a :href="'/post/' + post.id + '/#comments'" class="post_comments_link">
+                                <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count }} <span
+                                class="xs:hidden">Şerh</span>
+                            </a>
+                        </span>
+                        <favorite :post="post" :auth_check="auth_check"/>
+                        <span class="pl-1" @click="copy(post.id)" style="cursor: pointer;">
+                            <i class="mdi mdi-share"/> <span class="xs:hidden">Paylaş</span>
+                        </span>
+                    </div>
+                    <div class="balloon xs:hidden"
+                         :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
+                         data-balloon-pos="up">
+                        <div class="m-auto bg-gray-300" :class="{ 'default' : post.attributes.votes_sum === 0}">
+                            <div class="absolute h-1 bg-blue inset-y-1/2 rounded"
+                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
                         </div>
                     </div>
                 </div>
-                <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"
-                            @paginate="getPosts()"/>
             </div>
-            <div v-else-if="error" class="post-content__item"
-                 style="text-align: center; display: grid; grid-gap: 12px;">
-                <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
-                <h1 style="font-family: 'Nunito', sans-serif;"><span
-                    style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
-            </div>
-            <div v-else-if="!postsNotEmpty" class="post-content__item"
-                 style="text-align: center; display: grid; grid-gap: 12px; padding: 24px;">
-                <span style="font-size: 5rem; opacity: .7;">
-                    <i class="mdi mdi-comment-edit-outline"/>
-                </span>
-                <span style="opacity: .7;">Paylaşma tapılmadı</span>
-                <span>
-                    <a href="/post/add" class="btn btn-primary">
-                        <i class="icon feather icon-plus"/> Yazmağ
-                    </a>
-                </span>
-            </div>
+            <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"
+                        @paginate="getPosts()"/>
+        </div>
+        <div v-else-if="error" class="post-content__item"
+             style="text-align: center; display: grid; grid-gap: 12px;">
+            <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
+            <h1 style="font-family: 'Nunito', sans-serif;"><span
+                style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
+        </div>
+        <div v-else-if="!postsEmpty" class="post-content__item"
+             style="text-align: center; display: grid; grid-gap: 12px; padding: 24px;">
+            <span style="font-size: 5rem; opacity: .7;">
+                <i class="mdi mdi-comment-edit-outline"/>
+            </span>
+            <span style="opacity: .7;">Paylaşma tapılmadı</span>
+            <span>
+                <a href="/post/add" class="btn btn-primary">
+                    <i class="icon feather icon-plus"/> Yazmağ
+                </a>
+            </span>
         </div>
     </div>
 </template>
@@ -111,7 +111,7 @@ export default {
             error: false,
             loading: false,
             hovered: false,
-            postsNotEmpty: false,
+            postsEmpty: true,
             pagination: {
                 'current_page': 1
             },
@@ -134,7 +134,7 @@ export default {
                     if (this.pagination.last_page > 50) {
                         this.pagination.last_page = 50;
                     }
-                    this.postsNotEmpty = true;
+                    this.postsEmpty = false;
                     for (let i = 0; i < this.posts.length; i++) {
                         this.id[i] = this.posts[i].id;
                     }
