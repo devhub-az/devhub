@@ -1,10 +1,19 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/css/login.css": "/css/login.css",
-    "/css/tailwind.css": "/css/tailwind.css",
-    "/js/login.js": "/js/login.js",
-    "/fonts/materialdesignicons-webfont.ttf": "/fonts/materialdesignicons-webfont.ttf",
-    "/fonts/materialdesignicons-webfont.woff": "/fonts/materialdesignicons-webfont.woff",
-    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2"
+    "/js/manifest.js": "/js/manifest.js?id=d91051ea7d0c9bd1981e",
+    "/js/manifest.js.map": "/js/manifest.js.map?id=a07956f82042cc418451",
+    "/js/vendor.js": "/js/vendor.js?id=263afdf814d5806d043a",
+    "/js/vendor.js.map": "/js/vendor.js.map?id=860c7a3def8e96a043d2",
+    "/js/app.js": "/js/app.js?id=46a5b9b79599be495282",
+    "/css/app.css": "/css/app.css?id=eeb888dacd975e50057b",
+    "/css/login.css": "/css/login.css?id=60e8ef3e470a442b6232",
+    "/css/tailwind.css": "/css/tailwind.css?id=3c4b1a2ef43241c1efe6",
+    "/js/app.js.map": "/js/app.js.map?id=9310d479001c332bf4aa",
+    "/css/app.css.map": "/css/app.css.map?id=5d918627092c4cafdeec",
+    "/css/login.css.map": "/css/login.css.map?id=7602db2be4768b5fc625",
+    "/css/tailwind.css.map": "/css/tailwind.css.map?id=73c4d8f69b0f358d3c20",
+    "/js/login.js": "/js/login.js?id=66a33a7ae5bc56bcf146",
+    "/js/login.js.map": "/js/login.js.map?id=b910e6ae9e5705996acc",
+    "/fonts/materialdesignicons-webfont.ttf": "/fonts/materialdesignicons-webfont.ttf?id=3b679e3557e019520da8",
+    "/fonts/materialdesignicons-webfont.woff": "/fonts/materialdesignicons-webfont.woff?id=0fac7bf52df958eedfbc",
+    "/fonts/materialdesignicons-webfont.woff2": "/fonts/materialdesignicons-webfont.woff2?id=f205910567ae4f4f4d95"
 }

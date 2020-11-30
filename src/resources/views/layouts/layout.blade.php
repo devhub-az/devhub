@@ -56,6 +56,8 @@
 
 <script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
+<script type="text/javascript" src="{{ asset('/js/manifest.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/vendor.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>
