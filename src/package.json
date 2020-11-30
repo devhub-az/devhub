@@ -35,7 +35,7 @@
         "laravel-mix-purgecss": "^5.0.0",
         "moment-mini": "^2.24.0",
         "noty": "^3.2.0-beta",
-        "postcss": "^7.0.35",
+        "postcss": "^8.1.10",
         "reset-css": "^5.0.1",
         "tailwindcss": "^2.0.1-compat",
         "v-clipboard": "^2.2.3",
