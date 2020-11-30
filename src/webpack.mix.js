@@ -27,6 +27,7 @@ mix.copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf', 'public
     .options({
         processCssUrls: false,
     })
+    .extract()
     .disableNotifications();
 
 // mix.disableNotifications();
