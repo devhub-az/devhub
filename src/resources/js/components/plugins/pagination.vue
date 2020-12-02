@@ -41,6 +41,7 @@ export default {
             }
             this.pagination.current_page = page;
             this.$emit('paginate');
+            window.scrollTo(0,0);
         }
     },
     computed: {

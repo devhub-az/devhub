@@ -1,4 +1,4 @@
-<footer class="text-gray-300 body-font bg-footer py-2">
+<footer class="text-gray-300 body-font bg-footer py-2 mt-auto">
     <div class="container mx-auto flex ">
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100">
             <span class="text-xl font-bold md:text-2xl">DevHub</span>

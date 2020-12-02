@@ -23,6 +23,7 @@ module.exports = {
             'danger': '#e3342f',
         }),
         colors: {
+            transparent: 'transparent',
             black: colors.black,
             red: colors.red,
             header: '#1a1a1ae6',

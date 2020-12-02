@@ -6,6 +6,7 @@ use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostCollection;
 use App\Models\Hub;
 use App\Models\Post;
+use App\Models\User;
 use App\Notifications\PostNotify;
 use DB;
 use Exception;
@@ -84,6 +85,21 @@ class PostController extends Controller
         $post = new PostCollection(Post::findorfail($id));
 
         return view('pages.posts.show', ['post' => $post->toResponse($request)->getData()->data]);
+    }
+
+    public function postVoteComment(Request $request, $type)
+    {
+        $this->validate($request, [
+            'id' => 'required|exists:comments,id',
+        ]);
+
+        $user = $request->user();
+
+        $post = Post::findOrFail($request->id);
+
+        ($type === 'upvote') ? User::upOrDownVote($user, $post) : User::upOrDownVote($user, $post, 'downvote');
+
+        return $this->response->withNoContent();
     }
 
     /**

@@ -34,7 +34,7 @@
                     </div>
                     <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data"
                                :auth_check="auth_check"/>
-                    <div class="my-2 xs:hidden" v-html="post.attributes.body">
+                    <div class="markdown my-2 xs:hidden" v-html="md(post.attributes.body)">
                     </div>
                 </div>
                 <div class="grid lg:grid-cols-main md:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
@@ -43,22 +43,23 @@
                             <i class="mdi mdi-eye-outline"/> {{ post.views }}
                             <span class="xs:hidden">Baxışların sayı</span>
                         </span>
-                        <span class="pl-1">
+                        <span class="pl-2">
                             <a :href="'/post/' + post.id + '/#comments'" class="post_comments_link">
                                 <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count }} <span
                                 class="xs:hidden">Şerh</span>
                             </a>
                         </span>
                         <favorite :post="post" :auth_check="auth_check"/>
-                        <span class="pl-1" @click="copy(post.id)" style="cursor: pointer;">
+                        <span class="pl-2" @click="copy(post.id)" style="cursor: pointer;">
                             <i class="mdi mdi-share"/> <span class="xs:hidden">Paylaş</span>
                         </span>
                     </div>
-                    <div class="balloon xs:hidden"
+                    <div class="my-auto h-1 balloon xs:hidden"
                          :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
                          data-balloon-pos="up">
-                        <div class="m-auto bg-gray-300" :class="{ 'default' : post.attributes.votes_sum === 0}">
-                            <div class="absolute h-1 bg-blue inset-y-1/2 rounded"
+                        <div class="my-auto bg-gray-300 w-full rounded h-1"
+                             :class="{ 'default' : post.attributes.votes_sum === 0}">
+                            <div class="absolute h-1 bg-blue rounded"
                                  :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
                         </div>
                     </div>
@@ -73,7 +74,7 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="!postsEmpty" class="post-content__item"
+        <div v-else-if="postsEmpty" class="post-content__item"
              style="text-align: center; display: grid; grid-gap: 12px; padding: 24px;">
             <span style="font-size: 5rem; opacity: .7;">
                 <i class="mdi mdi-comment-edit-outline"/>
@@ -89,17 +90,9 @@
 </template>
 
 <script>
-import Clipboard from 'v-clipboard'
-import VueLazyload from 'vue-lazyload'
+import axios from "axios"
 
-Vue.use(Clipboard)
-
-Vue.use(VueLazyload, {
-    preLoad: 1.3,
-    error: '/images/errors/error.png',
-    // loading: 'dist/loading.gif',
-    attempt: 1
-})
+const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
 
 export default {
     props: ['url', 'auth_check', 'hub'],
@@ -111,7 +104,7 @@ export default {
             error: false,
             loading: false,
             hovered: false,
-            postsEmpty: true,
+            postsEmpty: false,
             pagination: {
                 'current_page': 1
             },
@@ -121,6 +114,9 @@ export default {
         await this.getPosts();
     },
     methods: {
+        md(text) {
+            return MarkdownIt.render(text)
+        },
         async getHubPosts() {
             this.posts = this.hub;
         },
@@ -134,25 +130,14 @@ export default {
                     if (this.pagination.last_page > 50) {
                         this.pagination.last_page = 50;
                     }
-                    this.postsEmpty = false;
                     for (let i = 0; i < this.posts.length; i++) {
                         this.id[i] = this.posts[i].id;
                     }
-                }
+                } else this.postsEmpty = true;
             })
                 .catch(error => {
                     this.loading = false
                     this.error = true
-                    // DEVELOPING PART
-                    if (error.response) {
-                        console.log(error.response.data);
-                        console.log(error.response.status);
-                        console.log(error.response.headers);
-                    } else if (error.request) {
-                        console.log(error.request);
-                    } else {
-                        console.log('Error', error.message);
-                    }
                 });
         },
         async findVillainIdx(id) {

@@ -21,6 +21,7 @@ mix.copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf', 'public
     .copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2', 'public/fonts/')
 
 mix.js('resources/js/app.js', 'public/js/')
+    .js('resources/js/pages/home.js', 'public/js/')
     .js('resources/js/login.js', 'public/js/')
 
 // mix.extract([
@@ -38,18 +39,17 @@ mix.options({
     disableNotifications: true,
 })
 
-mix.webpackConfig({
-    output:{
-        chunkFilename:'js/vuejs_code_split/[name].js',
-    }
-});
-
 /*
  |--------------------------------------------------------------------------
  | Mix Version in Production
  |--------------------------------------------------------------------------
  */
 if (mix.inProduction()) {
+    mix.webpackConfig({
+        output:{
+            chunkFilename:'js/vuejs_code_split/[name].js',
+        }
+    });
     mix.version()
         .options({
             // Optimize JS minification process

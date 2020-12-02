@@ -16,13 +16,12 @@
     <meta name="theme-color" content="#ffffff">
 
     <link rel="preload" href="{{ asset('js/scripts/lazysizes.min.js') }}" as="script">
-    <link rel="preload" href="{{ asset('js/app.js') }}" as="script">
+    <link rel="preload" href="{{ mix('js/home.js') }}" as="script">
 
     @yield('meta')
 
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="{{ asset('css/animate.css') }}" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="{{ asset('css/tailwind.css') }}" media="print" onload="this.media='all'">
 
 
@@ -34,7 +33,7 @@
 </head>
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
-<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="bg-gray-50 font-sans">
+<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="flex bg-gray-50 font-sans flex-col min-h-screen">
 {{--<span class="scroll-top mb:hidden" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">--}}
 {{--    <i class="mdi mdi-chevron-up"></i>--}}
 {{--</span>--}}
@@ -55,11 +54,12 @@
 {{-- Footer --}}
 @include('include.footer')
 
+<script type="text/javascript" src="{{ asset('js/highlight.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>
 <script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>
-<script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>
+<script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>--}}
+{{--<script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>--}}
 @yield('scripts')
 </body>
 </html>

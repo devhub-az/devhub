@@ -23,7 +23,7 @@ class ArticleResource extends JsonResource
             'attributes'    => [
                 'id'         => $this->id,
                 'title'      => $this->name,
-                'body'       => Str::words($this->body, 150, ''),
+                'body'       => $this->stext($this->body), //Str::words($this->body, 150, ''),
                 'votes'      => $this->upvoters_count - $this->downvoters_count,
                 'votes_sum'  => $this->voters_count,
                 'upvotes'    => $this->upvoters_count,
@@ -41,6 +41,14 @@ class ArticleResource extends JsonResource
                 'self' => route('articles.show', ['article' => $this->id]),
             ],
         ];
+    }
+
+    public function stext(string $text){
+        if (preg_match('/^.{1,512}\b/s', $text, $match))
+            {
+                $text=$match[0] . ( strlen($match[0]) < strlen($text) ? "..." : "" );
+            }
+        return $text;
     }
 
     /**

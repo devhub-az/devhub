@@ -8,6 +8,7 @@ use App\Http\Traits\Can\CanFollow;
 use App\Http\Traits\Can\CanVote;
 use App\Http\Traits\PermissionManager;
 use Eloquent;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
