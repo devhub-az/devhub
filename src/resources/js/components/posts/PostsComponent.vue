@@ -5,59 +5,55 @@
             <div class="w-full mb-3 rounded bg-white border" v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
-                        <a v-bind:href="'/users/@' + post.relationships.author.data.username"
+                        <a v-bind:href="'/users/@' + post.relationships.author.data.attributes.username"
                            class="inline-flex no-underline"
                            title="Paylaşmanın müəllifi">
-                            <img v-if="post.relationships.author.data.avatar !== 'user.jpg'"
-                                 :data-src="'/upload/user_'+ post.relationships.author.data.id + '/logo/' + post.relationships.author.data.avatar"
-                                 height="32" width="32"
-                                 alt="user avatar" class="w-6 h-6 flex-none image-fit rounded lazyload" src="">
-                            <img v-else-if="post.relationships.author.data.avatar === 'user.jpg'"
-                                 :data-src="'/upload/default/logo/default.png'" height="32" width="32"
-                                 alt="user avatar" class="flex-none image-fit rounded lazyload w-6 h-6" src="">
+                            <img height="32" width="32"
+                                 alt="user avatar" class="w-6 h-6 flex-none image-fit rounded lazyload"
+                                :src="post.relationships.author.data.attributes.avatar">
                             <span class="text-sm pl-2 m-auto">
-                                {{ '@' + post.relationships.author.data.username }}</span>
+                                {{ '@' + post.relationships.author.data.attributes.username }}</span>
                         </a>
                         <span class="text-xs my-auto mr-auto pl-2">
                             {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
                         </span>
-                        <span class="text-sm my-auto xs:hidden" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
+                        <span class="text-sm my-auto xs:hidden md:hidden sm:hidden" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
                             <span class="mdi mdi-clock-outline"/>
                             {{ post.attributes.read_time }}
                         </span>
                     </div>
                     <div class="grid grid-flow-col py-2">
-                        <a :href="'/post/' + post.id">
+                        <a :href="'/post/' + post.id" class="my-auto">
                             <p class="text-2xl xs:text-xl font-medium">{{ post.attributes.title }}</p>
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
                     </div>
                     <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data"
                                :auth_check="auth_check"/>
-                    <div class="markdown my-2 xs:hidden" v-html="md(post.attributes.body)">
+                    <div class="markdown my-2 xs:hidden md:hidden sm:hidden" v-html="md(post.attributes.body)">
                     </div>
                 </div>
-                <div class="grid lg:grid-cols-main md:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
-                    <div class="xs:flex xs:justify-between">
+                <div class="grid lg:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
+                    <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
                         <span>
-                            <i class="mdi mdi-eye-outline"/> {{ post.views }}
-                            <span class="xs:hidden">Baxışların sayı</span>
+                            <i class="mdi mdi-eye-outline"/> {{ post.views ? post.views : 'X' }}
+                            <span class="xs:hidden sm:hidden">Baxışların sayı</span>
                         </span>
                         <span class="pl-2">
                             <a :href="'/post/' + post.id + '/#comments'" class="post_comments_link">
-                                <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count }} <span
-                                class="xs:hidden">Şerh</span>
+                                <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count ? post.comments_count : 'X' }} <span
+                                class="xs:hidden sm:hidden">Şerh</span>
                             </a>
                         </span>
                         <favorite :post="post" :auth_check="auth_check"/>
                         <span class="pl-2" @click="copy(post.id)" style="cursor: pointer;">
-                            <i class="mdi mdi-share"/> <span class="xs:hidden">Paylaş</span>
+                            <i class="mdi mdi-share"/> <span class="xs:hidden sm:hidden">Paylaş</span>
                         </span>
                     </div>
-                    <div class="my-auto h-1 balloon xs:hidden"
+                    <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
                          :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
                          data-balloon-pos="up">
-                        <div class="my-auto bg-gray-300 w-full rounded h-1"
+                        <div class="my-auto bg-gray-300 w-full rounded h-1 relative"
                              :class="{ 'default' : post.attributes.votes_sum === 0}">
                             <div class="absolute h-1 bg-blue rounded"
                                  :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
@@ -74,15 +70,14 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty" class="post-content__item"
-             style="text-align: center; display: grid; grid-gap: 12px; padding: 24px;">
-            <span style="font-size: 5rem; opacity: .7;">
+        <div v-else-if="postsEmpty" class="bg-white rounded border text-center grid gap-2 p-5">
+            <span class="opacity-75" style="font-size: 5rem">
                 <i class="mdi mdi-comment-edit-outline"/>
             </span>
-            <span style="opacity: .7;">Paylaşma tapılmadı</span>
+            <span class="opacity-75 pb-2">Paylaşma tapılmadı</span>
             <span>
-                <a href="/post/add" class="btn btn-primary">
-                    <i class="icon feather icon-plus"/> Yazmağ
+                <a href="/post/add" class="border border-blue font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-blue hover:opacity-90">
+                    <i class="mdi mdi-plus"/> Yazmağ
                 </a>
             </span>
         </div>
@@ -91,6 +86,7 @@
 
 <script>
 import axios from "axios"
+import Noty from 'noty'
 
 const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
 

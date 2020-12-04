@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
-use App\Models\Post;
+use App\Models\Article;
 use App\Transformers\PostTransformer;
 use Illuminate\Http\Request;
 
@@ -40,7 +40,7 @@ class PostHubController extends Controller
      */
     public function posts(int $id): PostsCollection
     {
-        return new PostsCollection(Post::where('created_at', '>=', \DB::raw('NOW() - INTERVAL ' . $this->count . ' DAY'))
+        return new PostsCollection(Article::where('created_at', '>=', \DB::raw('NOW() - INTERVAL ' . $this->count . ' DAY'))
             ->whereHas('hubs', function ($query) use ($id) {
                 $query->where('hubs.id', '=', $id);
             })
@@ -57,7 +57,7 @@ class PostHubController extends Controller
      */
     public function all(int $id): PostsCollection
     {
-        return new PostsCollection(Post::orderBy('created_at', 'DESC')
+        return new PostsCollection(Article::orderBy('created_at', 'DESC')
             ->whereHas('hubs', function ($query) use ($id) {
                 $query->where('hubs.id', '=', $id);
             })
@@ -70,7 +70,7 @@ class PostHubController extends Controller
     public function show(Request $request)
     {
         return $this->respondWith(
-            Post::orderBy('created_at', 'DESC')->paginate(10)->appends(['include' => $request->input('include')]),
+            Article::orderBy('created_at', 'DESC')->paginate(10)->appends(['include' => $request->input('include')]),
             new PostTransformer
         );
     }

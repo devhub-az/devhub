@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostsCollection;
-use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Http\Resources\UsersCollection;
-use App\Models\Post;
+use App\Models\Article;
 use App\Models\User;
 use App\Services\LogoUploadService;
 use Illuminate\Http\JsonResponse;
@@ -17,17 +17,17 @@ class UserController extends Controller
 {
     public function users(): AnonymousResourceCollection
     {
-        return UserCollection::collection(User::select(['id', 'name', 'username', 'avatar', 'about', 'karma',
+        return UserResource::collection(User::select(['id', 'name', 'username', 'avatar', 'about', 'karma',
             'rating'])->withCount('posts', 'followers')->paginate(12));
     }
 
     /**
      * @param int $id
-     * @return UserCollection
+     * @return UserResource
      */
     public function userFollowCheck(int $id)
     {
-        return new UserCollection(User::findorfail($id));
+        return new UserResource(User::findorfail($id));
     }
 
     /**
@@ -37,7 +37,7 @@ class UserController extends Controller
     public function posts(int $id): PostsCollection
     {
         return new PostsCollection(
-            Post::where('author_id', $id)
+            Article::where('author_id', $id)
                 ->orderByRaw('(upvoters_count - downvoters_count) DESC')
                 ->orderBy('created_at', 'DESC')
                 ->with('creator:id,username,avatar')

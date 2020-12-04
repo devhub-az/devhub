@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Post;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Builder;
 
 class PostService
@@ -13,7 +13,7 @@ class PostService
      */
     public static function getPosts(string $orderBy = null): Builder
     {
-        $q = Post::with('creator:id,username,avatar')
+        $q = Article::with('creator:id,username,avatar')
             ->withcount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments');
 
 

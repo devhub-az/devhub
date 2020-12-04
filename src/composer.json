@@ -7,7 +7,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.3|^7.4",
         "barryvdh/laravel-ide-helper": "^2.6",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -17,7 +17,6 @@
         "jackiedo/dotenv-editor": "^1.2",
         "ksubileau/color-thief-php": "^1.4",
         "laravel/framework": "^8.0",
-        "laravel/passport": "^10.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.0",

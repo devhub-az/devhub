@@ -11,7 +11,7 @@
                 <span class="my-auto xs:hidden bg-gray-300 w-1/12 h-4 rounded ml-0.5"></span>
             </div>
             <div class="grid grid-flow-col py-2">
-                <div class="bg-gray-300 w-2/6 h-5 my-2 rounded"></div>
+                <div class="bg-gray-300 w-2/6 h-5 my-2 rounded xs:w-full"></div>
                 <div class="ml-auto text-2xl xs:text-xl">
                     <span class="mdi mdi-thumb-up-outline"/>
                     <span><i class="mdi mdi-spin mdi-loading"/></span>
@@ -24,10 +24,10 @@
                 <div class="border border-gray-400 rounded h-4 my-2 w-12 ml-2"></div>
                 <div class="border border-gray-400 rounded h-4 my-2 w-16 ml-2"></div>
             </div>
-            <div class="bg-gray-300 w-3/6 h-4 my-2 rounded"></div>
-            <div class="bg-gray-300 w-4/6 h-4 my-2 rounded"></div>
-            <div class="bg-gray-300 w-3/6 h-4 my-2 rounded"></div>
-            <div class="bg-gray-300 w-4/6 h-4 my-2 rounded"></div>
+            <div class="bg-gray-300 w-3/6 h-4 my-2 rounded xs:hidden"></div>
+            <div class="bg-gray-300 w-4/6 h-4 my-2 rounded xs:hidden"></div>
+            <div class="bg-gray-300 w-3/6 h-4 my-2 rounded xs:hidden"></div>
+            <div class="bg-gray-300 w-4/6 h-4 my-2 rounded xs:hidden"></div>
         </div>
         <div class="grid lg:grid-cols-main md:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
             <div class="xs:flex xs:justify-between">

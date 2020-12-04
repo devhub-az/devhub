@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\Models\Post;
+use App\Models\Article;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +19,9 @@ class PostNotify extends Notification
     /**
      * Create a new notification instance.
      *
-     * @param Post $post
+     * @param Article $post
      */
-    public function __construct(Post $post)
+    public function __construct(Article $post)
     {
         $this->post = $post;
     }

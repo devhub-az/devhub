@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
+use App\Models\Article;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
 use Carbon\Carbon;
@@ -17,8 +17,8 @@ class ArticleController extends Controller
      */
     public function index(): ArticlesResource
     {
-        return new ArticlesResource(Post::with(['creator', 'comments.author'])->withcount('upvoters', 'downvoters',
-            'voters', 'views', 'bookmarkers', 'comments')->orderBy('created_at',
+        return new ArticlesResource(Article::with(['creator'])->withcount('upvoters', 'downvoters',
+            'voters', 'views', 'bookmarkers')->orderBy('created_at',
             'DESC')->take(50)->paginate(5));
     }
 
@@ -30,7 +30,7 @@ class ArticleController extends Controller
      */
     public function show($id): ArticleResource
     {
-        $post = Post::find($id);
+        $post = Article::find($id);
 
         if (is_null($post)) {
             return $this->sendError('Post not found.');
@@ -45,7 +45,7 @@ class ArticleController extends Controller
      */
     public function posts(): ArticlesResource
     {
-        return new ArticlesResource(Post::withcount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
+        return new ArticlesResource(Article::withcount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
             ->orderByRaw('(upvoters_count - downvoters_count) DESC')
             ->orderBy('created_at',
                 'DESC')->where(

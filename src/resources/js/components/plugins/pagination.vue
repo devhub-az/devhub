@@ -1,5 +1,5 @@
 <template>
-    <nav class="relative z-0 inline-flex shadow-sm -space-x-px xs:mx-auto xs:flex xs:justify-center" role="navigation"
+    <nav class="relative z-0 inline-flex xs:mx-auto xs:flex xs:justify-center" role="navigation"
          aria-label="pagination">
         <a class="relative inline-flex items-center cursor-pointer px-2 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50"
            @click.prevent="changePage(pagination.current_page - 1)" :disabled="pagination.current_page <= 1">

@@ -18,7 +18,7 @@ class DevHubInstall extends Command
      *
      * @var string
      */
-    protected $description = 'Install the devhub';
+    protected $description = 'Install DevHub';
 
     /**
      * Execute the console command.
@@ -27,9 +27,12 @@ class DevHubInstall extends Command
      */
     public function handle()
     {
+        $this->execShellWithPrettyPrint('cp .env.example .env1');
+        $this->execShellWithPrettyPrint('composer install');
+        $this->execShellWithPrettyPrint('npm install');
         $this->execShellWithPrettyPrint('php artisan key:generate');
         $this->execShellWithPrettyPrint('php artisan migrate --seed');
-        $this->execShellWithPrettyPrint('php artisan storage:link');
+        $this->execShellWithPrettyPrint('npm run production');
     }
 
     /**

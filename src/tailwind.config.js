@@ -39,6 +39,7 @@ module.exports = {
                 DEFAULT: '#ff49db',
                 dark: '#ff16d1',
             },
+            green: colors.green,
             gray: colors.gray,
             border: {
                 DEFAULT: '#222226',

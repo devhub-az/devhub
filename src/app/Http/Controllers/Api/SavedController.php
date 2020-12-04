@@ -7,7 +7,7 @@ use App\Http\Resources\CommentsResource;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostsCollection;
 use App\Models\Comment;
-use App\Models\Post;
+use App\Models\Article;
 
 
 class SavedController extends Controller
@@ -20,7 +20,7 @@ class SavedController extends Controller
     function allPosts()
     {
         $fav = \Auth::user()->getPostsIds();
-        return new PostsCollection(Post::whereIn('id',$fav)
+        return new PostsCollection(Article::whereIn('id',$fav)
             ->take(50)
             ->paginate(5));
     }
