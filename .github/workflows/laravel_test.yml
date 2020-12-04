@@ -80,4 +80,3 @@ jobs:
       - run: npm install
         working-directory: ./src
       - run: npm run production
-        working-directory: ./src
