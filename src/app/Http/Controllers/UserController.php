@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserCollection;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public UserCollection $auth_user;
+    public UserResource $auth_user;
 
     public function __construct()
     {
-        $this->auth_user = new UserCollection(Auth::user());
+        $this->auth_user = new UserResource(Auth::user());
     }
 
     public function showPosts($username)

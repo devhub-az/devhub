@@ -1,18 +1,40 @@
 <template>
-    <div class="post-votes"
+    <div class="ml-auto pl-2 text-2xl xs:text-xl"
          :aria-label="posts.attributes.votes_sum + ':  ↑ ' + [posts.attributes.upvotes === 0 ? '0' : posts.attributes.upvotes ] + ' ↓ ' + [posts.attributes.downvotes === 0 ? '0' :posts.downvotes]"
          data-balloon-pos="left">
-        <span class="mdi mdi-thumb-up-outline" :class="{upvoted: posts.attributes.upvoted}"
+        <span class="mdi mdi-thumb-up-outline hover:text-green-600" :class="{'text-green-600': posts.attributes.upvoted}"
               @click="upvote(posts.id)"/>
         <span :style="{color: colorStatus}" class="rating">
             {{ posts.attributes.votes }}
         </span>
-        <span class="mdi mdi-thumb-down-outline" :class="{downvoted: posts.attributes.downvoted}"
+        <span class="mdi mdi-thumb-down-outline hover:text-red-600" :class="{'text-red-600': posts.attributes.downvoted}"
               @click="downvote(posts.id)"/>
     </div>
 </template>
 
 <script>
+import axios from "axios"
+import Noty from 'noty'
+
+Noty.overrideDefaults({
+    layout: 'topLeft',
+    dismissQueue: true,
+    force: false,
+    maxVisible: 5,
+
+
+    timeout: 3000,
+    progressBar: false,
+
+    animation: {
+        open: 'animated fadeInLeft',
+        close: 'animated fadeOutLeft'
+    },
+    closeWith: ['click'],
+
+    buttons: false
+});
+
 export default {
     props: ['posts', 'auth_check'],
     data: function () {
@@ -26,11 +48,11 @@ export default {
     },
     async created() {
         if (this.posts.attributes.votes > 0) {
-            this.colorStatus = 'var(--color-primary-main)';
+            this.colorStatus = 'text-green-600';
         } else if (this.posts.attributes.votes === 0) {
             this.colorStatus = 'inherit';
         } else if (this.posts.attributes.votes < 0) {
-            this.colorStatus = 'var(--color-error-main)';
+            this.colorStatus = 'text-red-600';
         }
         if (this.auth_check === 1) {
             this.vote_status = false;
@@ -50,11 +72,14 @@ export default {
                         change_rating: '1',
                         status: 'upvote',
                     }).then(response => {
-
                         new Noty({
                             type: 'success',
                             text: '<div class="notification-image"><i class="mdi mdi-thumb-up-outline"></i></div> Səs verildi',
                         }).show();
+                        this.posts.attributes.upvoted = true;
+                        upvotes++;
+                        votes_sum++;
+                        vote++;
                     })
                         .catch(error => {
                             new Noty({
@@ -63,10 +88,6 @@ export default {
                             }).show();
                             throw new Error("end of pagination")
                         });
-                    this.posts.attributes.upvoted = true;
-                    upvotes++;
-                    votes_sum++;
-                    vote++;
                 } else if (this.posts.attributes.upvoted === true && this.posts.attributes.downvoted === false) {
                     axios.post('/upvote', {
                         id: id,
@@ -230,3 +251,7 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+@import "~noty/src/noty.scss";
+</style>

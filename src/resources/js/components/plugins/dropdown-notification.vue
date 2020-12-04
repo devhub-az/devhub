@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative m-auto">
         <span
                 class="flex items-center"
                 style="background: none;"
@@ -11,7 +11,7 @@
                 @keydown.down.exact.prevent="startArrowKeys"
                 v-if="count == 0"
         >
-            <span class="mdi mdi-bell badge"></span>
+            <span class="mdi mdi-bell badge cursor-pointer text-gray-100"></span>
         </span>
         <span
                 class="flex items-center"
@@ -24,7 +24,7 @@
                 @keydown.down.exact.prevent="startArrowKeys"
                 v-if="count > 0"
         >
-            <span class="mdi mdi-bell badge" :data-badge="count"></span>
+            <span class="mdi mdi-bell badge cursor-pointer text-gray-100" :data-badge="count"></span>
         </span>
         <transition name="dropdown-fade">
             <ul v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"

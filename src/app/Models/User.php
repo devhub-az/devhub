@@ -8,6 +8,7 @@ use App\Http\Traits\Can\CanFollow;
 use App\Http\Traits\Can\CanVote;
 use App\Http\Traits\PermissionManager;
 use Eloquent;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -20,7 +21,7 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
  */
 class User extends Authenticatable
 {
-    use Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote, HasRolesAndAbilities;
+    use Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote, HasRolesAndAbilities, HasFactory;
 
     protected $visible = [
         'id',
@@ -54,9 +55,9 @@ class User extends Authenticatable
      * Get Posts where user is author with hubs(function in post model)
      * @return HasMany
      */
-    public function posts(): HasMany
+    public function articles(): HasMany
     {
-        return $this->hasMany(Post::class, 'author_id')->with('hubs');
+        return $this->hasMany(Article::class, 'author_id')->with('hubs');
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Traits;
 
-use App\Models\Post;
+use App\Models\Article;
 
 /**
  * Class PermissionManager

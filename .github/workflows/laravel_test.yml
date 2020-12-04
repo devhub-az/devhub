@@ -1,9 +1,9 @@
 # GitHub Action for Laravel with MySQL and Redis
-name: Testing Laravel with MySQL
+name: Testing Laravel with MySQL and Node js
 on: [push, pull_request]
 jobs:
   laravel:
-    name: Laravel (PHP ${{ matrix.php-versions }})
+    name: Laravel (PHP ${{ matrix.php-versions }}, Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
     env:
       DB_DATABASE: laravel

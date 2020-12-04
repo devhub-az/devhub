@@ -1,7 +1,7 @@
 <template>
-    <div class="post__hubs">
+    <div class="flex">
         <div v-for="hub in data">
-            <div class="hub popup-hub" :class="{'active_hub': hub.follower_check, 'popup-active': hub.hover}"
+            <div class="border rounded text-sm cursor-pointer px-2 mr-2 hover:border-blue" :class="(hub.follower_check ? 'border-blue ' : 'border-gray-400 ') + (hub.hover ? 'popup-active': '')"
                  @mouseover="hub.hover = true"
                  @mouseleave="hub.hover = false">
                 {{ hub.name }}
@@ -14,7 +14,7 @@
                                 <h4><a :href="'/hubs/' + hub.id">{{ hub.name }}</a></h4>
                             </div>
                             <p>{{ hub.description }}</p>
-                            <hub-follow-button :hub="hub" :auth_check="auth_check" class="tag__block-follow"/>
+                            <hub-follow-button :hub="hub" :auth_check="auth_check" class="button w-max"/>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@ export default {
 .tag {
 
     &__container {
-        background-color: var(--background-tertiary);
+        background-color: white;
         border: 1px solid var(--color-border);
         border-radius: 5px;
         color: var(--text-black-primary);
@@ -101,12 +101,11 @@ export default {
 
 .popup-active > .tag__popup {
     position: absolute;
-    left: 50%;
     transform: translateX(-50%);
     width: 320px;
     z-index: 99;
     padding: 12px;
-    transition: all .2s ease;
+    transition: all 0.2s ease;
 
     h3 {
         margin: 4px 0 8px;
@@ -114,7 +113,7 @@ export default {
 }
 
 .popup-active > .tooltip-balloon {
-    background-color: var(--background-tertiary);
+    background-color: white;
     border: 1px solid var(--color-border);
     border-radius: 5px;
     padding: 16px;

@@ -30,7 +30,7 @@ class PostCollection extends JsonResource
             'title'          => $this->name,
             'body_short'     => Str::words($body, 150, ''),
             'body'           => $body,
-            'creator'        => new UserCollection(User::where('id',
+            'creator'        => new UserResource(User::where('id',
                 $this->creator->id)->withCount('followers')->firstOrFail()),
             'votes'          => $this->upvoters_count - $this->downvoters_count,
             'votes_sum'      => $this->voters_count,

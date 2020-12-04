@@ -2,38 +2,29 @@
 
 namespace Database\Seeders;
 
-use Faker\Factory;
+use App\Models\Article;
+use App\Models\Hub;
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Hash;
 
 class UserTableSeeder extends Seeder
 {
-    /**
-     * ArticlesSeeder constructor.
-     */
-    public function __construct()
-    {
-        $this->faker = Factory::create('ru_RU');
-    }
-
     public function run()
     {
-        User::truncate();
-
         $user = User::create([
-            'username' => 'admin',
-            'email'    => 'admin@admin.com',
-            'password' => Hash::make('admin12345'),
+            'username'   => config('devhub.admin_name'),
+            'email'      => config('devhub.admin_email'),
+            'password'   => Hash::make(config('devhub.admin_password')),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
         ]);
-        $user->assign('admin');
-
-        foreach (range(0, 50) as $i) {
-            $user = User::create([
-                'username' => $this->faker->userName,
-                'email'    => $this->faker->email,
-                'password' => Hash::make((string)random_int(0, PHP_INT_MAX)),
-            ]);
-        }
+        User::factory()
+            ->count(30)
+            ->has(
+                Article::factory()
+                    ->count(3)
+            )->create();
     }
 }

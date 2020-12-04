@@ -1,46 +1,56 @@
 const mix = require('laravel-mix');
+const webpack = require('webpack');
 
-require('laravel-mix-purgecss');
+mix.disableNotifications();
 
-mix.webpackConfig({
-    output: {
-        chunkFilename: mix.config.production ? 'js/[name].[chunkhash].js' : 'js/[name].js',
-        publicPath: '/'
+let config = {
+    resolve: {
+        modules: [
+            'node_modules',
+            path.resolve(__dirname, "resources")
+        ]
     },
-});
+    plugins: [
+        new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+    ]
+}
 
-mix.setResourceRoot('./');
+if (!process.argv.includes('--hot')) {
+    config = Object.assign(config, {
+        output: {
+            publicPath: "/",
+            chunkFilename: 'js/[name].[chunkhash].js'
+        }
+    })
+}
 
-mix.copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.ttf', 'public/fonts/')
-    .copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff', 'public/fonts/')
-    .copy('node_modules/@mdi/font/fonts/materialdesignicons-webfont.woff2', 'public/fonts/')
-    // JS
-    .js('resources/js/app.js', 'public/js/', {
-        sourceMap: true,
-        // outputStyle: mix.inProduction ? 'compressed' : 'expanded',
-    }).sourceMaps()
-    .js('resources/js/login.js', 'public/js/', {
-        sourceMap: true,
-        // outputStyle: mix.inProduction ? 'compressed' : 'expanded',
-    }).sourceMaps()
-    // CSS
-    .sass('resources/sass/app.scss', 'public/css', {
-        sourceMap: true,
-        // outputStyle: mix.inProduction ? 'compressed' : 'expanded',
-    }).sourceMaps()
-    .sass('resources/sass/login.scss', 'public/css', {
-        sourceMap: true,
-        // outputStyle: mix.inProduction ? 'compressed' : 'expanded',
-    }).sourceMaps()
-    .options({
-        processCssUrls: false,
-    }).sourceMaps()
-    .disableNotifications();
+mix.webpackConfig(config)
 
-// mix.disableNotifications();
+// let vendor = [
+//     'resources/js/vendor/particles.min.js',
+//     'resources/js/vendor/particles.settings.js',
+//     'resources/js/vendor/quill-custom.js',
+//     'resources/js/vendor/scroll.js',
+//     'resources/js/vendor/search.js',
+// ];
+//
+// vendor.forEach((item) => {
+//     mix.js(item, 'public/js/vendor')
+// })
+
+mix.js('resources/js/app.js', 'public/js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .js('resources/js/pages/home.js', 'public/js')
+    .js('resources/js/includes/header.js', 'public/js')
+    .js('resources/js/login.js', 'public/js')
+    .sass('resources/sass/login.scss', 'public/css')
+    .postCss("resources/sass/tailwind.css", "public/css", [
+        require("tailwindcss"),
+    ])
+    .postCss("resources/sass/vendor/balloon.css", "public/css")
 
 if (mix.inProduction()) {
-    mix.version();
-} else {
-    mix.sourceMaps(true, "source-map");
+    mix.version()
 }
+
+

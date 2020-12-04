@@ -8,7 +8,7 @@ use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\PostsCollection;
 use App\Http\Resources\PostShowCollection;
 use App\Models\Hub;
-use App\Models\Post;
+use App\Models\Article;
 use App\Services\PostService;
 use Carbon\Carbon;
 use Exception;
@@ -52,7 +52,7 @@ class PostController extends Controller
      */
     public function posts(): ArticlesResource
     {
-        return new ArticlesResource(Post::withcount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
+        return new ArticlesResource(Article::withcount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
             ->orderByRaw('(upvoters_count - downvoters_count) DESC')
             ->orderBy('created_at',
                 'DESC')->where(
@@ -69,7 +69,7 @@ class PostController extends Controller
     public function all(): PostsCollection
     {
         return Cache::rememberForever('posts.all', function () {
-            return new ArticlesResource(Post::with(['creator', 'comments.author'])->take(50)->paginate(5));
+            return new ArticlesResource(Article::with(['creator', 'comments.author'])->take(50)->paginate(5));
         });
     }
 
@@ -84,7 +84,7 @@ class PostController extends Controller
         $userPostIds = $this->favoriteIds($users);
         $postIds = array_merge($hubPostIds, $userPostIds);
         return new PostsCollection(
-            Post::whereIn('id', $postIds)
+            Article::whereIn('id', $postIds)
                 ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
                 ->take(50)
                 ->orderBy('created_at', 'DESC')
@@ -114,7 +114,7 @@ class PostController extends Controller
     public function show(int $id): PostShowCollection
     {
         return new PostShowCollection(
-            Post::with('creator:id,username')
+            Article::with('creator:id,username')
                 ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')->findorfail($id)
 
         );

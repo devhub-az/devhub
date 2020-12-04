@@ -1,47 +1,61 @@
 <template>
-    <div class="post-content__item">
-        <div class="post__meta">
-            <div style="background-color:#E2E2E2"
-                 class="user__avatar MuiSkeleton-root MuiSkeleton-rect MuiSkeleton-pulse"></div>
-            <div class="user-info__nickname MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                 style="width: 20%; height: 1.2rem;"></div>
-            <span class="post__read-time MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                  style="width: 10%; height: 1.2rem;"/>
-        </div>
-        <div class="post-content__header">
-            <div class="post-title MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                 style="width: 60%"></div>
-            <div class="post-votes">
-                <i class="mdi mdi-thumb-up-outline"/>
-                <span><i class="mdi mdi-spin mdi-loading"/></span>
-                <i class="mdi mdi-thumb-down-outline"/>
+    <div class="w-full mb-3 rounded bg-white border animate-pulse">
+        <div class="px-3.5">
+            <div class="flex align-middle pt-3">
+                <div class="inline-flex no-underline">
+                    <div class="w-6 h-6 flex-none bg-gray-300 rounded"></div>
+                    <span class="text-sm pl-2 m-auto bg-gray-300 w-2/6"></span>
+                </div>
+                <div class=" my-auto mr-auto pl-2 bg-gray-300 w-1/6 h-4 my-2 rounded"></div>
+                <span class="mdi mdi-clock-outline ml-auto"/>
+                <span class="my-auto xs:hidden bg-gray-300 w-1/12 h-4 rounded ml-0.5"></span>
             </div>
+            <div class="grid grid-flow-col py-2">
+                <div class="bg-gray-300 w-2/6 h-5 my-2 rounded xs:w-full"></div>
+                <div class="ml-auto text-2xl xs:text-xl">
+                    <span class="mdi mdi-thumb-up-outline"/>
+                    <span><i class="mdi mdi-spin mdi-loading"/></span>
+                    <span class="mdi mdi-thumb-down-outline"/>
+                </div>
+            </div>
+            <div class="flex">
+                <div class="border border-gray-400 rounded h-4 my-2 w-12"></div>
+                <div class="border border-gray-400 rounded h-4 my-2 w-16 ml-2"></div>
+                <div class="border border-gray-400 rounded h-4 my-2 w-12 ml-2"></div>
+                <div class="border border-gray-400 rounded h-4 my-2 w-16 ml-2"></div>
+            </div>
+            <div class="bg-gray-300 w-3/6 h-4 my-2 rounded xs:hidden"></div>
+            <div class="bg-gray-300 w-4/6 h-4 my-2 rounded xs:hidden"></div>
+            <div class="bg-gray-300 w-3/6 h-4 my-2 rounded xs:hidden"></div>
+            <div class="bg-gray-300 w-4/6 h-4 my-2 rounded xs:hidden"></div>
         </div>
-        <div class="post__hubs">
-            <div class="hub" v-for="tags in Math.ceil(Math.random()* (5 - 3)) + 3"
-                 :style="{width: Math.ceil(Math.random()* (5 - 3)) + 3 + '%'}" style="height: 18px"></div>
-        </div>
-        <div class="post-content__body">
-            <div v-for="text in Math.ceil(Math.random()* (6 - 3 +1)) + 3"
-                 :style="{width: Math.floor(Math.random()* (100 - 50 +1)) + 50 +'%'}"
-                 class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"></div>
-        </div>
-        <div class="post-content__footer">
-            <div class="post-content__footer-stats">
-                <span class="footer_item">
-                    <span class="mdi mdi-eye-outline"/> <i class="mdi mdi-spin mdi-loading"/> Baxışların sayı
+        <div class="grid lg:grid-cols-main md:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
+            <div class="xs:flex xs:justify-between">
+                <span>
+                    <i class="mdi mdi-eye-outline"/>
+                    <i class="mdi mdi-spin mdi-loading"/>
+                    <span class="xs:hidden">Baxışların sayı</span>
                 </span>
-                <span class="footer_item">
-                    <span class="mdi mdi-comment-text-multiple-outline"/> <i class="mdi mdi-spin mdi-loading"/> Şerh
+                <span class="pl-1">
+                    <i class="mdi mdi-comment-text-multiple-outline"/>
+                    <i class="mdi mdi-spin mdi-loading"/>
+                    <span class="xs:hidden">Şerh</span>
                 </span>
-                <span class="footer_item">
-                    <span class="mdi mdi-bookmark"/> <i class="mdi mdi-spin mdi-loading"/> Seçilmiş
+                <span>
+                    <i class="mdi mdi-bookmark"/>
+                    <i class="mdi mdi-spin mdi-loading"/>
+                    <span class="xs:hidden">Seçilmiş</span>
                 </span>
-                <span class="footer_item">
-                    <span class="mdi mdi-share"/> Paylaş
+                <span class="pl-1">
+                    <i class="mdi mdi-share"/>
+                    <span class="xs:hidden">Paylaş</span>
                 </span>
             </div>
-            <div class="progress default" style="width: 100%"></div>
+            <div class="xs:hidden block">
+                <div class="m-auto bg-gray-300">
+                    <div class="absolute h-1 bg-blue inset-y-1/2 rounded"></div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Hub;
-use App\Models\Post;
+use App\Models\Article;
 use App\Http\Resources\ArticlesResource;
 use Auth;
 use Carbon\Carbon;
@@ -48,13 +48,13 @@ class ArticleTopController extends Controller
      */
     public function posts(): ArticlesResource
     {
-        return new ArticlesResource(Post::withcount([
+        return new ArticlesResource(Article::withcount([
             'upvoters',
             'downvoters',
             'voters',
             'views',
             'bookmarkers',
-            'comments'
+//            'comments'
         ])
             ->orderByRaw('(upvoters_count - downvoters_count) DESC')
             ->orderBy('created_at',
@@ -76,7 +76,7 @@ class ArticleTopController extends Controller
         $userPostIds = $this->favoriteIds($users);
         $postIds = array_merge($hubPostIds, $userPostIds);
         return new ArticlesResource(
-            Post::whereIn('id', $postIds)
+            Article::whereIn('id', $postIds)
                 ->withCount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
                 ->take(50)
                 ->orderBy('created_at', 'DESC')

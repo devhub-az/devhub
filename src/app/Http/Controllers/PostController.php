@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostCollection;
 use App\Models\Hub;
-use App\Models\Post;
+use App\Models\Article;
+use App\Models\User;
 use App\Notifications\PostNotify;
 use DB;
 use Exception;
@@ -55,7 +56,7 @@ class PostController extends Controller
         ]);
 
         DB::transaction(function () use ($request) {
-            $share = new Post([
+            $share = new Article([
                 'name'      => $request->get('title'),
                 'body'      => $request->get('body'),
                 'author_id' => Auth::user()->id,
@@ -81,9 +82,24 @@ class PostController extends Controller
      */
     public function show(Request $request, int $id): view
     {
-        $post = new PostCollection(Post::findorfail($id));
+        $post = new PostCollection(Article::findorfail($id));
 
         return view('pages.posts.show', ['post' => $post->toResponse($request)->getData()->data]);
+    }
+
+    public function postVoteComment(Request $request, $type)
+    {
+        $this->validate($request, [
+            'id' => 'required|exists:comments,id',
+        ]);
+
+        $user = $request->user();
+
+        $post = Article::findOrFail($request->id);
+
+        ($type === 'upvote') ? User::upOrDownVote($user, $post) : User::upOrDownVote($user, $post, 'downvote');
+
+        return $this->response->withNoContent();
     }
 
     /**
@@ -153,7 +169,7 @@ class PostController extends Controller
             'vote' => 'required|int',
         ]);
 
-        $post = Post::findOrFail($request->get('id'));
+        $post = Article::findOrFail($request->get('id'));
 
         return $this->postRatingChanger($post, $request);
     }
@@ -168,7 +184,7 @@ class PostController extends Controller
         $request->validate([
             'id' => 'required|int',
         ]);
-        $share = Post::findOrFail($request->get('id'));
+        $share = Article::findOrFail($request->get('id'));
         if (\Auth::user()) {
             $user = \Auth::user();
             if (isset($share) && !$user->hasBookmarked($share)) {

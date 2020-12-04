@@ -6,12 +6,13 @@
     <div class="container">
         <div class="login">
             <div class="login__left">
-                @include('auth.import.left_side')
-                <div id="particles-js"></div>
+                {{--                @include('auth.import.left_side')--}}
+                {{--                <div id="particles-js"></div>--}}
             </div>
             <div class="login__right" id="app">
                 <div class="ColumnContainer mode-auth">
-                    <a href="{{ route('home') }}" class="logo_login">DevHub</a>
+                    <a href="{{ route('home') }}"
+                       class="text-black text-2xl pr-2 font-bold hover:text-gray-200 md:text-2xl m-auto">DevHub</a>
                     <login></login>
                 </div>
                 <div class="login__footer">

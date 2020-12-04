@@ -3,12 +3,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#1d1d1d">
-<meta name="apple-touch-startup-image" content="{{ asset('favicon/favicon-16x16.png') }}">
-<link rel="apple-touch-icon" href="{{ asset('favicon/favicon-16x16.png') }}">
+<meta name="apple-touch-startup-image" content="{{ asset('images/favicon/favicon-16x16.png') }}">
+<link rel="apple-touch-icon" href="{{ asset('images/favicon/favicon-16x16.png') }}">
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<meta name="msapplication-TileImage" content="{{ asset('favicon/favicon-16x16.png') }}">
+<meta name="msapplication-TileImage" content="{{ asset('images/favicon/favicon-16x16.png') }}">
 <meta name="msapplication-TileColor" content="#1d1d1d">
 <meta name="msapplication-navbutton-color" content="#1d1d1d">
 <meta name="theme-color" content="#1d1d1d">

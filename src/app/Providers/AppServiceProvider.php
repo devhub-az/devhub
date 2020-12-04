@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Comment;
-use App\Models\Post;
+use App\Models\Article;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         Relation::morphMap([
-            'posts'    => Post::class,
+            'posts'    => Article::class,
             'comments' => Comment::class,
             'users'    => User::class,
             'hubs'     => Hub::class,
