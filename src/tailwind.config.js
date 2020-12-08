@@ -33,6 +33,7 @@ module.exports = {
                 dark: '#115293',
                 button: '#3d84a8',
             },
+            blue_def:colors.blue,
             white: colors.white,
             pink: {
                 light: '#ff7ce5',

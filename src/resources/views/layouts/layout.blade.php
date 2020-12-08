@@ -57,6 +57,6 @@
 {{--<script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>--}}
 {{--<script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>--}}
 {{--<script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>--}}
-@yield('scripts')
+@stack('scripts')
 </body>
 </html>

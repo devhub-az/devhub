@@ -12,33 +12,26 @@ use Illuminate\Http\Request;
 
 class ArticleTopController extends Controller
 {
-    private static int $count;
-    /**
-     * @var int
-     */
-//    private int $count;
-
-    private int $day = 1;
-
-    private int $week = 7;
-
-    private int $month = 30;
+    private static $count;
 
     /**
      * PostController constructor.
      * @param Request $request
+     * @param int $day
+     * @param int $week
+     * @param int $month
      */
-    public function __construct(Request $request)
+    public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
     {
         switch ($request->segment(3)) {
             case 'day':
-                self::$count = $this->day;
+                self::$count = $day;
                 break;
             case 'week':
-                self::$count = $this->week;
+                self::$count = $week;
                 break;
             case 'month':
-                self::$count = $this->month;
+                self::$count = $month;
                 break;
         }
     }

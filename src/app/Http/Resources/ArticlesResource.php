@@ -56,7 +56,7 @@ class ArticlesResource extends ResourceCollection
         return $included->map(
             function ($include) {
                 if ($include instanceof User) {
-                    return new UserResource($include);
+                    return new AuthorResource($include);
                 }
                 if ($include instanceof Comment) {
                     return new CommentResource($include);

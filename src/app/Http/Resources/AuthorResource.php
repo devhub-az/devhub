@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
-class UserResource extends JsonResource
+class AuthorResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -26,7 +26,7 @@ class UserResource extends JsonResource
                 'about'                => $this->about,
                 'karma'                => $this->karma,
                 'rating'               => $this->rating,
-                'posts_count'          => $this->posts_count,
+                'articles_count'          => $this->articles_count,
                 'follower'             => $this->statusCheck(),
                 'user_followers_count' => $this->followers_count,
             ],

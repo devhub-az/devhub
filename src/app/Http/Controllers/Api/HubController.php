@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\HubResource;
-use App\Http\Resources\HubsResource;
+use App\Http\Resources\AuthorsResource;
 use App\Models\Hub;
 
 class HubController extends Controller
@@ -12,19 +12,14 @@ class HubController extends Controller
 
     public function index()
     {
-        return new HubsResource(Hub::paginate());
+        return new AuthorsResource(Hub::paginate());
     }
 
     public function show($id)
     {
-        $hub = Hub::find($id);
-
-        if (is_null($hub)) {
-            return $this->sendError('Post not found.');
-        }
         HubResource::withoutWrapping();
 
-        return new HubResource($hub);
+        return new HubResource(Hub::findorfail($id));
     }
 
     public function search_hub_by_key()
@@ -32,7 +27,7 @@ class HubController extends Controller
         $key = \Request::get('q');
         $hub = Hub::where('name','LIKE',"%{$key}%")->paginate();
 
-        return new HubsResource($hub);
+        return new AuthorsResource($hub);
     }
 }
 

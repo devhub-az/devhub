@@ -70,7 +70,7 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty" class="bg-white rounded border text-center grid gap-2 p-5">
+        <div v-else-if="postsEmpty" class="bg-white rounded border text-center grid gap-2 p-5 pt-0">
             <span class="opacity-75" style="font-size: 5rem">
                 <i class="mdi mdi-comment-edit-outline"/>
             </span>

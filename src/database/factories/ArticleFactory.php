@@ -24,7 +24,7 @@ class ArticleFactory extends Factory
         return [
             'author_id' => $this->faker->numberBetween(1, 49),
             'name'      => $this->faker->sentence(),
-            'body'      => $this->faker->paragraph(50),
+            'body'      => $this->faker->text(1000)
         ];
     }
 }

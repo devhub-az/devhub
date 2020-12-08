@@ -15,8 +15,6 @@ class Hub extends Model
 {
     use CanBeFollowed;
 
-    protected $table = 'hubs';
-
     protected $fillable = [
         'name',
     ];

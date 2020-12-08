@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AuthorsResource;
 use App\Http\Resources\PostsCollection;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\AuthorResource;
 use App\Http\Resources\UsersCollection;
 use App\Models\Article;
 use App\Models\User;
@@ -13,21 +14,37 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
-class UserController extends Controller
+class AuthorController extends Controller
 {
-    public function users(): AnonymousResourceCollection
+    /**
+     * @return AnonymousResourceCollection
+     */
+    public function index(): AnonymousResourceCollection
     {
-        return UserResource::collection(User::select(['id', 'name', 'username', 'avatar', 'about', 'karma',
-            'rating'])->withCount('posts', 'followers')->paginate(12));
+        return AuthorResource::collection(User::select([
+            'id',
+            'name',
+            'username',
+            'avatar',
+            'about',
+            'karma',
+            'rating'
+        ])->withCount('articles', 'followers')->paginate(12));
+    }
+
+    public function show(int $id)
+    {
+        AuthorResource::withoutWrapping();
+        return new AuthorResource(User::findOrFail($id)->withCount('articles'));
     }
 
     /**
      * @param int $id
-     * @return UserResource
+     * @return AuthorResource
      */
     public function userFollowCheck(int $id)
     {
-        return new UserResource(User::findorfail($id));
+        return new AuthorResource(User::findorfail($id));
     }
 
     /**
@@ -82,5 +99,17 @@ class UserController extends Controller
             return response()->json(['success' => 'success'], 200);
         }
         return response()->json(['success' => 'success'], 500);
+    }
+
+    /**
+     * @return AuthorsResource
+     */
+    public function search_user_by_key(): AuthorsResource
+    {
+        $key = \Request::get('q');
+        $user = User::where('username', 'LIKE', "%{$key}%")->orWhere('name', 'LIKE',
+            "%{$key}%")->withCount('articles')->paginate();
+
+        return new AuthorsResource($user);
     }
 }

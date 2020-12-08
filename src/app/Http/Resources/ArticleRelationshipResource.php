@@ -21,7 +21,7 @@ class ArticleRelationshipResource extends JsonResource
 //                    'self'    => route('articles.relationships.author', ['article' => $this->id]),
 //                    'related' => route('articles.author', ['article' => $this->id]),
                 ],
-                'data'  => new UserResource($this->creator),
+                'data'  => new AuthorResource($this->creator),
             ],
 //            'comments' => (new ArticleCommentsRelationshipResource($this->comments))->additional(['article' => $this]),
             'hubs' => (new ArticleHubsRelationshipResource($this->hubs))->additional(['article' => $this]),

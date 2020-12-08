@@ -1,9 +1,11 @@
 <template>
     <div>
-        <div class="search" id="hide">
+        <div class="pb-2 relative" id="hide">
             <input type="text" placeholder="Hab axtar" v-model="search"
-                   class="search__input" @keyup.enter="searchUnit">
-            <span class="mdi mdi-magnify search__logo" @click="searchUnit"></span>
+                   class="block w-full p-2 border hover:border-blue focus:outline-none focus:border-blue focus:border-transparent"
+                   @keyup.enter="searchUnit">
+            <span class="mdi mdi-magnify absolute translate-y-1/2 top-0 p-2 pr-4 cursor-pointer right-0"
+                  @click="searchUnit"></span>
         </div>
         <!--        <span v-for="column in columns[1]" :key="column" @click="sortByColumn(column)"-->
         <!--              class="table-head">-->
@@ -13,44 +15,39 @@
         <!--                <i v-else class="fas fa-arrow-down"></i>-->
         <!--            </span>-->
         <!--        </span>-->
+        <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
-             class="list-hubs__hub" :id="hub.id + '_block'">
+             class="flex gap-4 border mb-2 p-2 bg-white" :id="hub.id + '_block'">
             <!--             :style="'border-left: 3px solid rgb(' + hub.border + ')'"-->
-            <img :id="hub.id" v-if="hub.attributes.logo" class="list-hubs__hub-image" v-lazy="'/' + hub.attributes.logo"
-                 alt="">
-            <img :id="hub.id" v-if="!hub.attributes.logo" class="list-hubs__hub-image" src="/images/empty/code.png"
-                 alt="">
-            <a :href="'/hubs/' + hub.id">
-                <div class="list-hubs__obj-body">
-                    <div class="list-hubs__title-link">{{ hub.attributes.name }}</div>
-                    <div class="list-hubs__desc">{{ hub.attributes.description }}</div>
-                    <div class="list-hubs__posts">
+            <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
+                 alt="Hub logo">
+            <a :href="'/hubs/' + hub.id" class="w-8/12">
+                <h2 class="font-semibold">{{ hub.attributes.name }}</h2>
+                <p class="text-sm w-full pb-2 xs:text-xs">{{ hub.attributes.description }}</p>
+                <div class="flex">
+                    <div class="text-sm">
                         <i class="mdi mdi-text-box-multiple"></i>
                         Paylaşım {{ hub.attributes.posts_count }}
                     </div>
                 </div>
             </a>
-            <div class="list-hubs__stats">
-                <div class="list-hubs__stats-value">{{ hub.attributes.hub_followers_count }}</div>
-                <small>IZLƏYƏNLƏR</small>
+            <div class="w-1/12 m-auto text-center xs:hidden">
+                <div class="font-semibold">{{ hub.attributes.hub_followers_count }}</div>
+                <p class="text-sm">IZLƏYƏNLƏR</p>
             </div>
-            <div class="list-hubs__stats">
-                <div class="list-hubs__stats-value">{{ hub.attributes.rating }}</div>
-                <small>
-                    REYTINQ
-                </small>
+            <div class="w-1/12 m-auto text-center xs:hidden">
+                <div class="font-semibold">{{ hub.attributes.rating }}</div>
+                <p class="text-sm">REYTINQ</p>
             </div>
-            <hub-follow-button :hub="hub" :auth_check="auth_check"/>
+            <hub-follow-button :hub="hub" :auth_check="auth_check" class="w-2/12 m-auto text-center"/>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>
-        <hubs-loading v-else-if="loading" :loading="loading"/>
-        <div v-else-if="hubsEmpty" class="post-content__item"
-             style="text-align: center; display: grid; grid-gap: 12px; padding: 24px; margin: 1% 0;">
-            <span style="font-size: 5rem; opacity: .7;">
+        <div v-else-if="hubsEmpty" class="bg-white rounded border text-center grid gap-2 p-5 pt-0">
+            <span class="opacity-75" style="font-size: 5rem">
                 <i class="mdi mdi-tag-heart-outline"/>
             </span>
-            <span style="opacity: .7;">Hab tapılmadı</span>
+            <span class="opacity-75">Hab tapılmadı</span>
         </div>
         <ul v-else-if="error" class="post-content__item"
             style="text-align: center; display: grid; grid-gap: 12px;">
@@ -63,15 +60,8 @@
 </template>
 
 <script>
-import VueLazyload from 'vue-lazyload'
+import axios from 'axios'
 import _ from "lodash";
-
-Vue.use(VueLazyload, {
-    preLoad: 1.3,
-    error: '/images/errors/error.png',
-    // loading: 'dist/loading.gif',
-    attempt: 1
-})
 
 export default {
     props: {
@@ -88,7 +78,7 @@ export default {
             hubs: [],
             loading: false,
             search: '',
-            hubsEmpty: true,
+            hubsEmpty: false,
             pagination: {
                 'current_page': 1
             }
@@ -104,13 +94,12 @@ export default {
             axios.get(dataFetchUrl).then(({data}) => {
                 this.loading = false
                 if (data.data.length !== 0) {
-                    this.hubsEmpty = false
                     this.pagination = data.meta
                     this.hubs = data.data
                     if (this.pagination.last_page > 50) {
                         this.pagination.last_page = 50;
                     }
-                }
+                } else this.hubsEmpty = true
             })
                 .catch(error => {
                     this.loading = false
@@ -137,14 +126,14 @@ export default {
         },
         searchUnit: _.debounce(function () {
             this.loading = true;
-            this.hubsEmpty = true;
+            this.hubsEmpty = false
             axios.get('/api/search_hub?q=' + this.search)
                 .then(({data}) => {
                     this.loading = false;
                     this.pagination = data.meta
                     this.hubs = data.data
-                    if (this.hubs.length !== 0) {
-                        this.hubsEmpty = false
+                    if (this.hubs.length === 0) {
+                        this.hubsEmpty = true
                     }
                 }).catch(error => {
                 this.loading = false

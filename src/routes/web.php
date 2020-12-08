@@ -62,10 +62,10 @@ Route::prefix('api')->group(function () {
 //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
     Route::post('auth/login', 'Api\AuthController@login');
     Route::apiResource('articles', 'Api\ArticleController');
-    Route::apiResource('authors', 'Api\AuthorController');
     Route::apiResource('comments', 'Api\CommentController');
     Route::apiResource('hubs', 'Api\HubController');
     Route::get('/search_hub', 'Api\HubController@search_hub_by_key');
+    Route::get('/search_user', 'Api\AuthorController@search_user_by_key');
 
     Route::get(
         'articles/{article}/relationships/author',
@@ -140,7 +140,7 @@ Route::prefix('api')->group(function () {
      * Users Api
      */
     Route::get('/users/{id}/follow_check', 'Api\UserController@userFollowCheck');
-    Route::get('users/all', 'Api\UserController@users');
+    Route::apiResource('authors', 'Api\AuthorController');
     Route::get('users/{id}/followings', 'Api\UserController@followings');
     Route::get('users/{id}/followers', 'Api\UserController@followers');
 

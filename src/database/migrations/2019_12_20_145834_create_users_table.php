@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('username', 191)->unique('username');
             $table->string('name', 50)->nullable();
             $table->string('surname', 50)->nullable();
-            $table->string('about', 50)->nullable();
+            $table->string('about', 200)->nullable();
             $table->integer('karma')->nullable()->default(0);
             $table->integer('rating')->nullable()->default(0);
             $table->string('email', 191)->unique();

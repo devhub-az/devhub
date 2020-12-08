@@ -9,31 +9,29 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    /**
-     * ProfileController constructor.
-     */
-    public function __construct()
-    {
-        $this->middleware('auth', ['only' => ['follow']]);
-    }
-
     public function follow(Request $request): JsonResponse
     {
-        $user = Auth::user();
         $followUser = User::findOrFail($request->get('id'));
-        if ($user->id !== $followUser->id){
-            if (isset($followUser) && !$followUser->isFollowedBy($user)) {
-                $user->follow($followUser);
+        if (Auth::check()) {
+            if (!$followUser->isFollowedBy(Auth::user()->id)) {
+                try {
+                    Auth::user()->follow($followUser);
+                } catch (\Exception $e) {
+                    report($e);
+                }
 
-                return response()->json(['success' => 'success'], 200);
+                return response()->json(true,201);
             }
-            if ($followUser->isFollowedBy($user)) {
-                $user->unfollow($followUser);
+            if ($followUser->isFollowedBy(Auth::user())) {
+                try {
+                    Auth::user()->unfollow($followUser);
+                } catch (\Exception $e) {
+                    report($e);
+                }
 
-                return response()->json(['delete' => 'delete'], 200);
+                return response()->json(false,201);
             }
         }
-
-        return response()->json(['error' => 'error'], 401);
+        return response()->json([], 403);
     }
 }

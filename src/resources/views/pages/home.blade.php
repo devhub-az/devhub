@@ -3,7 +3,7 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-    <div class="container my-4 mx-auto" id="app">
+    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" id="app">
         <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
             <div>
                 <div class="font-bold mb-4 overflow-hidden">
@@ -105,60 +105,19 @@
                         </g>
                     </svg>
                 </a>
-                {{--                <div class="default-block custom-new-post">--}}
-                {{--                    <strong>Yeni məqalə yazmağa başla 💬✨</strong>--}}
-                {{--                    <p>--}}
-                {{--                        Təcrübəniz ilcə bölüşün, mükafat alın və ya sadəcə əylənin.--}}
-                {{--                    </p>--}}
-                {{--                    <a href="/forums/-/create-thread"--}}
-                {{--                       class="button--cta button button--icon button--icon--write rippleButton rippleButton">--}}
-                {{--                        <span class="btn btn-primary btn-a">--}}
-                {{--                            Paylaşmaq--}}
-                {{--                        </span>--}}
-                {{--                        <div class="ripple-container"></div>--}}
-                {{--                    </a>--}}
-                {{--                </div>--}}
-                {{--                <div id="default-block" class="default-block default-block_sidebar">--}}
-                {{--                    <div class="default-block__header">--}}
-                {{--                        <h3 class="default-block__header-title">Ən izləninən hablar</h3>--}}
-                {{--                    </div>--}}
-
-                {{--                    <div class="default-block__content">--}}
-                {{--                        <ul>--}}
-                {{--                            @foreach ($top_followed_hubs as $hub)--}}
-                {{--                                <li class="hubs-list">--}}
-                {{--                                    <img class="list-hubs__hub-image-block"--}}
-                {{--                                         src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}" alt="">--}}
-                {{--                                    <div class="list-hubs__obj-body">--}}
-                {{--                                        <div class="block-hubs__title-link">--}}
-                {{--                                            <a href="/hubs/{{ $hub['id'] ?? '' }}">{{ $hub['name'] ?? '' }}</a></div>--}}
-                {{--                                        <div class="list-hubs__desc">--}}
-                {{--                                            <div class="hubs-desc">--}}
-                {{--                                                {{ $hub->description[\App::getLocale()] }}--}}
-                {{--                                            </div>--}}
-                {{--                                            <div class="hubs-stats">--}}
-                {{--                                                <i class="icon feather icon-users"></i>--}}
-                {{--                                                İzləyicilər {{ $hub['hub_followers_count'] ?? '' }}--}}
-                {{--                                            </div>--}}
-                {{--                                        </div>--}}
-                {{--                                    </div>--}}
-                {{--                                </li>--}}
-                {{--                            @endforeach--}}
-                {{--                        </ul>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
             </div>
         </div>
     </div>
 
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
     {{--    <script src="{{ asset('js/stickybits.min.js') }}"></script>--}}
     {{--    <script src="{{asset('js/stickybitsettings.js') }}"></script>--}}
-@endsection
+@endpush
 
 @section('styles')
+    @parent
     <link rel="preload" href="{{ mix('js/home.js') }}" as="script">
 @endsection

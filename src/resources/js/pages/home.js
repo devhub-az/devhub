@@ -26,8 +26,11 @@ Vue.component('posts-loading', require('./../components/plugins/loading/PostsLoa
  * Parts
  */
 Vue.component('tags', require('./../components/parts/tags.vue').default);
+Vue.component('hubs-tags', require('./../components/hubs/HubsTagComponent.vue').default);
+
 Vue.component('vote', require('./../components/parts/vote.vue').default);
 Vue.component('favorite', require('./../components/parts/PostFavorite').default);
+Vue.component('hub-follow-button', require('./../components/hubs/HubsFollowButtonComponent.vue').default);
 Vue.component('comment-favorite', require('./../components/parts/CommentFavorite').default);
 Vue.component('pagination', require('./../components/plugins/pagination.vue').default);
 

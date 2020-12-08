@@ -4,14 +4,14 @@
 
 @section('main')
     <div class="container w-full my-4 mx-auto ">
-        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5">
-            <div class="hubs-header__title">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5 pb-2">
+            <div>
                 <p class="text-5xl font-medium pb-4">Hablar</p>
-                <h6 class="font-normal">
+                <p>
                     Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün
                     məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir -
                     yalnız maraqlı olan ocaqlara yazılmaq.
-                </h6>
+                </p>
             </div>
             <div class="m-auto">
                 <a href="#" class="button transition delay-100">
@@ -44,7 +44,7 @@
             </div>
             {{-- Right --}}
             <div class="content_right">
-                <div id="default-block" class="mb-5 bg-white rounded">
+                <div id="default-block" class="mb-5 bg-white rounded border">
                     <div class="px-5 h-10 border-b items-center flex">
                         <p class="m-0 text-sm items-center">Ən sevimli</p>
                     </div>
@@ -71,7 +71,7 @@
                         </ul>
                     </div>
                 </div>
-                <div id="default-block" class="mb-5 bg-white rounded">
+                <div id="default-block" class="mb-5 bg-white rounded border">
                     <div class="px-5 h-10 border-b items-center flex">
                         <p class="m-0 text-sm items-center">Ən izləninən</p>
                     </div>
@@ -102,3 +102,11 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script type="text/javascript" src="{{ mix('js/hubs.js') }}"></script>
+@endpush
+
+@push('styles')
+    <link rel="preload" href="{{ mix('js/hubs.js') }}" as="script">
+@endpush

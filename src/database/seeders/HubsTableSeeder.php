@@ -14,8 +14,6 @@ class HubsTableSeeder extends Seeder
      */
     public function run()
     {
-        \DB::table('hubs')->delete();
-
         \DB::table('hubs')->insert(array (
             0 =>
             array (

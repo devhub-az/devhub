@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
+use App\Http\Resources\AuthorResource;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public UserResource $auth_user;
+    public $auth_user;
 
     public function __construct()
     {
-        $this->auth_user = new UserResource(Auth::user());
+        $this->auth_user = new AuthorResource(Auth::user());
     }
 
     public function showPosts($username)
@@ -22,7 +22,7 @@ class UserController extends Controller
 
         return view(
             'pages.profile.show.posts',
-            ['user' => $user, 'url' => '/api/users/' . $user->id . '/posts', 'auth_user' => $this->auth_user]
+            ['user' => $user, 'url' => '/api/authors/' . $user->id . '/posts', 'auth_user' => $this->auth_user]
         );
     }
 
@@ -61,7 +61,6 @@ class UserController extends Controller
 
     public function update_avatar(Request $request)
     {
-
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
