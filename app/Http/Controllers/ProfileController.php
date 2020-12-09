@@ -20,7 +20,7 @@ class ProfileController extends Controller
                     report($e);
                 }
 
-                return response()->json(true,201);
+                return response()->json(true, 201);
             }
             if ($followUser->isFollowedBy(Auth::user())) {
                 try {
@@ -29,9 +29,10 @@ class ProfileController extends Controller
                     report($e);
                 }
 
-                return response()->json(false,201);
+                return response()->json(false, 201);
             }
         }
+
         return response()->json([], 403);
     }
 }

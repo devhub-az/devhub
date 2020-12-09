@@ -1,37 +1,41 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use App\Models\User;
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Hub;
+use App\Models\User;
 use Auth;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Parsedown;
 use Purifier;
 use Str;
 
 class PostCollection extends JsonResource
 {
-
     /**
      * TODO profile image add
      * Transform the resource into an array.
      *
      * @param $request
+     *
      * @return array
      */
     public function toArray($request)
     {
         $parsedown = new Parsedown();
         $body = Purifier::clean($parsedown->text($this->body));
+
         return [
             'id'             => $this->id,
             'title'          => $this->name,
             'body_short'     => Str::words($body, 150, ''),
             'body'           => $body,
-            'creator'        => new AuthorResource(User::where('id',
-                $this->creator->id)->withCount('followers')->firstOrFail()),
+            'creator'        => new AuthorResource(User::where(
+                'id',
+                $this->creator->id
+            )->withCount('followers')->firstOrFail()),
             'votes'          => $this->upvoters_count - $this->downvoters_count,
             'votes_sum'      => $this->voters_count,
             'upvotes'        => $this->upvoters_count,
@@ -55,7 +59,8 @@ class PostCollection extends JsonResource
 
     /**
      * @param string $text
-     * @param int $maxLength
+     * @param int    $maxLength
+     *
      * @return string
      */
     public function shorten(string $text, int $maxLength): string
@@ -63,7 +68,7 @@ class PostCollection extends JsonResource
         $words = explode(' ', $text);
 
         if (count($words) > $maxLength) {
-            return implode(' ', array_slice($words, 0, $maxLength)) . '...';
+            return implode(' ', array_slice($words, 0, $maxLength)).'...';
         }
 
         return $text;
@@ -71,6 +76,7 @@ class PostCollection extends JsonResource
 
     /**
      * @param $status
+     *
      * @return bool
      */
     public function statusCheck($status): bool
@@ -78,11 +84,11 @@ class PostCollection extends JsonResource
         if (Auth::check()) {
             switch ($status) {
                 case 'upvote':
-                    return (bool)$this->isUpvotedBy(Auth::user()->id);
+                    return (bool) $this->isUpvotedBy(Auth::user()->id);
                 case 'downvote':
-                    return (bool)$this->isDownvotedBy(Auth::user()->id);
+                    return (bool) $this->isDownvotedBy(Auth::user()->id);
                 case 'favorites':
-                    return (bool)$this->isBookmarkedBy(Auth::user()->id);
+                    return (bool) $this->isBookmarkedBy(Auth::user()->id);
                 default:
                     return false;
             }
@@ -93,6 +99,7 @@ class PostCollection extends JsonResource
 
     /**
      * @param $text
+     *
      * @return string
      */
     public function readTime(string $text): string
@@ -100,6 +107,6 @@ class PostCollection extends JsonResource
         $word = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);
 
-        return $minutes . ' dəqiqə';
+        return $minutes.' dəqiqə';
     }
 }

@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Repository\ConversationRepository;
 use App\Http\Requests\SendMessage;
 use App\Models\User;
-use App\Notifications\MessageReceived;
 use Illuminate\Auth\AuthManager;
-use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -16,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ConversationController extends Controller
 {
-
     private AuthManager $auth;
     private ConversationRepository $repo;
 
@@ -46,6 +43,7 @@ class ConversationController extends Controller
             $this->repo->readAllFrom($user->id, $me->id);
             unset($unread[$user->id]);
         }
+
         return view('pages.conversations.show', [
             'users'             => $this->repo->getConversations($this->auth->user()->id),
             'user'              => $user,
@@ -60,6 +58,7 @@ class ConversationController extends Controller
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
+
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
@@ -68,8 +67,9 @@ class ConversationController extends Controller
         $words = explode(' ', $text);
 
         if (count($words) > $maxLength) {
-            return implode(' ', array_slice($words, 0, $maxLength)) . '...';
+            return implode(' ', array_slice($words, 0, $maxLength)).'...';
         }
+
         return $text;
     }
 
@@ -80,7 +80,8 @@ class ConversationController extends Controller
             encrypt($request->get('content')),
             $this->auth->user()->id,
             $id,
-            );
+        );
+
         return redirect(route('conversations.show', ['id' => $id]));
     }
 
@@ -91,6 +92,7 @@ class ConversationController extends Controller
             Auth::user()->id,
             $user->id
         );
+
         return redirect()->route('messages.show', ['id' => $user]);
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Traits\Can;
 
 use App\Models\Src\Follow;
@@ -14,10 +13,11 @@ trait CanFavorite
      * Favorite an item or items.
      *
      * @param int|array|\Illuminate\Database\Eloquent\Model $targets
-     * @param string $class
+     * @param string                                        $class
+     *
+     * @throws \Exception
      *
      * @return array
-     * @throws \Exception
      */
     public function favorite($targets, $class = __CLASS__)
     {

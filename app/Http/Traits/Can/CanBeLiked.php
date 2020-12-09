@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Overtrue\LaravelFollow\Traits;
 
 use App\Models\Src\Follow;

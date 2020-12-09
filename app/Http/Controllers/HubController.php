@@ -21,14 +21,14 @@ class HubController extends Controller
     public function postsApiRoute(int $id)
     {
         switch (\request()->path()) {
-            case 'hubs/' . $id:
-                return '/api/hubs/' . $id . '/top/day';
-            case 'hubs/' . $id . '/top/week':
-                return '/api/hubs/' . $id . '/top/week';
-            case 'hubs/' . $id . '/top/month':
-                return '/api/hubs/' . $id . '/top/month';
-            case 'hubs/' . $id . '/all':
-                return '/api/hubs/' . $id . '/all';
+            case 'hubs/'.$id:
+                return '/api/hubs/'.$id.'/top/day';
+            case 'hubs/'.$id.'/top/week':
+                return '/api/hubs/'.$id.'/top/week';
+            case 'hubs/'.$id.'/top/month':
+                return '/api/hubs/'.$id.'/top/month';
+            case 'hubs/'.$id.'/all':
+                return '/api/hubs/'.$id.'/all';
             default:
                 return abort(404);
         }
@@ -36,6 +36,7 @@ class HubController extends Controller
 
     /**
      * @param int $id
+     *
      * @return Factory|View
      */
     public function show(int $id): View
@@ -58,7 +59,7 @@ class HubController extends Controller
      */
     public function index(): View
     {
-        $top_hubs          = new HubsCollection(Hub::orderBy('rating', 'DESC')->take(5)->get());
+        $top_hubs = new HubsCollection(Hub::orderBy('rating', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsCollection(
             Hub::withCount('followers')->orderBy(
                 'followers_count',
@@ -77,13 +78,15 @@ class HubController extends Controller
 
     /**
      * @param Request $request
-     * @return JsonResponse
+     *
      * @throws \Exception
+     *
+     * @return JsonResponse
      */
     public function follow(Request $request): JsonResponse
     {
         $userId = Auth::user();
-        $hub    = Hub::findOrFail($request->get('id'));
+        $hub = Hub::findOrFail($request->get('id'));
         if (isset($hub) && !$hub->isFollowedBy($userId)) {
             $userId->follow($hub);
 

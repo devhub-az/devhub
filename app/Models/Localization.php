@@ -13,6 +13,6 @@ class Localization extends Model
         'model',
         'ru',
         'en',
-        'az'
+        'az',
     ];
 }

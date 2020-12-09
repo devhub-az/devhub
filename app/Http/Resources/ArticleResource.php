@@ -12,13 +12,14 @@ class ArticleResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function toArray($request)
     {
         return [
             'type'          => 'articles',
-            'id'            => (string)$this->id,
+            'id'            => (string) $this->id,
             'attributes'    => [
                 'id'         => $this->id,
                 'title'      => $this->name,
@@ -42,16 +43,18 @@ class ArticleResource extends JsonResource
         ];
     }
 
-    public function stext(string $text){
-        if (preg_match('/^.{1,512}\b/s', $text, $match))
-            {
-                $text=$match[0] . ( strlen($match[0]) < strlen($text) ? "..." : "" );
-            }
+    public function stext(string $text)
+    {
+        if (preg_match('/^.{1,512}\b/s', $text, $match)) {
+            $text = $match[0].(strlen($match[0]) < strlen($text) ? '...' : '');
+        }
+
         return $text;
     }
 
     /**
      * @param $text
+     *
      * @return string
      */
     public function readTime(string $text): string
@@ -59,11 +62,12 @@ class ArticleResource extends JsonResource
         $word = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);
 
-        return $minutes . ' dəqiqə';
+        return $minutes.' dəqiqə';
     }
 
     /**
      * @param $status
+     *
      * @return bool
      */
     public function statusCheck($status): bool
@@ -71,11 +75,11 @@ class ArticleResource extends JsonResource
         if (Auth::check()) {
             switch ($status) {
                 case 'upvote':
-                    return (bool)$this->isUpvotedBy(Auth::user()->id);
+                    return (bool) $this->isUpvotedBy(Auth::user()->id);
                 case 'downvote':
-                    return (bool)$this->isDownvotedBy(Auth::user()->id);
+                    return (bool) $this->isDownvotedBy(Auth::user()->id);
                 case 'favorites':
-                    return (bool)$this->isBookmarkedBy(Auth::user()->id);
+                    return (bool) $this->isBookmarkedBy(Auth::user()->id);
                 default:
                     return false;
             }

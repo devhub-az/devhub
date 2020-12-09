@@ -4,7 +4,6 @@ namespace App\Events;
 
 /**
  * Class RelationToggled.
- *
  */
 class RelationToggled extends Event
 {

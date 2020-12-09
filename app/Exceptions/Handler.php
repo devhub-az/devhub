@@ -3,10 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Throwable;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -33,8 +33,10 @@ class Handler extends ExceptionHandler
      * Report or log an exception.
      *
      * @param Throwable $exception
-     * @return void
+     *
      * @throws Exception
+     *
+     * @return void
      */
     public function report(Throwable $exception)
     {
@@ -48,10 +50,12 @@ class Handler extends ExceptionHandler
     /**
      * Render an exception into an HTTP response.
      *
-     * @param Request $request
+     * @param Request   $request
      * @param Throwable $exception
-     * @return Response
+     *
      * @throws Throwable
+     *
+     * @return Response
      */
     public function render($request, Throwable $exception)
     {

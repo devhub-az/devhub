@@ -10,7 +10,7 @@ class MinifyHtml
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
+     * @param Request  $request
      * @param \Closure $next
      *
      * @return mixed
@@ -18,6 +18,7 @@ class MinifyHtml
     public function handle($request, Closure $next)
     {
         $response = $next($request);
+
         return $this->html($response);
     }
 
@@ -45,6 +46,7 @@ class MinifyHtml
         }
         $buffer = preg_replace(array_keys($replace), array_values($replace), $buffer);
         $response->setContent($buffer);
+
         return $response;
     }
 }

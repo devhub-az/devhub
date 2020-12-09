@@ -21,7 +21,6 @@ Route::group(['middleware' => ['auth']], static function () {
     Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
 
-
     Route::prefix('saved')->group(function () {
         Route::get('/posts', 'Auth\FavoriteController@indexPosts')->name('saved-posts');
 
@@ -37,9 +36,8 @@ Route::group(['middleware' => ['auth']], static function () {
 
 Route::prefix('api')->group(function () {
 //    Route::post('post/image/cache', 'Api\PostController@upload_image');
-//Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
+    //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
     Route::post('auth/login', 'Api\AuthController@login');
-
 
     //Article Api
     Route::apiResource('articles', 'Api\ArticleController');
@@ -52,32 +50,32 @@ Route::prefix('api')->group(function () {
 
         Route::get(
             '{article}/relationships/author',
-            ['uses' => 'Api\ArticleRelationshipController' . '@author', 'as' => 'articles.relationships.author',]
+            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.relationships.author']
         );
         Route::get(
             '{article}/author',
-            ['uses' => 'Api\ArticleRelationshipController' . '@author', 'as' => 'articles.author',]
+            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
         );
         Route::get(
             '{article}/relationships/comments',
-            ['uses' => 'Api\ArticleRelationshipController' . '@comments', 'as' => 'articles.relationships.comments',]
+            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.relationships.comments']
         );
         Route::get(
             '{article}/comments',
-            ['uses' => 'Api\ArticleRelationshipController' . '@comments', 'as' => 'articles.comments',]
+            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
         );
         Route::get(
             '{article}/relationships/hubs',
-            ['uses' => 'Api\ArticleRelationshipController' . '@hubs', 'as' => 'articles.relationships.hubs',]
+            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.relationships.hubs']
         );
         Route::get(
             '{article}/hubs',
-            ['uses' => 'Api\ArticleRelationshipController' . '@hubs', 'as' => 'articles.hubs',]
+            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
         );
     });
 
     /**
-     * Comments Api
+     * Comments Api.
      */
     Route::apiResource('comments', 'Api\CommentController');
 
@@ -101,7 +99,6 @@ Route::prefix('api')->group(function () {
     });
     Route::get('/search_hub', 'Api\HubController@search_hub_by_key');
 
-
     /*
      * Author Api
      */
@@ -114,7 +111,6 @@ Route::prefix('api')->group(function () {
     });
     Route::get('/search_user', 'Api\AuthorController@search_user_by_key');
 
-
     /*
      * Profile Api
      */
@@ -122,11 +118,10 @@ Route::prefix('api')->group(function () {
 //    Route::post('/users/{id}/profile_update', 'Api\UserController@upload');
 
     /**
-     * Search Api
+     * Search Api.
      */
     Route::get('search{search?}', 'Api\SearchController@results');
 });
-
 
 Route::group([], static function () {
     // Articles view

@@ -15,9 +15,9 @@ trait CanLike
      * @param int|array|\Illuminate\Database\Eloquent\Model $targets
      * @param string                                        $class
      *
-     * @return bool
      *@throws \Exception
      *
+     * @return bool
      */
     public function like($targets, $class = __CLASS__)
     {
