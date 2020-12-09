@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentsResource;
-use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostsCollection;
-use App\Models\Comment;
 use App\Models\Article;
-
+use App\Models\Comment;
 
 class SavedController extends Controller
 {
@@ -17,15 +15,16 @@ class SavedController extends Controller
         $this->middleware('auth');
     }
 
-    function allPosts()
+    public function allPosts()
     {
         $fav = \Auth::user()->getPostsIds();
-        return new PostsCollection(Article::whereIn('id',$fav)
+
+        return new PostsCollection(Article::whereIn('id', $fav)
             ->take(50)
             ->paginate(5));
     }
 
-    function allComments()
+    public function allComments()
     {
 //        $commetnsIds = \Auth::user()->getCommentsIdsAttribute();
 //        return new CommentsCollection(Comment::orderBy('created_at', 'DESC')
@@ -33,6 +32,7 @@ class SavedController extends Controller
 //            ->with('post')
 //            ->paginate(6));
         $fav = \Auth::user()->getCommentsIdsFavorite();
+
         return new CommentsResource(Comment::find($fav));
 //        dd($posts[1]);
 //

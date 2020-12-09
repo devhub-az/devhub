@@ -38,7 +38,8 @@ class DevHubInstall extends Command
     /**
      * Exec shell with pretty print.
      *
-     * @param  string $command
+     * @param string $command
+     *
      * @return mixed
      */
     public function execShellWithPrettyPrint($command)

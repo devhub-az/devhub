@@ -2,16 +2,16 @@
 
 namespace App\Models\Src;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Events\RelationAttached;
 use App\Events\RelationAttaching;
 use App\Events\RelationDetached;
 use App\Events\RelationDetaching;
 use App\Events\RelationToggled;
 use App\Events\RelationToggling;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use stdClass;
 
 /**
@@ -36,28 +36,28 @@ class Follow
     public const RELATION_DOWNVOTE = 'downvote';
 
     public const RELATION_TYPES = [
-        'likes' => 'like',
-        'likers' => 'like',
-        'fans' => 'like',
-        'followings' => 'follow',
-        'followers' => 'follow',
-        'favoriters' => 'favorite',
-        'favorites' => 'favorite',
-        'bookmarkers' => 'bookmark',
-        'bookmarks' => 'bookmark',
+        'likes'         => 'like',
+        'likers'        => 'like',
+        'fans'          => 'like',
+        'followings'    => 'follow',
+        'followers'     => 'follow',
+        'favoriters'    => 'favorite',
+        'favorites'     => 'favorite',
+        'bookmarkers'   => 'bookmark',
+        'bookmarks'     => 'bookmark',
         'subscriptions' => 'subscribe',
-        'subscribers' => 'subscribe',
-        'upvotes' => 'upvote',
-        'upvoters' => 'upvote',
-        'downvotes' => 'downvote',
-        'downvoters' => 'downvote',
+        'subscribers'   => 'subscribe',
+        'upvotes'       => 'upvote',
+        'upvoters'      => 'upvote',
+        'downvotes'     => 'downvote',
+        'downvoters'    => 'downvote',
     ];
 
     /**
-     * @param Model $model
-     * @param string $relation
+     * @param Model              $model
+     * @param string             $relation
      * @param array|string|Model $target
-     * @param null $class
+     * @param null               $class
      *
      * @return bool
      */
@@ -73,14 +73,14 @@ class Follow
     }
 
     /**
-     * @param Model $model
-     * @param string                                           $relation
+     * @param Model              $model
+     * @param string             $relation
      * @param array|string|Model $targets
-     * @param string                                           $class
+     * @param string             $class
      *
-     * @return bool
      *@throws \Exception
      *
+     * @return bool
      */
     public static function attachRelations(Model $model, $relation, $targets, $class)
     {
@@ -98,10 +98,10 @@ class Follow
     }
 
     /**
-     * @param Model $model
-     * @param string                                           $relation
+     * @param Model              $model
+     * @param string             $relation
      * @param array|string|Model $targets
-     * @param string                                           $class
+     * @param string             $class
      *
      * @return bool
      */
@@ -121,14 +121,14 @@ class Follow
     }
 
     /**
-     * @param Model $model
-     * @param string                                           $relation
+     * @param Model              $model
+     * @param string             $relation
      * @param array|string|Model $targets
-     * @param string                                           $class
+     * @param string             $class
      *
-     * @return bool
      *@throws \Exception
      *
+     * @return bool
      */
     public static function toggleRelations(Model $model, $relation, $targets, $class): bool
     {
@@ -148,26 +148,26 @@ class Follow
     }
 
     /**
-     * @param MorphToMany $morph
+     * @param MorphToMany        $morph
      * @param array|string|Model $targets
-     * @param string                                              $class
+     * @param string             $class
      *
-     * @return \stdClass
      *@throws \Exception
      *
+     * @return \stdClass
      */
     public static function attachPivotsFromRelation(MorphToMany $morph, $targets, $class): stdClass
     {
         return self::formatTargets($targets, $class, [
-            'relation' => self::getRelationTypeFromRelation($morph),
+            'relation'   => self::getRelationTypeFromRelation($morph),
             'created_at' => Carbon::now()->format(config('follow.date_format', 'Y-m-d H:i:s')),
         ]);
     }
 
     /**
      * @param array|string|Model $targets
-     * @param string                                           $classname
-     * @param array                                            $update
+     * @param string             $classname
+     * @param array              $update
      *
      * @return \stdClass
      */
@@ -187,7 +187,7 @@ class Follow
                 return $target->getKey();
             }
 
-            return (int)$target;
+            return (int) $target;
         }, $targets);
 
         $result->targets = empty($update) ? $result->ids : array_combine($result->ids, array_pad([], count($result->ids), $update));
@@ -198,8 +198,9 @@ class Follow
     /**
      * @param MorphToMany $relation
      *
-     * @return string
      * @throws \Exception
+     *
+     * @return string
      */
     protected static function getRelationTypeFromRelation(MorphToMany $relation): string
     {

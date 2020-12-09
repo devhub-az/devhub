@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Hub;
-use App\Models\Article;
 use App\Http\Resources\ArticlesResource;
+use App\Models\Article;
+use App\Models\Hub;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,10 +16,11 @@ class ArticleTopController extends Controller
 
     /**
      * PostController constructor.
+     *
      * @param Request $request
-     * @param int $day
-     * @param int $week
-     * @param int $month
+     * @param int     $day
+     * @param int     $week
+     * @param int     $month
      */
     public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
     {
@@ -47,15 +48,17 @@ class ArticleTopController extends Controller
             'voters',
             'views',
             'bookmarkers',
-//            'comments'
+            //            'comments'
         ])
             ->orderByRaw('(upvoters_count - downvoters_count) DESC')
-            ->orderBy('created_at',
-                'DESC')->where(
+            ->orderBy(
                 'created_at',
-                '>=',
-                Carbon::now()->subDays(self::$count)->startOfDay()
-            )->take(50)->paginate(5));
+                'DESC'
+            )->where(
+                    'created_at',
+                    '>=',
+                    Carbon::now()->subDays(self::$count)->startOfDay()
+                )->take(50)->paginate(5));
     }
 
     /**
@@ -68,6 +71,7 @@ class ArticleTopController extends Controller
         $hubPostIds = $this->favoriteIds($hubs);
         $userPostIds = $this->favoriteIds($users);
         $postIds = array_merge($hubPostIds, $userPostIds);
+
         return new ArticlesResource(
             Article::whereIn('id', $postIds)
                 ->withCount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
@@ -79,6 +83,7 @@ class ArticleTopController extends Controller
 
     /**
      * @param object $items
+     *
      * @return array
      */
     public function favoriteIds(object $items): array
@@ -89,6 +94,7 @@ class ArticleTopController extends Controller
                 $itemIds[] = $post->id;
             }
         }
+
         return $itemIds;
     }
 }

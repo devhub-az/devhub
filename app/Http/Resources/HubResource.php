@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Numeric;
 
 /**
- * Class HubResource
- *
- * @package \App\Http\Resources
+ * Class HubResource.
  */
 class HubResource extends JsonResource
 {
@@ -17,9 +15,9 @@ class HubResource extends JsonResource
     {
         return [
             'type'       => 'hubs',
-            'id'         => (int)$this->id,
+            'id'         => (int) $this->id,
             'attributes' => [
-                'logo'                => ($this->logo) ? '/' . strtolower($this->logo) : '/images/empty/code.png',
+                'logo'                => ($this->logo) ? '/'.strtolower($this->logo) : '/images/empty/code.png',
                 'rating'              => $this->rating,
                 'description'         => $this->description['az'],
                 'name'                => $this->name,
@@ -28,7 +26,7 @@ class HubResource extends JsonResource
                 'follower_check'      => $this->statusCheck(),
                 'posts_count'         => $this->posts_count,
             ],
-//            'relationships' => new ($this),
+            //            'relationships' => new ($this),
             'links'      => [
                 'self' => route('hubs.show', ['hub' => $this->id]),
             ],

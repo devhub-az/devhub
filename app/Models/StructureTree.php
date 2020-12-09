@@ -6,16 +6,15 @@ use Carbon\Carbon;
 use Eloquent;
 
 /**
- * Class StructureTree
+ * Class StructureTree.
  *
- * @property int $ancestor_id
- * @property int $descendant_id
- * @property int $nearest_ancestor_id
- * @property int $level
+ * @property int      $ancestor_id
+ * @property int      $descendant_id
+ * @property int      $nearest_ancestor_id
+ * @property int      $level
  * @property int|null $subject_id
- * @property Carbon $created_at
- * @property Carbon $updated_at
- *
+ * @property Carbon   $created_at
+ * @property Carbon   $updated_at
  */
 class StructureTree extends Eloquent
 {
@@ -29,14 +28,13 @@ class StructureTree extends Eloquent
      */
     protected $primaryKey = [
         'ancestor_id',
-        'descendant_id'
+        'descendant_id',
     ];
 
     /**
      * @var bool
      */
     public $incrementing = false;
-
 
     /**
      * @var array
@@ -47,10 +45,10 @@ class StructureTree extends Eloquent
      * @var array
      */
     protected $casts = [
-        'ancestor_id' => 'integer',
-        'descendant_id' => 'integer',
+        'ancestor_id'         => 'integer',
+        'descendant_id'       => 'integer',
         'nearest_ancestor_id' => 'integer',
-        'level' => 'integer',
+        'level'               => 'integer',
     ];
 
     /**
@@ -58,8 +56,6 @@ class StructureTree extends Eloquent
      */
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
-
-
 }

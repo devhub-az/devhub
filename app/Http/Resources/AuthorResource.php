@@ -12,17 +12,18 @@ class AuthorResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function toArray($request)
     {
         return [
             'type'       => 'authors',
-            'id'         => (int)$this->id,
+            'id'         => (int) $this->id,
             'attributes' => [
                 'name'                 => $this->name,
                 'username'             => $this->username,
-                'avatar'               => ($this->avatar !== 'default.jpg') ? '/upload/user_' . $this->id . '/logo/' . $this->avatar : config('devhub.default_avatar'),
+                'avatar'               => ($this->avatar !== 'default.jpg') ? '/upload/user_'.$this->id.'/logo/'.$this->avatar : config('devhub.default_avatar'),
                 'about'                => $this->about,
                 'karma'                => $this->karma,
                 'rating'               => $this->rating,

@@ -2,15 +2,14 @@
 
 namespace App\Events;
 
+use App\Models\Src\Follow;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Src\Follow;
 
 /**
  * Class Event.
- *
  */
 class Event
 {
@@ -29,10 +28,10 @@ class Event
     /**
      * Event constructor.
      *
-     * @param Model $causer
-     * @param string $relation
-     * @param int|array                             $targets
-     * @param string $class
+     * @param Model     $causer
+     * @param string    $relation
+     * @param int|array $targets
+     * @param string    $class
      */
     public function __construct(Model $causer, string $relation, $targets, string $class)
     {

@@ -10,7 +10,7 @@ class SearchController extends Controller
     {
         $query = $request->input('search');
 
-        $url = 'api/search?search=' . $query;
+        $url = 'api/search?search='.$query;
 
         return view('pages.search-result', compact('url'), compact('query'));
     }

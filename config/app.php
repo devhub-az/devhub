@@ -154,7 +154,7 @@ return [
         Illuminate\Mail\MailServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
         Illuminate\Pagination\PaginationServiceProvider::class,
-//        Illuminate\Pipeline\PipelineServiceProvider::class,
+        //        Illuminate\Pipeline\PipelineServiceProvider::class,
         Illuminate\Queue\QueueServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
@@ -177,8 +177,8 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
 
-//        App\Providers\BroadcastServiceProvider::class,
-//        App\Providers\EventServiceProvider::class,
+        //        App\Providers\BroadcastServiceProvider::class,
+        //        App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Jackiedo\DotenvEditor\DotenvEditorServiceProvider::class,
 
@@ -241,10 +241,10 @@ return [
 
         'DotenvEditor' => Jackiedo\DotenvEditor\Facades\DotenvEditor::class,
 
-//        Doctrine
-//        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
-//        'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
-//        'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
+        //        Doctrine
+        //        'EntityManager' => LaravelDoctrine\ORM\Facades\EntityManager::class,
+        //        'Registry'      => LaravelDoctrine\ORM\Facades\Registry::class,
+        //        'Doctrine'      => LaravelDoctrine\ORM\Facades\Doctrine::class,
 
     ],
 

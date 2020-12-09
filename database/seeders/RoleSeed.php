@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Bouncer;
+use Illuminate\Database\Seeder;
 
 class RoleSeed extends Seeder
 {

@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
@@ -7,9 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\PostsCollection;
 use App\Http\Resources\PostShowCollection;
-use App\Models\Hub;
 use App\Models\Article;
-use App\Services\PostService;
+use App\Models\Hub;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -30,6 +30,7 @@ class PostController extends Controller
 
     /**
      * PostController constructor.
+     *
      * @param Request $request
      */
     public function __construct(Request $request)
@@ -54,17 +55,20 @@ class PostController extends Controller
     {
         return new ArticlesResource(Article::withcount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
             ->orderByRaw('(upvoters_count - downvoters_count) DESC')
-            ->orderBy('created_at',
-                'DESC')->where(
+            ->orderBy(
                 'created_at',
-                '>=',
-                Carbon::now()->subDays(self::$count)->startOfDay()
-            )->take(50)->paginate(5));
+                'DESC'
+            )->where(
+                    'created_at',
+                    '>=',
+                    Carbon::now()->subDays(self::$count)->startOfDay()
+                )->take(50)->paginate(5));
     }
 
     /**
-     * @return PostsCollection
      * @throws Exception
+     *
+     * @return PostsCollection
      */
     public function all(): PostsCollection
     {
@@ -83,6 +87,7 @@ class PostController extends Controller
         $hubPostIds = $this->favoriteIds($hubs);
         $userPostIds = $this->favoriteIds($users);
         $postIds = array_merge($hubPostIds, $userPostIds);
+
         return new PostsCollection(
             Article::whereIn('id', $postIds)
                 ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')
@@ -94,6 +99,7 @@ class PostController extends Controller
 
     /**
      * @param object $items
+     *
      * @return array
      */
     public function favoriteIds(object $items): array
@@ -104,11 +110,13 @@ class PostController extends Controller
                 $itemIds[] = $post->id;
             }
         }
+
         return $itemIds;
     }
 
     /**
      * @param int $id
+     *
      * @return PostShowCollection
      */
     public function show(int $id): PostShowCollection
@@ -116,7 +124,6 @@ class PostController extends Controller
         return new PostShowCollection(
             Article::with('creator:id,username')
                 ->withCount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments')->findorfail($id)
-
         );
     }
 
@@ -124,7 +131,7 @@ class PostController extends Controller
     {
         $user = \Auth::user();
 
-        $post_image = $user->id . '_upload' . time() . '.' . request()->avatar->getClientOriginalExtension();
+        $post_image = $user->id.'_upload'.time().'.'.request()->avatar->getClientOriginalExtension();
 
         $request->avatar->storeAs('cache', $post_image);
 

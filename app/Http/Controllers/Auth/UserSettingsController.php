@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\MessageBag;
-use Illuminate\Validation\ValidationException;
 
 class UserSettingsController extends Controller
 {
@@ -15,14 +13,16 @@ class UserSettingsController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
+     *
      * @return void
      */
     public function index(Request $request)
     {
         if (\Auth::User()->username === $request->username) {
             $user = \Auth::user();
-            $user->email = substr_replace($user->email, '***', 2, strpos($user->email, "@") - 2);
-            return view('auth.settings.profile', compact("user"));
+            $user->email = substr_replace($user->email, '***', 2, strpos($user->email, '@') - 2);
+
+            return view('auth.settings.profile', compact('user'));
         }
 
         return abort(404);
@@ -39,7 +39,7 @@ class UserSettingsController extends Controller
 
         $user = \Auth::user();
 
-        $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();
+        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
 
         $request->avatar->storeAs('avatars', $avatarName);
 
@@ -53,6 +53,7 @@ class UserSettingsController extends Controller
      * Update the specified resource in storage.
      *
      * @param UserProfile $request
+     *
      * @return void
      */
     public function update(UserProfile $request)
@@ -72,6 +73,7 @@ class UserSettingsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return Response
      */
     public function destroy($id)

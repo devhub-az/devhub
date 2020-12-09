@@ -2,17 +2,14 @@
 
 namespace App\Http\Traits;
 
-use App\Models\Article;
-
 /**
- * Class PermissionManager
- *
- * @package \App\Traits
+ * Class PermissionManager.
  */
 trait PermissionManager
 {
     // Related attributes
-    public function isAdmin(){
+    public function isAdmin()
+    {
         return $this->role_level == 9;
     }
 

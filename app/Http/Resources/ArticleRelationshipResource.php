@@ -11,6 +11,7 @@ class ArticleRelationshipResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function toArray($request)
@@ -23,7 +24,7 @@ class ArticleRelationshipResource extends JsonResource
                 ],
                 'data'  => new AuthorResource($this->creator),
             ],
-//            'comments' => (new ArticleCommentsRelationshipResource($this->comments))->additional(['article' => $this]),
+            //            'comments' => (new ArticleCommentsRelationshipResource($this->comments))->additional(['article' => $this]),
             'hubs'   => (new ArticleHubsRelationshipResource($this->hubs))->additional(['article' => $this]),
         ];
     }

@@ -1,24 +1,24 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace App\Http\Repository;
 
-use App\Models\User;
 use App\Models\Message;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 
 class ConversationRepository
 {
-
     private User    $user;
 
     private Message $message;
 
     public function __construct(User $user, Message $message)
     {
-        $this->user    = $user;
+        $this->user = $user;
         $this->message = $message;
     }
 
@@ -68,6 +68,7 @@ class ConversationRepository
 
     /**
      * @param int $userId
+     *
      * @return Builder[]|Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
      */
     public function unReadCount(int $userId)

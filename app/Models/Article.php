@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
@@ -14,13 +15,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * Post
+ * Post.
  *
  * @mixin Eloquent
  */
 class Article extends Model
 {
-    use CanBeVoted, CanBeBookmarked, HasFactory;
+    use CanBeVoted;
+    use CanBeBookmarked;
+    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -51,7 +54,7 @@ class Article extends Model
 
     public function isAuthUserUpvoted()
     {
-        return (string)$this->isUpvotedBy((int)Auth::user());
+        return (string) $this->isUpvotedBy((int) Auth::user());
     }
 
     /**
@@ -61,5 +64,4 @@ class Article extends Model
     {
         return $this->hubs()->pluck('hub_id')->toArray();
     }
-
 }

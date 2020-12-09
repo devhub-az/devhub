@@ -94,7 +94,7 @@ return [
 
     'extra' => [
         'Eloquent' => ['Illuminate\Database\Eloquent\Builder', 'Illuminate\Database\Query\Builder'],
-        'Session' => ['Illuminate\Session\Store'],
+        'Session'  => ['Illuminate\Session\Store'],
     ],
 
     'magic' => [
@@ -188,10 +188,10 @@ return [
     | Cast the given "real type" to the given "type".
     |
     */
-   'type_overrides' => [
+    'type_overrides' => [
         'integer' => 'int',
         'boolean' => 'bool',
-   ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

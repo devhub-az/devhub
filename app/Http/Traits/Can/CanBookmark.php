@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Traits\Can;
 
 use App\Models\Src\Follow;

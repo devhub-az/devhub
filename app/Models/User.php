@@ -15,13 +15,20 @@ use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**
- * Class User
- * @package App\Models
+ * Class User.
+ *
  * @mixin Eloquent
  */
 class User extends Authenticatable
 {
-    use Notifiable, PermissionManager, CanFollow, CanBeFollowed, CanBookmark, CanVote, HasRolesAndAbilities, HasFactory;
+    use Notifiable;
+    use PermissionManager;
+    use CanFollow;
+    use CanBeFollowed;
+    use CanBookmark;
+    use CanVote;
+    use HasRolesAndAbilities;
+    use HasFactory;
 
     protected $visible = [
         'id',
@@ -30,7 +37,7 @@ class User extends Authenticatable
         'name',
         'surname',
         'email',
-        'about'
+        'about',
     ];
 
     protected $fillable = [
@@ -52,7 +59,8 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get Posts where user is author with hubs(function in post model)
+     * Get Posts where user is author with hubs(function in post model).
+     *
      * @return HasMany
      */
     public function articles(): HasMany
@@ -61,7 +69,8 @@ class User extends Authenticatable
     }
 
     /**
-     * Get Comments where user is author
+     * Get Comments where user is author.
+     *
      * @return HasMany
      */
     public function comments(): HasMany
@@ -70,7 +79,8 @@ class User extends Authenticatable
     }
 
     /**
-     * Get posts ids where comments was wrote
+     * Get posts ids where comments was wrote.
+     *
      * @return array
      */
     public function getCommentsIdsAuthor(): array

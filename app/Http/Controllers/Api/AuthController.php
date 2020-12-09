@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\User;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\Routing\ResponseFactory;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -18,6 +15,7 @@ class AuthController extends Controller
      * Handle the incoming request.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
@@ -33,9 +31,9 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             $error = $validator->messages();
+
             return response()->json(['success' => false, 'error' => $error]);
         }
-
 
         $email = $request['email'];
         $password = $request['password'];
@@ -44,14 +42,16 @@ class AuthController extends Controller
             if (\Hash::check($password, $user->password)) {
                 Auth::attempt([
                     'email'    => $email,
-                    'password' => $password
+                    'password' => $password,
                 ]);
+
                 return response()->json(['success' => true]);
             }
+
             return response()->json(['success' => false, 'error' => 'Üzr istəyirik istifadə etdiyiniz etimadnamələr etibarsızdır.', 'password' => $password]);
         }
-        return response()->json(['success' => false, 'error' => 'Üzr istəyirik istifadə etdiyiniz etimadnamələr etibarsızdır.']);
 
+        return response()->json(['success' => false, 'error' => 'Üzr istəyirik istifadə etdiyiniz etimadnamələr etibarsızdır.']);
 
 //        if (!$token = JWTAuth::attempt($credentials)) {
 //            return response([
@@ -60,6 +60,5 @@ class AuthController extends Controller
 //                'msg'    => 'Invalid Credentials.'
 //            ], 400);
 //        }
-
     }
 }

@@ -13,6 +13,7 @@ class CommentsResource extends ResourceCollection
      * Transform the resource collection into an array.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function toArray($request)
@@ -24,7 +25,7 @@ class CommentsResource extends ResourceCollection
 
     public function with($request)
     {
-        $included  = $this->collection->map(
+        $included = $this->collection->map(
             function ($article) {
                 return $article->author;
             }

@@ -22,7 +22,7 @@ class UserController extends Controller
 
         return view(
             'pages.profile.show.posts',
-            ['user' => $user, 'url' => '/api/authors/' . $user->id . '/posts', 'auth_user' => $this->auth_user]
+            ['user' => $user, 'url' => '/api/authors/'.$user->id.'/posts', 'auth_user' => $this->auth_user]
         );
     }
 
@@ -41,8 +41,11 @@ class UserController extends Controller
         $user = User::where('username', '=', $username)->firstorfail();
 
         $followers = $user->followers()->addselect('name', 'avatar')->get();
-        return view('pages.profile.show.followers',
-            ['user' => $user, 'followers' => $followers, 'auth_user' => $this->auth_user]);
+
+        return view(
+            'pages.profile.show.followers',
+            ['user' => $user, 'followers' => $followers, 'auth_user' => $this->auth_user]
+        );
     }
 
     public function showFollowings($username)
@@ -50,8 +53,11 @@ class UserController extends Controller
         $user = User::where('username', '=', $username)->firstorfail();
 
         $followings = $user->followings()->addselect('name', 'avatar')->get();
-        return view('pages.profile.show.followings',
-            ['user' => $user, 'followings' => $followings, 'auth_user' => $this->auth_user]);
+
+        return view(
+            'pages.profile.show.followings',
+            ['user' => $user, 'followings' => $followings, 'auth_user' => $this->auth_user]
+        );
     }
 
     public function userList()
@@ -67,7 +73,7 @@ class UserController extends Controller
 
         $user = Auth::user();
 
-        $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();
+        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
 
         $request->avatar->storeAs('avatars', $avatarName);
 

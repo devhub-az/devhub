@@ -35,9 +35,9 @@ class Visitor extends Model
             $log->increment('clicks');
         } else {
             $data = [
-                'ip' => $ip,
+                'ip'         => $ip,
                 'article_id' => $articleId,
-                'clicks' => 1,
+                'clicks'     => 1,
             ];
             $log = self::create($data);
         }

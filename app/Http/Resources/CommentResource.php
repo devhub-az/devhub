@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Mews\Purifier\Facades\Purifier;
 use Parsedown;
@@ -14,13 +14,14 @@ class CommentResource extends JsonResource
      * Transform the resource into an array.
      *
      * @param Request $request
+     *
      * @return array
      */
     public function toArray($request)
     {
         return [
             'type'          => 'comments',
-            'id'            => (string)$this->id,
+            'id'            => (string) $this->id,
             'attributes'    => [
                 'body'  => $this->content,
                 'pivot' => $this->pivot,
@@ -36,6 +37,7 @@ class CommentResource extends JsonResource
     {
         $parsedown = new Parsedown();
         $body = Purifier::clean($parsedown->text($this->body));
+
         return [
             'id'        => $this->id,
             'body'      => $body,
@@ -43,8 +45,8 @@ class CommentResource extends JsonResource
             'avatar'    => $this->author->avatar,
             'author_id' => $this->author_id,
             'pivot'     => $this->pivot,
-//            'favorite'  => $this->statusCheck('favorites'),
-//            'favorites' => $this->bookmarkers_count,
+            //            'favorite'  => $this->statusCheck('favorites'),
+            //            'favorites' => $this->bookmarkers_count,
         ];
     }
 

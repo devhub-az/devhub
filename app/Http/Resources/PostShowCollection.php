@@ -1,11 +1,12 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\Hub;
 use Auth;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Parsedown;
 use Purifier;
 
@@ -16,12 +17,13 @@ class PostShowCollection extends JsonResource
      * Transform the resource collection into an array.
      *
      * @param $request
+     *
      * @return array
      */
     public function toArray($request)
     {
         $parsedown = new Parsedown();
-        $body      = Purifier::clean($parsedown->text($this->body));
+        $body = Purifier::clean($parsedown->text($this->body));
 
         return [
             'id'             => $this->id,
@@ -53,6 +55,7 @@ class PostShowCollection extends JsonResource
 
     /**
      * @param $status
+     *
      * @return bool
      */
     public function statusCheck($status): bool
@@ -75,13 +78,14 @@ class PostShowCollection extends JsonResource
 
     /**
      * @param $text
+     *
      * @return string
      */
     public function readTime(string $text): string
     {
-        $word    = str_word_count(strip_tags($text));
+        $word = str_word_count(strip_tags($text));
         $minutes = floor($word / 200);
 
-        return $minutes . ' dəqiqə';
+        return $minutes.' dəqiqə';
     }
 }

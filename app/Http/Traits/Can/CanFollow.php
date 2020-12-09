@@ -2,9 +2,9 @@
 
 namespace App\Http\Traits\Can;
 
+use App\Models\Src\Follow;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use App\Models\Src\Follow;
 
 /**
  * Trait CanFollow.
@@ -15,11 +15,11 @@ trait CanFollow
      * Follow an item or items.
      *
      * @param int|array|Model $targets
-     * @param string $class
+     * @param string          $class
      *
-     * @return bool
      * @throws \Exception
      *
+     * @return bool
      */
     public function follow($targets, $class = __CLASS__)
     {
@@ -30,7 +30,7 @@ trait CanFollow
      * Unfollow an item or items.
      *
      * @param int|array|Model $targets
-     * @param string $class
+     * @param string          $class
      *
      * @return array
      */
@@ -43,11 +43,11 @@ trait CanFollow
      * Toggle follow an item or items.
      *
      * @param int|array|Model $targets
-     * @param string $class
+     * @param string          $class
      *
-     * @return array
      * @throws \Exception
      *
+     * @return array
      */
     public function toggleFollow($targets, $class = __CLASS__)
     {
@@ -58,7 +58,7 @@ trait CanFollow
      * Check if user is following given item.
      *
      * @param int|array|Model $target
-     * @param string $class
+     * @param string          $class
      *
      * @return bool
      */
@@ -71,14 +71,18 @@ trait CanFollow
      * Check if user and target user is following each other.
      *
      * @param int|array|Model $target
-     * @param string $class
+     * @param string          $class
      *
      * @return bool
      */
     public function areFollowingEachOther($target, $class = __CLASS__)
     {
-        return Follow::isRelationExists($this, 'followings', $target, $class) && Follow::isRelationExists($target,
-                'followings', $this, $class);
+        return Follow::isRelationExists($this, 'followings', $target, $class) && Follow::isRelationExists(
+            $target,
+            'followings',
+            $this,
+            $class
+        );
     }
 
     /**

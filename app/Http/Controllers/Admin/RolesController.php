@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\View\View;
-use Silber\Bouncer\Bouncer;
-use Silber\Bouncer\Database\Ability;
-use Silber\Bouncer\Database\Role;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreRolesRequest;
 use App\Http\Requests\Admin\UpdateRolesRequest;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
+use Silber\Bouncer\Database\Ability;
+use Silber\Bouncer\Database\Role;
 
 class RolesController extends Controller
 {
@@ -44,6 +43,7 @@ class RolesController extends Controller
      * Store a newly created Role in storage.
      *
      * @param StoreRolesRequest $request
+     *
      * @return RedirectResponse|void
      */
     public function store(StoreRolesRequest $request)
@@ -54,11 +54,11 @@ class RolesController extends Controller
         return redirect()->route('admin.roles.index');
     }
 
-
     /**
      * Show the form for editing Role.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Factory|View|void
      */
     public function edit($id)
@@ -74,7 +74,8 @@ class RolesController extends Controller
      * Update Role in storage.
      *
      * @param UpdateRolesRequest $request
-     * @param  int  $id
+     * @param int                $id
+     *
      * @return RedirectResponse|void
      */
     public function update(UpdateRolesRequest $request, $id)
@@ -91,7 +92,6 @@ class RolesController extends Controller
 
     public function show(Role $role)
     {
-
         $role->load('abilities');
 
         return view('admin.roles.show', compact('role'));
@@ -100,7 +100,8 @@ class RolesController extends Controller
     /**
      * Remove Role from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return RedirectResponse|void
      */
     public function destroy($id)
@@ -115,6 +116,7 @@ class RolesController extends Controller
      * Delete all selected Role at once.
      *
      * @param Request $request
+     *
      * @return Response|void
      */
     public function massDestroy(Request $request)
@@ -123,5 +125,4 @@ class RolesController extends Controller
 
         return response()->noContent();
     }
-
 }

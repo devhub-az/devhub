@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -16,24 +16,33 @@ class ArticleController extends Controller
      */
     public function index(): ArticlesResource
     {
-        return new ArticlesResource(Article::with(array(
+        return new ArticlesResource(Article::with([
             'creator' => function ($query) {
                 $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount('articles', 'followers');
-            }
-        ))->withcount('upvoters', 'downvoters',
-            'voters', 'views', 'bookmarkers')->orderBy('created_at',
-            'DESC')->take(50)->paginate(5));
+            },
+        ])->withcount(
+            'upvoters',
+            'downvoters',
+            'voters',
+            'views',
+            'bookmarkers'
+        )->orderBy(
+                'created_at',
+                'DESC'
+            )->take(50)->paginate(5));
     }
 
     /**
      * Display the specified resource.
      *
      * @param $id
+     *
      * @return ArticleResource
      */
     public function show($id): ArticleResource
     {
         ArticleResource::withoutWrapping();
+
         return new ArticleResource(Article::findOrFail($id));
     }
 }

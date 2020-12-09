@@ -9,8 +9,8 @@ return [
     'super_admin' => env('APP_SUPER_ADMIN') ?: 1,
 
     // Admin Credentials
-    'admin_name' => env('ADMIN_NAME') ?: 'admin',
-    'admin_email' => env('ADMIN_EMAIL') ?: 'admin@admin.com',
+    'admin_name'     => env('ADMIN_NAME') ?: 'admin',
+    'admin_email'    => env('ADMIN_EMAIL') ?: 'admin@admin.com',
     'admin_password' => env('ADMIN_PASSWORD') ?: 'admin12345',
 
     // Default Avatar
@@ -21,8 +21,8 @@ return [
 
     // Meta
     'meta' => [
-        'keywords' => 'PJ Blog,blog,pigjian,laravel,vuejs',
-        'description' => 'Nothing is impossible in PJ Blog'
+        'keywords'    => 'PJ Blog,blog,pigjian,laravel,vuejs',
+        'description' => 'Nothing is impossible in PJ Blog',
     ],
 
     // Social Share
@@ -36,6 +36,6 @@ return [
     // Google Analytics
     'google' => [
         'id'   => env('GOOGLE_ANALYTICS_ID', 'Google-Analytics-ID'),
-        'open' => env('GOOGLE_OPEN') ?: false
+        'open' => env('GOOGLE_OPEN') ?: false,
     ],
 ];
