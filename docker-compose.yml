@@ -10,9 +10,9 @@ services:
     ports:
       - "8090:80"
     volumes:
-      - ./src:/var/www
-      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./docker/data/logs/nginx:/var/log/nginx/
+      - ./:/var/www
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./.docker/data/logs/nginx:/var/log/nginx/
     depends_on:
       - php
       - mysql
@@ -20,16 +20,18 @@ services:
       - laravel
 
   mysql:
-    image: mysql:5.7.22
+    image: mysql:8.0
     container_name: mysql
     restart: unless-stopped
     tty: true
+    env_file: .env
     ports:
-      - "4306:3306"
+      - '${DB_PORT}:3306'
     environment:
-      MYSQL_DATABASE: devhub
-      MYSQL_USER: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       SERVICE_TAG: dev
       SERVICE_NAME: mysql
     networks:
@@ -41,7 +43,7 @@ services:
       dockerfile: Dockerfile
     container_name: php
     volumes:
-      - ./src:/var/www
+      - ./:/var/www
     ports:
       - "9000:9000"
     networks:

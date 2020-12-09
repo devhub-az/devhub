@@ -1,0 +1,79 @@
+{
+    "name": "hose1021/devhub",
+    "type": "project",
+    "description": "The DevHub.",
+    "keywords": [
+        "social"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^7.3|^8.0",
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "fideloper/proxy": "^4.2",
+        "fruitcake/laravel-cors": "^2.0",
+        "graham-campbell/markdown": "^13.1",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "htmlmin/htmlmin": "dev-master#e67fe976e3fd1e92568341ce84f338fa4c0ffc47",
+        "jackiedo/dotenv-editor": "^1.2",
+        "ksubileau/color-thief-php": "^1.4",
+        "laravel/framework": "^8.0",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.0",
+        "laravelcollective/html": "^6.0",
+        "mews/purifier": "~3.0",
+        "parsedown/laravel": "^1.1",
+        "silber/bouncer": "v1.0.0-rc.10"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.3",
+        "facade/ignition": "^2.3.6",
+        "filp/whoops": "^2.0",
+        "fakerphp/faker": "^1.9.1",
+        "mockery/mockery": "^1.0",
+        "nunomaduro/collision": "^5.0",
+        "pestphp/pest": "^0.3.1",
+        "phpunit/phpunit": "^9.0",
+        "roave/security-advisories": "dev-master"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
+        ]
+    }
+}

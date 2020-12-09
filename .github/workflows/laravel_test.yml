@@ -1,9 +1,9 @@
-# GitHub Action for Laravel with MySQL and Redis
-name: Testing Laravel with MySQL
+# GitHub Action for Laravel with MySQL and Node
+name: Testing Laravel with MySQL and Node
 on: [push, pull_request]
 jobs:
   laravel:
-    name: Laravel (PHP ${{ matrix.php-versions }})
+    name: Laravel (PHP ${{ matrix.php-versions }}, Node ${{ matrix.node-version }})
     runs-on: ubuntu-latest
     env:
       DB_DATABASE: laravel
@@ -15,7 +15,7 @@ jobs:
       SESSION_DRIVER: redis
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8.0
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: false
           MYSQL_ROOT_PASSWORD: password
@@ -31,8 +31,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['7.3', '7.4']
-        node-version: [8.x, 10.x, 12.x]
+#        TODO: add php 7.3
+        php-versions: ['8.0']
+        node-version: [14, 12]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -57,18 +58,14 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --optimize-autoloader
-        working-directory: ./src
       - name: Prepare the application
         run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
-        working-directory: ./src
       - name: Clear Config
         run: php artisan config:clear
-        working-directory: ./src
       - name: Run Migration
         run: php artisan migrate -v
-        working-directory: ./src
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
@@ -78,6 +75,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
-        working-directory: ./src
       - run: npm run production
-        working-directory: ./src

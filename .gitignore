@@ -10,7 +10,7 @@ src/srcHomestead.json
 src/Homestead.yaml
 src/npm-debug.log
 src/yarn-error.log
-docker/data/
+.docker/data/
 src/yarn.lock
 src/package-lock.json
 src/composer.lock
