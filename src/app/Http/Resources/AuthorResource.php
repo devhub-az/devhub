@@ -18,7 +18,7 @@ class AuthorResource extends JsonResource
     {
         return [
             'type'       => 'authors',
-            'id'         => (string)$this->id,
+            'id'         => (int)$this->id,
             'attributes' => [
                 'name'                 => $this->name,
                 'username'             => $this->username,
@@ -26,7 +26,7 @@ class AuthorResource extends JsonResource
                 'about'                => $this->about,
                 'karma'                => $this->karma,
                 'rating'               => $this->rating,
-                'articles_count'          => $this->articles_count,
+                'articles_count'       => $this->articles_count,
                 'follower'             => $this->statusCheck(),
                 'user_followers_count' => $this->followers_count,
             ],

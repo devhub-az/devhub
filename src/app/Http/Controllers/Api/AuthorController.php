@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\AuthorsResource;
-use App\Http\Resources\PostsCollection;
 use App\Http\Resources\AuthorResource;
 use App\Http\Resources\UsersCollection;
 use App\Models\Article;
@@ -16,9 +16,6 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class AuthorController extends Controller
 {
-    /**
-     * @return AnonymousResourceCollection
-     */
     public function index(): AnonymousResourceCollection
     {
         return AuthorResource::collection(User::select([
@@ -35,7 +32,7 @@ class AuthorController extends Controller
     public function show(int $id)
     {
         AuthorResource::withoutWrapping();
-        return new AuthorResource(User::findOrFail($id)->withCount('articles'));
+        return new AuthorResource(User::withCount(['articles', 'followers'])->findOrFail($id));
     }
 
     /**
@@ -49,11 +46,11 @@ class AuthorController extends Controller
 
     /**
      * @param int $id
-     * @return PostsCollection
+     * @return ArticlesResource
      */
-    public function posts(int $id): PostsCollection
+    public function posts(int $id): ArticlesResource
     {
-        return new PostsCollection(
+        return new ArticlesResource(
             Article::where('author_id', $id)
                 ->orderByRaw('(upvoters_count - downvoters_count) DESC')
                 ->orderBy('created_at', 'DESC')
@@ -66,14 +63,16 @@ class AuthorController extends Controller
 
     /**
      * @param int $id
-     * @return UsersCollection
+     * @return AuthorsResource
      */
     public function followings(int $id)
     {
-        $user = User::findorfail($id);
-        $followings = $user->followings()->select('name', 'avatar', 'rating', 'karma')->with('posts')->get();
+//        $user = User::findorfail($id);
+//        $followings = $user->followings()->select('name', 'avatar', 'rating', 'karma')->with('posts')->get();
 
-        return new UsersCollection($followings);
+        return new AuthorsResource(
+            User::with('articles')->findorfail($id)->followings
+    );
     }
 
     /**

@@ -17,7 +17,11 @@ class ArticleController extends Controller
      */
     public function index(): ArticlesResource
     {
-        return new ArticlesResource(Article::with(['creator'])->withcount('upvoters', 'downvoters',
+        return new ArticlesResource(Article::with(array(
+            'creator' => function ($query) {
+                $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount('articles', 'followers');
+            }
+        ))->withcount('upvoters', 'downvoters',
             'voters', 'views', 'bookmarkers')->orderBy('created_at',
             'DESC')->take(50)->paginate(5));
     }
@@ -30,14 +34,8 @@ class ArticleController extends Controller
      */
     public function show($id): ArticleResource
     {
-        $post = Article::find($id);
-
-        if (is_null($post)) {
-            return $this->sendError('Post not found.');
-        }
         ArticleResource::withoutWrapping();
-
-        return new ArticleResource($post);
+        return new ArticleResource(Article::findOrFail($id));
     }
 
     /**
@@ -45,7 +43,14 @@ class ArticleController extends Controller
      */
     public function posts(): ArticlesResource
     {
-        return new ArticlesResource(Article::withcount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
+        return new ArticlesResource(Article::withcount([
+            'upvoters',
+            'downvoters',
+            'voters',
+            'views',
+            'bookmarkers',
+            'comments'
+        ])
             ->orderByRaw('(upvoters_count - downvoters_count) DESC')
             ->orderBy('created_at',
                 'DESC')->where(

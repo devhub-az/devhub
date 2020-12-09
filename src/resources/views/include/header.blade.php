@@ -64,7 +64,7 @@
                 {{--                                                             @if (Auth::user()->messagesNotificationsCount() > 0)--}}
                 {{--                                                             data-badge="{{ Auth::user()->messagesNotificationsCount() }}"--}}
                 {{--                    @endif/></a>--}}
-                <a href="{{ route('create_post') }}"
+                <a href="{{ route('create_article') }}"
                    class="border border-blue font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-blue hover:opacity-90 xs:hidden">
                     Yazmaq
                 </a>
@@ -72,7 +72,7 @@
                     <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"
                         {{ Auth::user()->isAn('admin') ? ':admin="' . Auth::user()->isAn('admin') . '"' : null }}></dropdown>
                 </div>
-                <div class="m-auto w-6 h-6" id="mobile-icon__open">
+                <div class="m-auto w-6 h-6 lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
                     <img
                         src="{{ (Auth::user()->avatar !== 'default.jpg') ? '/upload/user_' . Auth::user()->id . '/logo/' . Auth::user()->avatar : config('devhub.default_avatar'), }}"
                         alt="User sekili" class="w-6 h-6 rounded ">

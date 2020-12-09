@@ -4,39 +4,30 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentsResource;
-use App\Http\Resources\AuthorsResource;
 use App\Http\Resources\AuthorResource;
+use App\Http\Resources\HubsResource;
 use App\Models\Article;
 
 class ArticleRelationshipController extends Controller
 {
     public function author($id): AuthorResource
     {
-        $post = Article::find($id);
+        $post = Article::findOrFail($id);
 
-        if (is_null($post)) {
-            return $this->sendError('Post not found.');
-        }
-        return new AuthorResource($post->author);
+        return new AuthorResource($post->creator);
     }
 
     public function comments($id): CommentsResource
     {
-        $post = Article::find($id);
+        $post = Article::findOrFail($id);
 
-        if (is_null($post)) {
-            return $this->sendError('Post not found.');
-        }
         return new CommentsResource($post->comments);
     }
 
-    public function hubs($id): AuthorsResource
+    public function hubs($id): HubsResource
     {
-        $post = Article::find($id);
+        $post = Article::findOrFail($id);
 
-        if (is_null($post)) {
-            return $this->sendError('Post not found.');
-        }
-        return new AuthorsResource($post->hubs);
+        return new HubsResource($post->hubs);
     }
 }

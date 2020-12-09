@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Throwable;
 
-class PostController extends Controller
+class ArticleController extends Controller
 {
     /**
      * PostController constructor.
