@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
-use Carbon\Carbon;
 
 class ArticleController extends Controller
 {
