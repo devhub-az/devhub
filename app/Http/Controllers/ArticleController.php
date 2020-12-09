@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostCollection;
-use App\Models\Hub;
 use App\Models\Article;
+use App\Models\Hub;
 use App\Models\User;
 use App\Notifications\PostNotify;
 use DB;
@@ -44,8 +44,10 @@ class ArticleController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return JsonResponse
+     *
      * @throws Throwable
+     *
+     * @return JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
@@ -65,11 +67,11 @@ class ArticleController extends Controller
 
             Notification::send(Auth::user()->followers, new PostNotify($share));
 
-            return redirect('/post/' . $share->id);
+            return redirect('/post/'.$share->id);
         });
 
         return response()->json([
-            'message' => 'New post created'
+            'message' => 'New post created',
         ], 200);
     }
 
@@ -77,7 +79,8 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param Request $request
-     * @param int $id
+     * @param int     $id
+     *
      * @return Factory|\Illuminate\View\View
      */
     public function show(Request $request, int $id): view
@@ -105,13 +108,16 @@ class ArticleController extends Controller
     /**
      * @param $post
      * @param $request
-     * @return JsonResponse
+     *
      * @throws Exception
+     *
+     * @return JsonResponse
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
         $user = $request->user();
         $voteStatus = $request->get('status');
+
         try {
             DB::beginTransaction();
             if (isset($voteStatus)) {
@@ -134,17 +140,16 @@ class ArticleController extends Controller
             }
             $post->creator->rating += $request->get('change_rating');
             DB::commit();
-
         } catch (\Exception $e) {
             //failed logic here
             DB::rollback();
+
             return response()->json(['error' => 'error'], 500);
         }
 
         return response()->json([
             'success' => 'success',
         ], 200);
-
 
 //        return response()->json([
 //            'transaction'        => $voteStatus,
@@ -159,8 +164,10 @@ class ArticleController extends Controller
 
     /**
      * @param Request $request
-     * @return JsonResponse status
+     *
      * @throws Exception
+     *
+     * @return JsonResponse status
      */
     public function vote(Request $request): JsonResponse
     {
@@ -176,8 +183,10 @@ class ArticleController extends Controller
 
     /**
      * @param Request $request
-     * @return JsonResponse
+     *
      * @throws Exception
+     *
+     * @return JsonResponse
      */
     public function addFavorite(Request $request): JsonResponse
     {
@@ -189,6 +198,7 @@ class ArticleController extends Controller
             $user = \Auth::user();
             if (isset($share) && !$user->hasBookmarked($share)) {
                 $user->bookmark($share);
+
                 return response()->json(['success' => 'success'], 200);
             }
 
@@ -199,12 +209,12 @@ class ArticleController extends Controller
             }
         }
 
-
         if (isset($share) && !$share->postIsFollowing(Auth::user())) {
             $share->favorites()->create([
                 'follower_id'  => Auth::user()->id,
                 'following_id' => $request->get('id'),
             ]);
+
             return response()->json(['success' => 'success'], 200);
         }
 
@@ -216,6 +226,7 @@ class ArticleController extends Controller
 
             return response()->json(['delete' => 'delete'], 200);
         }
+
         return response()->json(['error' => 'error'], 401);
     }
 
@@ -223,6 +234,7 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param int $id
+     *
      * @return void
      */
     public function edit(int $id): void
@@ -234,7 +246,8 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param int $id
+     * @param int     $id
+     *
      * @return void
      */
     public function update(Request $request, $id): void
@@ -246,6 +259,7 @@ class ArticleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
+     *
      * @return void
      */
     public function destroy($id): void

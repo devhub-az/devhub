@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreUsersRequest;
+use App\Http\Requests\Admin\UpdateUsersRequest;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Silber\Bouncer\Database\Role;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreUsersRequest;
-use App\Http\Requests\Admin\UpdateUsersRequest;
 
 class UsersController extends Controller
 {
@@ -21,7 +21,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-
         $users = User::with('roles')->get();
 
         return view('admin.users.index', compact('users'));
@@ -43,6 +42,7 @@ class UsersController extends Controller
      * Store a newly created User in storage.
      *
      * @param StoreUsersRequest $request
+     *
      * @return RedirectResponse
      */
     public function store(StoreUsersRequest $request): RedirectResponse
@@ -58,11 +58,11 @@ class UsersController extends Controller
         return redirect()->route('admin.users.index');
     }
 
-
     /**
      * Show the form for editing User.
      *
      * @param int $id
+     *
      * @return Factory|View
      */
     public function edit($id)
@@ -78,7 +78,8 @@ class UsersController extends Controller
      * Update User in storage.
      *
      * @param UpdateUsersRequest $request
-     * @param int $id
+     * @param int                $id
+     *
      * @return RedirectResponse
      */
     public function update(UpdateUsersRequest $request, $id): RedirectResponse
@@ -99,7 +100,6 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-
         $user->load('roles');
 
         return view('admin.users.show', compact('user'));
@@ -109,6 +109,7 @@ class UsersController extends Controller
      * Remove User from storage.
      *
      * @param int $id
+     *
      * @return RedirectResponse
      */
     public function destroy($id): RedirectResponse
@@ -130,5 +131,4 @@ class UsersController extends Controller
 
         return response()->noContent();
     }
-
 }

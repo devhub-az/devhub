@@ -3,15 +3,15 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateVisitorsTable extends Migration {
-
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
+class CreateVisitorsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
         Schema::create('visitors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('article_id');
@@ -21,8 +21,7 @@ class CreateVisitorsTable extends Migration {
             $table->integer('clicks')->unsigned()->default(1);
             $table->timestamps();
         });
-	}
-
+    }
 
     /**
      * Reverse the migrations.
@@ -33,5 +32,4 @@ class CreateVisitorsTable extends Migration {
     {
         Schema::dropIfExists('visitors');
     }
-
 }

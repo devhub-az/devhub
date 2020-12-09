@@ -13,7 +13,8 @@ class ArticlesResource extends ResourceCollection
     /**
      * Transform the resource collection into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function toArray($request)
@@ -30,12 +31,12 @@ class ArticlesResource extends ResourceCollection
                 return $article->comments;
             }
         );
-        $authors  = $this->collection->map(
+        $authors = $this->collection->map(
             function ($article) {
                 return $article->creator;
             }
         );
-        $hubs  = $this->collection->map(
+        $hubs = $this->collection->map(
             function ($article) {
                 return $article->hubs;
             }

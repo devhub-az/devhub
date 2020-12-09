@@ -17,6 +17,7 @@ class PostHubController extends Controller
 
     /**
      * PostController constructor.
+     *
      * @param Request $request
      */
     public function __construct(Request $request)
@@ -36,11 +37,12 @@ class PostHubController extends Controller
 
     /**
      * @param int $id
+     *
      * @return PostsCollection
      */
     public function posts(int $id): PostsCollection
     {
-        return new PostsCollection(Article::where('created_at', '>=', \DB::raw('NOW() - INTERVAL ' . $this->count . ' DAY'))
+        return new PostsCollection(Article::where('created_at', '>=', \DB::raw('NOW() - INTERVAL '.$this->count.' DAY'))
             ->whereHas('hubs', function ($query) use ($id) {
                 $query->where('hubs.id', '=', $id);
             })
@@ -53,6 +55,7 @@ class PostHubController extends Controller
 
     /**
      * @param int $id
+     *
      * @return PostsCollection
      */
     public function all(int $id): PostsCollection
@@ -71,7 +74,7 @@ class PostHubController extends Controller
     {
         return $this->respondWith(
             Article::orderBy('created_at', 'DESC')->paginate(10)->appends(['include' => $request->input('include')]),
-            new PostTransformer
+            new PostTransformer()
         );
     }
 }

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticlesResource;
-use App\Http\Resources\AuthorsResource;
 use App\Http\Resources\AuthorResource;
+use App\Http\Resources\AuthorsResource;
 use App\Http\Resources\UsersCollection;
 use App\Models\Article;
 use App\Models\User;
@@ -25,18 +25,20 @@ class AuthorController extends Controller
             'avatar',
             'about',
             'karma',
-            'rating'
+            'rating',
         ])->withCount('articles', 'followers')->paginate(12));
     }
 
     public function show(int $id)
     {
         AuthorResource::withoutWrapping();
+
         return new AuthorResource(User::withCount(['articles', 'followers'])->findOrFail($id));
     }
 
     /**
      * @param int $id
+     *
      * @return AuthorResource
      */
     public function userFollowCheck(int $id)
@@ -46,6 +48,7 @@ class AuthorController extends Controller
 
     /**
      * @param int $id
+     *
      * @return ArticlesResource
      */
     public function posts(int $id): ArticlesResource
@@ -63,6 +66,7 @@ class AuthorController extends Controller
 
     /**
      * @param int $id
+     *
      * @return AuthorsResource
      */
     public function followings(int $id)
@@ -72,11 +76,12 @@ class AuthorController extends Controller
 
         return new AuthorsResource(
             User::with('articles')->findorfail($id)->followings
-    );
+        );
     }
 
     /**
      * @param int $id
+     *
      * @return UsersCollection
      */
     public function followers(int $id)
@@ -89,6 +94,7 @@ class AuthorController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return JsonResponse
      */
     public function upload(Request $request): JsonResponse
@@ -97,6 +103,7 @@ class AuthorController extends Controller
         if ($status === true) {
             return response()->json(['success' => 'success'], 200);
         }
+
         return response()->json(['success' => 'success'], 500);
     }
 
@@ -106,8 +113,11 @@ class AuthorController extends Controller
     public function search_user_by_key(): AuthorsResource
     {
         $key = \Request::get('q');
-        $user = User::where('username', 'LIKE', "%{$key}%")->orWhere('name', 'LIKE',
-            "%{$key}%")->withCount('articles')->paginate();
+        $user = User::where('username', 'LIKE', "%{$key}%")->orWhere(
+            'name',
+            'LIKE',
+            "%{$key}%"
+        )->withCount('articles')->paginate();
 
         return new AuthorsResource($user);
     }

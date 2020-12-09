@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Hub;
 use App\Models\Article;
+use App\Models\Hub;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Throwable;
@@ -37,10 +37,11 @@ class PostHubsTableSeeder extends Seeder
                     ]);
                 }
             } catch (Throwable $e) {
-                echo 'ERROR: ' . $e->getMessage() . "\n";
+                echo 'ERROR: '.$e->getMessage()."\n";
             }
         }
     }
+
 //    /**
 //     * @var Factory
 //     */

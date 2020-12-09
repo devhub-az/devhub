@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CommentsResource;
 use App\Http\Resources\AuthorResource;
+use App\Http\Resources\CommentsResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Article;
 

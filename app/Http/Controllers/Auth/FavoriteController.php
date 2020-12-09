@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
-
 
 class FavoriteController extends Controller
 {
@@ -16,11 +14,11 @@ class FavoriteController extends Controller
 
     public function indexPosts(): View
     {
-        return view('auth.favorite.posts',['url' => '/api/saved/posts']);
+        return view('auth.favorite.posts', ['url' => '/api/saved/posts']);
     }
 
     public function indexComments(): View
     {
-        return view('auth.favorite.comments',['url'=> '/api/saved/comments']);
+        return view('auth.favorite.comments', ['url'=> '/api/saved/comments']);
     }
 }

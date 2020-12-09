@@ -3,12 +3,10 @@
 namespace App\Http\Traits;
 
 /**
- * Trait GetRelatedIds
- * @package App\Http\Traits
+ * Trait GetRelatedIds.
  */
 trait GetRelatedIds
 {
-
     public function HubsIdsAttribute(): array
     {
         return $this->hubs()->pluck('hub_id')->toArray();

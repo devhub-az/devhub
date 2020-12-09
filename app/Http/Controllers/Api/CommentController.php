@@ -8,9 +8,7 @@ use App\Http\Resources\CommentsResource;
 use App\Models\Comment;
 
 /**
- * Class CommentController
- *
- * @package \App\Http\Controllers\Api
+ * Class CommentController.
  */
 class CommentController extends Controller
 {

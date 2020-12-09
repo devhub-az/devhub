@@ -7,8 +7,8 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Hub
- * @package App\Models
+ * Class Hub.
+ *
  * @mixin Eloquent
  */
 class Hub extends Model

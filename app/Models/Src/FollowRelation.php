@@ -35,8 +35,8 @@ class FollowRelation extends Model
     }
 
     /**
-     * @param Builder $query
-     * @param string|null                           $type
+     * @param Builder     $query
+     * @param string|null $type
      *
      * @return Builder
      */

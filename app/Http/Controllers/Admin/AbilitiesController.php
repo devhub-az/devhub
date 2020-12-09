@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAbilitiesRequest;
 use App\Http\Requests\Admin\UpdateAbilitiesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Controllers\Controller;
 use Silber\Bouncer\Database\Ability;
 
 class AbilitiesController extends Controller
@@ -36,7 +36,8 @@ class AbilitiesController extends Controller
     /**
      * Store a newly created Ability in storage.
      *
-     * @param  \App\Http\Requests\StoreAbilitiesRequest  $request
+     * @param \App\Http\Requests\StoreAbilitiesRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreAbilitiesRequest $request)
@@ -49,11 +50,11 @@ class AbilitiesController extends Controller
         return redirect()->route('admin.abilities.index');
     }
 
-
     /**
      * Show the form for editing Ability.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -66,8 +67,9 @@ class AbilitiesController extends Controller
     /**
      * Update Ability in storage.
      *
-     * @param  \App\Http\Requests\UpdateAbilitiesRequest  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\UpdateAbilitiesRequest $request
+     * @param int                                       $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateAbilitiesRequest $request, $id)
@@ -80,14 +82,14 @@ class AbilitiesController extends Controller
 
     public function show(Ability $ability)
     {
-
         return view('admin.abilities.show', compact('ability'));
     }
 
     /**
      * Remove Ability from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -109,5 +111,4 @@ class AbilitiesController extends Controller
 
         return response()->noContent();
     }
-
 }
