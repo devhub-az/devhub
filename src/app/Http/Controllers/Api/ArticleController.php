@@ -37,26 +37,4 @@ class ArticleController extends Controller
         ArticleResource::withoutWrapping();
         return new ArticleResource(Article::findOrFail($id));
     }
-
-    /**
-     * @return ArticlesResource
-     */
-    public function posts(): ArticlesResource
-    {
-        return new ArticlesResource(Article::withcount([
-            'upvoters',
-            'downvoters',
-            'voters',
-            'views',
-            'bookmarkers',
-            'comments'
-        ])
-            ->orderByRaw('(upvoters_count - downvoters_count) DESC')
-            ->orderBy('created_at',
-                'DESC')->where(
-                'created_at',
-                '>=',
-                Carbon::now()->subDays(self::$count)->startOfDay()
-            )->take(50)->paginate(5));
-    }
 }
