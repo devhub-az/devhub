@@ -9,11 +9,18 @@ use App\Models\Hub;
 
 class HubController extends Controller
 {
+    /**
+     * @return HubsResource
+     */
     public function index(): HubsResource
     {
         return new HubsResource(Hub::paginate());
     }
 
+    /**
+     * @param $id
+     * @return HubResource
+     */
     public function show($id): HubResource
     {
         HubResource::withoutWrapping();
@@ -21,6 +28,9 @@ class HubController extends Controller
         return new HubResource(Hub::findorfail($id));
     }
 
+    /**
+     * @return HubsResource
+     */
     public function search_hub_by_key(): HubsResource
     {
         $key = \Request::get('q');
@@ -30,6 +40,8 @@ class HubController extends Controller
     }
 }
 
+//    TODO: Remove comments
+//
 //    /**
 //     * @var Hub
 //     */
