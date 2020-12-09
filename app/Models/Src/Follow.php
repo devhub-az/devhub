@@ -176,7 +176,7 @@ class Follow
         $result = new stdClass();
         $result->classname = $classname;
 
-        if (!is_array($targets)) {
+        if (! is_array($targets)) {
             $targets = [$targets];
         }
 
@@ -204,7 +204,7 @@ class Follow
      */
     protected static function getRelationTypeFromRelation(MorphToMany $relation): string
     {
-        if (!\array_key_exists($relation->getRelationName(), self::RELATION_TYPES)) {
+        if (! \array_key_exists($relation->getRelationName(), self::RELATION_TYPES)) {
             throw new \Exception('Invalid relation definition.');
         }
 
