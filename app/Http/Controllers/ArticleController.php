@@ -196,7 +196,7 @@ class ArticleController extends Controller
         $share = Article::findOrFail($request->get('id'));
         if (\Auth::user()) {
             $user = \Auth::user();
-            if (isset($share) && !$user->hasBookmarked($share)) {
+            if (isset($share) && ! $user->hasBookmarked($share)) {
                 $user->bookmark($share);
 
                 return response()->json(['success' => 'success'], 200);
@@ -209,7 +209,7 @@ class ArticleController extends Controller
             }
         }
 
-        if (isset($share) && !$share->postIsFollowing(Auth::user())) {
+        if (isset($share) && ! $share->postIsFollowing(Auth::user())) {
             $share->favorites()->create([
                 'follower_id'  => Auth::user()->id,
                 'following_id' => $request->get('id'),
