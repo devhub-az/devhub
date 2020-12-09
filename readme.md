@@ -1,3 +1,4 @@
+![alt text](app/Documentation/Logo.png)
 
 <p align="center">
     <img src="https://github.styleci.io/repos/229919912/shield?style=flat" alt="StyleCI">
