@@ -24,7 +24,7 @@
         "mews/purifier": "~3.0",
         "parsedown/laravel": "^1.1",
         "renatomarinho/laravel-page-speed": "^1.8",
-        "silber/bouncer": "v1.0.0-rc.9"
+        "silber/bouncer": "v1.0.0-rc.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
