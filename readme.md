@@ -1,11 +1,10 @@
-<h1 align="center">
-DevHub
-</h1>
 
 <p align="center">
     <img src="https://github.styleci.io/repos/229919912/shield?style=flat" alt="StyleCI">
     <img src="https://img.shields.io/github/v/release/hose1021/DevHub" alt="Version">
 </p>
+
+## About DevHub
 
 * **DevHub** – istifadəçi tərəfdən Vue və server tərəfdən Laravel istifadə edən proqramçılar üçün blogdur. Azərbaycan
   inkişaf etdiricilərini ölkədə İT-ni daha da genişləndirməyi hədəfləyən DevHub, daha müasir veb texnologiyalarının bir
@@ -20,9 +19,9 @@ DevHub
   difficulties.
 
 
-* **DevHub** – блог для программистов использующий со стороны пользователя Vue, а со стороны сервера Laravel.
-  DevHub ориентирован на азербайджанских разработчиков с целью создать пространство для развития IT в стране. Для
-  достижения этой цели DevHub использует такие современные веб технологии как Tailwind, Vue, Laravel.
+* **DevHub** – блог для программистов использующий со стороны пользователя Vue, а со стороны сервера Laravel. DevHub
+  ориентирован на азербайджанских разработчиков с целью создать пространство для развития IT в стране. Для достижения
+  этой цели DevHub использует такие современные веб технологии как Tailwind, Vue, Laravel.
 
   Основной задачей DevHub является помогать азербайджанским программистам делиться своими опытом и успехами без лишних
   трудностей.
