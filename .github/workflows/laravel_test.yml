@@ -31,7 +31,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['8.0', '7.3']
+#        TODO: add php 7.3
+        php-versions: ['8.0']
         node-version: [14, 12]
     steps:
       - name: Checkout
