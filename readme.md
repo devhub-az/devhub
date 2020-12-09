@@ -11,25 +11,21 @@
 
 ## About DevHub
 
-* **DevHub** – istifadəçi tərəfdən Vue və server tərəfdən Laravel istifadə edən proqramçılar üçün blogdur. Azərbaycan
+[AZ] **DevHub** – istifadəçi tərəfdən Vue və server tərəfdən Laravel istifadə edən proqramçılar üçün blogdur. Azərbaycan
   inkişaf etdiricilərini ölkədə İT-ni daha da genişləndirməyi hədəfləyən DevHub, daha müasir veb texnologiyalarının bir
-  hissəsini - Tailwind, Vue, Laravel-i istifadə edir.
-
-  **DevHub** azərbaycanlı proqramçılara uğurlarını və təcrübələrini çətinlik olmadan bölüşməyə kömək edir.
+  hissəsini - Tailwind, Vue, Laravel-i istifadə edir. DevHub azərbaycanlı proqramçılara uğurlarını və təcrübələrini çətinlik olmadan bölüşməyə kömək edir.
 
 
-* **DevHub** – is a web-based blog service written in Vue on the client side and Laravel on the server side. Targeting
+[EN] **DevHub** – is a web-based blog service written in Vue on the client side and Laravel on the server side. Targeting
   Azerbaijan developers to make IT in country greater, DevHub embraces some of the more modern web technologies –
   Tailwind, Vue, Laravel. DevHub helps Azerbaijani programmers share their successes and experience without unnecessary
   difficulties.
 
 
-* **DevHub** – блог для программистов использующий со стороны пользователя Vue, а со стороны сервера Laravel. DevHub
-  ориентирован на азербайджанских разработчиков с целью создать пространство для развития IT в стране. Для достижения
-  этой цели DevHub использует такие современные веб технологии как Tailwind, Vue, Laravel.
-
-  Основной задачей DevHub является помогать азербайджанским программистам делиться своими опытом и успехами без лишних
-  трудностей.
+[RU] **DevHub** – блог для программистов, который включает в себя статьи и публикации пользователей на темы в сфере информационных технологий.
+DevHub ориентирован на азербайджанских разработчиков с целью создать пространство для развития IT грамотности в стране.
+Основной задачей DevHub является помогать азербайджанским программистам обмениваться своим опытом и успехами с другими программистами. 
+DevHub использует такие современные веб-технологии, как Tailwind, Vue, Laravel.
 
 ## Support Questions
 
