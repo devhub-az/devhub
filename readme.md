@@ -1,5 +1,3 @@
-![alt text](app/Documentation/Logo.png)
-
 <p align="center">
 <a href="https://laravel.com" target="_blank">
 <img src="app/Documentation/Logo.png" width="400">
