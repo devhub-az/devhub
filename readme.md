@@ -1,6 +1,12 @@
 ![alt text](app/Documentation/Logo.png)
 
 <p align="center">
+<a href="https://laravel.com" target="_blank">
+<img src="app/Documentation/Logo.png" width="400">
+</a>
+</p>
+
+<p align="center">
     <img src="https://github.styleci.io/repos/229919912/shield?style=flat" alt="StyleCI">
     <img src="https://img.shields.io/github/v/release/hose1021/DevHub" alt="Version">
 </p>
