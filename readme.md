@@ -1,30 +1,31 @@
-![alt text](app/Documentation/Logo.png)
+<h1 align="center">
+DevHub
+</h1>
 
 <p align="center">
     <img src="https://github.styleci.io/repos/229919912/shield?style=flat" alt="StyleCI">
     <img src="https://img.shields.io/github/v/release/hose1021/DevHub" alt="Version">
 </p>
 
-## DevHub
-
-* [AZ] **DevHub** – istifadəçi tərəfdən Vue və server tərəfdən Laravel istifadə edən proqramçılar üçün blogdur.
-  Azərbaycan inkişaf etdiricilərini ölkədə İT-ni daha da genişləndirməyi hədəfləyən DevHub, daha müasir veb
-  texnologiyalarının bir hissəsini - Tailwind, Vue, Laravel-i istifadə edir.
+* **DevHub** – istifadəçi tərəfdən Vue və server tərəfdən Laravel istifadə edən proqramçılar üçün blogdur. Azərbaycan
+  inkişaf etdiricilərini ölkədə İT-ni daha da genişləndirməyi hədəfləyən DevHub, daha müasir veb texnologiyalarının bir
+  hissəsini - Tailwind, Vue, Laravel-i istifadə edir.
 
   **DevHub** azərbaycanlı proqramçılara uğurlarını və təcrübələrini çətinlik olmadan bölüşməyə kömək edir.
 
 
-* [EN] **DevHub** – is a web-based blog service written in Vue on the client side and Laravel on the server side.
-  Targeting Azerbaijan developers to make IT in country greater, DevHub embraces some of the more modern web
-  technologies – Tailwind, Vue, Laravel. DevHub helps Azerbaijani programmers share their successes and experience
-  without unnecessary difficulties.
+* **DevHub** – is a web-based blog service written in Vue on the client side and Laravel on the server side. Targeting
+  Azerbaijan developers to make IT in country greater, DevHub embraces some of the more modern web technologies –
+  Tailwind, Vue, Laravel. DevHub helps Azerbaijani programmers share their successes and experience without unnecessary
+  difficulties.
 
 
-* [RU] **DevHub** – блог для программистов использующий со стороны пользователя Vue, а со стороны сервера Laravel.
-  DevHub, ориентирован на азербайджанских разработчиков с целью сделать IT в стране более развитым. Для этого DevHub
-  использует некоторые более современные веб технологии - Tailwind, Vue, Laravel.
+* **DevHub** – блог для программистов использующий со стороны пользователя Vue, а со стороны сервера Laravel.
+  DevHub ориентирован на азербайджанских разработчиков с целью создать пространство для развития IT в стране. Для
+  достижения этой цели DevHub использует такие современные веб технологии как Tailwind, Vue, Laravel.
 
-  Основная задача DevHub помогать Азербайджанским программистам без лишних трудностей делиться своими успехами и опытом.
+  Основной задачей DevHub является помогать азербайджанским программистам делиться своими опытом и успехами без лишних
+  трудностей.
 
 ## Support Questions
 
@@ -53,6 +54,6 @@ autoloading standard.
 ## Security Vulnerabilities
 
 If you discover a security vulnerability within DevHub, please
-create [github Issie](https://github.com/hose1021/DevHub/issues) with label `bug`. 
+create [github Issie](https://github.com/hose1021/DevHub/issues) with label `bug`.
 
 All security vulnerabilities will be promptly addressed.
