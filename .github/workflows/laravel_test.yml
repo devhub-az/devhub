@@ -1,4 +1,4 @@
-# GitHub Action for Laravel with MySQL and Redis
+# GitHub Action for Laravel with MySQL and Node
 name: Testing Laravel with MySQL and Node
 on: [push, pull_request]
 jobs:
