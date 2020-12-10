@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubsCollection;
 use App\Http\Resources\PostCollection;
 use App\Models\Article;
@@ -16,6 +17,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class ArticleController extends Controller
@@ -35,9 +37,12 @@ class ArticleController extends Controller
     {
         $hubs = new HubsCollection(Hub::get());
 
-        return view('pages.posts.create', [
-            'hubs' => $hubs,
-        ]);
+        return view(
+            'pages.posts.create',
+            [
+                'hubs' => $hubs,
+            ]
+        );
     }
 
     /**
@@ -45,34 +50,43 @@ class ArticleController extends Controller
      *
      * @param Request $request
      *
+     * @return JsonResponse
      * @throws Throwable
      *
-     * @return JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
-            'title' => 'required|string',
-            'body'  => 'string',
-            // 'tags' => 'required',
-        ]);
+        $request->validate(
+            [
+                'title' => 'required|string',
+                'body'  => 'string',
+                // 'tags' => 'required',
+            ]
+        );
 
-        DB::transaction(function () use ($request) {
-            $share = new Article([
-                'name'      => $request->get('title'),
-                'body'      => $request->get('body'),
-                'author_id' => Auth::user()->id,
-            ]);
-            $share->save();
+        DB::transaction(
+            function () use ($request) {
+                $share = new Article(
+                    [
+                        'name'      => $request->get('title'),
+                        'body'      => $request->get('body'),
+                        'author_id' => Auth::user()->id,
+                    ]
+                );
+                $share->save();
 
-            Notification::send(Auth::user()->followers, new PostNotify($share));
+                Notification::send(Auth::user()->followers, new PostNotify($share));
 
-            return redirect('/post/'.$share->id);
-        });
+                return redirect('/post/' . $share->id);
+            }
+        );
 
-        return response()->json([
-            'message' => 'New post created',
-        ], 200);
+        return response()->json(
+            [
+                'message' => 'New post created',
+            ],
+            200
+        );
     }
 
     /**
@@ -81,20 +95,42 @@ class ArticleController extends Controller
      * @param Request $request
      * @param int     $id
      *
-     * @return Factory|\Illuminate\View\View
+     * @return View
      */
     public function show(Request $request, int $id): view
     {
-        $post = new PostCollection(Article::findorfail($id));
+        ArticleResource::withoutWrapping();
 
-        return view('pages.posts.show', ['post' => $post->toResponse($request)->getData()->data]);
+        $post = new ArticleResource(
+            Article::with(
+                [
+                    'creator' => function ($query) {
+                        $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount(
+                            'articles',
+                            'followers'
+                        );
+                    },
+                ]
+            )->findorfail($id)
+        );
+
+        return view('pages.posts.show', ['post' => $post->toResponse($request)->getData()]);
     }
 
-    public function postVoteComment(Request $request, $type)
+    /**
+     * @param Request $request
+     * @param         $type
+     * @return mixed
+     * @throws ValidationException
+     */
+    public function postVoteComment(Request $request, $type): mixed
     {
-        $this->validate($request, [
-            'id' => 'required|exists:comments,id',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'id' => 'required|exists:comments,id',
+            ]
+        );
 
         $user = $request->user();
 
@@ -109,13 +145,13 @@ class ArticleController extends Controller
      * @param $post
      * @param $request
      *
-     * @throws Exception
-     *
      * @return JsonResponse
+     * @throws Exception|Throwable
+     *
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
-        $user = $request->user();
+        $user       = $request->user();
         $voteStatus = $request->get('status');
 
         try {
@@ -147,9 +183,11 @@ class ArticleController extends Controller
             return response()->json(['error' => 'error'], 500);
         }
 
-        return response()->json([
-            'success' => 'success',
-        ], 200);
+        return response()->json(
+            [
+                'success' => 'success',
+            ]
+        );
 
 //        return response()->json([
 //            'transaction'        => $voteStatus,
@@ -165,16 +203,18 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
-     * @throws Exception
-     *
      * @return JsonResponse status
+     * @throws Exception|Throwable
+     *
      */
     public function vote(Request $request): JsonResponse
     {
-        $request->validate([
-            'id'   => 'required|int',
-            'vote' => 'required|int',
-        ]);
+        $request->validate(
+            [
+                'id'   => 'required|int',
+                'vote' => 'required|int',
+            ]
+        );
 
         $post = Article::findOrFail($request->get('id'));
 
@@ -184,19 +224,21 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
+     * @return JsonResponse
      * @throws Exception
      *
-     * @return JsonResponse
      */
     public function addFavorite(Request $request): JsonResponse
     {
-        $request->validate([
-            'id' => 'required|int',
-        ]);
+        $request->validate(
+            [
+                'id' => 'required|int',
+            ]
+        );
         $share = Article::findOrFail($request->get('id'));
         if (\Auth::user()) {
             $user = \Auth::user();
-            if (isset($share) && ! $user->hasBookmarked($share)) {
+            if (isset($share) && !$user->hasBookmarked($share)) {
                 $user->bookmark($share);
 
                 return response()->json(['success' => 'success'], 200);
@@ -209,20 +251,24 @@ class ArticleController extends Controller
             }
         }
 
-        if (isset($share) && ! $share->postIsFollowing(Auth::user())) {
-            $share->favorites()->create([
-                'follower_id'  => Auth::user()->id,
-                'following_id' => $request->get('id'),
-            ]);
+        if (isset($share) && !$share->postIsFollowing(Auth::user())) {
+            $share->favorites()->create(
+                [
+                    'follower_id'  => Auth::user()->id,
+                    'following_id' => $request->get('id'),
+                ]
+            );
 
             return response()->json(['success' => 'success'], 200);
         }
 
         if ($share->postIsFollowing(Auth::user())) {
-            $share->favorites()->where([
-                'follower_id'  => Auth::user()->id,
-                'following_id' => $request->get('id'),
-            ])->delete();
+            $share->favorites()->where(
+                [
+                    'follower_id'  => Auth::user()->id,
+                    'following_id' => $request->get('id'),
+                ]
+            )->delete();
 
             return response()->json(['delete' => 'delete'], 200);
         }

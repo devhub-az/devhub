@@ -1,13 +1,15 @@
 <template>
     <div class="hub_follow">
-        <span @click="follow(hub.id)" v-if="!hubs.follower_check && !loading" class="border uppercase text-xs rounded px-4 py-2 cursor-pointer hover:border-blue_def-400">
-            <i class="mdi mdi-eye text-base"></i> <span class="xs:hidden">İzləmək</span>
+        <span @click="follow(hub.id)" v-if="!hubs.follower_check && !loading"
+              class="border text-sm rounded px-3 py-1 cursor-pointer hover:border-blue_def-400 xs:hidden">
+            <span class="text-sm font-medium text-gray-600 ">Izləmək</span>
         </span>
-        <span @click="follow(hub.id)" v-if="hubs.follower_check && !loading" class="border-blue_def-400 uppercase text-gray-100 text-xs rounded px-4 py-2 cursor-pointer bg-blue_def-400 hover:border-gray-700">
-            <i class="mdi mdi-check"></i> <span class="xs:hidden">İzləyirsiniz</span>
+        <span @click="follow(hub.id)" v-if="hubs.follower_check && !loading"
+              class="border-blue_def-400 text-sm text-white rounded px-4 py-1 cursor-pointer bg-blue_def-400 hover:border-gray-700 xs:hidden">
+            <span class="font-medium">İzləyirsiniz</span>
         </span>
-        <span v-if="loading" class="border uppercase text-xs rounded px-4 py-2 cursor-pointer">
-            <i class="mdi mdi-loading mdi-spin"></i> <span class="xs:hidden">Gözləyin</span>
+        <span v-if="loading" class="border text-sm rounded px-4 py-1 cursor-pointer xs:hidden">
+            <span class="font-medium">Gözləyin</span>
         </span>
     </div>
 </template>

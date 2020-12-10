@@ -23,7 +23,7 @@
                         </span>
                     </div>
                     <div class="grid grid-flow-col py-2">
-                        <a :href="'/post/' + post.id" class="my-auto">
+                        <a :href="'/article/' + post.id" class="my-auto">
                             <p class="text-2xl xs:text-xl font-medium">{{ post.attributes.title }}</p>
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
