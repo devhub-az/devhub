@@ -13,7 +13,7 @@ class ProfileController extends Controller
     {
         $followUser = User::findOrFail($request->get('id'));
         if (Auth::check()) {
-            if (! $followUser->isFollowedBy(Auth::user()->id)) {
+            if (!$followUser->isFollowedBy(Auth::user()->id)) {
                 try {
                     Auth::user()->follow($followUser);
                 } catch (\Exception $e) {

@@ -55,10 +55,10 @@ class ArticleTopController extends Controller
                 'created_at',
                 'DESC'
             )->where(
-                    'created_at',
-                    '>=',
-                    Carbon::now()->subDays(self::$count)->startOfDay()
-                )->take(50)->paginate(5));
+                'created_at',
+                '>=',
+                Carbon::now()->subDays(self::$count)->startOfDay()
+            )->take(50)->paginate(5));
     }
 
     /**
