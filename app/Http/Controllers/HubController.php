@@ -87,7 +87,7 @@ class HubController extends Controller
     {
         $userId = Auth::user();
         $hub = Hub::findOrFail($request->get('id'));
-        if (isset($hub) && ! $hub->isFollowedBy($userId)) {
+        if (isset($hub) && !$hub->isFollowedBy($userId)) {
             $userId->follow($hub);
 
             return response()->json(['success' => 'success'], 200);

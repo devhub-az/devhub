@@ -48,8 +48,9 @@ class ArticleController extends Controller
      *
      * @param Request $request
      *
-     * @return JsonResponse
      * @throws Throwable
+     *
+     * @return JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
@@ -117,8 +118,10 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      * @param         $type
-     * @return mixed
+     *
      * @throws ValidationException
+     *
+     * @return mixed
      */
     public function postVoteComment(Request $request, $type): mixed
     {
@@ -142,8 +145,9 @@ class ArticleController extends Controller
      * @param $post
      * @param $request
      *
-     * @return JsonResponse
      * @throws Exception|Throwable
+     *
+     * @return JsonResponse
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
@@ -199,8 +203,9 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
-     * @return JsonResponse status
      * @throws Exception|Throwable
+     *
+     * @return JsonResponse status
      */
     public function vote(Request $request): JsonResponse
     {
@@ -219,8 +224,9 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
-     * @return JsonResponse
      * @throws Exception
+     *
+     * @return JsonResponse
      */
     public function addFavorite(Request $request): JsonResponse
     {
@@ -232,7 +238,7 @@ class ArticleController extends Controller
         $share = Article::findOrFail($request->get('id'));
         if (\Auth::user()) {
             $user = \Auth::user();
-            if (isset($share) && ! $user->hasBookmarked($share)) {
+            if (isset($share) && !$user->hasBookmarked($share)) {
                 $user->bookmark($share);
 
                 return response()->json(['success' => 'success'], 200);
@@ -245,7 +251,7 @@ class ArticleController extends Controller
             }
         }
 
-        if (isset($share) && ! $share->postIsFollowing(Auth::user())) {
+        if (isset($share) && !$share->postIsFollowing(Auth::user())) {
             $share->favorites()->create(
                 [
                     'follower_id'  => Auth::user()->id,
