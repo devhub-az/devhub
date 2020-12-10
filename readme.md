@@ -1,5 +1,5 @@
 <p align="center">
-<img src="public/images/DevHub_Chrome_Full_Logo.png" width="400">
+<img src="public/images/DevHub_Monochrome_Full_Logo.png" width="400">
 </p>
 
 <p align="center">

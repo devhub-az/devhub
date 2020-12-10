@@ -58,7 +58,7 @@ class FollowRelation extends Model
      */
     public function getTable()
     {
-        if (!$this->table) {
+        if (! $this->table) {
             $this->table = config('follow.followable_table', 'followables');
         }
 
@@ -84,7 +84,7 @@ class FollowRelation extends Model
     {
         $morphMap = Relation::morphMap();
 
-        if (!empty($morphMap) && in_array($type, $morphMap, true)) {
+        if (! empty($morphMap) && in_array($type, $morphMap, true)) {
             $type = array_search($type, $morphMap, true);
         }
 
@@ -96,7 +96,7 @@ class FollowRelation extends Model
 
         $modelName = $namespace.'\\'.studly_case($type);
 
-        if (!class_exists($modelName)) {
+        if (! class_exists($modelName)) {
             throw new InvalidArgumentException("Model {$modelName} not exists. Please check your config 'follow.model_namespace'.");
         }
 
