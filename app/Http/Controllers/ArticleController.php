@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubsCollection;
-use App\Http\Resources\PostCollection;
 use App\Models\Article;
 use App\Models\Hub;
 use App\Models\User;
 use App\Notifications\PostNotify;
 use DB;
 use Exception;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -52,7 +50,6 @@ class ArticleController extends Controller
      *
      * @return JsonResponse
      * @throws Throwable
-     *
      */
     public function store(Request $request): JsonResponse
     {
@@ -77,7 +74,7 @@ class ArticleController extends Controller
 
                 Notification::send(Auth::user()->followers, new PostNotify($share));
 
-                return redirect('/post/' . $share->id);
+                return redirect('/post/'.$share->id);
             }
         );
 
@@ -147,11 +144,10 @@ class ArticleController extends Controller
      *
      * @return JsonResponse
      * @throws Exception|Throwable
-     *
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
-        $user       = $request->user();
+        $user = $request->user();
         $voteStatus = $request->get('status');
 
         try {
@@ -205,7 +201,6 @@ class ArticleController extends Controller
      *
      * @return JsonResponse status
      * @throws Exception|Throwable
-     *
      */
     public function vote(Request $request): JsonResponse
     {
@@ -226,7 +221,6 @@ class ArticleController extends Controller
      *
      * @return JsonResponse
      * @throws Exception
-     *
      */
     public function addFavorite(Request $request): JsonResponse
     {
@@ -238,7 +232,7 @@ class ArticleController extends Controller
         $share = Article::findOrFail($request->get('id'));
         if (\Auth::user()) {
             $user = \Auth::user();
-            if (isset($share) && !$user->hasBookmarked($share)) {
+            if (isset($share) && ! $user->hasBookmarked($share)) {
                 $user->bookmark($share);
 
                 return response()->json(['success' => 'success'], 200);
@@ -251,7 +245,7 @@ class ArticleController extends Controller
             }
         }
 
-        if (isset($share) && !$share->postIsFollowing(Auth::user())) {
+        if (isset($share) && ! $share->postIsFollowing(Auth::user())) {
             $share->favorites()->create(
                 [
                     'follower_id'  => Auth::user()->id,
