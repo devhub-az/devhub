@@ -56,7 +56,7 @@
                                class="social-icons__item-link social-icons__item-link_normal social-icons__item-link_facebook"
                                title="Опубликовать ссылку в Facebook"
                                onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false">
-                                <svg class="icon-svg" aria-hidden="true" aria-labelledby="title" version="1.1"
+                                <svg class="icon-svg" aria-hidden="true" aria-labelledby="title"
                                      role="img" width="24" height="24" viewBox="0 0 24 24">
                                     <path
                                         d="M14.889 8.608h-1.65c-.195 0-.413.257-.413.6v1.192h2.063v1.698h-2.063v5.102h-1.948v-5.102h-1.766v-1.698h1.766v-1c0-1.434.995-2.6 2.361-2.6h1.65v1.808z"></path>
@@ -68,7 +68,7 @@
                                class="social-icons__item-link social-icons__item-link_normal social-icons__item-link_vkontakte"
                                title="Опубликовать ссылку во ВКонтакте"
                                onclick="window.open(this.href, 'Опубликовать ссылку во ВКонтакте', 'width=800,height=300,toolbar=0,status=0'); return false">
-                                <svg class="icon-svg" aria-hidden="true" aria-labelledby="title" version="1.1"
+                                <svg class="icon-svg" aria-hidden="true" aria-labelledby="title"
                                      role="img" width="24" height="24" viewBox="0 0 24 24">
                                     <path
                                         d="M16.066 11.93s1.62-2.286 1.782-3.037c.054-.268-.064-.418-.343-.418h-1.406c-.322 0-.44.139-.537.343 0 0-.76 1.619-1.685 2.64-.297.33-.448.429-.612.429-.132 0-.193-.11-.193-.408v-2.607c0-.365-.043-.472-.343-.472h-2.254c-.172 0-.279.1-.279.236 0 .343.526.421.526 1.352v1.921c0 .386-.022.537-.204.537-.483 0-1.631-1.663-2.274-3.552-.129-.386-.268-.494-.633-.494h-1.406c-.204 0-.354.139-.354.343 0 .375.44 2.114 2.167 4.442 1.159 1.566 2.683 2.414 4.056 2.414.838 0 1.041-.139 1.041-.494v-1.202c0-.301.118-.429.29-.429.193 0 .534.062 1.33.848.945.901 1.01 1.276 1.525 1.276h1.578c.161 0 .311-.075.311-.343 0-.354-.462-.987-1.17-1.738-.29-.386-.762-.805-.912-.998-.215-.226-.151-.354-.001-.59z"></path>
@@ -80,7 +80,7 @@
                                class="social-icons__item-link social-icons__item-link_normal social-icons__item-link_telegram"
                                title="Поделиться ссылкой в Telegram"
                                onclick="window.open(this.href, 'Поделиться ссылкой в Telegram', 'width=800,height=300,toolbar=0,status=0'); return false">
-                                <svg class="icon-svg" aria-hidden="true" aria-labelledby="title" version="1.1"
+                                <svg class="icon-svg" aria-hidden="true" aria-labelledby="title"
                                      role="img" width="24" height="24" viewBox="0 0 24 24">
                                     <path
                                         d="M17.17 7.621l-10.498 3.699c-.169.059-.206.205-.006.286l2.257.904 1.338.536 6.531-4.796s.189.057.125.126l-4.68 5.062-.27.299.356.192 2.962 1.594c.173.093.397.016.447-.199.058-.254 1.691-7.29 1.728-7.447.047-.204-.087-.328-.291-.256zm-6.922 8.637c0 .147.082.188.197.084l1.694-1.522-1.891-.978v2.416z"></path>

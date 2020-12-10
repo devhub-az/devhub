@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubsCollection;
-use App\Http\Resources\PostCollection;
 use App\Models\Article;
 use App\Models\Hub;
 use App\Models\User;
 use App\Notifications\PostNotify;
 use DB;
 use Exception;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -52,7 +50,6 @@ class ArticleController extends Controller
      *
      * @return JsonResponse
      * @throws Throwable
-     *
      */
     public function store(Request $request): JsonResponse
     {
