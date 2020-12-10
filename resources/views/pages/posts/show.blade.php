@@ -9,7 +9,7 @@
 @stop
 
 @section('main')
-    <div class="layout_body">
+    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 xs:mt-0 lg:mx-auto xl:mx-auto">
         {{--        <header>--}}
         {{--            <div class="page-header__banner">--}}
         {{--                <a href="https://hh.ru/employer/1212374" target="_blank">--}}
@@ -45,11 +45,21 @@
         {{--                </div>--}}
         {{--            </div>--}}
         {{--        </header>--}}
-        <div class="layout_content" id="app">
-            <div class="post_left">
-                <post-show :id="{{ $post->attributes->id }}" @auth :auth_check="true" @endauth></post-show>
+        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4" id="app">
+            <div>
+                <article-show :id="{{ $post->attributes->id }}" @auth :auth_check="true" @endauth></article-show>
+                <div class="flex justify-between items-center border bg-white w-full px-3.5 py-3 rounded">
+                    <p class="text-2xl">
+                         Paylaş
+                    </p>
+                    <div class="text-4xl">
+                        <i class="mdi mdi-facebook" style="color: #3B5998"></i>
+                        <i class="mdi mdi-vk" style="color: #2787F5"></i>
+                        <i class="mdi mdi-telegram" style="color: #0088cc"></i>
+                    </div>
+                </div>
                 <div class="post-share">
-                    <span class="post-share__title"><i class="icon feather icon-share"></i> Paylaş</span>
+                    <span class="post-share__title"><i class="mdi mdi-share"></i> Paylaş</span>
                     <ul class="post-share__buttons social-icons">
                         <li class="social-icons__item social-icons__item_post">
                             <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}"
@@ -149,4 +159,13 @@
             </div>
         </div>
     </div>
+@endsection
+
+@push('scripts')
+    <script type="text/javascript" src="{{ mix('js/article-show.js') }}"></script>
+@endpush
+
+@section('styles')
+    @parent
+    <link rel="preload" href="{{ mix('js/article-show.js') }}" as="script">
 @endsection

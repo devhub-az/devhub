@@ -3,8 +3,8 @@ window.Vue = require('vue');
 /**
  * Posts
  */
-Vue.component('posts', () => import('./components/posts/PostsComponent'));
-Vue.component('post-show', () => import('./components/posts/PostShowComponent'));
+Vue.component('posts', () => import('./components/articles/PostsComponent'));
+Vue.component('post-show', () => import('./components/articles/PostShowComponent'));
 
 /**
  * Loading

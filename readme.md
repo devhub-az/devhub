@@ -1,6 +1,6 @@
 <p align="center">
 <a href="https://laravel.com" target="_blank">
-<img src="app/Documentation/Logo.png" width="400">
+<img src="public/images/DevHub_Chrome_Full_Logo.png" width="400">
 </a>
 </p>
 

@@ -16,20 +16,27 @@ class ArticleController extends Controller
      */
     public function index(): ArticlesResource
     {
-        return new ArticlesResource(Article::with([
-            'creator' => function ($query) {
-                $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount('articles', 'followers');
-            },
-        ])->withcount(
-            'upvoters',
-            'downvoters',
-            'voters',
-            'views',
-            'bookmarkers'
-        )->orderBy(
-            'created_at',
-            'DESC'
-        )->take(50)->paginate(5));
+        return new ArticlesResource(
+            Article::with(
+                [
+                    'creator' => function ($query) {
+                        $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount(
+                            'articles',
+                            'followers'
+                        );
+                    },
+                ]
+            )->withcount(
+                'upvoters',
+                'downvoters',
+                'voters',
+                'views',
+                'bookmarkers'
+            )->orderBy(
+                'created_at',
+                'DESC'
+            )->take(50)->paginate(5)
+        );
     }
 
     /**
@@ -43,6 +50,14 @@ class ArticleController extends Controller
     {
         ArticleResource::withoutWrapping();
 
-        return new ArticleResource(Article::findOrFail($id));
+        return new ArticleResource(
+            Article::withcount(
+                'upvoters',
+                'downvoters',
+                'voters',
+                'views',
+                'bookmarkers'
+            )->findOrFail($id)
+        );
     }
 }
