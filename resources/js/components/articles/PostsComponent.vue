@@ -2,7 +2,7 @@
     <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
-            <div class="w-full mb-3 rounded bg-white border-b" v-for="post in posts">
+            <div class="w-full mb-3 rounded bg-white border" v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
                         <a v-bind:href="'/users/@' + post.relationships.author.data.attributes.username"
@@ -33,7 +33,7 @@
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden" v-html="md(post.attributes.body)">
                     </div>
                 </div>
-                <div class="grid lg:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
+                <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
                     <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
                         <span>
                             <i class="mdi mdi-eye-outline"/> {{ post.views ? post.views : 'X' }}

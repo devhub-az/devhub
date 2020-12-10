@@ -54,7 +54,7 @@
             </div>
 
             {{-- Right --}}
-            <div class="content_right" id="sticky-block">
+            <div class="content_right">
                 <div class="border rounded p-4 mb-2 bg-white">
                     <h2 class="font-semibold">Yeni məqalə yazmağa başla 💬✨</h2>
                     <p class="pb-2">

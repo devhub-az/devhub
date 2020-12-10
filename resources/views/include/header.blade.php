@@ -53,11 +53,11 @@
                 <a href="/login" class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl"><i
                         class="mdi mdi-account-outline"></i></a>
                 <a href="{{ route('login') }}"
-                   class="border border-gray uppercase text-xs rounded px-2 py-1 text-gray-100 bg-transparent xs:hidden sm:hidden">
+                   class="border border-gray font-normal uppercase text-xs rounded px-2 py-1 text-gray-100 bg-transparent xs:hidden sm:hidden">
                     Daxil ol
                 </a>
                 <a href="{{ route('register') }}"
-                   class="border border-blue uppercase text-xs rounded px-2 py-1 text-gray-200 bg-blue xs:hidden sm:hidden">Qoşulmaq</a>
+                   class="border border-blue font-normal uppercase text-xs rounded px-2 py-1 text-white bg-blue xs:hidden sm:hidden">Qoşulmaq</a>
             @else
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"
                                        :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
