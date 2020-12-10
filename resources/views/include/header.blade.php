@@ -15,7 +15,11 @@
             <div class="flex items-center justify-center">
                 <a class="text-gray-100 text-2xl pr-2 font-bold hover:text-gray-200 md:text-2xl items-center xs:ml-0 xs:text-2xl"
                    href="{{ session('main-page') ?? route('home') }}">
-                    <img src="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" alt="DevHub Logo" class="w-32">
+                    <picture>
+                        <source srcset="{{ asset('images/DevHub_Chrome_Full_Logo.webp') }}" type="image/webp">
+                        <source srcset="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" type="image/png">
+                        <img src="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" alt="DevHub Logo" class="w-32">
+                    </picture>
                 </a>
             </div>
             <ul class="grid grid-flow-col gap-3 md:hidden sm:hidden xs:hidden items-center justify-center" id="menu">

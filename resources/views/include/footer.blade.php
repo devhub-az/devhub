@@ -1,7 +1,11 @@
 <footer class="text-gray-300 body-font bg-footer py-2 mt-auto">
     <div class="flex xs:block items-center xs:h-auto lg:container mx-auto">
         <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100 xs:pb-4">
-            <img src="{{ asset('images/DevHub_Compact_Logo.png') }}" alt="DevHub Logo" class="w-10">
+            <picture>
+                <source srcset="{{ asset('images/DevHub_Compact_Logo.webp') }}" type="image/webp">
+                <source srcset="{{ asset('images/DevHub_Compact_Logo.png') }}" type="image/png">
+                <img src="{{ asset('images/DevHub_Compact_Logo.png') }}" alt="DevHub Logo" class="w-10">
+            </picture>
         </a>
         <p class="text-sm text-gray-100 pl-4 py-2 my-auto xs:p-0 xs:text-center">
             &copy; 2019 – {{ date('Y') }} <span class="lg:hidden md:hidden xl:hidden">«DevHub»</span>
