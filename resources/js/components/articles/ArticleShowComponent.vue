@@ -3,7 +3,7 @@
         <article-loading v-if="loading"/>
         <div v-if="!loading" id="post-content" class="w-full rounded bg-white border">
             <div id="sidebar"
-                 class="sticky top-0 flex justify-between items-center border bg-gray-100 px-3.5 py-1 z-10">
+                 class="sticky top-0 flex justify-between items-center border-b bg-gray-100 px-3.5 py-1 z-10">
                 <div class="inline-flex">
                     <img class="w-6 h-6 flex-none image-fit rounded lazyload"
                          :src="post.relationships.author.data.attributes.avatar" alt="user avatar">
@@ -29,7 +29,7 @@
                 <div class="markdown my-2" v-html="md(post.attributes.body)">
                 </div>
             </div>
-            <div class="grid lg:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
+            <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
                 <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
                     <span>
                         <i class="mdi mdi-eye-outline"/> {{ post.views ? post.views : 'X' }}

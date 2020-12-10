@@ -4,7 +4,7 @@
             <img src="{{ asset('images/DevHub_Compact_Logo.png') }}" alt="DevHub Logo" class="w-10">
         </a>
         <p class="text-sm text-gray-100 pl-4 py-2 my-auto xs:p-0 xs:text-center">
-            &copy; 2019 – {{ date('Y') }} «DevHub»
+            &copy; 2019 – {{ date('Y') }} <span class="lg:hidden md:hidden xl:hidden">«DevHub»</span>
         </p>
         <ul class="flex xs:hidden my-auto ml-4 flex-wrap uppercase text-sm" id="navbar-links">
             <li class="ml-4">

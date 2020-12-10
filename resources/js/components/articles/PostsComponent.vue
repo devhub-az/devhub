@@ -2,7 +2,7 @@
     <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
-            <div class="w-full mb-3 rounded bg-white border" v-for="post in posts">
+            <div class="w-full mb-3 rounded bg-white border-b" v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
                         <a v-bind:href="'/users/@' + post.relationships.author.data.attributes.username"
@@ -70,7 +70,7 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty" class="bg-white rounded border text-center grid gap-2 p-5 pt-0">
+        <div v-else-if="postsEmpty" class="bg-white rounded border-t text-center grid gap-2 p-5 pt-0">
             <span class="opacity-75" style="font-size: 5rem">
                 <i class="mdi mdi-comment-edit-outline"/>
             </span>
