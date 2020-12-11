@@ -6,7 +6,6 @@ use App\Http\Resources\AuthorResource;
 use App\Models\User;
 use Auth;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,9 +25,9 @@ class AuthorController extends Controller
     /**
      * @param Request $request
      * @param         $username
-     * @return Factory|View|Application
+     * @return View|Application
      */
-    public function showPosts(Request $request, $username): Factory|View|Application
+    public function showPosts(Request $request, $username): View|Application
     {
         AuthorResource::withoutWrapping();
 
@@ -43,9 +42,9 @@ class AuthorController extends Controller
     /**
      * @param Request $request
      * @param         $username
-     * @return Factory|View|Application
+     * @return View|Application
      */
-    public function showInfo(Request $request, $username): Factory|View|Application
+    public function showInfo(Request $request, $username): View|Application
     {
         AuthorResource::withoutWrapping();
 
@@ -59,9 +58,9 @@ class AuthorController extends Controller
 
     /**
      * @param $username
-     * @return Application|Factory|View
+     * @return View|Application
      */
-    public function showFollowers($username)
+    public function showFollowers($username): View|Application
     {
         $user = User::where('username', '=', $username)->firstorfail();
 
@@ -75,9 +74,9 @@ class AuthorController extends Controller
 
     /**
      * @param $username
-     * @return Application|Factory|View
+     * @return View|Application
      */
-    public function showFollowings($username): Factory|View|Application
+    public function showFollowings($username): View|Application
     {
         $user = User::where('username', '=', $username)->firstorfail();
 
@@ -90,9 +89,9 @@ class AuthorController extends Controller
     }
 
     /**
-     * @return Factory|View|Application
+     * @return View|Application
      */
-    public function userList(): Factory|View|Application
+    public function userList(): View|Application
     {
         return view('pages.profile.users');
     }
