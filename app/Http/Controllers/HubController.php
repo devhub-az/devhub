@@ -47,7 +47,6 @@ class HubController extends Controller
         );
     }
 
-
     public function index()
     {
         $top_hubs = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
