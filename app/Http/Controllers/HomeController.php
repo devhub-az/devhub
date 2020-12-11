@@ -11,12 +11,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * @param Request $request
-     *
-     * @return Application|Factory|View
-     */
-    public function postsApiRoute(Request $request): Application|Factory|View
+    public function postsApiRoute(Request $request)
     {
         $top_followed_hubs = new HubsResource(Hub::take(6)->get());
         switch ($request->path()) {

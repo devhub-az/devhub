@@ -22,12 +22,7 @@ class AuthorController extends Controller
         $this->auth_user = new AuthorResource(Auth::user());
     }
 
-    /**
-     * @param Request $request
-     * @param         $username
-     * @return View|Application
-     */
-    public function showPosts(Request $request, $username): View|Application
+    public function showPosts(Request $request, $username)
     {
         AuthorResource::withoutWrapping();
 
