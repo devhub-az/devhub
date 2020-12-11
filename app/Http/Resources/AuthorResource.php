@@ -23,8 +23,8 @@ class AuthorResource extends JsonResource
             'attributes' => [
                 'name'                  => $this->name,
                 'username'              => $this->username,
-                'avatar'                => ($this->avatar !== 'default.jpg') ? '/upload/user_' . $this->id . '/logo/'
-                    . $this->avatar : config('devhub.default_avatar'),
+                'avatar'                => ($this->avatar !== 'default.jpg') ? '/upload/user_'.$this->id.'/logo/'
+                    .$this->avatar : config('devhub.default_avatar'),
                 'about'                 => $this->about,
                 'karma'                 => $this->karma,
                 'rating'                => $this->rating,
