@@ -5,7 +5,7 @@
             <div class="w-full mb-3 rounded bg-white border" v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
-                        <a v-bind:href="'/users/@' + post.relationships.author.data.attributes.username"
+                        <a v-bind:href="'/authors/@' + post.relationships.author.data.attributes.username"
                            class="inline-flex no-underline"
                            title="Paylaşmanın müəllifi">
                             <img height="32" width="32"
@@ -23,7 +23,7 @@
                         </span>
                     </div>
                     <div class="grid grid-flow-col py-2">
-                        <a :href="'/post/' + post.id" class="my-auto">
+                        <a :href="'/article/' + post.id" class="my-auto">
                             <p class="text-2xl xs:text-xl font-medium">{{ post.attributes.title }}</p>
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
@@ -33,7 +33,7 @@
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden" v-html="md(post.attributes.body)">
                     </div>
                 </div>
-                <div class="grid lg:grid-cols-main border text-sm bg-gray-100 mt-2 px-3.5 py-2">
+                <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
                     <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
                         <span>
                             <i class="mdi mdi-eye-outline"/> {{ post.views ? post.views : 'X' }}
@@ -70,7 +70,7 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty" class="bg-white rounded border text-center grid gap-2 p-5 pt-0">
+        <div v-else-if="postsEmpty" class="bg-white rounded border-t text-center grid gap-2 p-5 pt-0">
             <span class="opacity-75" style="font-size: 5rem">
                 <i class="mdi mdi-comment-edit-outline"/>
             </span>

@@ -1,7 +1,5 @@
 <p align="center">
-<a href="https://laravel.com" target="_blank">
-<img src="app/Documentation/Logo.png" width="400">
-</a>
+<img src="public/images/DevHub_Monochrome_Full_Logo.png" width="400">
 </p>
 
 <p align="center">

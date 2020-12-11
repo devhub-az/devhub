@@ -1,28 +1,27 @@
 <template>
     <nav class="relative z-0 inline-flex xs:mx-auto xs:flex xs:justify-center" role="navigation"
          aria-label="pagination">
-        <a class="relative inline-flex items-center cursor-pointer px-2 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50"
-           @click.prevent="changePage(pagination.current_page - 1)" :disabled="pagination.current_page <= 1">
-            <i class="mdi mdi-chevron-left"/>
+        <a v-if="pagination.current_page >= 4"
+           class="-ml-px relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white
+        text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none
+        focus:border-blue_def-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out
+        duration-150 rounded-l-md cursor-pointer"
+           @click.prevent="changePage(1)">
+            <i class="mdi mdi-chevron-double-left"></i>
         </a>
-        <a v-if="pagination.current_page > 4"
-           class="relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50"
-           @click.prevent="changePage(1)">1</a>
-        <span v-if="pagination.current_page > 4"
-              class="relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50">...</span>
-        <a :class="isCurrentPage(page) ? 'bg-blue text-white hover:bg-blue-light' : 'bg-gray-100 text-gray-700 hover:bg-gray-50'"
+        <a :class="isCurrentPage(page) ? 'text-blue_def-600 hover:text-blue_def-600' : 'text-gray-500 hover:text-gray-700'"
            @click.prevent="changePage(page)"
-           class="relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 text-sm font-medium"
+           class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5
+           font-medium focus:z-10 focus:outline-none focus:border-blue_def-300
+           focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 cursor-pointer"
            v-for="page in pages">{{ page }}</a>
-        <span v-if="pagination.last_page-pagination.current_page > 4"
-              class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50">...</span>
-        <a class="relative inline-flex items-center cursor-pointer px-4 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50"
-           v-if="pagination.last_page-pagination.current_page > 4" @click.prevent="changePage(pagination.last_page)"
-           :disabled="pagination.current_page >= pagination.last_page">{{pagination.last_page}}</a>
-        <a class="relative inline-flex items-center cursor-pointer px-2 py-2 border border-gray-300 bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-50"
-           @click.prevent="changePage(pagination.current_page + 1)"
-           :disabled="pagination.current_page >= pagination.last_page">
-            <i class="mdi mdi-chevron-right"/>
+        <a v-if="pagination.last_page - pagination.current_page >= 3"
+            class="-ml-px relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white
+        text-sm leading-5 font-medium text-gray-500 hover:text-gray-400 focus:z-10 focus:outline-none
+        focus:border-blue_def-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out
+        duration-150 rounded-r-md cursor-pointer"
+           @click.prevent="changePage(pagination.last_page)">
+            <i class="mdi mdi-chevron-double-right"></i>
         </a>
 
     </nav>
@@ -41,7 +40,7 @@ export default {
             }
             this.pagination.current_page = page;
             this.$emit('paginate');
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
         }
     },
     computed: {

@@ -38,13 +38,13 @@ mix.webpackConfig(config)
 //     mix.js(item, 'public/js/vendor')
 // })
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
+mix.sass('resources/sass/app.scss', 'public/css')
 
     //Pages
     .js('resources/js/pages/home.js', 'public/js')
     .js('resources/js/pages/hubs.js', 'public/js')
     .js('resources/js/pages/users.js', 'public/js')
+    .js('resources/js/pages/article-show.js', 'public/js')
 
     .js('resources/js/includes/header.js', 'public/js')
     .js('resources/js/login.js', 'public/js')

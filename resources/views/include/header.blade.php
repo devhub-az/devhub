@@ -13,25 +13,31 @@
             </div>
 
             <div class="flex items-center justify-center">
-                <a class="text-gray-100 text-2xl  border-r border-gray-300 pr-2 xs:border-none sm:border-none font-bold hover:text-gray-200 md:text-2xl items-center xs:ml-0 xs:text-2xl"
-                   href="{{ session('main-page') ?? route('home') }}">DevHub</a>
+                <a class="text-gray-100 text-2xl pr-2 font-bold hover:text-gray-200 md:text-2xl items-center xs:ml-0 xs:text-2xl"
+                   href="{{ session('main-page') ?? route('home') }}">
+                    <picture>
+                        <source srcset="{{ asset('images/DevHub_Chrome_Full_Logo.webp') }}" type="image/webp">
+                        <source srcset="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" type="image/png">
+                        <img src="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" alt="DevHub Logo" width="128" height="36">
+                    </picture>
+                </a>
             </div>
             <ul class="grid grid-flow-col gap-3 md:hidden sm:hidden xs:hidden items-center justify-center" id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class="font-medium xs:text-base  hover:text-blue-light transition {{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-blue-light' : 'text-gray-300' }}">Paylaşmalar</a>
+                       class="font-base xs:text-base  hover:text-blue-light transition {{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-blue' : 'text-gray-300' }}">Paylaşmalar</a>
                 </li>
                 <li>
                     <a href="{{ route('hubs-list') }}"
-                       class="font-medium xs:text-base hover:text-blue-light transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-blue-light' : 'text-gray-300' }}">Hablar</a>
+                       class="font-base xs:text-base hover:text-blue transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-blue' : 'text-gray-300' }}">Hablar</a>
                 </li>
                 <li>
                     <a href="{{ route('users-list') }}"
-                       class="font-medium xs:text-base hover:text-blue-light transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-blue-light' : 'text-gray-300' }}">Müəlliflər</a>
+                       class="font-base xs:text-base hover:text-blue transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-blue' : 'text-gray-300' }}">Müəlliflər</a>
                 </li>
                 <li>
                     <a href="{{ url('/about_us') }}"
-                       class="font-medium xs:text-base hover:text-blue-light transition {{ (Request::is('about_us')) ? 'text-blue-light' : 'text-gray-300' }}">Məlumat</a>
+                       class="font-base xs:text-base hover:text-blue transition {{ (Request::is('about_us')) ? 'text-blue' : 'text-gray-300' }}">Məlumat</a>
                 </li>
             </ul>
         </div>
@@ -51,11 +57,11 @@
                 <a href="/login" class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl"><i
                         class="mdi mdi-account-outline"></i></a>
                 <a href="{{ route('login') }}"
-                   class="border border-gray uppercase text-xs rounded px-2 py-1 text-gray-100 bg-transparent xs:hidden sm:hidden">
+                   class="border border-gray font-normal uppercase text-xs rounded px-2 py-1 text-gray-100 bg-transparent xs:hidden sm:hidden">
                     Daxil ol
                 </a>
                 <a href="{{ route('register') }}"
-                   class="border border-blue uppercase text-xs rounded px-2 py-1 text-gray-200 bg-blue xs:hidden sm:hidden">Qoşulmaq</a>
+                   class="border border-blue font-normal uppercase text-xs rounded px-2 py-1 text-white bg-blue xs:hidden sm:hidden">Qoşulmaq</a>
             @else
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"
                                        :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
@@ -136,7 +142,7 @@
 </header>
 
 @push('scripts')
-    <script type="text/javascript" src="{{ mix('js/header.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/header.js') }}" async></script>
     <script>
         function toogleMenu() {
             document.getElementById("mobile-menu__open").classList.toggle("hidden");

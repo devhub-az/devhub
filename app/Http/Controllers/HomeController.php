@@ -2,22 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\HubsCollection;
+use App\Http\Resources\HubsResource;
 use App\Models\Hub;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    /**
-     * @param Request $request
-     *
-     * @return Factory|View|void
-     */
     public function postsApiRoute(Request $request)
     {
-        $top_followed_hubs = new HubsCollection(Hub::take(6)->get());
+        $top_followed_hubs = new HubsResource(Hub::take(6)->get());
         switch ($request->path()) {
             case '/':
                 session(['main-page' => '/']);
@@ -43,7 +36,7 @@ class HomeController extends Controller
 
                 return view('pages.home', ['url' => '/api/articles/favorite', 'top_followed_hubs' => $top_followed_hubs]);
             default:
-                return abort(404);
+                abort(404);
         }
     }
 }

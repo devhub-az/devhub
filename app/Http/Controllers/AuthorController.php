@@ -5,38 +5,56 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AuthorResource;
 use App\Models\User;
 use Auth;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AuthorController extends Controller
 {
-    public $auth_user;
+    public AuthorResource $auth_user;
 
+    /**
+     * AuthorController constructor.
+     */
     public function __construct()
     {
         $this->auth_user = new AuthorResource(Auth::user());
     }
 
-    public function showPosts($username)
+    public function showPosts(Request $request, $username)
     {
-        $user = User::where('username', '=', $username)->firstorfail();
+        AuthorResource::withoutWrapping();
+
+        $user = new AuthorResource(User::withCount(['followers', 'followings'])->where('username', '=', $username)->firstorfail());
 
         return view(
             'pages.profile.show.posts',
-            ['user' => $user, 'url' => '/api/authors/'.$user->id.'/posts', 'auth_user' => $this->auth_user]
+            ['user' => $user->toResponse($request)->getData(), 'url' => '/api/authors/'.$user->id.'/posts', 'auth_user' => $this->auth_user]
         );
     }
 
-    public function showInfo($username)
+    /**
+     * @param Request $request
+     * @param         $username
+     * @return View
+     */
+    public function showInfo(Request $request, $username): View
     {
-        $user = User::where('username', '=', $username)->firstorfail();
+        AuthorResource::withoutWrapping();
+
+        $user = new AuthorResource(User::withCount(['followers', 'followings'])->where('username', '=', $username)->firstorfail());
 
         return view(
             'pages.profile.show.info',
-            ['user' => $user, 'auth_user' => $this->auth_user]
+            ['user' => $user->toResponse($request)->getData(), 'auth_user' => $this->auth_user]
         );
     }
 
-    public function showFollowers($username)
+    /**
+     * @param $username
+     * @return View
+     */
+    public function showFollowers($username): View
     {
         $user = User::where('username', '=', $username)->firstorfail();
 
@@ -48,7 +66,11 @@ class UserController extends Controller
         );
     }
 
-    public function showFollowings($username)
+    /**
+     * @param $username
+     * @return View
+     */
+    public function showFollowings($username): View
     {
         $user = User::where('username', '=', $username)->firstorfail();
 
@@ -60,11 +82,18 @@ class UserController extends Controller
         );
     }
 
-    public function userList()
+    /**
+     * @return View
+     */
+    public function userList(): View
     {
         return view('pages.profile.users');
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function update_avatar(Request $request)
     {
         $request->validate([

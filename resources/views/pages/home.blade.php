@@ -31,17 +31,17 @@
                 @if (Request::is('top/*') || Request::is('/'))
                     <div class="flex pb-2 xs:grid md:grid md:grid-flow-col md:text-center sm:grid sm:grid-flow-col sm:text-center xs:grid-flow-col xs:text-center">
                         <a href="{{ url('/') }}"
-                           class="border py-1 px-3 rounded-l xs:rounded-l-none {{ Request::url() === url('/') ? 'border-blue' : '' }}"
+                           class="border py-1 px-3 rounded-l xs:rounded-l-none hover:border-blue {{ Request::url() === url('/') ? 'border-blue' : '' }}"
                            rel="nofollow" title="Günün ən yaxşı paylaşmaları">
                             Gün
                         </a>
                         <a href="{{ url('top/week') }}"
-                           class="border py-1 px-3 {{ Request::url() === url('top/week')  ? 'border-blue' : '' }}"
+                           class="border py-1 px-3 hover:border-blue {{ Request::url() === url('top/week')  ? 'border-blue' : '' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
                             Həftə
                         </a>
                         <a href="{{ url('top/month') }}"
-                           class="border py-1 px-3 rounded-r xs:rounded-r-none {{ Request::url() === url('top/month')  ? 'border-blue' : '' }}"
+                           class="border py-1 px-3 rounded-r xs:rounded-r-none hover:border-blue {{ Request::url() === url('top/month')  ? 'border-blue' : '' }}"
                            rel="nofollow" title="Ayın ən yaxşı paylaşmaları">
                             Ay
                         </a>
@@ -54,7 +54,7 @@
             </div>
 
             {{-- Right --}}
-            <div class="content_right" id="sticky-block">
+            <div class="content_right">
                 <div class="border rounded p-4 mb-2 bg-white">
                     <h2 class="font-semibold">Yeni məqalə yazmağa başla 💬✨</h2>
                     <p class="pb-2">
