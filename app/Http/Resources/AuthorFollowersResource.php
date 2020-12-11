@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class AuthorFollowersResource
- *
- * @package \App\Http\Resources
+ * Class AuthorFollowersResource.
  */
 class AuthorFollowersResource extends JsonResource
 {
@@ -27,8 +25,8 @@ class AuthorFollowersResource extends JsonResource
             'attributes' => [
                 'name'     => $this->name,
                 'username' => $this->username,
-                'avatar'   => ($this->avatar !== 'default.jpg') ? '/upload/user_' . $this->id . '/logo/'
-                    . $this->avatar : config('devhub.default_avatar'),
+                'avatar'   => ($this->avatar !== 'default.jpg') ? '/upload/user_'.$this->id.'/logo/'
+                    .$this->avatar : config('devhub.default_avatar'),
                 'about'    => $this->about,
                 'karma'    => $this->karma,
                 'rating'   => $this->rating,
