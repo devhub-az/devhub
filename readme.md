@@ -3,6 +3,7 @@
 </p>
 
 <p align="center">
+    <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="LICENSE"></a>   
     <img src="https://github.styleci.io/repos/229919912/shield?style=flat" alt="StyleCI">
     <img src="https://img.shields.io/github/v/release/hose1021/DevHub" alt="Version">
 </p>
@@ -61,3 +62,6 @@ If you discover a security vulnerability within DevHub, please
 create [github Issie](https://github.com/hose1021/DevHub/issues) with label `bug`.
 
 All security vulnerabilities will be promptly addressed.
+
+## License
+These design files are licensed under CC-by-NC, as found in the [LICENSE](LICENSE) file.
