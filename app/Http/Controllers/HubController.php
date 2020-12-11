@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\HubCollection;
-use App\Http\Resources\HubsCollection;
+use App\Http\Resources\HubResource;
+use App\Http\Resources\HubsResource;
 use App\Models\Hub;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class HubController extends Controller
 {
     /**
      * @var string
      */
-    private $content = 'hub_show';
+    private string $content = 'hub_show';
 
     public function postsApiRoute(int $id)
     {
@@ -30,18 +28,13 @@ class HubController extends Controller
             case 'hubs/'.$id.'/all':
                 return '/api/hubs/'.$id.'/all';
             default:
-                return abort(404);
+                abort(404);
         }
     }
 
-    /**
-     * @param int $id
-     *
-     * @return Factory|View
-     */
-    public function show(int $id): View
+    public function show(int $id)
     {
-        $hub = new HubCollection(Hub::withCount('followers')->findOrFail($id));
+        $hub = new HubResource(Hub::withCount('followers')->findOrFail($id));
 
         return view(
             'pages.hubs.show',
@@ -54,12 +47,10 @@ class HubController extends Controller
         );
     }
 
-    /**
-     * @return Factory|View
-     */
-    public function index(): View
+
+    public function index()
     {
-        $top_hubs = new HubsCollection(Hub::orderBy('rating', 'DESC')->take(5)->get());
+        $top_hubs = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsCollection(
             Hub::withCount('followers')->orderBy(
                 'followers_count',
