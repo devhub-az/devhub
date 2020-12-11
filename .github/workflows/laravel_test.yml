@@ -17,7 +17,7 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: laravel
         ports:
@@ -32,7 +32,7 @@ jobs:
       fail-fast: false
       matrix:
 #        TODO: add php 7.3
-        php-versions: ['8.0']
+        php-versions: ['8.0', '7.3']
         node-version: [14, 12]
     steps:
       - name: Checkout
