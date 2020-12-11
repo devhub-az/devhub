@@ -51,7 +51,7 @@ class HubController extends Controller
     public function index()
     {
         $top_hubs = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
-        $top_followed_hubs = new HubsCollection(
+        $top_followed_hubs = new HubsResource(
             Hub::withCount('followers')->orderBy(
                 'followers_count',
                 'desc'
