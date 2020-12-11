@@ -26,6 +26,10 @@ DevHub ориентирован на азербайджанских разраб
 Основной задачей DevHub является помогать азербайджанским программистам обмениваться своим опытом и успехами с другими программистами. 
 DevHub использует такие современные веб-технологии, как Tailwind, Vue, Laravel.
 
+## Setup, help & support.
+Head over to the [wiki](https://github.com/hose1021/DevHub/wiki).
+If you don't find what you're looking for there, [talk to a human](#support-questions). Please do not use our issue tracker for support requests.
+
 ## Support Questions
 
 DevHub's GitHub issue trackers are not intended to provide DevHub help or support. Instead, use one of the following
@@ -33,22 +37,23 @@ channels:
 
 * [Github Discussions](https://github.com/hose1021/DevHub/discussions)
 * [Telegram](https://t.me/devhub_chat)
+* [FAQ](https://github.com/hose1021/DevHub/wiki/FAQ)
 
-## Contributing
+## Can I contribute?
 
-Thank you for considering contributing to the DevHub! The contribution guide can be found below.
-
-### StyleCI
-
-Don't worry if your code styling isn't perfect! StyleCI will automatically merge any style fixes into the DevHub
-repository after pull requests are merged. This allows us to focus on the content of the contribution and not the code
-style.
+Yes you can!  Contributions are welcomed. Thank you for considering contributing to the DevHub! The contribution guide can be found below.
 
 ### Coding Style
 
 DevHub follows the [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
 coding standard and the [PSR-4](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
 autoloading standard.
+
+### StyleCI
+
+Don't worry if your code styling isn't perfect! StyleCI will automatically merge any style fixes into the DevHub
+repository after pull requests are merged. This allows us to focus on the content of the contribution and not the code
+style.
 
 ## Security Vulnerabilities
 
