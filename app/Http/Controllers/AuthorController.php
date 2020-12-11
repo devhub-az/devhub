@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AuthorResource;
 use App\Models\User;
 use Auth;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -37,9 +36,9 @@ class AuthorController extends Controller
     /**
      * @param Request $request
      * @param         $username
-     * @return View|Application
+     * @return View
      */
-    public function showInfo(Request $request, $username): View|Application
+    public function showInfo(Request $request, $username): View
     {
         AuthorResource::withoutWrapping();
 
@@ -53,9 +52,9 @@ class AuthorController extends Controller
 
     /**
      * @param $username
-     * @return View|Application
+     * @return View
      */
-    public function showFollowers($username): View|Application
+    public function showFollowers($username): View
     {
         $user = User::where('username', '=', $username)->firstorfail();
 
@@ -69,9 +68,9 @@ class AuthorController extends Controller
 
     /**
      * @param $username
-     * @return View|Application
+     * @return View
      */
-    public function showFollowings($username): View|Application
+    public function showFollowings($username): View
     {
         $user = User::where('username', '=', $username)->firstorfail();
 
@@ -84,9 +83,9 @@ class AuthorController extends Controller
     }
 
     /**
-     * @return View|Application
+     * @return View
      */
-    public function userList(): View|Application
+    public function userList(): View
     {
         return view('pages.profile.users');
     }
