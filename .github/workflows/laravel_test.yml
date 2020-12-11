@@ -17,12 +17,12 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: laravel
         ports:
           - 3306/tcp
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3 --entrypoint sh mysql:8 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
       redis:
         image: redis
         ports:
@@ -31,8 +31,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-#        TODO: add php 7.3
-        php-versions: ['8.0']
+        php-versions: ['8.0', '7.3']
         node-version: [14, 12]
     steps:
       - name: Checkout
