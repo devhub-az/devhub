@@ -4,7 +4,7 @@
 
 <p align="center">
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="LICENSE"></a>
-    <a href="https://depfu.com/github/hose1021/DevHub?project_id=18161"><img src="https://badges.depfu.com/badges/311b79f534d41a030dce7ec7ca94db52/count.svg" alt="Depfu"></a>
+    <a href="https://depfu.com/github/hose1021/DevHub?project_id=18162"><img src="https://badges.depfu.com/badges/2fc07bc9db4846f71b7181a4a304efe5/overview.svg" alt="Depfu"></a>
     <img src="https://github.styleci.io/repos/229919912/shield?style=flat" alt="StyleCI">
     <img src="https://img.shields.io/github/v/release/hose1021/DevHub" alt="Version">
 </p>
