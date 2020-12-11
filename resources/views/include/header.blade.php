@@ -18,7 +18,7 @@
                     <picture>
                         <source srcset="{{ asset('images/DevHub_Chrome_Full_Logo.webp') }}" type="image/webp">
                         <source srcset="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" type="image/png">
-                        <img src="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" alt="DevHub Logo" class="w-32">
+                        <img src="{{ asset('images/DevHub_Chrome_Full_Logo.png') }}" alt="DevHub Logo" width="128" height="36">
                     </picture>
                 </a>
             </div>
@@ -142,7 +142,7 @@
 </header>
 
 @push('scripts')
-    <script type="text/javascript" src="{{ mix('js/header.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/header.js') }}" async></script>
     <script>
         function toogleMenu() {
             document.getElementById("mobile-menu__open").classList.toggle("hidden");

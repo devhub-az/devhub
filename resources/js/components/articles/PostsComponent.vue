@@ -5,7 +5,7 @@
             <div class="w-full mb-3 rounded bg-white border" v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
-                        <a v-bind:href="'/users/@' + post.relationships.author.data.attributes.username"
+                        <a v-bind:href="'/authors/@' + post.relationships.author.data.attributes.username"
                            class="inline-flex no-underline"
                            title="Paylaşmanın müəllifi">
                             <img height="32" width="32"

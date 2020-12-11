@@ -148,16 +148,16 @@ Route::group([], static function () {
     Route::post('search-result', 'SearchController@index');
 
     //Users view
-    Route::prefix('users')->group(static function () {
-        Route::get('/', 'UserController@userList')->name('users-list');
+    Route::prefix('authors')->group(static function () {
+        Route::get('/', 'AuthorController@userList')->name('users-list');
         Route::post('{profileId}/follow', 'ProfileController@follow');
 
-//        Route::prefix('@{username}')->group(static function () {
-//            Route::get('/posts', 'UserController@showPosts')->name('user_posts');
-//            Route::get('', 'UserController@showInfo')->name('user_info');
-//            Route::get('/followers', 'UserController@showFollowers')->name('user_followers');
-//            Route::get('/followings', 'UserController@showFollowings')->name('user_followings');
-//        });
+        Route::prefix('@{username}')->group(static function () {
+            Route::get('/posts', 'AuthorController@showPosts')->name('user_posts');
+            Route::get('', 'AuthorController@showInfo')->name('user_info');
+            Route::get('/followers', 'AuthorController@showFollowers')->name('user_followers');
+            Route::get('/followings', 'AuthorController@showFollowings')->name('user_followings');
+        });
     });
 
     //Comments view

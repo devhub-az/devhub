@@ -37,7 +37,7 @@ export default {
         follow: function (id) {
             if (this.auth_check) {
                 this.loading = true;
-                axios.post('/users/' + id + '/follow', {
+                axios.post('/authors/' + id + '/follow', {
                     id: id,
                 })
                     .then(response => {

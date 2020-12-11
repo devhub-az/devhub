@@ -26,14 +26,14 @@ class AuthorController extends Controller
             'about',
             'karma',
             'rating',
-        ])->withCount('articles', 'followers')->paginate(12));
+        ])->with('followers', 'followings')->withCount('articles', 'followers', 'followings')->paginate(12));
     }
 
     public function show(int $id)
     {
         AuthorResource::withoutWrapping();
 
-        return new AuthorResource(User::withCount(['articles', 'followers'])->findOrFail($id));
+        return new AuthorResource(User::withCount(['articles', 'followers', 'followings'])->findOrFail($id));
     }
 
     /**

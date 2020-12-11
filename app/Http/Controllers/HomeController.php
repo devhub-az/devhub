@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\HubsCollection;
+use App\Http\Resources\HubsResource;
 use App\Models\Hub;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\Request;
@@ -13,11 +13,11 @@ class HomeController extends Controller
     /**
      * @param Request $request
      *
-     * @return Factory|View|void
+     * @return Factory|View
      */
-    public function postsApiRoute(Request $request)
+    public function postsApiRoute(Request $request): Factory|View
     {
-        $top_followed_hubs = new HubsCollection(Hub::take(6)->get());
+        $top_followed_hubs = new HubsResource(Hub::take(6)->get());
         switch ($request->path()) {
             case '/':
                 session(['main-page' => '/']);

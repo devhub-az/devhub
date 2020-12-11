@@ -4,7 +4,7 @@
             <picture>
                 <source srcset="{{ asset('images/DevHub_Compact_Logo.webp') }}" type="image/webp">
                 <source srcset="{{ asset('images/DevHub_Compact_Logo.png') }}" type="image/png">
-                <img src="{{ asset('images/DevHub_Compact_Logo.png') }}" alt="DevHub Logo" class="w-10">
+                <img src="{{ asset('images/DevHub_Compact_Logo.png') }}" alt="DevHub Logo" width="40" height="40">
             </picture>
         </a>
         <p class="text-sm text-gray-100 pl-4 py-2 my-auto xs:p-0 xs:text-center">
