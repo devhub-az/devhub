@@ -63,5 +63,5 @@ create [github Issie](https://github.com/hose1021/DevHub/issues) with label `bug
 
 All security vulnerabilities will be promptly addressed.
 
-### License
+## License
 These design files are licensed under CC-by-NC, as found in the [LICENSE](LICENSE) file.
