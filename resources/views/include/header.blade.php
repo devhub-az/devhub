@@ -25,19 +25,19 @@
             <ul class="grid grid-flow-col gap-3 md:hidden sm:hidden xs:hidden items-center justify-center" id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class="font-base xs:text-base  hover:text-blue-light transition {{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-blue' : 'text-gray-300' }}">Paylaşmalar</a>
+                       class="font-base xs:text-base  hover:text-blue-light transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-blue-light' : 'text-gray-300' }}">Paylaşmalar</a>
                 </li>
                 <li>
                     <a href="{{ route('hubs-list') }}"
-                       class="font-base xs:text-base hover:text-blue transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-blue' : 'text-gray-300' }}">Hablar</a>
+                       class="font-base xs:text-base hover:text-blue-light transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-blue' : 'text-gray-300' }}">Hablar</a>
                 </li>
                 <li>
                     <a href="{{ route('users-list') }}"
-                       class="font-base xs:text-base hover:text-blue transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-blue' : 'text-gray-300' }}">Müəlliflər</a>
+                       class="font-base xs:text-base hover:text-blue-light transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-blue' : 'text-gray-300' }}">Müəlliflər</a>
                 </li>
                 <li>
                     <a href="{{ url('/about_us') }}"
-                       class="font-base xs:text-base hover:text-blue transition {{ (Request::is('about_us')) ? 'text-blue' : 'text-gray-300' }}">Məlumat</a>
+                       class="font-base xs:text-base hover:text-blue-light transition {{ (Request::is('about_us')) ? 'text-blue' : 'text-gray-300' }}">Məlumat</a>
                 </li>
             </ul>
         </div>
@@ -61,7 +61,7 @@
                     Daxil ol
                 </a>
                 <a href="{{ route('register') }}"
-                   class="border border-blue font-normal uppercase text-xs rounded px-2 py-1 text-white bg-blue xs:hidden sm:hidden">Qoşulmaq</a>
+                   class="border border-blue-light font-normal uppercase text-xs rounded px-2 py-1 text-white bg-blue-light xs:hidden sm:hidden">Qoşulmaq</a>
             @else
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"
                                        :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
@@ -71,7 +71,7 @@
                 {{--                                                             data-badge="{{ Auth::user()->messagesNotificationsCount() }}"--}}
                 {{--                    @endif/></a>--}}
                 <a href="{{ route('create_article') }}"
-                   class="border border-blue font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-blue hover:opacity-90 xs:hidden">
+                   class="border border-blue font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-blue-light hover:opacity-90 xs:hidden">
                     Yazmaq
                 </a>
                 <div class="hidden m-auto lg:block xl:block">

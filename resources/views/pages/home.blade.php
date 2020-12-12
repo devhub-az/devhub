@@ -9,16 +9,16 @@
                 <div class="font-bold mb-4 overflow-hidden">
                     <div class="grid grid-cols-auto-fit">
                         <a href="{{ route('home') }}"
-                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto transition-colors duration-200 {{ (Request::is('top/*') || Request::is('/')) ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:opacity-75' }}">
+                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto {{ (Request::is('top/*') || Request::is('/')) ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:text-blue-light hover:border-blue-light' }}">
                             <span class="text-sm">Ən yaxşı</span>
                         </a>
                         <a href="{{ route('all') }}"
-                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid  mx-auto transition-colors duration-200 {{ Request::url() === route('all') ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:opacity-75' }}">
+                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid  mx-auto {{ Request::url() === route('all') ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:text-blue-light hover:border-blue-light' }}">
                             <span class="text-sm">Bütün</span>
                         </a>
                         @auth
                             <a href="{{ route('favorite') }}"
-                               class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto transition-colors duration-200 {{ Request::url() === route('favorite') ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:opacity-75' }}">
+                               class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto {{ Request::url() === route('favorite') ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:text-blue-light hover:border-blue-light' }}">
                                 <span class="text-sm badge"
                                       @if (Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() > 0)
                                       data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"@endif>

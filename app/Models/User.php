@@ -10,6 +10,7 @@ use App\Http\Traits\PermissionManager;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
@@ -27,31 +28,57 @@ class User extends Authenticatable
     use CanBeFollowed;
     use CanBookmark;
     use CanVote;
+    use SoftDeletes;
     use HasRolesAndAbilities;
     use HasFactory;
 
-    protected $visible = [
-        'id',
-        'username',
-        'avatar',
-        'name',
-        'surname',
-        'email',
-        'about',
-    ];
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'username',
         'name',
-        'surname',
         'email',
-        'about',
+        'is_admin',
+        'avatar',
         'password',
+        'confirm_code',
+        'username',
+        'email_notify_enabled',
+        'github_url',
+        'website',
+        'description',
+        'status'
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'password',
         'remember_token',
+        'confirm_code',
+        'updated_at',
+        'deleted_at'
     ];
 
     protected $casts = [

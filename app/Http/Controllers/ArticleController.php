@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ArticleViewed;
 use App\Http\Resources\ArticleResource;
-use App\Http\Resources\HubsCollection;
+use App\Http\Resources\HubResource;
 use App\Models\Article;
 use App\Models\Hub;
 use App\Models\User;
 use App\Notifications\PostNotify;
+use App\Services\Canvas;
 use DB;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -33,7 +35,7 @@ class ArticleController extends Controller
      */
     public function create(): View
     {
-        $hubs = new HubsCollection(Hub::get());
+        $hubs = new HubResource(Hub::get());
 
         return view(
             'pages.posts.create',
@@ -48,9 +50,9 @@ class ArticleController extends Controller
      *
      * @param Request $request
      *
+     * @return JsonResponse
      * @throws Throwable
      *
-     * @return JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
@@ -75,7 +77,7 @@ class ArticleController extends Controller
 
                 Notification::send(Auth::user()->followers, new PostNotify($share));
 
-                return redirect('/post/'.$share->id);
+                return redirect('/post/' . $share->id);
             }
         );
 
@@ -91,37 +93,38 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param Request $request
-     * @param int     $id
-     *
+     * @param string  $slug
      * @return View
      */
-    public function show(Request $request, int $id): view
+    public function show(Request $request, string $slug): view
     {
         ArticleResource::withoutWrapping();
 
-        $post = new ArticleResource(
-            Article::with(
-                [
-                    'creator' => function ($query) {
-                        $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount(
-                            'articles',
-                            'followers'
-                        );
-                    },
-                ]
-            )->findorfail($id)
-        );
+        $article = Article::with(
+            [
+                'creator' => function ($query) {
+                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
+                        'articles',
+                        'followers'
+                    );
+                },
+            ]
+        )->firstWhere('slug', $slug);
 
-        return view('pages.posts.show', ['post' => $post->toResponse($request)->getData()]);
+        (new Canvas())->viewer($article);
+
+        $post_json = new ArticleResource($article);
+
+        return view('pages.posts.show', ['post' => $post_json->toResponse($request)->getData()]);
     }
 
     /**
      * @param Request $request
      * @param         $type
      *
+     * @return mixed
      * @throws ValidationException
      *
-     * @return mixed
      */
     public function postVoteComment(Request $request, $type): mixed
     {
@@ -145,13 +148,13 @@ class ArticleController extends Controller
      * @param $post
      * @param $request
      *
+     * @return JsonResponse
      * @throws Exception|Throwable
      *
-     * @return JsonResponse
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
-        $user = $request->user();
+        $user       = $request->user();
         $voteStatus = $request->get('status');
 
         try {
@@ -203,9 +206,9 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
+     * @return JsonResponse status
      * @throws Exception|Throwable
      *
-     * @return JsonResponse status
      */
     public function vote(Request $request): JsonResponse
     {
@@ -224,9 +227,9 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
+     * @return JsonResponse
      * @throws Exception
      *
-     * @return JsonResponse
      */
     public function addFavorite(Request $request): JsonResponse
     {
@@ -238,7 +241,7 @@ class ArticleController extends Controller
         $share = Article::findOrFail($request->get('id'));
         if (\Auth::user()) {
             $user = \Auth::user();
-            if (isset($share) && ! $user->hasBookmarked($share)) {
+            if (isset($share) && !$user->hasBookmarked($share)) {
                 $user->bookmark($share);
 
                 return response()->json(['success' => 'success'], 200);
@@ -251,7 +254,7 @@ class ArticleController extends Controller
             }
         }
 
-        if (isset($share) && ! $share->postIsFollowing(Auth::user())) {
+        if (isset($share) && !$share->postIsFollowing(Auth::user())) {
             $share->favorites()->create(
                 [
                     'follower_id'  => Auth::user()->id,

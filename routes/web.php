@@ -128,7 +128,7 @@ Route::group([], static function () {
     Route::prefix('article')->group(static function () {
         Route::get('/new', 'ArticleController@create')->name('create_article');
         Route::post('/create-new-post', 'ArticleController@store');
-        Route::get('/{slug}', 'ArticleController@show')->name('show_article');
+        Route::get('/{slug}', 'ArticleController@show')->name('show_article')->middleware('session');
         Route::post('/update_views/{post}', 'ArticleController@updateViews');
         Route::post('/favorite/{id}', 'ArticleController@addFavorite');
     });

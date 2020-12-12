@@ -19,7 +19,7 @@
         <div v-for="user in users" v-if="!loading && users"
              class="flex gap-4 border mb-2 p-2 bg-white" :id="user.id">
             <img :src="user.attributes.avatar"
-                 class="w-16 h-16 rounded p-1" alt="User profile">
+                 class="w-16 h-16 rounded" alt="User profile">
             <div class="w-6/12">
                 <a :href="'/authors/@' + user.attributes.username">
                     <div class="font-semibold">{{ user.attributes.name }} {{ '@' + user.attributes.username }}</div>

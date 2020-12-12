@@ -5,13 +5,17 @@
             <div id="sidebar"
                  class="sticky top-0 flex justify-between items-center border-b bg-gray-100 px-3.5 py-1 z-10">
                 <div class="inline-flex">
-                    <img class="w-6 h-6 flex-none image-fit rounded lazyload"
-                         :src="post.relationships.author.data.attributes.avatar" alt="user avatar">
-                    <span class="text-sm pl-2 m-auto">
-                                {{ '@' + post.relationships.author.data.attributes.username }}</span>
-                    <span class="text-xs my-auto mr-auto pl-2">
+                    <a :href="'/authors/@' + post.relationships.author.data.attributes.username"
+                    class="inline-flex">
+                        <img class="w-6 h-6 flex-none image-fit rounded lazyload"
+                             :src="post.relationships.author.data.attributes.avatar" alt="user avatar">
+                        <p class="text-sm pl-2 m-auto">
+                            {{ '@' + post.relationships.author.data.attributes.username }}</p>
+                    </a>
+                        <p class="text-xs my-auto mr-auto pl-2">
                             {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
-                        </span>
+                        </p>
+
                 </div>
                 <div class="post-votes-sticky">
                     <vote :auth_check="auth_check" :posts="post"/>
@@ -32,7 +36,7 @@
             <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
                 <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
                     <span>
-                        <i class="mdi mdi-eye-outline"/> {{ post.views ? post.views : 'X' }}
+                        <i class="mdi mdi-eye-outline"/> {{ post.attributes.views ? post.attributes.views : 'X' }}
                         <span class="xs:hidden sm:hidden">Baxışların sayı</span>
                     </span>
                     <favorite :post="post" :auth_check="auth_check"/>

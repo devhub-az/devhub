@@ -25,17 +25,17 @@ class CreateLaravelFollowTables extends Migration
             // Laravel 5.8 session user is unsignedBigInteger
             // https://github.com/laravel/framework/pull/28206/files
 
-            $table->unsignedInteger($userForeignKey);
+            $table->uuid('user_id');
 
-            $table->bigInteger('followable_id')->unsigned();
+            $table->uuid('followable_id');
             $table->string('followable_type')->index();
             $table->string('relation')->default('follow')->comment('follow/like/subscribe/favorite/upvote/downvote');
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign($userForeignKey)
-                ->references(config('follow.users_table_primary_key', 'id'))
-                ->on(config('follow.users_table_name', 'users'))
+                ->references('id')
+                ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });

@@ -22,22 +22,24 @@ class PostHubsTableSeeder extends Seeder
 
     public function run()
     {
-        $postIds = Article::select('id')->pluck('id')->toArray();
-        $hubsIds = Hub::select('id')->pluck('id')->toArray();
+        $postIds = Article::pluck('id');
+        $hubsIds = Hub::pluck('id')->toArray();
 
         foreach (range(0, 5) as $i) {
             try {
                 foreach (range(0, random_int(1, 50)) as $j) {
                     $postId = $this->faker->randomElement($postIds);
-                    $hubId = $this->faker->randomElement($hubsIds);
+                    $hubId  = $this->faker->randomElement($hubsIds);
 
-                    \DB::table('post_hubs')->insert([
-                        'posts_id' => $postId,
-                        'hub_id'   => $hubId,
-                    ]);
+                    \DB::table('post_hubs')->insert(
+                        [
+                            'posts_id' => $postId,
+                            'hub_id'   => $hubId,
+                        ]
+                    );
                 }
             } catch (Throwable $e) {
-                echo 'ERROR: '.$e->getMessage()."\n";
+                echo 'ERROR: ' . $e->getMessage() . "\n";
             }
         }
     }

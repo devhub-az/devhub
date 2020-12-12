@@ -27,7 +27,7 @@ class AuthorFollowersResource extends JsonResource
                 'username' => $this->username,
                 'avatar'   => ($this->avatar !== 'default.jpg') ? '/upload/user_'.$this->id.'/logo/'
                     .$this->avatar : config('devhub.default_avatar'),
-                'about'    => $this->about,
+                'about'    => $this->description,
                 'karma'    => $this->karma,
                 'rating'   => $this->rating,
             ],

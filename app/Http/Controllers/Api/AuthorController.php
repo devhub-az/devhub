@@ -23,7 +23,7 @@ class AuthorController extends Controller
             'name',
             'username',
             'avatar',
-            'about',
+            'description',
             'karma',
             'rating',
         ])->with('followers', 'followings')->withCount('articles', 'followers', 'followings')->paginate(12));

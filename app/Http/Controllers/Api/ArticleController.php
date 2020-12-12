@@ -20,7 +20,7 @@ class ArticleController extends Controller
             Article::with(
                 [
                     'creator' => function ($query) {
-                        $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount(
+                        $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
                             'articles',
                             'followers'
                         );
