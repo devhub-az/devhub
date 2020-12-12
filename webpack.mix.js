@@ -45,6 +45,7 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/pages/hubs.js', 'public/js')
     .js('resources/js/pages/users.js', 'public/js')
     .js('resources/js/pages/article-show.js', 'public/js')
+    .js('resources/js/pages/article-create.js', 'public/js')
 
     .js('resources/js/includes/header.js', 'public/js')
     .js('resources/js/login.js', 'public/js')
