@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ArticleResource;
-use App\Http\Resources\HubsCollection;
+use App\Http\Resources\HubResource;
 use App\Models\Article;
 use App\Models\Hub;
 use App\Models\User;
 use App\Notifications\PostNotify;
+use App\Services\Canvas;
 use DB;
 use Exception;
 use Illuminate\Contracts\View\View;
@@ -33,7 +34,7 @@ class ArticleController extends Controller
      */
     public function create(): View
     {
-        $hubs = new HubsCollection(Hub::get());
+        $hubs = new HubResource(Hub::get());
 
         return view(
             'pages.posts.create',
@@ -48,9 +49,8 @@ class ArticleController extends Controller
      *
      * @param Request $request
      *
-     * @throws Throwable
-     *
      * @return JsonResponse
+     * @throws Throwable
      */
     public function store(Request $request): JsonResponse
     {
@@ -91,37 +91,37 @@ class ArticleController extends Controller
      * Display the specified resource.
      *
      * @param Request $request
-     * @param int     $id
-     *
+     * @param string  $slug
      * @return View
      */
-    public function show(Request $request, int $id): view
+    public function show(Request $request, string $slug): view
     {
         ArticleResource::withoutWrapping();
 
-        $post = new ArticleResource(
-            Article::with(
-                [
-                    'creator' => function ($query) {
-                        $query->select('id', 'username', 'avatar', 'about', 'karma', 'rating')->withCount(
-                            'articles',
-                            'followers'
-                        );
-                    },
-                ]
-            )->findorfail($id)
-        );
+        $article = Article::with(
+            [
+                'creator' => function ($query) {
+                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
+                        'articles',
+                        'followers'
+                    );
+                },
+            ]
+        )->firstWhere('slug', $slug);
 
-        return view('pages.posts.show', ['post' => $post->toResponse($request)->getData()]);
+        (new Canvas())->viewer($article);
+
+        $post_json = new ArticleResource($article);
+
+        return view('pages.posts.show', ['post' => $post_json->toResponse($request)->getData()]);
     }
 
     /**
      * @param Request $request
      * @param         $type
      *
-     * @throws ValidationException
-     *
      * @return mixed
+     * @throws ValidationException
      */
     public function postVoteComment(Request $request, $type): mixed
     {
@@ -145,9 +145,8 @@ class ArticleController extends Controller
      * @param $post
      * @param $request
      *
-     * @throws Exception|Throwable
-     *
      * @return JsonResponse
+     * @throws Exception|Throwable
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
@@ -203,9 +202,8 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
-     * @throws Exception|Throwable
-     *
      * @return JsonResponse status
+     * @throws Exception|Throwable
      */
     public function vote(Request $request): JsonResponse
     {
@@ -224,9 +222,8 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      *
-     * @throws Exception
-     *
      * @return JsonResponse
+     * @throws Exception
      */
     public function addFavorite(Request $request): JsonResponse
     {

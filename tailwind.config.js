@@ -28,7 +28,7 @@ module.exports = {
             red: colors.red,
             header: '#1a1a1ae6',
             blue: {
-                light: '#4791db',
+                light: '#1cace0',
                 DEFAULT: '#1cace0',
                 dark: '#115293',
                 button: '#3d84a8',

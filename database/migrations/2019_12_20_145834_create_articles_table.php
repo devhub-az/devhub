@@ -13,13 +13,14 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->bigInteger('id', true)->unsigned();
-            $table->string('name', 191);
-            $table->longText('body');
-            $table->integer('author_id')->nullable();
+            $table->uuid('id')->primary();
+            $table->string('name', 191)->index();
+            $table->string('slug')->unique();
+            $table->longText('content');
+            $table->uuid('author_id');
             $table->timestamps();
+            $table->softDeletes();
         });
-        DB::statement('ALTER TABLE articles ADD FULLTEXT search(name)');
     }
 
     /**

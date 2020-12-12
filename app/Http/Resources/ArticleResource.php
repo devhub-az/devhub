@@ -23,7 +23,8 @@ class ArticleResource extends JsonResource
             'attributes'    => [
                 'id'         => $this->id,
                 'title'      => $this->name,
-                'body'       => $this->body, //Str::words($this->body, 150, ''),
+                'slug'       => $this->slug,
+                'body'       => $this->content, //Str::words($this->body, 150, ''),
                 'votes'      => $this->upvoters_count - $this->downvoters_count,
                 'votes_sum'  => $this->voters_count,
                 'upvotes'    => $this->upvoters_count,
@@ -33,7 +34,7 @@ class ArticleResource extends JsonResource
                 'upvoted'    => $this->statusCheck('upvote'),
                 'downvoted'  => $this->statusCheck('downvote'),
                 'favorite'   => $this->statusCheck('favorites'),
-                'read_time'  => $this->readTime($this->body),
+                'read_time'  => $this->readTime($this->content),
                 'favorites'  => $this->bookmarkers_count,
             ],
             'relationships' => new ArticleRelationshipResource($this),
@@ -43,7 +44,7 @@ class ArticleResource extends JsonResource
         ];
     }
 
-    public function stext(string $text)
+    public function text(string $text)
     {
         if (preg_match('/^.{1,512}\b/s', $text, $match)) {
             $text = $match[0].(strlen($match[0]) < strlen($text) ? '...' : '');
@@ -59,8 +60,8 @@ class ArticleResource extends JsonResource
      */
     public function readTime(string $text): string
     {
-        $word = str_word_count(strip_tags($text));
-        $minutes = floor($word / 200);
+        $words = str_word_count(strip_tags($text));
+        $minutes = ceil($words / 250);
 
         return $minutes.' dəqiqə';
     }

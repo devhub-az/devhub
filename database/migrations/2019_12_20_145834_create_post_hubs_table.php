@@ -13,9 +13,8 @@ class CreatePostHubsTable extends Migration
     public function up()
     {
         Schema::create('post_hubs', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('posts_id')->index();
-            $table->unsignedInteger('hub_id')->index();
+            $table->uuid('posts_id');
+            $table->uuid('hub_id');
             $table->unique(['posts_id', 'hub_id']);
         });
     }

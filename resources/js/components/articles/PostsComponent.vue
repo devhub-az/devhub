@@ -23,7 +23,7 @@
                         </span>
                     </div>
                     <div class="grid grid-flow-col py-2">
-                        <a :href="'/article/' + post.id" class="my-auto">
+                        <a :href="'/article/' + post.attributes.slug" class="my-auto">
                             <p class="text-2xl xs:text-xl font-medium">{{ post.attributes.title }}</p>
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
@@ -36,11 +36,11 @@
                 <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
                     <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
                         <span>
-                            <i class="mdi mdi-eye-outline"/> {{ post.views ? post.views : 'X' }}
+                            <i class="mdi mdi-eye-outline"/> {{ post.attributes.views }}
                             <span class="xs:hidden sm:hidden">Baxışların sayı</span>
                         </span>
                         <span class="pl-2">
-                            <a :href="'/post/' + post.id + '/#comments'" class="post_comments_link">
+                            <a :href="'/post/' + post.id + '#comments'" class="post_comments_link">
                                 <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count ? post.comments_count : 'X' }} <span
                                 class="xs:hidden sm:hidden">Şerh</span>
                             </a>

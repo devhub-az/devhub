@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Str;
 
 /**
  * Post.
@@ -21,15 +23,60 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Article extends Model
 {
+    use SoftDeletes;
     use CanBeVoted;
     use CanBeBookmarked;
     use HasFactory;
 
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['published_at', 'created_at', 'deleted_at'];
+
     protected $fillable = [
         'name',
-        'body',
+        'content',
         'author_id',
     ];
+
+    protected $casts = [
+        'content' => 'array',
+    ];
+
+    /**
+     * Set the unique slug.
+     *
+     * @param $value
+     * @param $extra
+     */
+    public function setUniqueSlug($value, $extra)
+    {
+        $slug = Str::slug($value.'-'.$extra);
+
+        if (static::whereSlug($slug)->exists()) {
+            $this->setUniqueSlug($slug, (int) $extra + 1);
+
+            return;
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
 
     public function creator(): BelongsTo
     {
@@ -41,9 +88,14 @@ class Article extends Model
         return $this->belongsToMany(Hub::class, 'post_hubs', 'posts_id', 'hub_id');
     }
 
+    /**
+     * Get the views relationship.
+     *
+     * @return HasMany
+     */
     public function views(): HasMany
     {
-        return $this->hasMany(Visitor::class);
+        return $this->hasMany(View::class);
     }
 
 //    public function comments(): BelongsToMany

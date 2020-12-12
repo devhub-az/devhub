@@ -47,7 +47,7 @@
         {{--        </header>--}}
         <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4" id="app">
             <div>
-                <article-show :id="{{ $post->attributes->id }}" @auth :auth_check="true" @endauth></article-show>
+                <article-show :id="'{{ $post->attributes->id }}'" @auth :auth_check="true" @endauth></article-show>
                 <div class="flex justify-between items-center border bg-white w-full px-3.5 py-3 rounded">
                     <p class="text-xl">
                         Paylaşmaq
@@ -76,66 +76,59 @@
 
 
             <div>
-                <div class="flex">
-                    <div class="flex-none w-24 relative">
-                        <img src="{{ $post->relationships->author->data->attributes->avatar }}" alt="" class="absolute inset-0 w-full h-full object-cover" />
-                    </div>
-                    <form class="flex-auto p-6">
-                        <div class="flex flex-wrap">
-                            <h1 class="flex-auto text-xl font-semibold">
-                                Classic Utility Jacket
-                            </h1>
-                            <div class="text-xl font-semibold text-gray-500">
-                                $110.00
-                            </div>
-                            <div class="w-full flex-none text-sm font-medium text-gray-500 mt-2">
-                                In stock
-                            </div>
-                        </div>
-                        <div class="flex space-x-3 mb-4 text-sm font-medium">
-                            <div class="flex-auto flex space-x-3">
-                                <button class="w-1/2 flex items-center justify-center rounded-md bg-black text-white" type="submit">Buy now</button>
-                                <button class="w-1/2 flex items-center justify-center rounded-md border border-gray-300" type="button">Add to bag</button>
-                            </div>
-                            <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-gray-400 border border-gray-300" type="button" aria-label="like">
-                                <svg width="20" height="20" fill="currentColor">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
-                                </svg>
-                            </button>
-                        </div>
-                        <p class="text-sm text-gray-500">
-                            Free shipping on all continental US orders.
-                        </p>
-                    </form>
-                </div>
-
-                <div class="bg-white border rounded-lg">
-                    <div class="bg-cover bg-center p-8 rounded-t h-20"
-                         style="background: url('https://unsplash.imgix.net/45/ZLSw0SXxThSrkXRIiCdT_DSC_0345.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=form')"></div>
-                    <div class="px-8 py-6 relative">
-                        <div
-                            class="absolute top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 h-20 w-20 bg-cover rounded border-2 bg-white border-white"
-                            style="background-image: url({{ $post->relationships->author->data->attributes->avatar }});"></div>
-                        <div class="mt-10 text-sm"><span class="text-gray-500 font-semibold">From</span> Feb 08
-                            <span
-                                class="text-gray-500 font-semibold">To</span> Feb 14
-                        </div>
-                        <div class="mt-6">
-                            <div class="uppercase font-bold text-gray-600">Your Coupon Code</div>
-                            <div class="uppercase mt-2 text-indigo-500 font-black text-2xl leading-none">
-                                TailwindCSS2020
-                            </div>
-                        </div>
-                        <div class="mt-6 text-gray-500 text-sm">Coupon only valid on select UI Components &amp; once
-                            per
-                            user
+                <div class="xs:w-full bg-white rounded border overflow-hidden sticky top-0">
+                    <div class="flex px-4 py-2">
+                        <img class="w-16 h-16 rounded object-cover"
+                             src="{{ $post->relationships->author->data->attributes->avatar }}" alt="avatar">
+                        <div class="ml-2">
+                            <p class="text-xl font-medium text-gray-800">
+                                {{ $post->relationships->author->data->attributes->name ?? '' }}
+                                {{ $post->relationships->author->data->attributes->surname ?? '' }}
+                                {{ '@' . $post->relationships->author->data->attributes->username }}
+                            </p>
+                            <p class="pt-2 text-sm text-gray-700">
+                                {{ $post->relationships->author->data->attributes->about }}
+                            </p>
                         </div>
                     </div>
-                    <div>
-                        <button
-                            class="w-full border border-transparent rounded-b-lg font-semibold tracking-wide px-5 py-4 focus:outline-none focus:shadow-outline bg-indigo-500 text-gray-100 hover:bg-indigo-600 hover:text-gray-200">
-                            Use Coupon Code
-                        </button>
+                    <div class="flex mb-2 mx-4">
+                        <a href="#" class="py-1.5 mr-2 my-1 w-1/2 font-medium text-sm border rounded text-blue-light border-blue-light text-center hover:bg-blue-light hover:text-white">
+                            Izləmək
+                        </a>
+                        <a href="#" class="py-1.5 ml-2 my-1 w-1/2 font-medium text-sm border rounded text-gray-500 text-center hover:text-gray-600 hover:border-gray-600">
+                            Yazmag
+                        </a>
+                    </div>
+                    <div class="flex justify-between px-4 py-2 border-t border-b text-gray-700 w-full">
+                        <div class="w-1/3 flex items-center">
+                            <p class="text-xl font-semibold">
+                                {{ \Numeric::number_format_short($post->relationships->author->data->attributes->karma) }}
+                            </p>
+                            <p class="ml-2 text-sm text-gray-500">Karma</p>
+                        </div>
+                        <div class="w-1/3 flex items-center justify-center">
+                            <p class="text-xl font-semibold">
+                                {{ \Numeric::number_format_short($post->relationships->author->data->attributes->rating) }}
+                            </p>
+                            <p class="ml-2 text-sm text-gray-500">Reytinq</p>
+                        </div>
+                        <div class="w-1/3 flex items-center">
+                            <p class="text-xl font-semibold ml-auto">
+                                {{ \Numeric::number_format_short($post->relationships->author->data->attributes->user_followers_count) }}
+                            </p>
+                            <span class="ml-2 text-sm text-gray-500">İzləyicilər</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap px-4 py-1">
+                        <a href="#" class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark">
+                            Facebook
+                        </a>
+                        <a href="#" class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark">
+                            Telegram
+                        </a>
+                        <a href="#" class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark">
+                            Sayt
+                        </a>
                     </div>
                 </div>
             </div>

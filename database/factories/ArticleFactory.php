@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Article;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Str;
 
 class ArticleFactory extends Factory
 {
@@ -18,13 +20,18 @@ class ArticleFactory extends Factory
      * Define the model's default state.
      *
      * @return array
+     * @throws \Exception
      */
     public function definition()
     {
+        $title = $this->faker->sentence(random_int(3, 10));
+
         return [
-            'author_id' => $this->faker->numberBetween(1, 49),
-            'name'      => $this->faker->sentence(),
-            'body'      => $this->faker->text(1000),
+            'id'        => $this->faker->uuid,
+            'author_id' => $this->faker->randomElement(User::pluck('id')),
+            'name'      => $title,
+            'slug'      => Str::slug($title),
+            'content'   => $this->faker->realText(random_int(1000, 2000)),
         ];
     }
 }

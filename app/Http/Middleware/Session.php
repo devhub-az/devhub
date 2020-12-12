@@ -1,0 +1,70 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Date;
+
+class Session
+{
+    /**
+     * Handle the incoming request.
+     *
+     * @param $request
+     * @param $next
+     * @return Response
+     */
+    public function handle(Request $request, Closure $next)
+    {
+        $viewedPosts = $this->getViewedPostsInSession();
+
+        if ($viewedPosts->isNotEmpty()) {
+            $this->pruneExpiredViews($viewedPosts);
+        }
+
+        return $next($request);
+    }
+
+    /**
+     * Get the viewed posts in session.
+     *
+     * @return Collection
+     */
+    protected function getViewedPostsInSession(): Collection
+    {
+        return collect(session()->get('viewed_posts'));
+    }
+
+    /**
+     * Prune expired views from the session.
+     *
+     * @param Collection $posts
+     * @return void
+     */
+    protected function pruneExpiredViews(Collection $posts)
+    {
+        foreach ($posts as $key => $value) {
+            if ($value < now()->subSeconds(3600)->timestamp) {
+                session()->forget('viewed_posts.'.$key);
+            }
+        }
+    }
+
+    /**
+     * Prune expired visits from the session.
+     *
+     * @param Collection $posts
+     * @return void
+     */
+    protected function pruneExpiredVisits(Collection $posts)
+    {
+        foreach ($posts as $key => $value) {
+            if (! Date::createFromTimestamp($value['timestamp'])->isToday()) {
+                session()->forget('visited_posts.'.$key);
+            }
+        }
+    }
+}
