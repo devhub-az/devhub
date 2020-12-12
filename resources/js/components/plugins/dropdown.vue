@@ -10,10 +10,10 @@
             @keydown.up.exact.prevent="startArrowKeys"
             @keydown.down.exact.prevent="startArrowKeys"
         >
-            <img v-if="user.avatar !== 'default.jpg'" :src="'/upload/user_' + user.id + '/logo/' + user.avatar"
+            <img v-if="user.avatar !== 'default'" :src="'/upload/avatars/' + user.avatar"
                  class="w-6 h-6 flex-none image-fit rounded lazyload"
                  alt="Profile image">
-            <img v-else-if="user.avatar === 'default.jpg'" :src="'/upload/default/logo/default.png'"
+            <img v-else-if="user.avatar === 'default'" src="/upload/avatars/default.png"
                  class="w-6 h-6 flex-none image-fit rounded lazyload"
                  alt="Profile image">
         </button>
