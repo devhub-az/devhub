@@ -65,7 +65,7 @@ class User extends Authenticatable
         'github_url',
         'website',
         'description',
-        'status'
+        'status',
     ];
 
     /**
@@ -78,7 +78,7 @@ class User extends Authenticatable
         'remember_token',
         'confirm_code',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $casts = [

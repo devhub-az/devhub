@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'id'                => $this->faker->uuid,
             'name'              => $this->faker->name,
             'username'          => $this->faker->unique()->userName,
-            'avatar'            => 'factory/image-' . $this->faker->numberBetween(1, 66) . '.png',
+            'avatar'            => 'factory/image-'.$this->faker->numberBetween(1, 66).'.png',
             'description'       => $this->faker->sentence,
             'rating'            => $this->faker->numberBetween(0, 100),
             'karma'             => $this->faker->numberBetween(0, 100),
