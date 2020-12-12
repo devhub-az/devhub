@@ -114,7 +114,7 @@ class AuthorController extends Controller
     {
         $key = \Request::get('q');
 
-        $user = User::whereraw("MATCH(name, username) AGAINST (?)", $key)
+        $user = User::whereraw('MATCH(name, username) AGAINST (?)', $key)
             ->withCount('articles')->paginate();
 
         return new AuthorsResource($user);
