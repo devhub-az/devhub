@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Events\ArticleViewed;
 use App\Models\Article;
 use App\Models\User;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;

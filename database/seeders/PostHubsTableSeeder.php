@@ -29,7 +29,7 @@ class PostHubsTableSeeder extends Seeder
             try {
                 foreach (range(0, random_int(1, 50)) as $j) {
                     $postId = $this->faker->randomElement($postIds);
-                    $hubId  = $this->faker->randomElement($hubsIds);
+                    $hubId = $this->faker->randomElement($hubsIds);
 
                     \DB::table('post_hubs')->insert(
                         [
@@ -39,7 +39,7 @@ class PostHubsTableSeeder extends Seeder
                     );
                 }
             } catch (Throwable $e) {
-                echo 'ERROR: ' . $e->getMessage() . "\n";
+                echo 'ERROR: '.$e->getMessage()."\n";
             }
         }
     }
