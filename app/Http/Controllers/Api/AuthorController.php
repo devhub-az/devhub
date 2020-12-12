@@ -113,11 +113,9 @@ class AuthorController extends Controller
     public function search_user_by_key(): AuthorsResource
     {
         $key = \Request::get('q');
-        $user = User::where('username', 'LIKE', "%{$key}%")->orWhere(
-            'name',
-            'LIKE',
-            "%{$key}%"
-        )->withCount('articles')->paginate();
+
+        $user = User::whereraw('MATCH(name, username) AGAINST (?)', $key)
+            ->withCount('articles')->paginate();
 
         return new AuthorsResource($user);
     }

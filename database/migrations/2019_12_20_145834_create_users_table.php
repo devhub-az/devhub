@@ -15,22 +15,9 @@ class CreateUsersTable extends Migration
         Schema::create(
             'users',
             function (Blueprint $table) {
-//            $table->increments('id');
-//            $table->string('avatar')->default('default.png');
-//            $table->string('background')->nullable();
-//            $table->string('username', 191)->unique('username');
-//            $table->string('name', 50)->nullable();
-//            $table->string('surname', 50)->nullable();
-//            $table->string('about', 200)->nullable();
-//            $table->string('email', 191)->unique();
-//            $table->dateTime('email_verified_at')->nullable();
-//            $table->string('password', 191);
-//            $table->string('remember_token', 100)->nullable();
-//            $table->timestamps();
-
                 $table->uuid('id')->primary();
-                $table->string('name')->unique();
-                $table->string('username')->nullable();
+                $table->string('name');
+                $table->string('username')->unique();
                 $table->string('avatar')->default('default');
                 $table->string('description')->nullable();
                 $table->string('email')->unique();
@@ -49,6 +36,7 @@ class CreateUsersTable extends Migration
                 $table->softDeletes();
             }
         );
+        DB::statement('ALTER TABLE `users` ADD FULLTEXT INDEX users_username_index (name, username)');
     }
 
     /**
