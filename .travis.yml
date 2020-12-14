@@ -13,7 +13,7 @@ before_script:
   - php artisan migrate
 
 before_install:
-  - mysql -e 'CREATE DATABASE realworld_test;'
+  - mysql -e 'CREATE DATABASE devhub;'
 
 script:
   - phpunit
