@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
 use App\Models\Hub;
+use App\Models\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,23 +43,27 @@ class ArticleTopController extends Controller
      */
     public function posts(): ArticlesResource
     {
-        return new ArticlesResource(Article::withcount([
-            'upvoters',
-            'downvoters',
-            'voters',
-            'views',
-            'bookmarkers',
-            //            'comments'
-        ])
-            ->orderByRaw('(upvoters_count - downvoters_count) DESC')
-            ->orderBy(
-                'created_at',
-                'DESC'
-            )->where(
-                'created_at',
-                '>=',
-                Carbon::now()->subDays(self::$count)->startOfDay()
-            )->take(50)->paginate(5));
+        return new ArticlesResource(
+            Article::withcount(
+                [
+                    'upvoters',
+                    'downvoters',
+                    'voters',
+                    'views',
+                    'bookmarkers',
+                    //            'comments'
+                ]
+            )
+                ->orderByRaw('(upvoters_count - downvoters_count) DESC')
+                ->orderBy(
+                    'created_at',
+                    'DESC'
+                )->where(
+                    'created_at',
+                    '>=',
+                    Carbon::now()->subDays(self::$count)->startOfDay()
+                )->take(50)->paginate(5)
+        );
     }
 
     /**
@@ -66,15 +71,22 @@ class ArticleTopController extends Controller
      */
     public function favorite(): ArticlesResource
     {
-        $hubs = Auth::user()->followings(Hub::class)->with('posts')->get();
-        $users = Auth::user()->followings()->with('posts')->get();
-        $hubPostIds = $this->favoriteIds($hubs);
-        $userPostIds = $this->favoriteIds($users);
-        $postIds = array_merge($hubPostIds, $userPostIds);
+        $author = User::findOrFail(Auth::user()->id);
+        if ($author->followings()->count() > 0) {
+            $authorsIds        = $author->followings()->pluck('id');
+            $articleAuthors    = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
+            $articleAuthorsIds = $this->favoriteIds($articleAuthors);
+        }
+        if ($author->followings(Hub::class)->count() > 0) {
+            $hubsIds        = $author->followings(Hub::class)->pluck('id');
+            $articleHubs    = Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
+            $articleHubsIds = $this->favoriteIds($articleHubs);
+        }
+        $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);
 
         return new ArticlesResource(
-            Article::whereIn('id', $postIds)
-                ->withCount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
+            Article::withCount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers'])
+                ->whereIn('id', $articlesIds)
                 ->take(50)
                 ->orderBy('created_at', 'DESC')
                 ->paginate(5)
@@ -86,12 +98,15 @@ class ArticleTopController extends Controller
      *
      * @return array
      */
-    public function favoriteIds(object $items): array
+    public function favoriteIds(object $items)
     {
         $itemIds = [];
-        foreach ($items as $item) {
-            foreach ($item->posts as $post) {
-                $itemIds[] = $post->id;
+
+        foreach ($items as $i => $item) {
+            if ($item->articles) {
+                foreach ($item->articles->pluck('id') as $article) {
+                    $itemIds[] = $article;
+                }
             }
         }
 

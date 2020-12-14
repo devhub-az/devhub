@@ -24,7 +24,7 @@ class HubResource extends JsonResource
                 'hub_followers_count' => $this->followers_count > 0 ?
                     Numeric::number_format_short($this->followers_count) : '0',
                 'follower_check'      => $this->statusCheck(),
-                'posts_count'         => $this->posts_count,
+                'articles_count'         => $this->articles_count,
             ],
             //            'relationships' => new ($this),
             'links'      => [

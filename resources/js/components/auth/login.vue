@@ -1,92 +1,85 @@
 <template>
+    <form autocomplete="off" @submit.prevent="login" method="post" class="xs:max-w-xs w-96">
+        <div class="py-4">
+            <input aria-invalid="true" autocomplete="off" id="email" name="email"
+                   placeholder="Elektron poçt"
+                   type="text" inputmode="text"
+                   class="px-2 py-2 w-full border border-gray-300 rounded hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors mb-2"
+                   aria-label="Elektron poçt"
+                   autocorrect="off" autocapitalize="none"
+                   spellcheck="false"
+                   value="" v-model="email">
+            <div class="relative">
+                <input aria-invalid="true" autocomplete="current-password" id="password" name="password"
+                       placeholder="Şifrə"
+                       :type="type" inputmode="text"
+                       class="px-2 py-2 w-full border border-gray-300 rounded hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors"
+                       aria-label="Şifrə"
+                       autocorrect="off" autocapitalize="none"
+                       spellcheck="false"
+                       value="" v-model="password">
+                <div v-if="type === 'password'" @click="typeChange()">
+                    <span class="iconify absolute translate-y-1/2 text-gray-400 top-0 my-3 mr-4 cursor-pointer right-0"
+                        data-icon="mdi:eye-off"></span>
+                </div>
+                <span v-else-if="type !== 'password'" @click="typeChange()" class="z-50">
+                    <span class="iconify absolute translate-y-1/2 text-gray-400 top-0 my-3 mr-4 cursor-pointer right-0"
+                        data-icon="mdi:eye"></span>
+                </span>
+            </div>
 
-        <form autocomplete="off" @submit.prevent="login" method="post">
-            <div class="lg:w-2/6 md:w-1/2 bg-gray-200 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-                <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign Up</h2>
-                <div class="relative mb-4">
-                    <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
-                    <input type="email" id="email" name="email"
-                           placeholder="Elektron poçt" v-model="email"
-                           class="py-1 px-3 w-full border block">
-                </div>
-                <div class="relative mb-4">
-                    <label for="full-name" class="leading-7 text-sm text-gray-600">Full Name</label>
-                    <input type="text" id="full-name" name="full-name"
-                           placeholder="Şifrə" v-model="password"
-                           class="w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                </div>
-                <button
-                    class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                    Button
-                </button>
-                <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
-            </div>
-            <div class="error" v-if="error">
-                <h6 class="error__text">{{ error_text }}</h6>
-            </div>
-            <div class="intro-y box px-5 py-8 mt-8">
-                <div class="intro-y">
-                    <input type="text" class="intro-y auth__input input input--lg w-full border block"
-                           placeholder="Elektron poçt" v-model="email">
-                    <input type="password" class="intro-y auth__input input input--lg w-full border block mt-4"
-                           placeholder="Şifrə" v-model="password">
-                </div>
-                <div class="intro-y auth__info flex text-xs sm:text-sm mt-4">
-                    <div class="flex items-center mr-auto">
-                        <input type="checkbox" class="input border mr-2" id="remember-me">
-                        <label class="cursor-pointer select-none" for="remember-me">Remember me</label>
-                    </div>
-                    <a href="">Şifrəni sıfırla</a>
-                </div>
-                <div class="intro-y mt-5 xl:mt-8 text-center xl:text-left">
-                    <button class="intro-y button button--lg button--primary w-full xl:mr-3">Daxil ol</button>
-                    <button class="intro-y button button--lg button--secondary w-full border mt-3">Qeydiyyatdan keçmək
-                    </button>
+        </div>
+        <div class="w-full">
+            <div v-if="loading" class="border-cerulean-500 text-white rounded bg-cerulean-500 hover:opacity-90 mb-2 px-2 py-3">
+                <div class="animate-spin">
+                    <span class="iconify mx-auto" data-icon="mdi-loading"></span>
                 </div>
             </div>
-        </form>
-    <!--            <div class="login__form">-->
-    <!--                <input aria-invalid="true" autocomplete="username" id="email" name="email" placeholder="Elektron poçt"-->
-    <!--                       type="text" inputmode="text" class="auth__input input input&#45;&#45;lg w-full border block" aria-label="Elektron poçt"-->
-    <!--                       autocorrect="off" autocapitalize="none"-->
-    <!--                       spellcheck="false"-->
-    <!--                       value="" v-model="email">-->
-    <!--            </div>-->
-    <!--            <div class="login__form">-->
-    <!--                <input aria-invalid="true" autocomplete="current-password" id="password" name="password"-->
-    <!--                       placeholder="Şifrə"-->
-    <!--                       type="password" inputmode="text" class="login__form-input" aria-label="Şifrə"-->
-    <!--                       autocorrect="off" autocapitalize="none"-->
-    <!--                       spellcheck="false"-->
-    <!--                       value="" v-model="password">-->
-    <!--            </div>-->
-    <!--            <button v-if="loading" class="btn btn-primary login-button"><i class="mdi mdi-spin mdi-loading"/></button>-->
-    <!--            <button v-else type="submit" class="btn btn-primary login-button">Daxil ol</button>-->
-
-    <!--            <footer class="login__footer-links">-->
-    <!--                <a class="footer__link" data-content-type="requestPasswordForm"-->
-    <!--                   href="/">-->
-    <!--                    Şifrəni sıfırla-->
-    <!--                </a>-->
-    <!--                <a href="/" class="footer__link js-change-content"-->
-    <!--                   data-content-type="registerForm">-->
-    <!--                    Qeydiyyatdan keçmək-->
-    <!--                </a>-->
-    <!--            </footer>-->
-
+            <button v-else type="submit"
+                    class="border border-cerulean-500 w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-cerulean-500 hover:opacity-90 mb-2">
+                Daxil ol
+            </button>
+            <a href="/register"
+               class="inline-block border border-cerulean-500 w-full font-medium uppercase text-xs rounded px-2 py-3 text-cerulean-500"
+               data-content-type="registerForm">
+                Qeydiyyatdan keçmək
+            </a>
+        </div>
+        <footer class="mt-2">
+            <a class="footer__link" data-content-type="requestPasswordForm"
+               href="/">
+                Şifrəni sıfırla
+            </a>
+        </footer>
+    </form>
 </template>
+
+<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
             email: null,
             password: null,
+            type: 'password',
             error: false,
             loading: false,
             error_text: ''
         }
     },
     methods: {
+        typeChange() {
+            switch (this.type) {
+                case 'password':
+                    this.type = 'text'
+                    break
+                case 'text':
+                    this.type = 'password'
+                    break
+            }
+        },
         login() {
             this.loading = true
             axios.post('/api/auth/login', {

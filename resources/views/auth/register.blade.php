@@ -1,104 +1,49 @@
 @extends('layouts.login-layout')
 
-@section('title')Registration səhifəsi @stop
+@section('title')Qeydiyyat səhifəsi @stop
 
 @section('main')
-    <div class="container">
-        <div class="login">
-            <div class="login__left">
-                @include('auth.import.left_side')
-                <div id="particles-js"></div>
-            </div>
-            <div class="login__right">
-                <div class="ColumnContainer mode-auth">
-                    <a href="{{ route('home') }}" class="logo_login" style="margin-top: 0;">DevHub</a>
-                    <p class="desc">Xoş gəldiniz! Xahiş edirik məlumatlarınızı daxil edin və ya hesabınıza sosial şəbəkə
-                        hesabı ilə daxil olun.</p>
-                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                        @csrf
-                        <fieldset class="AnimatedForm__field m-required hideable m-valid">
-                            <input id="name" type="text"
-                                   class="AnimatedForm__textInput {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                   data-empty="false" name="name" value="{{ old('name') }}" required autofocus>
-                            <label class="AnimatedForm__textInputLabel" for="loginUsername">İstifadəçi adı</label>
-                            <div class="AnimatedForm__errorMessage">
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </fieldset>
-                        <fieldset class="AnimatedForm__field m-required hideable">
-                            <input id="email" type="email"
-                                   class="AnimatedForm__textInput {{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                   name="email" value="{{ old('email') }}" data-empty="false" required>
-                            <label class="AnimatedForm__textInputLabel" for="loginUsername">İstifadəçi emailı</label>
-                            <div class="AnimatedForm__errorMessage">
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </fieldset>
-                        <fieldset class="AnimatedForm__field m-required hideable">
-                            <input id="avatar" type="file" name="avatar" data-empty="false">
-                            <div class="AnimatedForm__errorMessage">
-                                @if ($errors->has('avatar'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </fieldset>
-                        <fieldset class="AnimatedForm__field m-required hideable">
-                            <input id="password" type="password"
-                                   class="AnimatedForm__textInput {{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                   name="password" data-empty="false" required>
-                            <label class="AnimatedForm__textInputLabel" for="loginPassword">Şifrə</label>
-                            <div class="AnimatedForm__errorMessage">
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                        </fieldset>
-                        <fieldset class="AnimatedForm__field m-required hideable">
-                            <input id="password-confirm" type="password"
-                                   class="AnimatedForm__textInput {{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                   name="password_confirmation" data-empty="false" required>
-                            <label class="AnimatedForm__textInputLabel" for="loginPassword">Şifrə 2</label>
-                            <div class="AnimatedForm__errorMessage">
-                            </div>
-                        </fieldset>
-                        <div class="AnimatedForm__field form-group row mb-0">
-                            <button type="submit" class="btn btn-primary login-button">
-                                Qoşulmaq
-                            </button>
-
-                            <footer class="login__footer-links register">
-                                <div class="footer__link">
-                                    Qeydiyyatdan keçmisiniz?
-                                    <a data-content-type="requestPasswordForm"
-                                       href="{{ route('login') }}">
-                                        Daxil olun
-                                    </a>
-                                </div>
-                            </footer>
-                        </div>
-                    </form>
+    <div class="flex">
+        {{--        <div class="login__left">--}}
+        {{--            --}}{{--                @include('auth.import.left_side')--}}
+        {{--            --}}{{--                <div id="particles-js"></div>--}}
+        {{--        </div>--}}
+        <div class="mx-auto pt-44 xs:pt-20 text-center">
+            <a href="{{ route('home') }}"
+               class="text-black font-bold hover:text-gray-200 md:text-2xl m-auto">
+                <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="188"
+                     height="36" class="mb-4 mx-auto">
+            </a>
+            <register></register>
+            <div class="w-full border-t border-gray-300 my-4"></div>
+            <div class="flex justify-between">
+                <div class="flex items-center">
+                    <i class="mdi mdi-thumbs-up-down inline-block m-auto w-10 h-10 p-1.5 bg-gray-700 rounded-lg text-xl text-white"></i>
+                    <div class="text-left text-sm ml-2">
+                        <p>Ses</p>
+                        <p>ver</p>
+                    </div>
                 </div>
-                <div class="login__footer">
-                    © 2019 - {{ date('Y') }} DevHub
+                <div class="flex">
+                    <i class="mdi mdi-layers-outline inline-block m-auto w-10 h-10 p-1.5 bg-gray-700 rounded-lg text-xl text-white"></i>
+                    <div class="text-left text-sm ml-2">
+                        <p>Paylaşmalar</p>
+                        <p>yaz</p>
+                    </div>
+                </div>
+                <div class="flex">
+                    <i class="mdi mdi-bookmark-multiple-outline inline-block m-auto w-10 h-10 p-1.5 bg-gray-700 rounded-lg text-xl text-white"></i>
+                    <div class="text-left text-sm ml-2">
+                        <p>Izləici</p>
+                        <p>ol</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
 
-@section('scripts')
-    <script src="{{ asset('js/scripts/particles.min.js') }}"></script>
-    <script src="{{ asset('js/scripts/particles.settings.js') }}"></script>
-@endsection
+{{--@section('scripts')--}}
+{{--    <script src="{{ asset('js/scripts/particles.min.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/scripts/particles.settings.js') }}"></script>--}}
+{{--@endsection--}}

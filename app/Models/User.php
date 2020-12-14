@@ -14,13 +14,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 /**
  * Class User.
  *
  * @mixin Eloquent
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use PermissionManager;
@@ -31,6 +32,14 @@ class User extends Authenticatable
     use SoftDeletes;
     use HasRolesAndAbilities;
     use HasFactory;
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -54,6 +63,7 @@ class User extends Authenticatable
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
+        'id',
         'name',
         'email',
         'is_admin',

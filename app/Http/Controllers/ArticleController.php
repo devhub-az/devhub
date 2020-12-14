@@ -96,8 +96,6 @@ class ArticleController extends Controller
      */
     public function show(Request $request, string $slug): view
     {
-        ArticleResource::withoutWrapping();
-
         $article = Article::with(
             [
                 'creator' => function ($query) {
@@ -107,10 +105,11 @@ class ArticleController extends Controller
                     );
                 },
             ]
-        )->firstWhere('slug', $slug);
+        )->where('slug', $slug)->firstOrFail();
 
         (new Canvas())->viewer($article);
 
+        ArticleResource::withoutWrapping();
         $post_json = new ArticleResource($article);
 
         return view('pages.posts.show', ['post' => $post_json->toResponse($request)->getData()]);

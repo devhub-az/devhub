@@ -11,13 +11,13 @@ Auth::routes();
 //});
 
 Route::get('/', 'HomeController@postsApiRoute')->name('home');
-Route::get('/top/week', 'HomeController@postsApiRoute')->name('top.week');
-Route::get('/top/month', 'HomeController@postsApiRoute')->name('top.month');
-Route::get('/all', 'HomeController@postsApiRoute')->name('all');
+Route::get('top/week', 'HomeController@postsApiRoute')->name('top.week');
+Route::get('top/month', 'HomeController@postsApiRoute')->name('top.month');
+Route::get('all', 'HomeController@postsApiRoute')->name('all');
 
 //Auth routes
 Route::group(['middleware' => ['auth']], static function () {
-    Route::get('/favorite', 'HomeController@postsApiRoute')->name('favorite');
+    Route::get('favorite', 'HomeController@postsApiRoute')->name('favorite');
     Route::get('tracker', 'Auth\NotificationController@index')->name('tracker');
     Route::get('tracker/remove/all', 'Auth\NotificationController@deleteAll')->name('delete-all-trackers');
 
@@ -38,6 +38,8 @@ Route::prefix('api')->group(function () {
 //    Route::post('post/image/cache', 'Api\PostController@upload_image');
     //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
     Route::post('auth/login', 'Api\AuthController@login');
+    Route::post('auth/register', 'Api\AuthController@register');
+    Route::post('auth/checkEmail','Api\AuthController@checkEmail');
 
     //Article Api
     Route::apiResource('articles', 'Api\ArticleController');
@@ -46,6 +48,7 @@ Route::prefix('api')->group(function () {
             Route::get('day', 'Api\ArticleTopController@posts');
             Route::get('week', 'Api\ArticleTopController@posts');
             Route::get('month', 'Api\ArticleTopController@posts');
+            Route::get('favorite', 'Api\ArticleTopController@favorite')->middleware('auth');
         });
 
         Route::get(
@@ -153,10 +156,10 @@ Route::group([], static function () {
         Route::post('{profileId}/follow', 'ProfileController@follow');
 
         Route::prefix('@{username}')->group(static function () {
-            Route::get('/posts', 'AuthorController@showPosts')->name('user_posts');
+            Route::get('posts', 'AuthorController@showPosts')->name('user_posts');
             Route::get('', 'AuthorController@showInfo')->name('user_info');
-            Route::get('/followers', 'AuthorController@showFollowers')->name('user_followers');
-            Route::get('/followings', 'AuthorController@showFollowings')->name('user_followings');
+            Route::get('followers', 'AuthorController@showFollowers')->name('user_followers');
+            Route::get('followings', 'AuthorController@showFollowings')->name('user_followings');
         });
     });
 

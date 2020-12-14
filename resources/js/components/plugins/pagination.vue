@@ -7,7 +7,7 @@
         focus:border-blue_def-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out
         duration-150 rounded-l-md cursor-pointer"
            @click.prevent="changePage(1)">
-            <i class="mdi mdi-chevron-double-left"></i>
+            <i class="iconify" data-icon="mdi-chevron-double-left"></i>
         </a>
         <a :class="isCurrentPage(page) ? 'text-blue_def-600 hover:text-blue_def-600' : 'text-gray-500 hover:text-gray-700'"
            @click.prevent="changePage(page)"
@@ -21,7 +21,7 @@
         focus:border-blue_def-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out
         duration-150 rounded-r-md cursor-pointer"
            @click.prevent="changePage(pagination.last_page)">
-            <i class="mdi mdi-chevron-double-right"></i>
+            <i class="iconify" data-icon="mdi-chevron-double-right"></i>
         </a>
 
     </nav>
