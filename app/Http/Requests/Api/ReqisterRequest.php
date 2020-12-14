@@ -5,9 +5,7 @@ namespace App\Http\Requests\Api;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ReqisterRequest
- *
- * @package \App\Http\Requests\Api
+ * Class ReqisterRequest.
  */
 class ReqisterRequest extends FormRequest
 {
