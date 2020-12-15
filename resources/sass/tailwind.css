@@ -6,15 +6,15 @@
 
 @responsive {
     .text-shadow {
-        text-shadow: 0 2px 4px rgba(0,0,0,0.10);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.10);
     }
 
     .text-shadow-md {
-        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
     }
 
     .text-shadow-lg {
-        text-shadow: 0 15px 30px rgba(0,0,0,0.11), 0 5px 15px rgba(0,0,0,0.08);
+        text-shadow: 0 15px 30px rgba(0, 0, 0, 0.11), 0 5px 15px rgba(0, 0, 0, 0.08);
     }
 
     .text-shadow-none {
@@ -23,12 +23,12 @@
 }
 
 * {
-    @apply transition-all duration-300 ease-in-out;
+    @apply transition-all duration-200 ease-in;
 }
 
 @layer components {
     .button {
-        @apply flex items-center shadow bg-blue px-4 py-2 text-white font-normal rounded text-sm hover:opacity-75;
+        @apply border border-cerulean-700 font-normal uppercase text-sm rounded px-3 py-2 text-white bg-cerulean-700 hover:bg-cerulean-800 hover:border-cerulean-800
     }
 
     .py-05 {
@@ -57,7 +57,7 @@
     }
 
     .markdown a {
-        @apply text-blue font-semibold;
+        @apply text-cerulean-500 font-semibold;
     }
 
     .markdown strong a {

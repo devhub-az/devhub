@@ -14,7 +14,7 @@ class HubController extends Controller
      */
     public function index(): HubsResource
     {
-        return new HubsResource(Hub::paginate());
+        return new HubsResource(Hub::withCount('articles')->paginate());
     }
 
     /**

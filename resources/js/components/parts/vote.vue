@@ -1,13 +1,13 @@
 <template>
-    <div class="ml-auto pl-2 text-2xl xs:text-xl"
+    <div class="flex gap-2 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto"
          :aria-label="posts.attributes.votes_sum + ':  ↑ ' + [posts.attributes.upvotes === 0 ? '0' : posts.attributes.upvotes ] + ' ↓ ' + [posts.attributes.downvotes === 0 ? '0' :posts.downvotes]"
          data-balloon-pos="left">
-        <span class="mdi mdi-thumb-up-outline hover:text-green-600" :class="{'text-green-600': posts.attributes.upvoted}"
+        <span class="hover:text-green-600 iconify transition-none" data-icon="mdi-thumb-up-outline" :class="{'text-green-600': posts.attributes.upvoted}"
               @click="upvote(posts.id)"/>
-        <span :style="{color: colorStatus}" class="rating">
+        <p :style="{color: colorStatus}">
             {{ posts.attributes.votes }}
-        </span>
-        <span class="mdi mdi-thumb-down-outline hover:text-red-600" :class="{'text-red-600': posts.attributes.downvoted}"
+        </p>
+        <span class="hover:text-red-600 iconify transition-none" data-icon="mdi-thumb-down-outline" :class="{'text-red-600': posts.attributes.downvoted}"
               @click="downvote(posts.id)"/>
     </div>
 </template>

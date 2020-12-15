@@ -4,15 +4,10 @@ console.log(' ____             _   _       _\n' +
     '| |_| |  __/\\ V /|  _  | |_| | |_) | (_| |/ /\n' +
     '|____/ \\___| \\_/ |_| |_|\\__,_|_.__(_)__,_/___|')
 
-require('./bootstrap');
-window.Vue = require('vue');
+import Vue from "vue";
 
-import "@mdi/font/css/materialdesignicons.min.css"
 
 Vue.component('login', require('./components/auth/login.vue').default);
+Vue.component('register', require('./components/auth/register.vue').default);
 
-if (document.getElementById('app')) {
-    const app = new Vue({
-        el: '#app',
-    });
-}
+new Vue().$mount('#app');

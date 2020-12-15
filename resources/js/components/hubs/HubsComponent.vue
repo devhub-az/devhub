@@ -2,10 +2,10 @@
     <div>
         <div class="pb-2 relative" id="hide">
             <input type="text" placeholder="Hab axtar" v-model="search"
-                   class="block w-full p-2 border hover:border-blue focus:outline-none focus:border-blue focus:border-transparent"
+                   class="block w-full p-2 border hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent"
                    @keyup.enter="searchUnit">
-            <span class="mdi mdi-magnify absolute translate-y-1/2 top-0 p-2 pr-4 cursor-pointer right-0"
-                  @click="searchUnit"></span>
+            <span class="iconify absolute translate-y-1/2 top-0 my-3 mr-4 cursor-pointer right-0"
+                  data-icon="mdi-magnify" @click="searchUnit"></span>
         </div>
         <!--        <span v-for="column in columns[1]" :key="column" @click="sortByColumn(column)"-->
         <!--              class="table-head">-->
@@ -25,9 +25,9 @@
                 <h2 class="font-semibold">{{ hub.attributes.name }}</h2>
                 <p class="text-sm w-full pb-2 xs:text-xs">{{ hub.attributes.description }}</p>
                 <div class="flex">
-                    <div class="text-sm">
-                        <i class="mdi mdi-text-box-multiple"></i>
-                        Paylaşım {{ hub.attributes.posts_count }}
+                    <div class="text-sm flex items-center">
+                        <i class="iconify" data-icon="mdi-text-box-multiple"></i>
+                        <p class="ml-1">Paylaşım {{ hub.attributes.articles_count }}</p>
                     </div>
                 </div>
             </a>

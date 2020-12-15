@@ -24,7 +24,7 @@ class Hub extends Model
         return $this->belongsTo(Localization::class, 'id', 'idx');
     }
 
-    public function posts()
+    public function articles()
     {
         return $this->belongsToMany(Article::class, 'post_hubs', 'hub_id', 'posts_id');
     }

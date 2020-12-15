@@ -10,17 +10,18 @@
                            title="Paylaşmanın müəllifi">
                             <img height="32" width="32"
                                  alt="user avatar" class="w-6 h-6 flex-none image-fit rounded lazyload"
-                                :src="post.relationships.author.data.attributes.avatar">
-                            <span class="text-sm pl-2 m-auto">
-                                {{ '@' + post.relationships.author.data.attributes.username }}</span>
+                                 :src="post.relationships.author.data.attributes.avatar">
+                            <p class="text-sm pl-2 m-auto">
+                                {{ '@' + post.relationships.author.data.attributes.username }}</p>
                         </a>
-                        <span class="text-xs my-auto mr-auto pl-2">
-                            {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
-                        </span>
-                        <span class="text-sm my-auto xs:hidden md:hidden sm:hidden" aria-label="Oxumaq vaxtı" data-balloon-pos="left">
-                            <span class="mdi mdi-clock-outline"/>
-                            {{ post.attributes.read_time }}
-                        </span>
+                        <p class="text-xs my-auto mr-auto pl-2">
+                            {{ post.attributes.created_at | moment('DD MMMM, H:mm') }}
+                        </p>
+                        <div class="flex items-center text-sm my-auto xs:hidden md:hidden sm:hidden"
+                             aria-label="Oxumaq vaxtı" data-balloon-pos="left">
+                            <span class="iconify" data-icon="mdi-clock-outline"></span>
+                            <p class="ml-1">{{ post.attributes.read_time }}</p>
+                        </div>
                     </div>
                     <div class="grid grid-flow-col py-2">
                         <a :href="'/article/' + post.attributes.slug" class="my-auto">
@@ -34,21 +35,24 @@
                     </div>
                 </div>
                 <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
-                    <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
-                        <span>
-                            <i class="mdi mdi-eye-outline"/> {{ post.attributes.views }}
-                            <span class="xs:hidden sm:hidden">Baxışların sayı</span>
-                        </span>
-                        <span class="pl-2">
-                            <a :href="'/post/' + post.id + '#comments'" class="post_comments_link">
-                                <i class="mdi mdi-comment-text-multiple-outline"/> {{ post.comments_count ? post.comments_count : 'X' }} <span
-                                class="xs:hidden sm:hidden">Şerh</span>
+                    <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
+                        <div class="flex items-center">
+                            <i class="iconify" data-icon="mdi-eye-outline"/>
+                            <p class="ml-1">{{ post.attributes.views }}</p>
+                            <p class="ml-1 xs:hidden sm:hidden">Baxışların sayı</p>
+                        </div>
+                        <div class="pl-2">
+                            <a :href="'/post/' + post.id + '#comments'" class="flex items-center">
+                                <i class="iconify" data-icon="mdi-comment-text-multiple-outline"/>
+                                <p class="ml-1">{{ post.comments_count ? post.comments_count : 'X' }}</p>
+                                <p class="ml-1 xs:hidden sm:hidden">Şerh</p>
                             </a>
-                        </span>
+                        </div>
                         <favorite :post="post" :auth_check="auth_check"/>
-                        <span class="pl-2" @click="copy(post.id)" style="cursor: pointer;">
-                            <i class="mdi mdi-share"/> <span class="xs:hidden sm:hidden">Paylaş</span>
-                        </span>
+                        <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
+                            <i class="iconify" data-icon="mdi-share"/>
+                            <p class="ml-1 xs:hidden sm:hidden">Paylaş</p>
+                        </div>
                     </div>
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
                          :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
@@ -70,16 +74,15 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty" class="bg-white rounded border-t text-center grid gap-2 p-5 pt-0">
+        <div v-else-if="postsEmpty" class="bg-white rounded border text-center grid gap-2 p-5">
             <span class="opacity-75" style="font-size: 5rem">
-                <i class="mdi mdi-comment-edit-outline"/>
+                <i class="iconify mx-auto" data-icon="mdi-comment-edit-outline"/>
             </span>
             <span class="opacity-75 pb-2">Paylaşma tapılmadı</span>
-            <span>
-                <a href="/post/add" class="border border-blue font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-blue hover:opacity-90">
-                    <i class="mdi mdi-plus"/> Yazmağ
-                </a>
-            </span>
+            <a href="/post/add"
+               class="w-max flex mx-auto items-center border border-cerulean-700 font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-700 hover:opacity-90">
+                <i class="iconify" data-icon="mdi-plus"/> Yazmağ
+            </a>
         </div>
     </div>
 </template>
@@ -152,7 +155,7 @@ export default {
                 this.$clipboard(link);
                 new Noty({
                     type: 'success',
-                    text: '<div class="notification-image"><span class="mdi mdi-share"/></div> Link kopyalandi',
+                    text: '<div class="notification-image"><span class="iconify" data-icon="mdi-share"/></div> Link kopyalandi',
                 }).show();
             } catch (error) {
             }

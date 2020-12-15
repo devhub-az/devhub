@@ -34,7 +34,7 @@ class HomeController extends Controller
             case 'favorite' && \Auth::user()->followings(Hub::class)->count() !== null && \Auth::user()->followings()->count() !== null:
                 session(['main-page' => '/favorite']);
 
-                return view('pages.home', ['url' => '/api/articles/favorite', 'top_followed_hubs' => $top_followed_hubs]);
+                return view('pages.home', ['url' => '/api/articles/filter/favorite', 'top_followed_hubs' => $top_followed_hubs]);
             default:
                 abort(404);
         }

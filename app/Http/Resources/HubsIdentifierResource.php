@@ -24,7 +24,7 @@ class HubsIdentifierResource extends JsonResource
                 Numeric::number_format_short($this->followers_count) : '0',
             //            'follower_check'      => $this->statusCheck(),
             'follower_check'      => $this->statusCheck(),
-            'posts_count'         => $this->posts_count,
+            'articles_count'      => $this->articles_count,
         ];
     }
 

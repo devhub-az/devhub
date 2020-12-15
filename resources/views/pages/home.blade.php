@@ -9,39 +9,47 @@
                 <div class="font-bold mb-4 overflow-hidden">
                     <div class="grid grid-cols-auto-fit">
                         <a href="{{ route('home') }}"
-                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto {{ (Request::is('top/*') || Request::is('/')) ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:text-blue-light hover:border-blue-light' }}">
-                            <span class="text-sm">Ən yaxşı</span>
+                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto {{ (Request::is('top/*') || Request::is('/')) ? 'bottom-0 border-cerulean-500 text-cerulean-500' : 'text-gray-500 border-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                            Ən yaxşı
                         </a>
                         <a href="{{ route('all') }}"
-                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid  mx-auto {{ Request::url() === route('all') ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:text-blue-light hover:border-blue-light' }}">
-                            <span class="text-sm">Bütün</span>
+                           class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid  mx-auto {{ Request::url() === route('all') ? 'bottom-0 border-cerulean-500 text-cerulean-500' : 'text-gray-500 border-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                            Bütün
                         </a>
                         @auth
                             <a href="{{ route('favorite') }}"
-                               class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto {{ Request::url() === route('favorite') ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:text-blue-light hover:border-blue-light' }}">
-                                <span class="text-sm badge"
-                                      @if (Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() > 0)
-                                      data-posts-badge="+{{ Auth::user()->unreadNotifications->where('type', '!=', 'App\Notifications\MessageReceived')->count() }}"@endif>
+                               class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto {{ Request::url() === route('favorite') ? 'bottom-0 border-cerulean-500 text-cerulean-500' : 'text-gray-500 border-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                                <span class="relative">
                                     Abunə ilə
+                                    @if (Auth::user()->unreadNotifications->where('type', '!=', App\Notifications\MessageReceived::class)->count() > 0)
+                                        <span class="flex h-2 w-2 absolute -top-1 -right-1">
+                                            <span
+                                                class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-cerulean-400 opacity-75"></span>
+                                            <span
+                                                class="relative inline-flex rounded-full h-2 w-2 bg-cerulean-500"></span>
+                                        </span>
+                                    @endif
                                 </span>
+
                             </a>
                         @endauth
                     </div>
                 </div>
                 @if (Request::is('top/*') || Request::is('/'))
-                    <div class="flex pb-2 xs:grid md:grid md:grid-flow-col md:text-center sm:grid sm:grid-flow-col sm:text-center xs:grid-flow-col xs:text-center">
+                    <div
+                        class="flex pb-2 xs:grid md:grid md:grid-flow-col md:text-center sm:grid sm:grid-flow-col sm:text-center xs:grid-flow-col xs:text-center">
                         <a href="{{ url('/') }}"
-                           class="border py-1 px-3 rounded-l xs:rounded-l-none hover:border-blue {{ Request::url() === url('/') ? 'border-blue' : '' }}"
+                           class="border py-1 px-3 rounded-l xs:rounded-l-none hover:border-cerulean-700 {{ Request::url() === url('/') ? 'border-cerulean-700' : '' }}"
                            rel="nofollow" title="Günün ən yaxşı paylaşmaları">
                             Gün
                         </a>
                         <a href="{{ url('top/week') }}"
-                           class="border py-1 px-3 hover:border-blue {{ Request::url() === url('top/week')  ? 'border-blue' : '' }}"
+                           class="border py-1 px-3 hover:border-cerulean-700 {{ Request::url() === url('top/week')  ? 'border-cerulean-700' : '' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
                             Həftə
                         </a>
                         <a href="{{ url('top/month') }}"
-                           class="border py-1 px-3 rounded-r xs:rounded-r-none hover:border-blue {{ Request::url() === url('top/month')  ? 'border-blue' : '' }}"
+                           class="border py-1 px-3 rounded-r xs:rounded-r-none hover:border-cerulean-700 {{ Request::url() === url('top/month')  ? 'border-cerulean-700' : '' }}"
                            rel="nofollow" title="Ayın ən yaxşı paylaşmaları">
                             Ay
                         </a>
@@ -61,11 +69,12 @@
                         Təcrübəniz ilcə bölüşün, mükafat alın və ya sadəcə əylənin.
                     </p>
                     <a href="#"
-                       class="border border-blue xs:block xs:text-center xs:py-2 xs:w-full font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-blue hover:opacity-90">
+                       class="border border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-700 hover:opacity-90">
                         Paylaşmaq
                     </a>
                 </div>
-                <a class="grid grid-flow-col border rounded p-4 mb-2 bg-white hover:border-blue" href="https://t.me/devhub_az" target="_blank"
+                <a class="grid grid-flow-col border rounded p-4 mb-2 bg-white hover:border-cerulean-700"
+                   href="https://t.me/devhub_az" target="_blank"
                    rel="noopener">
                     <div>
                         <div

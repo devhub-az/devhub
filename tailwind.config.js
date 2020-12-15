@@ -27,13 +27,20 @@ module.exports = {
             black: colors.black,
             red: colors.red,
             header: '#1a1a1ae6',
-            blue: {
-                light: '#1cace0',
-                DEFAULT: '#1cace0',
-                dark: '#115293',
-                button: '#3d84a8',
+            indigo: colors.indigo,
+            cerulean: {
+                50: '#f4fbfd',
+                100: '#e8f7fc',
+                200: '#c6eaf7',
+                300: '#a4def3',
+                400: '#60c5e9',
+                500: '#1cace0',
+                600: '#199bca',
+                700: '#1581a8',
+                800: '#116786',
+                900: '#0e546e'
             },
-            blue_def:colors.blue,
+            blue: colors.blue,
             white: colors.white,
             pink: {
                 light: '#ff7ce5',

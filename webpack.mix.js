@@ -26,19 +26,8 @@ if (!process.argv.includes('--hot')) {
 
 mix.webpackConfig(config)
 
-// let vendor = [
-//     'resources/js/vendor/particles.min.js',
-//     'resources/js/vendor/particles.settings.js',
-//     'resources/js/vendor/quill-custom.js',
-//     'resources/js/vendor/scroll.js',
-//     'resources/js/vendor/search.js',
-// ];
-//
-// vendor.forEach((item) => {
-//     mix.js(item, 'public/js/vendor')
-// })
-
-mix.sass('resources/sass/app.scss', 'public/css')
+mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js')
+    .copy('node_modules/animate.css/animate.min.css', 'public/css')
 
     //Pages
     .js('resources/js/pages/home.js', 'public/js')
@@ -58,5 +47,3 @@ mix.sass('resources/sass/app.scss', 'public/css')
 if (mix.inProduction()) {
     mix.version()
 }
-
-

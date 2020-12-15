@@ -1,6 +1,6 @@
 <footer class="text-gray-300 body-font bg-footer py-2 mt-auto">
     <div class="flex xs:block items-center xs:h-auto lg:container mx-auto">
-        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100 xs:pb-4">
+        <a href="{{ route('home') }}" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100 xs:pb-4">
             <picture>
                 <source srcset="{{ asset('images/DevHub_Compact_Logo.webp') }}" type="image/webp">
                 <source srcset="{{ asset('images/DevHub_Compact_Logo.png') }}" type="image/png">
