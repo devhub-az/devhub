@@ -1,6 +1,6 @@
 <header class="border-t-4 border-cerulean-500 bg-header sm:px-4 md:px-4" id="header">
     <div class="flex items-center justify-between h-12 xs:h-auto lg:container mx-auto">
-        <div class="grid grid-flow-col xs:w-full gap-3 xs:flex">
+        <div class="grid grid-flow-col xs:w-full gap-3 xs:gap-0 xs:flex">
             <div id="mobile-menu__toggler" class="block lg:hidden">
                 <button id="mobile-menu__open"
                         class="p-2 items-center justify-center">
@@ -15,7 +15,8 @@
             <div class="flex items-center justify-center">
                 <a class="pr-2 md:text-2xl items-center xs:ml-0 xs:text-2xl"
                    href="{{ session('main-page') ?? route('home') }}">
-                        <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128" height="36">
+                    <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
+                         height="36" class="xs:h-8">
                 </a>
             </div>
             <ul class="grid grid-flow-col gap-3 md:hidden sm:hidden xs:hidden items-center justify-center" id="menu">
@@ -47,7 +48,8 @@
         {{--            </div>--}}
         {{--        </form>--}}
         <div class="grid xs:flex grid-flow-col gap-3 xs:text-2xl xs:pr-2 text-gray-100">
-            <span id="search-icon" onclick="search()" class="iconify m-auto sm:text-2xl cursor-pointer" data-icon="mdi-magnify"></span>
+            <span id="search-icon" onclick="search()" class="iconify m-auto sm:text-2xl cursor-pointer"
+                  data-icon="mdi-magnify"></span>
             @guest
                 {{--                <switcher-theme></switcher-theme>--}}
                 <a href="/login" class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl">
@@ -61,7 +63,7 @@
                    class="border border-cerulean-700 font-normal uppercase text-xs rounded px-2 py-1.5 text-white bg-cerulean-700 hover:bg-cerulean-800 hover:border-cerulean-800 xs:hidden sm:hidden">Qoşulmaq</a>
             @else
                 <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"
-                                       :count="'{{ Auth::user()->unreadNotifications->count() }}'"></dropdown-notification>
+                                       :count="'{{ Auth::user()->unreadNotifications->count() }}'" class="xs:hidden"></dropdown-notification>
 
                 {{--                <a href="{{ route('conversations') }}"><span class="iconify" data-icon="mdi-email badge"--}}
                 {{--                                                             @if (Auth::user()->messagesNotificationsCount() > 0)--}}
@@ -77,7 +79,7 @@
                 </div>
                 <div class="m-auto w-6 h-6 lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
                     <img
-                        src="{{ (Auth::user()->avatar !== 'default.jpg') ? '/upload/user_' . Auth::user()->id . '/logo/' . Auth::user()->avatar : config('devhub.default_avatar'), }}"
+                        src="{{ (Auth::user()->avatar !== 'default') ? '/upload/avatars/' . Auth::user()->avatar : config('devhub.default_avatar') }}"
                         alt="User sekili" class="w-6 h-6 rounded ">
                 </div>
             @endguest
@@ -141,7 +143,7 @@
 @push('scripts')
     <script type="text/javascript" src="{{ mix('js/header.js') }}" async></script>
     <script>
-        function toogleMenu() {
+        function toggleMenu() {
             document.getElementById("mobile-menu__open").classList.toggle("hidden");
             document.getElementById("mobile-menu__close").classList.toggle("hidden");
             document.getElementById("mobile-menu__items").classList.toggle("hidden");
@@ -151,28 +153,38 @@
             document.getElementById("mobile-icon__items").classList.toggle("hidden");
         }
 
-        document.getElementById("mobile-menu__open").addEventListener(
-            "click",
-            () => {
-                toogleMenu();
-            },
-            false
-        );
-        document.getElementById("mobile-menu__close").addEventListener(
-            "click",
-            () => {
-                toogleMenu();
-            },
-            false
-        );
-        if (document.getElementById("mobile-icon__open"))
-        document.getElementById("mobile-icon__open").addEventListener(
-            "click",
-            () => {
-                toggleIcon();
-            },
-            false
-        );
+        window.onload = function () {
+            document.getElementById("mobile-menu__open").addEventListener(
+                "click",
+                () => {
+                    document.getElementById("mobile-icon__open").classList.remove("hidden");
+                    document.getElementById("mobile-icon__items").classList.add("hidden");
+                    toggleMenu();
+                },
+                false
+            );
+            document.getElementById("mobile-menu__close").addEventListener(
+                "click",
+                () => {
+                    document.getElementById("mobile-icon__open").classList.remove("hidden");
+                    document.getElementById("mobile-icon__items").classList.add("hidden");
+                    toggleMenu();
+                },
+                false
+            );
+            if (document.getElementById("mobile-icon__open"))
+                document.getElementById("mobile-icon__open").addEventListener(
+                    "click",
+                    () => {
+                        document.getElementById("mobile-menu__open").classList.remove("hidden");
+                        document.getElementById("mobile-menu__close").classList.add("hidden");
+                        document.getElementById("mobile-menu__items").classList.add("hidden");
+                        toggleIcon();
+                    },
+                    false
+                );
+        }
+
     </script>
     {{--    <script src="{{ asset('js/stickybits.min.js') }}"></script>--}}
     {{--    <script src="{{asset('js/stickybitsettings.js') }}"></script>--}}

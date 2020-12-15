@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 
 @tailwind components;
@@ -93,7 +95,7 @@
     }
 
     .markdown code {
-        @apply font-mono text-sm inline bg-gray-200 rounded px-1 py-05;
+        @apply text-sm inline bg-gray-200 rounded px-1 py-05;
     }
 
     .markdown pre {
@@ -113,7 +115,7 @@
     }
 
     .markdown kbd {
-        @apply text-xs inline-block rounded border px-1 py-05 align-middle font-normal font-mono shadow;
+        @apply text-xs inline-block rounded border px-1 py-05 align-middle font-normal shadow;
     }
 
     .markdown table {
