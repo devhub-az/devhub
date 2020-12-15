@@ -157,8 +157,10 @@
             document.getElementById("mobile-menu__open").addEventListener(
                 "click",
                 () => {
-                    document.getElementById("mobile-icon__open").classList.remove("hidden");
-                    document.getElementById("mobile-icon__items").classList.add("hidden");
+                    if (document.getElementById("mobile-icon__open")){
+                        document.getElementById("mobile-icon__open").classList.remove("hidden");
+                        document.getElementById("mobile-icon__items").classList.add("hidden");
+                    }
                     toggleMenu();
                 },
                 false
@@ -166,8 +168,10 @@
             document.getElementById("mobile-menu__close").addEventListener(
                 "click",
                 () => {
-                    document.getElementById("mobile-icon__open").classList.remove("hidden");
-                    document.getElementById("mobile-icon__items").classList.add("hidden");
+                    if (document.getElementById("mobile-icon__open")) {
+                        document.getElementById("mobile-icon__open").classList.remove("hidden");
+                        document.getElementById("mobile-icon__items").classList.add("hidden");
+                    }
                     toggleMenu();
                 },
                 false

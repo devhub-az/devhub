@@ -92,10 +92,12 @@
                         </div>
                     </div>
                     <div class="flex mb-2 mx-4">
-                        <a href="#" class="py-1.5 mr-2 my-1 w-1/2 font-medium text-sm border rounded text-blue-light border-blue-light text-center hover:bg-blue-light hover:text-white">
+                        <a href="#"
+                           class="py-1.5 mr-2 my-1 w-1/2 font-medium text-sm border rounded text-blue-light border-blue-light text-center hover:bg-blue-light hover:text-white">
                             Izləmək
                         </a>
-                        <a href="#" class="py-1.5 ml-2 my-1 w-1/2 font-medium text-sm border rounded text-gray-500 text-center hover:text-gray-600 hover:border-gray-600">
+                        <a href="#"
+                           class="py-1.5 ml-2 my-1 w-1/2 font-medium text-sm border rounded text-gray-500 text-center hover:text-gray-600 hover:border-gray-600">
                             Yazmag
                         </a>
                     </div>
