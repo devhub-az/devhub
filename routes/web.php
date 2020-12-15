@@ -39,7 +39,7 @@ Route::prefix('api')->group(function () {
     //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
     Route::post('auth/login', 'Api\AuthController@login');
     Route::post('auth/register', 'Api\AuthController@register');
-    Route::post('auth/checkEmail','Api\AuthController@checkEmail');
+    Route::post('auth/checkEmail', 'Api\AuthController@checkEmail');
 
     //Article Api
     Route::apiResource('articles', 'Api\ArticleController');

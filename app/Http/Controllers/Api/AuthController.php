@@ -38,9 +38,9 @@ class AuthController extends Controller
             return response()->json(['success' => false, 'error' => $error]);
         }
 
-        $email    = $request['email'];
+        $email = $request['email'];
         $password = $request['password'];
-        $user     = User::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
         if ($user) {
             if (\Hash::check($password, $user->password)) {
                 Auth::attempt(
@@ -87,6 +87,7 @@ class AuthController extends Controller
                 'password' => Hash::make($validated['password']),
             ]
         );
+
         return $user;
     }
 

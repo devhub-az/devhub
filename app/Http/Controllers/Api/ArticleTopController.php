@@ -73,13 +73,13 @@ class ArticleTopController extends Controller
     {
         $author = User::findOrFail(Auth::user()->id);
         if ($author->followings()->count() > 0) {
-            $authorsIds        = $author->followings()->pluck('id');
-            $articleAuthors    = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
+            $authorsIds = $author->followings()->pluck('id');
+            $articleAuthors = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
             $articleAuthorsIds = $this->favoriteIds($articleAuthors);
         }
         if ($author->followings(Hub::class)->count() > 0) {
-            $hubsIds        = $author->followings(Hub::class)->pluck('id');
-            $articleHubs    = Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
+            $hubsIds = $author->followings(Hub::class)->pluck('id');
+            $articleHubs = Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
             $articleHubsIds = $this->favoriteIds($articleHubs);
         }
         $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);

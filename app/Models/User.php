@@ -8,13 +8,13 @@ use App\Http\Traits\Can\CanFollow;
 use App\Http\Traits\Can\CanVote;
 use App\Http\Traits\PermissionManager;
 use Eloquent;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 /**
  * Class User.
@@ -39,7 +39,6 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var string
      */
     protected $primaryKey = 'id';
-
 
     /**
      * The "type" of the auto-incrementing ID.
