@@ -157,24 +157,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.search {
-    position: relative;
-}
-
-.search__input {
-    display: block;
-}
-
-.search__logo {
-    right: 15px;
-    position: absolute;
-    top: 50%;
-    cursor: pointer;
-    font-size: 20px;
-    color: var(--text-black-secondary);
-    z-index: 3;
-    transform: translateY(-50%);
-}
-</style>

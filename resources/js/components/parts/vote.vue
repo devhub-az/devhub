@@ -1,10 +1,10 @@
 <template>
-    <div class="flex gap-2 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto"
+    <div class="flex gap-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto"
          :aria-label="posts.attributes.votes_sum + ':  ↑ ' + [posts.attributes.upvotes === 0 ? '0' : posts.attributes.upvotes ] + ' ↓ ' + [posts.attributes.downvotes === 0 ? '0' :posts.downvotes]"
          data-balloon-pos="left">
         <span class="hover:text-green-600 iconify transition-none" data-icon="mdi-thumb-up-outline" :class="{'text-green-600': posts.attributes.upvoted}"
               @click="upvote(posts.id)"/>
-        <p :style="{color: colorStatus}">
+        <p class="font-medium" :style="{color: colorStatus}">
             {{ posts.attributes.votes }}
         </p>
         <span class="hover:text-red-600 iconify transition-none" data-icon="mdi-thumb-down-outline" :class="{'text-red-600': posts.attributes.downvoted}"

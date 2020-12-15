@@ -3,7 +3,7 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" id="app">
+    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
         <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
             <div>
                 <div class="font-bold mb-4 overflow-hidden">
@@ -55,7 +55,7 @@
                         </a>
                     </div>
                 @endif
-                <posts
+                <posts id="app"
                     :url="'{{ $url }}'"
                     @auth :auth_check="true" @endauth
                 ></posts>
@@ -122,8 +122,6 @@
 
 @push('scripts')
     <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
-    {{--    <script src="{{ asset('js/stickybits.min.js') }}"></script>--}}
-    {{--    <script src="{{asset('js/stickybitsettings.js') }}"></script>--}}
 @endpush
 
 @section('styles')
