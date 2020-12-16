@@ -29,7 +29,7 @@
                     </div>
                     <div class="absolute top-0 bottom-0 xs:hidden sm:hidden right-0 w-20 z-10"
                          style="box-shadow: inset -25px 0 25px -25px #aaaaaa;"></div>
-                    <div id="left" class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 ml-60" style="width: 120%">
+                    <div id="left" class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 ml-60 xs:hidden sm:hidden" style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
                                 <div title="Paylaşmanın müəllifi" class="inline-flex no-underline">
@@ -133,7 +133,7 @@
                 <div class="grid relative xs:block sm:block grid-cols-2 overflow-hidden">
                     <div class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10"
                          style="box-shadow: inset 25px 0 25px -25px #aaaaaa;"></div>
-                    <div id="right" class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 -ml-60"
+                    <div id="right" class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 -ml-60 xs:hidden sm:hidden"
                          style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
