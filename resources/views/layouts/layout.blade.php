@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.querySelector('html').classList.add('dark')
+        }
+    </script>
+
     @include('include.meta')
 
     <title>@yield('title', 'DevHub') | DevHub</title>
@@ -27,7 +33,8 @@
 </head>
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
-<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="flex bg-gray-50 font-sans flex-col min-h-screen overflow-x-hidden dark:bg-gray-900"
+<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}"
+      class="flex bg-gray-50 font-sans flex-col min-h-screen overflow-x-hidden dark:bg-gray-900"
       itemscope itemtype="http://schema.org/WebPage">
 
 {{--<span class="scroll-top mb:hidden" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">--}}
@@ -49,12 +56,6 @@
 
 {{-- Footer --}}
 @include('include.footer')
-
-{{--<script type="text/javascript" src="{{ asset('js/highlight.min.js') }}"></script>--}}
-{{--<script type="text/javascript" src="{{ asset('js/scripts/popper.min.js') }}" async></script>--}}
-{{--<script type="text/javascript" src="{{ asset('js/scripts/lazysizes.min.js') }}" async></script>--}}
-{{--<script type="text/javascript" src="{{ asset('js/scripts/scroll.js') }}" async></script>--}}
-{{--<script type="text/javascript" src="{{ asset('js/scripts/search.js') }}" async></script>--}}
 <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
 @stack('scripts')
 </body>

@@ -1,14 +1,15 @@
+if (localStorage.theme === 'dark') {
+    document.querySelector('#toggle').classList.add('toggle', 'active')
+} else {
+    document.querySelector('#toggle').classList.add('toggle')
+}
+
 import Vue from "vue";
 
 Vue.component('dropdown', require('./../components/plugins/dropdown.vue').default);
 Vue.component('dropdown-notification', require('./../components/plugins/dropdown-notification.vue').default);
 
 new Vue().$mount('#header');
-
-if (localStorage.theme === 'dark') {
-    document.querySelector('html').classList.add('dark')
-    document.querySelector('.toggle').classList.add('active')
-}
 
 function toggleMenu() {
     document.getElementById("mobile-menu__open").classList.toggle("hidden");

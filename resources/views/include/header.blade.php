@@ -51,7 +51,7 @@
         <div class="grid xs:flex grid-flow-col gap-3 text-xl xs:text-2xl xs:pr-2 text-gray-100 items-center">
             <span id="search-icon" onclick="search()" class="iconify m-auto sm:text-2xl cursor-pointer"
                   data-icon="mdi-magnify"></span>
-            <span class="toggle cursor-pointer"></span>
+            <span id="toggle" class="cursor-pointer"></span>
             @guest
                 {{--                <switcher-theme></switcher-theme>--}}
                 <a href="/login" class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl">
