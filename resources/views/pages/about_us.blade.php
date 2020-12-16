@@ -21,7 +21,7 @@
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
             <div class="pb-5 pt-4">
                 <div class="grid xs:block sm:block grid-cols-2 relative overflow-hidden">
-                    <div class="m-auto w-2/3">
+                    <div class="m-auto w-2/3 dark:text-gray-300">
                         <p class="text-3xl font-medium mb-5">Daxili bilikləri kəşf edin</p>
                         <p class="mb-4 font-light">Məlumat tapın və maraqlandığınız mövzuları izləmək üçün
                             <a href="/hubs" class="font-medium text-cerulean-700">hablardan</a> istifadə
@@ -29,7 +29,7 @@
                     </div>
                     <div class="absolute top-0 bottom-0 xs:hidden sm:hidden right-0 w-20 z-10"
                          style="box-shadow: inset -25px 0 25px -25px #aaaaaa;"></div>
-                    <div id="left" class="w-full rounded ml-60 bg-white border xs:hidden sm:hidden" style="width: 120%">
+                    <div id="left" class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 ml-60" style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
                                 <div title="Paylaşmanın müəllifi" class="inline-flex no-underline">
@@ -68,15 +68,15 @@
                             </div>
                             <div class="flex">
                                 <div
-                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 border-gray-200  text-gray-700 popup-active">
+                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700">
                                     Grasp
                                 </div>
                                 <div
-                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 border-gray-200  text-gray-700 popup-active">
+                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700">
                                     Design Principles
                                 </div>
                                 <div
-                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 border-gray-200  text-gray-700 popup-active">
+                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700">
                                     JavaScript
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
+                        <div class="grid lg:grid-cols-main border-t rounded-b text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
                             <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
                                 <div class="flex items-center">
                                     <i class="iconify" data-icon="mdi-eye-outline"></i>
@@ -129,11 +129,11 @@
         </section>
         <about-example id="app"></about-example>
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
-            <div class="py-10 border-b border-t">
+            <div class="py-10 border-b border-t dark:border-gray-700">
                 <div class="grid relative xs:block sm:block grid-cols-2 overflow-hidden">
                     <div class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10"
                          style="box-shadow: inset 25px 0 25px -25px #aaaaaa;"></div>
-                    <div id="right" class="w-full rounded -ml-60 bg-white border xs:hidden sm:hidden"
+                    <div id="right" class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 -ml-60"
                          style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
@@ -173,15 +173,15 @@
                             </div>
                             <div class="flex">
                                 <div
-                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 border-gray-200  text-gray-700 popup-active">
+                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700">
                                     Grasp
                                 </div>
                                 <div
-                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 border-gray-200  text-gray-700 popup-active">
+                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700">
                                     Design Principles
                                 </div>
                                 <div
-                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 border-gray-200  text-gray-700 popup-active">
+                                    class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700">
                                     JavaScript
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
+                        <div class="grid lg:grid-cols-main border-t rounded-b text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
                             <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
                                 <div class="flex items-center">
                                     <i class="iconify" data-icon="mdi-eye-outline"></i>
@@ -229,7 +229,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="m-auto w-2/3">
+                    <div class="m-auto w-2/3 dark:text-gray-300">
                         <p class="text-3xl font-medium mb-5">Səs vermədə iştirak edin</p>
                         <p class="mb-4 font-light">Zamanla daha çox kontekst əlavə edin və yeni məzmun göstərmək üçün səsvermədən
                             istifadə edin.</p>
@@ -238,7 +238,7 @@
             </div>
         </section>
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto py-32">
-            <div class="m-auto text-center w-2/3">
+            <div class="m-auto text-center w-2/3 dark:text-gray-300">
                 <p class="text-3xl mb-6 font-medium mb-5">Uğur və təcrübələrinizi bölüşün</p>
                 <p class="my-6 font-light">
                     Biz Azərbaycanda İT sənayesinin inkişafına kömək edirik. İnkişafa töhfə verin və təcrübə

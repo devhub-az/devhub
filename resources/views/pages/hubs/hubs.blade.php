@@ -3,11 +3,11 @@
 @section('title')Hablar @stop
 
 @section('main')
-    <div class="container w-full my-4 mx-auto ">
-        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5 pb-2">
+    <div class="container w-full my-4 mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5 pb-5 dark:text-gray-300">
             <div>
                 <p class="text-5xl font-medium pb-4">Hablar</p>
-                <p>
+                <p class="font-light">
                     Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün
                     məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir -
                     yalnız maraqlı olan ocaqlara yazılmaq.
@@ -44,12 +44,12 @@
             </div>
             {{-- Right --}}
             <div class="content_right">
-                <div id="default-block" class="mb-5 bg-white rounded border">
-                    <div class="px-5 h-10 border-b items-center flex">
+                <div class="mb-5 rounded border dark:border-gray-700">
+                    <div class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                         <p class="m-0 text-sm items-center">Ən sevimli</p>
                     </div>
 
-                    <div class="overflow-hidden bg-white text-black px-5 py-2">
+                    <div class="overflow-hidden bg-white dark:bg-transparent dark:text-gray-300 text-black px-5 py-2">
                         <ul>
                             @foreach ($top_hubs as $hub)
                                 <a href="/hubs/{{ $hub['id'] ?? '' }}">
@@ -71,12 +71,12 @@
                         </ul>
                     </div>
                 </div>
-                <div id="default-block" class="mb-5 bg-white rounded border">
-                    <div class="px-5 h-10 border-b items-center flex">
+                <div class="mb-5 rounded border dark:border-gray-700">
+                    <div class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                         <p class="m-0 text-sm items-center">Ən izləninən</p>
                     </div>
 
-                    <div class="overflow-hidden bg-white text-black px-5 py-2">
+                    <div class="overflow-hidden bg-white dark:bg-transparent dark:text-gray-300 text-black px-5 py-2">
                         <ul>
                             @foreach ($top_followed_hubs as $hub)
                                 <a href="/hubs/{{ $hub['id'] ?? '' }}">

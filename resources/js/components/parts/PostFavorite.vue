@@ -3,25 +3,25 @@
         <div class="star tooltip flex items-center" @click="favorite(post.id)"
              v-if="!post.favorite && !loading" aria-label="Seçilmişlərə əlavə et"
              data-balloon-pos="down">
-            <i v-if="!post.favorite" class="iconify" data-icon="mdi-bookmark-plus"/>
+            <i v-if="!post.favorite" class="iconify dark:text-gray-300" data-icon="mdi-bookmark-plus"/>
             {{ post.favorites }}
-            <div class="ml-1 xs:hidden">Seçilmiş</div>
+            <div class="ml-1 dark:text-gray-300 xs:hidden">Seçilmiş</div>
         </div>
         <div class="star tooltip flex items-center" @click="favorite(post.id)"
              v-if="post.favorite && !loading" aria-label="Seçilmişlərdən cixartmag"
              data-balloon-pos="down">
-            <i v-if="post.favorite" class="iconify" data-icon="mdi-bookmark-check saved"/>
+            <i v-if="post.favorite" class="iconify dark:text-gray-300" data-icon="mdi-bookmark-check saved"/>
             {{ post.favorites }}
-            <div class="ml-1 xs:hidden">Seçilmiş</div>
+            <div class="ml-1 dark:text-gray-300 xs:hidden">Seçilmiş</div>
         </div>
         <div class="star tooltip flex items-center"
              v-if="loading" aria-label="Seçilmişlərdən cixartmag"
              data-balloon-pos="down">
             <div class="animate-spin">
-                <span class="iconify" data-icon="mdi-loading"></span>
+                <span class="iconify dark:text-gray-300" data-icon="mdi-loading"></span>
             </div>
             {{ post.favorites }}
-            <div class="ml-1 xs:hidden">Gözləyin</div>
+            <div class="ml-1 dark:text-gray-300 xs:hidden">Gözləyin</div>
         </div>
     </div>
 </template>

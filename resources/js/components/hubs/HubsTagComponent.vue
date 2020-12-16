@@ -1,7 +1,7 @@
 <template>
     <div class="flex">
         <div v-for="hub in data">
-            <div class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500"
+            <div class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700"
                  :class="(hub.follower_check ? 'border-cerulean-500 ' : 'border-gray-200  text-gray-700 ') + (hub.hover ? 'popup-active': '')"
                  @mouseover="hub.hover = true"
                  @mouseleave="hub.hover = false">

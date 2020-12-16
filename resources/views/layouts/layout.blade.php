@@ -27,7 +27,7 @@
 </head>
 
 {{--<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" itemscope itemtype="http://schema.org/WebPage">--}}
-<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="flex bg-gray-50 font-sans flex-col min-h-screen overflow-x-hidden"
+<body data-theme="{{ \Cookie::get('atr') ?? 'default' }}" class="flex bg-gray-50 font-sans flex-col min-h-screen overflow-x-hidden dark:bg-gray-900"
       itemscope itemtype="http://schema.org/WebPage">
 
 {{--<span class="scroll-top mb:hidden" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">--}}

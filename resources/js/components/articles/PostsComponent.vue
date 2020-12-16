@@ -2,7 +2,7 @@
     <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
-            <div class="w-full mb-3 rounded bg-white border" v-for="post in posts">
+            <div class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:border-gray-700" v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
                         <a v-bind:href="'/authors/@' + post.relationships.author.data.attributes.username"
@@ -11,21 +11,21 @@
                             <img height="32" width="32"
                                  alt="user avatar" class="w-6 h-6 flex-none image-fit rounded lazyload"
                                  :src="post.relationships.author.data.attributes.avatar">
-                            <p class="text-sm pl-2 m-auto">
+                            <p class="text-sm pl-2 m-auto dark:text-gray-300">
                                 {{ '@' + post.relationships.author.data.attributes.username }}</p>
                         </a>
-                        <p class="text-xs my-auto mr-auto pl-2">
+                        <p class="text-xs my-auto mr-auto pl-2 dark:text-gray-300">
                             {{ post.attributes.created_at | moment('DD MMMM, H:mm') }}
                         </p>
                         <div class="flex items-center text-sm my-auto xs:hidden md:hidden sm:hidden"
                              aria-label="Oxumaq vaxtı" data-balloon-pos="left">
-                            <span class="iconify" data-icon="mdi-clock-outline"></span>
-                            <p class="ml-1">{{ post.attributes.read_time }}</p>
+                            <span class="iconify dark:text-gray-300" data-icon="mdi-clock-outline"></span>
+                            <p class="ml-1 dark:text-gray-300">{{ post.attributes.read_time }}</p>
                         </div>
                     </div>
                     <div class="grid grid-flow-col py-2">
                         <a :href="'/article/' + post.attributes.slug" class="my-auto">
-                            <p class="text-2xl xs:text-xl font-medium">{{ post.attributes.title }}</p>
+                            <p class="text-2xl xs:text-xl font-medium dark:text-gray-300">{{ post.attributes.title }}</p>
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
                     </div>
@@ -34,24 +34,24 @@
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden" v-html="md(post.attributes.body)">
                     </div>
                 </div>
-                <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
+                <div class="grid lg:grid-cols-main border-t rounded-b text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
                     <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
                         <div class="flex items-center">
-                            <i class="iconify" data-icon="mdi-eye-outline"/>
-                            <p class="ml-1">{{ post.attributes.views }}</p>
-                            <p class="ml-1 xs:hidden sm:hidden">Baxışların sayı</p>
+                            <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
+                            <p class="ml-1 dark:text-gray-300">{{ post.attributes.views }}</p>
+                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Baxışların sayı</p>
                         </div>
                         <div class="pl-2">
                             <a :href="'/post/' + post.id + '#comments'" class="flex items-center">
-                                <i class="iconify" data-icon="mdi-comment-text-multiple-outline"/>
-                                <p class="ml-1">{{ post.comments_count ? post.comments_count : 'X' }}</p>
-                                <p class="ml-1 xs:hidden sm:hidden">Şerh</p>
+                                <i class="iconify dark:text-gray-300" data-icon="mdi-comment-text-multiple-outline"/>
+                                <p class="ml-1 dark:text-gray-300">{{ post.comments_count ? post.comments_count : 'X' }}</p>
+                                <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Şerh</p>
                             </a>
                         </div>
                         <favorite :post="post" :auth_check="auth_check"/>
                         <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
-                            <i class="iconify" data-icon="mdi-share"/>
-                            <p class="ml-1 xs:hidden sm:hidden">Paylaş</p>
+                            <i class="iconify dark:text-gray-300" data-icon="mdi-share"/>
+                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaş</p>
                         </div>
                     </div>
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"

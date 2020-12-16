@@ -22,11 +22,8 @@
     }
 }
 
-* {
-    @apply transition-all duration-200 ease-in;
-}
-
 @layer components {
+
     .button {
         @apply border border-cerulean-700 font-normal uppercase text-sm rounded px-3 py-2 text-white bg-cerulean-700 hover:bg-cerulean-800 hover:border-cerulean-800
     }
@@ -37,7 +34,7 @@
     }
 
     .markdown {
-        @apply text-gray-900 leading-normal break-words text-base;
+        @apply text-gray-900 dark:text-gray-400 leading-normal break-words text-base;
     }
 
     .markdown > * + * {
@@ -57,7 +54,7 @@
     }
 
     .markdown a {
-        @apply text-cerulean-500 font-semibold;
+        @apply font-medium text-cerulean-700;
     }
 
     .markdown strong a {
@@ -132,4 +129,26 @@
     .markdown .highlight pre {
         @apply bg-gray-100 !important;
     }
+}
+
+* {
+    @apply transition-all duration-200 ease-in;
+}
+
+.toggle:before {
+    content: '☀️';
+}
+
+.toggle.active:before {
+    content: '🌒';
+}
+
+.toggle.animate {
+    animation: animate .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+@keyframes animate {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(0); }
+    100% { transform: scale(1); }
 }
