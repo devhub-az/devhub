@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\HubResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Hub;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class HubController extends Controller
 {
@@ -65,6 +62,4 @@ class HubController extends Controller
             ]
         );
     }
-
-
 }

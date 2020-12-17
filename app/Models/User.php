@@ -3,17 +3,17 @@
 namespace App\Models;
 
 use Eloquent;
-use Overtrue\LaravelFollow\Followable;
-use Jcc\LaravelVote\Vote;
-use Jcc\LaravelVote\CanBeVoted;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Passport\HasApiTokens;
-use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Jcc\LaravelVote\CanBeVoted;
+use Jcc\LaravelVote\Vote;
+use Laravel\Passport\HasApiTokens;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
+use Overtrue\LaravelFollow\Followable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**

@@ -46,7 +46,7 @@ class ArticleResource extends JsonResource
     public function text(string $text)
     {
         if (preg_match('/^.{1,512}\b/s', $text, $match)) {
-            $text = $match[0] . (strlen($match[0]) < strlen($text) ? '...' : '');
+            $text = $match[0].(strlen($match[0]) < strlen($text) ? '...' : '');
         }
 
         return $text;
@@ -59,9 +59,9 @@ class ArticleResource extends JsonResource
      */
     public function readTime(string $text): string
     {
-        $words   = str_word_count(strip_tags($text));
+        $words = str_word_count(strip_tags($text));
         $minutes = ceil($words / 250);
 
-        return $minutes . ' dəqiqə';
+        return $minutes.' dəqiqə';
     }
 }
