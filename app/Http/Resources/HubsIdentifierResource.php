@@ -2,9 +2,8 @@
 
 namespace App\Http\Resources;
 
-use App\Helpers\Numeric;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
+use Numeric;
 
 /**
  * Class HubsIdentifierResource.
@@ -20,20 +19,11 @@ class HubsIdentifierResource extends JsonResource
             'rating'              => $this->rating,
             'description'         => $this->description['az'],
             'name'                => $this->name,
-            'hub_followers_count' => $this->followers_count > 0 ?
-                Numeric::number_format_short($this->followers_count) : '0',
+            'hub_followers_count' => $this->favorites_count > 0 ?
+                Numeric::number_format_short($this->favorites_count) : '0',
             //            'follower_check'      => $this->statusCheck(),
-            'follower_check'      => $this->statusCheck(),
+            'follower_check'      => auth()->guard('api')->id() ? $this->isFavoritedBy(auth()->guard('api')->user()) : false,
             'articles_count'      => $this->articles_count,
         ];
-    }
-
-    public function statusCheck()
-    {
-        if (Auth::check()) {
-            return $this->isFollowedBy(Auth::user()->id);
-        }
-
-        return false;
     }
 }

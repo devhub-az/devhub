@@ -43,18 +43,17 @@ class ArticleTopController extends Controller
      */
     public function posts(): ArticlesResource
     {
+//        TODO: SORT BY BEST VOTED
         return new ArticlesResource(
-            Article::withcount(
-                [
-                    'upvoters',
-                    'downvoters',
-                    'voters',
-                    'views',
-                    'bookmarkers',
-                    //            'comments'
-                ]
-            )
-                ->orderByRaw('(upvoters_count - downvoters_count) DESC')
+            Article::with('hubs')
+                ->withcount(
+                    [
+                        'views',
+                        //            'bookmarkers',
+                        //            'comments'
+                    ]
+                )
+//                ->orderBy( 'countTotalVotes', 'DESC')
                 ->orderBy(
                     'created_at',
                     'DESC'
@@ -62,30 +61,34 @@ class ArticleTopController extends Controller
                     'created_at',
                     '>=',
                     Carbon::now()->subDays(self::$count)->startOfDay()
-                )->take(50)->paginate(5)
+                )->take(50)
+                ->paginate(5)
         );
     }
 
     /**
+     * @param Request $request
      * @return ArticlesResource
      */
-    public function favorite(): ArticlesResource
+    public function favorite(Request $request): ArticlesResource
     {
-        $author = User::findOrFail(Auth::user()->id);
-        if ($author->followings()->count() > 0) {
-            $authorsIds = $author->followings()->pluck('id');
-            $articleAuthors = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
+        $author = User::findOrFail($request->user()->id);
+        if ($author->followings->count() > 0) {
+            $authorsIds        = $author->followings->pluck('id');
+            $articleAuthors    = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
             $articleAuthorsIds = $this->favoriteIds($articleAuthors);
         }
-        if ($author->followings(Hub::class)->count() > 0) {
-            $hubsIds = $author->followings(Hub::class)->pluck('id');
-            $articleHubs = Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
+        if ($author->getFavoriteItems(Hub::class)->count() > 0) {
+            $hubsIds        = $author->getFavoriteItems(Hub::class)->pluck('id');
+            $articleHubs    =
+                Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
             $articleHubsIds = $this->favoriteIds($articleHubs);
         }
         $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);
 
         return new ArticlesResource(
-            Article::withCount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers'])
+            Article::with('hubs')
+                ->withCount(['views'])
                 ->whereIn('id', $articlesIds)
                 ->take(50)
                 ->orderBy('created_at', 'DESC')

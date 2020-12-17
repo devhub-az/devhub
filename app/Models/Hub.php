@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Http\Traits\Can\CanBeFollowed;
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 /**
  * Class Hub.
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Hub extends Model
 {
-    use CanBeFollowed;
+    use Favoriteable;
 
     protected $fillable = [
         'name',

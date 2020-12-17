@@ -23,19 +23,19 @@
                 id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100' }}">Paylaşmalar</a>
+                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Paylaşmalar</a>
                 </li>
                 <li>
                     <a href="{{ route('hubs-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100' }}">Hablar</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Hablar</a>
                 </li>
                 <li>
                     <a href="{{ route('users-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100' }}">Müəlliflər</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Müəlliflər</a>
                 </li>
                 <li>
                     <a href="{{ url('/about_us') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('about_us')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100' }}">Məlumat</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('about_us')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Məlumat</a>
                 </li>
             </ul>
         </div>
@@ -66,9 +66,9 @@
                     Qoşulmaq
                 </a>
             @else
-                <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"
-                                       :count="'{{ Auth::user()->unreadNotifications->count() }}'"
-                                       class="hidden"></dropdown-notification>
+                <dropdown-notification :notifications="{{ Auth::user()->Notifications }}"
+                                       :count="{{ Auth::user()->unreadNotifications->count() }}">
+                </dropdown-notification>
 
                 {{--                <a href="{{ route('conversations') }}">--}}
                 {{--                    <i class="iconify" data-icon="mdi-email badge"--}}
@@ -77,7 +77,7 @@
                 {{--                        @endif/>--}}
                 {{--                </a>--}}
                 <a href="{{ route('create_article') }}"
-                   class="text-gray-100 hover:opacity-90 xs:hidden">
+                   class="hover:opacity-90 xs:hidden">
                     <i class="iconify" data-icon="topcoat:pencil"></i>
                 </a>
                 <div class="hidden m-auto lg:block xl:block">

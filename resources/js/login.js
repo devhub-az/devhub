@@ -6,7 +6,6 @@ console.log(' ____             _   _       _\n' +
 
 import Vue from "vue";
 
-
 Vue.component('login', require('./components/auth/login.vue').default);
 Vue.component('register', require('./components/auth/register.vue').default);
 

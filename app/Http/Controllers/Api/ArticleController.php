@@ -25,13 +25,9 @@ class ArticleController extends Controller
                             'followers'
                         );
                     },
-                ]
+                ],
             )->withcount(
-                'upvoters',
-                'downvoters',
-                'voters',
                 'views',
-                'bookmarkers'
             )->orderBy(
                 'created_at',
                 'DESC'

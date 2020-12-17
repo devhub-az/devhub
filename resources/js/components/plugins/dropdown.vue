@@ -17,7 +17,7 @@
                  class="w-6 h-6 flex-none image-fit rounded lazyload"
                  alt="Profile image">
         </button>
-        <transition name="dropdown-fade">
+        <div>
             <div v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"
                  class="absolute text-gray-700 right-0 mt-2 py-2 w-48 bg-white border rounded shadow z-20">
                 <a
@@ -89,7 +89,7 @@
                     Çıxmaq
                 </a>
             </div>
-        </transition>
+        </div>
     </div>
 </template>
 

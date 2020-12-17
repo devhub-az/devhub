@@ -74,11 +74,11 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty" class="bg-white rounded border text-center grid gap-2 p-5">
+        <div v-else-if="postsEmpty" class="bg-white dark:bg-transparent dark:border-gray-700 rounded border text-center grid gap-2 p-5">
             <span class="opacity-75" style="font-size: 5rem">
-                <i class="iconify mx-auto" data-icon="mdi-comment-edit-outline"/>
+                <i class="iconify mx-auto dark:text-gray-400" data-icon="mdi-comment-edit-outline"/>
             </span>
-            <span class="opacity-75 pb-2">Paylaşma tapılmadı</span>
+            <span class="opacity-75 pb-2 dark:text-gray-300">Paylaşma tapılmadı</span>
             <a href="/post/add"
                class="w-max flex mx-auto items-center border border-cerulean-700 font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-700 hover:opacity-90">
                 <i class="iconify" data-icon="mdi-plus"/> Yazmağ

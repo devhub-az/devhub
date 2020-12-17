@@ -4,16 +4,16 @@ namespace App\Notifications;
 
 use App\Models\Article;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Notification;
-use Mews\Purifier\Facades\Purifier;
-use Parsedown;
+use JetBrains\PhpStorm\ArrayShape;
+use Str;
 
 class PostNotify extends Notification
 {
     use Queueable;
 
-    protected $post;
-    const TYPE = 'Paylaşma';
+    protected Article $post;
 
     /**
      * Create a new notification instance.
@@ -32,7 +32,7 @@ class PostNotify extends Notification
      *
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['database'];
     }
@@ -44,37 +44,18 @@ class PostNotify extends Notification
      *
      * @return array
      */
-    public function toArray(string $notifiable): array
+    public function toArray($notifiable): array
     {
-        $parsedown = new Parsedown();
-
         return [
-            'type'          => self::TYPE,
-            'id'            => $this->post->id,
-            'title'         => $this->post->name,
-            'body'          => $this->shorten(Purifier::clean($parsedown->text($this->post->body)), 250),
-            'creator'       => $this->post->creator->username,
-            'profile_image' => '', // $this->getFirstMediaUrl('avatars'),
-            'created_at'    => $this->post->created_at,
+            'id'         => $this->post->id,
+            'title'      => $this->post->name,
+            'slug'       => $this->post->slug,
+            'avatar'     => ($this->post->creator->avatar !== 'default') ? '/upload/avatars/'
+                . $this->post->creator->avatar : config('devhub.default_avatar'),
+            'body'       => Str::words($this->post->content, 150, ''),
+            'author'     => $this->post->creator->username,
+            'views'      => $this->post->views_count,
+            'created_at' => $this->post->created_at,
         ];
-    }
-
-    /**
-     * shortens the supplied text after last word.
-     *
-     * @param $text
-     * @param $limit
-     *
-     * @return string
-     */
-    public function shorten($text, $limit)
-    {
-        if (str_word_count($text, 0) > $limit) {
-            $words = str_word_count($text, 2);
-            $pos = array_keys($words);
-            $text = substr($text, 0, $pos[$limit]).'...';
-        }
-
-        return $text;
     }
 }

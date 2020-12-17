@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\HubResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Hub;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class HubController extends Controller
 {
@@ -14,7 +16,7 @@ class HubController extends Controller
      */
     public function index(): HubsResource
     {
-        return new HubsResource(Hub::withCount('articles')->paginate());
+        return new HubsResource(Hub::withCount(['articles', 'favorites'])->paginate());
     }
 
     /**
@@ -27,6 +29,31 @@ class HubController extends Controller
         HubResource::withoutWrapping();
 
         return new HubResource(Hub::findorfail($id));
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @throws \Exception
+     *
+     * @return JsonResponse
+     */
+    public function follow(Request $request): JsonResponse
+    {
+        $user = auth()->guard('api')->user();
+        $hub = Hub::findOrFail($request->get('id'));
+        if (isset($hub) && ! $hub->isFavoritedBy($user)) {
+            $user->favorite($hub);
+
+            return response()->json(['success' => 'success']);
+        }
+        if ($hub->isFavoritedBy($user)) {
+            $user->unfavorite($hub);
+
+            return response()->json(['delete' => 'delete']);
+        }
+
+        return response()->json(['error' => 'error'], 401);
     }
 
     /**

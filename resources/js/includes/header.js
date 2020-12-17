@@ -5,11 +5,21 @@ if (localStorage.theme === 'dark') {
 }
 
 import Vue from "vue";
+import moment from "moment-mini"
+
+Vue.filter('moment', function (value, format) {
+    return moment(value).format(format);
+});
+Vue.filter('timeago', function (value) {
+    return moment(value).fromNow();
+});
 
 Vue.component('dropdown', require('./../components/plugins/dropdown.vue').default);
 Vue.component('dropdown-notification', require('./../components/plugins/dropdown-notification.vue').default);
 
-new Vue().$mount('#header');
+new Vue({
+    moment,
+}).$mount('#header');
 
 function toggleMenu() {
     document.getElementById("mobile-menu__open").classList.toggle("hidden");

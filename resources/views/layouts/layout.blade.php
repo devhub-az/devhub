@@ -21,8 +21,15 @@
     {{-- CSS --}}
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
 
+    <!-- Scripts -->
     <script>
         window.Language = '{{ config('app.locale') }}';
+
+        window.Laravel = <?php echo json_encode(
+            [
+                'csrfToken' => csrf_token(),
+            ]
+        ); ?>
     </script>
 
     <style>

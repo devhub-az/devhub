@@ -6,6 +6,9 @@ console.log(' ____             _   _       _\n' +
 
 import Vue from 'vue'
 import moment from "moment-mini"
+import httpPlugin from './../scripts/http';
+
+Vue.use(httpPlugin);
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);

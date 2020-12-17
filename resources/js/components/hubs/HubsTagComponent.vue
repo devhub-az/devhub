@@ -1,8 +1,8 @@
 <template>
     <div class="flex">
         <div v-for="hub in data">
-            <div class="border relative rounded text-sm cursor-pointer px-2 mr-2 hover:border-cerulean-500 dark:border-gray-700 dark:text-gray-400 dark:hover:border-cerulean-700"
-                 :class="(hub.follower_check ? 'border-cerulean-500 ' : 'border-gray-200  text-gray-700 ') + (hub.hover ? 'popup-active': '')"
+            <div class="border relative rounded text-sm cursor-pointer px-2 mr-2 dark:text-gray-400"
+                 :class="(hub.follower_check ? 'border-cerulean-500 dark:border-cerulean-700 dark:hover:border-cerulean-700' : 'border-gray-200 hover:border-cerulean-500 dark:border-gray-700 text-gray-700 dark:hover:border-cerulean-700') + (hub.hover ? 'popup-active': '')"
                  @mouseover="hub.hover = true"
                  @mouseleave="hub.hover = false">
                 {{ hub.name }}
@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <p class="text-sm">{{ hub.description }}</p>
-                        <hub-follow-button :hub="hub" :auth_check="auth_check" class="py-3 w-max"/>
+                        <hub-follow-button :id="hub.id" :follower_check="hub.follower_check" @name-updated="hub.follower_check = $event" :auth_check="auth_check" class="py-3 w-max"/>
                     </div>
                 </div>
             </div>
@@ -37,124 +37,3 @@ export default {
     }
 }
 </script>
-
-<style scoped lang="scss">
-//.tag {
-//
-//    &__container {
-//        background-color: white;
-//        border: 1px solid var(--color-border);
-//        border-radius: 5px;
-//        color: var(--text-black-primary);
-//        padding: 16px;
-//        font-size: 13px;
-//        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);
-//
-//        .-arrow {
-//            display: block;
-//            transform: rotate(45deg);
-//            top: 11px;
-//            position: absolute;
-//            left: 50%;
-//
-//            &:before {
-//                position: absolute;
-//                content: '';
-//                background: var(--background-tertiary);
-//                border: 1px solid var(--color-border);
-//                border-bottom: none;
-//                border-right: none;
-//                top: -6px;
-//                left: -6px;
-//                width: 12px;
-//                height: 12px;
-//            }
-//        }
-//    }
-//
-//
-//    &__block {
-//
-//        &-header {
-//            display: grid;
-//            grid-template-columns: 32px auto;
-//            gap: 4px;
-//
-//            img {
-//                width: 32px;
-//                height: 32px;
-//            }
-//
-//            h4 {
-//                font-weight: 500;
-//            }
-//        }
-//
-//        &-follow {
-//            margin: unset;
-//            text-align: unset;
-//        }
-//
-//        p {
-//            line-height: 1.5;
-//            padding-bottom: 12px;
-//        }
-//    }
-//}
-//
-//
-//.popup-active > .tag__popup {
-//    position: absolute;
-//    transform: translateX(-50%);
-//    width: 320px;
-//    z-index: 99;
-//    padding: 12px;
-//    transition: all 0.2s ease;
-//
-//    h3 {
-//        margin: 4px 0 8px;
-//    }
-//}
-//
-//.popup-active > .tooltip-balloon {
-//    background-color: white;
-//    border: 1px solid var(--color-border);
-//    border-radius: 5px;
-//    padding: 16px;
-//    font-size: 13px;
-//    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06), 0 3px 8px rgba(0, 0, 0, 0.09);
-//    color: var(--text-black-secondary);
-//    position: absolute;
-//    min-width: 50px;
-//    top: 25px;
-//    max-width: 320px;
-//
-//    .-arrow {
-//        padding: 0;
-//        border: 0;
-//        font: inherit;
-//        font-size: 100%;
-//        vertical-align: baseline;
-//        box-sizing: inherit;
-//        position: absolute;
-//        left: 52%;
-//        display: block;
-//        transform: rotate(45deg);
-//        bottom: -10px;
-//        margin: 0 0 0 0;
-//
-//        &:after {
-//            position: absolute;
-//            content: '';
-//            background: var(--background-tertiary);
-//            border: 1px solid var(--color-border);
-//            border-bottom: none;
-//            border-right: none;
-//            top: -6px;
-//            left: -6px;
-//            width: 12px;
-//            height: 12px;
-//        }
-//    }
-//}
-</style>

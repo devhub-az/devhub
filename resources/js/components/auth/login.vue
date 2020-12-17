@@ -82,17 +82,17 @@ export default {
         },
         login() {
             this.loading = true
-            axios.post('/api/auth/login', {
+            axios.post('/login', {
                 email: this.email,
                 password: this.password
             }).then(response => {
                 this.loading = false
-                if (response.data.success === false) {
-                    this.error_text = response.data.error
-                    this.error = true
-                } else if (response.data.success === true) {
-                    window.location = '/';
-                }
+                // if (response.data.success === false) {
+                //     this.error_text = response.data.error
+                //     this.error = true
+                // } else if (response.data.success === true) {
+                //     window.location = '/';
+                // }
             })
         },
     }

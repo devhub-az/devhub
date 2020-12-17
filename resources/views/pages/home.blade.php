@@ -44,7 +44,7 @@
                             Gün
                         </a>
                         <a href="{{ url('top/week') }}"
-                           class="border-t border-b py-1 px-3 hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700' : '' }}"
+                           class="border py-1 px-3 hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 ' : '' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
                             Həftə
                         </a>
