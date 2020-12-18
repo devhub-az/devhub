@@ -35,9 +35,9 @@ export default {
                 })
                     .then(response => {
                         if (response.data.success) {
-                            this.$emit('name-updated', true)
+                            this.$emit('follow-status-updated', true)
                         } else if (response.data.delete) {
-                            this.$emit('name-updated', false)
+                            this.$emit('follow-status-updated', false)
                         }
                         this.loading = false;
                     })

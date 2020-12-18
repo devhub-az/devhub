@@ -19,7 +19,7 @@
                             </div>
                         </div>
                         <p class="text-sm">{{ hub.description }}</p>
-                        <hub-follow-button :id="hub.id" :follower_check="hub.follower_check" @name-updated="hub.follower_check = $event" :auth_check="auth_check" class="py-3 w-max"/>
+                        <hub-follow-button :id="hub.id" :follower_check="hub.follower_check" @follow-status-updated="hub.follower_check = $event" :auth_check="auth_check" class="py-3 w-max"/>
                     </div>
                 </div>
             </div>

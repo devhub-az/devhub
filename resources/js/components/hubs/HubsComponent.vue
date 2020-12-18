@@ -40,7 +40,7 @@
                 <div class="font-semibold">{{ hub.attributes.rating }}</div>
                 <p class="text-sm">REYTINQ</p>
             </div>
-            <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check" @follow="hub.attributes.follower_check = $event" :auth_check="auth_check" class="w-2/12 m-auto text-center"/>
+            <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check" @follow-status-updated="hub.follower_check = $event" :auth_check="auth_check" class="w-2/12 m-auto text-center"/>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>
