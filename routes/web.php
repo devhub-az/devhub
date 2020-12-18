@@ -1,6 +1,9 @@
 <?php
 
 Auth::routes();
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
 
 //Route::get('setlocale/{locale}', function ($locale) {
 //    if (in_array($locale, \Config::get('app.locales'))) {
@@ -33,17 +36,6 @@ Route::group(['middleware' => ['auth']], static function () {
         Route::post('avatar', 'Auth\UserSettingsController@update_avatar');
     });
 });
-
-//Route::prefix('api')->group(function () {
-////    Route::post('post/image/cache', 'Api\PostController@upload_image');
-//    //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
-//    Route::post('auth/login', 'Api\AuthController@login');
-//    Route::post('auth/register', 'Api\AuthController@register');
-//    Route::post('auth/checkEmail', 'Api\AuthController@checkEmail');
-//
-//    //Article Api
-//
-//});
 
 Route::group([], static function () {
     // Articles view

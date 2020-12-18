@@ -45,57 +45,51 @@
             {{-- Right --}}
             <div class="content_right">
                 <div class="mb-5 rounded border dark:border-gray-700">
-                    <div class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
+                    <div
+                        class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                         <p class="m-0 text-sm items-center">Ən sevimli</p>
                     </div>
 
                     <div class="overflow-hidden bg-white dark:bg-transparent dark:text-gray-300 text-black px-5 py-2">
-                        <ul>
-                            @foreach ($top_hubs as $hub)
-                                <a href="/hubs/{{ $hub['id'] ?? '' }}">
-                                    <li class="grid grid-cols-list gap-3 mb-2">
-                                        <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
-                                             alt="hub image">
-                                        <div>
-                                            <p class="text-lg font-semibold">
-                                                {{ $hub['name'] }}
-                                            </p>
-                                            <span class="text-xs">
-                                                <i class="icon feather icon-star"></i>
-                                                Reyting {{ $hub['rating'] ?? '' }}
-                                            </span>
-                                        </div>
-                                    </li>
-                                </a>
-                            @endforeach
-                        </ul>
+                        @foreach ($top_hubs as $hub)
+                            <a href="/hubs/{{ $hub['id'] ?? '' }}" class="grid grid-cols-list gap-3 mb-2">
+                                <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
+                                     alt="hub image">
+                                <div>
+                                    <p class="text-lg font-semibold">
+                                        {{ $hub['name'] }}
+                                    </p>
+                                    <span class="text-xs">
+                                        <i class="icon feather icon-star"></i>
+                                        Reyting {{ $hub['rating'] ?? '' }}
+                                    </span>
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
                 <div class="mb-5 rounded border dark:border-gray-700">
-                    <div class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
+                    <div
+                        class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                         <p class="m-0 text-sm items-center">Ən izləninən</p>
                     </div>
 
                     <div class="overflow-hidden bg-white dark:bg-transparent dark:text-gray-300 text-black px-5 py-2">
-                        <ul>
-                            @foreach ($top_followed_hubs as $hub)
-                                <a href="/hubs/{{ $hub['id'] ?? '' }}">
-                                    <li class="grid grid-cols-list gap-3 mb-2">
-                                        <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
-                                             alt="hub image">
-                                        <div>
-                                            <p class="text-lg font-semibold">
-                                                {{ $hub['name'] }}
-                                            </p>
-                                            <span class="text-xs">
-                                                <i class="icon feather icon-users"></i>
-                                                İzləyicilər {{ $hub['rating'] ?? '' }}
-                                            </span>
-                                        </div>
-                                    </li>
-                                </a>
-                            @endforeach
-                        </ul>
+                        @foreach ($top_followed_hubs as $hub)
+                            <a href="/hubs/{{ $hub['id'] ?? '' }}" class="grid grid-cols-list gap-3 mb-2">
+                                <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
+                                     alt="hub image">
+                                <div>
+                                    <p class="text-lg font-semibold">
+                                        {{ $hub['name'] }}
+                                    </p>
+                                    <span class="text-xs">
+                                        <i class="icon feather icon-users"></i>
+                                        İzləyicilər {{ $hub['rating'] ?? '' }}
+                                    </span>
+                                </div>
+                            </a>
+                        @endforeach
                     </div>
                 </div>
             </div>
