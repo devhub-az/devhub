@@ -17,7 +17,7 @@ class HubResource extends JsonResource
             'type'       => 'hubs',
             'id'         => (int) $this->id,
             'attributes' => [
-                'logo'                => ($this->logo) ? '/' . strtolower($this->logo) : '/images/empty/code.png',
+                'logo'                => ($this->logo) ? '/'.strtolower($this->logo) : '/images/empty/code.png',
                 'rating'              => $this->rating,
                 'description'         => $this->description['az'],
                 'name'                => $this->name,
