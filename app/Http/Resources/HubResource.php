@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Auth;
 use Numeric;
 
 /**
@@ -23,7 +22,7 @@ class HubResource extends JsonResource
                 'name'                => $this->name,
                 'hub_followers_count' => $this->favorites_count > 0 ?
                     Numeric::number_format_short($this->favorites_count) : '0',
-                'follower_check'      => $this->isFavoritedBy(auth()->guard('api')->user()),
+                'follower_check'      => auth()->guard('api')->id() ? $this->isFavoritedBy(auth()->guard('api')->user()) : false,
                 'articles_count'      => $this->articles_count,
             ],
             //            'relationships' => new ($this),

@@ -62,7 +62,7 @@ Route::prefix('saved')->group(function () {
 /*
  * Hubs Api
  */
-Route::apiResource('hubs', 'Api\HubController');
+Route::apiResource('hubs', 'Api\HubController')->middleware('api');
 Route::prefix('hubs')->group(function () {
     Route::get('{id}/top/day', 'Api\PostHubController@posts');
     Route::get('{id}/top/week', 'Api\PostHubController@posts');
