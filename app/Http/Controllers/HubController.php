@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Resources\HubResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Hub;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class HubController extends Controller
 {
@@ -34,7 +31,7 @@ class HubController extends Controller
 
     public function show(int $id)
     {
-        $hub = new HubResource(Hub::withCount('followers')->findOrFail($id));
+        $hub = new HubResource(Hub::withCount('favorites')->findOrFail($id));
 
         return view(
             'pages.hubs.show',
@@ -51,8 +48,8 @@ class HubController extends Controller
     {
         $top_hubs = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
-            Hub::withCount('followers')->orderBy(
-                'followers_count',
+            Hub::withCount('favorites')->orderBy(
+                'favorites_count',
                 'desc'
             )->take(5)->get()
         );
@@ -64,30 +61,5 @@ class HubController extends Controller
                 'top_followed_hubs' => $top_followed_hubs,
             ]
         );
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @throws \Exception
-     *
-     * @return JsonResponse
-     */
-    public function follow(Request $request): JsonResponse
-    {
-        $userId = Auth::user();
-        $hub = Hub::findOrFail($request->get('id'));
-        if (isset($hub) && ! $hub->isFollowedBy($userId)) {
-            $userId->follow($hub);
-
-            return response()->json(['success' => 'success'], 200);
-        }
-        if ($hub->isFollowedBy($userId)) {
-            $userId->unfollow($hub);
-
-            return response()->json(['delete' => 'delete'], 200);
-        }
-
-        return response()->json(['error' => 'error'], 401);
     }
 }

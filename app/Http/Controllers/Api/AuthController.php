@@ -65,14 +65,6 @@ class AuthController extends Controller
         return response()->json(
             ['success' => false, 'error' => 'Üzr istəyirik istifadə etdiyiniz etimadnamələr etibarsızdır.']
         );
-
-//        if (!$token = JWTAuth::attempt($credentials)) {
-//            return response([
-//                'status' => 'error',
-//                'error'  => 'invalid.credentials',
-//                'msg'    => 'Invalid Credentials.'
-//            ], 400);
-//        }
     }
 
     public function register(ReqisterRequest $request)

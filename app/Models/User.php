@@ -2,11 +2,6 @@
 
 namespace App\Models;
 
-use App\Http\Traits\Can\CanBeFollowed;
-use App\Http\Traits\Can\CanBookmark;
-use App\Http\Traits\Can\CanFollow;
-use App\Http\Traits\Can\CanVote;
-use App\Http\Traits\PermissionManager;
 use Eloquent;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Jcc\LaravelVote\CanBeVoted;
+use Jcc\LaravelVote\Vote;
+use Laravel\Passport\HasApiTokens;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
+use Overtrue\LaravelFollow\Followable;
 use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**
@@ -24,11 +24,11 @@ use Silber\Bouncer\Database\HasRolesAndAbilities;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
-    use PermissionManager;
-    use CanFollow;
-    use CanBeFollowed;
-    use CanBookmark;
-    use CanVote;
+    use Followable;
+    use HasApiTokens;
+    use Vote;
+    use Favoriter;
+    use CanBeVoted;
     use SoftDeletes;
     use HasRolesAndAbilities;
     use HasFactory;

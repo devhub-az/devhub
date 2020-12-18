@@ -2,9 +2,9 @@
     <div>
         <div class="pb-2 relative" id="hide">
             <input type="text" placeholder="Hab axtar" v-model="search"
-                   class="block w-full p-2 border hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent"
+                   class="block w-full p-2 border dark:text-gray-400 hover:border-cerulean-500 dark:hover:border-cerulean-700 dark:bg-gray-700 dark:focus:border-cerulean-700 dark:border-gray-700 dark:focus:outline-none dark:focus:border-transparent focus:outline-none focus:border-cerulean-500 focus:border-transparent"
                    @keyup.enter="searchUnit">
-            <span class="iconify absolute translate-y-1/2 top-0 my-3 mr-4 cursor-pointer right-0"
+            <span class="iconify absolute translate-y-1/2 top-0 my-3 mr-4 cursor-pointer right-0 dark:text-gray-400"
                   data-icon="mdi-magnify" @click="searchUnit"></span>
         </div>
         <!--        <span v-for="column in columns[1]" :key="column" @click="sortByColumn(column)"-->
@@ -17,13 +17,14 @@
         <!--        </span>-->
         <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
-             class="flex gap-4 border mb-2 p-2 bg-white" :id="hub.id + '_block'">
+             class="flex gap-4 border mb-2 p-2 bg-white dark:bg-transparent dark:text-gray-300 dark:border-gray-700"
+             :id="hub.id + '_block'">
             <!--             :style="'border-left: 3px solid rgb(' + hub.border + ')'"-->
             <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
                  alt="Hub logo">
             <a :href="'/hubs/' + hub.id" class="w-8/12">
                 <h2 class="font-semibold">{{ hub.attributes.name }}</h2>
-                <p class="text-sm w-full pb-2 xs:text-xs">{{ hub.attributes.description }}</p>
+                <p class="text-sm w-full font-light pb-2 xs:text-xs">{{ hub.attributes.description }}</p>
                 <div class="flex">
                     <div class="text-sm flex items-center">
                         <i class="iconify" data-icon="mdi-text-box-multiple"></i>
@@ -39,7 +40,7 @@
                 <div class="font-semibold">{{ hub.attributes.rating }}</div>
                 <p class="text-sm">REYTINQ</p>
             </div>
-            <hub-follow-button :hub="hub" :auth_check="auth_check" class="w-2/12 m-auto text-center"/>
+            <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check" @follow-status-updated="hub.attributes.follower_check = $event" :auth_check="auth_check" class="w-2/12 m-auto text-center"/>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>

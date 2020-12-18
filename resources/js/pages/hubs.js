@@ -6,6 +6,7 @@ console.log(' ____             _   _       _\n' +
 
 import Vue from 'vue'
 import moment from "moment-mini"
+import httpPlugin from './../scripts/http';
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);
@@ -13,6 +14,8 @@ Vue.filter('moment', function (value, format) {
 Vue.filter('timeago', function (value) {
     return moment(value).fromNow();
 });
+
+Vue.use(httpPlugin);
 
 try {
     window.Popper = require('popper.js').default;

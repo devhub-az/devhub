@@ -15,6 +15,7 @@
                      height="36" class="mb-4 mx-auto">
             </a>
             <login></login>
+
             <div class="w-full border-t border-gray-300 my-4"></div>
             <div class="flex justify-between">
                 <div class="flex items-center">

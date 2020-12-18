@@ -1,4 +1,4 @@
-<header class="border-t-4 border-cerulean-500 bg-header sm:px-4 md:px-4" id="header">
+<header class="border-t-4 border-cerulean-700 bg-header dark:bg-gray-800 sm:px-4 md:px-4" id="header">
     <div class="flex items-center justify-between h-12 xs:h-auto lg:container mx-auto">
         <div class="grid grid-flow-col xs:w-full gap-3 xs:gap-0 xs:flex">
             <div id="mobile-menu__toggler" class="block lg:hidden">
@@ -19,22 +19,23 @@
                          height="36" class="xs:h-8">
                 </a>
             </div>
-            <ul class="grid grid-flow-col gap-3 md:hidden sm:hidden xs:hidden items-center justify-center" id="menu">
+            <ul class="grid grid-flow-col font-medium text-sm gap-3 md:hidden sm:hidden xs:hidden items-center justify-center "
+                id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class="font-base xs:text-base  hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-500' : 'text-gray-300' }}">Paylaşmalar</a>
+                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Paylaşmalar</a>
                 </li>
                 <li>
                     <a href="{{ route('hubs-list') }}"
-                       class="font-base xs:text-base hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-500' : 'text-gray-300' }}">Hablar</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Hablar</a>
                 </li>
                 <li>
                     <a href="{{ route('users-list') }}"
-                       class="font-base xs:text-base hover:text-cerulean-500 transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-cerulean-500' : 'text-gray-300' }}">Müəlliflər</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Müəlliflər</a>
                 </li>
                 <li>
                     <a href="{{ url('/about_us') }}"
-                       class="font-base xs:text-base hover:text-cerulean-500 transition {{ (Request::is('about_us')) ? 'text-cerulean-500' : 'text-gray-300' }}">Məlumat</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('about_us')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Məlumat</a>
                 </li>
             </ul>
         </div>
@@ -47,9 +48,10 @@
         {{--                <span onclick="closeSearch()" class="iconify" data-icon="mdi-file-excel-box"></span>--}}
         {{--            </div>--}}
         {{--        </form>--}}
-        <div class="grid xs:flex grid-flow-col gap-3 xs:text-2xl xs:pr-2 text-gray-100">
+        <div class="grid xs:flex grid-flow-col gap-3 text-xl xs:text-2xl xs:pr-2 text-gray-100 items-center">
             <span id="search-icon" onclick="search()" class="iconify m-auto sm:text-2xl cursor-pointer"
                   data-icon="mdi-magnify"></span>
+            <span id="toggle" class="cursor-pointer"></span>
             @guest
                 {{--                <switcher-theme></switcher-theme>--}}
                 <a href="/login" class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl">
@@ -60,18 +62,23 @@
                     Daxil ol
                 </a>
                 <a href="{{ route('register') }}"
-                   class="border border-cerulean-700 font-normal uppercase text-xs rounded px-2 py-1.5 text-white bg-cerulean-700 hover:bg-cerulean-800 hover:border-cerulean-800 xs:hidden sm:hidden">Qoşulmaq</a>
+                   class="border border-cerulean-700 font-normal uppercase text-xs rounded px-2 py-1.5 text-white bg-cerulean-700 dark:bg-cerulean-800 dark:border-cerulean-800 hover:bg-cerulean-800 hover:border-cerulean-800 xs:hidden sm:hidden">
+                    Qoşulmaq
+                </a>
             @else
-                <dropdown-notification :not="{{ Auth::user()->unreadNotifications }}"
-                                       :count="'{{ Auth::user()->unreadNotifications->count() }}'" class="xs:hidden"></dropdown-notification>
+                <dropdown-notification :notifications="{{ Auth::user()->Notifications }}"
+                                       :count="{{ Auth::user()->unreadNotifications->count() }}">
+                </dropdown-notification>
 
-                {{--                <a href="{{ route('conversations') }}"><span class="iconify" data-icon="mdi-email badge"--}}
-                {{--                                                             @if (Auth::user()->messagesNotificationsCount() > 0)--}}
-                {{--                                                             data-badge="{{ Auth::user()->messagesNotificationsCount() }}"--}}
-                {{--                    @endif/></a>--}}
+                {{--                <a href="{{ route('conversations') }}">--}}
+                {{--                    <i class="iconify" data-icon="mdi-email badge"--}}
+                {{--                       @if (Auth::user()->messagesNotificationsCount() > 0)--}}
+                {{--                       data-badge="{{ Auth::user()->messagesNotificationsCount() }}"--}}
+                {{--                        @endif/>--}}
+                {{--                </a>--}}
                 <a href="{{ route('create_article') }}"
-                   class="border border-cerulean-700 font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-700 hover:opacity-90 xs:hidden">
-                    Yazmaq
+                   class="hover:opacity-90 xs:hidden">
+                    <i class="iconify" data-icon="topcoat:pencil"></i>
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
                     <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"
@@ -100,7 +107,6 @@
                class="{{ (Request::is('about_us')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Məlumat</a>
         </div>
     </nav>
-
 
     <nav id="mobile-icon__items"
          class="hidden">
@@ -142,56 +148,6 @@
 
 @push('scripts')
     <script type="text/javascript" src="{{ mix('js/header.js') }}" async></script>
-    <script>
-        function toggleMenu() {
-            document.getElementById("mobile-menu__open").classList.toggle("hidden");
-            document.getElementById("mobile-menu__close").classList.toggle("hidden");
-            document.getElementById("mobile-menu__items").classList.toggle("hidden");
-        }
-
-        function toggleIcon() {
-            document.getElementById("mobile-icon__items").classList.toggle("hidden");
-        }
-
-        window.onload = function () {
-            document.getElementById("mobile-menu__open").addEventListener(
-                "click",
-                () => {
-                    if (document.getElementById("mobile-icon__open")){
-                        document.getElementById("mobile-icon__open").classList.remove("hidden");
-                        document.getElementById("mobile-icon__items").classList.add("hidden");
-                    }
-                    toggleMenu();
-                },
-                false
-            );
-            document.getElementById("mobile-menu__close").addEventListener(
-                "click",
-                () => {
-                    if (document.getElementById("mobile-icon__open")) {
-                        document.getElementById("mobile-icon__open").classList.remove("hidden");
-                        document.getElementById("mobile-icon__items").classList.add("hidden");
-                    }
-                    toggleMenu();
-                },
-                false
-            );
-            if (document.getElementById("mobile-icon__open"))
-                document.getElementById("mobile-icon__open").addEventListener(
-                    "click",
-                    () => {
-                        document.getElementById("mobile-menu__open").classList.remove("hidden");
-                        document.getElementById("mobile-menu__close").classList.add("hidden");
-                        document.getElementById("mobile-menu__items").classList.add("hidden");
-                        toggleIcon();
-                    },
-                    false
-                );
-        }
-
-    </script>
-    {{--    <script src="{{ asset('js/stickybits.min.js') }}"></script>--}}
-    {{--    <script src="{{asset('js/stickybitsettings.js') }}"></script>--}}
 @endpush
 
 @section('styles')

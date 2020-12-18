@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ config('app.locale') }}">
 <head>
+    <script>
+        if (localStorage.theme === 'dark') {
+            document.querySelector('html').classList.add('dark')
+        }
+    </script>
+
     @include('include.meta')
 
     <title>@yield('title', 'DevHub') | DevHub</title>

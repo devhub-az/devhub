@@ -1,11 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Models;
 
-use App\Http\Traits\Can\CanBeBookmarked;
-use App\Http\Traits\Can\CanBeVoted;
 use Auth;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Jcc\LaravelVote\CanBeVoted;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 use Str;
 
 /**
@@ -25,8 +23,10 @@ class Article extends Model
 {
     use SoftDeletes;
     use CanBeVoted;
-    use CanBeBookmarked;
     use HasFactory;
+    use Favoriteable;
+
+    protected $vote = User::class;
 
     /**
      * The "type" of the auto-incrementing ID.

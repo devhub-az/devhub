@@ -1,6 +1,6 @@
 <template>
     <ul id="animation" class="flex mb-2 left-0 w-screen py-6 animation xs:hidden md:hidden sm:hidden">
-        <li v-for="hub in hubs" class="flex flex-shrink-0 shadow gap-4 border mx-2 p-2 w-3/12 bg-white rounded">
+        <li v-for="hub in hubs" class="flex flex-shrink-0 shadow gap-4 border mx-2 p-2 w-3/12 bg-white rounded dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
             <img v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
                  alt="Hub logo">
             <a :href="'/hubs/' + hub.id" class="">
@@ -10,12 +10,12 @@
                 </p>
             </a>
         </li>
-        <li v-for="hub in hubs.slice(0,4)" class="flex flex-shrink-0 shadow gap-4 border mx-2 p-2 w-3/12 bg-white rounded">
+        <li v-for="hub in hubs.slice(0,4)" class="flex flex-shrink-0 shadow gap-4 border mx-2 p-2 w-3/12 bg-white rounded dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
             <img v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
                  alt="Hub logo">
-            <a :href="'/hubs/' + hub.id" class="">
-                <h2 class="font-semibold">{{ hub.attributes.name }}</h2>
-                <p class="text-xs w-full pb-2 xs:text-xs">
+            <a :href="'/hubs/' + hub.id" class="text-inherit">
+                <h2 class="font-semibold mb-1">{{ hub.attributes.name }}</h2>
+                <p class="text-xs w-full font-light xs:text-xs">
                     {{ hub.attributes.description }}
                 </p>
             </a>
