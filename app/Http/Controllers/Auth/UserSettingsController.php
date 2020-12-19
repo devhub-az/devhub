@@ -61,7 +61,7 @@ class UserSettingsController extends Controller
         $user = \Auth::user();
         $user->name = $request->name;
         $user->surname = $request->surname;
-        $user->email = $request->email ? $request->email : \Auth::user()->email;
+        $user->email = $request->email ?: \Auth::user()->email;
         $user->about = $request->about;
 
         $user->save();
