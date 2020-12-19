@@ -3,7 +3,7 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
+    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" id="app">
         <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
             <div>
                 <div class="mb-4 overflow-hidden">
@@ -30,7 +30,6 @@
                                         </span>
                                     @endif
                                 </span>
-
                             </a>
                         @endauth
                     </div>
@@ -55,9 +54,9 @@
                         </a>
                     </div>
                 @endif
-                <posts id="app"
-                       :url="'{{ $url }}'"
-                       @auth :auth_check="true" @endauth
+                <posts
+                    :url="'{{ $url }}'"
+                    @auth :auth_check="true" @endauth
                 ></posts>
             </div>
 
@@ -114,6 +113,30 @@
                         </g>
                     </svg>
                 </a>
+                <div class="mb-5 rounded border dark:border-gray-700 sticky top-2">
+                    <div
+                        class="px-5 h-10 border-b rounded-t items-center flex dark:border-gray-700 dark:bg-gray-800">
+                        <p class="m-0 text-sm items-center dark:text-gray-300">Ən izləninən hablar</p>
+                    </div>
+
+                    <div class="overflow-hidden bg-white dark:bg-transparent text-black px-5 py-2">
+                        @foreach ($top_followed_hubs as $hub)
+                            <div class="flex gap-3 mb-2">
+                                <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
+                                     alt="hub image" class="w-12 h-12">
+                                <div>
+                                    <p class="font-semibold dark:text-gray-300">
+                                        {{ $hub['name'] }}
+                                    </p>
+                                    <span class="text-xs dark:text-gray-300">
+                                        <i class="icon feather icon-users"></i>
+                                        İzləyicilər {{ $hub['rating'] ?? '' }}
+                                    </span>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

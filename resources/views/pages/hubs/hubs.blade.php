@@ -46,7 +46,7 @@
             <div class="content_right">
                 <div class="mb-5 rounded border dark:border-gray-700">
                     <div
-                        class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
+                        class="px-5 h-10 border-b rounded-t items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                         <p class="m-0 text-sm items-center">Ən sevimli</p>
                     </div>
 
@@ -70,7 +70,7 @@
                 </div>
                 <div class="mb-5 rounded border dark:border-gray-700">
                     <div
-                        class="px-5 h-10 border-b items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
+                        class="px-5 h-10 border-b rounded-t items-center flex dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800">
                         <p class="m-0 text-sm items-center">Ən izləninən</p>
                     </div>
 

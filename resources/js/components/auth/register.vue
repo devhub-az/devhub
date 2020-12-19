@@ -1,6 +1,6 @@
 <template>
     <form autocomplete="off" @submit.prevent="register" method="post" class="xs:max-w-xs w-96 text-left">
-        <div class="py-4">
+        <div class="pt-4 pb-2">
             <div class="relative mb-2">
                 <input aria-invalid="true" autocomplete="off" id="email" name="email"
                        placeholder="Elektron poçt"
@@ -75,19 +75,16 @@
         </div>
         <div class="w-full">
             <button v-if="loading"
-                    class="border border-blue w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-blue-light hover:opacity-90 mb-2 focus:outline-none">
+                    class="border-cerulean-600 text-white rounded bg-cerulean-600 hover:opacity-90 mb-2 px-2 py-3">
                 <i class="mdi mdi-spin mdi-loading"/></button>
             <button v-else type="submit"
-                    class="border border-blue w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-blue-light hover:opacity-90 mb-2 focus:outline-none">
+                    class="border border-cerulean-600 w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-cerulean-600 hover:opacity-90 mb-2">
                 Qeydiyyatdan keçmək
             </button>
         </div>
-        <footer class="mt-2 text-center">
-            <p>
-                Hesabınız var? <a href="/login" class="text-blue-light">Daxil olmaq</a>
-            </p>
-
-        </footer>
+        <div class="mt-4 bg-white rounded py-4 text-sm text-center border">
+                Hesabınız var? <a href="/login" class="text-cerulean-500">Daxil olmaq</a>
+        </div>
     </form>
 </template>
 

@@ -39,6 +39,7 @@
         "markdown-it-multimd-table": "^4.0.3",
         "moment-mini": "^2.24.0",
         "noty": "^3.2.0-beta",
+        "particles.js": "^2.0.0",
         "reset-css": "^5.0.1",
         "v-clipboard": "^2.2.3",
         "vue-clickaway": "^2.2.2",
