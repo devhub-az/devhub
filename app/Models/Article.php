@@ -57,8 +57,6 @@ class Article extends Model
         'author_id',
     ];
 
-    
-
     /**
      * Set the unique slug.
      *

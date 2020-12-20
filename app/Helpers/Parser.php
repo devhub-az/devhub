@@ -2,11 +2,13 @@
 
 namespace App\Helpers;
 
-class Parser {
+class Parser
+{
     private $templates;
     private $beautify;
 
-    public function __construct($templates, $beautify = false) {
+    public function __construct($templates, $beautify = false)
+    {
         $this->templates = $templates;
         $this->beautify = $beautify;
     }
@@ -26,5 +28,4 @@ class Parser {
 
         return implode($result);
     }
-
 }
