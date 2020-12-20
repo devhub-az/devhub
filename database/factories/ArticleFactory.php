@@ -17,7 +17,7 @@ class ArticleFactory extends Factory
     protected $model = Article::class;
 
     /**
-     * Define the model's default state.a
+     * Define the model's default state.a.
      *
      * @return array
      * @throws \Exception
