@@ -6,15 +6,15 @@
                  class="sticky top-0 flex justify-between items-center border-b bg-gray-100 px-3.5 py-1 z-10">
                 <div class="inline-flex">
                     <a :href="'/authors/@' + post.relationships.author.data.attributes.username"
-                    class="inline-flex">
+                       class="inline-flex">
                         <img class="w-6 h-6 flex-none image-fit rounded lazyload"
                              :src="post.relationships.author.data.attributes.avatar" alt="user avatar">
                         <p class="text-sm pl-2 m-auto">
                             {{ '@' + post.relationships.author.data.attributes.username }}</p>
                     </a>
-                        <p class="text-xs my-auto mr-auto pl-2">
-                            {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
-                        </p>
+                    <p class="text-xs my-auto mr-auto pl-2">
+                        {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
+                    </p>
 
                 </div>
                 <div class="post-votes-sticky">
@@ -30,7 +30,8 @@
                 </div>
                 <hubs-tags v-if="typeof(post.relationships.hubs) !== `undefined` "
                            :data="post.relationships.hubs.data"></hubs-tags>
-                <div class="markdown my-2" v-html="md(post.attributes.body)">
+                <div v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))">
+                    <div class="markdown my-2" v-html="block"></div>
                 </div>
             </div>
             <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
@@ -62,12 +63,23 @@
 import axios from "axios";
 
 const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
+const edjsHTML = require('editorjs-html');
+const edjsParser = edjsHTML({code: codeParser, image: imageParser});
+
+function codeParser(block) {
+    return `<code>` + block.data.code + `</code>`
+}
+
+function imageParser(block) {
+    return `<img src="` + block.data.url + `" alt="` + block.data.caption + `">`
+}
 
 export default {
     props: ['auth_check', 'id'],
     data: function () {
         return {
             loading: false,
+            edjsParser: edjsHTML(),
             post: {
                 attributes: [],
                 relationships: []
@@ -78,9 +90,6 @@ export default {
         await this.getPost()
     },
     methods: {
-        md(text) {
-            return MarkdownIt.render(text)
-        },
         async getPost() {
             this.loading = true;
             await axios.get('/api/articles/' + this.id).then(response => {

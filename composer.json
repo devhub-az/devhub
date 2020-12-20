@@ -9,6 +9,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "barryvdh/laravel-ide-helper": "^2.6",
+        "codex-team/editor.js": "dev-master",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "graham-campbell/markdown": "^13.1",

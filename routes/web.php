@@ -1,9 +1,9 @@
 <?php
 
 Auth::routes();
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
+//Route::get('/forgot-password', function () {
+//    return view('auth.forgot-password');
+//})->middleware('guest')->name('password.request');
 
 //Route::get('setlocale/{locale}', function ($locale) {
 //    if (in_array($locale, \Config::get('app.locales'))) {

@@ -3,13 +3,20 @@
 @section('title')Paylaşma yazmag @stop
 
 @section('main')
-    <div class="layout_body" id="app" onload="prettyPrint()">
-        <div class="layout_content">
-            <div class="page-header page-header_110">
-                <h1 class="page-header__title">Paylaşma yazmag</h1>
+    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" id="app">
+        <p class="text-5xl font-medium pb-4">Paylaşma yazmag</p>
+        <p class="font-light">
+            Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün
+            məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir -
+            yalnız maraqlı olan ocaqlara yazılmaq.
+        </p>
+        {{--            TODO:CREATE EDITOR--}}
+
+        <div class="flex gap-3 w-full">
+            <div class="border bg-white dark:bg-transparent dark:text-gray-300 text-black px-5 py-2 w-9/12">
+                <editor></editor>
             </div>
-{{--            TODO:CREATE EDITOR--}}
-            <div class="content_right">
+            <div class="w-3/12">
                 <div class="default-block default-block_sidebar">
                     <div class="default-block__header">
                         <h3 class="default-block__header-title">Yazmağdan əvvəl</h3>

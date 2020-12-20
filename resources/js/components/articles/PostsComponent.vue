@@ -26,14 +26,16 @@
                     </div>
                     <div class="grid grid-flow-col py-2">
                         <a :href="'/article/' + post.attributes.slug"
-                           class="my-auto text-2xl xs:text-xl font-medium dark:text-gray-300">
+                           class="my-auto text-2xl xs:text-xl dark:text-gray-300">
                             {{ post.attributes.title }}
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
                     </div>
                     <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data"
                                :auth_check="auth_check"/>
-                    <div class="markdown my-2 xs:hidden md:hidden sm:hidden" v-html="md(post.attributes.body)">
+                    <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
+                        <div
+                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
                     </div>
                 </div>
                 <div
@@ -96,8 +98,17 @@
 <script>
 import axios from "axios"
 import Noty from 'noty'
-
 const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
+const edjsHTML = require('editorjs-html');
+const edjsParser = edjsHTML({code: codeParser, image: imageParser});
+
+function codeParser(block) {
+    return `<code>` + block.data.code + `</code>`
+}
+
+function imageParser(block) {
+    return `<img src="`+ block.data.url + `" alt="`+ block.data.caption + `">`
+}
 
 export default {
     props: ['url', 'auth_check', 'hub'],
@@ -105,6 +116,7 @@ export default {
         return {
             posts: [],
             id: [],
+            edjsParser: edjsHTML(),
             content: '',
             error: false,
             loading: false,

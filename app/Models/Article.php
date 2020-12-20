@@ -50,14 +50,14 @@ class Article extends Model
     protected $dates = ['published_at', 'created_at', 'deleted_at'];
 
     protected $fillable = [
+        'id',
+        'slug',
         'name',
         'content',
         'author_id',
     ];
 
-    protected $casts = [
-        'content' => 'array',
-    ];
+    
 
     /**
      * Set the unique slug.

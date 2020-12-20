@@ -10,9 +10,12 @@
 //    Route::post('post/image/cache', 'Api\PostController@upload_image');
 //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
 
-Route::apiResource('articles', 'Api\ArticleController')->middleware('api');
+
 
 Route::prefix('articles')->group(function () {
+    Route::get('/', 'Api\ArticleController@index')->middleware('api')->name('articles.index');
+    Route::post('/', 'Api\ArticleController@store')->middleware('auth:api');
+    Route::get('/{article}', 'Api\ArticleController@show')->middleware('api')->name('articles.show');
     Route::prefix('filter')->group(function () {
         Route::get('day', 'Api\ArticleTopController@posts');
         Route::get('week', 'Api\ArticleTopController@posts');

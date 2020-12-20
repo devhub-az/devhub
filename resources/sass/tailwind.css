@@ -33,6 +33,10 @@
         padding-bottom: 0.125rem;
     }
 
+    .ce-block__content{
+        @apply markdown
+    }
+
     .markdown {
         @apply text-gray-900 dark:text-gray-400 leading-normal break-words text-base;
     }
@@ -62,15 +66,15 @@
     }
 
     .markdown h1 {
-        @apply leading-tight border-b text-2xl font-semibold mt-6 pb-2;
+        @apply leading-tight border-b text-2xl font-semibold mt-6 pb-2 mb-2;
     }
 
     .markdown h2 {
-        @apply leading-tight border-b text-xl font-semibold mt-6 pb-2;
+        @apply leading-tight border-b text-xl font-semibold mt-6 pb-2 mb-2;
     }
 
     .markdown h3 {
-        @apply leading-snug text-lg font-semibold mt-6;
+        @apply leading-snug text-lg font-semibold mt-6 mb-2;
     }
 
     .markdown h4 {
@@ -119,6 +123,10 @@
 
     .markdown th {
         @apply border py-1 px-3;
+    }
+
+    .markdown img {
+        @apply mx-auto;
     }
 
     .markdown td {
