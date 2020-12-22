@@ -7,6 +7,7 @@ console.log(' ____             _   _       _\n' +
 import Vue from 'vue'
 import moment from "moment-mini"
 import httpPlugin from './../scripts/http';
+import Notifications from 'vue-notification'
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);
@@ -16,6 +17,7 @@ Vue.filter('timeago', function (value) {
 });
 
 Vue.use(httpPlugin);
+Vue.use(Notifications)
 
 try {
     window.Popper = require('popper.js').default;

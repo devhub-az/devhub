@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Models\Comment;
 use App\Models\Hub;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 
@@ -13,7 +14,7 @@ class ArticlesResource extends ResourceCollection
     /**
      * Transform the resource collection into an array.
      *
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return array
      */

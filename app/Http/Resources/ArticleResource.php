@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Helpers\Parser;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,7 +24,7 @@ class ArticleResource extends JsonResource
                 'id'         => $this->id,
                 'title'      => $this->name,
                 'slug'       => $this->slug,
-                'body'       => $this->content, //Str::words($this->body, 150, ''),
+                'body'       => $this->content, //\Str::words($this->content, 87, ''),
                 'votes'      => $this->countTotalVotes(),
                 'votes_sum'  => $this->countVoters(),
                 'upvotes'    => $this->countUpVoters(),

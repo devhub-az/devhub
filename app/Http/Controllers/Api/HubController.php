@@ -8,6 +8,7 @@ use App\Http\Resources\HubsResource;
 use App\Models\Hub;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class HubController extends Controller
 {
@@ -17,6 +18,14 @@ class HubController extends Controller
     public function index(): HubsResource
     {
         return new HubsResource(Hub::withCount(['articles', 'favorites'])->paginate());
+    }
+
+    /**
+     * @return Collection
+     */
+    public function all(): Collection
+    {
+        return Hub::select(['id', 'name'])->get();
     }
 
     /**
@@ -34,9 +43,8 @@ class HubController extends Controller
     /**
      * @param Request $request
      *
-     * @throws \Exception
-     *
      * @return JsonResponse
+     * @throws \Exception
      */
     public function follow(Request $request): JsonResponse
     {

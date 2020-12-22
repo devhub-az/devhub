@@ -5,8 +5,14 @@ console.log(' ____             _   _       _\n' +
     '|____/ \\___| \\_/ |_| |_|\\__,_|_.__(_)__,_/___|')
 
 import Vue from "vue";
+// import 'particles.js/particles'
+//
+// const particlesJS = window.particlesJS
+//
+// particlesJS.load('particles-js', './../assets/particles.json');
 
-Vue.component('login', require('./components/auth/login.vue').default);
-Vue.component('register', require('./components/auth/register.vue').default);
+Vue.component('login', require('./components/auth/login').default);
+Vue.component('register', require('./components/auth/register').default);
+Vue.component('email', require('./components/auth/email').default);
 
 new Vue().$mount('#app');

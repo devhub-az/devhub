@@ -24,7 +24,7 @@ class ArticleTopController extends Controller
      */
     public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
     {
-        switch ($request->segment(3)) {
+        switch ($request->segment(4)) {
             case 'day':
                 self::$count = $day;
                 break;

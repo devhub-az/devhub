@@ -4,7 +4,7 @@
          data-balloon-pos="left">
         <span class="hover:text-green-600 iconify transition-none dark:text-gray-300" data-icon="mdi-thumb-up-outline" :class="{'text-green-600': posts.attributes.upvoted}"
               @click="upvote(posts.id)"/>
-        <p class="font-medium dark:text-gray-300">
+        <p class="dark:text-gray-300">
             {{ posts.attributes.votes }}
         </p>
         <span class="hover:text-red-600 iconify transition-none dark:text-gray-300" data-icon="mdi-thumb-down-outline" :class="{'text-red-600': posts.attributes.downvoted}"

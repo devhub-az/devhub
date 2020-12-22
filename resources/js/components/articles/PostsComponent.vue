@@ -2,7 +2,8 @@
     <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
-            <div class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:border-gray-700" v-for="post in posts">
+            <div class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:border-gray-700"
+                 v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
                         <a v-bind:href="'/authors/@' + post.relationships.author.data.attributes.username"
@@ -24,17 +25,21 @@
                         </div>
                     </div>
                     <div class="grid grid-flow-col py-2">
-                        <a :href="'/article/' + post.attributes.slug" class="my-auto">
-                            <p class="text-2xl xs:text-xl font-medium dark:text-gray-300">{{ post.attributes.title }}</p>
+                        <a :href="'/article/' + post.attributes.slug"
+                           class="my-auto text-2xl xs:text-xl dark:text-gray-300">
+                            {{ post.attributes.title }}
                         </a>
                         <vote :posts="post" :auth_check="auth_check"/>
                     </div>
                     <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data"
                                :auth_check="auth_check"/>
-                    <div class="markdown my-2 xs:hidden md:hidden sm:hidden" v-html="md(post.attributes.body)">
+                    <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
+                        <div
+                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)" v-html="block"></div>
                     </div>
                 </div>
-                <div class="grid lg:grid-cols-main border-t rounded-b text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
+                <div
+                    class="grid lg:grid-cols-main border-t rounded-b text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
                     <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
                         <div class="flex items-center">
                             <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
@@ -44,7 +49,9 @@
                         <div class="pl-2">
                             <a :href="'/post/' + post.id + '#comments'" class="flex items-center">
                                 <i class="iconify dark:text-gray-300" data-icon="mdi-comment-text-multiple-outline"/>
-                                <p class="ml-1 dark:text-gray-300">{{ post.comments_count ? post.comments_count : 'X' }}</p>
+                                <p class="ml-1 dark:text-gray-300">{{
+                                        post.comments_count ? post.comments_count : 'X'
+                                    }}</p>
                                 <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Şerh</p>
                             </a>
                         </div>
@@ -74,7 +81,8 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty" class="bg-white dark:bg-transparent dark:border-gray-700 rounded border text-center grid gap-2 p-5">
+        <div v-else-if="postsEmpty"
+             class="bg-white dark:bg-transparent dark:border-gray-700 rounded border text-center grid gap-2 p-5">
             <span class="opacity-75" style="font-size: 5rem">
                 <i class="iconify mx-auto dark:text-gray-400" data-icon="mdi-comment-edit-outline"/>
             </span>
@@ -89,16 +97,34 @@
 
 <script>
 import axios from "axios"
-import Noty from 'noty'
 
 const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
+const edjsHTML = require('editorjs-html');
+const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
+
+function codeParser(block) {
+    return `<code>` + block.data.code + `</code>`
+}
+
+function imageParser(block) {
+    return `<img src="` + block.data.url + `" alt="` + block.data.caption + `">`
+}
+
+function emdebParser(block) {
+    return '<iframe class="w-full h-80" src="' + block.data.embed + '"></iframe>';
+}
 
 export default {
     props: ['url', 'auth_check', 'hub'],
     data: function () {
         return {
             posts: [],
+            notification: {
+                message: '',
+                type: '',
+            },
             id: [],
+            edjsParser: edjsHTML(),
             content: '',
             error: false,
             loading: false,
@@ -113,19 +139,16 @@ export default {
         await this.getPosts();
     },
     methods: {
-        md(text) {
-            return MarkdownIt.render(text)
-        },
         async getHubPosts() {
             this.posts = this.hub;
         },
         async getPosts() {
             this.loading = true;
-            await axios.get(this.url + '?page=' + this.pagination.current_page).then(response => {
+            await axios.get(this.url + '?page=' + this.pagination.current_page).then(({data}) => {
                 this.loading = false;
-                if (response.data.data.length !== 0) {
-                    this.posts = response.data.data;
-                    this.pagination = response.data.meta;
+                if (data.data.length !== 0) {
+                    this.posts = data.data;
+                    this.pagination = data.meta;
                     if (this.pagination.last_page > 50) {
                         this.pagination.last_page = 50;
                     }
@@ -151,14 +174,7 @@ export default {
         },
         async copy(id) {
             const link = window.location.origin + '/post/' + id;
-            try {
-                this.$clipboard(link);
-                new Noty({
-                    type: 'success',
-                    text: '<div class="notification-image"><span class="iconify" data-icon="mdi-share"/></div> Link kopyalandi',
-                }).show();
-            } catch (error) {
-            }
+            // this.$clipboard(link);
         }
     },
 }

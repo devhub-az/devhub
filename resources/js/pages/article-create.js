@@ -6,11 +6,23 @@ console.log(' ____             _   _       _\n' +
 
 import Vue from 'vue'
 import httpPlugin from './../scripts/http';
+import VueI18n from 'vue-i18n'
+import locales from './../lang/index'
 
 Vue.use(httpPlugin);
+Vue.use(VueI18n)
+
+const i18n = new VueI18n({
+    locale: 'ru',
+    messages: locales
+})
 
 try {
     window.Popper = require('popper.js').default;
 } catch (e) {}
 
-new Vue().$mount('#app');
+Vue.component('editor', require('./../components/parts/editor').default);
+
+new Vue({
+    i18n,
+}).$mount('#app');

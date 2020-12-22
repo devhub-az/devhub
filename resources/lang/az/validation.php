@@ -113,7 +113,7 @@ return [
     'unique'               => ' :attribute artıq iştirak edib',
     'uploaded'             => ' :attribute yüklənməsi mümkün olmadı',
     'url'                  => ' :attribute formatı yanlışdır',
-    'uuid'                 => 'The :attribute must be a valid UUID.',
+    'uuid'                 => ' :attribute formatı yanlışdır',
 
     /*
     |--------------------------------------------------------------------------
