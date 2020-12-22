@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(HubsTableSeeder::class);
         $this->call(LocalizationTableSeeder::class);
-        $this->call(PostsTableSeeder::class);
         $this->call(PostHubsTableSeeder::class);
         $this->call(ArticleViews::class);
 
