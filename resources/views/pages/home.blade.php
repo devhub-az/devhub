@@ -63,7 +63,7 @@
             {{-- Right --}}
             <div class="w-right xs:w-full">
                 <div class="sticky top-2">
-                    <a href="#"
+                    <a href="{{ route('create_article') }}"
                        class="border block xs:hidden border-cerulean-600 w-full text-center dark:bg-cerulean-700 dark:border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full font-semibold uppercase text-xs rounded px-3 py-2.5 text-gray-100 bg-cerulean-600 hover:opacity-90">
                         Paylaşmaq
                     </a>

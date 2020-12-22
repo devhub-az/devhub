@@ -26,6 +26,7 @@ class ArticleRequest extends FormRequest
         return [
             'title' => 'required|min:3',
             'body'  => 'required',
+            'hubs'  => 'required|min:3',
         ];
     }
 }

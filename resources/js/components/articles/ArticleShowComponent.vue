@@ -30,8 +30,9 @@
                 </div>
                 <hubs-tags v-if="typeof(post.relationships.hubs) !== `undefined` "
                            :data="post.relationships.hubs.data"></hubs-tags>
-                <div v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))">
-                    <div class="markdown my-2" v-html="block"></div>
+                <div class="markdown my-2">
+                    <div
+                        v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
                 </div>
             </div>
             <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
@@ -64,7 +65,7 @@ import axios from "axios";
 
 const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
 const edjsHTML = require('editorjs-html');
-const edjsParser = edjsHTML({code: codeParser, image: imageParser});
+const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
 
 function codeParser(block) {
     return `<code>` + block.data.code + `</code>`
@@ -72,6 +73,10 @@ function codeParser(block) {
 
 function imageParser(block) {
     return `<img src="` + block.data.url + `" alt="` + block.data.caption + `">`
+}
+
+function emdebParser(block){
+    return '<iframe class="w-full h-80" src="' + block.data.embed + '"></iframe>';
 }
 
 export default {

@@ -14,8 +14,8 @@ class ArticleViews extends Seeder
      */
     public function run()
     {
-        View::factory()
-            ->count(30)
-            ->create();
+//        View::factory()
+//            ->count(30)
+//            ->create();
     }
 }

@@ -35,7 +35,7 @@
                                :auth_check="auth_check"/>
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
                         <div
-                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
+                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)" v-html="block"></div>
                     </div>
                 </div>
                 <div
@@ -97,17 +97,21 @@
 
 <script>
 import axios from "axios"
-import Noty from 'noty'
+
 const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
 const edjsHTML = require('editorjs-html');
-const edjsParser = edjsHTML({code: codeParser, image: imageParser});
+const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
 
 function codeParser(block) {
     return `<code>` + block.data.code + `</code>`
 }
 
 function imageParser(block) {
-    return `<img src="`+ block.data.url + `" alt="`+ block.data.caption + `">`
+    return `<img src="` + block.data.url + `" alt="` + block.data.caption + `">`
+}
+
+function emdebParser(block) {
+    return '<iframe class="w-full h-80" src="' + block.data.embed + '"></iframe>';
 }
 
 export default {
@@ -115,6 +119,10 @@ export default {
     data: function () {
         return {
             posts: [],
+            notification: {
+                message: '',
+                type: '',
+            },
             id: [],
             edjsParser: edjsHTML(),
             content: '',
@@ -131,19 +139,16 @@ export default {
         await this.getPosts();
     },
     methods: {
-        md(text) {
-            return MarkdownIt.render(text)
-        },
         async getHubPosts() {
             this.posts = this.hub;
         },
         async getPosts() {
             this.loading = true;
-            await axios.get(this.url + '?page=' + this.pagination.current_page).then(response => {
+            await axios.get(this.url + '?page=' + this.pagination.current_page).then(({data}) => {
                 this.loading = false;
-                if (response.data.data.length !== 0) {
-                    this.posts = response.data.data;
-                    this.pagination = response.data.meta;
+                if (data.data.length !== 0) {
+                    this.posts = data.data;
+                    this.pagination = data.meta;
                     if (this.pagination.last_page > 50) {
                         this.pagination.last_page = 50;
                     }
@@ -169,14 +174,7 @@ export default {
         },
         async copy(id) {
             const link = window.location.origin + '/post/' + id;
-            try {
-                this.$clipboard(link);
-                new Noty({
-                    type: 'success',
-                    text: '<div class="notification-image"><span class="iconify" data-icon="mdi-share"/></div> Link kopyalandi',
-                }).show();
-            } catch (error) {
-            }
+            // this.$clipboard(link);
         }
     },
 }

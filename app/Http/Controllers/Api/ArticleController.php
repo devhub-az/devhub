@@ -60,7 +60,7 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request): JsonResponse
     {
-//        dd(auth()->user());
+        dd($request->hubs->id);
         try {
             $article = Article::create(
                 [
@@ -70,9 +70,9 @@ class ArticleController extends Controller
                     'content'   => $request->body,
                     'author_id' => $request->user()->id,
                 ]
-            );
+            )->hubs()->attach();
 
-            return new JsonResponse();
+            return new JsonResponse($article->slug);
         } catch (Exception $exception) {
             report($exception);
 
