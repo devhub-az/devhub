@@ -13,7 +13,7 @@ Vue.use(httpPlugin);
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-    locale: 'ru',
+    locale: 'az',
     messages: locales
 })
 
