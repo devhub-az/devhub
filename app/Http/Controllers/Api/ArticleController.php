@@ -71,6 +71,7 @@ class ArticleController extends Controller
                 ]
             );
             $article->hubs()->sync($request->hubs);
+
             return new JsonResponse($article->slug);
         } catch (Exception $exception) {
             report($exception);
