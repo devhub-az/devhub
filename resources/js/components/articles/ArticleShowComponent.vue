@@ -63,7 +63,6 @@
 <script>
 import axios from "axios";
 
-const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
 const edjsHTML = require('editorjs-html');
 const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
 
