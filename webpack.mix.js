@@ -11,6 +11,7 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
     .js('resources/js/pages/about-us.js', 'public/js')
     .js('resources/js/pages/article-show.js', 'public/js')
     .js('resources/js/pages/article-create.js', 'public/js')
+    .copy('resources/js/vendor/particles.json', 'public/assets')
 
     .js('resources/js/includes/header.js', 'public/js')
     .js('resources/js/login.js', 'public/js')

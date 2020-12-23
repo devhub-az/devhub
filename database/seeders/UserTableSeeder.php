@@ -29,9 +29,9 @@ class UserTableSeeder extends Seeder
         );
         User::factory()
             ->count(30)
-            ->has(
-                Article::factory()
-                    ->count(3)
-            )->create();
+//            ->has(
+//                Article::factory()
+//                    ->count(3))
+            ->create();
     }
 }

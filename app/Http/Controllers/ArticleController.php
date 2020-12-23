@@ -110,9 +110,9 @@ class ArticleController extends Controller
         (new Canvas())->viewer($article);
 
         ArticleResource::withoutWrapping();
-        $post_json = new ArticleResource($article);
+        $article_json = new ArticleResource($article);
 
-        return view('pages.posts.show', ['post' => $post_json->toResponse($request)->getData()]);
+        return view('pages.posts.show', ['post' => $article_json->toResponse($request)->getData()]);
     }
 
     /**

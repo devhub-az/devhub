@@ -36,7 +36,6 @@ Vue.component('favorite', require('./../components/parts/PostFavorite').default)
 Vue.component('hub-follow-button', require('./../components/hubs/HubsFollowButtonComponent.vue').default);
 Vue.component('comment-favorite', require('./../components/parts/CommentFavorite').default);
 
-
 new Vue({
     moment,
 }).$mount('#app');

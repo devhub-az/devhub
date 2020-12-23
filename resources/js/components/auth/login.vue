@@ -1,6 +1,6 @@
 <template>
     <form autocomplete="off" @submit.prevent="login" method="post" class="xs:max-w-xs w-96">
-        <div class="py-4">
+        <div class="pt-4 pb-2">
             <input aria-invalid="true" autocomplete="off" id="email" name="email"
                    placeholder="Elektron poçt"
                    type="text" inputmode="text"
@@ -31,31 +31,31 @@
         </div>
         <div class="w-full">
             <div v-if="loading"
-                 class="border-cerulean-500 text-white rounded bg-cerulean-500 hover:opacity-90 mb-2 px-2 py-3">
+                 class="border-cerulean-600 text-white rounded bg-cerulean-600 hover:opacity-90 mb-2 px-2 py-3">
                 <div class="animate-spin">
                     <span class="iconify mx-auto" data-icon="mdi-loading"></span>
                 </div>
             </div>
             <button v-else type="submit"
-                    class="border border-cerulean-500 w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-cerulean-500 hover:opacity-90 mb-2">
-                Daxil ol
+                    class="border border-cerulean-600 w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-cerulean-600 hover:opacity-90 mb-2">
+                Daxil olmaq
             </button>
+        </div>
+        <div class="mt-2 text-left text-sm">
+            <a class="text-cerulean-500"
+               href="/#">
+                Şifrəni</a> unutmusuz?
+        </div>
+        <div class="mt-4 bg-white rounded py-4 text-sm border">
+            Hələ hesabınız yoxdur?
             <a href="/register"
-               class="inline-block border border-cerulean-500 w-full font-medium uppercase text-xs rounded px-2 py-3 text-cerulean-500"
-               data-content-type="registerForm">
+               class="text-cerulean-500">
                 Qeydiyyatdan keçmək
             </a>
         </div>
-        <footer class="mt-2">
-            <a class="footer__link" data-content-type="requestPasswordForm"
-               href="/">
-                Şifrəni sıfırla
-            </a>
-        </footer>
     </form>
 </template>
 
-<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
 <script>
 import axios from "axios";
 

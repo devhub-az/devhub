@@ -23,6 +23,13 @@
 }
 
 @layer components {
+    .ce-block__content{
+        @apply w-full max-w-full
+    }
+
+    .ce-toolbar__content{
+        @apply max-w-full
+    }
 
     .button {
         @apply border border-cerulean-700 font-normal uppercase text-sm rounded px-3 py-2 text-white bg-cerulean-700 hover:bg-cerulean-800 hover:border-cerulean-800
@@ -31,6 +38,10 @@
     .py-05 {
         padding-top: 0.125rem;
         padding-bottom: 0.125rem;
+    }
+
+    .ce-block__content{
+        @apply markdown
     }
 
     .markdown {
@@ -62,15 +73,15 @@
     }
 
     .markdown h1 {
-        @apply leading-tight border-b text-2xl font-semibold mt-6 pb-2;
+        @apply leading-tight border-b text-2xl font-semibold mt-6 pb-2 mb-2;
     }
 
     .markdown h2 {
-        @apply leading-tight border-b text-xl font-semibold mt-6 pb-2;
+        @apply leading-tight border-b text-xl font-semibold mt-6 pb-2 mb-2;
     }
 
     .markdown h3 {
-        @apply leading-snug text-lg font-semibold mt-6;
+        @apply leading-snug text-lg font-semibold mt-6 mb-2;
     }
 
     .markdown h4 {
@@ -119,6 +130,10 @@
 
     .markdown th {
         @apply border py-1 px-3;
+    }
+
+    .markdown img {
+        @apply mx-auto w-full my-5;
     }
 
     .markdown td {

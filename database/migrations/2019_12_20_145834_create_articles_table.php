@@ -16,7 +16,7 @@ class CreateArticlesTable extends Migration
             $table->uuid('id')->primary();
             $table->string('name', 191)->index();
             $table->string('slug')->unique();
-            $table->longText('content');
+            $table->json('content');
             $table->uuid('author_id');
             $table->timestamps();
             $table->softDeletes();
