@@ -64,7 +64,7 @@
             <div class="w-right xs:w-full">
                 <div class="sticky top-2">
                     <a href="{{ route('create_article') }}"
-                       class="border flex justify-center block items-center xs:hidden border-cerulean-600 w-full dark:bg-cerulean-700 dark:border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full font-semibold uppercase text-xs rounded px-3 py-2.5 text-gray-100 bg-cerulean-600 hover:opacity-90">
+                       class="border leading-10 text-sm flex justify-center block items-center xs:hidden border-cerulean-600 w-full dark:bg-cerulean-700 dark:border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full uppercase text-xs rounded text-gray-100 bg-cerulean-600 hover:opacity-90">
                         <i class="iconify text-lg" data-icon="mdi-plus"></i> <p class="ml-1">Paylaşmaq</p>
                     </a>
                     <a class="grid grid-flow-col border rounded p-4 my-2 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
