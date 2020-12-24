@@ -2,7 +2,7 @@
     <div class="flex">
         <div v-for="hub in data">
             <div class="border relative rounded text-sm cursor-pointer px-2 mr-2 dark:text-gray-400"
-                 :class="(hub.follower_check ? 'border-cerulean-500 dark:border-cerulean-700 dark:hover:border-cerulean-700' : 'border-gray-200 hover:border-cerulean-500 dark:border-gray-700 text-gray-700 dark:hover:border-cerulean-700') + (hub.hover ? 'popup-active': '')"
+                 :class="(hub.follower_check ? 'bg-cerulean-500 border-cerulean-500 dark:border-cerulean-700 dark:hover:border-cerulean-700' : 'border-gray-200 hover:border-cerulean-500 dark:border-gray-700 text-gray-700 dark:hover:border-cerulean-700') + (hub.hover ? 'popup-active': '')"
                  @mouseover="hub.hover = true"
                  @mouseleave="hub.hover = false">
                 {{ hub.name }}
