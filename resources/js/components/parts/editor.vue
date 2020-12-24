@@ -30,6 +30,7 @@ const Header = require('@editorjs/header')
 const InlineCode = require('@editorjs/inline-code');
 const Embed = require('@editorjs/embed');
 const CodeTool = require('@editorjs/code');
+const LinkTool = require('@editorjs/link');
 const SimpleImage = require('@editorjs/simple-image');
 import List from '@editorjs/list';
 // const LinkTool = require('@editorjs/link');
@@ -47,6 +48,9 @@ export default {
                 placeholder: 'Menyu açmaq üçün "Tab" düyməsini basın',
                 logLevel: 'ERROR',
                 tools: {
+                    linkTool:{
+                        class: LinkTool,
+                    },
                     header: {
                         class: Header,
                         config: {
