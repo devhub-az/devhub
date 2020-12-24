@@ -87,8 +87,8 @@
                 <i class="iconify mx-auto dark:text-gray-400" data-icon="mdi-comment-edit-outline"/>
             </span>
             <span class="opacity-75 pb-2 dark:text-gray-300">Paylaşma tapılmadı</span>
-            <a href="/post/add"
-               class="w-max flex mx-auto items-center border border-cerulean-700 font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-700 hover:opacity-90">
+            <a href="/article/new"
+               class="w-max flex mx-auto items-center border border-cerulean-600 font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-600 hover:opacity-90">
                 <i class="iconify" data-icon="mdi-plus"/> Yazmağ
             </a>
         </div>
@@ -98,7 +98,6 @@
 <script>
 import axios from "axios"
 
-const MarkdownIt = require('markdown-it')().use(require('markdown-it-multimd-table'));
 const edjsHTML = require('editorjs-html');
 const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
 
