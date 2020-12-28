@@ -93,7 +93,7 @@ class AuthorController extends Controller
      */
     public function followers(int $id)
     {
-        $user = User::findorfail($id);
+        $user      = User::findorfail($id);
         $followers = $user->followers()->select('name', 'avatar', 'rating', 'karma')->with('posts')->get();
 
         return new UsersCollection($followers);
@@ -121,9 +121,13 @@ class AuthorController extends Controller
     {
         $key = \Request::get('q');
 
-        $user = User::whereraw('MATCH(name, username) AGAINST (?)', $key)
-            ->withCount('articles')->paginate();
+        if ($key) {
+            return new AuthorsResource(
+                User::whereraw('MATCH(name, username) AGAINST (?)', $key)
+                    ->withCount('articles')->paginate()
+            );
+        }
 
-        return new AuthorsResource($user);
+        return new AuthorsResource(User::withCount('articles')->paginate());
     }
 }

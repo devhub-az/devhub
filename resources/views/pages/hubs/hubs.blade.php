@@ -4,10 +4,10 @@
 
 @section('main')
     <div class="container w-full my-4 mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5 pb-5 dark:text-gray-300">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5 pb-5">
             <div>
-                <p class="text-5xl font-medium pb-4">Hablar</p>
-                <p class="font-light">
+                <p class="text-5xl font-medium pb-4 dark:text-gray-300">Hablar</p>
+                <p class="font-light dark:text-gray-300">
                     Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün
                     məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir -
                     yalnız maraqlı olan ocaqlara yazılmaq.
