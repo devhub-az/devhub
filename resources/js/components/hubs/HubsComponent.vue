@@ -7,19 +7,22 @@
             <span class="iconify absolute translate-y-1/2 top-0 my-3 mr-4 cursor-pointer right-0 dark:text-gray-400"
                   data-icon="mdi-magnify" @click="searchUnit"></span>
         </div>
-        <!--        <span v-for="column in columns[1]" :key="column" @click="sortByColumn(column)"-->
-        <!--              class="table-head">-->
-        <!--            {{ column }}-->
-        <!--            <span v-if="column === sortedColumn">-->
-        <!--                <i v-if="order === 'asc' " class="fas fa-arrow-up"></i>-->
-        <!--                <i v-else class="fas fa-arrow-down"></i>-->
-        <!--            </span>-->
-        <!--        </span>-->
+        <div class="flex gap-4 justify-between border-b mb-2 p-2 dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
+            <div class="flex items-center cursor-pointer" v-for="column in columns" :key="column.type"
+                 @click="sortByColumn(column.type)">
+                {{ column.name }}
+                <div v-if="order === 'asc' && column.type === sortedColumn">
+                    <span class="iconify font-light" data-icon="bi:arrow-up"></span>
+                </div>
+                <div v-else-if="order === 'desc' && column.type === sortedColumn">
+                    <span class="iconify font-light" data-icon="bi:arrow-down"></span>
+                </div>
+            </div>
+        </div>
         <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
              class="flex gap-4 border mb-2 p-2 bg-white dark:bg-transparent dark:text-gray-300 dark:border-gray-700"
              :id="hub.id + '_block'">
-            <!--             :style="'border-left: 3px solid rgb(' + hub.border + ')'"-->
             <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
                  alt="Hub logo">
             <a :href="'/hubs/' + hub.id" class="w-8/12">
@@ -32,15 +35,15 @@
                     </div>
                 </div>
             </a>
-            <div class="w-1/12 m-auto text-center xs:hidden">
+            <div class="w-1/12 m-auto text-center xs:hidden hover:hidden">
                 <div class="font-semibold">{{ hub.attributes.hub_followers_count }}</div>
-                <p class="text-sm">IZLƏYƏNLƏR</p>
             </div>
             <div class="w-1/12 m-auto text-center xs:hidden">
                 <div class="font-semibold">{{ hub.attributes.rating }}</div>
-                <p class="text-sm">REYTINQ</p>
             </div>
-            <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check" @follow-status-updated="hub.attributes.follower_check = $event" :auth_check="auth_check" class="w-2/12 m-auto text-center"/>
+            <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check"
+                               @follow-status-updated="hub.attributes.follower_check = $event" :auth_check="auth_check"
+                               class="w-2/12 m-auto text-center"/>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>
@@ -85,14 +88,14 @@ export default {
             }
         }
     },
-    created: function () {
-        return this.getHubs();
+    async created() {
+        await this.getHubs();
     },
     methods: {
-        getHubs() {
+        async getHubs() {
             this.loading = true;
             let dataFetchUrl = `${this.fetchUrl}?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
-            axios.get(dataFetchUrl).then(({data}) => {
+            await axios.get(dataFetchUrl).then(({data}) => {
                 this.loading = false
                 if (data.data.length !== 0) {
                     this.pagination = data.meta
@@ -116,14 +119,14 @@ export default {
                     }
                 });
         },
-        sortByColumn(column) {
+        async sortByColumn(column) {
             if (column === this.sortedColumn) {
                 this.order = (this.order === 'asc') ? 'desc' : 'asc'
             } else {
                 this.sortedColumn = column
                 this.order = 'desc'
             }
-            this.getHubs()
+            await this.getHubs()
         },
         searchUnit: _.debounce(function () {
             this.loading = true;

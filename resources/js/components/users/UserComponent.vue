@@ -7,14 +7,19 @@
             <span class="mdi mdi-magnify absolute translate-y-1/2 top-0 p-2 pr-4 cursor-pointer right-0"
                   @click="searchUnit"></span>
         </div>
-        <!--            <div class="flex w-full gap-3 pb-2">-->
-        <!--                <div class="w-16">Ad</div>-->
-        <!--                <div class="w-6/12"></div>-->
-        <!--                <div class="w-1/12 text-center">Paylaşma</div>-->
-        <!--                <div class="w-1/12 text-center">Karma</div>-->
-        <!--                <div class="w-1/12 text-center">Reytinq</div>-->
-        <!--                <div class="w-2/12"></div>-->
-        <!--            </div>-->
+        <div
+            class="flex gap-4 justify-between border-b mb-2 p-2 dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
+            <div class="flex items-center cursor-pointer" v-for="column in columns" :key="column.type"
+                 @click="sortByColumn(column.type)">
+                {{ column.name }}
+                <div v-if="order === 'asc' && column.type === sortedColumn">
+                    <span class="iconify font-light" data-icon="bi:arrow-up"></span>
+                </div>
+                <div v-else-if="order === 'desc' && column.type === sortedColumn">
+                    <span class="iconify font-light" data-icon="bi:arrow-down"></span>
+                </div>
+            </div>
+        </div>
         <users-loading v-if="loading"></users-loading>
         <div v-for="user in users" v-if="!loading && users"
              class="flex gap-4 border mb-2 p-2 bg-white" :id="user.id">
@@ -60,9 +65,12 @@ import axios from 'axios'
 import _ from "lodash";
 
 export default {
-    props: ['auth_check', 'url'],
+    props: ['auth_check', 'columns', 'url'],
     data: function () {
         return {
+            perPage: 10,
+            sortedColumn: 'rating',
+            order: 'desc',
             error: false,
             users: [],
             loading: false,
@@ -101,22 +109,32 @@ export default {
                 }
             });
         }),
-        getUsers() {
+        async sortByColumn(column) {
+            if (column === this.sortedColumn) {
+                this.order = (this.order === 'asc') ? 'desc' : 'asc'
+            } else {
+                this.sortedColumn = column
+                this.order = 'desc'
+            }
+            await this.getUsers()
+        },
+        async getUsers() {
             this.loading = true;
-            axios.get(this.url + '?page=' + this.pagination.current_page).then(response => {
-                this.loading = false;
-                this.users = response.data.data;
-                if (response.data.meta) {
-                    this.pagination = response.data.meta;
-                    if (this.pagination.last_page > 50) {
-                        this.pagination.last_page = 50;
+            await axios.get(this.url + '?page=' + `?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`)
+                .then(response => {
+                    this.loading = false;
+                    this.users = response.data.data;
+                    if (response.data.meta) {
+                        this.pagination = response.data.meta;
+                        if (this.pagination.last_page > 50) {
+                            this.pagination.last_page = 50;
+                        }
                     }
-                }
-            }).catch(error => {
-                this.loading = false;
-                this.error = true;
-                console.log(error);
-            });
+                }).catch(error => {
+                    this.loading = false;
+                    this.error = true;
+                    console.log(error);
+                });
         }
     }
 

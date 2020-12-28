@@ -12,10 +12,9 @@
                 yalnız maraqlı olan ocaqlara yazılmaq.
             </p>
         </div>
-        <users-list @auth :auth_check="true" @endauth :url="'/api/authors'"></users-list>
-        {{--            <div class="content_right">--}}
-        {{--                @include('pages.profile.include.users_right')--}}
-        {{--            </div>--}}
+        <users-list @auth :auth_check="true" @endauth :url="'/api/authors'"
+                    :columns="[{'name': 'Ad', 'type': 'name'}, {'name': 'Paylaşma', 'type': 'articles_count'},{'name': 'Karma','type': 'karma'},{'name': 'Reytinq', 'type': 'rating'}]"
+        ></users-list>
     </div>
 @endsection
 

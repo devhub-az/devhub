@@ -36,10 +36,7 @@
                     fetch-url="{{ route('hubs.index') }}"
                     locale="{{ App::getLocale() }}"
                     @auth :auth_check="true" @endauth
-                    :columns="[
-                            ['name', 'posts_count', 'followers_count', 'rating'],
-                            ['Ad', 'Paylaşım', 'IZLƏYƏNLƏR', 'Rating']
-                            ]"
+                    :columns="[{'name': 'Ad', 'type': 'name'}, {'name': 'Paylaşma', 'type': 'articles_count'},{'name': 'İzləyicilər','type': 'favorites_count'},{'name': 'Reytinq', 'type': 'rating'}]"
                 ></hubs-list>
             </div>
             {{-- Right --}}
@@ -85,7 +82,7 @@
                                     </p>
                                     <span class="text-xs">
                                         <i class="icon feather icon-users"></i>
-                                        İzləyicilər {{ $hub['rating'] ?? '' }}
+                                        İzləyicilər {{ $hub['favorites_count'] ?? '' }}
                                     </span>
                                 </div>
                             </a>
