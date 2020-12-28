@@ -93,7 +93,7 @@ class AuthorController extends Controller
      */
     public function followers(int $id)
     {
-        $user      = User::findorfail($id);
+        $user = User::findorfail($id);
         $followers = $user->followers()->select('name', 'avatar', 'rating', 'karma')->with('posts')->get();
 
         return new UsersCollection($followers);
