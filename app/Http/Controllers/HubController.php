@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\HubResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Hub;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class HubController extends Controller
 {
@@ -15,7 +18,7 @@ class HubController extends Controller
 
     public function postsApiRoute(int $id)
     {
-        switch (\request()->path()) {
+        switch (request()->path()) {
             case 'hubs/'.$id:
                 return '/api/hubs/'.$id.'/top/day';
             case 'hubs/'.$id.'/top/week':
@@ -25,10 +28,14 @@ class HubController extends Controller
             case 'hubs/'.$id.'/all':
                 return '/api/hubs/'.$id.'/all';
             default:
-                abort(404);
+                return response()->json(['message' => 'not found'], 404);
         }
     }
 
+    /**
+     * @param int $id
+     * @return Application|Factory|View
+     */
     public function show(int $id)
     {
         $hub = new HubResource(Hub::withCount('favorites')->findOrFail($id));

@@ -31,11 +31,11 @@
                 </li>
                 <li>
                     <a href="{{ route('users-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('users') || Request::is('users/*')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Müəlliflər</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('authors') || Request::is('authors/*')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Müəlliflər</a>
                 </li>
                 <li>
-                    <a href="{{ url('/about_us') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('about_us')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Məlumat</a>
+                    <a href="{{ route('about') }}"
+                       class="hover:text-cerulean-500 transition {{ (Request::is('about')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Məlumat</a>
                 </li>
             </ul>
         </div>

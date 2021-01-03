@@ -22,10 +22,10 @@
                     <span class="iconify absolute translate-y-1/2 text-gray-400 top-0 my-3 mr-4 cursor-pointer right-0"
                           data-icon="mdi:eye-off"></span>
                 </div>
-                <span v-else-if="type !== 'password'" @click="typeChange()" class="z-50">
+                <div v-else-if="type !== 'password'" @click="typeChange()" class="z-50">
                     <span class="iconify absolute translate-y-1/2 text-gray-400 top-0 my-3 mr-4 cursor-pointer right-0"
                           data-icon="mdi:eye"></span>
-                </span>
+                </div>
             </div>
 
         </div>

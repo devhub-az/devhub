@@ -1,15 +1,16 @@
 <template>
-    <div class="users-list__follow">
+    <div class="xs:hidden">
         <span @click="follow(following.id)" v-if="!following.attributes.follower && !loading"
-              class="border text-sm rounded px-3 py-1 cursor-pointer hover:border-blue_def-400 xs:hidden">
-            <span class="text-sm font-medium text-gray-600 ">Izləmək</span>
+              class="border text-sm rounded px-3 py-1 cursor-pointer hover:border-cerulean-500 dark:border-gray-700 dark:hover:border-cerulean-700">
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Izləmək</span>
         </span>
         <span @click="follow(following.id)" v-if="following.attributes.follower && !loading"
-              class="border-blue_def-400 text-sm text-white rounded px-4 py-1 cursor-pointer bg-blue_def-400 hover:border-gray-700 xs:hidden">
-            <span class="font-medium">İzləyirsiniz</span>
+              class="border-cerulean-500 text-sm text-white rounded px-3 py-1 cursor-pointer bg-cerulean-500 hover:border-gray-700 dark:bg-cerulean-700">
+            <span class="font-medium transition-none">İzləyirsiniz</span>
         </span>
-        <span v-if="loading" class="border text-sm rounded px-4 py-1 cursor-pointer xs:hidden">
-            <span class="font-medium">Gözləyin</span>
+        <span v-if="loading"
+              class="border text-sm rounded px-3 py-1 cursor-pointer dark:border-gray-700">
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Gözləyin</span>
         </span>
     </div>
 </template>

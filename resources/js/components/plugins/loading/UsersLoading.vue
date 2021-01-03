@@ -1,5 +1,5 @@
 <template>
-    <div class="flex gap-4 border mb-2 p-2 bg-white animate-pulse">
+    <div class="flex gap-4 border mb-2 p-2 bg-white dark:bg-transparent dark:text-gray-300 dark:border-gray-700 animate-pulse">
         <div class="w-16 h-16 rounded bg-gray-300 p-1"></div>
         <div class="w-6/12">
             <div class="pl-2 bg-gray-300 w-2/12 h-4 rounded mb-2"></div>

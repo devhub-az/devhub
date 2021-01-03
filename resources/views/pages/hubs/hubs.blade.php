@@ -4,10 +4,10 @@
 
 @section('main')
     <div class="container w-full my-4 mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5 pb-5 dark:text-gray-300">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-1 md:gap-4 gap-5 pb-5">
             <div>
-                <p class="text-5xl font-medium pb-4">Hablar</p>
-                <p class="font-light">
+                <p class="text-5xl font-medium pb-4 dark:text-gray-300">Hablar</p>
+                <p class="font-light dark:text-gray-300">
                     Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün
                     məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir -
                     yalnız maraqlı olan ocaqlara yazılmaq.
@@ -36,10 +36,7 @@
                     fetch-url="{{ route('hubs.index') }}"
                     locale="{{ App::getLocale() }}"
                     @auth :auth_check="true" @endauth
-                    :columns="[
-                            ['name', 'posts_count', 'followers_count', 'rating'],
-                            ['Ad', 'Paylaşım', 'IZLƏYƏNLƏR', 'Rating']
-                            ]"
+                    :columns="[{'name': 'Ad', 'type': 'name'}, {'name': 'Paylaşma', 'type': 'articles_count'},{'name': 'İzləyicilər','type': 'favorites_count'},{'name': 'Reytinq', 'type': 'rating'}]"
                 ></hubs-list>
             </div>
             {{-- Right --}}
@@ -85,7 +82,7 @@
                                     </p>
                                     <span class="text-xs">
                                         <i class="icon feather icon-users"></i>
-                                        İzləyicilər {{ $hub['rating'] ?? '' }}
+                                        İzləyicilər {{ $hub['favorites_count'] ?? '' }}
                                     </span>
                                 </div>
                             </a>

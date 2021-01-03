@@ -80,7 +80,7 @@ Route::group([], static function () {
     });
 
     //About view
-    Route::view('about_us', 'pages.about_us');
+    Route::view('about', 'pages.about_us')->name('about');
 });
 
 //Admin routes
