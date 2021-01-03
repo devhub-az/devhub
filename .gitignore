@@ -12,3 +12,5 @@ public/assets
 public/css
 public/js
 public/mix-manifest.json
+node_modules
+.idea
