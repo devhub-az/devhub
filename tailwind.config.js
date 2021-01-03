@@ -67,7 +67,10 @@ module.exports = {
             border: {
                 DEFAULT: '#222226',
             },
-            footer: '#242729'
+            wall: '#f4f4f4',
+            footer: '#242729',
+            dwall: '#171c20',
+            dpaper: '#22272b',
         },
         extend: {
             width: {

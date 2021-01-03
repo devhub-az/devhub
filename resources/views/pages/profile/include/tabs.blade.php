@@ -1,14 +1,14 @@
-<div class="font-bold mb-4 overflow-hidden mb-2">
+<div class="bg-white mb-4 overflow-hidden mb-2 dark:bg-dpaper">
     <div class="grid grid-cols-auto-fit">
         <a href="{{ route('user_info', $user->attributes->username) }}"
            class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid mx-auto transition-colors duration-200 {{ strpos(Route::currentRouteName(), 'user_info') === 0 ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:opacity-75' }}">
-            <p class="text-sm">
+            <p class="text-sm xs:text-xs font-light dark:text-gray-300">
                 MƏLUMAT
             </p>
         </a>
         <a href="{{ route('user_posts', $user->attributes->username) }}"
            class="text-center text-xs w-full py-2 px-0 border-b-2 border-solid  mx-auto transition-colors duration-200 {{ strpos(Route::currentRouteName(), 'user_posts') === 0 ? 'bottom-0 border-blue-light text-blue-light' : 'text-gray-500 border-gray-300 hover:opacity-75' }}">
-            <p class="text-sm">
+            <p class="text-sm xs:text-xs font-light dark:text-gray-300">
                 {{ \Numeric::number_format_short($user->attributes->articles_count) }}
                 PAYLAŞMA
             </p>

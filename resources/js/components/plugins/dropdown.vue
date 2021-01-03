@@ -21,7 +21,7 @@
             <div v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"
                  class="absolute text-gray-700 right-0 mt-2 py-2 w-48 bg-white border rounded shadow z-20">
                 <a
-                    :href="'/users/@' + user.username"
+                    :href="'/authors/@' + user.username"
                     @keydown.tab.exact="focusNext(false)"
                     @keydown.shift.tab="focusPrevious(false)"
                     @keydown.up.exact.prevent="focusPrevious(true)"
