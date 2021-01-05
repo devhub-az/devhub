@@ -21,8 +21,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::with('roles')->get();
-
         return view('admin.users.index', compact('users'));
     }
 
@@ -33,8 +31,6 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles = Role::get()->pluck('name', 'name');
-
         return view('admin.users.create', compact('roles'));
     }
 

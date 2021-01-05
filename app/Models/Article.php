@@ -57,25 +57,6 @@ class Article extends Model
         'author_id',
     ];
 
-    /**
-     * Set the unique slug.
-     *
-     * @param $value
-     * @param $extra
-     */
-    public function setUniqueSlug($value, $extra)
-    {
-        $slug = Str::slug($value.'-'.$extra);
-
-        if (static::whereSlug($slug)->exists()) {
-            $this->setUniqueSlug($slug, (int) $extra + 1);
-
-            return;
-        }
-
-        $this->attributes['slug'] = $slug;
-    }
-
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'author_id')->withDefault();

@@ -1,7 +1,7 @@
 <template>
     <div class="mb-3">
         <article-loading v-if="loading"/>
-        <div v-if="!loading" id="post-content" class="w-full rounded bg-white border">
+        <article v-if="!loading" id="post-content" class="w-full rounded bg-white border">
             <div id="sidebar"
                  class="sticky top-0 flex justify-between items-center border-b bg-gray-100 px-3.5 py-1 z-10">
                 <div class="inline-flex">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
     </div>
 </template>
 

@@ -1,20 +1,20 @@
-<div class="xs:border-none xs:shadow-none mb-2 bg-white dark:bg-dpaper ">
+<div class="border dark:border-gray-700 xs:border-none xs:shadow-none mb-2 bg-white dark:bg-dpaper ">
     <div class="relative bg-cover bg-center p p-5">
         <div class="flex justify-between">
             <div class="flex">
-                <img class="rounded h-16 w-16" src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" alt="Profile image">
+                <img class="rounded xs:h-16 xs:w-16 w-24 h-24" src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" alt="Profile image">
                 <div class="ml-2">
                     <p class="text-2xl text-shadow dark:text-gray-300 xs:text-base">{{ $user->attributes->name ?? '' }} {{ $user->attributes->surname ?? '' }} {{ '@' . $user->attributes->username }}</p>
-                    
+
                     @if ( $user->attributes->about)
                         <p class="text-2xl text-shadow dark:text-gray-300 xs:text-base">{{  $user->attributes->about }}</p>
                     @endif
 
-                    <p class="text-2xl text-shadow dark:text-gray-300 xs:text-xs font-light mt-2">Devhub developer, I'am from Canada, still live in USA</p>
+                    <p class="text-xl text-shadow dark:text-gray-300 xs:text-xs font-light mt-2">Devhub developer, I'am from Canada, still live in USA</p>
 
                 </div>
             </div>
-            
+
 
             <div class="flex py-2">
                 <div class="">
@@ -30,29 +30,29 @@
                     <div class="text-sm text-shadow xs:text-xs font-light dark:text-gray-300">Reytinq</div>
                 </div>
             </div>
-            
+
         </div>
-        <div class="flex gap-2 mt-4">
-            <button class="border rounded py-1 px-6 text-sm border-gray-300 dark:text-gray-300">Follow</button>        
-            <button class="border rounded py-1 px-6 bg-cerulean-700 text-sm text-white dark:text-gray-300 dark:border-cerulean-700 hover:bg-cerulean-500 hover:border-cerulean-500">Message</button>
+        <div class="flex gap-2 mt-4 xs:justify-between">
+            <button class="btn-outline">Follow</button>
+            <button class="btn">Message</button>
         </div>
-        <div class="flex justify-between w-full mt-4 xs:overflow-y-auto">
-            <div class="text-sm pr-6">
+        <div class="flex xs:justify-between w-full mt-4 xs:overflow-y-auto">
+            <div class="text-sm pr-8">
                 <div class="dark:text-gray-300">500</div>
                 <div class="text-xs font-light dark:text-gray-300">Rate</div>
             </div>
-            <div class="border-l border-gray-300"></div>
-            <div class="text-sm px-6">
+            <div class="border-l border-gray-300 hidden xs:block"></div>
+            <div class="text-sm px-8">
                 <div class="dark:text-gray-300">1200</div>
                 <div class="text-xs font-light dark:text-gray-300">Posts</div>
             </div>
-            <div class="border-l border-gray-300"></div>
-            <div class="text-sm px-6">
+            <div class="border-l border-gray-300 hidden xs:block"></div>
+            <div class="text-sm px-8">
                 <div class="dark:text-gray-300">234</div>
                 <div class="text-xs font-light dark:text-gray-300">Friends</div>
             </div>
-            <div class="border-l border-gray-300"></div>
-            <div class="text-sm pl-6">
+            <div class="border-l border-gray-300 hidden xs:block"></div>
+            <div class="text-sm pl-8">
                 <div class="dark:text-gray-300">120</div>
                 <div class="text-xs font-light dark:text-gray-300">Followers</div>
             </div>

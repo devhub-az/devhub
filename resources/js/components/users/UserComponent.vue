@@ -8,7 +8,7 @@
                   data-icon="mdi-magnify" @click="searchUnit"></span>
         </div>
         <div
-            class="flex gap-4 justify-between border-b mb-2 p-2 dark:bg-transparent dark:border-gray-700">
+            class="flex justify-between py-1 dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
             <div class="flex items-center cursor-pointer" v-for="column in columns" :key="column.type"
                  @click="sortByColumn(column.type)">
                 <p class="dark:text-gray-300">{{ column.name }}</p>

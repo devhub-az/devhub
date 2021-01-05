@@ -18,8 +18,6 @@ class AbilitiesController extends Controller
      */
     public function index()
     {
-        $abilities = Ability::all();
-
         return view('admin.abilities.index', compact('abilities'));
     }
 
@@ -102,13 +100,10 @@ class AbilitiesController extends Controller
 
     /**
      * Delete all selected Ability at once.
-     *
-     * @param Request $request
      */
-    public function massDestroy(Request $request)
+    public function massDestroy()
     {
         Ability::whereIn('id', request('ids'))->delete();
-
         return response()->noContent();
     }
 }

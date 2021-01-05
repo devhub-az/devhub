@@ -22,8 +22,6 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-
         return view('admin.roles.index', compact('roles'));
     }
 
@@ -34,8 +32,6 @@ class RolesController extends Controller
      */
     public function create()
     {
-        $abilities = Ability::get()->pluck('name', 'name');
-
         return view('admin.roles.create', compact('abilities'));
     }
 
@@ -115,14 +111,12 @@ class RolesController extends Controller
     /**
      * Delete all selected Role at once.
      *
-     * @param Request $request
      *
      * @return Response|void
      */
-    public function massDestroy(Request $request)
+    public function massDestroy()
     {
         Role::whereIn('id', request('ids'))->delete();
-
         return response()->noContent();
     }
 }

@@ -33,11 +33,10 @@ class CommentResource extends JsonResource
         ];
     }
 
-    public function toArray2($request)
+    public function toArray2()
     {
         $parsedown = new Parsedown();
         $body = Purifier::clean($parsedown->text($this->body));
-
         return [
             'id'        => $this->id,
             'body'      => $body,

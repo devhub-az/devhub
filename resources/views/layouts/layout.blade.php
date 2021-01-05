@@ -38,7 +38,6 @@
 
     <style>
         {{ include('css/tailwind.css') }}
-        {{--        {{ include('css/app.css') }}--}}
     </style>
     @yield('styles')
 </head>

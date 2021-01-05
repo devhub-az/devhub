@@ -24,12 +24,10 @@ class ConversationRepository
 
     public function getConversations(int $userId)
     {
-        $conversations = $this->user->newQuery()
+        return $this->user->newQuery()
             ->select('username', 'id', 'about')
             ->where('id', '!=', $userId)
             ->get();
-
-        return $conversations;
     }
 
     public function createMessage(string $content, int $from, int $to)

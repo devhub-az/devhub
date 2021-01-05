@@ -23,6 +23,14 @@
 }
 
 @layer components {
+    .btn{
+        @apply border border-cerulean-200 text-xs rounded py-1 px-6 text-white bg-cerulean-200 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-600 hover:border-cerulean-300 dark:hover:border-cerulean-600
+    }
+
+    .btn-outline{
+        @apply border xs:w-full text-xs rounded py-1 px-6 border-gray-300 dark:border-gray-700 dark:text-gray-300
+    }
+
     .ce-block__content{
         @apply w-full max-w-full
     }

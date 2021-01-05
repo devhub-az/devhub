@@ -70,7 +70,8 @@ class AuthController extends Controller
     public function register(ReqisterRequest $request)
     {
         $validated = $request->validated();
-        $user = User::create(
+
+        return User::create(
             [
                 'id'       => Uuid::uuid4()->toString(),
                 'name'     => $validated['name'],
@@ -79,8 +80,6 @@ class AuthController extends Controller
                 'password' => Hash::make($validated['password']),
             ]
         );
-
-        return $user;
     }
 
     public function checkEmail(Request $request)

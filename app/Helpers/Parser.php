@@ -5,12 +5,10 @@ namespace App\Helpers;
 class Parser
 {
     private $templates;
-    private $beautify;
 
-    public function __construct($templates, $beautify = false)
+    public function __construct($templates)
     {
         $this->templates = $templates;
-        $this->beautify = $beautify;
     }
 
     public function render($blocks): string

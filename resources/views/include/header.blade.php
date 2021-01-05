@@ -23,19 +23,19 @@
                 id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Paylaşmalar</a>
+                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Paylaşmalar</a>
                 </li>
                 <li>
                     <a href="{{ route('hubs-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Hablar</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Hablar</a>
                 </li>
                 <li>
                     <a href="{{ route('users-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('authors') || Request::is('authors/*')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Müəlliflər</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('authors') || Request::is('authors/*')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Müəlliflər</a>
                 </li>
                 <li>
                     <a href="{{ route('about') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('about')) ? 'text-cerulean-500' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Məlumat</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('about')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-500' }}">Məlumat</a>
                 </li>
             </ul>
         </div>
@@ -58,11 +58,11 @@
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
                 <a href="{{ route('login') }}"
-                   class="border border-gray font-normal uppercase text-xs rounded px-2 py-1.5 text-gray-100 bg-transparent xs:hidden sm:hidden">
+                   class="btn-outline px-2 xs:hidden sm:hidden">
                     Daxil ol
                 </a>
                 <a href="{{ route('register') }}"
-                   class="border border-cerulean-700 font-normal uppercase text-xs rounded px-2 py-1.5 text-white bg-cerulean-700 dark:bg-cerulean-800 dark:border-cerulean-800 hover:bg-cerulean-800 hover:border-cerulean-800 xs:hidden sm:hidden">
+                   class="btn px-2 xs:hidden sm:hidden">
                     Qoşulmaq
                 </a>
             @else

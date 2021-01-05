@@ -104,7 +104,7 @@ class ArticleTopController extends Controller
     {
         $itemIds = [];
 
-        foreach ($items as $i => $item) {
+        foreach ($items as $item) {
             if ($item->articles) {
                 foreach ($item->articles->pluck('id') as $article) {
                     $itemIds[] = $article;
