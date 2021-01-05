@@ -104,6 +104,7 @@ class AbilitiesController extends Controller
     public function massDestroy()
     {
         Ability::whereIn('id', request('ids'))->delete();
+
         return response()->noContent();
     }
 }

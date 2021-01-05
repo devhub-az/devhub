@@ -37,6 +37,7 @@ class CommentResource extends JsonResource
     {
         $parsedown = new Parsedown();
         $body = Purifier::clean($parsedown->text($this->body));
+
         return [
             'id'        => $this->id,
             'body'      => $body,
