@@ -27,7 +27,7 @@ class DevHubInstall extends Command
      */
     public function handle()
     {
-        $this->execShellWithPrettyPrint('cp .env.example .env1');
+        $this->execShellWithPrettyPrint('cp .env.example .env');
         $this->execShellWithPrettyPrint('composer install');
         $this->execShellWithPrettyPrint('npm install');
         $this->execShellWithPrettyPrint('php artisan key:generate');

@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
+//    TODO: ADD FAVORITE VIEW(blade)
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function follow(Request $request): JsonResponse
     {
         $followUser = User::findOrFail($request->get('id'));
