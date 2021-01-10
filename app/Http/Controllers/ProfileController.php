@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class ProfileController extends Controller
 {
 //    TODO: ADD FAVORITE VIEW(blade)
+
     /**
      * @param Request $request
      * @return JsonResponse
