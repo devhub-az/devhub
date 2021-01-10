@@ -12,7 +12,6 @@ class CreateFavoritesTable extends Migration
     public function up()
     {
         Schema::create(config('favorite.favorites_table'), function (Blueprint $table) {
-            $table->uuid('id');
             $table->uuid(config('favorite.user_foreign_key'))->index()->comment('user_id');
             $table->morphs('favoriteable');
             $table->timestamps();

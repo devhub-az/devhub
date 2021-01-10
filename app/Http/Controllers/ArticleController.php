@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IdRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubResource;
 use App\Models\Article;
@@ -224,52 +225,18 @@ class ArticleController extends Controller
      * @return JsonResponse
      * @throws Exception
      */
-    public function addFavorite(Request $request): JsonResponse
+    public function addFavorite(IdRequest $request): JsonResponse
     {
-        $request->validate(
-            [
-                'id' => 'required|int',
-            ]
-        );
-        $share = Article::findOrFail($request->get('id'));
-        if (\Auth::user()) {
-            $user = \Auth::user();
-            if (isset($share) && ! $user->hasBookmarked($share)) {
-                $user->bookmark($share);
-
-                return response()->json(['success' => 'success'], 200);
-            }
-
-            if ($user->hasBookmarked($share)) {
-                $user->unbookmark($share);
-
-                return response()->json(['delete' => 'delete'], 200);
-            }
-        }
-
-        if (isset($share) && ! $share->postIsFollowing(Auth::user())) {
-            $share->favorites()->create(
-                [
-                    'follower_id'  => Auth::user()->id,
-                    'following_id' => $request->get('id'),
-                ]
-            );
+        $article = Article::findOrFail($request->get('id'));
+        $user = Auth::user();
+        if (! $user->hasFavorited($article)) {
+            $user->favorite($article);
 
             return response()->json(['success' => 'success'], 200);
         }
+        $user->unfavorite($article);
 
-        if ($share->postIsFollowing(Auth::user())) {
-            $share->favorites()->where(
-                [
-                    'follower_id'  => Auth::user()->id,
-                    'following_id' => $request->get('id'),
-                ]
-            )->delete();
-
-            return response()->json(['delete' => 'delete'], 200);
-        }
-
-        return response()->json(['error' => 'error'], 401);
+        return response()->json(['delete' => 'delete'], 200);
     }
 
     /**

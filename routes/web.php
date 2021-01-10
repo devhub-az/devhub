@@ -65,11 +65,13 @@ Route::group([], static function () {
         Route::get('/', 'AuthorController@userList')->name('users-list');
         Route::post('{profileId}/follow', 'ProfileController@follow');
 //        TODO: ADD LINK FAVORITE (ProfileController)
+
         Route::prefix('@{username}')->group(static function () {
             Route::get('posts', 'AuthorController@showPosts')->name('user_posts');
             Route::get('/', 'AuthorController@showInfo')->name('user_info');
             Route::get('followers', 'AuthorController@showFollowers')->name('user_followers');
             Route::get('followings', 'AuthorController@showFollowings')->name('user_followings');
+            Route::get('favorites', 'ProfileController@favorites');
         });
     });
 
