@@ -24,7 +24,7 @@ class UsernameRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'string|max:40'
-        ]; 
+            'username' => 'string|max:40',
+        ];
     }
 }

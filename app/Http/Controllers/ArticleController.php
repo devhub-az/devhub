@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IdRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubResource;
 use App\Models\Article;
@@ -18,7 +19,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Validation\ValidationException;
 use Throwable;
-use App\Http\Requests\IdRequest;
 
 class ArticleController extends Controller
 {
@@ -229,11 +229,13 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($request->get('id'));
         $user = Auth::user();
-        if (!$user->hasFavorited($article)) {
+        if (! $user->hasFavorited($article)) {
             $user->favorite($article);
+
             return response()->json(['success' => 'success'], 200);
         }
         $user->unfavorite($article);
+
         return response()->json(['delete' => 'delete'], 200);
     }
 
