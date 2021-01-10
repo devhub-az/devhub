@@ -41,4 +41,15 @@ class ProfileController extends Controller
 
         return response()->json([], 403);
     }
+
+     /**
+     * @return Application|Factory|View
+     */
+    public function favorites(UsernameRequest $username) 
+    {
+        
+
+
+        return view('pages.profile.favorites.favorites', compact('favorites'));
+    }
 }

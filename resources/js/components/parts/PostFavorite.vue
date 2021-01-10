@@ -28,6 +28,7 @@
 
 <script>
 import Noty from 'noty'
+import axios from 'axios'
 
 export default {
     name: "favorite",
@@ -41,7 +42,7 @@ export default {
         favorite: function (id) {
             this.loading = true;
             if (this.auth_check)
-                axios.post('/post/favorite/' + id, {
+                axios.post('/article/favorite/' + id, {
                     id: id,
                 })
                     .then(response => {
