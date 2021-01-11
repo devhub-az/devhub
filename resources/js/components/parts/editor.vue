@@ -1,6 +1,6 @@
 <template>
-    <form class="border bg-white border-t-0 dark:bg-transparent dark:border-gray-800 dark:text-gray-300 text-black" @submit.prevent="onSubmit">
-        <div class="border-b dark:border-gray-800 bg-white dark:bg-gray-900 py-2 px-8 sticky top-0 z-10">
+    <form class="border bg-white border-t-0 dark:bg-dpaper dark:border-gray-700 dark:text-gray-300 text-black" @submit.prevent="onSubmit">
+        <div class="border-b dark:border-gray-700 bg-white dark:bg-gray-900 py-2 px-8 sticky top-0 z-10">
             <button type="submit"
                     class="ml-auto block border border-cerulean-700 font-normal uppercase text-xs rounded px-4 py-1.5 text-white bg-cerulean-700 dark:bg-cerulean-800 dark:border-cerulean-800 hover:bg-cerulean-800 hover:border-cerulean-800 xs:hidden sm:hidden">
                 Paylaşmaq

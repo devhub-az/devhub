@@ -1,6 +1,6 @@
 <template>
     <div
-        class="w-full mb-3 rounded bg-white dark:bg-transparent dark:text-gray-300 dark:border-gray-700 border animate-pulse">
+        class="w-full mb-3 rounded bg-white dark:bg-dpaper dark:text-gray-300 dark:border-gray-700 border animate-pulse">
         <div class="px-3.5">
             <div class="flex align-middle pt-3">
                 <div class="inline-flex no-underline">
@@ -38,7 +38,7 @@
                     <div class="animate-spin ml-1">
                         <span class="iconify" data-icon="mdi-loading"></span>
                     </div>
-                    <p class="ml-1 xs:hidden sm:hidden">Şerh</p>
+                    <p class="ml-1 xs:hidden sm:hidden">Baxışların sayı</p>
                 </div>
                 <div class="pl-2 flex items-center">
                     <i class="iconify" data-icon="mdi-comment-text-multiple-outline"/>

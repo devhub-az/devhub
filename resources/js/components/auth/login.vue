@@ -1,6 +1,17 @@
 <template>
     <form autocomplete="off" @submit.prevent="login" method="post" class="xs:max-w-xs w-96">
-        <div class="pt-4 pb-2">
+        <a href="/login/github"
+           class="mt-4 px-2 py-3 relative flex justify-center font-medium items-center bg-gray-600 hover:bg-gray-700 text-white w-full text-center text-xs uppercase rounded focus:outline-none">
+            <span class="iconify mx-4 text-xl" data-icon="simple-icons:github" data-inline="false"></span>
+            <span class="h-6 items-center flex border-r" aria-hidden="true"></span>
+            <span class="flex-auto">GitHub ilə daxil olmaq</span>
+        </a>
+        <div class="my-4 items-center flex">
+            <div class="mr-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
+            <div class="text-sm">və ya, e-poçtunuzla daxil olun</div>
+            <div class="ml-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
+        </div>
+        <div class="pb-2">
             <input aria-invalid="true" autocomplete="off" id="email" name="email"
                    placeholder="Elektron poçt"
                    type="text" inputmode="text"
@@ -29,6 +40,10 @@
             </div>
 
         </div>
+        <a class="block my-1 text-right text-sm text-cerulean-500"
+           href="/#">
+            Şifrəni unutmusuz?
+        </a>
         <div class="w-full">
             <div v-if="loading"
                  class="border-cerulean-600 text-white rounded bg-cerulean-600 hover:opacity-90 mb-2 px-2 py-3">
@@ -37,14 +52,9 @@
                 </div>
             </div>
             <button v-else type="submit"
-                    class="border border-cerulean-600 w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-cerulean-600 hover:opacity-90 mb-2">
+                    class="border border-cerulean-600 w-full font-medium uppercase text-xs rounded px-2 py-3 text-white bg-cerulean-600 hover:opacity-90">
                 Daxil olmaq
             </button>
-        </div>
-        <div class="mt-2 text-left text-sm">
-            <a class="text-cerulean-500"
-               href="/#">
-                Şifrəni</a> unutmusuz?
         </div>
         <div class="mt-4 bg-white rounded py-4 text-sm border">
             Hələ hesabınız yoxdur?

@@ -1,18 +1,18 @@
 <template>
     <div class="mb-3">
         <article-loading v-if="loading"/>
-        <article v-if="!loading" id="post-content" class="w-full rounded bg-white border">
+        <article v-if="!loading" id="post-content" class="w-full rounded bg-white border dark:border-gray-700">
             <div id="sidebar"
-                 class="sticky top-0 flex justify-between items-center border-b bg-gray-100 px-3.5 py-1 z-10">
+                 class="sticky top-0 flex justify-between items-center border-b bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
                 <div class="inline-flex">
                     <a :href="'/authors/@' + post.relationships.author.data.attributes.username"
                        class="inline-flex">
                         <img class="w-6 h-6 flex-none image-fit rounded lazyload"
                              :src="post.relationships.author.data.attributes.avatar" alt="user avatar">
-                        <p class="text-sm pl-2 m-auto">
+                        <p class="text-sm pl-2 m-auto dark:text-gray-300">
                             {{ '@' + post.relationships.author.data.attributes.username }}</p>
                     </a>
-                    <p class="text-xs my-auto mr-auto pl-2">
+                    <p class="text-xs my-auto mr-auto pl-2 dark:text-gray-300">
                         {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
                     </p>
 
@@ -24,27 +24,30 @@
                     </div>
                 </div>
             </div>
-            <div class="px-3.5">
+            <div class="px-3.5 dark:bg-dpaper">
                 <div class="py-2">
-                    <p class="text-2xl xs:text-xl font-medium">{{ post.attributes.title }}</p>
+                    <p class="text-2xl xs:text-xl font-medium dark:text-gray-300">{{ post.attributes.title }}</p>
                 </div>
                 <hubs-tags v-if="typeof(post.relationships.hubs) !== `undefined` "
                            :data="post.relationships.hubs.data"></hubs-tags>
-                <div class="markdown my-2">
+                <div class="markdown py-2">
                     <div
                         v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
                 </div>
             </div>
-            <div class="grid lg:grid-cols-main border-t text-sm bg-gray-100 mt-2 px-3.5 py-2">
-                <div class="xs:flex xs:justify-between md:flex md:justify-between sm:flex sm:justify-between">
-                    <span>
-                        <i class="mdi mdi-eye-outline"/> {{ post.attributes.views ? post.attributes.views : 'X' }}
-                        <span class="xs:hidden sm:hidden">Baxışların sayı</span>
-                    </span>
+            <div
+                class="grid lg:grid-cols-main border-t text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-2">
+                <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
+                    <div class="flex items-center">
+                        <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
+                        <p class="ml-1 dark:text-gray-300">{{ post.attributes.views }}</p>
+                        <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Baxışların sayı</p>
+                    </div>
                     <favorite :post="post" :auth_check="auth_check"/>
-                    <span class="pl-2" @click="copy(post.id)" style="cursor: pointer;">
-                        <i class="mdi mdi-share"/> <span class="xs:hidden sm:hidden">Paylaş</span>
-                    </span>
+                    <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
+                        <i class="iconify dark:text-gray-300" data-icon="mdi-share"/>
+                        <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaş</p>
+                    </div>
                 </div>
                 <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
                      :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"

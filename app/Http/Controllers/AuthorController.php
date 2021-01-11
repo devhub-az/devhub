@@ -25,7 +25,7 @@ class AuthorController extends Controller
     {
         AuthorResource::withoutWrapping();
 
-        $user = new AuthorResource(User::withCount(['followers', 'followings'])->where('username', '=', $username)->firstorfail());
+        $user = new AuthorResource(User::withCount(['followers', 'followings'])->where('username', $username)->firstorfail());
 
         return view(
             'pages.profile.show.posts',
@@ -42,7 +42,7 @@ class AuthorController extends Controller
     {
         AuthorResource::withoutWrapping();
 
-        $user = new AuthorResource(User::withCount(['followers', 'followings'])->where('username', '=', $username)->firstorfail());
+        $user = new AuthorResource(User::withCount(['followers', 'followings'])->where('username', $username)->firstorfail());
 
         return view(
             'pages.profile.show.info',

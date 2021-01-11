@@ -20,6 +20,7 @@
         "ksubileau/color-thief-php": "^1.4",
         "laravel/framework": "^8.0",
         "laravel/passport": "^10.1",
+        "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.0",

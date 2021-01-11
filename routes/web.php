@@ -1,6 +1,8 @@
 <?php
 
 Auth::routes();
+Route::get('login/github', 'Auth\LoginController@github');
+Route::get('login/github/redirect', 'Auth\LoginController@githubRedirect');
 //Route::get('/forgot-password', function () {
 //    return view('auth.forgot-password');
 //})->middleware('guest')->name('password.request');

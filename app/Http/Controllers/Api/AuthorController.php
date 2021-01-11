@@ -36,7 +36,7 @@ class AuthorController extends Controller
         );
     }
 
-    public function show(int $id)
+    public function show($id)
     {
         AuthorResource::withoutWrapping();
 

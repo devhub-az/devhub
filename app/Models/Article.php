@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jcc\LaravelVote\CanBeVoted;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
-use Str;
 
 /**
  * Post.

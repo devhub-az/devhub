@@ -7,7 +7,7 @@
             <span class="iconify absolute translate-y-1/2 top-0 my-3 mr-4 cursor-pointer right-0 dark:text-gray-400"
                   data-icon="mdi-magnify" @click="searchUnit"></span>
         </div>
-        <div class="flex justify-between py-1 dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
+        <div class="flex justify-between py-1 dark:bg-transperent dark:text-gray-300 dark:border-gray-700">
             <div class="flex items-center cursor-pointer" v-for="column in columns" :key="column.type"
                  @click="sortByColumn(column.type)">
                 {{ column.name }}
@@ -21,7 +21,7 @@
         </div>
         <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
-             class="flex gap-4 border mb-2 p-2 bg-white dark:bg-transparent dark:border-gray-700"
+             class="flex gap-4 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700"
              :id="hub.id + '_block'">
             <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
                  alt="Hub logo">
@@ -47,7 +47,7 @@
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>
-        <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-transparent dark:border-gray-700"
+        <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-dpaper dark:border-gray-700"
              v-if="!loading && hubs.length === 0">
             <span class="opacity-75" style="font-size: 5rem">
                 <span class="iconify mx-auto text-red-700 dark:text-red-500" data-icon="el:remove-sign" data-inline="false"></span>

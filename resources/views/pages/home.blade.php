@@ -9,16 +9,16 @@
                 <div class="mb-4 overflow-hidden">
                     <div class="grid grid-cols-auto-fit font-semibold text-sm">
                         <a href="{{ route('home') }}"
-                           class="text-center w-full py-2 px-0 border-b-2 border-solid mx-auto {{ (Request::is('top/*') || Request::is('/')) ? 'bottom-0 border-cerulean-500 text-cerulean-500' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-400 dark:hover:border-gray-300 dark:hover:text-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                           class="text-center w-full py-2 px-0 border-b-2 border-solid mx-auto {{ (Request::is('top/*') || Request::is('/')) ? 'bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 dark:hover:text-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                             Ən yaxşı
                         </a>
                         <a href="{{ route('all') }}"
-                           class="text-center w-full py-2 px-0 border-b-2 border-solid  mx-auto {{ Request::url() === route('all') ? 'bottom-0 border-cerulean-500 text-cerulean-500' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-400 dark:hover:border-gray-300 dark:hover:text-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                           class="text-center w-full py-2 px-0 border-b-2 border-solid  mx-auto {{ Request::url() === route('all') ? 'bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 dark:hover:text-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                             Bütün
                         </a>
                         @auth
                             <a href="{{ route('favorite') }}"
-                               class="text-center w-full py-2 px-0 border-b-2 border-solid mx-auto {{ Request::url() === route('favorite') ? 'bottom-0 border-cerulean-500 text-cerulean-500' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-400 dark:hover:border-gray-300 dark:hover:text-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                               class="text-center w-full py-2 px-0 border-b-2 border-solid mx-auto {{ Request::url() === route('favorite') ? 'bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-gray-600 dark:hover:text-gray-300 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                                 <span class="relative">
                                     Abunə ilə
                                     @if (Auth::user()->unreadNotifications->where('type', '!=', App\Notifications\MessageReceived::class)->count() > 0)
@@ -38,17 +38,17 @@
                     <div
                         class="flex pb-2 xs:grid md:grid md:grid-flow-col md:text-center sm:grid sm:grid-flow-col sm:text-center xs:grid-flow-col xs:text-center">
                         <a href="{{ url('/') }}"
-                           class="border py-1 px-3 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 {{ Request::url() === url('/') ? 'border-cerulean-700' : '' }}"
+                           class="border py-1 px-3 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 {{ Request::url() === url('/') ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Günün ən yaxşı paylaşmaları">
                             Gün
                         </a>
                         <a href="{{ url('top/week') }}"
-                           class="border py-1 px-3 hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 ' : '' }}"
+                           class="border py-1 px-3 hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
                             Həftə
                         </a>
                         <a href="{{ url('top/month') }}"
-                           class="border py-1 px-3 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700' : '' }}"
+                           class="border py-1 px-3 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Ayın ən yaxşı paylaşmaları">
                             Ay
                         </a>
@@ -64,7 +64,7 @@
             <div class="w-right xs:w-full">
                 <div class="sticky top-2">
                     <a href="{{ route('create_article') }}"
-                       class="border leading-10 text-sm flex justify-center block items-center xs:hidden border-cerulean-600 w-full dark:bg-cerulean-700 dark:border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full uppercase text-xs rounded text-gray-100 bg-cerulean-600 hover:opacity-90">
+                       class="border leading-10 text-sm flex justify-center block items-center xs:hidden border-cerulean-200 w-full dark:bg-cerulean-700 dark:border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full uppercase text-xs rounded text-gray-100 bg-cerulean-200 hover:opacity-90">
                         <i class="iconify text-lg" data-icon="mdi-plus"></i> <p class="ml-1">Paylaşmaq</p>
                     </a>
                     <a class="grid grid-flow-col border rounded p-4 my-2 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"

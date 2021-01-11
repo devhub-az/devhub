@@ -10,63 +10,28 @@
 
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 xs:mt-0 lg:mx-auto xl:mx-auto">
-        {{--        <header>--}}
-        {{--            <div class="page-header__banner">--}}
-        {{--                <a href="https://hh.ru/employer/1212374" target="_blank">--}}
-        {{--                    <div class="company_banner" style="background-image: url({{ asset('images/wallpaper/baku.jpg') }})"--}}
-        {{--                         alt="company_banner"></div>--}}
-        {{--                </a>--}}
-        {{--            </div>--}}
-        {{--            <div class="page-header page-header_small page-header_bordered" id="company_2198">--}}
-        {{--                <div class="page-header_wrapper">--}}
-        {{--                    <div class="media-obj media-obj_company">--}}
-        {{--                        <a href="/company/funcorp/" class="media-obj__image page-header__image">--}}
-        {{--                            <img src="{{ asset('images/profile/new_user/1.svg') }}" width="48" height="48"--}}
-        {{--                                 class="company-info__image-pic">--}}
-        {{--                        </a>--}}
-        {{--                        <div class="media-obj__body media-obj__body_page-header media-obj__body_page-header_branding">--}}
-        {{--                            <div class="page-header__info">--}}
-        {{--                                <div class="page-header__info-title">FunCorp</div>--}}
-        {{--                                <sup class="page-header__stats-value page-header__stats-value_branding"--}}
-        {{--                                     title="Рейтинг компании">399,64</sup>--}}
-        {{--                                <div class="page-header__info-desc">--}}
-        {{--                                    Разработка развлекательных сервисов--}}
-        {{--                                </div>--}}
-        {{--                            </div>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="page-header__buttons">--}}
-        {{--                        <button type="button" class="page-header__button btn" data-id="2198" data-state="follow">--}}
-        {{--                                    <span class="btn__value"><i--}}
-        {{--                                                class="icon feather icon-user-plus"></i> Abunə olun <span--}}
-        {{--                                                class="folowers">{{ \Numeric::number_format_short(123) }}</span></span>--}}
-        {{--                        </button>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </header>--}}
         <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4" id="app">
             <div>
                 <article-show :id="'{{ $post->attributes->id }}'" @auth :auth_check="true" @endauth></article-show>
-                <div class="flex justify-between items-center border bg-white w-full px-3.5 py-3 rounded">
-                    <p class="text-xl">
+                <div class="flex justify-between items-center border bg-white dark:bg-dpaper dark:border-gray-700 w-full px-3.5 py-3 rounded">
+                    <p class="text-xl dark:text-gray-300">
                         Paylaşmaq
                     </p>
-                    <div class="text-4xl">
+                    <div class="text-2xl gap-2 flex">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}"
                            onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false;"
                            title="Опубликовать ссылку в Facebook">
-                            <i class=" mdi mdi-facebook" style="color: #3B5998"></i>
+                            <span class="iconify" data-icon="ant-design:facebook-filled" style="color: #3B5998" data-inline="false"></span>
                         </a>
                         <a href="https://vk.com/share.php?url={{ URL::current() }}"
                            title="Опубликовать ссылку во ВКонтакте"
                            onclick="window.open(this.href, 'Опубликовать ссылку во ВКонтакте', 'width=800,height=300,toolbar=0,status=0'); return false">
-                            <i class="mdi mdi-vk" style="color: #2787F5"></i>
+                            <span class="iconify" data-icon="bx:bxl-vk" style="color: #2787F5" data-inline="false"></span>
                         </a>
                         <a href="https://t.me/share/url?url={{ URL::current() }}&amp;title={{ $post->attributes->title }}"
                            title="Поделиться ссылкой в Telegram"
                            onclick="window.open(this.href, 'Поделиться ссылкой в Telegram', 'width=800,height=300,toolbar=0,status=0'); return false">
-                            <i class="mdi mdi-telegram" style="color: #0088cc"></i>
+                            <span class="iconify" data-icon="bx:bxl-telegram" data-inline="false" style="color: #0088cc"></span>
                         </a>
                     </div>
                 </div>
@@ -76,61 +41,57 @@
 
 
             <div>
-                <div class="xs:w-full bg-white rounded border overflow-hidden sticky top-0">
+                <div class="xs:w-full bg-white rounded dark:bg-dpaper border dark:border-gray-700 overflow-hidden sticky top-0">
                     <div class="flex px-4 py-2">
                         <img class="w-16 h-16 rounded object-cover"
                              src="{{ $post->relationships->author->data->attributes->avatar }}" alt="avatar">
                         <div class="ml-2">
-                            <p class="text-xl font-medium text-gray-800">
+                            <p class="text-xl font-medium text-gray-800 dark:text-gray-300">
                                 {{ $post->relationships->author->data->attributes->name ?? '' }}
                                 {{ $post->relationships->author->data->attributes->surname ?? '' }}
                                 {{ '@' . $post->relationships->author->data->attributes->username }}
                             </p>
-                            <p class="pt-2 text-sm text-gray-700">
-                                {{ $post->relationships->author->data->attributes->about }}
+                            <p class="pt-2 text-sm text-gray-700 dark:text-gray-400">
+                                {{ $post->relationships->author->data->attributes->description }}
                             </p>
                         </div>
                     </div>
                     <div class="flex mb-2 mx-4">
                         <a href="#"
-                           class="py-1.5 mr-2 my-1 w-1/2 font-medium text-sm border rounded text-blue-light border-blue-light text-center hover:bg-blue-light hover:text-white">
+                           class="py-1.5 dark:text-gray-400 mr-2 my-1 w-1/2 font-medium text-sm border rounded text-blue-light border-blue-light text-center hover:bg-blue-light hover:text-white">
                             Izləmək
                         </a>
                         <a href="#"
-                           class="py-1.5 ml-2 my-1 w-1/2 font-medium text-sm border rounded text-gray-500 text-center hover:text-gray-600 hover:border-gray-600">
+                           class="py-1.5 dark:text-gray-400 ml-2 my-1 w-1/2 font-medium text-sm border rounded text-gray-500 text-center hover:text-gray-600 hover:border-gray-600">
                             Yazmag
                         </a>
                     </div>
-                    <div class="flex justify-between px-4 py-2 border-t border-b text-gray-700 w-full">
+                    <div class="flex justify-between px-4 py-2 border-t border-b text-gray-700 dark:border-gray-700 w-full">
                         <div class="w-1/3 flex items-center">
-                            <p class="text-xl font-semibold">
+                            <p class="text-xl font-semibold dark:text-gray-300">
                                 {{ \Numeric::number_format_short($post->relationships->author->data->attributes->karma) }}
                             </p>
-                            <p class="ml-2 text-sm text-gray-500">Karma</p>
+                            <p class="ml-2 text-sm text-gray-500 dark:text-gray-400">Karma</p>
                         </div>
                         <div class="w-1/3 flex items-center justify-center">
-                            <p class="text-xl font-semibold">
+                            <p class="text-xl font-semibold dark:text-gray-300">
                                 {{ \Numeric::number_format_short($post->relationships->author->data->attributes->rating) }}
                             </p>
-                            <p class="ml-2 text-sm text-gray-500">Reytinq</p>
+                            <p class="ml-2 text-sm text-gray-500 dark:text-gray-400">Reytinq</p>
                         </div>
                         <div class="w-1/3 flex items-center">
-                            <p class="text-xl font-semibold ml-auto">
+                            <p class="text-xl font-semibold ml-auto dark:text-gray-300">
                                 {{ \Numeric::number_format_short($post->relationships->author->data->attributes->user_followers_count) }}
                             </p>
-                            <span class="ml-2 text-sm text-gray-500">İzləyicilər</span>
+                            <span class="ml-2 text-sm text-gray-500 dark:text-gray-400">İzləyicilər</span>
                         </div>
                     </div>
                     <div class="flex flex-wrap px-4 py-1">
-                        <a href="#" class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark">
-                            Facebook
-                        </a>
-                        <a href="#" class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark">
-                            Telegram
-                        </a>
-                        <a href="#" class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark">
-                            Sayt
-                        </a>
+                        @if($post->relationships->author->data->attributes->github_url)
+                            <a href="#" class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark dark:text-gray-400">
+                                Github
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
     <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
-            <div class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:border-gray-700"
+            <div class="w-full mb-3 rounded bg-white dark:bg-dpaper border dark:border-gray-700"
                  v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
@@ -82,7 +82,7 @@
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
         <div v-else-if="postsEmpty"
-             class="bg-white dark:bg-transparent dark:border-gray-700 rounded border text-center grid gap-2 p-5">
+             class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border text-center grid gap-2 p-5">
             <span class="opacity-75" style="font-size: 5rem">
                 <i class="iconify mx-auto dark:text-gray-400" data-icon="mdi-comment-edit-outline"/>
             </span>

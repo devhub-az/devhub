@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
                 $table->boolean('is_admin')->default(false);
                 $table->string('password');
                 $table->string('github_url')->nullable();
+                $table->dateTime('last_activity')->nullable();
                 $table->string('website')->nullable();
                 $table->dateTime('email_verified_at')->nullable();
                 $table->enum('email_notify_enabled', ['yes', 'no'])->default('yes')->index();

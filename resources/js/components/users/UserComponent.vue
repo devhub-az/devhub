@@ -8,7 +8,7 @@
                   data-icon="mdi-magnify" @click="searchUnit"></span>
         </div>
         <div
-            class="flex justify-between py-1 dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
+            class="flex justify-between py-1 dark:bg-transperent dark:text-gray-300 dark:border-gray-700">
             <div class="flex items-center cursor-pointer" v-for="column in columns" :key="column.type"
                  @click="sortByColumn(column.type)">
                 <p class="dark:text-gray-300">{{ column.name }}</p>
@@ -22,7 +22,7 @@
         </div>
         <users-loading v-if="loading"></users-loading>
         <div v-for="user in users" v-if="!loading && users"
-             class="flex gap-4 border mb-2 p-2 bg-white dark:bg-transparent dark:border-gray-700" :id="user.id">
+             class="flex gap-4 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700" :id="user.id">
             <img :src="user.attributes.avatar"
                  class="w-16 h-16 rounded" alt="User profile">
             <div class="w-6/12">
@@ -48,7 +48,7 @@
             <user-follow-button :user="user" :id="user.id" :auth_check="auth_check"
                                 class="w-2/12 m-auto text-center"></user-follow-button>
         </div>
-        <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-transparent dark:border-gray-700"
+        <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-dpaper dark:border-gray-700"
              v-if="!loading && users.length === 0">
             <span class="opacity-75" style="font-size: 5rem">
                 <span class="iconify mx-auto text-red-700 dark:text-red-500" data-icon="el:remove-sign" data-inline="false"></span>

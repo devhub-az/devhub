@@ -6,11 +6,9 @@
                 <div class="ml-2">
                     <p class="text-2xl text-shadow dark:text-gray-300 xs:text-base">{{ $user->attributes->name ?? '' }} {{ $user->attributes->surname ?? '' }} {{ '@' . $user->attributes->username }}</p>
 
-                    @if ( $user->attributes->about)
-                        <p class="text-2xl text-shadow dark:text-gray-300 xs:text-base">{{  $user->attributes->about }}</p>
+                    @if ( $user->attributes->description)
+                        <p class="text-xl text-shadow dark:text-gray-300 xs:text-xs font-light mt-2">{{  $user->attributes->description }}</p>
                     @endif
-
-                    <p class="text-xl text-shadow dark:text-gray-300 xs:text-xs font-light mt-2">Devhub developer, I'am from Canada, still live in USA</p>
 
                 </div>
             </div>
@@ -33,8 +31,8 @@
 
         </div>
         <div class="flex gap-2 mt-4 xs:justify-between">
-            <button class="btn-outline">Follow</button>
-            <button class="btn">Message</button>
+            <button class="btn-outline">Izləmək</button>
+            <button class="btn">Yazmag</button>
         </div>
         <div class="flex xs:justify-between w-full mt-4 xs:overflow-y-auto">
             <div class="text-sm pr-8">

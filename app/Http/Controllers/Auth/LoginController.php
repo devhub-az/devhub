@@ -3,7 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Auth;
+use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\RedirectResponse;
+use Ramsey\Uuid\Uuid;
+use Socialite;
+use Str;
 
 class LoginController extends Controller
 {
@@ -35,5 +42,33 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function github()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function githubRedirect(): RedirectResponse
+    {
+        $user = Socialite::driver('github')->user();
+
+        $user = User::firstOrCreate(
+            [
+                'email' => $user->email,
+            ],
+            [
+                'id'          => Uuid::uuid4(),
+                'name'        => $user->name,
+                'description' => $user->user['bio'],
+                'username'    => $user->nickname,
+                'github_url'  => $user->user['html_url'],
+                'password'    => Hash::make(Str::random(24)),
+            ]
+        );
+
+        Auth::login($user, true);
+
+        return back();
     }
 }
