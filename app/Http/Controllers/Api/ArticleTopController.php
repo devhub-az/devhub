@@ -7,9 +7,9 @@ use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
 use App\Models\Hub;
 use App\Models\User;
-use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleTopController extends Controller
 {
@@ -43,7 +43,7 @@ class ArticleTopController extends Controller
      */
     public function posts(): ArticlesResource
     {
-        $articles = Cache::remember('index.articles.filter', 30, function(){
+        $articles = Cache::remember('index.articles.filter', 30, function () {
             return Article::with('hubs')
                 ->withcount(
                     [
@@ -86,7 +86,7 @@ class ArticleTopController extends Controller
         }
         $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);
 
-        $articles = Cache::remember('index.articles.filter', 30, function() use ($articlesIds){
+        $articles = Cache::remember('index.articles.filter', 30, function () use ($articlesIds) {
             return Article::with('hubs')
                 ->withCount(['views'])
                 ->whereIn('id', $articlesIds)
