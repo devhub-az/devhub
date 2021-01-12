@@ -76,7 +76,7 @@ class ArticleController extends Controller
 
                 Notification::send(Auth::user()->followers, new PostNotify($share));
 
-                return redirect('/post/' . $share->id);
+                return redirect('/post/'.$share->id);
             }
         );
 
@@ -151,7 +151,7 @@ class ArticleController extends Controller
      */
     public function postRatingChanger($post, $request): JsonResponse
     {
-        $user       = $request->user();
+        $user = $request->user();
         $voteStatus = $request->get('status');
 
         try {
@@ -229,8 +229,8 @@ class ArticleController extends Controller
     public function addFavorite(IdRequest $request): JsonResponse
     {
         $article = Article::findOrFail($request->get('id'));
-        $user    = Auth::user();
-        if (!$user->hasFavorited($article)) {
+        $user = Auth::user();
+        if (! $user->hasFavorited($article)) {
             $user->favorite($article);
 
             return response()->json(['success' => 'success'], 200);
