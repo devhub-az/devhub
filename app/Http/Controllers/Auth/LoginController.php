@@ -8,8 +8,8 @@ use Auth;
 use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
-use Ramsey\Uuid\Uuid;
 use Laravel\Socialite\Facades\Socialite;
+use Ramsey\Uuid\Uuid;
 use Str;
 
 class LoginController extends Controller
