@@ -21,6 +21,9 @@
                 <a href="{{ route('users-list') }}" class="text-gray-100 hover:text-gray-300">Müəlliflər</a>
             </li>
             <li class="ml-4">
+                <a href="{{env('STATUS_URL')}}" class="text-gray-100 hover:text-gray-300">Status</a>
+            </li>
+            <li class="ml-4">
                 <a href="{{ url('/about_us') }}" class="text-gray-100 hover:text-gray-300">MƏLUMAT</a>
             </li>
         </ul>

@@ -24,7 +24,7 @@ class AuthorResource extends JsonResource
                 'name'                  => $this->name,
                 'username'              => $this->username,
                 'avatar'                => ($this->avatar !== 'default') ? '/upload/avatars/'
-                    .$this->avatar : config('devhub.default_avatar'),
+                    . $this->avatar : config('devhub.default_avatar'),
                 'description'           => $this->description,
                 'karma'                 => $this->karma,
                 'rating'                => $this->rating,
@@ -33,6 +33,7 @@ class AuthorResource extends JsonResource
                 'github_url'            => $this->github_url,
                 'user_followings_count' => $this->followings_count,
                 'user_followers_count'  => $this->followers_count,
+                'isVerified'            => $this->isVerified,
             ],
             'relationships' => new AuthorRelationshipResource($this),
             'links'         => [

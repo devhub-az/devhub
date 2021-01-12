@@ -4,7 +4,11 @@
             <div class="flex">
                 <img class="rounded xs:h-16 xs:w-16 w-24 h-24" src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" alt="Profile image">
                 <div class="ml-2">
-                    <p class="text-2xl text-shadow dark:text-gray-300 xs:text-base">{{ $user->attributes->name ?? '' }} {{ $user->attributes->surname ?? '' }} {{ '@' . $user->attributes->username }}</p>
+                    <div class="text-2xl text-shadow dark:text-gray-300 xs:text-base flex items-center block">
+                        <p>{{ $user->attributes->name ?? '' }}
+                        {{ $user->attributes->surname ?? '' }}
+                            {{ '@' . $user->attributes->username }}</p>
+                    </div>
 
                     @if ( $user->attributes->description)
                         <p class="text-xl text-shadow dark:text-gray-300 xs:text-xs font-light mt-2">{{  $user->attributes->description }}</p>

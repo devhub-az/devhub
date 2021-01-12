@@ -65,9 +65,10 @@
                 <div class="sticky top-2">
                     <a href="{{ route('create_article') }}"
                        class="border leading-10 text-sm flex justify-center block items-center xs:hidden border-cerulean-200 w-full dark:bg-cerulean-700 dark:border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full uppercase text-xs rounded text-gray-100 bg-cerulean-200 hover:opacity-90">
-                        <i class="iconify text-lg" data-icon="mdi-plus"></i> <p class="ml-1">Paylaşmaq</p>
+                        <i class="iconify text-lg" data-icon="mdi-plus"></i>
+                        <p class="ml-1">Paylaşmaq</p>
                     </a>
-                    <a class="grid grid-flow-col border rounded p-4 my-2 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
+                    <a class="grid grid-flow-col border rounded p-4 my-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
                        href="https://t.me/devhub_az" target="_blank"
                        rel="noopener">
                         <div>
@@ -91,9 +92,11 @@
                                 </linearGradient>
                             </defs>
                             <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                <g id="banner/normal" transform="translate(-177.000000, -18.000000)" fill-rule="nonzero">
+                                <g id="banner/normal" transform="translate(-177.000000, -18.000000)"
+                                   fill-rule="nonzero">
                                     <g id="logo/tg" transform="translate(177.000000, 18.000000)">
-                                        <circle id="shape" fill="url(#linearGradient-1)" cx="25" cy="25" r="25"></circle>
+                                        <circle id="shape" fill="url(#linearGradient-1)" cx="25" cy="25"
+                                                r="25"></circle>
                                         <path
                                             d="M20.4166667,36.4583333 C19.60675,36.4583333 19.744375,36.1525208 19.4650417,35.3813542 L17.0833333,27.5428958 L35.4166667,16.6666667"
                                             id="body-right" fill="#C8DAEA"></path>
@@ -108,28 +111,26 @@
                             </g>
                         </svg>
                     </a>
-                    <div class="mb-5 rounded border dark:border-gray-700 sticky top-2">
-                        <div
-                            class="px-5 h-10 border-b rounded-t items-center flex dark:border-gray-700 dark:bg-gray-800">
-                            <p class="m-0 text-sm items-center dark:text-gray-300">Ən izləninən hablar</p>
-                        </div>
-
-                        <div class="overflow-hidden bg-white dark:bg-transparent text-black px-5 py-2">
-                            @foreach ($top_followed_hubs as $hub)
-                                <div class="flex gap-3 mb-2">
-                                    <img src="{{'/' . strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
-                                         alt="hub image" class="w-12 h-12">
-                                    <div>
-                                        <p class="font-semibold dark:text-gray-300">
-                                            {{ $hub['name'] }}
-                                        </p>
-                                        <span class="text-xs dark:text-gray-300">
-                                            <i class="icon feather icon-users"></i>
-                                            İzləyicilər {{ $hub['rating'] ?? '' }}
-                                        </span>
+                    <div class="sticky top-2">
+                        <p class="font-bold text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən hablar</p>
+                        <div class="mb-5 rounded-lg dark:bg-dpaper border dark:border-gray-700 ">
+                            <div class="overflow-hidden bg-white dark:bg-transparent text-black px-5 py-2">
+                                @foreach ($top_followed_hubs as $hub)
+                                    <div class="flex gap-3 mb-2">
+                                        <img src="{{'/' . strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
+                                             alt="hub image" class="w-12 h-12">
+                                        <div>
+                                            <p class="font-semibold dark:text-gray-300">
+                                                {{ $hub['name'] }}
+                                            </p>
+                                            <span class="text-xs dark:text-gray-300">
+                                                <i class="icon feather icon-users"></i>
+                                                İzləyicilər {{ $hub['rating'] ?? '' }}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
