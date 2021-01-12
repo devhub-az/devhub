@@ -3,7 +3,7 @@ const mix = require('laravel-mix');
 mix.disableNotifications();
 
 mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
-
+    .vue()
     //Pages
     .js('resources/js/pages/home.js', 'public/js')
     .js('resources/js/pages/hubs.js', 'public/js')
