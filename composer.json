@@ -14,7 +14,6 @@
         "fruitcake/laravel-cors": "^2.0",
         "graham-campbell/markdown": "^13.1",
         "guzzlehttp/guzzle": "^7.0.1",
-        "htmlmin/htmlmin": "^8.0",
         "jackiedo/dotenv-editor": "^1.2",
         "jcc/laravel-vote": "^1.1",
         "ksubileau/color-thief-php": "^1.4",
@@ -28,6 +27,7 @@
         "overtrue/laravel-favorite": "^3.0",
         "overtrue/laravel-follow": "^2.2",
         "parsedown/laravel": "^1.1",
+        "renatomarinho/laravel-page-speed": "^1.9",
         "silber/bouncer": "v1.0.0-rc.10"
     },
     "require-dev": {

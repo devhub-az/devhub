@@ -237,7 +237,6 @@ return [
         'Numeric'      => App\Helpers\Numeric::class,
         'Markdown'     => GrahamCampbell\Markdown\Facades\Markdown::class,
         'Purifier'     => Mews\Purifier\Facades\Purifier::class,
-        'HTMLMin'      => HTMLMin\HTMLMin\Facades\HTMLMin::class,
 
         'DotenvEditor' => Jackiedo\DotenvEditor\Facades\DotenvEditor::class,
 
