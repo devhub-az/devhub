@@ -12,22 +12,22 @@ class ArticleRelationshipController extends Controller
 {
     public function author($id): AuthorResource
     {
-        $post = Article::findOrFail($id);
+        $article = Article::findOrFail($id);
 
-        return new AuthorResource($post->creator);
+        return new AuthorResource($article->creator);
     }
 
     public function comments($id): CommentsResource
     {
-        $post = Article::findOrFail($id);
+        $article = Article::findOrFail($id);
 
-        return new CommentsResource($post->comments);
+        return new CommentsResource($article->comments);
     }
 
     public function hubs($id): HubsResource
     {
-        $post = Article::findOrFail($id);
+        $article = Article::findOrFail($id);
 
-        return new HubsResource($post->hubs);
+        return new HubsResource($article->hubs);
     }
 }

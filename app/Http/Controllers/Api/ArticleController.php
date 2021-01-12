@@ -9,6 +9,7 @@ use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 use Ramsey\Uuid\Uuid;
 use Str;
 
@@ -21,23 +22,29 @@ class ArticleController extends Controller
      */
     public function index(): ArticlesResource
     {
-        return new ArticlesResource(
-            Article::with(
-                [
-                    'creator' => function ($query) {
-                        $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
-                            'articles',
-                            'followers'
-                        );
-                    },
-                ],
-            )->withcount(
-                'views',
-            )->orderBy(
-                'created_at',
-                'DESC'
-            )->take(50)->paginate(5)
+        $articles = Cache::remember(
+            'index.articles.filter',
+            30,
+            function () {
+                return Article::with(
+                    [
+                        'creator' => function ($query) {
+                            $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
+                                'articles',
+                                'followers'
+                            );
+                        },
+                    ],
+                )->withcount(
+                    'views',
+                )->orderBy(
+                    'created_at',
+                    'DESC'
+                )->take(50)->paginate(5);
+            }
         );
+
+        return new ArticlesResource($articles);
     }
 
     /**

@@ -7,12 +7,13 @@ use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
 use App\Models\Hub;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ArticleTopController extends Controller
 {
-    private static $count;
+    private static int $count;
 
     /**
      * PostController constructor.
@@ -42,13 +43,11 @@ class ArticleTopController extends Controller
      */
     public function posts(): ArticlesResource
     {
-//        TODO: SORT BY BEST VOTED
-        return new ArticlesResource(
-            Article::with('hubs')
+        $articles = Cache::remember('index.articles.filter', 30, function(){
+            return Article::with('hubs')
                 ->withcount(
                     [
                         'views',
-                        //            'bookmarkers',
                         //            'comments'
                     ]
                 )
@@ -61,8 +60,10 @@ class ArticleTopController extends Controller
                     '>=',
                     Carbon::now()->subDays(self::$count)->startOfDay()
                 )->take(50)
-                ->paginate(5)
-        );
+                ->paginate(5);
+        });
+//        TODO: SORT BY BEST VOTED
+        return new ArticlesResource($articles);
     }
 
     /**
@@ -85,14 +86,16 @@ class ArticleTopController extends Controller
         }
         $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);
 
-        return new ArticlesResource(
-            Article::with('hubs')
+        $articles = Cache::remember('index.articles.filter', 30, function() use ($articlesIds){
+            return Article::with('hubs')
                 ->withCount(['views'])
                 ->whereIn('id', $articlesIds)
                 ->take(50)
                 ->orderBy('created_at', 'DESC')
-                ->paginate(5)
-        );
+                ->paginate(5);
+        });
+
+        return new ArticlesResource($articles);
     }
 
     /**

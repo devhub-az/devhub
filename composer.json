@@ -27,7 +27,6 @@
         "overtrue/laravel-favorite": "^3.0",
         "overtrue/laravel-follow": "^2.2",
         "parsedown/laravel": "^1.1",
-        "renatomarinho/laravel-page-speed": "^1.9",
         "silber/bouncer": "v1.0.0-rc.10"
     },
     "require-dev": {
