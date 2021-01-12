@@ -33,7 +33,6 @@ class AuthorResource extends JsonResource
                 'github_url'            => $this->github_url,
                 'user_followings_count' => $this->followings_count,
                 'user_followers_count'  => $this->followers_count,
-                'isVerified'            => $this->isVerified,
             ],
             'relationships' => new AuthorRelationshipResource($this),
             'links'         => [
