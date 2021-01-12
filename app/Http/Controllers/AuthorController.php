@@ -59,6 +59,7 @@ class AuthorController extends Controller
                 ->count();
             $tasks[] = $count;
         }
+
         return view(
             'pages.profile.show.info',
             ['user' => $user->toResponse($request)->getData(), 'auth_user' => $this->auth_user],
