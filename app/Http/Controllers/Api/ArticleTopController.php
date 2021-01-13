@@ -9,7 +9,6 @@ use App\Models\Hub;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class ArticleTopController extends Controller
 {
@@ -43,8 +42,7 @@ class ArticleTopController extends Controller
      */
     public function posts(): ArticlesResource
     {
-        $articles = Cache::remember('index.articles.filter', 30, function () {
-            return Article::with('hubs')
+        $articles = Article::with('hubs')
                 ->withcount(
                     [
                         'views',
@@ -61,7 +59,6 @@ class ArticleTopController extends Controller
                     Carbon::now()->subDays(self::$count)->startOfDay()
                 )->take(50)
                 ->paginate(5);
-        });
 //        TODO: SORT BY BEST VOTED
         return new ArticlesResource($articles);
     }
@@ -86,14 +83,12 @@ class ArticleTopController extends Controller
         }
         $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);
 
-        $articles = Cache::remember('index.articles.filter', 30, function () use ($articlesIds) {
-            return Article::with('hubs')
+        $articles = Article::with('hubs')
                 ->withCount(['views'])
                 ->whereIn('id', $articlesIds)
                 ->take(50)
                 ->orderBy('created_at', 'DESC')
                 ->paginate(5);
-        });
 
         return new ArticlesResource($articles);
     }
