@@ -31,7 +31,7 @@ class AuthorController extends Controller
                 ]
             )->with('followers', 'followings')->withCount('articles', 'followers', 'followings')->orderBy(
                 $request->get('column') ?? 'created_at',
-                $request->get('order')?? 'DESC'
+                $request->get('order') ?? 'DESC'
             )->paginate(12)
         );
     }
