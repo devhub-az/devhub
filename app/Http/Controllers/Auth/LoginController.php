@@ -88,7 +88,7 @@ class LoginController extends Controller
             ],
             [
                 'id'          => Uuid::uuid4(),
-                'name'        => $user->name,
+                'name'        => $user->name ?? '',
                 'description' => $user->user['bio'],
                 'username'    => $user->nickname,
                 'github_url'  => $user->user['html_url'],
