@@ -22,23 +22,23 @@
                     <div class="flex items-center space-x-2 font-medium text-gray-700 dark:text-gray-400">
                         <span class="iconify" data-icon="mdi:newspaper-variant-multiple-outline"
                               data-inline="false"></span>
-                        <p>Paylaşmalar</p>
+                        <p class="transition-none">Paylaşmalar</p>
                     </div>
                     <div class="flex space-x-3">
                         <a href="{{ route('home') }}"
-                           class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ (Request::is('top/*') || Request::is('/')) ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                           class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ (Request::is('top/*') || Request::is('/')) ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                             <span class="iconify text-red-400 transition-none group-hover:text-red-500"
                                   data-icon="bx:bxs-hot" data-inline="false"></span>
                             <p class="transition-none">Trendlər</p>
                         </a>
                         <a href="{{ route('all') }}"
-                           class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ Request::url() === route('all') ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                           class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ Request::url() === route('all') ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                             <span class="iconify transition-none dark:group-hover:text-cerulean-200" data-icon="ant-design:clock-circle-outlined" data-inline="false"></span>
                             <p class="transition-none">Təzə</p>
                         </a>
                         @auth
                             <a href="{{ route('favorite') }}"
-                               class="text-sm py-1 border-b-2 border-solid {{ Request::url() === route('favorite') ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-500 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
+                               class="text-sm py-1 border-b-2 border-solid {{ Request::url() === route('favorite') ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                                 <span class="relative transition-none">
                                     <div class="flex group items-center space-x-0.5 transition-none">
                                         <span class="iconify transition-none dark:group-hover:text-cerulean-200" data-icon="mdi:book-multiple" data-inline="false"></span>
