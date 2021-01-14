@@ -12,4 +12,4 @@ jobs:
           git remote set-url --add --push origin ssh://h75062@h75062.hostde31.fornex.host:20022/home/h75062/public_html
           git add .
           git commit -m "Push to cPanel"
-          git push https://${{ secrets.GITHUB_TOKEN }}@h75062@h75062.hostde31.fornex.host/h75062/develop.git -f
+          git push https://${{ secrets.GITHUB_TOKEN }}@h75062@h75062.hostde31.fornex.host/h75062/devhub.git -f
