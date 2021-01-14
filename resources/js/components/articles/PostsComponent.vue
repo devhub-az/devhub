@@ -44,7 +44,7 @@
                         <div class="flex items-center">
                             <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
                             <p class="ml-1 dark:text-gray-300">{{ post.attributes.views }}</p>
-                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Baxışların sayı</p>
+                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">baxış</p>
                         </div>
                         <div class="pl-2">
                             <a :href="'/post/' + post.id + '#comments'" class="flex items-center">
@@ -52,13 +52,13 @@
                                 <p class="ml-1 dark:text-gray-300">{{
                                         post.comments_count ? post.comments_count : 'X'
                                     }}</p>
-                                <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Şerh</p>
+                                <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Şərh</p>
                             </a>
                         </div>
                         <favorite :post="post" :auth_check="auth_check"/>
                         <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
                             <i class="iconify dark:text-gray-300" data-icon="mdi-share"/>
-                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaş</p>
+                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaşın</p>
                         </div>
                     </div>
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"

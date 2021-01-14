@@ -28,7 +28,7 @@
     }
 
     .btn{
-        @apply border xs:w-full border-cerulean-200 text-xs rounded py-1 px-6 text-white bg-cerulean-200 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-600 hover:border-cerulean-300 dark:hover:border-cerulean-600
+        @apply border xs:w-full border-cerulean-100 text-xs rounded py-1 px-6 text-white bg-cerulean-100 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-600 hover:border-cerulean-300 dark:hover:border-cerulean-600
     }
 
     .btn-outline{

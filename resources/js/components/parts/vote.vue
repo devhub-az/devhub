@@ -245,7 +245,7 @@ export default {
                     type: 'success',
                     text: '<div class="notification-image"><i class="mdi mdi-account-box"></i></div> ' +
                         '<div class="text">Bu funksiyanı istifadə etmək üçün ' +
-                        '<a href="/register" class="notification-link">qeydiyyatdan keçin</a></div>',
+                        '<a href="/register" class="notification-link"> hesaba girin</a></div>',
                 }).show();
         },
     }
