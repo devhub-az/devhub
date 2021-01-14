@@ -10,7 +10,7 @@ jobs:
       - uses: fregante/setup-git-user@v1
       - name: Push to git repo
         run: |
-          git remote add origin ssh://h75062@h75062.hostde31.fornex.host:20022/home/h75062/public_html
+          git remote add deploy ssh://h75062@h75062.hostde31.fornex.host:20022/home/h75062/public_html
           git add .
           git commit -m "Push to cPanel"
-          git push -u origin master
+          git push -u deploy master
