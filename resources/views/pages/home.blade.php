@@ -99,7 +99,7 @@
                                         <div>
                                             <a href="{{ route('user_info', $author->username) }}"
                                                class="font-semibold text-sm align-text-top dark:text-gray-300">
-                                                {{ $author->name }}
+                                                {{ $author->name !== null ? $author->username : $author->name }}
                                             </a>
                                             <p class="text-xs dark:text-gray-400">
                                                 Qoşulub {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
