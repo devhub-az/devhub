@@ -108,9 +108,6 @@ export default {
             auth: this.user,
         }
     },
-    created() {
-        console.log(typeof this.count)
-    },
     methods: {
         toggleVisibility() {
             this.isVisible = !this.isVisible

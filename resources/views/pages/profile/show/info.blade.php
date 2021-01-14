@@ -9,7 +9,7 @@
         <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
             <div>
                 @include('pages.profile.include.tabs')
-                <div class="border p-4 dark:border-gray-700 dark:bg-dpaper">
+                <div class="border p-4 bg-white dark:border-gray-700 dark:bg-dpaper">
                     <div class="mb-4 border-b-0">
                         <p class="text-2xl mb-5 dark:text-gray-300">
                             İş təcrübəsi
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="border border-t-0 p-4 dark:border-gray-700 dark:bg-dpaper">
+                <div class="border border-t-0 p-4 bg-white dark:border-gray-700 dark:bg-dpaper">
                     <div class="mb-4">
                         <p class="text-2xl mb-5 dark:text-gray-300">
                             Təhsil

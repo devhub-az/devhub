@@ -1,12 +1,11 @@
 <div class="mb-2">
-    <p class="font-bold text-base text-gray-500 uppercase mb-1">Aktiv grafi</p>
-    <div class="border rounded  bg-white">
-        <canvas id="myChart" style="width: 100%; height: 8rem" class="px-4 py-5"></canvas>
+    <div class="border rounded bg-white dark:bg-dpaper dark:border-gray-700">
+        <canvas id="active" style="width: 102%; height: 4rem" class="-ml-2"></canvas>
     </div>
 </div>
 
-<div class="border p-2 rounded mb-2">
-    <p class="font-medium mb-3">Izləyənlər</p>
+<div class="border p-2 rounded mb-2 dark:bg-dpaper dark:border-gray-700">
+    <p class="font-medium mb-3 dark:text-gray-300">Izləyənlər</p>
     <div class="flex -space-x-2 overflow-hidden p-1">
         @if (count($user->relationships->followers->data) > 0)
             @foreach($user->relationships->followers->data as $follower)
@@ -14,12 +13,12 @@
                      class="inline-block h-10 w-10 rounded-full ring-2 ring-gray-300">
             @endforeach
         @else
-            <p>Heç kim istifadəçini izləmir</p>
+            <p class="dark:text-gray-400">Heç kim istifadəçini izləmir</p>
         @endif
     </div>
 </div>
-<div class="border p-2 rounded">
-    <p class="font-medium mb-3">Izlənən</p>
+<div class="border p-2 rounded dark:bg-dpaper dark:border-gray-700">
+    <p class="font-medium mb-3 dark:text-gray-300">Izlənən</p>
     <div class="flex -space-x-2 overflow-hidden p-1">
         @if (count($user->relationships->followings->data) > 0)
             @foreach($user->relationships->followings->data as $following)
@@ -27,7 +26,7 @@
                      class="inline-block h-10 w-10 rounded-full ring-2 ring-gray-300">
             @endforeach
         @else
-            <p>İstifadəçi heç kimi izləmir</p>
+            <p class="dark:text-gray-400">İstifadəçi heç kimi izləmir</p>
         @endif
     </div>
 </div>
@@ -35,7 +34,7 @@
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx = document.getElementById('active').getContext('2d');
         const gradient = ctx.createLinearGradient(0, 0, 0, 600);
         gradient.addColorStop(0, "rgba(0, 174, 239, .3)");
         gradient.addColorStop(0.35, "rgba(255, 255, 255, 0)");
