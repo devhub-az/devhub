@@ -1,3 +1,8 @@
+@auth
+    @if(auth()->user()->username === 'hose1021')
+        @include('admin.include.adminbar')
+    @endif
+@endif
 <header class="border-t-4 border-cerulean-700 bg-header dark:bg-gray-800 sm:px-4 md:px-4" id="header">
     <div class="flex items-center justify-between h-12 xs:h-auto lg:container mx-auto">
         <div class="grid grid-flow-col xs:w-full gap-3 xs:gap-0 xs:flex">

@@ -30,7 +30,6 @@
         "silber/bouncer": "v1.0.0-rc.10"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.3",
         "facade/ignition": "^2.3.6",
         "fakerphp/faker": "^1.9.1",
         "filp/whoops": "^2.0",

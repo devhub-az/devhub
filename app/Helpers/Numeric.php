@@ -4,6 +4,21 @@ namespace App\Helpers;
 
 class Numeric
 {
+    public static function bcmul_alternative($n, $m, $dec=0)
+    {
+        $value = $n * $m;
+        if ($dec) {
+            $value = round($value, $dec);
+        }
+        return $value;
+    }
+
+    public static function convert($size): string
+    {
+        $unit=array('b','kb','mb','gb','tb','pb');
+        return @round($size/ (1024 ** ($i = floor(log($size, 1024)))), 2).' '. $unit[$i];
+    }
+
     public static function number_format_short($number)
     {
         if ($number >= 0 && $number < 1000) {
