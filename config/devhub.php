@@ -19,6 +19,9 @@ return [
     // Default Icon
     'default_icon' => env('DEFAULT_ICON') ?: '/images/favicon.ico',
 
+    //Check status page link
+    'status_url' => env('STATUS_URL'),
+
     // Meta
     'meta' => [
         'keywords'    => 'PJ Blog,blog,pigjian,laravel,vuejs',
