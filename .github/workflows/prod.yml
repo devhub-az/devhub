@@ -11,7 +11,7 @@ jobs:
       - name: Push to git repo
         run: |
           git remote add deploy ssh://h75062@h75062.hostde31.fornex.host:20022/home/h75062/public_html
-          git merge deploy
+          git pull deploy
           git add .
           git commit -m "Push to cPanel"
           git push deploy master -f
