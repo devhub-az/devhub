@@ -8,15 +8,15 @@ class Numeric
 {
     public static function admin(): array
     {
-        $users   = User::count('id');
+        $users = User::count('id');
         $ratings = User::sum('rating');
-        $karma   = User::sum('karma');
+        $karma = User::sum('karma');
 
         return [
             'users' => number_format($users),
             'ratings' => number_format($ratings),
             'karma' => number_format($karma),
-//            'cache' => number_format(count($cache)),
+            //            'cache' => number_format(count($cache)),
         ];
     }
 
@@ -26,13 +26,15 @@ class Numeric
         if ($dec) {
             $value = round($value, $dec);
         }
+
         return $value;
     }
 
     public static function convert($size): string
     {
-        $unit=array('b','kb','mb','gb','tb','pb');
-        return @round($size/ (1024 ** ($i = floor(log($size, 1024)))), 2).' '. $unit[$i];
+        $unit = ['b', 'kb', 'mb', 'gb', 'tb', 'pb'];
+
+        return @round($size / (1024 ** ($i = floor(log($size, 1024)))), 2).' '.$unit[$i];
     }
 
     public static function number_format_short($number)
