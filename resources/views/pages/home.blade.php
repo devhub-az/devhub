@@ -3,8 +3,8 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" id="app">
-        <div class="flex gap-3 tb:grid-cols-main lg:grid-cols-main xs:block gap-3 md:gap-4">
+    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4" id="app">
+        <div class="flex gap-3 tb:grid-cols-main lg:grid-cols-main xs:block md:gap-4">
             <div class="w-left xs:w-full">
                 @guest()
                 <div class="p-5 mb-4 bg-white border dark:bg-dpaper dark:border-gray-700 rounded flex justify-between xs:block">
@@ -18,23 +18,23 @@
                     <a href="{{ route('register') }}" class="btn py-2 my-auto block xs:text-center xs:w-full xs:m-0">Qosulmag</a>
                 </div>
                 @endguest
-                <div class="overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:px-3.5">
+                <div class="overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700">
                     <div class="flex items-center space-x-2 font-medium text-gray-700 dark:text-gray-400">
                         <span class="iconify" data-icon="mdi:newspaper-variant-multiple-outline"
                               data-inline="false"></span>
-                        <p class="transition-none">Paylaşmalar</p>
+                        <p class="transition-none xs:text-base">Paylaşmalar</p>
                     </div>
                     <div class="flex space-x-3">
                         <a href="{{ route('home') }}"
                            class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ (Request::is('top/*') || Request::is('/')) ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                             <span class="iconify text-red-400 transition-none group-hover:text-red-500"
                                   data-icon="bx:bxs-hot" data-inline="false"></span>
-                            <p class="transition-none">Trendlər</p>
+                            <p class="transition-none truncate">Trendlər</p>
                         </a>
                         <a href="{{ route('all') }}"
                            class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ Request::url() === route('all') ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
                             <span class="iconify transition-none dark:group-hover:text-cerulean-200" data-icon="ant-design:clock-circle-outlined" data-inline="false"></span>
-                            <p class="transition-none">Təzə</p>
+                            <p class="transition-none truncate">Təzə</p>
                         </a>
                         @auth
                             <a href="{{ route('favorite') }}"
@@ -42,7 +42,7 @@
                                 <span class="relative transition-none">
                                     <div class="flex group items-center space-x-0.5 transition-none">
                                         <span class="iconify transition-none dark:group-hover:text-cerulean-200" data-icon="mdi:book-multiple" data-inline="false"></span>
-                                        <p class="transition-none">Abunə ilə</p>
+                                        <p class="transition-none truncate">Abunə ilə</p>
                                     </div>
                                     @if (Auth::user()->unreadNotifications->where('type', '!=', App\Notifications\MessageReceived::class)->count() > 0)
                                         <span class="flex h-2 w-2 absolute -top-1 -right-1">

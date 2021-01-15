@@ -33,7 +33,7 @@
                 </a>
                 <hr class="my-2">
                 <a
-                    :href="'/@'+ user.username +'/settings/profile'"
+                    :href="'/settings'"
                     @keydown.tab.exact="focusNext(false)"
                     @keydown.shift.tab="focusPrevious(false)"
                     @keydown.up.exact.prevent="focusPrevious(true)"

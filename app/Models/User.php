@@ -71,6 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'confirm_code',
         'username',
         'email_notify_enabled',
+        'github_id',
         'github_url',
         'website',
         'description',

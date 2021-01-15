@@ -32,8 +32,8 @@ Route::group(['middleware' => ['auth']], static function () {
         Route::get('/comments', 'Auth\FavoriteController@indexComments')->name('saved-comments');
     });
 
-    Route::prefix('@{username}/settings')->group(function () {
-        Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');
+    Route::prefix('settings')->group(function () {
+        Route::get('/', 'Auth\UserSettingsController@index')->name('profile-settings');
         Route::post('profile', 'Auth\UserSettingsController@update');
         Route::post('avatar', 'Auth\UserSettingsController@update_avatar');
     });

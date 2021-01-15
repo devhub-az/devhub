@@ -1,4 +1,4 @@
-<div class="w-full bg-green-700 card p-1 rounded-0 d-flex border-bottom border-primary bg-primary text-white px-4">
+<div class="w-full bg-green-700 card p-1 rounded-0 d-flex border-bottom border-primary bg-primary text-white px-4 xs:hidden">
     <?php $admin = Numeric::admin() ?>
     <div class="flex items-center justify-between lg:container mx-auto">
         <div class="flex items-center space-x-4">

@@ -23,16 +23,20 @@
 }
 
 @layer components {
+    .input {
+        @apply w-full px-2 h-10 resize-none rounded text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:focus:border-cerulean-500 font-light dark:bg-dpaper focus:border-cerulean-100 focus:outline-none transition-none
+    }
+
     .multiselect__tags, .multiselect__input, .multiselect__single, .multiselect__content-wrapper{
         @apply  rounded-none dark:bg-dpaper dark:text-gray-300 dark:border-gray-700
     }
 
     .btn{
-        @apply border xs:w-full border-cerulean-100 text-xs rounded py-1 px-6 text-white bg-cerulean-100 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-600 hover:border-cerulean-300 dark:hover:border-cerulean-600
+        @apply border xs:w-full focus:outline-none border-cerulean-100 text-xs rounded py-1 px-6 text-white bg-cerulean-100 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-600 hover:border-cerulean-300 dark:hover:border-cerulean-600
     }
 
     .btn-outline{
-        @apply border xs:w-full text-xs rounded py-1 px-6 border-gray-300 dark:border-gray-600 dark:text-gray-300
+        @apply border xs:w-full text-xs rounded py-1 px-6 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none cursor-pointer hover:text-cerulean-500 hover:border-cerulean-500 dark:hover:text-cerulean-300 dark:hover:border-cerulean-300
     }
 
     .ce-block__content{

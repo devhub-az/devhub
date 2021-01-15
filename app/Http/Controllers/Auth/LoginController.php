@@ -48,10 +48,13 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $input = $request->all();
-        $this->validate($request, [
-            'username' => 'required',
-            'password' => 'required',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'username' => 'required',
+                'password' => 'required',
+            ]
+        );
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if (auth()->attempt([$fieldType => $input['username'], 'password' => $input['password']])) {
             AuthGetIP::dispatch(auth()->user(), $request->ip());
@@ -60,10 +63,10 @@ class LoginController extends Controller
                     'AUTH',
                     null,
                     auth()->user(),
-                    "🔒 User logged in to Taskord\n\n`".$request->ip().'`'
+                    "🔒 User logged in to Taskord\n\n`" . $request->ip() . '`'
                 )
             );
-            loggy(request()->ip(), 'Auth', auth()->user(), 'Logged in via Taskord auth with '.auth()->user()->email);
+            loggy(request()->ip(), 'Auth', auth()->user(), 'Logged in via Taskord auth with ' . auth()->user()->email);
 
             return redirect()->route('home');
         } else {
@@ -82,21 +85,23 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('github')->user();
 
-        $user = User::firstOrCreate(
+        $auth = User::firstOrCreate(
             [
-                'email' => $user->email,
+                'github_id' => $user->id,
             ],
             [
                 'id'          => Uuid::uuid4(),
                 'name'        => $user->name ?? '',
                 'description' => $user->user['bio'],
+                'email'       => $user->email,
                 'username'    => $user->nickname,
+                'github_id'   => $user->id,
                 'github_url'  => $user->user['html_url'],
                 'password'    => Hash::make(Str::random(24)),
             ]
         );
 
-        Auth::login($user, true);
+        Auth::login($auth, true);
 
         return back();
     }

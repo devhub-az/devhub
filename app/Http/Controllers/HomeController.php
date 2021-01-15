@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function postsApiRoute(Request $request)
     {
         $lastAuthors = new AuthorsResource(User::orderBy('created_at', 'DESC')->take(5)->get());
-        $top_followed_hubs = new HubsResource(Hub::take(6)->get());
+        $top_followed_hubs = new HubsResource(Hub::take(5)->get());
         switch ($request->path()) {
             case '/':
                 session(['main-page' => '/']);

@@ -79,6 +79,7 @@ module.exports = {
             },
             gridTemplateColumns: {
                 'main': '72% 27%;',
+                'settings': '30% 69%',
                 'list': '64px auto',
                 'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
             }
