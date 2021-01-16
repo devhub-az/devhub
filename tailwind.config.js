@@ -21,7 +21,7 @@ module.exports = {
     darkMode: 'class', // or 'media' or 'class'
     theme: {
         fontFamily: {
-            sans: ['Roboto', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]
+            sans: ['inter', 'Roboto', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Helvetica', "Apple Color Emoji", 'Arial, sans-serif', "Segoe UI Emoji", "Segoe UI Symbol"]
         },
         screens: {
             xs: {max: '575px'}, // Mobile (iPhone 3 - iPhone XS Max).

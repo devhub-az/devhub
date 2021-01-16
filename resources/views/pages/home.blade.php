@@ -15,7 +15,7 @@
                         </div>
                         <p class="dark:text-gray-400">Uğur və təcrübələrinizi öz həmkarları ilə bölüşün</p>
                     </div>
-                    <a href="{{ route('register') }}" class="btn py-2 my-auto block xs:text-center xs:w-full xs:m-0">Qosulmag</a>
+                    <a href="{{ route('register') }}" class="btn px-14 font-medium my-auto xs:text-center xs:w-full xs:m-0">Qosulmag</a>
                 </div>
                 @endguest
                 <div class="overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700">
@@ -94,12 +94,12 @@
                                 @foreach ($lastAuthors as $author)
                                     <div class="flex items-start gap-3 mb-2">
                                         <img
-                                            src="{{ ($author->avatar !== 'default') ? '/upload/avatars/' . $author->avatar : config('devhub.default_avatar') }}"
+                                            src="{{ ($author->avatar !== 'default') ? $author->avatar : config('devhub.default_avatar') }}"
                                             alt="hub image" class="w-12 h-12 rounded-lg">
                                         <div>
                                             <a href="{{ route('user_info', $author->username) }}"
                                                class="font-semibold text-sm align-text-top dark:text-gray-300">
-                                                {{ $author->name !== null ? $author->username : $author->name }}
+                                                {{ $author->name ?? $author->username }}
                                             </a>
                                             <p class="text-xs dark:text-gray-400">
                                                 Qoşulub {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}

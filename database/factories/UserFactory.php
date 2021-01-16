@@ -22,12 +22,13 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $username = $this->faker->unique()->userName;
         return [
             'id'                => $this->faker->uuid,
             'name'              => $this->faker->name,
-            'username'          => $this->faker->unique()->userName,
-            'avatar'            => 'factory/image-'.$this->faker->numberBetween(1, 66).'.png',
-            'description'       => $this->faker->sentence,
+            'username'          => $username,
+            'avatar'            => 'https://avatar.tobi.sh/' . $username . '.svg?text=' . $username[0],
+            'description'       => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             'rating'            => $this->faker->numberBetween(0, 100),
             'karma'             => $this->faker->numberBetween(0, 100),
             'email'             => $this->faker->unique()->safeEmail,

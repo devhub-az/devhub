@@ -53,7 +53,7 @@
         {{--                <span onclick="closeSearch()" class="iconify" data-icon="mdi-file-excel-box"></span>--}}
         {{--            </div>--}}
         {{--        </form>--}}
-        <div class="grid xs:flex grid-flow-col gap-3 text-xl xs:text-2xl xs:pr-2 text-gray-100 items-center">
+        <div class="grid xs:flex grid-flow-col space-x-2 text-xl xs:text-2xl xs:pr-2 text-gray-100 items-center">
             <span id="search-icon" onclick="search()" class="iconify m-auto sm:text-2xl cursor-pointer"
                   data-icon="mdi-magnify"></span>
             <span id="toggle" class="cursor-pointer"></span>
@@ -63,11 +63,11 @@
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
                 <a href="{{ route('login') }}"
-                   class="btn-outline px-2 xs:hidden sm:hidden">
+                   class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden">
                     Daxil ol
                 </a>
                 <a href="{{ route('register') }}"
-                   class="btn px-2 xs:hidden sm:hidden">
+                   class="btn text-xs px-4 h-7 xs:hidden sm:hidden">
                     Qoşulmaq
                 </a>
             @else

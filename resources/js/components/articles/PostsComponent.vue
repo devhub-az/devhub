@@ -35,7 +35,8 @@
                                :auth_check="auth_check"/>
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
                         <div
-                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)" v-html="block"></div>
+                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)"
+                            v-html="block"></div>
                     </div>
                 </div>
                 <div
@@ -82,15 +83,20 @@
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
         <div v-else-if="postsEmpty"
-             class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border text-center grid gap-2 p-5">
-            <span class="opacity-75" style="font-size: 5rem">
-                <i class="iconify mx-auto dark:text-gray-400" data-icon="mdi-comment-edit-outline"/>
-            </span>
-            <span class="opacity-75 pb-2 dark:text-gray-300">Paylaşma tapılmadı</span>
-            <a href="/article/new"
-               class="w-max flex mx-auto items-center border border-cerulean-600 font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-600 hover:opacity-90">
-                <i class="iconify" data-icon="mdi-plus"/> Yazmağ
-            </a>
+             class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border  py-10">
+            <div class="w-2/3 mx-auto space-y-4">
+                <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
+                    <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline" data-inline="false"></span>
+                    <p class="dark:text-gray-300">Paylaşma tapılmadı</p>
+                </div>
+                <p class="font-light text-center dark:text-gray-400">
+                    Kenar çubuğunda "Kimin izləməsi" ndə göstərilən bəzi istifadəçiləri izləyə bilərsiniz
+                </p>
+                <a href="/article/new"
+                   class="btn block flex w-max mx-auto">
+                    <i class="iconify" data-icon="mdi-plus"/> Yazmağ
+                </a>
+            </div>
         </div>
     </div>
 </template>
