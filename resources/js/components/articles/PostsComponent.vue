@@ -83,8 +83,8 @@
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
         <div v-else-if="postsEmpty"
-             class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border  py-10">
-            <div class="w-2/3 mx-auto space-y-4">
+             class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border py-10">
+            <div class="w-2/3 mx-auto space-y-4 xs:w-full xs:px-4">
                 <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
                     <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline" data-inline="false"></span>
                     <p class="dark:text-gray-300">Paylaşma tapılmadı</p>
@@ -93,7 +93,7 @@
                     Kenar çubuğunda "Kimin izləməsi" ndə göstərilən bəzi istifadəçiləri izləyə bilərsiniz
                 </p>
                 <a href="/article/new"
-                   class="btn block flex w-max mx-auto">
+                   class="btn block flex w-max mx-auto xs:hidden">
                     <i class="iconify" data-icon="mdi-plus"/> Yazmağ
                 </a>
             </div>
