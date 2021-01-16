@@ -63,10 +63,10 @@ class LoginController extends Controller
                     'AUTH',
                     null,
                     auth()->user(),
-                    "🔒 User logged in to Taskord\n\n`" . $request->ip() . '`'
+                    "🔒 User logged in to Taskord\n\n`".$request->ip().'`'
                 )
             );
-            loggy(request()->ip(), 'Auth', auth()->user(), 'Logged in via Taskord auth with ' . auth()->user()->email);
+            loggy(request()->ip(), 'Auth', auth()->user(), 'Logged in via Taskord auth with '.auth()->user()->email);
 
             return redirect()->route('home');
         } else {

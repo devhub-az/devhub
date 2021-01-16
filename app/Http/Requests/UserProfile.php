@@ -26,7 +26,7 @@ class UserProfile extends FormRequest
         return [
             'name'        => 'string|max:40',
             'surname'     => 'string|max:40',
-            'email'       => 'email|max:40|unique:users,email,' . \Auth::user()->id,
+            'email'       => 'email|max:40|unique:users,email,'.\Auth::user()->id,
             'description' => 'string|max:255',
         ];
     }

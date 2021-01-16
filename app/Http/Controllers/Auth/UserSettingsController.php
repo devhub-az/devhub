@@ -31,7 +31,7 @@ class UserSettingsController extends Controller
 
     public function index(Request $request)
     {
-        $this->user->email = substr_replace($this->user->email, '****', 1, strpos($this->user->email, "@") - 1);
+        $this->user->email = substr_replace($this->user->email, '****', 1, strpos($this->user->email, '@') - 1);
 
         return view('auth.settings.profile', ['user' => $this->user]);
     }
@@ -58,11 +58,11 @@ class UserSettingsController extends Controller
 
     public function update(UserProfile $request): JsonResponse
     {
-        $user              = Auth::user();
-        $user->name        = $request->name;
-        $user->username    = $request->username;
-        if ($request->email){
-            $user->email       = $request->email;
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->username = $request->username;
+        if ($request->email) {
+            $user->email = $request->email;
         }
         $user->description = $request->description;
 
