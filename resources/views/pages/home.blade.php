@@ -7,55 +7,40 @@
         <div class="flex gap-3 tb:grid-cols-main lg:grid-cols-main xs:block md:gap-4">
             <div class="w-left xs:w-full">
                 @guest()
-                <div class="p-5 mb-4 bg-white border dark:bg-dpaper dark:border-gray-700 rounded flex justify-between xs:block">
-                    <div class="xs:mb-2">
-                        <div class="text-2xl flex items-center space-x-1 mb-1">
-                            <span class="text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium dark:text-green-500">Beta</span>
-                            <p class="dark:text-gray-300">DevHub'a xoş gəlmisiniz 👋</p>
+                    <div
+                        class="p-5 mb-4 bg-white border dark:bg-dpaper dark:border-gray-700 rounded flex justify-between xs:block">
+                        <div class="xs:mb-2">
+                            <div class="text-2xl flex items-center space-x-1 mb-1">
+                                <span
+                                    class="text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium dark:text-green-500">Beta</span>
+                                <p class="dark:text-gray-300">DevHub'a xoş gəlmisiniz 👋</p>
+                            </div>
+                            <p class="dark:text-gray-400">Uğur və təcrübələrinizi öz həmkarları ilə bölüşün</p>
                         </div>
-                        <p class="dark:text-gray-400">Uğur və təcrübələrinizi öz həmkarları ilə bölüşün</p>
+                        <a href="{{ route('register') }}"
+                           class="btn xs:block px-14 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">Qosulmag</a>
                     </div>
-                    <a href="{{ route('register') }}" class="btn px-14 font-medium my-auto xs:text-center xs:w-full xs:m-0">Qosulmag</a>
-                </div>
                 @endguest
-                <div class="overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700">
-                    <div class="flex items-center space-x-2 font-medium text-gray-700 dark:text-gray-400">
+                <div class="mb-2 flex items-center justify-between dark:border-gray-700">
+                    <div class="flex items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">
                         <span class="iconify" data-icon="mdi:newspaper-variant-multiple-outline"
                               data-inline="false"></span>
                         <p class="transition-none xs:text-base">Paylaşmalar</p>
                     </div>
-                    <div class="flex space-x-3">
-                        <a href="{{ route('home') }}"
-                           class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ (Request::is('top/*') || Request::is('/')) ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
-                            <span class="iconify text-red-400 transition-none group-hover:text-red-500"
-                                  data-icon="bx:bxs-hot" data-inline="false"></span>
-                            <p class="transition-none truncate">Trendlər</p>
-                        </a>
-                        <a href="{{ route('all') }}"
-                           class="flex group items-center space-x-0.5 text-sm py-1 border-b-2 border-solid {{ Request::url() === route('all') ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
-                            <span class="iconify transition-none dark:group-hover:text-cerulean-200" data-icon="ant-design:clock-circle-outlined" data-inline="false"></span>
-                            <p class="transition-none truncate">Təzə</p>
-                        </a>
-                        @auth
-                            <a href="{{ route('favorite') }}"
-                               class="text-sm py-1 border-b-2 border-solid {{ Request::url() === route('favorite') ? 'font-medium bottom-0 border-cerulean-500 text-cerulean-500 dark:border-cerulean-200 dark:text-cerulean-200' : 'text-gray-700 dark:text-gray-400 border-gray-300 dark:border-gray-700 dark:hover:border-cerulean-200 dark:hover:text-cerulean-200 hover:text-cerulean-500 hover:border-cerulean-500' }}">
-                                <span class="relative transition-none">
-                                    <div class="flex group items-center space-x-0.5 transition-none">
-                                        <span class="iconify transition-none dark:group-hover:text-cerulean-200" data-icon="mdi:book-multiple" data-inline="false"></span>
-                                        <p class="transition-none truncate">Abunə ilə</p>
-                                    </div>
-                                    @if (Auth::user()->unreadNotifications->where('type', '!=', App\Notifications\MessageReceived::class)->count() > 0)
-                                        <span class="flex h-2 w-2 absolute -top-1 -right-1">
-                                            <span
-                                                class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-cerulean-400 opacity-75"></span>
-                                            <span
-                                                class="relative inline-flex rounded-full h-2 w-2 bg-cerulean-500"></span>
-                                        </span>
-                                    @endif
-                                </span>
-                            </a>
-                        @endauth
-                    </div>
+                    <select-menu
+                        :menu="[
+                            {'name': 'Trendlər', 'icon': 'bx:bxs-hot', 'url': '/'},
+                            {'name': 'Təzə', 'icon': 'ant-design:clock-circle-outlined', 'url': '/all'},
+                            {'name': 'Abunə ilə', 'icon': 'mdi:book-multiple', 'url': '/favorite'}
+                        ]"
+                        @if (Request::is('top/*') || Request::is('/'))
+                        :selected="{'name': 'Trendlər', 'icon': 'bx:bxs-hot'}"
+                        @elseif (Request::url() === route('all'))
+                        :selected="{'name': 'Təzə', 'icon': 'ant-design:clock-circle-outlined'}"
+                        @elseif (Request::url() === route('favorite'))
+                        :selected="{'name': 'Abunə ilə', 'icon': 'mdi:book-multiple'}"
+                        @endif
+                    ></select-menu>
                 </div>
                 @if (Request::is('top/*') || Request::is('/'))
                     <div
@@ -110,7 +95,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="">
+                    <div>
                         <p class="font-bold text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən hablar</p>
                         <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                             <div class="overflow-hidden rounded bg-white dark:bg-transparent text-black px-5 py-2">
@@ -132,7 +117,7 @@
                             </div>
                         </div>
                     </div>
-                    <a class="grid grid-flow-col border rounded p-4 mb-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
+                    <a class="flex justify-between border rounded p-4 mb-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
                        href="https://t.me/devhub_az" target="_blank"
                        rel="noopener">
                         <div>
@@ -142,7 +127,7 @@
                             </div>
                             <p class="text-sm dark:text-gray-300">Telegram kanalı <br> izləmək</p>
                         </div>
-                        <span class="iconify w-full h-full" style="color: #0088cc;" data-icon="cib:telegram"
+                        <span class="iconify w-20 h-20" style="color: #0088cc;" data-icon="cib:telegram"
                               data-inline="false"></span>
                     </a>
                 </div>

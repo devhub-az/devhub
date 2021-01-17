@@ -1,23 +1,35 @@
 <template>
     <div>
-        <div class="pb-2 relative" id="hide">
+        <div class="flex pb-1 justify-between items-center">
+            <div class="flex items-center space-x-1 font-medium">
+                <span class="iconify text-gray-700 dark:text-gray-400" data-icon="mdi:tag-multiple-outline" data-inline="false"></span>
+                <p class="transition-none text-gray-700 cursor-help dark:text-gray-400"
+                    title="Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir."
+                >Hablar</p>
+                <!--                Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün-->
+                <!--                məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir - -->
+                <!--                yalnız maraqlı olan ocaqlara yazılmaq.-->
+            </div>
+            <div class="ml-auto px-2 w-1/2 overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:hidden">
+                <div class="flex items-center font-medium text-gray-700 dark:text-gray-400" v-for="column in columns"
+                     :key="column.type"
+                     @click="sortByColumn(column.type)">
+                    <p class="transition-none xs:text-base">{{ column.name }}</p>
+                    <div v-if="order === 'asc' && column.type === sortedColumn">
+                        <span class="iconify font-light" data-icon="bi:arrow-up"></span>
+                    </div>
+                    <div v-else-if="order === 'desc' && column.type === sortedColumn">
+                        <span class="iconify font-light" data-icon="bi:arrow-down"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class=" pb-2 relative" id="hide">
             <input type="text" placeholder="Hab tapmaq" v-model="search"
                    class="block w-full p-2 border dark:text-gray-400 hover:border-cerulean-500 dark:hover:border-cerulean-700 dark:bg-gray-700 dark:focus:border-cerulean-700 dark:border-gray-700 dark:focus:outline-none dark:focus:border-transparent focus:outline-none focus:border-cerulean-500 focus:border-transparent"
                    @keyup.enter="searchUnit">
             <span class="iconify absolute translate-y-1/2 top-0 my-3 mr-4 cursor-pointer right-0 dark:text-gray-400"
                   data-icon="mdi-magnify" @click="searchUnit"></span>
-        </div>
-        <div class="flex justify-between py-1 dark:bg-transperent dark:text-gray-300 dark:border-gray-700">
-            <div class="flex items-center cursor-pointer" v-for="column in columns" :key="column.type"
-                 @click="sortByColumn(column.type)">
-                {{ column.name }}
-                <div v-if="order === 'asc' && column.type === sortedColumn">
-                    <span class="iconify font-light" data-icon="bi:arrow-up"></span>
-                </div>
-                <div v-else-if="order === 'desc' && column.type === sortedColumn">
-                    <span class="iconify font-light" data-icon="bi:arrow-down"></span>
-                </div>
-            </div>
         </div>
         <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
@@ -27,11 +39,15 @@
                  alt="Hub logo">
             <a :href="'/hubs/' + hub.id" class="w-8/12">
                 <h2 class="font-semibold dark:text-gray-300">{{ hub.attributes.name }}</h2>
-                <p class="text-sm w-full font-light pb-2 xs:text-xs dark:text-gray-300">{{ hub.attributes.description }}</p>
+                <p class="text-sm w-full font-light pb-2 xs:text-xs dark:text-gray-300">{{
+                        hub.attributes.description
+                    }}</p>
                 <div class="flex">
                     <div class="text-sm flex items-center">
-                        <i class="iconify dark:text-gray-300" data-icon="mdi-text-box-multiple"></i>
-                        <p class="ml-1 text-sm font-light dark:text-gray-300">Paylaşım {{ hub.attributes.articles_count }}</p>
+                        <i class="iconify dark:text-gray-300" data-icon="mdi-text-box-multiple-outline"></i>
+                        <p class="ml-1 text-sm font-light dark:text-gray-300">
+                            <span class="xs:hidden">Paylaşım</span> {{ hub.attributes.articles_count }}
+                        </p>
                     </div>
                 </div>
             </a>
@@ -50,7 +66,8 @@
         <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-dpaper dark:border-gray-700"
              v-if="!loading && hubs.length === 0">
             <span class="opacity-75" style="font-size: 5rem">
-                <span class="iconify mx-auto text-red-700 dark:text-red-500" data-icon="el:remove-sign" data-inline="false"></span>
+                <span class="iconify mx-auto text-red-700 dark:text-red-500" data-icon="el:remove-sign"
+                      data-inline="false"></span>
             </span>
             <span class="opacity-75 text-3xl pt-2 dark:text-gray-300">Hab tapılmadı</span>
         </div>

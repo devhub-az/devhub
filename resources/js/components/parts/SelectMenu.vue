@@ -1,0 +1,68 @@
+<template>
+    <div class="mt-1 relative">
+        <button type="button" aria-haspopup="listbox" aria-expanded="true"
+                @click="show = !show"
+                class="relative w-full bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 focus:border-none sm:text-sm">
+            <span class="flex items-center">
+                <span class="iconify transition-none "
+                      :class="selected.icon === 'bx:bxs-hot' ? 'text-red-400' : ''"
+                      :data-icon="selected.icon" data-inline="false"></span>
+                <span class="ml-1 block truncate">
+                    {{ selected.name }}
+                </span>
+            </span>
+            <span class="ml-1 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                <span class="iconify" data-icon="heroicons-outline:selector" data-inline="false"></span>
+            </span>
+        </button>
+        <transition name="fade">
+            <div v-if="show" class="absolute mt-2 min-w-min w-full right-0 rounded-md bg-white shadow-lg z-20">
+                <ul class="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+                    <li id="listbox-item-0" role="option"
+                        class="text-gray-900 cursor-default select-none relative">
+                        <div class="flex items-center cursor-pointer px-3 hover:bg-gray-300" @click="ChangePage(page)"
+                             v-for="page in menu">
+                            <span class="iconify transition-none"
+                                  :class="page.icon === 'bx:bxs-hot' ? 'text-red-400' : ''"
+                                  :data-icon="page.icon" data-inline="false"></span>
+                            <span class="ml-1 block truncate">
+                                {{ page.name }}
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </transition>
+    </div>
+</template>
+
+<script>
+export default {
+    props: {
+        check: {type: Boolean, required: false},
+        menu: {type: Array, required: true},
+        selected: {type: Array, required: true},
+    },
+    data: function () {
+        return {
+            selected: {},
+            show: false
+        }
+    },
+    methods: {
+        ChangePage(page) {
+            window.location = page.url;
+        }
+    }
+}
+</script>
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+    opacity: 0;
+}
+</style>
