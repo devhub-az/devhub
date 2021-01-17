@@ -27,3 +27,8 @@ RUN docker-php-ext-install gd
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install packages
+RUN composer install
+
+RUN php artisan key:generate
