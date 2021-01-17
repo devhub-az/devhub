@@ -2,8 +2,8 @@ FROM php:8.0-fpm
 
 WORKDIR /var/www
 
-# Copy composer.lock and composer.json
-COPY composer.lock composer.json /var/www/
+# Copy composer.json
+COPY composer.json /var/www/
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
