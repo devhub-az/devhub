@@ -36,7 +36,7 @@
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
                         <div
                             v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)"
-                            v-html="block"></div>
+                            v-html="block.length > 700 ? block.slice(0,600) + '...' : block"></div>
                     </div>
                 </div>
                 <div
