@@ -9,6 +9,7 @@ use App\Models\Hub;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleTopController extends Controller
 {
@@ -43,23 +44,33 @@ class ArticleTopController extends Controller
     public function posts(): ArticlesResource
     {
         $articles = Article::with('hubs')
-                ->withcount(
-                    [
-                        'views',
-                        //            'comments'
-                    ]
-                )
-//                ->orderBy( 'countTotalVotes', 'DESC')
-                ->orderBy(
-                    'created_at',
-                    'DESC'
-                )->where(
-                    'created_at',
-                    '>=',
-                    Carbon::now()->subDays(self::$count)->startOfDay()
-                )->take(50)
-                ->paginate(5);
-//        TODO: SORT BY BEST VOTED
+            ->withcount(
+                [
+                    'views',
+                ]
+            )
+            ->orderBy(
+                'created_at',
+                'DESC'
+            )->where(
+                'created_at',
+                '>=',
+                Carbon::now()->subDays(self::$count)->startOfDay()
+            )
+            ->take(50);
+
+        $paginated = $articles->paginate(10);
+
+        $sorted = $articles->get()->sortBy(
+            function ($articles) {
+                return $articles->countTotalVotes();
+            },
+            null,
+            true
+        );
+
+        $articles = new LengthAwarePaginator($sorted, $paginated->total(), $paginated->perPage());
+
         return new ArticlesResource($articles);
     }
 
@@ -71,24 +82,24 @@ class ArticleTopController extends Controller
     {
         $author = User::findOrFail($request->user()->id);
         if ($author->followings->count() > 0) {
-            $authorsIds = $author->followings->pluck('id');
-            $articleAuthors = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
+            $authorsIds        = $author->followings->pluck('id');
+            $articleAuthors    = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
             $articleAuthorsIds = $this->favoriteIds($articleAuthors);
         }
         if ($author->getFavoriteItems(Hub::class)->count() > 0) {
-            $hubsIds = $author->getFavoriteItems(Hub::class)->pluck('id');
-            $articleHubs =
+            $hubsIds        = $author->getFavoriteItems(Hub::class)->pluck('id');
+            $articleHubs    =
                 Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
             $articleHubsIds = $this->favoriteIds($articleHubs);
         }
         $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);
 
         $articles = Article::with('hubs')
-                ->withCount(['views'])
-                ->whereIn('id', $articlesIds)
-                ->take(50)
-                ->orderBy('created_at', 'DESC')
-                ->paginate(5);
+            ->withCount(['views'])
+            ->whereIn('id', $articlesIds)
+            ->take(50)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5);
 
         return new ArticlesResource($articles);
     }
