@@ -45,37 +45,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
-    {
-        $input = $request->all();
-        $this->validate(
-            $request,
-            [
-                'username' => 'required',
-                'password' => 'required',
-            ]
-        );
-        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        if (auth()->attempt([$fieldType => $input['username'], 'password' => $input['password']])) {
-            AuthGetIP::dispatch(auth()->user(), $request->ip());
-            auth()->user()->notify(
-                new Logger(
-                    'AUTH',
-                    null,
-                    auth()->user(),
-                    "🔒 User logged in to Taskord\n\n`".$request->ip().'`'
-                )
-            );
-            loggy(request()->ip(), 'Auth', auth()->user(), 'Logged in via Taskord auth with '.auth()->user()->email);
-
-            return redirect()->route('home');
-        } else {
-            $request->session()->flash('error', 'Invalid login credentials');
-
-            return redirect()->back();
-        }
-    }
-
     public function github()
     {
         return Socialite::driver('github')->redirect();

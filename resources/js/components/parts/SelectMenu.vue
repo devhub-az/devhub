@@ -16,7 +16,7 @@
             </span>
         </button>
         <transition name="fade">
-            <div v-if="show" class="absolute mt-2 min-w-min w-full right-0 rounded-md bg-white shadow-lg z-20">
+            <div v-on-clickaway="hideDropdown" v-if="show" class="absolute mt-2 min-w-min w-full right-0 rounded-md bg-white shadow-lg z-20">
                 <ul class="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                     <li id="listbox-item-0" role="option"
                         class="text-gray-900 cursor-default select-none relative">
@@ -37,22 +37,26 @@
 </template>
 
 <script>
+import {mixin as clickaway} from 'vue-clickaway'
+
 export default {
+    mixins: [clickaway],
     props: {
-        check: {type: Boolean, required: false},
         menu: {type: Array, required: true},
-        selected: {type: Array, required: true},
+        selected: {type: Object, required: true},
     },
     data: function () {
         return {
-            selected: {},
             show: false
         }
     },
     methods: {
         ChangePage(page) {
             window.location = page.url;
-        }
+        },
+        hideDropdown() {
+            this.show = false
+        },
     }
 }
 </script>

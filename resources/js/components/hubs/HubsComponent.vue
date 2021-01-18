@@ -3,9 +3,8 @@
         <div class="flex pb-1 justify-between items-center">
             <div class="flex items-center space-x-1 font-medium">
                 <span class="iconify text-gray-700 dark:text-gray-400" data-icon="mdi:tag-multiple-outline" data-inline="false"></span>
-                <p class="transition-none text-gray-700 cursor-help dark:text-gray-400"
-                    title="Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir."
-                >Hablar</p>
+                <p class="transition-none text-gray-700 cursor-default dark:text-gray-400"
+                    title="Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir.">Hablar</p>
                 <!--                Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün-->
                 <!--                məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir - -->
                 <!--                yalnız maraqlı olan ocaqlara yazılmaq.-->
@@ -112,7 +111,7 @@ export default {
     methods: {
         async getHubs() {
             this.loading = true;
-            let dataFetchUrl = `${this.fetchUrl}?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
+            let dataFetchUrl = `${this.fetchUrl}?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&perPage=${this.perPage}`
             await axios.get(dataFetchUrl).then(({data}) => {
                 this.loading = false
                 if (data.data.length !== 0) {

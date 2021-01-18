@@ -97,7 +97,6 @@
 import {mixin as clickaway} from 'vue-clickaway'
 import axios from "axios"
 
-
 export default {
     mixins: [clickaway],
     props: ['user', 'fav', 'admin'],

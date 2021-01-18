@@ -102,9 +102,6 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin', 'middleware' => [
     Route::get('{path?}', 'HomeController@index')->where('path', '[\/\w\.-]*');
 });
 
-// FUTURE
-//Route::post('upvote', 'PostController@vote');
-
 Route::get('query', 'HomeController@indexTest');
 
 Route::get('/debug-sentry', function () {

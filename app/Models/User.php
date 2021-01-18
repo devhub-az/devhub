@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Jcc\LaravelVote\CanBeVoted;
 use Jcc\LaravelVote\Vote;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
@@ -28,7 +27,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens;
     use Vote;
     use Favoriter;
-    use CanBeVoted;
     use SoftDeletes;
     use HasRolesAndAbilities;
     use HasFactory;
@@ -125,12 +123,26 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->comments()->pluck('post_id')->toArray();
     }
 
-    //Trash
-
-    public function messagesNotificationsCount(): int
+    public function test()
     {
-        return $this->hasMany(Message::class, 'to_id', 'id')->whereNull('read_at')->count();
+        return 'test';
     }
 
-    //End trash
+    public static function upOrDownVote($user, $target, $type = 'up')
+    {
+        $hasVoted = $user->{'has' . ucfirst($type) . 'Voted'}($target);
+
+        if ($hasVoted) {
+            $user->cancelVote($target);
+            return false;
+        }
+
+//        if ($type === 'up') {
+//            $target->user->notify(new GotVote($type . '_vote', $user, $target));
+//        }
+
+        $user->{$type . 'Vote'}($target);
+
+        return true;
+    }
 }

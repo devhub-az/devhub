@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Auth;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -81,11 +80,6 @@ class Article extends Model
 //        return $this->belongsToMany(Comment::class, 'structure_tree', 'subject_id',
 //            'ancestor_id')->with('author')->withPivot('level')->orderBy('ancestor_id');
 //    }
-
-    public function isAuthUserUpvoted()
-    {
-        return (string) $this->isUpvotedBy((int) Auth::user());
-    }
 
     /**
      * @return array

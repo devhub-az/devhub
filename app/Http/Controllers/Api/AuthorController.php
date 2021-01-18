@@ -30,9 +30,9 @@ class AuthorController extends Controller
                     'rating',
                 ]
             )->with('followers', 'followings')->withCount('articles', 'followers', 'followings')->orderBy(
-                $request->get('column') ?? 'created_at',
-                $request->get('order') ?? 'DESC'
-            )->paginate(12)
+                $request->column ?? 'created_at',
+                $request->order ?? 'DESC'
+            )->paginate($request->perPage)
         );
     }
 

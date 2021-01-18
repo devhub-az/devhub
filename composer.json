@@ -15,7 +15,7 @@
         "graham-campbell/markdown": "^13.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "jackiedo/dotenv-editor": "^1.2",
-        "jcc/laravel-vote": "^1.1",
+        "jcc/laravel-vote": "dev-master",
         "ksubileau/color-thief-php": "^1.4",
         "laravel/framework": "^8.0",
         "laravel/passport": "^10.1",

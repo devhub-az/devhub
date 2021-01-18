@@ -127,7 +127,7 @@
                             </div>
                             <p class="text-sm dark:text-gray-300">Telegram kanalı <br> izləmək</p>
                         </div>
-                        <span class="iconify w-20 h-20" style="color: #0088cc;" data-icon="cib:telegram"
+                        <span class="iconify w-20 h-20 rounded-full dark:bg-white" style="color: #0088cc;" data-icon="cib:telegram"
                               data-inline="false"></span>
                     </a>
                 </div>

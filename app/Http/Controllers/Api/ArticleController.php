@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\VoteRequest;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Ramsey\Uuid\Uuid;
 use Str;
+use Throwable;
 
 class ArticleController extends Controller
 {
@@ -22,20 +25,20 @@ class ArticleController extends Controller
     public function index(): ArticlesResource
     {
         $articles = Article::with(
-                    [
-                        'creator' => function ($query) {
-                            $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
-                                'articles',
-                                'followers'
-                            );
-                        },
-                    ],
-                )->withcount(
-                    'views',
-                )->orderBy(
-                    'created_at',
-                    'DESC'
-                )->take(50)->paginate(5);
+            [
+                'creator' => function ($query) {
+                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
+                        'articles',
+                        'followers'
+                    );
+                },
+            ]
+        )->withcount(
+            'views',
+        )->orderBy(
+            'created_at',
+            'DESC'
+        )->take(50)->paginate(5);
 
         return new ArticlesResource($articles);
     }
@@ -78,5 +81,20 @@ class ArticleController extends Controller
 
             return new JsonResponse($exception->getMessage(), 500);
         }
+    }
+
+    /**
+     * @param VoteRequest $request
+     * @return JsonResponse
+     * @throws Throwable
+     */
+    public function vote(VoteRequest $request): JsonResponse
+    {
+        $user = auth()->user();
+
+        $article = Article::findOrFail($request->id);
+        ($request->type === 'up') ? User::upOrDownVote($user, $article) : User::upOrDownVote($user, $article, 'down');
+
+        return response()->json(['success' => 'success',]);
     }
 }

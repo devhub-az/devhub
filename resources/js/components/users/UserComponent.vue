@@ -124,7 +124,7 @@ export default {
         },
         async getUsers() {
             this.loading = true;
-            await axios.get(this.url + '?page=' + `?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`)
+            await axios.get(this.url + `?page=${this.pagination.current_page}&column=${this.sortedColumn}&order=${this.order}&perPage=${this.perPage}`)
                 .then(response => {
                     this.loading = false;
                     this.users = response.data.data;
