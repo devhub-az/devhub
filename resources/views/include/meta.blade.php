@@ -80,11 +80,7 @@
     <meta property="og:video:tag" content="devhub blog">
 @endisset
 
-<meta property="og:image" content="@yield('share-image', '')">
-<meta property="og:image:secure_url" content="@yield('share-image', '')">
-<meta property="og:image:type" content="image/svg+xml">
-<meta property="og:image:width" content="920">
-<meta property="og:image:height" content="520">
+<meta property="og:image" content="@yield('share-image', asset('images/DevHub_Compact_Logo.svg'))">
 <meta property="og:image:alt" content="@yield('image-alt', asset('images/DevHub_Compact_Logo.svg'))">
 
 <link rel="manifest" href="{{ asset('/images/favicon/site.webmanifest') }}">
