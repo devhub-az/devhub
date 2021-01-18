@@ -82,13 +82,13 @@ class ArticleTopController extends Controller
     {
         $author = User::findOrFail($request->user()->id);
         if ($author->followings->count() > 0) {
-            $authorsIds        = $author->followings->pluck('id');
-            $articleAuthors    = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
+            $authorsIds = $author->followings->pluck('id');
+            $articleAuthors = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
             $articleAuthorsIds = $this->favoriteIds($articleAuthors);
         }
         if ($author->getFavoriteItems(Hub::class)->count() > 0) {
-            $hubsIds        = $author->getFavoriteItems(Hub::class)->pluck('id');
-            $articleHubs    =
+            $hubsIds = $author->getFavoriteItems(Hub::class)->pluck('id');
+            $articleHubs =
                 Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
             $articleHubsIds = $this->favoriteIds($articleHubs);
         }
