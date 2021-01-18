@@ -10,6 +10,8 @@
 //    Route::post('post/image/cache', 'Api\PostController@upload_image');
 //Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
 
+Route::post('auth/checkEmail', 'Auth\LoginController@checkEmail');
+
 Route::prefix('articles')->group(function () {
     Route::get('/', 'Api\ArticleController@index')->middleware('api')->name('articles.index');
     Route::post('/', 'Api\ArticleController@store')->middleware('auth:api');

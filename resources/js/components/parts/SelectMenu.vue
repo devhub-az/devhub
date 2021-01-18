@@ -5,7 +5,7 @@
                 class="relative w-full bg-white border dark:bg-dpaper dark:border-gray-700 border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 focus:border-none sm:text-sm">
             <span class="flex items-center">
                 <span class="iconify transition-none "
-                      :class="selected.icon === 'bx:bxs-hot' ? 'text-red-400' : ''"
+                      :class="selected.icon === 'bx:bxs-hot' ? 'text-red-400' : 'dark:text-gray-300'"
                       :data-icon="selected.icon" data-inline="false"></span>
                 <span class="ml-1 block truncate dark:text-gray-300">
                     {{ selected.name }}
@@ -20,12 +20,12 @@
                 <ul class="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                     <li id="listbox-item-0" role="option"
                         class="text-gray-900 cursor-default select-none relative">
-                        <div class="flex items-center cursor-pointer px-3 hover:bg-gray-300" @click="ChangePage(page)"
+                        <div class="flex items-center cursor-pointer px-3 hover:bg-gray-300 group" @click="ChangePage(page)"
                              v-for="page in menu">
                             <span class="iconify transition-none"
-                                  :class="page.icon === 'bx:bxs-hot' ? 'text-red-400' : 'dark:text-gray-300'"
+                                  :class="page.icon === 'bx:bxs-hot' ? 'text-red-400' : 'dark:group-hover:text-black dark:text-gray-300'"
                                   :data-icon="page.icon" data-inline="false"></span>
-                            <span class="ml-1 block truncate dark:text-gray-300">
+                            <span class="ml-1 block truncate dark:text-gray-300 dark:group-hover:text-black">
                                 {{ page.name }}
                             </span>
                         </div>

@@ -32,7 +32,7 @@
     }
 
     .btn{
-        @apply cursor-pointer border xs:w-full focus:outline-none border-cerulean-100 text-sm rounded h-9 items-center inline-flex px-3 text-white bg-cerulean-100 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-600 hover:border-cerulean-300 dark:hover:border-cerulean-600
+        @apply cursor-pointer border xs:w-full focus:outline-none border-cerulean-100 text-sm rounded h-9 items-center inline-flex px-3 text-white bg-cerulean-100 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-300 hover:border-cerulean-300 dark:hover:border-cerulean-600
     }
 
     .btn-outline{

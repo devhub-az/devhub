@@ -42,12 +42,10 @@
         <div class="w-full">
             <div v-if="loading"
                  class="border-cerulean-600 text-white rounded bg-cerulean-600 hover:opacity-90 mb-2 px-2 py-3">
-                <div class="animate-spin">
-                    <span class="iconify mx-auto" data-icon="mdi-loading"></span>
-                </div>
+                <i class="mdi mdi-spin mdi-loading"/>
             </div>
             <button v-else type="submit"
-                    class="font-button border border-cerulean-300 w-full leading-4 rounded px-3 h-9 text-white bg-cerulean-100 hover:opacity-90">
+                    class="btn w-full mx-auto block">
                 Daxil olmaq
             </button>
         </div>

@@ -118,35 +118,9 @@ class ArticleController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param         $type
-     *
-     * @return mixed
-     * @throws ValidationException
-     */
-    public function postVoteComment(Request $request, $type): mixed
-    {
-        $this->validate(
-            $request,
-            [
-                'id' => 'required|exists:comments,id',
-            ]
-        );
-
-        $user = $request->user();
-
-        $post = Article::findOrFail($request->id);
-
-        ($type === 'upvote') ? User::upOrDownVote($user, $post) : User::upOrDownVote($user, $post, 'downvote');
-
-        return $this->response->withNoContent();
-    }
-
-    /**
-     * @param Request $request
+     * @param IdRequest $request
      *
      * @return JsonResponse
-     * @throws Exception
      */
     public function addFavorite(IdRequest $request): JsonResponse
     {
