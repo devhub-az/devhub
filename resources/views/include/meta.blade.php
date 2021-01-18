@@ -58,7 +58,7 @@
 {{--<meta property="fb:admins" content="{{ $setting->fb_admins }}">--}}
 
 <meta property="og:type" content="@yield('og-type', '-.-')">
-<meta property="og:title" content="@yield('title', 'DevHub')">
+<meta property="og:title" content="@yield('title' . ' | DevHub', 'DevHub')">
 <meta property="og:description"
       content="@yield('description', 'DevHub Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf qrupudur.')">
 <meta property="og:url" content="{{ Request::fullUrl() }}">
