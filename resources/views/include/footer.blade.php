@@ -29,11 +29,11 @@
                 </li>
             </ul>
         </div>
-        <div class="relative">
+        <div class="relative xs:px-4">
             <button type="button" aria-haspopup="listbox" aria-expanded="true"
                     @click="show = !show"
                     title="Coming soon"
-                    class="relative cursor-not-allowed text-black bg-gray-300 w-full bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 focus:border-none sm:text-sm">
+                    class="relative w-max xs:block xs:mx-auto xs:my-4 cursor-not-allowed text-black bg-gray-300 bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 focus:border-none sm:text-sm">
                 <span class="flex items-center">
                     <span class="iconify" data-icon="clarity:world-line" data-inline="false"></span>
                     <span class="ml-1 block truncate">
