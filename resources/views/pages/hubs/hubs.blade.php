@@ -16,7 +16,10 @@
             {{-- Right --}}
             <div class="content_right">
                 <div>
-                    <p class="font-bold text-base text-gray-700 mb-1 dark:text-gray-400">Ən sevimli</p>
+                    <div class="flex items-center space-x-1 font-bold text-base mb-1">
+                        <span class="iconify dark:text-gray-300" data-icon="mdi:trending-up" data-inline="false"></span>
+                        <p class="text-gray-700 dark:text-gray-400">Ən sevimli</p>
+                    </div>
                     <div class="mb-5 px-5 py-2 rounded bg-white dark:bg-dpaper border dark:border-gray-700">
                         @foreach ($top_hubs as $hub)
                             <a href="/hubs/{{ $hub['id'] ?? '' }}" class="grid grid-cols-list gap-3 mb-2">
@@ -36,7 +39,10 @@
                     </div>
                 </div>
                 <div>
-                    <p class="font-bold text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən</p>
+                    <div class="flex items-center space-x-1 font-bold text-base text-gray-700 mb-1 dark:text-gray-400">
+                        <span class="iconify dark:text-gray-300" data-icon="mdi:account-multiple-plus-outline" data-inline="false"></span>
+                        <p class="text-gray-700 dark:text-gray-400">Ən izləninən</p>
+                    </div>
 
                     <div class="mb-5 px-5 py-2 rounded bg-white dark:bg-dpaper border dark:border-gray-700">
                         @foreach ($top_followed_hubs as $hub)

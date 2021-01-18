@@ -46,17 +46,17 @@
                     <div
                         class="flex pb-2 xs:grid md:grid md:grid-flow-col md:text-center sm:grid sm:grid-flow-col sm:text-center xs:grid-flow-col xs:text-center">
                         <a href="{{ url('/') }}"
-                           class="border py-1 px-3 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 {{ Request::url() === url('/') ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border py-1 px-3 bg-afooter dark:bg-gray-800 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('/') ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Günün ən yaxşı paylaşmaları">
                             Gün
                         </a>
                         <a href="{{ url('top/week') }}"
-                           class="border py-1 px-3 hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border py-1 px-3 bg-afooter dark:bg-gray-800 hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
                             Həftə
                         </a>
                         <a href="{{ url('top/month') }}"
-                           class="border py-1 px-3 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border py-1 px-3 bg-afooter dark:bg-gray-800 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Ayın ən yaxşı paylaşmaları">
                             Ay
                         </a>

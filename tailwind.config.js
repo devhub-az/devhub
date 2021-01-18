@@ -71,6 +71,7 @@ module.exports = {
             footer: '#242729',
             dwall: '#171c20',
             dpaper: '#1d2023',
+            afooter: '#f9f9fb',
         },
         extend: {
             width: {

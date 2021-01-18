@@ -2,7 +2,7 @@
     <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
-            <div class="w-full mb-3 rounded bg-white dark:bg-dpaper border dark:border-gray-700"
+            <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
                  v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div
-                    class="grid lg:grid-cols-main border-t rounded-b text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
+                    class="grid lg:grid-cols-main border-t rounded-b text-sm bg-afooter dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
                     <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
                         <div class="flex items-center">
                             <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>

@@ -1,16 +1,17 @@
 <template>
     <div class="flex gap-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto"
-         :aria-label="item.attributes.votes_sum + ':  ↑ ' + [item.attributes.upvotes === 0 ? '0' : item.attributes.upvotes ] + ' ↓ ' + [item.attributes.downvotes === 0 ? '0' : item.downvotes]"
-         data-balloon-pos="left">
-        <span @click="upVote(item.id)" class="transition-none" :class="item.attributes.is_up_voted ? 'text-green-600' : ''">
-            <span class="hover:text-green-600 cursor-pointer iconify transition-none dark:text-gray-300"
+         :title="item.attributes.votes_sum + ':  ↑ ' + [item.attributes.upvotes === 0 ? '0' : item.attributes.upvotes ] + ' ↓ ' + [item.attributes.downvotes === 0 ? '0' : item.downvotes]">
+        <span @click="upVote(item.id)" class="transition-none"
+              :class="item.attributes.is_up_voted ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
+            <span class="hover:text-green-600 cursor-pointer iconify transition-none"
                   data-icon="mdi-thumb-up-outline"/>
         </span>
         <p class="dark:text-gray-300">
             {{ item.attributes.votes }}
         </p>
-        <span @click="downVote(item.id)" class="transition-none" :class="{'text-red-600' : item.attributes.is_down_voted}">
-            <span class="hover:text-red-600 cursor-pointer iconify transition-none dark:text-gray-300"
+        <span @click="downVote(item.id)" class="transition-none"
+              :class="item.attributes.is_down_voted ? 'text-red-600 dark:text-red-600' : 'dark:text-gray-300'">
+            <span class="hover:text-red-600 cursor-pointer iconify transition-none"
                   data-icon="mdi-thumb-down-outline"/>
         </span>
     </div>

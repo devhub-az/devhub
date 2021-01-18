@@ -2,23 +2,25 @@
     <div>
         <div class="flex pb-1 justify-between items-center">
             <div class="flex items-center space-x-1 font-medium">
-                <span class="iconify text-gray-700 dark:text-gray-400" data-icon="mdi:tag-multiple-outline" data-inline="false"></span>
+                <span class="iconify text-gray-700 dark:text-gray-400" data-icon="mdi:tag-multiple-outline"
+                      data-inline="false"></span>
                 <p class="transition-none text-gray-700 cursor-default dark:text-gray-400"
-                    title="Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir.">Hablar</p>
-                <!--                Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir. Onlar yalnız saytdakı bütün-->
-                <!--                məlumatları rahat şəkildə qurulmasına deyil, həm də istifadəçi qidasının formalaşmasına kömək edir - -->
-                <!--                yalnız maraqlı olan ocaqlara yazılmaq.-->
+                   title="Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir.">Hablar</p>
             </div>
-            <div class="ml-auto px-2 w-1/2 overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:hidden">
-                <div class="flex items-center font-medium text-gray-700 dark:text-gray-400" v-for="column in columns"
+            <div
+                class="ml-auto px-2 w-1/2 overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:hidden">
+                <div class="flex items-center cursor-pointer font-medium text-gray-700 dark:text-gray-400"
+                     v-for="column in columns"
                      :key="column.type"
                      @click="sortByColumn(column.type)">
                     <p class="transition-none xs:text-base">{{ column.name }}</p>
-                    <div v-if="order === 'asc' && column.type === sortedColumn">
-                        <span class="iconify font-light" data-icon="bi:arrow-up"></span>
+                    <div :class="order === 'desc' && column.type === sortedColumn ? 'block' : 'hidden'">
+                        <span class="iconify font-light dark:text-gray-300"
+                              data-icon="bi:arrow-up"></span>
                     </div>
-                    <div v-else-if="order === 'desc' && column.type === sortedColumn">
-                        <span class="iconify font-light" data-icon="bi:arrow-down"></span>
+                    <div :class="order === 'asc' && column.type === sortedColumn ? 'block' : 'hidden'">
+                        <span class="iconify font-light dark:text-gray-300"
+                              data-icon="bi:arrow-down"></span>
                     </div>
                 </div>
             </div>
@@ -37,25 +39,37 @@
             <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
                  alt="Hub logo">
             <a :href="'/hubs/' + hub.id" class="w-8/12">
-                <h2 class="font-semibold dark:text-gray-300">{{ hub.attributes.name }}</h2>
-                <p class="text-sm w-full font-light pb-2 xs:text-xs dark:text-gray-300">{{
-                        hub.attributes.description
-                    }}</p>
-                <div class="flex">
-                    <div class="text-sm flex items-center">
-                        <i class="iconify dark:text-gray-300" data-icon="mdi-text-box-multiple-outline"></i>
-                        <p class="ml-1 text-sm font-light dark:text-gray-300">
-                            <span class="xs:hidden">Paylaşım</span> {{ hub.attributes.articles_count }}
-                        </p>
+                <div class="flex items-center space-x-4 font-semibold dark:text-gray-300">
+                    <p>{{ hub.attributes.name }}</p>
+                    <div class="flex items-center font-normal space-x-1">
+                        <div class="flex items-center">
+                            <span class="iconify text-cerulean-500 dark:text-cerulean-100"
+                                  data-icon="mdi:account-multiple-plus-outline"
+                                  data-inline="false"></span>
+                            <p class="ml-1 text-sm text-cerulean-500 dark:text-cerulean-100">
+                                İzləyici {{ hub.attributes.hub_followers_count }}
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
+                                  data-inline="false"></span>
+                            <p class="ml-1 text-sm"
+                               :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : ''">
+                                Reyting {{ hub.attributes.rating }}
+                            </p>
+                        </div>
                     </div>
                 </div>
+                <p class="text-sm w-full font-light pb-2 xs:text-xs dark:text-gray-300">
+                    {{ hub.attributes.description }}
+                </p>
+                <div class="text-sm flex items-center">
+                    <i class="iconify dark:text-gray-300" data-icon="mdi-text-box-multiple-outline"></i>
+                    <p class="ml-1 text-sm font-light dark:text-gray-300">
+                        <span class="xs:hidden">Paylaşım</span> {{ hub.attributes.articles_count }}
+                    </p>
+                </div>
             </a>
-            <div class="w-1/12 m-auto text-center xs:hidden hover:hidden">
-                <div class="font-semibold dark:text-gray-300">{{ hub.attributes.hub_followers_count }}</div>
-            </div>
-            <div class="w-1/12 m-auto text-center xs:hidden">
-                <div class="font-semibold dark:text-gray-300">{{ hub.attributes.rating }}</div>
-            </div>
             <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check"
                                @follow-status-updated="hub.attributes.follower_check = $event" :auth_check="auth_check"
                                class="w-2/12 m-auto text-center"/>

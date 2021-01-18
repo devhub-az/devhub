@@ -1,15 +1,15 @@
 <template>
     <div class="flex">
         <div v-for="hub in data">
-            <div class="border relative rounded text-sm cursor-pointer px-2 mr-2 dark:text-gray-400"
-                 :class="(hub.follower_check ? 'bg-cerulean-500 border-cerulean-500 dark:border-cerulean-700 dark:hover:border-cerulean-700' : 'border-gray-200 hover:border-cerulean-500 dark:border-gray-700 text-gray-700 dark:hover:border-cerulean-700') + (hub.hover ? 'popup-active': '')"
+            <div class="border relative rounded text-sm cursor-pointer px-2 mr-2"
+                 :class="(hub.follower_check ? 'bg-cerulean-100 border-cerulean-100 text-white dark:text-gray-300 dark:border-cerulean-700 dark:hover:border-cerulean-700' : 'border-gray-200 dark:text-gray-300 hover:border-cerulean-500 dark:border-gray-700 text-gray-700 dark:hover:border-cerulean-700') + (hub.hover ? 'popup-active': '')"
                  @mouseover="hub.hover = true"
                  @mouseleave="hub.hover = false">
                 {{ hub.name }}
                 <div class="absolute rounded t-2 pt-2 -left-1/2 cursor-auto" v-if="hub.hover">
-                    <div class="w-80 p-2 shadow border rounded bg-white">
+                    <div class="w-80 p-2 shadow border rounded bg-white dark:bg-dpaper dark:border-gray-700">
                         <div class="flex pb-2">
-                            <img :src="'/' + hub.logo" alt="Hub logo" class="w-10 h-10 rounded border">
+                            <img :src="'/' + hub.logo" alt="Hub logo" class="w-10 h-10 rounded">
                             <div class="pl-2">
                                 <h3 class="font-semibold"><a :href="'/hubs/' + hub.id">{{ hub.name }}</a></h3>
                                 <div class="flex text-xs">
