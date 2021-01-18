@@ -130,10 +130,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static function upOrDownVote($user, $target, $type = 'up')
     {
-        $hasVoted = $user->{'has' . ucfirst($type) . 'Voted'}($target);
+        $hasVoted = $user->{'has'.ucfirst($type).'Voted'}($target);
 
         if ($hasVoted) {
             $user->cancelVote($target);
+
             return false;
         }
 
@@ -141,7 +142,7 @@ class User extends Authenticatable implements MustVerifyEmail
 //            $target->user->notify(new GotVote($type . '_vote', $user, $target));
 //        }
 
-        $user->{$type . 'Vote'}($target);
+        $user->{$type.'Vote'}($target);
 
         return true;
     }

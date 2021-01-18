@@ -95,6 +95,6 @@ class ArticleController extends Controller
         $article = Article::findOrFail($request->id);
         ($request->type === 'up') ? User::upOrDownVote($user, $article) : User::upOrDownVote($user, $article, 'down');
 
-        return response()->json(['success' => 'success',]);
+        return response()->json(['success' => 'success']);
     }
 }
