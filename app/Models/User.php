@@ -122,28 +122,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->comments()->pluck('post_id')->toArray();
     }
-
-    public function test()
-    {
-        return 'test';
-    }
-
-    public static function upOrDownVote($user, $target, $type = 'up')
-    {
-        $hasVoted = $user->{'has'.ucfirst($type).'Voted'}($target);
-
-        if ($hasVoted) {
-            $user->cancelVote($target);
-
-            return false;
-        }
-
-//        if ($type === 'up') {
-//            $target->user->notify(new GotVote($type . '_vote', $user, $target));
-//        }
-
-        $user->{$type.'Vote'}($target);
-
-        return true;
-    }
 }
