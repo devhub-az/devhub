@@ -55,8 +55,8 @@ export default {
                             this.item.attributes.is_down_voted = !this.item.attributes.is_down_voted
                         }
                     }
-                }).catch((response) => {
-                if (response.status === 401) {
+                }).catch((err) => {
+                if (err.response.status === 401) {
                     window.location = '/login';
                 }
             })

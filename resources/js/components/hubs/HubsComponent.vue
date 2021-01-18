@@ -47,7 +47,8 @@
                                   data-icon="mdi:account-multiple-plus-outline"
                                   data-inline="false"></span>
                             <p class="ml-1 text-sm text-cerulean-500 dark:text-cerulean-100">
-                                İzləyici {{ hub.attributes.hub_followers_count }}
+                                <span class="xs:hidden">İzləyici</span>
+                                {{ hub.attributes.hub_followers_count }}
                             </p>
                         </div>
                         <div class="flex items-center">
@@ -55,7 +56,8 @@
                                   data-inline="false"></span>
                             <p class="ml-1 text-sm"
                                :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : ''">
-                                Reyting {{ hub.attributes.rating }}
+                                <span class="xs:hidden">Reyting</span>
+                                {{ hub.attributes.rating }}
                             </p>
                         </div>
                     </div>
