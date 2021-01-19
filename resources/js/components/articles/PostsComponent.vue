@@ -1,6 +1,6 @@
 <template>
     <div class="mb-3">
-        <posts-loading v-if="!loading"/>
+        <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
             <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
                  v-for="post in posts">
