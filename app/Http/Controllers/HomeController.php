@@ -54,6 +54,7 @@ class HomeController extends Controller
             default:
                 abort(404);
         }
+
         return response("User can't perform this action.", 500);
     }
 }
