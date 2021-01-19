@@ -50,12 +50,12 @@
 @include('include.header')
 
 <div id="scroller"
-     class="hidden hover:bg-gray-200 cursor-pointer text-center h-screen w-10 my-auto z-50 opacity-40 xs:hidden">
+     class="hidden hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer text-center h-screen w-10 my-auto z-50 opacity-40 xs:hidden">
     <div id="mdi-chevron-up" class="relative top-1/2">
-        <span class="iconify text-2xl w-full" data-icon="bi:arrow-up-circle" data-inline="false"></span>
+        <span class="iconify text-2xl w-full dark:text-gray-300" data-icon="bi:arrow-up-circle" data-inline="false"></span>
     </div>
     <div id="mdi-chevron-down" class="hidden relative top-1/2">
-        <span class="iconify text-2xl w-full" data-icon="bi:arrow-down-circle" data-inline="false"></span>
+        <span class="iconify text-2xl w-full dark:text-gray-300" data-icon="bi:arrow-down-circle" data-inline="false"></span>
     </div>
 </div>
 
