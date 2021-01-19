@@ -1,26 +1,20 @@
 <template>
-    <ul id="animation" class="flex mb-2 left-0 w-screen py-6 animation xs:hidden md:hidden sm:hidden">
-        <li v-for="hub in hubs" class="flex flex-shrink-0 shadow gap-4 border mx-2 p-2 w-3/12 bg-white rounded dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
-            <img v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
-                 alt="Hub logo">
-            <a :href="'/hubs/' + hub.id" class="">
-                <h2 class="font-semibold mb-1">{{ hub.attributes.name }}</h2>
-                <p class="text-xs w-full font-light xs:text-xs">
-                    {{ hub.attributes.description }}
-                </p>
-            </a>
-        </li>
-        <li v-for="hub in hubs.slice(0,4)" class="flex flex-shrink-0 shadow gap-4 border mx-2 p-2 w-3/12 bg-white rounded dark:bg-transparent dark:text-gray-300 dark:border-gray-700">
-            <img v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
-                 alt="Hub logo">
-            <a :href="'/hubs/' + hub.id" class="text-inherit">
-                <h2 class="font-semibold mb-1">{{ hub.attributes.name }}</h2>
-                <p class="text-xs w-full font-light xs:text-xs">
-                    {{ hub.attributes.description }}
-                </p>
-            </a>
-        </li>
-    </ul>
+    <div class="relative flex slider dark:slider overflow-hidden">
+        <ul class="flex mb-2 left-0 w-full py-6 animation xs:hidden md:hidden sm:hidden">
+            <li v-for="hub in hubs"
+                class="flex flex-shrink-0 mx-4 p-2 w-max bg-white rounded dark:bg-dpaper dark:text-gray-300">
+                <img v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
+                     alt="Hub logo">
+            </li>
+        </ul>
+        <ul class="flex mb-2 left-0 w-full py-6 animation xs:hidden md:hidden sm:hidden">
+            <li v-for="hub in hubs"
+                class="flex flex-shrink-0 mx-4 p-2 w-max bg-white rounded dark:bg-dpaper dark:text-gray-300">
+                <img v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
+                     alt="Hub logo">
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -153,12 +147,46 @@ export default {
 
 <style>
 .animation {
-    animation: animation 40s linear infinite;
+    animation: animation 60s linear infinite;
+}
+
+.slider:hover .animation {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    -o-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
+.dark .dark\:slider:after {
+    content: "";
+    background: linear-gradient(to right, #171c20 0, rgb(255 255 255 / 0%) 50%, rgb(23 28 32 / 0%) 50%, #171c20 100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.slider:after {
+    content: "";
+    background: linear-gradient(to right, #f4f4f4 0, rgb(255 255 255 / 0%) 50%, rgb(23 28 32 / 0%) 50%, #f4f4f4 100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
 
 @keyframes animation {
+    0% {
+        -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
+        transform: translateX(0);
+    }
     100% {
-        transform: translateX(calc(-198vw - 10.5rem));
+        -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        transform: translateX(-100%);
     }
 }
 </style>

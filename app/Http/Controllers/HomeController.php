@@ -6,6 +6,7 @@ use App\Http\Resources\AuthorsResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Hub;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -40,8 +41,8 @@ class HomeController extends Controller
                 session(['main-page' => '/all']);
 
                 return view('pages.home', ['url' => '/api/articles', 'top_followed_hubs' => $top_followed_hubs, 'lastAuthors' => $lastAuthors]);
-            case 'favorite' && \Auth::user()->followings(Hub::class)->count() !== null
-                && \Auth::user()
+            case 'favorite' && Auth::user()->followings(Hub::class)->count() !== null
+                && Auth::user()
                     ->followings()
                     ->count() !== null:
                 session(['main-page' => '/favorite']);
@@ -53,5 +54,6 @@ class HomeController extends Controller
             default:
                 abort(404);
         }
+        return response("User can't perform this action.", 500);
     }
 }
