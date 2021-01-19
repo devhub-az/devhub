@@ -32,31 +32,27 @@
         </div>
         <div
             class="grid lg:grid-cols-main md:grid-cols-main border-t dark:bg-gray-800 dark:border-gray-700 text-sm bg-gray-100 mt-2 px-3.5 py-2">
-            <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
+            <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                 <div class="flex items-center">
                     <i class="iconify" data-icon="mdi-eye-outline"/>
                     <div class="animate-spin ml-1">
                         <span class="iconify" data-icon="mdi-loading"></span>
                     </div>
-                    <p class="ml-1 xs:hidden sm:hidden">Baxışların sayı</p>
                 </div>
-                <div class="pl-2 flex items-center">
-                    <i class="iconify" data-icon="mdi-comment-text-multiple-outline"/>
+                <div class=" flex items-center">
+                    <i class="iconify" data-icon="bx:bx-comment-detail"/>
                     <div class="animate-spin ml-1">
                         <span class="iconify" data-icon="mdi-loading"></span>
                     </div>
-                    <div class="xs:hidden">Şerh</div>
                 </div>
-                <div class="flex items-center pl-2">
-                    <i class="iconify" data-icon="mdi-bookmark"/>
+                <div class="flex items-center ">
+                    <i class="iconify" data-icon="fa-solid:save"/>
                     <div class="animate-spin ml-1">
                         <span class="iconify" data-icon="mdi-loading"></span>
                     </div>
-                    <div class="ml-1 xs:hidden">Seçilmiş</div>
                 </div>
-                <div class="flex items-center pl-2">
-                    <i class="iconify" data-icon="mdi-share"/>
-                    <div class="ml-1 xs:hidden">Paylaş</div>
+                <div class="flex items-center ">
+                    <i class="iconify" data-icon="fa-solid:share-alt"/>
                 </div>
             </div>
             <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden">

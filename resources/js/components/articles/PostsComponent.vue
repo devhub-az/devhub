@@ -1,6 +1,6 @@
 <template>
     <div class="mb-3">
-        <posts-loading v-if="loading"/>
+        <posts-loading v-if="!loading"/>
         <div v-if="!loading && !postsEmpty">
             <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
                  v-for="post in posts">
@@ -40,26 +40,23 @@
                     </div>
                 </div>
                 <div
-                    class="grid lg:grid-cols-main border-t rounded-b text-sm bg-afooter dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
-                    <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
+                    class="grid lg:grid-cols-main border-t rounded-b text-sm bg-afooter dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 h-10">
+                    <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                         <div class="flex items-center">
-                            <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
-                            <p class="ml-1 dark:text-gray-300">{{ post.attributes.views }}</p>
-                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">baxış</p>
+                            <i class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-eye-outline"/>
+                            <p class="ml-1 text-gray-500 dark:text-gray-300">{{ post.attributes.views }}</p>
                         </div>
-                        <div class="pl-2">
+                        <div>
                             <a :href="'/post/' + post.id + '#comments'" class="flex items-center">
-                                <i class="iconify dark:text-gray-300" data-icon="mdi-comment-text-multiple-outline"/>
-                                <p class="ml-1 dark:text-gray-300">{{
-                                        post.comments_count ? post.comments_count : 'X'
-                                    }}</p>
-                                <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Şərh</p>
+                                <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
+                                <p class="ml-1 text-gray-500 dark:text-gray-300">
+                                    {{ post.comments_count ? post.comments_count : '0' }}
+                                </p>
                             </a>
                         </div>
                         <favorite :post="post" :auth_check="auth_check"/>
-                        <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
-                            <i class="iconify dark:text-gray-300" data-icon="mdi-share"/>
-                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaşın</p>
+                        <div class=" flex items-center cursor-pointer" @click="copy(post.id)">
+                            <span class="iconify text-gray-500 dark:text-gray-300" data-icon="fa-solid:share-alt" data-inline="false"></span>
                         </div>
                     </div>
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
@@ -88,7 +85,8 @@
              class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border py-10">
             <div class="w-2/3 mx-auto space-y-4 xs:w-full xs:px-4">
                 <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
-                    <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline" data-inline="false"></span>
+                    <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline"
+                          data-inline="false"></span>
                     <p class="dark:text-gray-300">Paylaşma tapılmadı</p>
                 </div>
                 <p class="font-light text-center dark:text-gray-400">

@@ -6,24 +6,28 @@
              @mouseover="hub.hover = true"
              @mouseleave="hub.hover = false">
             {{ hub.name }}
-            <div class="absolute rounded t-2 pt-2 -left-1/2 cursor-auto" v-if="hub.hover">
-                <div class="w-80 p-2 shadow border rounded bg-white dark:bg-dpaper dark:border-gray-700">
-                    <div class="flex pb-2">
-                        <img :src="'/' + hub.logo" alt="Hub logo" class="w-10 h-10 rounded">
-                        <div class="pl-2">
-                            <h3 class="font-semibold"><a :href="'/hubs/' + hub.id">{{ hub.name }}</a></h3>
-                            <div class="flex text-xs">
-                                <p>{{ hub.hub_followers_count }} izləyən</p>
-                                <p class="ml-2">{{ hub.rating }} reyting</p>
+            <transition @before-enter="beforeEnter"
+                        @after-enter="afterEnter"
+                        @before-leave="beforeLeave">
+                <div class="absolute rounded t-2 pt-2 -left-1/2 cursor-auto z-50" v-if="hub.hover">
+                    <div class="w-80 p-2 shadow border rounded bg-white dark:bg-dpaper dark:border-gray-700">
+                        <div class="flex pb-2">
+                            <img :src="'/' + hub.logo" alt="Hub logo" class="w-10 h-10 rounded">
+                            <div class="pl-2">
+                                <h3 class="font-semibold"><a :href="'/hubs/' + hub.id">{{ hub.name }}</a></h3>
+                                <div class="flex text-xs">
+                                    <p>{{ hub.hub_followers_count }} izləyən</p>
+                                    <p class="ml-2">{{ hub.rating }} reyting</p>
+                                </div>
                             </div>
                         </div>
+                        <p class="text-sm">{{ hub.description }}</p>
+                        <hub-follow-button :id="hub.id" :follower_check="hub.follower_check"
+                                           @follow-status-updated="hub.follower_check = $event" :auth_check="auth_check"
+                                           class="py-3 w-max"/>
                     </div>
-                    <p class="text-sm">{{ hub.description }}</p>
-                    <hub-follow-button :id="hub.id" :follower_check="hub.follower_check"
-                                       @follow-status-updated="hub.follower_check = $event" :auth_check="auth_check"
-                                       class="py-3 w-max"/>
                 </div>
-            </div>
+            </transition>
         </div>
     </div>
 </template>
@@ -35,6 +39,32 @@ export default {
         this.data.forEach((item) => {
             this.$set(item, 'hover', false)
         })
+    },
+    methods: {
+        beforeEnter: function (el) {
+            setTimeout(function () {
+                el.classList.add("opacity")
+            }, 2000)
+        },
+        afterEnter: function(el) {
+            el.style.paddingLeft = `${10 * +el.dataset.index}px`;
+            el.style.opacity = '1';
+        },
+        beforeLeave: function(el) {
+            el.style.paddingLeft = '0px';
+            el.style.opacity = '0';
+        }
     }
 }
 </script>
+
+<style scoped>
+.fade-leave-active {
+    transition: opacity;
+}
+
+.fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+    opacity: 0;
+}
+</style>

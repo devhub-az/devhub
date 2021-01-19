@@ -6,9 +6,11 @@
             <span class="hover:text-green-600 cursor-pointer iconify transition-none"
                   data-icon="mdi-thumb-up-outline"/>
         </span>
-        <p class="dark:text-gray-300">
-            {{ item.attributes.votes }}
-        </p>
+        <transition name="slide" mode="out-in">
+            <p class="mx-0.5 relative dark:text-gray-300" :key="item.attributes.votes">
+                {{ item.attributes.votes }}
+            </p>
+        </transition>
         <span @click="downVote(item.id)" class="transition-none"
               :class="item.attributes.is_down_voted ? 'text-red-600 dark:text-red-600' : 'dark:text-gray-300'">
             <span class="hover:text-red-600 cursor-pointer iconify transition-none"
@@ -64,3 +66,30 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.slide-enter {
+    top: 10px;
+    opacity: 0.5;
+}
+
+.slide-enter-active, .slide-leave-active {
+    transition: all .35s;
+}
+
+.slide-enter-to {
+    top: 0px;
+    opacity: 1;
+}
+
+.slide-leave {
+    top: 0px;
+    opacity: 1;
+}
+
+.slide-leave-to {
+    top: -30px;
+    opacity: 0;
+    transform: blur(8px);
+}
+</style>
