@@ -49,6 +49,7 @@ class CheckUser
             $request->user()->last_active = $this->carbon->now();
             $request->user()->save();
         }
+
         return $next($request);
     }
 }
