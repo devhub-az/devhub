@@ -1,0 +1,19 @@
+name: Test Laravel Github action
+on: [ workflow_dispatch ]
+
+jobs:
+  laravel-tests:
+    runs-on: ubuntu-latest
+# Service container Mysql mysql
+    services:
+    - name: Browser Test - upgrade and start Chrome Driver
+      run: |
+        composer require --dev laravel/dusk
+        php artisan dusk:chrome-driver
+        ./vendor/laravel/dusk/bin/chromedriver-linux > /dev/null 2>&1 &
+    - name: Run Dusk Tests
+      run: |
+        php artisan serve > /dev/null 2>&1 &
+        chmod -R 0755 vendor/laravel/dusk/bin/
+        php artisan migrate
+        php artisan dusk
