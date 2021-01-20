@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $dates    = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'id',
@@ -90,7 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'deleted_at',
     ];
 
-    protected $casts  = [
+    protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
@@ -129,6 +129,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function isOnline()
     {
-        return Cache::has('user-online-' . $this->id);
+        return Cache::has('user-online-'.$this->id);
     }
 }
