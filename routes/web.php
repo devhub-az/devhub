@@ -98,6 +98,9 @@ Route::group([], static function () {
 //    Route::resource('users', 'UsersController');
 //});
 
+/** Generate Sitemap */
+Route::get('/first_sitemap', 'SitemapController@firstSitemap')->name('sitemap.first');
+
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('{path?}', 'HomeController@index')->where('path', '[\/\w\.-]*');
 });

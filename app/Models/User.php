@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Cache;
 use Jcc\LaravelVote\Vote;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
@@ -57,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates    = ['deleted_at'];
 
     protected $fillable = [
         'id',
@@ -89,7 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'deleted_at',
     ];
 
-    protected $casts = [
+    protected $casts  = [
         'email_verified_at' => 'datetime',
     ];
 
@@ -121,5 +122,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getCommentsIdsAuthor(): array
     {
         return $this->comments()->pluck('post_id')->toArray();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isOnline()
+    {
+        return Cache::has('user-online-' . $this->id);
     }
 }

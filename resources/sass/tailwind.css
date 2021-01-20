@@ -162,7 +162,7 @@
     }
 }
 
-* {
+*:not(.iconify) {
     @apply transition-all duration-200 ease-in;
 }
 

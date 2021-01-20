@@ -30,23 +30,37 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'sparkpost' => [
-        'secret' => env('SPARKPOST_SECRET'),
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_URL'),
     ],
 
-    'stripe' => [
-        'model'   => App\Models\User::class,
-        'key'     => env('STRIPE_KEY'),
-        'secret'  => env('STRIPE_SECRET'),
-        'webhook' => [
-            'secret'    => env('STRIPE_WEBHOOK_SECRET'),
-            'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
-        ],
+    'twitter' => [
+        'client_id'     => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect'      => env('TWITTER_URL'),
     ],
 
     'github' => [
         'client_id'     => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect'      => env('GITHUB_REDIRECT_URL'),
+        'redirect'      => env('GITHUB_URL'),
     ],
+
+    'gitlab' => [
+        'client_id'     => env('GITLAB_CLIENT_ID'),
+        'client_secret' => env('GITLAB_CLIENT_SECRET'),
+        'redirect'      => env('GITLAB_URL'),
+    ],
+
+    'cloudflare' => [
+        'api_key' => env('CLOUDFLARE_API_KEY'),
+        'email'   => env('CLOUDFLARE_EMAIL'),
+    ],
+
+    'paddle' => [
+        'public_key' => env('PADDLE_PUBLIC_KEY'),
+    ],
+
 ];

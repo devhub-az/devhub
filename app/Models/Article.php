@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jcc\LaravelVote\CanBeVoted;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Post.
@@ -23,6 +24,10 @@ class Article extends Model
     use CanBeVoted;
     use HasFactory;
     use Favoriteable;
+    use QueryCacheable;
+
+    /** @var int */
+    protected $cacheFor = 15;
 
     protected $vote = User::class;
 

@@ -78,9 +78,14 @@
                                 class="overflow-hidden rounded bg-white dark:bg-transparent text-black px-5 py-4 space-y-4">
                                 @foreach ($lastAuthors as $author)
                                     <div class="flex items-start gap-3 mb-2">
-                                        <img
-                                            src="{{ ($author->avatar !== 'default') ? $author->avatar : config('devhub.default_avatar') }}"
-                                            alt="hub image" class="w-12 h-12 rounded-lg">
+                                        <div class="relative w-12 h-12">
+                                            <img
+                                                src="{{ ($author->avatar !== 'default') ? $author->avatar : config('devhub.default_avatar') }}"
+                                                alt="hub image" class="w-12 h-12 rounded">
+                                            @if ($author->isOnline())
+                                                <div class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
+                                            @endif
+                                        </div>
                                         <div>
                                             <a href="{{ route('user_info', $author->username) }}"
                                                class="font-semibold text-sm align-text-top dark:text-gray-300">

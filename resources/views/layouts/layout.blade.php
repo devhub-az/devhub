@@ -24,6 +24,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
+    <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -35,10 +36,6 @@
             ]
         ); ?>
     </script>
-
-    <style>
-        {{ include('css/tailwind.css') }}
-    </style>
     @yield('styles')
 </head>
 
@@ -73,8 +70,8 @@
 
 {{-- Footer --}}
 @include('include.footer')
-<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
-<script type="text/javascript" src="{{ mix('js/scroller.js') }}"></script>
+<script src="//code.iconify.design/1/1.0.6/iconify.min.js" async></script>
+<script type="text/javascript" src="{{ mix('js/scroller.js') }}" defer></script>
 @stack('scripts')
 </body>
 </html>

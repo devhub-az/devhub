@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
                 $table->dateTime('last_activity')->nullable();
                 $table->string('website')->nullable();
                 $table->dateTime('email_verified_at')->nullable();
+                $table->dateTime('last_active')->nullable();
                 $table->enum('email_notify_enabled', ['yes', 'no'])->default('yes')->index();
                 $table->rememberToken();
                 $table->timestamps();
