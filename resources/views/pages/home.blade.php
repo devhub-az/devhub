@@ -116,7 +116,7 @@
                                             </p>
                                             <div class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
                                                 <span class="iconify" data-icon="mdi:account-group-outline" data-inline="false"></span>
-                                                <p>İzləyicilər {{ $hub->hub_followers_count ?? '' }}</p>
+                                                <p>İzləyicilər {{ $hub->favorites_count ?? '' }}</p>
                                             </div>
                                         </div>
                                     </a>
