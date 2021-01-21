@@ -40,6 +40,7 @@ class admin extends Command
     {
         $email = $this->ask('email');
         User::where('email', $email)->update(['isAdmin' => 1]);
+
         return 'Done';
     }
 }
