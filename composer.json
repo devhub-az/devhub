@@ -28,8 +28,7 @@
     "overtrue/laravel-favorite": "^3.0",
     "overtrue/laravel-follow": "^2.2",
     "parsedown/laravel": "^1.1",
-    "rennokki/laravel-eloquent-query-cache": "2.5.1",
-    "silber/bouncer": "v1.0.0-rc.10",
+    "rennokki/laravel-eloquent-query-cache": "^2.5",
     "spatie/laravel-sitemap": "^5.9"
   },
   "require-dev": {

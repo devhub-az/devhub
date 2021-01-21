@@ -23,5 +23,5 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
     .vue()
 
 if (mix.inProduction()) {
-    mix.version()
+    mix.version().sourceMaps();
 }
