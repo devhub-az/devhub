@@ -52,10 +52,10 @@ Route::group([], static function () {
     // Hubs view
     Route::prefix('hubs')->group(static function () {
         Route::get('/', 'HubController@index')->name('hubs-list');
-        Route::get('/{id}', 'HubController@show');
-        Route::get('/{id}/top/week', 'HubController@show');
-        Route::get('/{id}/top/month', 'HubController@show');
-        Route::get('/{id}/all', 'HubController@show');
+        Route::get('/{slug}', 'HubController@show');
+        Route::get('/{slug}/top/week', 'HubController@show');
+        Route::get('/{slug}/top/month', 'HubController@show');
+        Route::get('/{slug}/all', 'HubController@show');
     });
 
     //Search view

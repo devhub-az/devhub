@@ -9,7 +9,7 @@
             <transition @before-enter="beforeEnter"
                         @after-enter="afterEnter"
                         @before-leave="beforeLeave">
-                <div class="absolute rounded t-2 pt-2 -left-1/2 cursor-auto z-50" v-if="hub.hover">
+                <div class="absolute rounded t-2 pt-2 left-0 cursor-auto z-50" v-if="hub.hover">
                     <div class="w-80 p-2 shadow border rounded bg-white dark:bg-dpaper dark:border-gray-700">
                         <div class="flex pb-2">
                             <img :src="'/' + hub.logo" alt="Hub logo" class="w-10 h-10 rounded">
@@ -21,7 +21,6 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-sm">{{ hub.description }}</p>
                         <hub-follow-button :id="hub.id" :follower_check="hub.follower_check"
                                            @follow-status-updated="hub.follower_check = $event" :auth_check="auth_check"
                                            class="py-3 w-max"/>

@@ -36,9 +36,9 @@
         <div v-for="hub in hubs" v-if="!loading"
              class="flex gap-4 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700"
              :id="hub.id + '_block'">
-            <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1" :src="hub.attributes.logo"
+            <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1 dark:bg-dwall" :src="hub.attributes.logo"
                  alt="Hub logo">
-            <a :href="'/hubs/' + hub.id" class="w-8/12">
+            <a :href="'/hubs/' + hub.attributes.slug" class="w-8/12">
                 <div class="flex items-center space-x-4 font-semibold dark:text-gray-300">
                     <p>{{ hub.attributes.name }}</p>
                     <div class="flex items-center font-normal space-x-1">
@@ -108,7 +108,7 @@ export default {
     },
     data: function () {
         return {
-            perPage: 10,
+            perPage: 40,
             sortedColumn: 'rating',
             order: 'desc',
             error: false,

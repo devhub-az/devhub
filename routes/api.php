@@ -70,10 +70,10 @@ Route::prefix('hubs')->group(function () {
     Route::get('/', 'Api\HubController@index')->middleware('api')->name('hubs.index');
     Route::get('/{hub}', 'Api\HubController@show')->middleware('api')->name('hubs.show');
     Route::get('/filter/all', 'Api\HubController@all')->middleware('api')->name('hubs.all');
-    Route::get('{id}/top/day', 'Api\PostHubController@posts');
-    Route::get('{id}/top/week', 'Api\PostHubController@posts');
-    Route::get('{id}/top/month', 'Api\PostHubController@posts');
-    Route::get('{id}/all', 'Api\PostHubController@all');
+    Route::get('{hub}/top/day', 'Api\PostHubController@posts');
+    Route::get('{hub}/top/week', 'Api\PostHubController@posts');
+    Route::get('{hub}/top/month', 'Api\PostHubController@posts');
+    Route::get('{hub}/all', 'Api\PostHubController@all');
     Route::post('/follow/{id}', 'Api\HubController@follow');
 });
 Route::get('/search_hub', 'Api\HubController@search_hub_by_key');

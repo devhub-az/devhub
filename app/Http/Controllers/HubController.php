@@ -8,6 +8,7 @@ use App\Models\Hub;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 class HubController extends Controller
 {
@@ -19,41 +20,42 @@ class HubController extends Controller
     public function postsApiRoute(int $id)
     {
         switch (request()->path()) {
-            case 'hubs/'.$id:
-                return '/api/hubs/'.$id.'/top/day';
-            case 'hubs/'.$id.'/top/week':
-                return '/api/hubs/'.$id.'/top/week';
-            case 'hubs/'.$id.'/top/month':
-                return '/api/hubs/'.$id.'/top/month';
-            case 'hubs/'.$id.'/all':
-                return '/api/hubs/'.$id.'/all';
+            case 'hubs/' . $id:
+                return '/api/hubs/' . $id . '/top/day';
+            case 'hubs/' . $id . '/top/week':
+                return '/api/hubs/' . $id . '/top/week';
+            case 'hubs/' . $id . '/top/month':
+                return '/api/hubs/' . $id . '/top/month';
+            case 'hubs/' . $id . '/all':
+                return '/api/hubs/' . $id . '/all';
             default:
                 return response()->json(['message' => 'not found'], 404);
         }
     }
 
     /**
-     * @param int $id
+     * @param Request $request
+     * @param string  $slug
      * @return Application|Factory|View
      */
-    public function show(int $id)
+    public function show(Request $request, string $slug)
     {
-        $hub = new HubResource(Hub::withCount('favorites')->findOrFail($id));
+        $hub = new HubResource(Hub::withCount('favorites', 'articles')->where('slug', $slug)->firstOrFail());
 
         return view(
             'pages.hubs.show',
             [
-                'hub'         => $hub,
-                'posts_count' => $hub->posts->count(),
-                'url'         => $this->postsApiRoute($id),
-                'content'     => $this->content,
+                'hub'            => $hub,
+                'articles_count' => $hub->articles_count,
+                'url'            => $this->postsApiRoute($hub->id),
+                'content'        => $this->content,
             ]
         );
     }
 
     public function index()
     {
-        $top_hubs = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
+        $top_hubs          = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
             Hub::withCount('favorites')->orderBy(
                 'favorites_count',

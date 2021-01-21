@@ -17,12 +17,14 @@ class HubResource extends JsonResource
             'id'         => (int) $this->id,
             'attributes' => [
                 'name'                => $this->name,
-                'logo'                => ($this->logo) ? '/'.strtolower($this->logo) : '/images/empty/code.png',
+                'slug'                => $this->slug,
+                'logo'                => ($this->logo) ? '/' . strtolower($this->logo) : '/images/empty/code.png',
                 'rating'              => $this->rating,
-                'description'         => $this->description['az'],
+//                'description'         => $this->description['az'],
                 'hub_followers_count' => $this->favorites_count > 0 ?
                     Numeric::number_format_short($this->favorites_count) : '0',
-                'follower_check'      => auth()->guard('api')->id() ? $this->isFavoritedBy(auth()->guard('api')->user()) : false,
+                'follower_check'      => auth()->guard('api')->id() ? $this->isFavoritedBy(auth()->guard('api')->user())
+                    : false,
                 'articles_count'      => $this->articles_count,
             ],
             //            'relationships' => new ($this),
