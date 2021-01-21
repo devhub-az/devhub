@@ -39,7 +39,7 @@ class admin extends Command
     public function handle()
     {
         $email = $this->ask('email');
-        User::where('email', $email)->update(['isAdmin' => 1]);
+        User::where('email', $email)->update(['is_admin' => 1]);
         return 'Done';
     }
 }
