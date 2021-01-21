@@ -1,5 +1,5 @@
 @auth
-    @if(auth()->user()->username === 'hose1021')
+    @if(auth()->user()->is_admin)
         @include('admin.include.adminbar')
     @endif
 @endif
