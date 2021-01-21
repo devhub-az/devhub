@@ -17,6 +17,7 @@ class PostService
         $q = Article::with('creator:id,username,avatar')
             ->withcount('upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments');
 
+
         if ($orderBy !== null) {
             $q->orderBy($orderBy, 'DESC');
         }

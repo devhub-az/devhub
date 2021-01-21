@@ -16,13 +16,12 @@ class LogoUploadService
     {
         $user = \Auth::user();
         $fileName = time().'.'.$request->logo->extension();
-        if ($user->avatar) {
-            \File::delete('upload/user_'.$userId.'/logo/'.$user->avatar);
+        if ($user->avatar){
+            \File::delete('upload/user_' . $userId . '/logo/' . $user->avatar);
         }
-        $request->logo->move(public_path('upload/user_'.$userId.'/logo'), $fileName);
+        $request->logo->move(public_path('upload/user_' . $userId . '/logo'), $fileName);
         $user->avatar = $fileName;
         $user->save();
-
         return true;
     }
 }
