@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function postsApiRoute(Request $request)
     {
-        $lastAuthors       = new AuthorsResource(User::orderBy('created_at', 'DESC')->take(5)->get());
+        $lastAuthors = new AuthorsResource(User::orderBy('created_at', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
             Hub::withCount('favorites')->orderBy(
                 'favorites_count',
@@ -27,8 +27,8 @@ class HomeController extends Controller
                 return view(
                     'pages.home',
                     ['url'               => '/api/articles/filter/day',
-                     'top_followed_hubs' => $top_followed_hubs,
-                     'lastAuthors'       => $lastAuthors,
+                        'top_followed_hubs' => $top_followed_hubs,
+                        'lastAuthors'       => $lastAuthors,
                     ]
                 );
             case 'top/week':
@@ -37,8 +37,8 @@ class HomeController extends Controller
                 return view(
                     'pages.home',
                     ['url'               => '/api/articles/filter/week',
-                     'top_followed_hubs' => $top_followed_hubs,
-                     'lastAuthors'       => $lastAuthors,
+                        'top_followed_hubs' => $top_followed_hubs,
+                        'lastAuthors'       => $lastAuthors,
                     ]
                 );
             case 'top/month':
@@ -47,8 +47,8 @@ class HomeController extends Controller
                 return view(
                     'pages.home',
                     ['url'               => '/api/articles/filter/month',
-                     'top_followed_hubs' => $top_followed_hubs,
-                     'lastAuthors'       => $lastAuthors,
+                        'top_followed_hubs' => $top_followed_hubs,
+                        'lastAuthors'       => $lastAuthors,
                     ]
                 );
             case 'all':
@@ -70,8 +70,8 @@ class HomeController extends Controller
                 return view(
                     'pages.home',
                     ['url'               => '/api/articles/filter/favorite',
-                     'top_followed_hubs' => $top_followed_hubs,
-                     'lastAuthors'       => $lastAuthors,
+                        'top_followed_hubs' => $top_followed_hubs,
+                        'lastAuthors'       => $lastAuthors,
                     ]
                 );
             default:
