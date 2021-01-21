@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreRolesRequest;
+use App\Http\Requests\Admin\UpdateRolesRequest;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 use Silber\Bouncer\Database\Ability;
 use Silber\Bouncer\Database\Role;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreRolesRequest;
-use App\Http\Requests\Admin\UpdateRolesRequest;
 
 class RolesController extends Controller
 {
@@ -49,7 +49,6 @@ class RolesController extends Controller
 
         return redirect()->route('admin.roles.index');
     }
-
 
     /**
      * Show the form for editing Role.
@@ -89,7 +88,6 @@ class RolesController extends Controller
 
     public function show(Role $role)
     {
-
         $role->load('abilities');
 
         return view('admin.roles.show', compact('role'));
@@ -122,5 +120,4 @@ class RolesController extends Controller
 
         return response()->noContent();
     }
-
 }

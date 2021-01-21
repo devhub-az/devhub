@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreAbilitiesRequest;
 use App\Http\Requests\Admin\UpdateAbilitiesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Controllers\Controller;
 use Silber\Bouncer\Database\Ability;
 
 class AbilitiesController extends Controller
@@ -48,7 +48,6 @@ class AbilitiesController extends Controller
         return redirect()->route('admin.abilities.index');
     }
 
-
     /**
      * Show the form for editing Ability.
      *
@@ -81,7 +80,6 @@ class AbilitiesController extends Controller
 
     public function show(Ability $ability)
     {
-
         return view('admin.abilities.show', compact('ability'));
     }
 
@@ -109,5 +107,4 @@ class AbilitiesController extends Controller
 
         return response()->noContent();
     }
-
 }
