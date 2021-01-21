@@ -87,7 +87,7 @@
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
                     <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"
-                        {{ Auth::user()->isAn('admin') ? ':admin="' . Auth::user()->isAn('admin') . '"' : null }}></dropdown>
+                        {{ Auth::user()->is_admin ? ':admin="' . Auth::user()->is_admin . '"' : null }}></dropdown>
                 </div>
                 <div class="m-auto w-6 h-6 lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
                     <img
