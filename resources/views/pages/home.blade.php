@@ -108,15 +108,15 @@
                             <div class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
                                 @foreach ($top_followed_hubs as $hub)
                                     <a href="{{ '/hubs/' . $hub->slug }}" class="flex gap-3">
-                                        <img src="{{'/' . strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
+                                        <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
                                              alt="hub image" class="w-12 h-12 rounded">
                                         <div>
                                             <p class="font-semibold dark:text-gray-300 leading-5">
-                                                {{ $hub['name'] }}
+                                                {{ $hub->name }}
                                             </p>
                                             <div class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
                                                 <span class="iconify" data-icon="mdi:account-group-outline" data-inline="false"></span>
-                                                <p>İzləyicilər {{ $hub['rating'] ?? '' }}</p>
+                                                <p>İzləyicilər {{ $hub->hub_followers_count ?? '' }}</p>
                                             </div>
                                         </div>
                                     </a>
