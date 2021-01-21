@@ -14,7 +14,6 @@ use Jcc\LaravelVote\Vote;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
-use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**
  * Class User.
@@ -29,7 +28,6 @@ class User extends Authenticatable implements MustVerifyEmail
     use Vote;
     use Favoriter;
     use SoftDeletes;
-    use HasRolesAndAbilities;
     use HasFactory;
 
     /**
