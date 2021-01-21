@@ -20,14 +20,14 @@ class HubController extends Controller
     public function postsApiRoute(int $id)
     {
         switch (request()->path()) {
-            case 'hubs/' . $id:
-                return '/api/hubs/' . $id . '/top/day';
-            case 'hubs/' . $id . '/top/week':
-                return '/api/hubs/' . $id . '/top/week';
-            case 'hubs/' . $id . '/top/month':
-                return '/api/hubs/' . $id . '/top/month';
-            case 'hubs/' . $id . '/all':
-                return '/api/hubs/' . $id . '/all';
+            case 'hubs/'.$id:
+                return '/api/hubs/'.$id.'/top/day';
+            case 'hubs/'.$id.'/top/week':
+                return '/api/hubs/'.$id.'/top/week';
+            case 'hubs/'.$id.'/top/month':
+                return '/api/hubs/'.$id.'/top/month';
+            case 'hubs/'.$id.'/all':
+                return '/api/hubs/'.$id.'/all';
             default:
                 return response()->json(['message' => 'not found'], 404);
         }
@@ -55,7 +55,7 @@ class HubController extends Controller
 
     public function index()
     {
-        $top_hubs          = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
+        $top_hubs = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
             Hub::withCount('favorites')->orderBy(
                 'favorites_count',

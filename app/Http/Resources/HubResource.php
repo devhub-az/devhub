@@ -18,9 +18,9 @@ class HubResource extends JsonResource
             'attributes' => [
                 'name'                => $this->name,
                 'slug'                => $this->slug,
-                'logo'                => ($this->logo) ? '/' . strtolower($this->logo) : '/images/empty/code.png',
+                'logo'                => ($this->logo) ? '/'.strtolower($this->logo) : '/images/empty/code.png',
                 'rating'              => $this->rating,
-//                'description'         => $this->description['az'],
+                //                'description'         => $this->description['az'],
                 'hub_followers_count' => $this->favorites_count > 0 ?
                     Numeric::number_format_short($this->favorites_count) : '0',
                 'follower_check'      => auth()->guard('api')->id() ? $this->isFavoritedBy(auth()->guard('api')->user())
