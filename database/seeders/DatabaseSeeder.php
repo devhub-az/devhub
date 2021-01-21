@@ -23,6 +23,5 @@ class DatabaseSeeder extends Seeder
         $this->call(HubsTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
     }
 }

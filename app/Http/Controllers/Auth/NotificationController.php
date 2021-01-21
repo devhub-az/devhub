@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\HubsCollection;
 use App\Models\Hub;
-use App\Http\Controllers\Controller;
 
 class NotificationController extends Controller
 {
@@ -21,14 +21,17 @@ class NotificationController extends Controller
             'desc'
         )->take(5)->get());
         \Auth::user()->unreadNotifications->markAsRead();
-        return view('auth.notification.tracker',[
+
+        return view('auth.notification.tracker', [
             'top_hubs'          => $top_hubs,
             'top_followed_hubs' => $top_followed_hubs,
         ]);
     }
 
-    public function deleteAll() {
+    public function deleteAll()
+    {
         \Auth::user()->notifications()->delete();
+
         return back();
     }
 }
