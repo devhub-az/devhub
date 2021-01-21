@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreatePostVotesTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -22,7 +21,6 @@ class CreatePostVotesTable extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
      *
@@ -32,5 +30,4 @@ class CreatePostVotesTable extends Migration
     {
         Schema::drop('post_votes');
     }
-
 }
