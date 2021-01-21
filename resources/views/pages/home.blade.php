@@ -71,53 +71,55 @@
             {{-- Right --}}
             <div class="w-right xs:w-full">
                 <div class="sticky top-2">
-                    <div>
-                        <p class="font-bold text-base text-gray-700 mb-1 dark:text-gray-400">Devhub-a qoşulanlar</p>
-                        <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
-                            <div
-                                class="overflow-hidden rounded bg-white dark:bg-transparent text-black px-5 py-4 space-y-4">
-                                @foreach ($lastAuthors as $author)
-                                    <div class="flex items-start gap-3 mb-2">
-                                        <div class="relative w-12 h-12">
-                                            <img
-                                                src="{{ ($author->avatar !== 'default') ? $author->avatar : config('devhub.default_avatar') }}"
-                                                alt="hub image" class="w-12 h-12 rounded">
-                                            @if ($author->isOnline())
-                                                <div class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
-                                            @endif
+                    @if ($lastAuthors->count() > 0)
+                        <div>
+                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Devhub-a qoşulanlar</p>
+                            <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
+                                <div
+                                    class="overflow-hidden rounded bg-white dark:bg-transparent text-black px-5 py-4 space-y-4">
+                                    @foreach ($lastAuthors as $author)
+                                        <div class="flex items-start gap-3 mb-2">
+                                            <div class="relative w-12 h-12">
+                                                <img
+                                                    src="{{ ($author->avatar !== 'default') ? $author->avatar : config('devhub.default_avatar') }}"
+                                                    alt="hub image" class="w-12 h-12 rounded">
+                                                @if ($author->isOnline())
+                                                    <div class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
+                                                @endif
+                                            </div>
+                                            <div>
+                                                <a href="{{ route('user_info', $author->username) }}"
+                                                   class="font-semibold text-sm align-text-top dark:text-gray-300">
+                                                    {{ $author->name ?? $author->username }}
+                                                </a>
+                                                <p class="text-xs dark:text-gray-400">
+                                                    Qoşulub {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <a href="{{ route('user_info', $author->username) }}"
-                                               class="font-semibold text-sm align-text-top dark:text-gray-300">
-                                                {{ $author->name ?? $author->username }}
-                                            </a>
-                                            <p class="text-xs dark:text-gray-400">
-                                                Qoşulub {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <div>
-                        <p class="font-bold text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən hablar</p>
+                        <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən hablar</p>
                         <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
-                            <div class="overflow-hidden rounded bg-white dark:bg-transparent text-black px-5 py-2">
+                            <div class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
                                 @foreach ($top_followed_hubs as $hub)
-                                    <div class="flex gap-3 mb-2">
+                                    <a href="{{ '/hubs/' . $hub->slug }}" class="flex gap-3">
                                         <img src="{{'/' . strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
-                                             alt="hub image" class="w-12 h-12">
+                                             alt="hub image" class="w-12 h-12 rounded">
                                         <div>
-                                            <p class="font-semibold dark:text-gray-300">
+                                            <p class="font-semibold dark:text-gray-300 leading-5">
                                                 {{ $hub['name'] }}
                                             </p>
-                                            <span class="text-xs dark:text-gray-300">
-                                                <i class="icon feather icon-users"></i>
-                                                İzləyicilər {{ $hub['rating'] ?? '' }}
-                                            </span>
+                                            <div class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
+                                                <span class="iconify" data-icon="mdi:account-group-outline" data-inline="false"></span>
+                                                <p>İzləyicilər {{ $hub['rating'] ?? '' }}</p>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 @endforeach
                             </div>
                         </div>

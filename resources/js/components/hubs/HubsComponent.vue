@@ -8,7 +8,7 @@
                    title="Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir.">Hablar</p>
             </div>
             <div
-                class="ml-auto px-2 w-1/2 overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:hidden">
+                class="ml-auto px-2 w-1/3 overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:hidden">
                 <div class="flex items-center cursor-pointer font-medium text-gray-700 dark:text-gray-400"
                      v-for="column in columns"
                      :key="column.type"
