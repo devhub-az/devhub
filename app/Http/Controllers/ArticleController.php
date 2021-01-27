@@ -7,17 +7,14 @@ use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubResource;
 use App\Models\Article;
 use App\Models\Hub;
-use App\Models\User;
 use App\Notifications\PostNotify;
 use App\Services\Canvas;
 use DB;
-use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class ArticleController extends Controller

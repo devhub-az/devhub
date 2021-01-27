@@ -30,7 +30,7 @@ class Numeric
         return $value;
     }
 
-    public static function convert($size): string
+    public static function convert(int $size): string
     {
         $unit = ['b', 'kb', 'mb', 'gb', 'tb', 'pb'];
 

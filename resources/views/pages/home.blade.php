@@ -3,6 +3,7 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
+    {{ Numeric::convert(2000) }}
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4" id="app">
         <div class="flex gap-3 tb:grid-cols-main lg:grid-cols-main xs:block md:gap-4">
             <div class="w-left xs:w-full">

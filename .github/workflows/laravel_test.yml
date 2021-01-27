@@ -71,3 +71,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run production
+      - name: Run Tests
+          run: ./vendor/bin/pest

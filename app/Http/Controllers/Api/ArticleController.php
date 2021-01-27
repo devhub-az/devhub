@@ -8,6 +8,7 @@ use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -105,13 +106,13 @@ class ArticleController extends Controller
      * @return bool
      * @throws Throwable
      */
-    public static function upOrDownVote($user, $target, $type = 'up'): bool
+    public static function upOrDownVote(User $user,$target, string $type = 'up'): bool
     {
-        $hasVoted = $user->{'has'.ucfirst($type).'Voted'}($target);
+        $hasVoted = $user->{'has' . ucfirst($type) . 'Voted'}($target);
 
         DB::beginTransaction();
         try {
-            $user->{$type.'Vote'}($target);
+            $user->{$type . 'Vote'}($target);
             if ($hasVoted) {
                 $user->cancelVote($target);
                 foreach ($target->hubs as $hub) {

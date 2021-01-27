@@ -17,9 +17,11 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
 
     .js('resources/js/includes/header.js', 'public/js')
     .js('resources/js/login.js', 'public/js')
-    .sass('resources/sass/login.scss', 'public/css')
-    .postCss("resources/sass/tailwind.css", "public/css",[tailwindcss('./tailwind.config.js')])
-    .postCss("resources/sass/vendor/balloon.css", "public/css")
+    .postCss("resources/sass/tailwind.css", "public/css", [
+            require('postcss-import'),
+            require('tailwindcss'),
+            require('autoprefixer'),
+        ])
     .vue()
 
 if (mix.inProduction()) {
