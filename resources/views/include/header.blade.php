@@ -63,7 +63,7 @@
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
                 <a href="{{ route('login') }}"
-                   class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden hover:border-">
+                   class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden">
                     Daxil ol
                 </a>
                 <a href="{{ route('register') }}"

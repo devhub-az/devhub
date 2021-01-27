@@ -36,7 +36,7 @@
     }
 
     .btn-outline{
-        @apply cursor-pointer border xs:w-full text-sm rounded h-9 items-center inline-flex px-3 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none cursor-pointer hover:text-cerulean-500 hover:border-cerulean-500 dark:hover:text-cerulean-300 dark:hover:border-cerulean-300
+        @apply cursor-pointer border xs:w-full text-sm rounded h-9 items-center inline-flex px-3 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none hover:text-cerulean-500 hover:border-cerulean-500 dark:hover:text-cerulean-300 dark:hover:border-cerulean-300
     }
 
     .ce-block__content{

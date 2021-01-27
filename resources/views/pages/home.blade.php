@@ -3,7 +3,6 @@
 @section('title')Əsas səhifə@stop
 
 @section('main')
-    {{ Numeric::convert(2000) }}
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4" id="app">
         <div class="flex gap-3 tb:grid-cols-main lg:grid-cols-main xs:block md:gap-4">
             <div class="w-left xs:w-full">
@@ -77,9 +76,9 @@
                             <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Devhub-a qoşulanlar</p>
                             <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                                 <div
-                                    class="overflow-hidden rounded bg-white dark:bg-transparent text-black px-5 py-4 space-y-4">
+                                    class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
                                     @foreach ($lastAuthors as $author)
-                                        <div class="flex items-start gap-3 mb-2">
+                                        <div class="flex items-start gap-3">
                                             <div class="relative w-12 h-12">
                                                 <img
                                                     src="{{ ($author->avatar !== 'default') ? $author->avatar : config('devhub.default_avatar') }}"

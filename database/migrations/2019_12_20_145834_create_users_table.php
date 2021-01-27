@@ -39,7 +39,7 @@ class CreateUsersTable extends Migration
                 $table->softDeletes();
             }
         );
-        DB::statement('ALTER TABLE `users` ADD FULLTEXT INDEX users_username_index (name, username)');
+//        DB::statement('ALTER TABLE `users` ADD FULLTEXT INDEX users_username_index (name, username)');
     }
 
     /**

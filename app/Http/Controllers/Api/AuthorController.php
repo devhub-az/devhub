@@ -32,7 +32,7 @@ class AuthorController extends Controller
             )->with('followers', 'followings')->withCount('articles', 'followers', 'followings')->orderBy(
                 $request->column ?? 'created_at',
                 $request->order ?? 'DESC'
-            )->paginate($request->perPage)
+            )->paginate($request->perPage ?? '10')
         );
     }
 

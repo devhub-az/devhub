@@ -3,18 +3,17 @@
 use App\Models\User;
 use function Tests\actingAs;
 
-beforeEach(function () {
-    $this->user = User::factory()->create();
-});
-
-afterEach(function () {
-    $this->user->forceDelete();
-});
+beforeEach(
+    function () {
+        $this->hey = 'artisan';
+    }
+);
 
 it(
     'has home page',
     function ($url, $expected, $auth) {
         if ($auth) {
+            $this->user = User::factory()->create();
             actingAs($this->user)->get($url)->assertStatus($expected);
         } else {
             $this->get($url)->assertStatus($expected);
@@ -31,7 +30,8 @@ it(
     'has articles page',
     function ($url, $expected, $auth) {
         if ($auth) {
-            actingAs($this->user)->get($url)->assertStatus($expected);
+            $this->user = User::factory()->create();
+            actingAs($this->user, 'api')->get($url)->assertStatus($expected);
         } else {
             $this->get($url)->assertStatus($expected);
         }
@@ -47,7 +47,8 @@ it(
     'has hubs page',
     function ($url, $expected, $auth) {
         if ($auth) {
-            actingAs($this->user)->get($url)->assertStatus($expected);
+            $this->user = User::factory()->create();
+            actingAs($this->user, 'api')->get($url)->assertStatus($expected);
         } else {
             $this->get($url)->assertStatus($expected);
         }
@@ -63,7 +64,8 @@ it(
     'has authors page',
     function ($url, $expected, $auth) {
         if ($auth) {
-            actingAs($this->user)->get($url)->assertStatus($expected);
+            $this->user = User::factory()->create();
+            actingAs($this->user, 'api')->get($url)->assertStatus($expected);
         } else {
             $this->get($url)->assertStatus($expected);
         }
