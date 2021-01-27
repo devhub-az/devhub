@@ -1,10 +1,10 @@
 # GitHub Action for Laravel with MySQL and Node
 name: Testing Laravel with MySQL and Node
-on: [push, pull_request]
+on: [ push, pull_request ]
 jobs:
   laravel:
-    name: Laravel (PHP ${{ matrix.php-versions }}, Node ${{ matrix.node-version }})
-    runs-on: ubuntu-latest
+    name: Laravel (PHP ${{ matrix.php-versions }}, Node ${{ matrix.node-version }}, Dependency version ${{ matrix.dependency-version }})
+    runs-on: ubuntu-18.04
     env:
       DB_DATABASE: laravel
       DB_USERNAME: root
@@ -27,17 +27,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['8.0', '7.4']
-        node-version: [14, 12]
+        php-versions: [ '8.0', '7.4' ]
+        node-version: [ 14, 12 ]
+        dependency-version: [prefer-lowest, prefer-stable]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring, dom, fileinfo, mysql
           coverage: xdebug #optional
+          
       - name: Start mysql service
         run: sudo /etc/init.d/mysql start
       - name: Get composer cache directory
@@ -51,19 +54,34 @@ jobs:
           # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-      - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+      - name: Install PHP 7 dependencies
+        run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress
+        if: "matrix.php < 8"
+
+      - name: Install PHP 8 dependencies
+        run: composer update --${{ matrix.dependency-version }} --ignore-platform-req=php --no-interaction --no-progress
+        if: "matrix.php >= 8"
+        
       - name: Prepare the application
         run: |
           php -r "file_exists('.env') || copy('.env.example', '.env');"
           php artisan key:generate
+          
       - name: Clear Config
         run: php artisan config:clear
+      
       - name: Run Migration
         run: php artisan migrate -v
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
+      
+#        TODO: Fix tests
+#       - name: Unit Tests
+#         run: ./vendor/bin/pest --colors=always
+#         env:
+#           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+        
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
