@@ -1,6 +1,6 @@
 # GitHub Action for Laravel with MySQL and Node
 name: Testing Laravel with MySQL and Node
-on: [push, pull_request]
+on: [ push, pull_request ]
 jobs:
   laravel:
     name: Laravel (PHP ${{ matrix.php-versions }}, Node ${{ matrix.node-version }})
@@ -27,8 +27,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['8.0', '7.4']
-        node-version: [14, 12]
+        php-versions: [ '8.0', '7.4' ]
+        node-version: [ 14, 12 ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -72,4 +72,4 @@ jobs:
       - run: npm install
       - run: npm run production
       - name: Run Tests
-          run: ./vendor/bin/pest
+        run: ./vendor/bin/pest
