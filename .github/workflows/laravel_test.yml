@@ -81,5 +81,7 @@ jobs:
       
       - name: Unit Tests
         run: ./vendor/bin/pest --colors=always
+        env:
+          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
       - run: npm install
       - run: npm run production
