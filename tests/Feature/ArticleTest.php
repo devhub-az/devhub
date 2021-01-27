@@ -7,7 +7,7 @@ use function Tests\actingAs;
 test(
     'users can view a article',
     function () {
-        $this->user    = User::factory()->create();
+        $this->user = User::factory()->create();
         $this->article = Article::factory()->create(
             [
                 'author_id' => $this->user->id,
