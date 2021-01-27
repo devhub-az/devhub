@@ -75,16 +75,13 @@ jobs:
         env:
           DB_PORT: ${{ job.services.mysql.ports['3306'] }}
           REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
+      - name: Unit Tests
+        run: ./vendor/bin/pest --colors=always
+        
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      
-      - name: Unit Tests
-        run: ./vendor/bin/pest --colors=always
-        env:
-          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
-      - uses: actions/checkout@v2
       - run: npm install
       - run: npm run production
