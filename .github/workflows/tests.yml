@@ -6,6 +6,20 @@ on: ['push', 'pull_request']
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
+    env:
+      DB_DATABASE: laravel
+      DB_USERNAME: root
+      DB_PASSWORD: password
+      BROADCAST_DRIVER: log
+      CACHE_DRIVER: redis
+      QUEUE_CONNECTION: redisl
+      SESSION_DRIVER: redis
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5 -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=laravel --entrypoint sh mysql:8 -c "exec docker-entrypoint.sh mysqld --default-authentication-plugin=mysql_native_password"
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
@@ -17,6 +31,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    
+    - name: Start mysql service
+      run: sudo /etc/init.d/mysql start
 
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
