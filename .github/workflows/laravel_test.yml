@@ -4,7 +4,7 @@ on: [ push, pull_request ]
 jobs:
   laravel:
     name: Laravel (PHP ${{ matrix.php-versions }}, Node ${{ matrix.node-version }}, Dependency version ${{ matrix.dependency-version }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     env:
       DB_DATABASE: laravel
       DB_USERNAME: root
