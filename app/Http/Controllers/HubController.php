@@ -16,14 +16,14 @@ class HubController extends Controller
     public function articlesApiRoute(HubResource $hub)
     {
         switch (request()->path()) {
-            case 'hubs/' . $hub->slug:
-                return '/api/hubs/' . $hub->id . '/top/day';
-            case 'hubs/' . $hub->slug . '/top/week':
-                return '/api/hubs/' . $hub->id . '/top/week';
-            case 'hubs/' . $hub->slug . '/top/month':
-                return '/api/hubs/' . $hub->id . '/top/month';
-            case 'hubs/' . $hub->slug . '/all':
-                return '/api/hubs/' . $hub->id . '/all';
+            case 'hubs/'.$hub->slug:
+                return '/api/hubs/'.$hub->id.'/top/day';
+            case 'hubs/'.$hub->slug.'/top/week':
+                return '/api/hubs/'.$hub->id.'/top/week';
+            case 'hubs/'.$hub->slug.'/top/month':
+                return '/api/hubs/'.$hub->id.'/top/month';
+            case 'hubs/'.$hub->slug.'/all':
+                return '/api/hubs/'.$hub->id.'/all';
             default:
                 return response()->json([], 404);
         }
@@ -50,7 +50,7 @@ class HubController extends Controller
 
     public function index()
     {
-        $top_hubs          = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
+        $top_hubs = new HubsResource(Hub::orderBy('rating', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
             Hub::withCount('favorites')->orderBy(
                 'favorites_count',
