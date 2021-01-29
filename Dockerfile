@@ -19,8 +19,6 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install exif
-
 RUN docker-php-ext-install pdo_mysql
 
 RUN docker-php-ext-install mbstring
