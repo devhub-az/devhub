@@ -53,9 +53,9 @@ Route::group([], static function () {
     Route::prefix('hubs')->group(static function () {
         Route::get('/', 'HubController@index')->name('hubs-list');
         Route::get('/{slug}', 'HubController@show');
-        Route::get('/{slug}/top/week', 'HubController@show');
-        Route::get('/{slug}/top/month', 'HubController@show');
-        Route::get('/{slug}/all', 'HubController@show');
+        Route::get('/{slug}/top/week', 'HubController@show')->name('hubs.week');
+        Route::get('/{slug}/top/month', 'HubController@show')->name('hubs.month');
+        Route::get('/{slug}/all', 'HubController@show')->name('hubs.all');
     });
 
     //Search view

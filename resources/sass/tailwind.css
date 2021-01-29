@@ -194,11 +194,13 @@ html {
 /* End scrollbar*/
 
 .toggle:before {
-    content: '☀️';
+    content: url('https://api.iconify.design/ic:twotone-light-mode.svg?height=22&color=%23f4f4f5');
+    vertical-align: -0.6rem;
 }
 
 .toggle.active:before {
-    content: '🌒';
+    content: url('https://api.iconify.design/ic:outline-dark-mode.svg?height=22&color=%23f4f4f5');
+    vertical-align: -0.6rem;
 }
 
 .toggle.animate {

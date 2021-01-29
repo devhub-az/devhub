@@ -1,9 +1,3 @@
-if (localStorage.theme === 'dark') {
-    document.querySelector('#toggle').classList.add('toggle', 'active')
-} else {
-    document.querySelector('#toggle').classList.add('toggle')
-}
-
 console.log('oooooooooo.                         ooooo   ooooo              .o8      \n' +
     '`888\'   `Y8b                        `888\'   `888\'             "888      \n' +
     ' 888      888  .ooooo.  oooo    ooo  888     888  oooo  oooo   888oooo.     Using DevHub at work? Work for Devhub.\n' +
@@ -24,6 +18,7 @@ Vue.filter('timeago', function (value) {
 
 Vue.component('dropdown', require('./../components/plugins/dropdown.vue').default);
 Vue.component('dropdown-notification', require('./../components/plugins/dropdown-notification.vue').default);
+Vue.component('switcher', require('./../components/parts/DarkSwitcher').default);
 
 new Vue({
     moment,
@@ -40,21 +35,26 @@ function toggleIcon() {
 }
 
 window.onload = function () {
-    document.querySelector('.toggle').addEventListener('click', function () {
-        this.classList.add('animate');
-        switch (document.querySelector('html').classList.toString()) {
-            case '':
-                this.classList.add('active');
-                localStorage.theme = 'dark'
-                document.querySelector('html').classList.add('dark')
-                break
-            default:
-                this.classList.remove('active');
-                localStorage.theme = ''
-                document.querySelector('html').classList.remove('dark')
-        }
-        setTimeout(() => this.classList.remove('animate'), 300);
-    });
+    document.getElementById("search-icon").addEventListener(
+        "click",
+        () => {
+            document.getElementById('form_search').classList.remove('hidden')
+            document.getElementById('search-icon').classList.add('hidden')
+            document.getElementById('search_input').focus()
+            document.getElementById('menu').classList.add('hidden')
+        },
+        false
+    );
+
+    document.getElementById("close-icon").addEventListener(
+        "click",
+        () => {
+            document.getElementById('form_search').classList.add('hidden')
+            document.getElementById('search-icon').classList.remove('hidden')
+            document.getElementById('menu').classList.remove('hidden')
+        },
+        false
+    );
 
     document.getElementById("mobile-menu__open").addEventListener(
         "click",

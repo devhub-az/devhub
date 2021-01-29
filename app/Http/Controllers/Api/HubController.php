@@ -20,7 +20,11 @@ class HubController extends Controller
      */
     public function index(FilterRequest $request): HubsResource
     {
-        return new HubsResource(Hub::withCount(['articles', 'favorites'])->orderBy($request->get('column'), $request->get('order'))->paginate($request->perPage));
+        return new HubsResource(
+            Hub::withCount(['articles', 'favorites'])
+                ->orderBy($request->get('column'), $request->get('order'))
+                ->paginate($request->perPage)
+        );
     }
 
     /**
@@ -52,8 +56,8 @@ class HubController extends Controller
     public function follow(Request $request): JsonResponse
     {
         $user = auth()->guard('api')->user();
-        $hub = Hub::findOrFail($request->get('id'));
-        if (isset($hub) && ! $hub->isFavoritedBy($user)) {
+        $hub  = Hub::findOrFail($request->get('id'));
+        if (isset($hub) && !$hub->isFavoritedBy($user)) {
             $user->favorite($hub);
 
             return response()->json(['success' => 'success']);

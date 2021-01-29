@@ -7,7 +7,7 @@
         <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-2 md:gap-4 gap-5">
             <div id="app">
                 <hubs-list
-                    fetch-url="{{ route('hubs.index') }}"
+                    fetch-url="{{ route('hubs.api.index') }}"
                     locale="{{ App::getLocale() }}"
                     @auth :auth_check="true" @endauth
 {{--                     {'name': 'Paylaşma', 'type': 'articles_count'}--}}

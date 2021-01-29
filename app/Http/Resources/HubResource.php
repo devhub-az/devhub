@@ -27,9 +27,8 @@ class HubResource extends JsonResource
                     : false,
                 'articles_count'      => $this->articles_count,
             ],
-            //            'relationships' => new ($this),
             'links'      => [
-                'self' => route('hubs.show', ['hub' => $this->id]),
+                'self' => route('hubs.api.show', ['hub' => $this->id]),
             ],
         ];
     }

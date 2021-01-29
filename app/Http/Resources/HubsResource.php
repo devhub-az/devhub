@@ -25,7 +25,7 @@ class HubsResource extends ResourceCollection
     {
         return [
             'links'    => [
-                'self' => route('hubs.index'),
+                'self' => route('hubs.api.index'),
             ],
         ];
     }

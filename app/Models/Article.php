@@ -24,10 +24,6 @@ class Article extends Model
     use CanBeVoted;
     use HasFactory;
     use Favoriteable;
-    use QueryCacheable;
-
-    /** @var int */
-    protected $cacheFor = 15;
 
     protected $vote = User::class;
 

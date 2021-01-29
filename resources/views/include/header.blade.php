@@ -24,7 +24,7 @@
                          height="36" class="xs:h-8">
                 </a>
             </div>
-            <ul class="grid grid-flow-col font-medium text-sm gap-3 md:hidden sm:hidden xs:hidden items-center justify-center "
+            <ul class="grid relative grid-flow-col font-medium text-sm gap-3 md:hidden sm:hidden xs:hidden items-center justify-center"
                 id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
@@ -44,43 +44,46 @@
                 </li>
             </ul>
         </div>
-        {{--        <form id="form_search" action="/search-result" class="form-search" accept-charset="UTF-8" method="POST">--}}
-        {{--            @csrf--}}
-        {{--            <div class="header_search">--}}
-        {{--                <input id="search_input" type="text" class="search" autocomplete="off" name="search" maxlength="48"--}}
-        {{--                       minlength="3" placeholder="Paylaşma ya hab axtar" required="required">--}}
-        {{--                <span class="iconify" data-icon="mdi-magnify"></span>--}}
-        {{--                <span onclick="closeSearch()" class="iconify" data-icon="mdi-file-excel-box"></span>--}}
-        {{--            </div>--}}
-        {{--        </form>--}}
-        <div class="grid xs:flex grid-flow-col space-x-2 text-xl xs:text-2xl xs:pr-2 text-gray-100 items-center">
-            <span id="search-icon" onclick="search()" class="iconify m-auto sm:text-2xl cursor-pointer"
+        <form id="form_search" action="/search-result" class="flex-1 absolute relative w-full items-center hidden"
+              accept-charset="UTF-8" method="POST">
+            @csrf
+            <div class="w-full">
+                <input id="search_input" type="text"
+                       class="relative w-full rounded h-8 border pl-7"
+                       autocomplete="off"
+                       name="search"
+                       maxlength="48"
+                       minlength="3" placeholder="Paylaşma ya hab axtar" required="required">
+                <span class="iconify text-xl absolute left-2 translate-y-1/2 top-0 my-1.5 mr-4 dark:text-gray-700"
+                      data-icon="mdi-magnify"></span>
+                <span onclick="closeSearch()"
+                      id="close-icon"
+                      class="iconify cursor-pointer text-xl absolute right-2 translate-y-1/2 top-0 my-1.5 dark:text-gray-700"
+                      data-icon="bx:bx-x-circle"></span>
+            </div>
+        </form>
+        <div class="grid xs:flex grid-flow-col space-x-4 text-xl xs:text-2xl xs:pr-2 text-gray-100 items-center">
+            <span id="search-icon" class="iconify m-auto sm:text-2xl cursor-pointer"
                   data-icon="mdi-magnify"></span>
-            <span id="toggle" class="cursor-pointer"></span>
             @guest
-                {{--                <switcher-theme></switcher-theme>--}}
                 <a href="/login" class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl">
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
-                <a href="{{ route('login') }}"
-                   class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden">
-                    Daxil ol
-                </a>
-                <a href="{{ route('register') }}"
-                   class="btn text-xs px-4 h-7 xs:hidden sm:hidden">
-                    Qoşulmaq
-                </a>
+                <div class="flex items-center space-x-2">
+                    <a href="{{ route('login') }}"
+                       class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden">
+                        Daxil ol
+                    </a>
+                    <a href="{{ route('register') }}"
+                       class="btn text-xs px-4 h-7 xs:hidden sm:hidden">
+                        Qoşulmaq
+                    </a>
+                </div>
+
             @else
                 <dropdown-notification :notifications="{{ Auth::user()->Notifications }}"
                                        :count="{{ Auth::user()->unreadNotifications->count() }}">
                 </dropdown-notification>
-
-                {{--                <a href="{{ route('conversations') }}">--}}
-                {{--                    <i class="iconify" data-icon="mdi-email badge"--}}
-                {{--                       @if (Auth::user()->messagesNotificationsCount() > 0)--}}
-                {{--                       data-badge="{{ Auth::user()->messagesNotificationsCount() }}"--}}
-                {{--                        @endif/>--}}
-                {{--                </a>--}}
                 <a href="{{ route('create_article') }}"
                    class="hover:opacity-90 xs:hidden">
                     <i class="iconify" data-icon="topcoat:pencil"></i>
@@ -101,7 +104,6 @@
     <nav id="mobile-menu__items"
          class="hidden">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <a href="{{ session('main-page') ?? route('home') }}"
                class="{{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'bg-gray-900' : '' }}  text-white block px-3 py-2 rounded-md text-base font-medium">Paylaşmalar</a>
             <a href="{{ route('hubs-list') }}"
@@ -117,7 +119,6 @@
          class="hidden">
         @auth
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a
                     href="{{ '/users/@' . Auth::user()->username}}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">

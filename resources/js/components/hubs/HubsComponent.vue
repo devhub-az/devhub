@@ -74,7 +74,7 @@
             </a>
             <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check"
                                @follow-status-updated="hub.attributes.follower_check = $event" :auth_check="auth_check"
-                               class="w-2/12 m-auto text-center"/>
+                               class="w-2/12 m-auto text-center" :classes="'h-7'"/>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>

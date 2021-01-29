@@ -47,7 +47,7 @@
                             <p class="ml-1 text-gray-500 dark:text-gray-300">{{ post.attributes.views }}</p>
                         </div>
                         <div>
-                            <a :href="'/post/' + post.id + '#comments'" class="flex items-center">
+                            <a :href="'/article/' + post.attributes.slug + '#comments'" class="flex items-center">
                                 <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
                                 <p class="ml-1 text-gray-500 dark:text-gray-300">
                                     {{ post.comments_count ? post.comments_count : '0' }}

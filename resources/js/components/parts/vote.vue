@@ -42,7 +42,7 @@ export default {
             let upType = 'is_up_voted'
             let downType = 'is_down_voted'
             let checkType = type === 'up' ? downType : upType
-            axios.post('api/articles/vote', {id: id, type: type})
+            axios.post('/api/articles/vote', {id: id, type: type})
                 .then(() => {
                     if (this.item.attributes[checkType]) {
                         this.item.attributes.is_up_voted = !this.item.attributes.is_up_voted

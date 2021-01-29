@@ -4,7 +4,7 @@
 
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4" id="app">
-        <div class="flex gap-3 tb:grid-cols-main lg:grid-cols-main xs:block md:gap-4">
+        <div class="flex gap-3 xs:block md:gap-4">
             <div class="w-left xs:w-full">
                 @guest()
                     <div
@@ -30,13 +30,13 @@
                     <select-menu
                         :menu="[
                             {'name': 'Trendlər', 'icon': 'bx:bxs-hot', 'url': '/'},
-                            {'name': 'Təzə', 'icon': 'ant-design:clock-circle-outlined', 'url': '/all'},
+                            {'name': 'Yeni', 'icon': 'ant-design:clock-circle-outlined', 'url': '/all'},
                             {'name': 'Abunə ilə', 'icon': 'mdi:book-multiple', 'url': '/favorite'}
                         ]"
                         @if (Request::is('top/*') || Request::is('/'))
                         :selected="{'name': 'Trendlər', 'icon': 'bx:bxs-hot'}"
                         @elseif (Request::url() === route('all'))
-                        :selected="{'name': 'Təzə', 'icon': 'ant-design:clock-circle-outlined'}"
+                        :selected="{'name': 'Yeni', 'icon': 'ant-design:clock-circle-outlined'}"
                         @elseif (Request::url() === route('favorite'))
                         :selected="{'name': 'Abunə ilə', 'icon': 'mdi:book-multiple'}"
                         @endif
@@ -44,19 +44,19 @@
                 </div>
                 @if (Request::is('top/*') || Request::is('/'))
                     <div
-                        class="flex pb-2 xs:grid md:grid md:grid-flow-col md:text-center sm:grid sm:grid-flow-col sm:text-center xs:grid-flow-col xs:text-center">
+                        class="flex pb-2 rounded sm:text-center xs:text-center">
                         <a href="{{ url('/') }}"
-                           class="border py-1 px-3 bg-afooter dark:bg-gray-800 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('/') ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('/') ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Günün ən yaxşı paylaşmaları">
                             Gün
                         </a>
                         <a href="{{ url('top/week') }}"
-                           class="border py-1 px-3 bg-afooter dark:bg-gray-800 hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
                             Həftə
                         </a>
                         <a href="{{ url('top/month') }}"
-                           class="border py-1 px-3 bg-afooter dark:bg-gray-800 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Ayın ən yaxşı paylaşmaları">
                             Ay
                         </a>
