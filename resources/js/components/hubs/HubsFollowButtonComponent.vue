@@ -1,15 +1,15 @@
 <template>
-    <div class="xs:hidden">
+    <div>
         <span @click="follow(id)" v-if="!follower_check && !loading"
-              class="border text-sm rounded px-3 py-1 cursor-pointer hover:border-cerulean-500 dark:border-gray-700 dark:hover:border-cerulean-700">
+              :class="'btn-outline ' + classes">
             <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Izləmək</span>
         </span>
         <span @click="follow(id)" v-if="follower_check && !loading"
-              class="border-cerulean-500 text-sm text-white rounded px-3 py-1 cursor-pointer bg-cerulean-500 hover:border-gray-700 dark:bg-cerulean-700">
+              :class="'btn ' + classes">
             <span class="font-medium transition-none">İzləyirsiniz</span>
         </span>
         <span v-if="loading"
-              class="border text-sm rounded px-3 py-1 cursor-pointer dark:border-gray-700">
+              :class="'btn-outline ' + classes">
             <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Gözləyin</span>
         </span>
     </div>
@@ -20,7 +20,7 @@ import axios from 'axios'
 import Noty from 'noty'
 
 export default {
-    props: ['id', 'follower_check', 'auth_check'],
+    props: ['id', 'follower_check', 'auth_check', 'classes'],
     data: function () {
         return {
             loading: false,
@@ -30,7 +30,7 @@ export default {
         follow: function (id) {
             if (this.auth_check) {
                 this.loading = true;
-                axios.post('api/hubs/follow/' + id, {
+                axios.post('/api/hubs/follow/' + id, {
                     id: id,
                 })
                     .then(response => {

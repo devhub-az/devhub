@@ -9,10 +9,11 @@ use App\Models\Hub;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ArticleTopController extends Controller
 {
-    private static $count;
+    private static int $count;
 
     /**
      * PostController constructor.
@@ -42,27 +43,35 @@ class ArticleTopController extends Controller
      */
     public function posts(): ArticlesResource
     {
-//        TODO: SORT BY BEST VOTED
-        return new ArticlesResource(
-            Article::with('hubs')
-                ->withcount(
-                    [
-                        'views',
-                        //            'bookmarkers',
-                        //            'comments'
-                    ]
-                )
-//                ->orderBy( 'countTotalVotes', 'DESC')
-                ->orderBy(
-                    'created_at',
-                    'DESC'
-                )->where(
-                    'created_at',
-                    '>=',
-                    Carbon::now()->subDays(self::$count)->startOfDay()
-                )->take(50)
-                ->paginate(5)
+        $articles = Article::with('hubs')
+            ->withcount(
+                [
+                    'views',
+                ]
+            )
+            ->orderBy(
+                'created_at',
+                'DESC'
+            )->where(
+                'created_at',
+                '>=',
+                Carbon::now()->subDays(self::$count)->startOfDay()
+            )
+            ->take(50);
+
+        $paginated = $articles->paginate(10);
+
+        $sorted = $articles->get()->sortBy(
+            function ($articles) {
+                return $articles->countTotalVotes();
+            },
+            null,
+            true
         );
+
+        $articles = new LengthAwarePaginator($sorted, $paginated->total(), $paginated->perPage());
+
+        return new ArticlesResource($articles);
     }
 
     /**
@@ -85,14 +94,14 @@ class ArticleTopController extends Controller
         }
         $articlesIds = array_merge($articleAuthorsIds ?? [], $articleHubsIds ?? []);
 
-        return new ArticlesResource(
-            Article::with('hubs')
-                ->withCount(['views'])
-                ->whereIn('id', $articlesIds)
-                ->take(50)
-                ->orderBy('created_at', 'DESC')
-                ->paginate(5)
-        );
+        $articles = Article::with('hubs')
+            ->withCount(['views'])
+            ->whereIn('id', $articlesIds)
+            ->take(50)
+            ->orderBy('created_at', 'DESC')
+            ->paginate(5);
+
+        return new ArticlesResource($articles);
     }
 
     /**

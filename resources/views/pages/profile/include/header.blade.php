@@ -3,14 +3,16 @@
         <div class="flex justify-between">
             <div class="flex">
                 <img class="rounded xs:h-16 xs:w-16 w-24 h-24" src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" alt="Profile image">
-                <div class="ml-2">
-                    <p class="text-2xl text-shadow dark:text-gray-300 xs:text-base">{{ $user->attributes->name ?? '' }} {{ $user->attributes->surname ?? '' }} {{ '@' . $user->attributes->username }}</p>
+                <div class="w-9/12 ml-2">
+                    <div class="text-2xl text-shadow dark:text-gray-300 xs:text-base flex items-center block">
+                        <p>{{ $user->attributes->name ?? '' }}
+                        {{ $user->attributes->surname ?? '' }}
+                            {{ '@' . $user->attributes->username }}</p>
+                    </div>
 
-                    @if ( $user->attributes->about)
-                        <p class="text-2xl text-shadow dark:text-gray-300 xs:text-base">{{  $user->attributes->about }}</p>
+                    @if ( $user->attributes->description)
+                        <p class="text-sm text-shadow dark:text-gray-300 xs:text-xs mt-2">{{  $user->attributes->description }}</p>
                     @endif
-
-                    <p class="text-xl text-shadow dark:text-gray-300 xs:text-xs font-light mt-2">Devhub developer, I'am from Canada, still live in USA</p>
 
                 </div>
             </div>
@@ -33,8 +35,8 @@
 
         </div>
         <div class="flex gap-2 mt-4 xs:justify-between">
-            <button class="btn-outline">Follow</button>
-            <button class="btn">Message</button>
+            <button class="btn-outline">Izləmək</button>
+            <button class="btn">Yazmag</button>
         </div>
         <div class="flex xs:justify-between w-full mt-4 xs:overflow-y-auto">
             <div class="text-sm pr-8">

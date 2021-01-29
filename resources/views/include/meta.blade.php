@@ -3,12 +3,12 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-touch-fullscreen" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="#1d1d1d">
-<meta name="apple-touch-startup-image" content="{{ asset('images/favicon/apple-touch-icon.png') }}">
-<link rel="apple-touch-icon" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
+<meta name="apple-touch-startup-image" content="{{ asset('images/DevHub_Compact_Logo.svg') }}">
+<link rel="apple-touch-icon" href="{{ asset('images/DevHub_Compact_Logo.svg') }}">
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-<meta name="msapplication-TileImage" content="{{ asset('images/favicon/mstile-144x144.png') }}">
+<meta name="msapplication-TileImage" content="{{ asset('images/DevHub_Compact_Logo.svg') }}">
 <meta name="msapplication-TileColor" content="#1d1d1d">
 <meta name="msapplication-navbutton-color" content="#1d1d1d">
 <meta name="theme-color" content="#1d1d1d">
@@ -58,7 +58,7 @@
 {{--<meta property="fb:admins" content="{{ $setting->fb_admins }}">--}}
 
 <meta property="og:type" content="@yield('og-type', '-.-')">
-<meta property="og:title" content="@yield('title', 'DevHub')">
+<meta property="og:title" content="@yield('title' . ' | DevHub', 'DevHub')">
 <meta property="og:description"
       content="@yield('description', 'DevHub Azərbaycanda proqramlaşdırma inkişaf səviyyəsini artırmaq istəyən gənc bir inkişaf qrupudur.')">
 <meta property="og:url" content="{{ Request::fullUrl() }}">
@@ -80,11 +80,7 @@
     <meta property="og:video:tag" content="devhub blog">
 @endisset
 
-<meta property="og:image" content="@yield('share-image', '')">
-<meta property="og:image:secure_url" content="@yield('share-image', '')">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="920">
-<meta property="og:image:height" content="520">
-<meta property="og:image:alt" content="@yield('image-alt', '')">
+<meta property="og:image" content="@yield('share-image', asset('images/DevHub_Compact_Logo.svg'))">
+<meta property="og:image:alt" content="@yield('image-alt', asset('images/DevHub_Compact_Logo.svg'))">
 
 <link rel="manifest" href="{{ asset('/images/favicon/site.webmanifest') }}">

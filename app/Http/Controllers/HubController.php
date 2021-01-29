@@ -8,45 +8,42 @@ use App\Models\Hub;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
+use Numeric;
 
 class HubController extends Controller
 {
-    /**
-     * @var string
-     */
-    private string $content = 'hub_show';
-
-    public function postsApiRoute(int $id)
+    public function articlesApiRoute(HubResource $hub)
     {
         switch (request()->path()) {
-            case 'hubs/'.$id:
-                return '/api/hubs/'.$id.'/top/day';
-            case 'hubs/'.$id.'/top/week':
-                return '/api/hubs/'.$id.'/top/week';
-            case 'hubs/'.$id.'/top/month':
-                return '/api/hubs/'.$id.'/top/month';
-            case 'hubs/'.$id.'/all':
-                return '/api/hubs/'.$id.'/all';
+            case 'hubs/'.$hub->slug:
+                return '/api/hubs/'.$hub->id.'/top/day';
+            case 'hubs/'.$hub->slug.'/top/week':
+                return '/api/hubs/'.$hub->id.'/top/week';
+            case 'hubs/'.$hub->slug.'/top/month':
+                return '/api/hubs/'.$hub->id.'/top/month';
+            case 'hubs/'.$hub->slug.'/all':
+                return '/api/hubs/'.$hub->id.'/all';
             default:
-                return response()->json(['message' => 'not found'], 404);
+                return response()->json([], 404);
         }
     }
 
     /**
-     * @param int $id
+     * @param Request $request
+     * @param string  $slug
      * @return Application|Factory|View
      */
-    public function show(int $id)
+    public function show(Request $request, string $slug)
     {
-        $hub = new HubResource(Hub::withCount('favorites')->findOrFail($id));
+        HubResource::withoutWrapping();
+        $hub = new HubResource(Hub::withCount('favorites', 'articles')->where('slug', $slug)->firstOrFail());
 
         return view(
             'pages.hubs.show',
             [
-                'hub'         => $hub,
-                'posts_count' => $hub->posts->count(),
-                'url'         => $this->postsApiRoute($id),
-                'content'     => $this->content,
+                'hub'                 => $hub->toResponse($request)->getData(),
+                'url'                 => $this->articlesApiRoute($hub),
             ]
         );
     }

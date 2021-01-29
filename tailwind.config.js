@@ -21,7 +21,7 @@ module.exports = {
     darkMode: 'class', // or 'media' or 'class'
     theme: {
         fontFamily: {
-            sans: ['Roboto', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"]
+            sans: ['inter', 'Roboto', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Helvetica', "Apple Color Emoji", 'Arial, sans-serif', "Segoe UI Emoji", "Segoe UI Symbol"]
         },
         screens: {
             xs: {max: '575px'}, // Mobile (iPhone 3 - iPhone XS Max).
@@ -49,7 +49,7 @@ module.exports = {
                 '200': '#0C79A1',
                 '300': '#0B6F93',
                 '400': '#0A6485',
-                '500': '#095977',
+                '500': '#095c79',
                 '600': '#084F68',
                 '700': '#07445A',
                 '800': '#06394C',
@@ -70,7 +70,8 @@ module.exports = {
             wall: '#f4f4f4',
             footer: '#242729',
             dwall: '#171c20',
-            dpaper: '#22272b',
+            dpaper: '#1d2023',
+            afooter: '#f9f9fb',
         },
         extend: {
             width: {
@@ -79,6 +80,7 @@ module.exports = {
             },
             gridTemplateColumns: {
                 'main': '72% 27%;',
+                'settings': '30% 69%',
                 'list': '64px auto',
                 'auto-fit': 'repeat(auto-fit, minmax(0, 1fr))',
             }
@@ -87,5 +89,5 @@ module.exports = {
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }

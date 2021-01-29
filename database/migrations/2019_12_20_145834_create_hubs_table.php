@@ -15,6 +15,7 @@ class CreateHubsTable extends Migration
         Schema::create('hubs', function (Blueprint $table) {
             $table->integer('id', true);
             $table->text('logo')->nullable();
+            $table->string('slug')->unique();
             $table->char('name', 50)->nullable();
             $table->integer('rating')->default(0);
             $table->timestamps();

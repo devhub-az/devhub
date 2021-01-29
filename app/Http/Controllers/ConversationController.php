@@ -7,6 +7,7 @@ use App\Http\Requests\SendMessage;
 use App\Models\User;
 use Illuminate\Auth\AuthManager;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -54,7 +55,7 @@ class ConversationController extends Controller
         ]);
     }
 
-    public function paginate($items, $perPage = 10, $page = null, $options = [])
+    public function paginate($items, $perPage = 10, $page = null, $options = []): LengthAwarePaginator
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
@@ -62,7 +63,7 @@ class ConversationController extends Controller
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 
-    private function shorten(string $text, int $maxLength)
+    private function shorten(string $text, int $maxLength): string
     {
         $words = explode(' ', $text);
 
@@ -85,7 +86,7 @@ class ConversationController extends Controller
         return redirect(route('conversations.show', ['id' => $id]));
     }
 
-    public function sendMessage(User $user, SendMessage $req)
+    public function sendMessage(User $user, SendMessage $req): RedirectResponse
     {
         $this->repo->create(
             $req->get('content'),

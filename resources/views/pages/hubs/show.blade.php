@@ -1,102 +1,116 @@
 @extends('layouts.layout')
 
-@section('title'){{ $hub['name'] }} @stop
-
-@section('css')
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
-@stop
+@section('title'){{ $hub->attributes->name }} @stop
 
 @section('main')
     <div id="app">
-        <div class="hub-block">
-            <div class="hub-page__header">
-                @if (isset($hub['logo']))
-                    <img class="list-hubs__hub-image" src="{{ asset(strtolower($hub['logo'])) }}" alt="">
-                @else
-                    <img class="list-hubs__hub-image" src="{{ asset('/images/empty/code.png') }}" alt="">
-                @endif
-                <div class="list-hubs__obj-body">
-                    <div class="list-hubs__title-link">
-                        {{ $hub['name'] }}
+        <div class="w-full bg-gray-200 pt-6 dark:bg-dpaper">
+            <div
+                class="lg:container xl:container flex justify-between xs:block mx-4 pb-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4">
+                <div class="w-9/12 flex">
+                    @if (isset($hub->attributes->logo))
+                        <img class="rounded xs:h-16 xs:w-16 w-16 h-16"
+                             src="{{ asset(strtolower($hub->attributes->logo)) }}"
+                             alt="Hub logo">
+                    @else
+                        <img class="rounded xs:h-16 xs:w-16 w-16 h-16" src="{{ asset('/images/empty/code.png') }}"
+                             alt="">
+                    @endif
+                    <div class="ml-4">
+                        <div class="relative flex space-x-1 text-xl">
+                            <p class="dark:text-gray-300">{{ $hub->attributes->name }}</p>
+                            <div class="flex items-center text-sm" title="{{ $hub->attributes->rating }} reyting">
+                                <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
+                                      data-inline="false"></span>
+                                <p class="font-medium text-green-600 dark:text-green-500">
+                                    {{ \Numeric::number_format_short($hub->attributes->rating) }}
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="text-sm text-shadow dark:text-gray-300 xs:text-xs mt-2">
+                            Məlumatların qorunması
+                        </div>
                     </div>
-                    <div class="list-hubs__desc">{{ $hub['description'][session()->get('lang')] }}</div>
                 </div>
-                <div class="list-hubs__stats">
-                    <div class="list-hubs__stats-value">{{ $posts_count }}</div>
-                    <small>Paylaşım</small>
+                <hub-follow-button :id="{{ $hub->id }}" :follower_check="'{{ $hub->attributes->follower_check }}'"
+                                   @auth :auth_check="true" @endauth
+                                   :classes="'h-9 px-7 xs:block xs:text-center xs:py-2 font-medium xs:my-auto'"
+                                   class="xs:mt-2"></hub-follow-button>
+                {{--                {{dd($hub->attributes->follower_check)}}--}}
+                {{--                <div class="hub_follow">--}}
+                {{--                    <hub-follow-button :hub="{{ json_encode($hub) }}" @auth :auth_check="true" @endauth></hub-follow-button>--}}
+                {{--                </div>--}}
+            </div>
+            <div
+                class="flex items-center space-x-2 lg:container xl:container w-full pb-2 xs:overflow-y-auto sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4">
+                <div class="flex space-x-1 items-center">
+                    <p class="font-medium dark:text-gray-300">
+                        {{ \Numeric::number_format_short($hub->attributes->hub_followers_count) }}
+                    </p>
+                    <div class="text-sm dark:text-gray-300">İzləyici</div>
                 </div>
-                <div class="list-hubs__stats">
-                    <div class="list-hubs__stats-value">
-                        {{ $hub['rating'] }}
-                    </div>
-                    <small>REYTINQ</small>
-                </div>
-                <div class="hub_follow">
-                    <hub-follow-button :hub="{{ json_encode($hub) }}" @auth :auth_check="true" @endauth></hub-follow-button>
+                <div class="inline-block opacity-70 text-sm xs:hidden dark:text-gray-300">•</div>
+                <div class="flex space-x-1 items-center">
+                    <p class="font-medium dark:text-gray-300">
+                        {{ \Numeric::number_format_short($hub->attributes->articles_count) }}
+                    </p>
+                    <div class="text-sm dark:text-gray-300">Paylaşım</div>
                 </div>
             </div>
         </div>
-        <div class="layout_body">
-            <div class="layout_content">
-                <div class="content-left">
-                    <div class="header">
-                        <ul class="nav_posts">
-                            <a href="{{ url('hubs/'. $hub->id) }}"
-                               class="nav-posts__item @if(Request::is('hubs/'. $hub->id)) nav-posts__item-link_current @endif">
-                                <span class="nav-posts__item-link">Ən yaxşı</span>
-                            </a>
-                            <a href="{{ url('hubs/'. $hub->id .'/all') }}"
-                               class="nav-posts__item @if(Request::is('hubs/'. $hub->id .'/all')) nav-posts__item-link_current @endif">
-                                <span class="nav-posts__item-link">Bütün yazılar</span>
-                            </a>
-                        </ul>
-                    </div>
-                    @if (Request::is('hubs/'. $hub->id .'/top/*') || Request::is('hubs/'. $hub->id))
-                        <div class="tabs__level tabs__level_bottom">
-                            <ul class="toggle-menu ">
-                                <li class="toggle-menu__item">
-                                    <a href="{{ url('hubs/'. $hub->id) }}"
-                                       class="toggle-menu__item-link @if(Request::is('hubs/'. $hub->id)) toggle-menu__item-link_active @endif"
-                                       rel="nofollow" title="Лучшие публикации за сутки">
-                                        Gün
-                                    </a>
-                                </li>
-                                <li class="toggle-menu__item">
-                                    <a href="{{ url('hubs/'. $hub->id  .'/top/week') }}"
-                                       class="toggle-menu__item-link @if(Request::url() === url('hubs/'. $hub->id  .'/top/week')) toggle-menu__item-link_active @endif"
-                                       rel="nofollow" title="Лучшие публикации за неделю">
-                                        Həftə
-                                    </a>
-                                </li>
-                                <li class="toggle-menu__item">
-                                    <a href="{{ url('hubs/'. $hub->id  .    '/top/month') }}"
-                                       class="toggle-menu__item-link @if(Request::url() === url('hubs/'. $hub->id  .'/top/month')) toggle-menu__item-link_active @endif"
-                                       rel="nofollow" title="Лучшие публикации за месяц">
-                                        Ay
-                                    </a>
-                                </li>
-                            </ul>
+        <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4">
+            <div class="flex gap-3 xs:block md:gap-4">
+                <div class="w-left xs:w-full">
+                    <div class="mb-2 flex items-center justify-between dark:border-gray-700">
+                        <div class="flex items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">
+                            <span class="iconify" data-icon="mdi:newspaper-variant-multiple-outline"
+                                  data-inline="false"></span>
+                            <p class="transition-none xs:text-base">Paylaşmalar</p>
                         </div>
-                    @endif
+                        <select-menu
+                            :menu="[
+                                {'name': 'Trendlər', 'icon': 'bx:bxs-hot', 'url': '/hubs/{{ $hub->attributes->slug }}'},
+                                {'name': 'Yeni', 'icon': 'ant-design:clock-circle-outlined', 'url': '/hubs/{{ $hub->attributes->slug }}/all'}
+                                ]"
+                            @if (Request::is('hubs/*/top/*') || Request::is('hubs/' . $hub->attributes->slug))
+                            :selected="{'name': 'Trendlər', 'icon': 'bx:bxs-hot'}"
+                            @elseif (Request::url() === route('hubs.all', $hub->attributes->slug))
+                            :selected="{'name': 'Yeni', 'icon': 'ant-design:clock-circle-outlined'}"
+                            @endif
+                        ></select-menu>
+                    </div>
                     <posts :url="'{{ $url }}'" @auth :auth_check="true" @endauth></posts>
                 </div>
 
                 {{-- Right --}}
-                <div class="content_right">
-                    <div id="default-block" class="default-block default-block_sidebar">
-                        <div class="default-block__header">
-                            <h3 class="default-block__header-title">Title</h3>
+                <div class="w-right xs:w-full">
+                    <a class="flex justify-between border rounded p-4 mb-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
+                       href="https://t.me/devhub_az" target="_blank"
+                       rel="noopener">
+                        <div>
+                            <div
+                                class="text-gray-900 dark:text-gray-300 text-2xl pr-2 xs:border-none font-semibold md:text-2xl m-auto dark:text-gray-300">
+                                DevHub
+                            </div>
+                            <p class="text-sm dark:text-gray-300">Telegram kanalı <br> izləmək</p>
                         </div>
-
-                        <div class="default-block__content">
-                            Content
-                        </div>
-                    </div>
+                        <span class="iconify w-20 h-20 rounded-full dark:bg-white" style="color: #0088cc;"
+                              data-icon="cib:telegram"
+                              data-inline="false"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
+    <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
+@endpush
+
+@section('styles')
+    @parent
+    <link rel="preload" href="{{ mix('js/home.js') }}" as="script">
 @endsection

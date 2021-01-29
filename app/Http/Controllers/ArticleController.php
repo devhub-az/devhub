@@ -7,17 +7,14 @@ use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubResource;
 use App\Models\Article;
 use App\Models\Hub;
-use App\Models\User;
 use App\Notifications\PostNotify;
 use App\Services\Canvas;
 use DB;
-use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class ArticleController extends Controller
@@ -100,10 +97,11 @@ class ArticleController extends Controller
         $article = Article::with(
             [
                 'creator' => function ($query) {
-                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
-                        'articles',
-                        'followers'
-                    );
+                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating', 'github_url')
+                        ->withCount(
+                            'articles',
+                            'followers'
+                        );
                 },
             ]
         )->where('slug', $slug)->firstOrFail();
@@ -117,113 +115,9 @@ class ArticleController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param         $type
-     *
-     * @return mixed
-     * @throws ValidationException
-     */
-    public function postVoteComment(Request $request, $type): mixed
-    {
-        $this->validate(
-            $request,
-            [
-                'id' => 'required|exists:comments,id',
-            ]
-        );
-
-        $user = $request->user();
-
-        $post = Article::findOrFail($request->id);
-
-        ($type === 'upvote') ? User::upOrDownVote($user, $post) : User::upOrDownVote($user, $post, 'downvote');
-
-        return $this->response->withNoContent();
-    }
-
-    /**
-     * @param $post
-     * @param $request
+     * @param IdRequest $request
      *
      * @return JsonResponse
-     * @throws Exception|Throwable
-     */
-    public function postRatingChanger($post, $request): JsonResponse
-    {
-        $user = $request->user();
-        $voteStatus = $request->get('status');
-
-        try {
-            DB::beginTransaction();
-            if (isset($voteStatus)) {
-                switch ($voteStatus) {
-                    case 'upvote':
-                        $user->upvote($post);
-                        break;
-                    case 'downvote':
-                        $user->downvote($post);
-                        break;
-                    case 'delete':
-                        $user->cancelVote($post);
-                        break;
-                }
-                $post->creator->save();
-            }
-            foreach ($post->hubs as $hub) {
-                $hub->rating += $request->get('change_rating');
-                $hub->save();
-            }
-            $post->creator->rating += $request->get('change_rating');
-            DB::commit();
-        } catch (\Exception $e) {
-            //failed logic here
-            DB::rollback();
-
-            return response()->json(['error' => 'error'], 500);
-        }
-
-        return response()->json(
-            [
-                'success' => 'success',
-            ]
-        );
-
-//        return response()->json([
-//            'transaction'        => $voteStatus,
-//            'isset($voteStatus)' => isset($voteStatus),
-//            'count'              => $post->voters->count(),
-//            'success'            => 'success',
-//            'status'             => $request->get('status'),
-//            'post_id'            => $request->get('id'),
-//            'user_id'            => $user->id
-//        ], 200);
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse status
-     * @throws Exception|Throwable
-     */
-    public function vote(Request $request): JsonResponse
-    {
-        $request->validate(
-            [
-                'id'   => 'required|int',
-                'vote' => 'required|int',
-            ]
-        );
-
-        $post = Article::findOrFail($request->get('id'));
-
-        return $this->postRatingChanger($post, $request);
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     * @throws Exception
      */
     public function addFavorite(IdRequest $request): JsonResponse
     {

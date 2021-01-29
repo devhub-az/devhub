@@ -1,27 +1,24 @@
 <template>
-    <div class="pl-2">
+    <div class="">
         <div class="star tooltip flex items-center" @click="favorite(post.id)"
              v-if="!post.favorite && !loading" aria-label="Seçilmişlərə əlavə et"
              data-balloon-pos="down">
-            <i v-if="!post.favorite" class="iconify dark:text-gray-300" data-icon="mdi-bookmark-plus"/>
+            <span class="iconify text-gray-500 dark:text-gray-300" data-icon="fa-solid:save" data-inline="false"></span>
             {{ post.favorites }}
-            <div class="ml-1 dark:text-gray-300 xs:hidden">Seçilmiş</div>
         </div>
         <div class="star tooltip flex items-center" @click="favorite(post.id)"
              v-if="post.favorite && !loading" aria-label="Seçilmişlərdən cixartmag"
              data-balloon-pos="down">
-            <i v-if="post.favorite" class="iconify dark:text-gray-300" data-icon="mdi-bookmark-check saved"/>
+            <i v-if="post.favorite" class="iconify text-gray-500 dark:text-gray-300" data-icon="fa-solid:save"/>
             {{ post.favorites }}
-            <div class="ml-1 dark:text-gray-300 xs:hidden">Seçilmiş</div>
         </div>
         <div class="star tooltip flex items-center"
              v-if="loading" aria-label="Seçilmişlərdən cixartmag"
              data-balloon-pos="down">
             <div class="animate-spin">
-                <span class="iconify dark:text-gray-300" data-icon="mdi-loading"></span>
+                <span class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-loading"></span>
             </div>
             {{ post.favorites }}
-            <div class="ml-1 dark:text-gray-300 xs:hidden">Gözləyin</div>
         </div>
     </div>
 </template>
@@ -87,9 +84,3 @@ export default {
     }
 }
 </script>
-
-<style scoped lang="scss">
-.saved {
-    color: var(--color-primary-main);
-}
-</style>

@@ -27,16 +27,22 @@ class CreateUsersTable extends Migration
                 $table->tinyInteger('status')->default(false);
                 $table->boolean('is_admin')->default(false);
                 $table->string('password');
+                $table->string('github_id')->nullable();
                 $table->string('github_url')->nullable();
+                $table->dateTime('last_activity')->nullable();
                 $table->string('website')->nullable();
                 $table->dateTime('email_verified_at')->nullable();
+                $table->dateTime('last_active')->nullable();
                 $table->enum('email_notify_enabled', ['yes', 'no'])->default('yes')->index();
                 $table->rememberToken();
                 $table->timestamps();
                 $table->softDeletes();
             }
         );
+        DB::statement('ALTER TABLE `users` ADD INDEX name (name)');
+        DB::statement('ALTER TABLE `users` ADD INDEX username (username)');
         DB::statement('ALTER TABLE `users` ADD FULLTEXT INDEX users_username_index (name, username)');
+        DB::statement('CREATE INDEX created_at ON users(created_at)');
     }
 
     /**

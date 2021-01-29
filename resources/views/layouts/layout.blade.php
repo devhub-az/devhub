@@ -13,17 +13,15 @@
 
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
     <meta name="theme-color" content="#ffffff">
-
-    {{--    <link rel="preload" href="{{ asset('js/scripts/lazysizes.min.js') }}" as="script">--}}
+    <link rel="preload" href="{{ mix('js/scroller.js') }}" as="script">
 
     @yield('meta')
 
     {{-- CSS --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
+    <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -35,10 +33,6 @@
             ]
         ); ?>
     </script>
-
-    <style>
-        {{ include('css/tailwind.css') }}
-    </style>
     @yield('styles')
 </head>
 
@@ -46,12 +40,18 @@
 <body class="flex bg-wall font-sans flex-col min-h-screen overflow-x-hidden dark:bg-dwall"
       itemscope itemtype="http://schema.org/WebPage">
 
-{{--<span class="scroll-top mb:hidden" id="scroll-top" onclick="scrollToTop()" style="opacity: 0;">--}}
-{{--    <i class="iconify" data-icon="mdi-chevron-up"></i>--}}
-{{--</span>--}}
-
 {{-- Header --}}
 @include('include.header')
+
+<div id="scroller"
+     class="hidden hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer text-center h-screen w-10 my-auto z-50 opacity-40 xs:hidden">
+    <div id="mdi-chevron-up" class="relative top-1/2">
+        <span class="iconify text-2xl w-full dark:text-gray-300" data-icon="bi:arrow-up-circle" data-inline="false"></span>
+    </div>
+    <div id="mdi-chevron-down" class="hidden relative top-1/2">
+        <span class="iconify text-2xl w-full dark:text-gray-300" data-icon="bi:arrow-down-circle" data-inline="false"></span>
+    </div>
+</div>
 
 @if(Cookie::get('message') !== null)
     <div class="header-message {{ Cookie::get('alert-class', 'alert-info') }}" onclick="">
@@ -61,11 +61,14 @@
     </div>
 @endif
 
-@yield('main')
+<div id="content">
+    @yield('main')
+</div>
 
 {{-- Footer --}}
 @include('include.footer')
-<script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
+<script src="//code.iconify.design/1/1.0.6/iconify.min.js" async></script>
+<script type="text/javascript" src="{{ mix('js/scroller.js') }}" defer></script>
 @stack('scripts')
 </body>
 </html>

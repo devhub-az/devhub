@@ -2,7 +2,7 @@
     <div class="mb-3">
         <posts-loading v-if="loading"/>
         <div v-if="!loading && !postsEmpty">
-            <div class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:border-gray-700"
+            <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
                  v-for="post in posts">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
@@ -29,45 +29,45 @@
                            class="my-auto text-2xl xs:text-xl dark:text-gray-300">
                             {{ post.attributes.title }}
                         </a>
-                        <vote :posts="post" :auth_check="auth_check"/>
+                        <vote :item="post"/>
                     </div>
                     <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data"
                                :auth_check="auth_check"/>
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
                         <div
-                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)" v-html="block"></div>
+                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)"
+                            v-html="block.length > 700 ? block.slice(0,600) + '...' : block"></div>
                     </div>
                 </div>
                 <div
-                    class="grid lg:grid-cols-main border-t rounded-b text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 py-2">
-                    <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
+                    class="grid lg:grid-cols-main border-t rounded-b text-sm bg-afooter dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 h-10">
+                    <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                         <div class="flex items-center">
-                            <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
-                            <p class="ml-1 dark:text-gray-300">{{ post.attributes.views }}</p>
-                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Baxışların sayı</p>
+                            <i class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-eye-outline"/>
+                            <p class="ml-1 text-gray-500 dark:text-gray-300">{{ post.attributes.views }}</p>
                         </div>
-                        <div class="pl-2">
-                            <a :href="'/post/' + post.id + '#comments'" class="flex items-center">
-                                <i class="iconify dark:text-gray-300" data-icon="mdi-comment-text-multiple-outline"/>
-                                <p class="ml-1 dark:text-gray-300">{{
-                                        post.comments_count ? post.comments_count : 'X'
-                                    }}</p>
-                                <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Şerh</p>
+                        <div>
+                            <a :href="'/article/' + post.attributes.slug + '#comments'" class="flex items-center">
+                                <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
+                                <p class="ml-1 text-gray-500 dark:text-gray-300">
+                                    {{ post.comments_count ? post.comments_count : '0' }}
+                                </p>
                             </a>
                         </div>
                         <favorite :post="post" :auth_check="auth_check"/>
-                        <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
-                            <i class="iconify dark:text-gray-300" data-icon="mdi-share"/>
-                            <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaş</p>
+                        <div class=" flex items-center cursor-pointer" @click="copy(post.id)">
+                            <span class="iconify text-gray-500 dark:text-gray-300" data-icon="fa-solid:share-alt" data-inline="false"></span>
                         </div>
                     </div>
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                         :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
+                         :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
                          data-balloon-pos="up">
                         <div class="my-auto bg-gray-300 w-full rounded h-1 relative"
                              :class="{ 'default' : post.attributes.votes_sum === 0}">
-                            <div class="absolute h-1 bg-blue rounded"
+                            <div class="absolute h-1 bg-green-600 rounded-l"
                                  :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
+                            <div class="absolute h-1 bg-red-600 rounded-r right-0"
+                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes_sum : '0'] +'%'"></div>
                         </div>
                     </div>
                 </div>
@@ -82,15 +82,21 @@
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
         <div v-else-if="postsEmpty"
-             class="bg-white dark:bg-transparent dark:border-gray-700 rounded border text-center grid gap-2 p-5">
-            <span class="opacity-75" style="font-size: 5rem">
-                <i class="iconify mx-auto dark:text-gray-400" data-icon="mdi-comment-edit-outline"/>
-            </span>
-            <span class="opacity-75 pb-2 dark:text-gray-300">Paylaşma tapılmadı</span>
-            <a href="/article/new"
-               class="w-max flex mx-auto items-center border border-cerulean-600 font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-600 hover:opacity-90">
-                <i class="iconify" data-icon="mdi-plus"/> Yazmağ
-            </a>
+             class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border py-10">
+            <div class="w-2/3 mx-auto space-y-4 xs:w-full xs:px-4">
+                <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
+                    <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline"
+                          data-inline="false"></span>
+                    <p class="dark:text-gray-300">Paylaşma tapılmadı</p>
+                </div>
+                <p class="font-light text-center dark:text-gray-400">
+                    Kenar çubuğunda "Kimin izləməsi" ndə göstərilən bəzi istifadəçiləri izləyə bilərsiniz
+                </p>
+                <a href="/article/new"
+                   class="btn block flex w-max mx-auto xs:hidden">
+                    <i class="iconify" data-icon="mdi-plus"/> Yazmağ
+                </a>
+            </div>
         </div>
     </div>
 </template>

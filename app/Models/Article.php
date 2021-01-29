@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Auth;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jcc\LaravelVote\CanBeVoted;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
-use Str;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Post.
@@ -82,11 +81,6 @@ class Article extends Model
 //        return $this->belongsToMany(Comment::class, 'structure_tree', 'subject_id',
 //            'ancestor_id')->with('author')->withPivot('level')->orderBy('ancestor_id');
 //    }
-
-    public function isAuthUserUpvoted()
-    {
-        return (string) $this->isUpvotedBy((int) Auth::user());
-    }
 
     /**
      * @return array

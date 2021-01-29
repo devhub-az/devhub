@@ -21,9 +21,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserTableSeeder::class);
         $this->call(HubsTableSeeder::class);
-        $this->call(LocalizationTableSeeder::class);
-        $this->call(PostHubsTableSeeder::class);
-        $this->call(ArticleViews::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

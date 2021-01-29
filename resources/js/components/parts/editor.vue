@@ -1,8 +1,9 @@
 <template>
-    <form class="border bg-white border-t-0 dark:bg-transparent dark:border-gray-800 dark:text-gray-300 text-black" @submit.prevent="onSubmit">
-        <div class="border-b dark:border-gray-800 bg-white dark:bg-gray-900 py-2 px-8 sticky top-0 z-10">
+    <form class="border bg-white border-t-0 dark:bg-dpaper dark:border-gray-700 dark:text-gray-300 text-black" @submit.prevent="onSubmit">
+        <div class="border-b flex dark:border-gray-700 bg-white dark:bg-gray-900 py-2 px-8 sticky top-0 z-10">
+            <p class="w-9/12 text-xl break-all">{{ title }}</p>
             <button type="submit"
-                    class="ml-auto block border border-cerulean-700 font-normal uppercase text-xs rounded px-4 py-1.5 text-white bg-cerulean-700 dark:bg-cerulean-800 dark:border-cerulean-800 hover:bg-cerulean-800 hover:border-cerulean-800 xs:hidden sm:hidden">
+                    class="btn h-7 ml-auto block">
                 Paylaşmaq
             </button>
         </div>
@@ -15,7 +16,14 @@
         <div>
             <multiselect v-model="selected" @input="updateHubs" :options="hubs" tag-position="bottom" :custom-label='hubsName'
                          :multiple="true" label="name" :placeholder="$t('form.select_category')"
-                         track-by="name" class="transition-none"></multiselect>
+                         track-by="name" class="transition-none">
+                <template slot="option" slot-scope="props" class="transition-none">
+                    <div class="flex items-center space-x-1 transition-none">
+                        <img class="w-8 h-8 rounded" :src="'/' + props.option.logo" :alt="props.option.name">
+                        <span class="transition-none">{{ props.option.name }}</span>
+                    </div>
+                </template>
+            </multiselect>
         </div>
     </form>
 </template>

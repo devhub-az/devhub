@@ -20,7 +20,11 @@ class HubController extends Controller
      */
     public function index(FilterRequest $request): HubsResource
     {
-        return new HubsResource(Hub::withCount(['articles', 'favorites'])->orderBy($request->get('column'), $request->get('order'))->paginate());
+        return new HubsResource(
+            Hub::withCount(['articles', 'favorites'])
+                ->orderBy($request->get('column'), $request->get('order'))
+                ->paginate($request->perPage)
+        );
     }
 
     /**
@@ -28,7 +32,7 @@ class HubController extends Controller
      */
     public function all(): Collection
     {
-        return Hub::select(['id', 'name'])->get();
+        return Hub::select(['id', 'name', 'logo'])->get();
     }
 
     /**

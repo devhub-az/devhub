@@ -26,13 +26,13 @@
                     <div class="m-auto w-2/3 dark:text-gray-300">
                         <p class="text-3xl font-medium mb-5">Daxili bilikləri kəşf edin</p>
                         <p class="mb-4 font-light">Məlumat tapın və maraqlandığınız mövzuları izləmək üçün
-                            <a href="/hubs" class="font-medium text-cerulean-700">hablardan</a> istifadə
+                            <a href="/hubs" class="font-medium text-cerulean-500">hablardan</a> istifadə
                             edin.</p>
                     </div>
                     <div class="absolute top-0 bottom-0 xs:hidden sm:hidden right-0 w-20 z-10"
                          style="box-shadow: inset -25px 0 25px -25px #aaaaaa;"></div>
                     <div id="left"
-                         class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 ml-60 xs:hidden sm:hidden"
+                         class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 ml-60 xs:hidden sm:hidden"
                          style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
@@ -131,15 +131,15 @@
                     </div>
                 </div>
             </div>
+            <about-example id="app"></about-example>
         </section>
-        <about-example id="app"></about-example>
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
             <div class="py-10 border-b border-t dark:border-gray-700">
                 <div class="grid relative xs:block sm:block grid-cols-2 overflow-hidden">
                     <div class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10"
                          style="box-shadow: inset 25px 0 25px -25px #aaaaaa;"></div>
                     <div id="right"
-                         class="w-full mb-3 rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 -ml-60 xs:hidden sm:hidden"
+                         class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 -ml-60 xs:hidden sm:hidden"
                          style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
@@ -253,7 +253,7 @@
                     mübadiləsi edin.
                 </p>
                 <a href="{{ route('create_article') }}"
-                   class="border border-cerulean-700 xs:block xs:text-center xs:py-2 xs:w-full font-semibold uppercase text-xs rounded px-3 py-1.5 text-gray-100 bg-cerulean-700 hover:opacity-90">
+                   class="btn h-7">
                     Töhfə vermək
                 </a>
             </div>

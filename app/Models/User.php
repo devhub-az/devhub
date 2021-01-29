@@ -9,12 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Jcc\LaravelVote\CanBeVoted;
+use Illuminate\Support\Facades\Cache;
 use Jcc\LaravelVote\Vote;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
-use Silber\Bouncer\Database\HasRolesAndAbilities;
 
 /**
  * Class User.
@@ -28,9 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens;
     use Vote;
     use Favoriter;
-    use CanBeVoted;
     use SoftDeletes;
-    use HasRolesAndAbilities;
     use HasFactory;
 
     /**
@@ -71,6 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'confirm_code',
         'username',
         'email_notify_enabled',
+        'github_id',
         'github_url',
         'website',
         'description',
@@ -124,12 +122,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->comments()->pluck('post_id')->toArray();
     }
 
-    //Trash
-
-    public function messagesNotificationsCount(): int
+    /**
+     * @return mixed
+     */
+    public function isOnline()
     {
-        return $this->hasMany(Message::class, 'to_id', 'id')->whereNull('read_at')->count();
+        return Cache::has('user-online-'.$this->id);
     }
-
-    //End trash
 }

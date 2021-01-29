@@ -1,10 +1,4 @@
-console.log(' ____             _   _       _\n' +
-    '|  _ \\  _____   _| | | |_   _| |__   __ _ ____\n' +
-    '| | | |/ _ \\ \\ / / |_| | | | | \'_ \\ / _` |_  /\n' +
-    '| |_| |  __/\\ V /|  _  | |_| | |_) | (_| |/ /\n' +
-    '|____/ \\___| \\_/ |_| |_|\\__,_|_.__(_)__,_/___|')
-
-import Vue from 'vue'
+let Vue = require('vue').default;
 import moment from "moment-mini"
 import httpPlugin from './../scripts/http';
 import Notifications from 'vue-notification'
@@ -30,14 +24,15 @@ Vue.component('posts-loading', require('./../components/plugins/loading/PostsLoa
 /**
  * Parts
  */
-Vue.component('tags', require('./../components/parts/tags.vue').default);
-Vue.component('hubs-tags', require('./../components/hubs/HubsTagComponent.vue').default);
+Vue.component('tags', require('./../components/parts/tags').default);
+Vue.component('hubs-tags', require('./../components/hubs/HubsTagComponent').default);
+Vue.component('select-menu', require('./../components/parts/SelectMenu').default);
 
-Vue.component('vote', require('./../components/parts/vote.vue').default);
+Vue.component('vote', require('./../components/parts/vote').default);
 Vue.component('favorite', require('./../components/parts/PostFavorite').default);
-Vue.component('hub-follow-button', require('./../components/hubs/HubsFollowButtonComponent.vue').default);
+Vue.component('hub-follow-button', require('./../components/hubs/HubsFollowButtonComponent').default);
 Vue.component('comment-favorite', require('./../components/parts/CommentFavorite').default);
-Vue.component('pagination', require('./../components/plugins/pagination.vue').default);
+Vue.component('pagination', require('./../components/plugins/pagination').default);
 
 
 new Vue({

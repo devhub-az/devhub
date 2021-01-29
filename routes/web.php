@@ -1,6 +1,8 @@
 <?php
 
 Auth::routes();
+Route::get('login/github', 'Auth\LoginController@github');
+Route::get('login/github/redirect', 'Auth\LoginController@githubRedirect');
 //Route::get('/forgot-password', function () {
 //    return view('auth.forgot-password');
 //})->middleware('guest')->name('password.request');
@@ -30,8 +32,8 @@ Route::group(['middleware' => ['auth']], static function () {
         Route::get('/comments', 'Auth\FavoriteController@indexComments')->name('saved-comments');
     });
 
-    Route::prefix('@{username}/settings')->group(function () {
-        Route::get('profile', 'Auth\UserSettingsController@index')->name('profile-settings');
+    Route::prefix('settings')->group(function () {
+        Route::get('/', 'Auth\UserSettingsController@index')->name('profile-settings');
         Route::post('profile', 'Auth\UserSettingsController@update');
         Route::post('avatar', 'Auth\UserSettingsController@update_avatar');
     });
@@ -50,10 +52,10 @@ Route::group([], static function () {
     // Hubs view
     Route::prefix('hubs')->group(static function () {
         Route::get('/', 'HubController@index')->name('hubs-list');
-        Route::get('/{id}', 'HubController@show');
-        Route::get('/{id}/top/week', 'HubController@show');
-        Route::get('/{id}/top/month', 'HubController@show');
-        Route::get('/{id}/all', 'HubController@show');
+        Route::get('/{slug}', 'HubController@show');
+        Route::get('/{slug}/top/week', 'HubController@show')->name('hubs.week');
+        Route::get('/{slug}/top/month', 'HubController@show')->name('hubs.month');
+        Route::get('/{slug}/all', 'HubController@show')->name('hubs.all');
     });
 
     //Search view
@@ -96,12 +98,12 @@ Route::group([], static function () {
 //    Route::resource('users', 'UsersController');
 //});
 
+/** Generate Sitemap */
+Route::get('/first_sitemap', 'SitemapController@firstSitemap')->name('sitemap.first');
+
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('{path?}', 'HomeController@index')->where('path', '[\/\w\.-]*');
 });
-
-// FUTURE
-//Route::post('upvote', 'PostController@vote');
 
 Route::get('query', 'HomeController@indexTest');
 

@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Models\Comment;
 use App\Models\Hub;
 use App\Models\User;
+use App\Observers\ArticleObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
 
+        Article::observe(ArticleObserver::class);
         Relation::morphMap([
             'posts'    => Article::class,
             'comments' => Comment::class,

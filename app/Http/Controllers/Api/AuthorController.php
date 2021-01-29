@@ -30,13 +30,13 @@ class AuthorController extends Controller
                     'rating',
                 ]
             )->with('followers', 'followings')->withCount('articles', 'followers', 'followings')->orderBy(
-                $request->get('column'),
-                $request->get('order')
-            )->paginate(12)
+                $request->column ?? 'created_at',
+                $request->order ?? 'DESC'
+            )->paginate($request->perPage ?? '10')
         );
     }
 
-    public function show(int $id)
+    public function show($id)
     {
         AuthorResource::withoutWrapping();
 
