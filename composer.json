@@ -10,7 +10,6 @@
         "php": "^7.4|^8.0",
         "barryvdh/laravel-ide-helper": "^2.6",
         "codex-team/editor.js": "dev-master",
-        "enlightn/enlightn": "^1.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "graham-campbell/markdown": "^13.1",

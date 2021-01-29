@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip
 
+RUN docker-php-ext-install exif
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -28,7 +30,9 @@ RUN docker-php-ext-install gd
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install packages
-RUN composer install
 
-RUN php artisan key:generate
+# TODO:FIX BUG
+# Install packages
+#RUN composer update
+#
+#RUN php artisan key:generate
