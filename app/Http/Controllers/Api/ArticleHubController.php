@@ -10,9 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
- * Class ArticleHubController
- *
- * @package \App\Http\Controllers\Api
+ * Class ArticleHubController.
  */
 class ArticleHubController
 {

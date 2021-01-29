@@ -22,27 +22,27 @@ Route::prefix('articles')->group(
 
         Route::get(
             '{article}/relationships/author',
-            ['uses' => 'Api\ArticleRelationshipController' . '@author', 'as' => 'articles.relationships.author']
+            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.relationships.author']
         );
         Route::get(
             '{article}/author',
-            ['uses' => 'Api\ArticleRelationshipController' . '@author', 'as' => 'articles.author']
+            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
         );
         Route::get(
             '{article}/relationships/comments',
-            ['uses' => 'Api\ArticleRelationshipController' . '@comments', 'as' => 'articles.relationships.comments']
+            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.relationships.comments']
         );
         Route::get(
             '{article}/comments',
-            ['uses' => 'Api\ArticleRelationshipController' . '@comments', 'as' => 'articles.comments']
+            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
         );
         Route::get(
             '{article}/relationships/hubs',
-            ['uses' => 'Api\ArticleRelationshipController' . '@hubs', 'as' => 'articles.relationships.hubs']
+            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.relationships.hubs']
         );
         Route::get(
             '{article}/hubs',
-            ['uses' => 'Api\ArticleRelationshipController' . '@hubs', 'as' => 'articles.hubs']
+            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
         );
     }
 );
