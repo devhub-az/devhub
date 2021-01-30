@@ -40,7 +40,7 @@
         "@editorjs/list": "1.6.2",
         "@editorjs/simple-image": "^1.4.0",
         "animate.css": "^4.1.0",
-        "autoprefixer": "10.2.3",
+        "autoprefixer": "10.2.4",
         "easydropdown": "^4.2.0",
         "editorjs-html": "^3.0.3",
         "emojione": "^4.5.0",
