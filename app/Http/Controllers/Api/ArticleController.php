@@ -7,13 +7,12 @@ use App\Http\Requests\Api\VoteRequest;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
+use App\Jobs\CreateArticle;
 use App\Models\Article;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Uuid;
-use Str;
 use Throwable;
 
 class ArticleController extends Controller
@@ -64,24 +63,25 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request): JsonResponse
     {
-        try {
-            $article = Article::create(
-                [
-                    'id'        => Uuid::uuid4(),
-                    'name'      => $request->title,
-                    'slug'      => Str::slug($request->title),
-                    'content'   => $request->body,
-                    'author_id' => $request->user()->id,
-                ]
-            );
-            $article->hubs()->sync($request->hubs);
-
-            return new JsonResponse($article->slug);
-        } catch (Exception $exception) {
-            report($exception);
-
-            return new JsonResponse($exception->getMessage(), 500);
-        }
+        $article = $this->dispatchNow(CreateArticle::fromRequest($request));
+//        try {
+//            $article = Article::create(
+//                [
+//                    'id'        => Uuid::uuid4(),
+//                    'name'      => $request->title,
+//                    'slug'      => Str::slug($request->title),
+//                    'content'   => $request->body,
+//                    'author_id' => $request->user()->id,
+//                ]
+//            );
+//            $article->hubs()->sync($request->hubs);
+//
+//            return new JsonResponse($article->slug);
+//        } catch (Exception $exception) {
+//            report($exception);
+//
+//            return new JsonResponse($exception->getMessage(), 500);
+//        }
     }
 
     /**

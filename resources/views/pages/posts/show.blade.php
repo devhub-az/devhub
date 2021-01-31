@@ -15,7 +15,7 @@
                 <article-show :id="'{{ $post->attributes->id }}'" @auth :auth_check="true" @endauth></article-show>
                 <div class="flex justify-between items-center border bg-white dark:bg-dpaper dark:border-gray-700 w-full px-3.5 py-3 rounded">
                     <p class="text-xl dark:text-gray-300">
-                        Paylaşmaq
+                        Paylaş
                     </p>
                     <div class="text-2xl gap-2 flex">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}"

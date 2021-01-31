@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
+use App\Helpers\HasAuthor;
+use App\Helpers\HasHubs;
+use App\Helpers\HasSlug;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jcc\LaravelVote\CanBeVoted;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
-use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Post.
@@ -22,6 +22,9 @@ class Article extends Model
 {
     use SoftDeletes;
     use CanBeVoted;
+    use HasSlug;
+    use HasAuthor;
+    use HasHubs;
     use HasFactory;
     use Favoriteable;
 
@@ -51,20 +54,10 @@ class Article extends Model
     protected $fillable = [
         'id',
         'slug',
-        'name',
-        'content',
+        'title',
+        'body',
         'author_id',
     ];
-
-    public function creator(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'author_id')->withDefault();
-    }
-
-    public function hubs(): BelongsToMany
-    {
-        return $this->belongsToMany(Hub::class, 'post_hubs', 'posts_id', 'hub_id');
-    }
 
     /**
      * Get the views relationship.

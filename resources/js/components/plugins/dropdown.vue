@@ -54,17 +54,6 @@
                 <!--                        </div>-->
                 <!--                    </div>-->
                 <!--                </li>-->
-                <a v-if="admin"
-                   href="/admin"
-                   @keydown.tab.exact="focusNext(false)"
-                   @keydown.shift.tab="focusPrevious(false)"
-                   @keydown.up.exact.prevent="focusPrevious(true)"
-                   @keydown.down.exact.prevent="focusNext(true)"
-                   @keydown.esc.exact="hideDropdown"
-                   class="block px-4 capitalize text-gray-700 hover:bg-blue hover:text-black dark:text-gray-300"
-                >
-                    <p class="text-sm">Admin panel</p>
-                </a>
                 <switcher></switcher>
                 <div class="my-2 border-t dark:border-gray-700"></div>
                 <a
@@ -102,7 +91,7 @@ import axios from "axios"
 
 export default {
     mixins: [clickaway],
-    props: ['user', 'fav', 'admin'],
+    props: ['user', 'fav'],
     data() {
         return {
             switch: true,

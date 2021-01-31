@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Jcc\LaravelVote\Vote;
 use Laravel\Passport\HasApiTokens;
@@ -20,7 +21,7 @@ use Overtrue\LaravelFollow\Followable;
  *
  * @mixin Eloquent
  */
-class User extends Authenticatable implements MustVerifyEmail
+final class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
     use Followable;
@@ -36,6 +37,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var string
      */
     protected $primaryKey = 'id';
+
+    const DEFAULT = 1;
+    const MODERATOR = 2;
+    const ADMIN = 3;
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -56,10 +61,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = ['created_at','last_active', 'deleted_at'];
 
     protected $fillable = [
-        'id',
         'name',
         'email',
         'is_admin',
@@ -68,6 +72,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'confirm_code',
         'username',
         'email_notify_enabled',
+        'remember_token',
+        'type',
         'github_id',
         'github_url',
         'website',
@@ -88,9 +94,41 @@ class User extends Authenticatable implements MustVerifyEmail
         'deleted_at',
     ];
 
-    protected $casts = [
+    protected $casts  = [
+        'created_at'        => 'datetime:j M Y',
+        'last_active'       => 'datetime:j M Y',
         'email_verified_at' => 'datetime',
     ];
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function types(): int
+    {
+        return (int) $this->type;
+    }
+
+    public function isModerator(): bool
+    {
+        return $this->types() === self::MODERATOR;
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->types() === self::ADMIN;
+    }
+
+    public function isBanned(): bool
+    {
+        return ! is_null($this->banned_at);
+    }
+
+    public function isLoggedInUser(): bool
+    {
+        return $this->id() === Auth::id();
+    }
 
     /**
      * Get Posts where user is author with hubs(function in post model).
@@ -128,5 +166,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isOnline()
     {
         return Cache::has('user-online-'.$this->id);
+    }
+
+    public static function findByUsername(string $username): self
+    {
+        return static::where('username', $username)->firstOrFail();
     }
 }

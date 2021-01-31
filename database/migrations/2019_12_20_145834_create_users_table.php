@@ -15,34 +15,30 @@ class CreateUsersTable extends Migration
         Schema::create(
             'users',
             function (Blueprint $table) {
-                $table->uuid('id')->primary();
-                $table->string('name');
-                $table->string('username')->unique();
+                $table->uuid('id')->primary()->index();
+                $table->string('name')->index();
+                $table->string('username')->unique()->index();
                 $table->string('avatar')->default('default');
                 $table->string('description')->nullable();
                 $table->string('email')->unique();
                 $table->integer('karma')->nullable()->default(0);
                 $table->integer('rating')->nullable()->default(0);
-                $table->string('confirm_code', 64)->unique()->nullable();
-                $table->tinyInteger('status')->default(false);
-                $table->boolean('is_admin')->default(false);
+                $table->integer('type')->default(0);
                 $table->string('password');
                 $table->string('github_id')->nullable();
                 $table->string('github_url')->nullable();
                 $table->dateTime('last_activity')->nullable();
-                $table->string('website')->nullable();
                 $table->dateTime('email_verified_at')->nullable();
                 $table->dateTime('last_active')->nullable();
                 $table->enum('email_notify_enabled', ['yes', 'no'])->default('yes')->index();
                 $table->rememberToken();
+                $table->dateTime('banned_at')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
+
+                $table->index(['created_at', 'updated_at']);
             }
         );
-        DB::statement('ALTER TABLE `users` ADD INDEX name (name)');
-        DB::statement('ALTER TABLE `users` ADD INDEX username (username)');
-        DB::statement('ALTER TABLE `users` ADD FULLTEXT INDEX users_username_index (name, username)');
-        DB::statement('CREATE INDEX created_at ON users(created_at)');
     }
 
     /**

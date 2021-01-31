@@ -23,6 +23,10 @@
 }
 
 @layer components {
+    .group:focus .group-focus\:flex {
+        display: flex;
+    }
+
     .input {
         @apply w-full px-2 h-10 resize-none rounded text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:focus:border-cerulean-500 font-light dark:bg-dpaper focus:border-cerulean-100 focus:outline-none transition-none
     }

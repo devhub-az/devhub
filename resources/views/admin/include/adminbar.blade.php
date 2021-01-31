@@ -21,10 +21,10 @@
                 <span class="iconify" data-icon="bx:bx-chip" data-inline="false"></span>
                 <p class="text-sm">Laravel v{{ App::VERSION() }}</p>
             </div>
-{{--            <div class="flex items-center space-x-0.5">--}}
-{{--                <span class="iconify" data-icon="uil:folder-open" data-inline="false"></span>--}}
-{{--                <p class="text-sm">{{ $admin['cache'] }}</p>--}}
-{{--            </div>--}}
+            {{--            <div class="flex items-center space-x-0.5">--}}
+            {{--                <span class="iconify" data-icon="uil:folder-open" data-inline="false"></span>--}}
+            {{--                <p class="text-sm">{{ $admin['cache'] }}</p>--}}
+            {{--            </div>--}}
             <div class="flex items-center space-x-0.5" title="DevHub page speed">
                 <span class="iconify" data-icon="ant-design:field-time-outlined" data-inline="false"></span>
                 <p class="text-sm">{{ Numeric::bcmul_alternative((microtime(true) - LARAVEL_START), '1000', 2) }}ms</p>
@@ -32,6 +32,11 @@
             <div class="flex items-center space-x-0.5" title="Memory usage">
                 <span class="iconify" data-icon="bx:bx-cog" data-inline="false"></span>
                 <p class="text-sm">{{ Numeric::convert(memory_get_usage(true)) }}</p>
+            </div>
+            <div class="flex items-center space-x-0.5">
+                <a href="{{ route('admin') }}" class="btn h-6 px-1">
+                    <span class="iconify" data-icon="mdi:account-cowboy-hat" data-inline="false"></span>
+                </a>
             </div>
         </div>
     </div>

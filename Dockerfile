@@ -3,7 +3,7 @@ FROM php:8.0-fpm
 WORKDIR /var/www
 
 # Copy composer.json
-COPY composer.json /var/www/
+COPY ./ /var/www/
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -33,6 +33,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # TODO:FIX BUG
 # Install packages
-#RUN composer update
-#
-#RUN php artisan key:generate
+RUN composer update
+
+RUN php artisan key:generate

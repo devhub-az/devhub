@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\AuthGetIP;
 use App\Models\User;
 use Auth;
 use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Facades\Socialite;
-use Ramsey\Uuid\Uuid;
 use Str;
 
 class LoginController extends Controller
@@ -59,14 +57,14 @@ class LoginController extends Controller
                 'github_id' => $user->id,
             ],
             [
-                'id'          => Uuid::uuid4(),
-                'name'        => $user->name ?? '',
-                'description' => $user->user['bio'],
-                'email'       => $user->email,
-                'username'    => $user->nickname,
-                'github_id'   => $user->id,
-                'github_url'  => $user->user['html_url'],
-                'password'    => Hash::make(Str::random(24)),
+                'name'              => $user->name ?? '',
+                'description'       => $user->user['bio'],
+                'email'             => $user->email,
+                'username'          => $user->nickname,
+                'github_id'         => $user->id,
+                'email_verified_at' => \Carbon::now(),
+                'github_url'        => $user->user['html_url'],
+                'password'          => Hash::make(Str::random(24)),
             ]
         );
 

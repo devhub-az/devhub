@@ -3,128 +3,47 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreUsersRequest;
-use App\Http\Requests\Admin\UpdateUsersRequest;
+use App\Http\Middleware\VerifyAdmins;
+use App\Jobs\BanUser;
+use App\Jobs\DeleteUser;
+use App\Jobs\UnbanUser;
 use App\Models\User;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\View\View;
-use Silber\Bouncer\Database\Role;
+use App\Policies\UserPolicy;
+use Illuminate\Auth\Middleware\Authenticate;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of User.
-     *
-     * @return Factory|View
-     */
-    public function index()
+    public function __construct()
     {
-        return view('admin.users.index', compact('users'));
+        $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
-    /**
-     * Show the form for creating new User.
-     *
-     * @return Factory|View
-     */
-    public function create()
+    public function ban(User $user)
     {
-        return view('admin.users.create', compact('roles'));
+        $this->authorize(UserPolicy::BAN, $user);
+
+        $this->dispatchNow(new BanUser($user));
+
+        return back();
     }
 
-    /**
-     * Store a newly created User in storage.
-     *
-     * @param StoreUsersRequest $request
-     *
-     * @return RedirectResponse
-     */
-    public function store(StoreUsersRequest $request): RedirectResponse
+    public function unban(User $user)
     {
-        $user = User::create($request->all());
+        $this->authorize(UserPolicy::BAN, $user);
 
-        if ($request->input('roles')) {
-            foreach ($request->input('roles') as $role) {
-                $user->assign($role);
-            }
-        }
+        $this->dispatchNow(new UnbanUser($user));
 
-        return redirect()->route('admin.users.index');
+        return back();
     }
 
-    /**
-     * Show the form for editing User.
-     *
-     * @param int $id
-     *
-     * @return Factory|View
-     */
-    public function edit($id)
+    public function delete(User $user)
     {
-        $roles = Role::get()->pluck('name', 'name');
+        $this->authorize(UserPolicy::DELETE, $user);
 
-        $user = User::findOrFail($id);
+        $this->dispatchNow(new DeleteUser($user));
 
-        return view('admin.users.edit', compact('user', 'roles'));
-    }
+        $this->success('admin.users.deleted', $user->name());
 
-    /**
-     * Update User in storage.
-     *
-     * @param UpdateUsersRequest $request
-     * @param int                $id
-     *
-     * @return RedirectResponse
-     */
-    public function update(UpdateUsersRequest $request, $id): RedirectResponse
-    {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        foreach ($user->roles as $role) {
-            $user->retract($role);
-        }
-        if ($request->input('roles')) {
-            foreach ($request->input('roles') as $role) {
-                $user->assign($role);
-            }
-        }
-
-        return redirect()->route('admin.users.index');
-    }
-
-    public function show(User $user)
-    {
-        $user->load('roles');
-
-        return view('admin.users.show', compact('user'));
-    }
-
-    /**
-     * Remove User from storage.
-     *
-     * @param int $id
-     *
-     * @return RedirectResponse
-     */
-    public function destroy($id): RedirectResponse
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-
-        return redirect()->route('admin.users.index');
-    }
-
-    /**
-     * Delete all selected User at once.
-     *
-     * @return Response
-     */
-    public function massDestroy(): Response
-    {
-        User::whereIn('id', request('ids'))->delete();
-
-        return response()->noContent();
+        return redirect()->route('admin');
     }
 }
