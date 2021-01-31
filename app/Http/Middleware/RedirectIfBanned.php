@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RedirectIfBanned
 {
-
     public function handle($request, Closure $next, string $guard = null)
     {
         if (Auth::check() && Auth::user()->isBanned()) {

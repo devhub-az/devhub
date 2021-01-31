@@ -85,8 +85,8 @@ class ArticleController extends Controller
     public function favorite(IdRequest $request): JsonResponse
     {
         $article = Article::findOrFail($request->get('id'));
-        $user    = Auth::user();
-        if (!$user->hasFavorited($article)) {
+        $user = Auth::user();
+        if (! $user->hasFavorited($article)) {
             $user->favorite($article);
 
             return response()->json(['success' => 'success'], 200);

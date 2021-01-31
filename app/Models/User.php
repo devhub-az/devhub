@@ -61,7 +61,7 @@ final class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $dates = ['created_at','last_active', 'deleted_at'];
+    protected $dates = ['created_at', 'last_active', 'deleted_at'];
 
     protected $fillable = [
         'name',
@@ -94,7 +94,7 @@ final class User extends Authenticatable implements MustVerifyEmail
         'deleted_at',
     ];
 
-    protected $casts  = [
+    protected $casts = [
         'created_at'        => 'datetime:j M Y',
         'last_active'       => 'datetime:j M Y',
         'email_verified_at' => 'datetime',
