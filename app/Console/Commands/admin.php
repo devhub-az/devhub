@@ -38,7 +38,7 @@ class admin extends Command
      */
     public function handle()
     {
-        $type  = $this->ask('type?');
+        $type = $this->ask('type?');
         $email = $this->ask('email');
         switch ($type) {
             case 0:
