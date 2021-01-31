@@ -252,7 +252,7 @@
                     Biz Azərbaycanda İT sənayesinin inkişafına kömək edirik. İnkişafa töhfə verin və təcrübə
                     mübadiləsi edin.
                 </p>
-                <a href="{{ route('create_article') }}"
+                <a href="{{ route('article.create') }}"
                    class="btn h-7">
                     Töhfə vermək
                 </a>
