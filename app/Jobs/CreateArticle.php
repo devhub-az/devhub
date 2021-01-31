@@ -26,7 +26,7 @@ final class CreateArticle
 
     public static function fromRequest(ArticleRequest $request): self
     {
-        return new CreateArticle(
+        return new self(
             $request->title,
             $request->body,
             $request->user(),

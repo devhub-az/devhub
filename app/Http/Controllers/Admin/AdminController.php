@@ -11,9 +11,7 @@ use App\Models\View;
 use Carbon\Carbon;
 
 /**
- * Class AdminController
- *
- * @package \App\Http\Controllers\Admin
+ * Class AdminController.
  */
 class AdminController extends Controller
 {
@@ -24,9 +22,9 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users    = User::latest()->paginate(10);
+        $users = User::latest()->paginate(10);
         $articles = Article::get();
-        $views    = View::get();
+        $views = View::get();
 
         $newUsers = $users->where(
             'created_at',
