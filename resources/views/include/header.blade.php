@@ -26,7 +26,7 @@
                 id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">Paylaşmalar</a>
+                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{__('global.articles')}}</a>
                 </li>
                 <li>
                     <a href="{{ route('hubs-list') }}"
@@ -70,11 +70,11 @@
                 <div class="flex items-center space-x-2">
                     <a href="{{ route('login') }}"
                        class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden">
-                        Daxil ol
+                        {{ __('global.login') }}
                     </a>
                     <a href="{{ route('register') }}"
                        class="btn text-xs px-4 h-7 xs:hidden sm:hidden">
-                        Qoşulmaq
+                        {{ __('global.register') }}
                     </a>
                 </div>
 

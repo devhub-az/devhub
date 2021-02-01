@@ -16,6 +16,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "jackiedo/dotenv-editor": "^1.2",
         "jcc/laravel-vote": "dev-master",
+        "joedixon/laravel-translation": "^1.1",
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
         "laravel/socialite": "^5.1",

@@ -1,5 +1,5 @@
 <?php
 
-return [
-    'site_title' => 'DevHub',
-];
+return array (
+  'site_title' => 'DevHub',
+);

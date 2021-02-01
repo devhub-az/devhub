@@ -11,12 +11,12 @@ test(
         $this->article = Article::factory()->create(
             [
                 'author_id' => $this->user->id,
-                'name'      => 'My first article',
-                'content'   => '{"time": 99999999, "blocks": [{"data": {"text": "Body for my first article"}, "type": "paragraph"}], "version": "2.19.1"}',
+                'title'      => 'My first article',
+                'body'   => '{"time": 99999999, "blocks": [{"data": {"text": "Body for my first article"}, "type": "paragraph"}], "version": "2.19.1"}',
             ]
         );
 
-        $response = $this->get(route('show_article', $this->article->slug));
+        $response = $this->get(route('article.show', $this->article->slug));
 
         $response->assertSuccessful();
         $response->assertSee('My first article');
@@ -28,7 +28,7 @@ test(
 test(
     'guests cannot create a article',
     function () {
-        $response = $this->get(route('create_article'));
+        $response = $this->get(route('article.create'));
 
         $response->assertRedirect(route('login'));
     }
@@ -39,7 +39,7 @@ test(
     function () {
         $user = User::factory()->create();
 
-        $response = actingAs($user)->get(route('create_article'));
+        $response = actingAs($user)->get(route('article.create'));
 
         $response->assertSuccessful();
         $response->assertSee('Paylaşma yazmag');
