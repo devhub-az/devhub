@@ -40,9 +40,11 @@
 <body class="flex bg-wall font-sans flex-col min-h-screen overflow-x-hidden dark:bg-dwall"
       itemscope itemtype="http://schema.org/WebPage">
 
-<div class="bg-cerulean-500 h-7 w-full">
-    <div class="text-center mx-auto">
-        <a href="https://github.com/hose1021/DevHub" target="_blank" class="text-white">Помоги если мужик?</a>
+<div class="bg-cerulean-500 w-full">
+    <div class="text-center mx-auto my-1">
+        <a href="https://github.com/hose1021/DevHub" target="_blank" class="text-white">
+            DevHub-ın davamlı inkişafını dəstəkləyin →
+        </a>
     </div>
 </div>
 
