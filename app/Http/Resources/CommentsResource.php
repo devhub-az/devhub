@@ -22,31 +22,4 @@ class CommentsResource extends ResourceCollection
             'data' => CommentResource::collection($this->collection),
         ];
     }
-
-    public function with($request)
-    {
-        $included = $this->collection->map(
-            function ($article) {
-                return $article->author;
-            }
-        )->unique();
-
-        return [
-            'links'    => [
-                'self' => route('comments.index'),
-            ],
-            'included' => $this->withIncluded($included),
-        ];
-    }
-
-    private function withIncluded(Collection $included)
-    {
-        return $included->map(
-            function ($include) {
-                if ($include instanceof User) {
-                    return new AuthorResource($include);
-                }
-            }
-        );
-    }
 }

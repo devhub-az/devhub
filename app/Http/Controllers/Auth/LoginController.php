@@ -62,7 +62,7 @@ class LoginController extends Controller
                 'email'             => $user->email,
                 'username'          => $user->nickname,
                 'github_id'         => $user->id,
-                'email_verified_at' => \Carbon::now(),
+                'email_verified_at' => \Carbon::now()->toDateTimeString(),
                 'github_url'        => $user->user['html_url'],
                 'password'          => Hash::make(Str::random(24)),
             ]

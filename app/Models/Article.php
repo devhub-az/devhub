@@ -9,6 +9,7 @@ use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jcc\LaravelVote\CanBeVoted;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
@@ -29,6 +30,7 @@ class Article extends Model
     use Favoriteable;
 
     protected $vote = User::class;
+
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -69,11 +71,15 @@ class Article extends Model
         return $this->hasMany(View::class);
     }
 
-//    public function comments(): BelongsToMany
-//    {
-//        return $this->belongsToMany(Comment::class, 'structure_tree', 'subject_id',
-//            'ancestor_id')->with('author')->withPivot('level')->orderBy('ancestor_id');
-//    }
+    /**
+     * Relationship: comments
+     *
+     * @return MorphMany
+     */
+    public function comments(): MorphMany
+    {
+        return $this->morphMany(Comment::class, 'commentable')->with('author')->orderBy('created_at');
+    }
 
     /**
      * @return array

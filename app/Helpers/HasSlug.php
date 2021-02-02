@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Str;
+use Ramsey\Uuid\UuidInterface;
 
 trait HasSlug
 {
@@ -26,7 +27,7 @@ trait HasSlug
         $slug = $originalSlug = Str::slug($value) ?: Str::random(5);
         $counter = 0;
 
-        while ($this->slugExists($slug, $this->exists ? $this->id() : null)) {
+        while ($this->slugExists($slug, $this->id ?? null)) {
             $counter++;
             $slug = $originalSlug.'-'.$counter;
         }
@@ -34,7 +35,7 @@ trait HasSlug
         return $slug;
     }
 
-    private function slugExists(string $slug, int $ignoreId = null): bool
+    private function slugExists(string $slug, UuidInterface $ignoreId = null): bool
     {
         $query = $this->where('slug', $slug);
 

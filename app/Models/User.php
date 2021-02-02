@@ -66,11 +66,11 @@ final class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'email',
-        'is_admin',
         'avatar',
         'password',
         'confirm_code',
         'username',
+        'email_verified_at',
         'email_notify_enabled',
         'remember_token',
         'type',
@@ -154,7 +154,7 @@ final class User extends Authenticatable implements MustVerifyEmail
      */
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class, 'author_id');
+        return $this->hasMany(Comment::class, 'author_id')->with('articles');
     }
 
     /**

@@ -51,23 +51,23 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Article $article
      * @param Request $request
-     * @param string  $slug
      * @return View
      */
-    public function show(Request $request, string $slug): view
+    public function show(Article $article, Request $request): view
     {
-        $article = Article::with(
+        $article = $article->with(
             [
                 'creator' => function ($query) {
-                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating', 'github_url')
+                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating', 'github_url')
                         ->withCount(
                             'articles',
                             'followers'
                         );
                 },
             ]
-        )->where('slug', $slug)->firstOrFail();
+        )->firstOrFail();
 
         (new Canvas())->viewer($article);
 

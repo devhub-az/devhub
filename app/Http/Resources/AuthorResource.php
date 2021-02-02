@@ -19,7 +19,7 @@ class AuthorResource extends JsonResource
     {
         return [
             'type'          => 'authors',
-            'id'            => (int) $this->id,
+            'id'            => (string) $this->id,
             'attributes'    => [
                 'name'                  => $this->name,
                 'username'              => $this->username,

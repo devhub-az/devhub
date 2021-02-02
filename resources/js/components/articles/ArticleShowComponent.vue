@@ -1,9 +1,9 @@
 <template>
     <div class="mb-3">
         <article-loading v-if="loading"/>
-        <article v-if="!loading" id="post-content" class="w-full rounded bg-white border dark:border-gray-700">
-            <div id="sidebar"
-                 class="sticky top-0 flex justify-between items-center border-b bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
+        <article v-if="!loading" id="post-content" class="w-full rounded border dark:border-gray-700">
+            <div
+                class="sticky top-0 flex justify-between rounded-t items-center border-b bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
                 <div class="inline-flex">
                     <a :href="'/authors/@' + post.relationships.author.data.attributes.username"
                        class="inline-flex">
@@ -18,7 +18,7 @@
 
                 </div>
                 <div class="post-votes-sticky">
-                    <vote :auth_check="auth_check" :posts="post"/>
+                    <vote :item="post"/>
                     <div class="post-edit_author" v-if="auth_check">
                         <i class="mdi mdi-chevron-down"></i>
                     </div>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div
-                class="grid lg:grid-cols-main border-t text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-2">
+                class="grid lg:grid-cols-main rounded-b border-t text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-2">
                 <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
                     <div class="flex items-center">
                         <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
@@ -77,12 +77,12 @@ function imageParser(block) {
     return `<img src="` + block.data.url + `" alt="` + block.data.caption + `">`
 }
 
-function emdebParser(block){
+function emdebParser(block) {
     return '<iframe class="w-full h-80" src="' + block.data.embed + '"></iframe>';
 }
 
 export default {
-    props: ['auth_check', 'id'],
+    props: ['auth_check', 'slug'],
     data: function () {
         return {
             loading: false,
@@ -99,7 +99,7 @@ export default {
     methods: {
         async getPost() {
             this.loading = true;
-            await axios.get('/api/articles/' + this.id).then(response => {
+            await axios.get('/api/articles/' + this.slug).then(response => {
                 this.loading = false;
                 this.post = response.data;
             }).catch(error => {

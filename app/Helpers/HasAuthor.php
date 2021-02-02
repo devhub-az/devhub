@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasAuthor
 {
-    public function author(): User
+    public function author(): BelongsTo
     {
-        return $this->creator;
+        return $this->creator();
     }
 
     public function authoredBy(User $author)

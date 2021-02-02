@@ -9,6 +9,7 @@ use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
 use App\Jobs\CreateArticle;
 use App\Models\Article;
+use App\Models\Comment;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -27,11 +28,14 @@ class ArticleController extends Controller
         $articles = Article::with(
             [
                 'creator' => function ($query) {
-                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
+                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
                         'articles',
                         'followers'
                     );
                 },
+                'comments' => function ($q) {
+                    $q->with('creator');
+                }
             ]
         )->withcount(
             'views',
@@ -46,42 +50,25 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $id
-     *
+     * @param Article $article
      * @return ArticleResource
      */
-    public function show($id): ArticleResource
+    public function show(Article $article): ArticleResource
     {
         ArticleResource::withoutWrapping();
 
         return new ArticleResource(
-            Article::withcount(
+            $article->withcount(
                 'views',
-            )->findOrFail($id)
+            )->firstOrFail()
         );
     }
 
-    public function store(ArticleRequest $request): JsonResponse
+    public function store(ArticleRequest $request)
     {
         $article = $this->dispatchNow(CreateArticle::fromRequest($request));
-//        try {
-//            $article = Article::create(
-//                [
-//                    'id'        => Uuid::uuid4(),
-//                    'name'      => $request->title,
-//                    'slug'      => Str::slug($request->title),
-//                    'content'   => $request->body,
-//                    'author_id' => $request->user()->id,
-//                ]
-//            );
-//            $article->hubs()->sync($request->hubs);
-//
-//            return new JsonResponse($article->slug);
-//        } catch (Exception $exception) {
-//            report($exception);
-//
-//            return new JsonResponse($exception->getMessage(), 500);
-//        }
+
+        return new JsonResponse($article->slug);
     }
 
     /**
@@ -108,11 +95,11 @@ class ArticleController extends Controller
      */
     public static function upOrDownVote(User $user, $target, string $type = 'up'): bool
     {
-        $hasVoted = $user->{'has'.ucfirst($type).'Voted'}($target);
+        $hasVoted = $user->{'has' . ucfirst($type) . 'Voted'}($target);
 
         DB::beginTransaction();
         try {
-            $user->{$type.'Vote'}($target);
+            $user->{$type . 'Vote'}($target);
             if ($hasVoted) {
                 $user->cancelVote($target);
                 foreach ($target->hubs as $hub) {

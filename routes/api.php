@@ -5,6 +5,7 @@
 
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\ArticleHubController;
+use App\Http\Controllers\Api\ArticleRelationshipController;
 use App\Http\Controllers\Api\ArticleTopController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\HubController;
@@ -31,27 +32,25 @@ Route::prefix('articles')->group(
 
         Route::get(
             '{article}/relationships/author',
-            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.relationships.author']
+            ['uses' => 'Api\ArticleRelationshipController' . '@author', 'as' => 'articles.relationships.author']
         );
         Route::get(
             '{article}/author',
-            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
+            ['uses' => 'Api\ArticleRelationshipController' . '@author', 'as' => 'articles.author']
         );
-        Route::get(
-            '{article}/relationships/comments',
-            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.relationships.comments']
-        );
+        Route::get('{article}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
+            ->name('articles.relationships.comments');
         Route::get(
             '{article}/comments',
-            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
+            ['uses' => 'Api\ArticleRelationshipController' . '@comments', 'as' => 'articles.comments']
         );
         Route::get(
             '{article}/relationships/hubs',
-            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.relationships.hubs']
+            ['uses' => 'Api\ArticleRelationshipController' . '@hubs', 'as' => 'articles.relationships.hubs']
         );
         Route::get(
             '{article}/hubs',
-            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
+            ['uses' => 'Api\ArticleRelationshipController' . '@hubs', 'as' => 'articles.hubs']
         );
     }
 );

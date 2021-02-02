@@ -20,10 +20,10 @@ class ArticleResource extends JsonResource
             'type'          => 'articles',
             'id'            => (string) $this->id,
             'attributes'    => [
-                'id'            => $this->id,
-                'title'         => $this->name,
+                'id'            => (string) $this->id,
+                'title'         => $this->title,
                 'slug'          => $this->slug,
-                'body'          => $this->content, //\Str::words($this->content, 87, ''),
+                'body'          => $this->body, //\Str::words($this->body, 87, ''),
                 'votes'         => $this->countTotalVotes(),
                 'votes_sum'     => $this->countVoters(),
                 'upvotes'       => $this->countUpVoters(),
@@ -34,7 +34,7 @@ class ArticleResource extends JsonResource
                 'is_down_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasDownVoted($this->setAppends([]))
                     : false,
                 //                'favorite'   => $this->statusCheck('favorites'),
-                'read_time'     => $this->readTime($this->content),
+                'read_time'     => $this->readTime($this->body),
                 //                'favorites'  => $this->bookmarkers_count,
             ],
             'relationships' => new ArticleRelationshipResource($this),

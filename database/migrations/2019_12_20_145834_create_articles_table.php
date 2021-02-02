@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('slug')->unique();
             $table->json('body');
             $table->uuid('author_id');
+            $table->foreign('author_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
