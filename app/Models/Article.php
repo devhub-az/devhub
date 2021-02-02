@@ -31,7 +31,6 @@ class Article extends Model
 
     protected $vote = User::class;
 
-
     /**
      * The "type" of the auto-incrementing ID.
      *
@@ -72,7 +71,7 @@ class Article extends Model
     }
 
     /**
-     * Relationship: comments
+     * Relationship: comments.
      *
      * @return MorphMany
      */

@@ -27,6 +27,7 @@ Route::get(
             Session::put('locale', $locale);
         }
         Carbon\Carbon::setLocale(config('app.locale'));
+
         return redirect()->back();
     }
 );
