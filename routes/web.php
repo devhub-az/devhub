@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\UserSettingsController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HubController;
@@ -19,13 +20,16 @@ Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
 //    return view('auth.forgot-password');
 //})->middleware('guest')->name('password.request');
 
-//Route::get('setlocale/{locale}', function ($locale) {
-//    if (in_array($locale, \Config::get('app.locales'))) {
-//        Session::put('locale', $locale);
-//    }
-//    // Carbon\Carbon::setLocale(config('app.locale'));
-//    return redirect()->back();
-//});
+Route::get(
+    'lang/{locale}',
+    function ($locale) {
+        if (in_array($locale, \Config::get('app.locales'))) {
+            Session::put('locale', $locale);
+        }
+        Carbon\Carbon::setLocale(config('app.locale'));
+        return redirect()->back();
+    }
+);
 
 Route::get('/', [HomeController::class, 'postsApiRoute'])->name('home');
 Route::get('top/week', [HomeController::class, 'postsApiRoute'])->name('top.week');
@@ -50,9 +54,9 @@ Route::group(
 
         Route::prefix('settings')->group(
             function () {
-                Route::get('/', [Auth::class, 'index'])->name('profile-settings');
-                Route::post('profile', [Auth::class, 'update']);
-                Route::post('avatar', [Auth::class, 'update_avatar']);
+                Route::get('/', [UserSettingsController::class, 'index'])->name('profile-settings');
+                Route::post('profile', [UserSettingsController::class, 'update']);
+                Route::post('avatar', [UserSettingsController::class, 'update_avatar']);
             }
         );
     }

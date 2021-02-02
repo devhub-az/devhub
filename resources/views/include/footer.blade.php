@@ -1,7 +1,8 @@
 <footer class="text-gray-300 body-font bg-footer py-2 mt-auto">
     <div class="flex justify-between xs:block items-center xs:h-auto lg:container mx-auto">
         <div class="flex xs:block items-center">
-            <a href="{{ route('home') }}" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100 xs:pb-4">
+            <a href="{{ route('home') }}"
+               class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100 xs:pb-4">
                 <picture>
                     <source srcset="{{ asset('images/DevHub_Compact_Logo.webp') }}" type="image/webp">
                     <source srcset="{{ asset('images/DevHub_Compact_Logo.png') }}" type="image/png">
@@ -29,21 +30,30 @@
                 </li>
             </ul>
         </div>
-        <div class="relative xs:px-4">
-            <button type="button" aria-haspopup="listbox" aria-expanded="true"
-                    @click="show = !show"
-                    title="Coming soon"
-                    class="relative w-max xs:block xs:mx-auto xs:my-4 cursor-not-allowed text-black bg-gray-300 bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 focus:border-none sm:text-sm">
-                <span class="flex items-center">
-                    <span class="iconify" data-icon="clarity:world-line" data-inline="false"></span>
-                    <span class="ml-1 block truncate">
-                        Azərbaycan
-                    </span>
-                </span>
-                <span class="ml-1 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                    <span class="iconify" data-icon="heroicons-outline:selector" data-inline="false"></span>
-                </span>
-            </button>
+        <div class="relative xs:px-4" id="footer">
+            <select-menu
+                :menu="[
+                    {'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'},
+                    {'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'},
+                    {'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}
+                    ]"
+                @if (Session::get('locale') == 'az')
+                :selected="{'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'}"
+                @elseif (Session::get('locale') == 'ru')
+                :selected="{'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'}"
+                @elseif (Session::get('locale') == 'en')
+                :selected="{'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}"
+                @endif
+            ></select-menu>
         </div>
     </div>
 </footer>
+
+@push('scripts')
+    <script type="text/javascript" src="{{ mix('js/footer.js') }}" async></script>
+@endpush
+
+@section('styles')
+    @parent
+    <link rel="preload" href="{{ mix('js/footer.js') }}" as="script">
+@endsection

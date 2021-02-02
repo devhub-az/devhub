@@ -130,6 +130,13 @@ final class User extends Authenticatable implements MustVerifyEmail
         return $this->id() === Auth::id();
     }
 
+    public function hasPassword(): bool
+    {
+        $password = $this->getAuthPassword();
+
+        return $password !== '' && $password !== null;
+    }
+
     /**
      * Get Posts where user is author with hubs(function in post model).
      *

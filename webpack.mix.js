@@ -16,6 +16,7 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
     .copy('resources/js/vendor/particles.json', 'public/assets')
 
     .js('resources/js/includes/header.js', 'public/js')
+    .js('resources/js/includes/footer.js', 'public/js')
     .js('resources/js/login.js', 'public/js')
     .postCss("resources/sass/tailwind.css", "public/css", [
             require('postcss-import'),

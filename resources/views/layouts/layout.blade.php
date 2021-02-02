@@ -40,6 +40,12 @@
 <body class="flex bg-wall font-sans flex-col min-h-screen overflow-x-hidden dark:bg-dwall"
       itemscope itemtype="http://schema.org/WebPage">
 
+<div class="bg-cerulean-500 h-7 w-full">
+    <div class="text-center mx-auto">
+        <a href="https://github.com/hose1021/DevHub" target="_blank" class="text-white">Помоги если мужик?</a>
+    </div>
+</div>
+
 {{-- Header --}}
 @include('include.header')
 

@@ -25,20 +25,20 @@
                     <div class="flex items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">
                         <span class="iconify" data-icon="mdi:newspaper-variant-multiple-outline"
                               data-inline="false"></span>
-                        <p class="transition-none xs:text-base">Paylaşmalar</p>
+                        <p class="transition-none xs:text-base">{{ __('devhub.articles') }}</p>
                     </div>
                     <select-menu
                         :menu="[
-                            {'name': 'Trendlər', 'icon': 'bx:bxs-hot', 'url': '/'},
-                            {'name': 'Yeni', 'icon': 'ant-design:clock-circle-outlined', 'url': '/all'},
-                            {'name': 'Abunə ilə', 'icon': 'mdi:book-multiple', 'url': '/favorite'}
+                            {'name': '{{ __('devhub.trends') }}', 'icon': 'bx:bxs-hot', 'url': '/'},
+                            {'name': '{{ __('devhub.articlesNew') }}', 'icon': 'ant-design:clock-circle-outlined', 'url': '/all'},
+                            {'name': '{{ __('devhub.articlesFollowing') }}', 'icon': 'mdi:book-multiple', 'url': '/favorite'}
                         ]"
                         @if (Request::is('top/*') || Request::is('/'))
-                        :selected="{'name': 'Trendlər', 'icon': 'bx:bxs-hot'}"
+                        :selected="{'name': '{{ __('devhub.trends') }}', 'icon': 'bx:bxs-hot'}"
                         @elseif (Request::url() === route('all'))
-                        :selected="{'name': 'Yeni', 'icon': 'ant-design:clock-circle-outlined'}"
+                        :selected="{'name': '{{ __('devhub.articlesNew') }}', 'icon': 'ant-design:clock-circle-outlined'}"
                         @elseif (Request::url() === route('favorite'))
-                        :selected="{'name': 'Abunə ilə', 'icon': 'mdi:book-multiple'}"
+                        :selected="{'name': '{{ __('devhub.articlesFollowing') }}', 'icon': 'mdi:book-multiple'}"
                         @endif
                     ></select-menu>
                 </div>
@@ -48,17 +48,17 @@
                         <a href="{{ url('/') }}"
                            class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('/') ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Günün ən yaxşı paylaşmaları">
-                            Gün
+                            {{ __('devhub.day') }}
                         </a>
                         <a href="{{ url('top/week') }}"
                            class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
-                            Həftə
+                            {{ __('devhub.week') }}
                         </a>
                         <a href="{{ url('top/month') }}"
                            class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
                            rel="nofollow" title="Ayın ən yaxşı paylaşmaları">
-                            Ay
+                            {{ __('devhub.month') }}
                         </a>
                     </div>
                 @endif
@@ -127,12 +127,12 @@
                     <a class="flex justify-between border rounded p-4 mb-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
                        href="https://t.me/devhub_az" target="_blank"
                        rel="noopener">
-                        <div>
+                        <div class="w-2/3">
                             <div
                                 class="text-gray-900 dark:text-gray-300 text-2xl pr-2 xs:border-none font-semibold md:text-2xl m-auto dark:text-gray-300">
                                 DevHub
                             </div>
-                            <p class="text-sm dark:text-gray-300">Telegram kanalı <br> izləmək</p>
+                            <p class="text-sm dark:text-gray-300">{{ __('devhub.follow-telegram-channel') }}</p>
                         </div>
                         <span class="iconify w-20 h-20 rounded-full dark:bg-white" style="color: #0088cc;" data-icon="cib:telegram"
                               data-inline="false"></span>
