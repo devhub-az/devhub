@@ -19,7 +19,7 @@
         "popper.js": "^1.16",
         "postcss": "^8.2.4",
         "postcss-import": "^14.0.0",
-        "postcss-loader": "^4.1.0",
+        "postcss-loader": "^5.0.0",
         "sass": "^1.20.1",
         "sass-loader": "^10.1.0",
         "sass-resources-loader": "^2.0.3",
