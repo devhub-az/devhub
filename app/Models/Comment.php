@@ -25,7 +25,7 @@ class Comment extends Model
      * {@inheritdoc}
      */
     protected $casts = [
-        'id' => 'integer'
+        'id' => 'integer',
     ];
 
     /**
@@ -33,11 +33,11 @@ class Comment extends Model
      */
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
-     * Relationship: commentable models
+     * Relationship: commentable models.
      *
      * @return MorphTo
      */
