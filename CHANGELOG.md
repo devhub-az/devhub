@@ -1,4 +1,15 @@
-### test: added missed tests (HEAD -> develop)
+### feat(CHAGELOG generator): added missed tests (HEAD -> develop)
+>Thu, 4 Feb 2021 17:36:25 +0400
+
+>Author: Hose (hose1021@gmail.com)
+
+>Commiter: Hose (hose1021@gmail.com)
+
+run in .github folder changelog-generation.sh > ./../CHNAGELOG.md
+
+
+
+### test: added missed tests (github/develop)
 >Thu, 4 Feb 2021 17:18:03 +0400
 
 >Author: Hose (hose1021@gmail.com)
@@ -8,7 +19,7 @@
 
 
 
-### fix: design (github/develop)
+### fix: design
 >Thu, 4 Feb 2021 16:39:57 +0400
 
 >Author: Hose (hose1021@gmail.com)
