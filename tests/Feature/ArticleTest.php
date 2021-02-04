@@ -16,6 +16,7 @@ class ArticleTest extends BrowserKitTestCase
         $this->visit('/article/create')
             ->seePageIs('/login');
     }
+
 //
 //    /** @test */
 //    public function users_cannot_see_series_they_do_not_own_when_creating_an_article()
