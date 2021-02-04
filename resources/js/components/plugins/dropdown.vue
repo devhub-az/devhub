@@ -54,7 +54,11 @@
                 <!--                        </div>-->
                 <!--                    </div>-->
                 <!--                </li>-->
-                <switcher></switcher>
+                <div
+                    class="flex justify-between items-center block px-4 py-1 text-sm capitalize text-gray-700 hover:bg-blue hover:text-black">
+                    <p class="dark:text-gray-300">Dark mode</p>
+                    <switcher></switcher>
+                </div>
                 <div class="my-2 border-t dark:border-gray-700"></div>
                 <a
                     :href="'/settings'"

@@ -62,12 +62,14 @@
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
                          :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
                          data-balloon-pos="up">
-                        <div class="my-auto bg-gray-300 w-full rounded h-1 relative"
+                        <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
                              :class="{ 'default' : post.attributes.votes_sum === 0}">
                             <div class="absolute h-1 bg-green-600 rounded-l"
-                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
+                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"
+                                 style="width: 50%;"></div>
                             <div class="absolute h-1 bg-red-600 rounded-r right-0"
-                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes_sum : '0'] +'%'"></div>
+                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes_sum : '0'] +'%'"
+                                 style="width: 50%;"></div>
                         </div>
                     </div>
                 </div>

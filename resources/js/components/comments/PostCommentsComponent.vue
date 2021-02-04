@@ -5,8 +5,8 @@
             <span class="iconify" data-icon="bx:bx-comment-detail" data-inline="false"></span>
             <p class="transition-none xs:text-base">Şərhlər</p>
         </div>
-        <div class="space-y-4 w-full py-2 rounded border bg-white dark:bg-dpaper dark:border-gray-700">
-            <div class="px-3.5" v-for="comment in comments" v-if="comments">
+        <div class="space-y-4 w-full py-2 rounded border bg-white dark:bg-dpaper dark:border-gray-700" v-if="comments.length > 0">
+            <div class="px-3.5" v-for="comment in comments">
                 <div class="flex space-x-2 items-center">
                     <img :src="comment.relationships.author.attributes.avatar" alt="User image" class="w-4 h-4 rounded">
                     <span class="inline-block align-text-top dark:text-gray-300">
@@ -19,17 +19,13 @@
                 <div class="dark:text-gray-400 font-light break-words">{{ comment.attributes.body }}</div>
             </div>
         </div>
-        <div class="w-full mt-4" v-if="auth_check">
-            <textarea
-                class="border rounded w-full py-2 px-3.5 dark:text-gray-400 hover:border-cerulean-500
-                        dark:hover:border-cerulean-700 dark:bg-gray-700 dark:border-gray-700"></textarea>
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-1">
-                    <span class="iconify dark:text-gray-400" data-icon="carbon:warning" data-inline="false"></span>
-                    <p class="dark:text-gray-400 text-sm font-light">Şərh, müəllifə minnətdarlıq ve ya konstruktiv tənqid mesajı yaz</p>
-                </div>
-                <button class="btn block ml-auto my-1 h-7">Yazmaq</button>
-            </div>
+        <div class="w-full mt-4 border bg-white w-full rounded
+                       dark:bg-gray-700 dark:border-gray-700 py-2 px-3.5" v-if="auth_check">
+            <p id="text" @input="contentEditableChange()" placeholder="Şərh, müəllifə minnətdarlıq ve ya konstruktiv tənqid mesajı yaz"
+               class="relative w-full block pb-12 dark:text-gray-400 focus:outline-none focus:border-cerulean-500 "
+               contenteditable>
+            </p>
+            <button class="btn block ml-auto my-1 h-7 xs:mt-4">Yazmaq</button>
         </div>
         <div class="flex space-x-1 mt-2 bg-white dark:bg-dpaper dark:border-gray-700 rounded py-4 text-sm border"
              v-else>
@@ -55,12 +51,16 @@ export default {
     data: function () {
         return {
             comments: [],
+            message: '',
         }
     },
     async created() {
         await this.getComments();
     },
     methods: {
+        contentEditableChange() {
+            this.message = document.getElementById("text").innerHTML;
+        },
         async getComments() {
             await axios.get('/api/articles/' + this.slug + '/relationships/comments').then(response => {
                 if (response.data.data.length !== 0) {

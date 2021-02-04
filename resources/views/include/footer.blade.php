@@ -3,11 +3,8 @@
         <div class="flex xs:block items-center">
             <a href="{{ route('home') }}"
                class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100 xs:pb-4">
-                <picture>
-                    <source srcset="{{ asset('images/DevHub_Compact_Logo.webp') }}" type="image/webp">
-                    <source srcset="{{ asset('images/DevHub_Compact_Logo.png') }}" type="image/png">
-                    <img src="{{ asset('images/DevHub_Compact_Logo.png') }}" alt="DevHub Logo" width="40" height="40">
-                </picture>
+                <img src="{{ asset('images/DevHub_Compact_Logo.svg') }}" alt="DevHub Logo" width="40" height="40"
+                     class="xs:h-8">
             </a>
             <p class="text-sm text-gray-100 pl-4 py-2 my-auto xs:p-0 xs:text-center">
                 &copy; 2019 – {{ date('Y') }} <span class="lg:hidden md:hidden xl:hidden">«DevHub»</span>
@@ -31,18 +28,18 @@
             </ul>
         </div>
         <div class="relative xs:px-4" id="footer">
-            <select-menu
-                :menu="[
+            <select-menu :side="'bottom'" class="xs:w-1/2 xs:mx-auto"
+                         :menu="[
                     {'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'},
                     {'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'},
                     {'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}
                     ]"
-                @if (Session::get('locale') == 'az')
-                :selected="{'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'}"
-                @elseif (Session::get('locale') == 'ru')
-                :selected="{'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'}"
-                @elseif (Session::get('locale') == 'en')
-                :selected="{'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}"
+                         @if (Session::get('locale') == 'az' || !Session::get('locale'))
+                         :selected="{'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'}"
+                         @elseif (Session::get('locale') == 'ru')
+                         :selected="{'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'}"
+                         @elseif (Session::get('locale') == 'en')
+                         :selected="{'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}"
                 @endif
             ></select-menu>
         </div>

@@ -166,8 +166,17 @@
     }
 }
 
-*:not(.iconify) {
+*:not(.iconify, #text, input ) {
     @apply transition-all duration-200 ease-in;
+}
+
+[placeholder]:empty::before {
+    content: attr(placeholder);
+    @apply opacity-50 cursor-text
+}
+
+[placeholder]:empty:focus::before {
+    content: "";
 }
 
 html {

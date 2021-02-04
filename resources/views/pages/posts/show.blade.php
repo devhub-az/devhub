@@ -71,7 +71,7 @@
                         </a>
                     </div>
                     <div
-                        class="flex justify-between px-4 py-2 border-t border-b text-gray-700 dark:border-gray-700 w-full">
+                        class="flex justify-between bg-afooter dark:bg-gray-800 px-4 py-2 border-t border-b text-gray-700 dark:border-gray-700 w-full">
                         <div class="flex items-center space-x-1">
                             <p class="font-semibold dark:text-gray-300">
                                 {{ \Numeric::number_format_short($post->relationships->author->data->attributes->karma) }}
@@ -91,10 +91,10 @@
                             <span class="text-sm text-gray-500 dark:text-gray-400">İzləyicilər</span>
                         </div>
                     </div>
-                    <div class="flex flex-wrap px-4 py-1">
+                    <div class="flex flex-wrap px-4 h-10 items-center">
                         @if($post->relationships->author->data->attributes->github_url)
                             <a href="#"
-                               class="py-1.5 mr-2 my-1 font-medium text-sm text-blue-light hover:text-blue-dark dark:text-gray-400">
+                               class="py-1.5 mr-2 font-medium text-sm text-blue-light hover:text-blue-dark dark:text-gray-400">
                                 Github
                             </a>
                         @endif
@@ -102,62 +102,6 @@
                 </div>
             </div>
         </div>
-
-        {{--            <div id="sticky-block" class="content_right">--}}
-        {{--                <div class="card">--}}
-        {{--                    <div class="card-header border-0 p-2 pb-0">--}}
-        {{--                        <div class="cover-img-block">--}}
-        {{--                            <img--}}
-        {{--                                src="https://unsplash.imgix.net/45/ZLSw0SXxThSrkXRIiCdT_DSC_0345.jpg?q=75&w=1080&h=1080&fit=max&fm=jpg&auto=form"--}}
-        {{--                                alt="" class="img-fluid">--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="card-body pt-0">--}}
-        {{--                        <div class="user-about-block">--}}
-        {{--                            <div class="row align-items-end">--}}
-        {{--                                <div class="col col-left">--}}
-        {{--                                    --}}{{--                                    <user-follow-button :user="{!! $post->creator !!}"--}}
-        {{--                                    --}}{{--                                                        :id="{{ $post->creator->id }}"--}}
-        {{--                                    --}}{{--                                                        @auth :auth_check="true" @endauth></user-follow-button>--}}
-        {{--                                    <span class="btn btn-primary">--}}
-        {{--                                        <i class="mdi mdi-account-plus"></i> İzləmək--}}
-        {{--                                    </span>--}}
-        {{--                                </div>--}}
-        {{--                                <div class="col">--}}
-        {{--                                    <div class="position-relative d-inline-block">--}}
-        {{--                                        <img class="img-radius img-fluid wid-80"--}}
-        {{--                                             src="{{ asset('images/profile/deadpool.gif') }}" alt="User image">--}}
-        {{--                                    </div>--}}
-        {{--                                </div>--}}
-        {{--                                <div class="col col-right"></div>--}}
-        {{--                            </div>--}}
-        {{--                        </div>--}}
-        {{--                        <div class="text-center">--}}
-        {{--                            <h6 class="mb-1 mt-3">Josephin Doe</h6>--}}
-        {{--                            <p class="mb-3 text-muted">UI/UX Designer</p>--}}
-        {{--                            <p class="mb-1">Lorem Ipsum is simply dummy text</p>--}}
-        {{--                            <p class="mb-0">been the industry's standard</p>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="card-footer">--}}
-        {{--                        <div class="row text-center">--}}
-        {{--                            <div class="col">--}}
-        {{--                                <h6 class="mb-1">{{ $post->relationships->author->data->attributes->karma }}</h6>--}}
-        {{--                                <p class="mb-0">Karma</p>--}}
-        {{--                            </div>--}}
-        {{--                            <div class="col">--}}
-        {{--                                <h6 class="mb-1">{{ $post->relationships->author->data->attributes->rating }}</h6>--}}
-        {{--                                <p class="mb-0">Reytinq</p>--}}
-        {{--                            </div>--}}
-        {{--                            <div class="col">--}}
-        {{--                                <h6 class="mb-1">{{ $post->relationships->author->data->attributes->user_followers_count }}</h6>--}}
-        {{--                                <p class="mb-0">İzləyicilər</p>--}}
-        {{--                            </div>--}}
-        {{--                        </div>--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
     </div>
 @endsection
 

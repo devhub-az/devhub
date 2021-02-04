@@ -3,7 +3,7 @@
         <article-loading v-if="loading"/>
         <article v-if="!loading" id="post-content" class="w-full rounded border dark:border-gray-700">
             <div
-                class="sticky top-0 flex justify-between rounded-t items-center border-b bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
+                class="sticky top-0 flex justify-between rounded-t items-center border-b bg-afooter dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
                 <div class="inline-flex">
                     <a :href="'/authors/@' + post.relationships.author.data.attributes.username"
                        class="inline-flex">
@@ -15,7 +15,6 @@
                     <p class="text-xs my-auto mr-auto pl-2 dark:text-gray-300">
                         {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
                     </p>
-
                 </div>
                 <div class="post-votes-sticky">
                     <vote :item="post"/>
@@ -24,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            <div class="px-3.5 dark:bg-dpaper">
+            <div class="px-3.5 bg-white dark:bg-dpaper">
                 <div class="py-2">
                     <p class="text-2xl xs:text-xl font-medium dark:text-gray-300">{{ post.attributes.title }}</p>
                 </div>
@@ -36,26 +35,33 @@
                 </div>
             </div>
             <div
-                class="grid lg:grid-cols-main rounded-b border-t text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-2">
-                <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
+                class="grid lg:grid-cols-main rounded-b border-t text-sm bg-afooter dark:bg-gray-800 dark:border-gray-700 px-3.5 py-2">
+                <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                     <div class="flex items-center">
-                        <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
-                        <p class="ml-1 dark:text-gray-300">{{ post.attributes.views }}</p>
-                        <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Baxışların sayı</p>
+                        <i class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-eye-outline"/>
+                        <p class="ml-1 text-gray-500 dark:text-gray-300">{{ post.attributes.views }}</p>
+                    </div>
+                    <div>
+                        <a :href="'/article/' + post.attributes.slug + '#comments'" class="flex items-center">
+                            <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
+                            <p class="ml-1 text-gray-500 dark:text-gray-300">
+                                {{ post.attributes.comments_count ? post.attributes.comments_count : '0' }}
+                            </p>
+                        </a>
                     </div>
                     <favorite :post="post" :auth_check="auth_check"/>
-                    <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
-                        <i class="iconify dark:text-gray-300" data-icon="mdi-share"/>
-                        <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaş</p>
-                    </div>
                 </div>
                 <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                     :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
+                     :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
                      data-balloon-pos="up">
-                    <div class="my-auto bg-gray-300 w-full rounded h-1 relative"
+                    <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
                          :class="{ 'default' : post.attributes.votes_sum === 0}">
-                        <div class="absolute h-1 bg-blue rounded"
-                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
+                        <div class="absolute h-1 bg-green-600 rounded-l"
+                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"
+                        style="width: 50%;"></div>
+                        <div class="absolute h-1 bg-red-600 rounded-r right-0"
+                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes_sum : '0'] +'%'"
+                             style="width: 50%;"></div>
                     </div>
                 </div>
             </div>
