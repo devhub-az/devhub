@@ -1,4 +1,14 @@
-### feat(CHAGELOG generator): added missed tests (HEAD -> develop)
+### fix: removed changelog (HEAD -> develop)
+>Fri, 5 Feb 2021 14:59:09 +0400
+
+>Author: Hose (hose1021@gmail.com)
+
+>Commiter: Hose (hose1021@gmail.com)
+
+
+
+
+### feat(CHAGELOG generator): added missed tests
 >Thu, 4 Feb 2021 17:37:34 +0400
 
 >Author: Hose (hose1021@gmail.com)
@@ -20,7 +30,17 @@ run in .github folder changelog-generation.sh > ./../CHNAGELOG.md
 
 
 
-### test: added missed tests (github/develop)
+### Apply fixes from StyleCI
+>Thu, 4 Feb 2021 13:18:20 +0000
+
+>Author: Michael Hose (hose1021@users.noreply.github.com)
+
+>Commiter: StyleCI Bot (bot@styleci.io)
+
+
+
+
+### test: added missed tests
 >Thu, 4 Feb 2021 17:18:03 +0400
 
 >Author: Hose (hose1021@gmail.com)
