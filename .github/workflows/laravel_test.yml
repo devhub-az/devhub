@@ -29,7 +29,6 @@ jobs:
       matrix:
         php-versions: [ '8.0', '7.4' ]
         node-version: [ 14, 12 ]
-        dependency-version: [prefer-lowest, prefer-stable]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -54,13 +53,9 @@ jobs:
           # key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
-      - name: Install PHP 7 dependencies
-        run: composer update --${{ matrix.dependency-version }} --no-interaction --no-progress
-        if: "matrix.php < 8"
 
-      - name: Install PHP 8 dependencies
-        run: composer update --${{ matrix.dependency-version }} --ignore-platform-req=php --no-interaction --no-progress
-        if: "matrix.php >= 8"
+      - name: Install Composer dependencies
+        run: composer update --no-progress --prefer-dist --optimize-autoloader
         
       - name: Prepare the application
         run: |
