@@ -27,7 +27,6 @@ class CreateUsersTable extends Migration
                 $table->string('password');
                 $table->string('github_id')->nullable();
                 $table->string('github_url')->nullable();
-                $table->dateTime('last_activity')->nullable();
                 $table->dateTime('email_verified_at')->nullable();
                 $table->dateTime('last_active')->nullable();
                 $table->enum('email_notify_enabled', ['yes', 'no'])->default('yes')->index();
