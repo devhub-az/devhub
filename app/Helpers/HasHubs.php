@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use App\Models\Hub;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait HasHubs
