@@ -1,4 +1,14 @@
 ### fix: removed changelog (HEAD -> develop)
+>Fri, 5 Feb 2021 15:01:20 +0400
+
+>Author: Hose (hose1021@gmail.com)
+
+>Commiter: Hose (hose1021@gmail.com)
+
+
+
+
+### fix: removed changelog (github/develop)
 >Fri, 5 Feb 2021 14:59:09 +0400
 
 >Author: Hose (hose1021@gmail.com)
