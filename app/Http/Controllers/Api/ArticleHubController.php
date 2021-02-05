@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
-use App\Models\Hub;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;

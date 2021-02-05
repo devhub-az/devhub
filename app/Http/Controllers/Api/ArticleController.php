@@ -9,7 +9,6 @@ use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
 use App\Jobs\CreateArticle;
 use App\Models\Article;
-use App\Models\Comment;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;

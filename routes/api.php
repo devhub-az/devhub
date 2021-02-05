@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\ArticleHubController;
 use App\Http\Controllers\Api\ArticleRelationshipController;
 use App\Http\Controllers\Api\ArticleTopController;
 use App\Http\Controllers\Api\AuthorController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
 use App\Http\Controllers\Api\SavedController;
 use App\Http\Controllers\Api\SearchController;
@@ -38,6 +39,9 @@ Route::prefix('articles')->group(
             '{article}/author',
             ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
         );
+
+        Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
+
         Route::get('{article}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
             ->name('articles.relationships.comments');
         Route::get(

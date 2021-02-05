@@ -3,15 +3,19 @@
         <div id="comments"
              class="flex mb-2 items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">
             <span class="iconify" data-icon="bx:bx-comment-detail" data-inline="false"></span>
-            <p class="transition-none xs:text-base">Şərhlər</p>
+            <p class="transition-none xs:text-base">Şərhlər ({{ comments.length }})</p>
         </div>
-        <div class="space-y-4 w-full py-2 rounded border bg-white dark:bg-dpaper dark:border-gray-700" v-if="comments.length > 0">
+        <div class="space-y-4 w-full py-2 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
+             v-if="comments.length > 0">
             <div class="px-3.5" v-for="comment in comments">
                 <div class="flex space-x-2 items-center">
                     <img :src="comment.relationships.author.attributes.avatar" alt="User image" class="w-4 h-4 rounded">
-                    <span class="inline-block align-text-top dark:text-gray-300">
-                        {{ comment.relationships.author.attributes.name }}
-                    </span>
+                    <a :href="'/authors/@' + comment.relationships.author.attributes.username"
+                       class="inline-block align-text-top dark:text-gray-300">
+                        {{
+                            comment.relationships.author.attributes.name ? comment.relationships.author.attributes.name : '@' + comment.relationships.author.attributes.username
+                        }}
+                    </a>
                     <p class="text-xs opacity-75 font-light dark:text-gray-300">
                         {{ comment.attributes.created | moment('DD MMMM, H:mm') }}
                     </p>
@@ -19,14 +23,16 @@
                 <div class="dark:text-gray-400 font-light break-words">{{ comment.attributes.body }}</div>
             </div>
         </div>
-        <div class="w-full mt-4 border bg-white w-full rounded
-                       dark:bg-gray-700 dark:border-gray-700 py-2 px-3.5" v-if="auth_check">
-            <p id="text" @input="contentEditableChange()" placeholder="Şərh, müəllifə minnətdarlıq ve ya konstruktiv tənqid mesajı yaz"
+        <form class="w-full mt-4 border bg-white w-full rounded
+                       dark:bg-gray-700 dark:border-gray-700 py-2 px-3.5"
+              @submit.prevent="send" method="post" v-if="auth_check">
+            <p id="text" @input="contentEditableChange()"
+               placeholder="Şərh, müəllifə minnətdarlıq ve ya konstruktiv tənqid mesajı yaz"
                class="relative w-full block pb-12 dark:text-gray-400 focus:outline-none focus:border-cerulean-500 "
                contenteditable>
             </p>
-            <button class="btn block ml-auto my-1 h-7 xs:mt-4">Yazmaq</button>
-        </div>
+            <button class="btn block ml-auto my-1 h-7 xs:mt-4" type="submit">Yazmaq</button>
+        </form>
         <div class="flex space-x-1 mt-2 bg-white dark:bg-dpaper dark:border-gray-700 rounded py-4 text-sm border"
              v-else>
             <div class="flex space-x-1 mx-auto">
@@ -51,15 +57,27 @@ export default {
     data: function () {
         return {
             comments: [],
-            message: '',
         }
     },
     async created() {
         await this.getComments();
     },
     methods: {
+        send() {
+            this.loading = true
+            axios.post('/api/articles/' + this.slug + '/comment', {
+                comment: this.comment,
+            }).then(() => {
+                this.loading = false
+                this.getComments()
+                document.getElementById("text").innerHTML = ''
+            }).catch(response => {
+                this.error_text = response.data.error
+                this.error = true
+            })
+        },
         contentEditableChange() {
-            this.message = document.getElementById("text").innerHTML;
+            this.comment = document.getElementById("text").innerHTML;
         },
         async getComments() {
             await axios.get('/api/articles/' + this.slug + '/relationships/comments').then(response => {

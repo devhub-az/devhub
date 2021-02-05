@@ -47,14 +47,23 @@
                 <div
                     class="xs:w-full bg-white rounded dark:bg-dpaper border dark:border-gray-700 overflow-hidden sticky top-0">
                     <div class="px-4 py-2">
-                        <div class="flex items-center space-x-2">
+                        <div class="flex space-x-2">
                             <img class="w-12 h-12 rounded object-cover"
                                  src="{{ $post->relationships->author->data->attributes->avatar }}" alt="avatar">
-                            <p class="text-xl font-medium text-gray-800 dark:text-gray-300">
-                                {{ $post->relationships->author->data->attributes->name ?? '' }}
-                                {{ $post->relationships->author->data->attributes->surname ?? '' }}
-                                {{ '@' . $post->relationships->author->data->attributes->username }}
-                            </p>
+                            <a href="{{ route('user_info', $post->relationships->author->data->attributes->username) }}">
+                                @if ($post->relationships->author->data->attributes->name)
+                                    <p class="text-xl font-medium text-gray-800 dark:text-gray-300">
+                                        {{ $post->relationships->author->data->attributes->name }}
+                                    </p>
+                                    <p class="text-gray-800 dark:text-gray-300">
+                                        {{ '@' . $post->relationships->author->data->attributes->username }}
+                                    </p>
+                                @else
+                                    <p class="text-xl font-medium text-gray-800 dark:text-gray-300">
+                                        {{ '@' . $post->relationships->author->data->attributes->username }}
+                                    </p>
+                                @endif
+                            </a>
                         </div>
                         <p class="pt-1 text-sm text-gray-700 dark:text-gray-400">
                             {{ $post->relationships->author->data->attributes->description }}
@@ -100,8 +109,17 @@
                         @endif
                     </div>
                 </div>
+                <div class="py-2 dark:text-gray-400 text-xs">
+                    Если нашли опечатку в посте, выделите ее и нажмите
+                    <span
+                        class="bg-gray-300 px-1 dark:text-gray-700 rounded">Ctrl+Enter</span>
+                    , чтобы сообщить модераторам.
+                </div>
             </div>
         </div>
+    </div>
+    <div id="modal" class="hidden">
+        test
     </div>
 @endsection
 
