@@ -7,10 +7,7 @@ use Carbon\Carbon;
 
 final class BanUser
 {
-    /**
-     * @var \App\User
-     */
-    private $user;
+    private User $user;
 
     public function __construct(User $user)
     {
