@@ -125,6 +125,8 @@ Route::prefix('admin')->name('admin')->group(
     function () {
         Route::get('/', [AdminController::class, 'index']);
 
+        //Logs
+        Route::get('logs', [AdminController::class, 'logs'])->name('.logs');
         // Users
         Route::get('users/{username}', [UsersController::class, 'show'])->name('.users.show');
         Route::put('users/{username}/ban', [UsersController::class, 'ban'])->name('.users.ban');

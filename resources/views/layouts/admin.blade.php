@@ -21,15 +21,9 @@
 <body class="{{ $bodyClass ?? '' }} {{ isset($isTailwindUi) && $isTailwindUi ? '' : 'standard' }} font-sans bg-white"
       x-data="{ activeModal: null }">
 
-{{--@include('layouts._ads._banner')--}}
-{{--@include('layouts._nav')--}}
-
-@yield('content')
+@include('admin.include.navigation')
 
 <script src="{{ asset('js/admin.js') }}" defer></script>
 <script src="//code.iconify.design/1/1.0.6/iconify.min.js" async></script>
-
-{{--@include('layouts._footer')--}}
-
 </body>
 </html>
