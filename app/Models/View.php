@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *
  * @mixin Eloquent
  */
-class View extends Model
+final class View extends Model
 {
     use HasFactory;
 

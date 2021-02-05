@@ -13,7 +13,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
  *
  * @mixin Eloquent
  */
-class Hub extends Model
+final class Hub extends Model
 {
     use HasFactory;
     use Favoriteable;
