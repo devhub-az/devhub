@@ -39,9 +39,6 @@ Route::prefix('articles')->group(
             '{article}/author',
             ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
         );
-
-        Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
-
         Route::get('{article}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
             ->name('articles.relationships.comments');
         Route::get(
@@ -62,7 +59,8 @@ Route::prefix('articles')->group(
 /**
  * Comments Api.
  */
-//Route::apiResource('comments', [CommentController::class, '');]
+Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
+
 
 /*
  * Favorite Api

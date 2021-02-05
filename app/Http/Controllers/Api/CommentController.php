@@ -14,27 +14,8 @@ use App\Models\Comment;
  */
 class CommentController extends Controller
 {
-    public function index()
-    {
-        return new CommentsResource(Comment::with(['author'])->paginate());
-    }
-
-    public function show($id)
-    {
-        $comment = Comment::find($id);
-
-        if (is_null($comment)) {
-            return $this->sendError('Post not found.');
-        }
-        CommentResource::withoutWrapping();
-
-        return new CommentResource($comment);
-    }
-
     public function store(CommentRequest $request)
     {
-        $article = $this->dispatchNow(CreateComment::fromRequest($request));
-
-        dd($article);
+        $this->dispatchNow(CreateComment::fromRequest($request));
     }
 }
