@@ -3,7 +3,5 @@
 @extends('layouts.admin')
 
 @section('content')
-    @foreach($logs as $log)
 
-    @endforeach
 @endsection
