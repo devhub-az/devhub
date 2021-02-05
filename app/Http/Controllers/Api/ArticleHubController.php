@@ -50,7 +50,7 @@ class ArticleHubController
                 ->whereHas(
                     'hubs',
                     function ($query) use ($id) {
-                        return $query->select('id')->where('id', '=', $id);
+                        $query->where('taggables.hub_id', '=', $id);
                     }
                 )
                 ->withcount(
@@ -88,7 +88,7 @@ class ArticleHubController
         )->whereHas(
             'hubs',
             function ($query) use ($id) {
-                return $query->select('id')->where('id', '=', $id);
+                $query->where('taggables.hub_id', '=', $id);
             }
         )->orderBy(
             'created_at',
