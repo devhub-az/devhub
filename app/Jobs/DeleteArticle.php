@@ -6,7 +6,7 @@ use App\Models\Article;
 
 final class DeleteArticle
 {
-    private $article;
+    private Article $article;
 
     public function __construct(Article $article)
     {
