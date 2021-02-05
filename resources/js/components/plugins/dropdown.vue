@@ -44,16 +44,6 @@
                     <span class="iconify" data-icon="mdi:content-save" data-inline="false"></span>
                     <p class="text-sm">Seçilmişlər</p>
                 </a>
-                <!--                <li @click="toggle" class="drop-grid">-->
-                <!--                    <div class="switch-button-control">-->
-                <!--                        <div class="switch-button-label ml-2">-->
-                <!--                            Qaranlıq-->
-                <!--                        </div>-->
-                <!--                        <div class="switch-button" :class="{ enabled: isEnabled }">-->
-                <!--                            <div class="button"></div>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
-                <!--                </li>-->
                 <div
                     class="flex justify-between items-center block px-4 py-1 text-sm capitalize text-gray-700 hover:bg-blue hover:text-black">
                     <p class="dark:text-gray-300">Dark mode</p>
