@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\User;
-use App\Policies\UserPolicy;
+use App\Policies\AuthorPolicy;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,7 @@ class VerifyAdmins
 {
     public function handle(Request $request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->user()->can(UserPolicy::ADMIN, User::class)) {
+        if (Auth::guard($guard)->user()->can(AuthorPolicy::ADMIN, User::class)) {
             return $next($request);
         }
 

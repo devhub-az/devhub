@@ -4,11 +4,17 @@ namespace App\Policies;
 
 use App\Models\User;
 
-final class UserPolicy
+final class AuthorPolicy
 {
+    const FOLLOW = 'follow';
     const ADMIN = 'admin';
     const BAN = 'ban';
     const DELETE = 'delete';
+
+    public function follow(User $user, User $subject): bool
+    {
+        return !$user->isFollowedBy($subject) && $user->id !== $subject->id;
+    }
 
     public function admin(User $user): bool
     {

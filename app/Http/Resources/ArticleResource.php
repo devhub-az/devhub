@@ -39,7 +39,7 @@ class ArticleResource extends JsonResource
             ],
             'relationships' => new ArticleRelationshipResource($this),
             'links'         => [
-                'self' => route('articles.show', ['article' => $this->id]),
+                'self' => route('articles.show', ['article_json' => $this->id]),
             ],
         ];
     }

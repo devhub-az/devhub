@@ -1,4 +1,4 @@
-@can(App\Policies\UserPolicy::ADMIN, App\Models\User::class)
+@can(App\Policies\AuthorPolicy::ADMIN, App\Models\User::class)
     @include('admin.include.adminbar')
 @endcan
 <header class="border-t-4 border-cerulean-700 bg-header dark:bg-gray-800 sm:px-4 md:px-4" id="header">

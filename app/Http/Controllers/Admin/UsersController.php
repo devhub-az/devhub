@@ -8,7 +8,7 @@ use App\Jobs\BanUser;
 use App\Jobs\DeleteUser;
 use App\Jobs\UnbanUser;
 use App\Models\User;
-use App\Policies\UserPolicy;
+use App\Policies\AuthorPolicy;
 use Illuminate\Auth\Middleware\Authenticate;
 
 class UsersController extends Controller
@@ -20,7 +20,7 @@ class UsersController extends Controller
 
     public function ban(User $user)
     {
-        $this->authorize(UserPolicy::BAN, $user);
+        $this->authorize(AuthorPolicy::BAN, $user);
 
         $this->dispatchNow(new BanUser($user));
 
@@ -29,7 +29,7 @@ class UsersController extends Controller
 
     public function unban(User $user)
     {
-        $this->authorize(UserPolicy::BAN, $user);
+        $this->authorize(AuthorPolicy::BAN, $user);
 
         $this->dispatchNow(new UnbanUser($user));
 
@@ -38,7 +38,7 @@ class UsersController extends Controller
 
     public function delete(User $user)
     {
-        $this->authorize(UserPolicy::DELETE, $user);
+        $this->authorize(AuthorPolicy::DELETE, $user);
 
         $this->dispatchNow(new DeleteUser($user));
 

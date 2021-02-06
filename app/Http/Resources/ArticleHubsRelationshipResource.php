@@ -18,13 +18,13 @@ class ArticleHubsRelationshipResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        $article = $this->additional['article'];
+        $article = $this->additional['article_json'];
 
         return [
             'data'  => HubsIdentifierResource::collection($this->collection),
             'links' => [
-                'self'    => route('articles.relationships.hubs', ['article' => $article->id]),
-                'related' => route('articles.hubs', ['article' => $article->id]),
+                'self'    => route('articles.relationships.hubs', ['article_json' => $article->id]),
+                'related' => route('articles.hubs', ['article_json' => $article->id]),
             ],
         ];
     }

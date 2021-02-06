@@ -57,18 +57,6 @@ class ArticleController extends Controller
      */
     public function show(Article $article, Request $request): view
     {
-        $article = $article->with(
-            [
-                'creator' => function ($query) {
-                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating', 'github_url')
-                        ->withCount(
-                            'articles',
-                            'followers'
-                        );
-                },
-            ]
-        )->firstOrFail();
-
         (new Canvas())->viewer($article);
 
         ArticleResource::withoutWrapping();

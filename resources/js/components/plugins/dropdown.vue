@@ -1,14 +1,7 @@
 <template>
-    <div class="relative">
-        <button
-            class="flex items-center focus:outline-none p-0 bg-none"
-            @click="toggleVisibility"
-            @keydown.space.exact.prevent="toggleVisibility"
-            @keydown.esc.exact="hideDropdown"
-            @keydown.shift.tab="hideDropdown"
-            @keydown.up.exact.prevent="startArrowKeys"
-            @keydown.down.exact.prevent="startArrowKeys"
-        >
+    <div class="mt-1 relative">
+        <button @click="show = !show" type="button" aria-haspopup="listbox" aria-expanded="true"
+                class="flex items-center focus:outline-none p-0 bg-none">
             <img v-if="user.avatar !== 'default'" :src="'/upload/avatars/' + user.avatar"
                  class="w-8 h-8 flex-none image-fit rounded lazyload"
                  alt="Profile image">
@@ -16,66 +9,54 @@
                  class="w-8 h-8 flex-none image-fit rounded lazyload"
                  alt="Profile image">
         </button>
-        <div>
-            <div v-on-clickaway="hideDropdown" v-if="isVisible" ref="dropdown"
-                 class="absolute text-gray-700 space-y-4 right-0 mt-2 py-2 w-40 bg-white dark:bg-dpaper dark:border-gray-700 border rounded shadow z-20">
-                <a
-                    :href="'/authors/@' + user.username"
-                    @keydown.tab.exact="focusNext(false)"
-                    @keydown.shift.tab="focusPrevious(false)"
-                    @keydown.up.exact.prevent="focusPrevious(true)"
-                    @keydown.down.exact.prevent="focusNext(true)"
-                    @keydown.esc.exact="hideDropdown"
-                    class="block flex items-center space-x-1 px-4 pt-2 capitalize text-gray-700 hover:bg-blue hover:text-black dark:text-gray-300"
-                >
-                    <span class="iconify" data-icon="ant-design:user-outlined" data-inline="false"></span>
-                    <p class="text-sm">Profilim</p>
-                </a>
-                <div class="my-2 border-t dark:border-gray-700"></div>
-                <a
-                    :href="fav"
-                    @keydown.tab.exact="focusNext(false)"
-                    @keydown.shift.tab="focusPrevious(false)"
-                    @keydown.up.exact.prevent="focusPrevious(true)"
-                    @keydown.down.exact.prevent="focusNext(true)"
-                    @keydown.esc.exact="hideDropdown"
-                    class="block flex items-center space-x-1 px-4 capitalize text-gray-700 hover:bg-blue hover:text-black dark:text-gray-300"
-                >
-                    <span class="iconify" data-icon="mdi:content-save" data-inline="false"></span>
-                    <p class="text-sm">Seçilmişlər</p>
-                </a>
+        <transition name="fade">
+            <div v-on-clickaway="hideDropdown" v-if="show" class="mt-2 absolute right-0 origin-top-right z-50">
                 <div
-                    class="flex justify-between items-center block px-4 py-1 text-sm capitalize text-gray-700 hover:bg-blue hover:text-black">
-                    <p class="dark:text-gray-300">Dark mode</p>
-                    <switcher></switcher>
-                </div>
-                <div class="my-2 border-t dark:border-gray-700"></div>
-                <a
-                    :href="'/settings'"
-                    @keydown.tab.exact="focusNext(false)"
-                    @keydown.shift.tab="focusPrevious(false)"
-                    @keydown.up.exact.prevent="focusPrevious(true)"
-                    @keydown.down.exact.prevent="focusNext(true)"
-                    @keydown.esc.exact="hideDropdown"
-                    class="block flex items-center space-x-1 px-4 capitalize text-gray-700 hover:bg-blue hover:text-black dark:text-gray-300"
-                >
-                    <span class="iconify" data-icon="fluent:settings-24-filled" data-inline="false"></span>
-                    <p class="text-sm">Parametrlər</p>
-                </a>
-                <div
-                    @click.prevent="logout"
-                    @keydown.tab.exact="focusNext(false)"
-                    @keydown.shift.tab="focusPrevious(false)"
-                    @keydown.up.exact.prevent="focusPrevious(true)"
-                    @keydown.down.exact.prevent="focusNext(true)"
-                    @keydown.esc.exact="hideDropdown"
-                    class="block flex items-center space-x-1 px-4 capitalize text-gray-700 hover:bg-blue hover:text-black dark:text-gray-300"
-                >
-                    <span class="iconify" data-icon="tabler:logout" data-inline="false"></span>
-                    <p class="text-sm">Çıxmaq</p>
+                    class="w-52 text-sm text-left border border-gray-300 bg-white dark:bg-dpaper dark:border-gray-700 rounded shadow-lg">
+                    <div class="flex items-center p-3">
+                        <img v-if="user.avatar !== 'default'" :src="'/upload/avatars/' + user.avatar"
+                             class="h-10 w-10 rounded flex-no-shrink"
+                             alt="Profile image">
+                        <img v-else-if="user.avatar === 'default'" src="/upload/avatars/default.png"
+                             class="h-8 w-8 rounded flex-no-shrink"
+                             alt="Profile image">
+                        <div class="ml-2">
+                            <a :href="'/authors/@' + user.username"
+                               class="font-semibold text-gray-900 dark:text-gray-300 leading-none">
+                                {{ user.name ? user.name : '@' + user.username }}</a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-300 dark:bg-gray-700" style="height: 1px;"></div>
+                    <div class="dark:border-gray-700 border-gray-200 py-1">
+                        <a href="#"
+                           class="block text-gray-700 dark:text-gray-300 px-4 py-2 leading-tight hover:bg-gray-200 dark:hover:bg-gray-700">
+                            Paylaşmalarım
+                        </a>
+                        <a href="#"
+                           class="block text-gray-700 dark:text-gray-300 px-4 py-2 leading-tight hover:bg-gray-200 dark:hover:bg-gray-700">
+                            Seçilmişlərım
+                        </a>
+                    </div>
+                    <div class="bg-gray-300 dark:bg-gray-700" style="height: 1px;"></div>
+                    <div class="dark:border-gray-700 border-gray-200 py-1">
+                        <a :href="'/settings'"
+                           class="block text-gray-700 dark:text-gray-300 px-4 py-2 leading-tight hover:bg-gray-200 dark:hover:bg-gray-700">Parametrlər</a>
+                        <div
+                            class="flex items-center justify-between text-gray-700 dark:text-gray-300 px-4 py-2 leading-tight hover:bg-gray-200 dark:hover:bg-gray-700">
+                            <p>Gecə modu</p>
+                            <switcher></switcher>
+                        </div>
+                    </div>
+                    <div class="bg-gray-300 dark:bg-gray-700" style="height: 1px;"></div>
+                    <div class="dark:border-gray-700 border-gray-200 py-1">
+                        <button @click="logout"
+                                class="block w-full text-gray-700 dark:text-gray-300 px-4 py-2 text-left leading-tight hover:bg-gray-200 dark:hover:bg-gray-700">
+                            Çıxmaq
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 
@@ -88,45 +69,12 @@ export default {
     props: ['user', 'fav'],
     data() {
         return {
-            switch: true,
-            isEnabled: null,
-            isVisible: false,
-            focusedIndex: 0,
-            isActive: true,
+            show: false,
         }
     },
     methods: {
-        toggleVisibility() {
-            this.isVisible = !this.isVisible
-        },
         hideDropdown() {
-            this.isVisible = false
-            this.focusedIndex = 0
-        },
-        startArrowKeys() {
-            if (this.isVisible) {
-                // this.$refs.account.focus()
-                this.$refs.dropdown.children[0].children[0].focus()
-            }
-        },
-        focusPrevious(isArrowKey) {
-            this.focusedIndex = this.focusedIndex - 1
-            if (isArrowKey) {
-                this.focusItem()
-            }
-        },
-        focusNext(isArrowKey) {
-            this.focusedIndex = this.focusedIndex + 1
-            if (isArrowKey) {
-                this.focusItem()
-            }
-        },
-        focusItem() {
-            this.$refs.dropdown.children[this.focusedIndex].children[0].focus()
-        },
-        setNewToggleState() {
-            this.isActive = !this.isActive;
-            this.$emit('setIsActive', this.isActive);
+            this.show = false
         },
         logout(evt) {
             axios.post('/logout')
@@ -137,3 +85,14 @@ export default {
     }
 }
 </script>
+
+<style>
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+    opacity: 0;
+}
+</style>

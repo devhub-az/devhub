@@ -23,12 +23,18 @@ class AuthorResource extends JsonResource
             'attributes'    => [
                 'name'                  => $this->name,
                 'username'              => $this->username,
-                'avatar'                => ($this->avatar !== 'default') ? $this->avatar : config('devhub.default_avatar'),
+                'avatar'                => ($this->avatar !== 'default')
+                    ? $this->avatar
+                    : config(
+                        'devhub.default_avatar'
+                    ),
                 'description'           => $this->description,
                 'karma'                 => $this->karma,
                 'rating'                => $this->rating,
                 'articles_count'        => $this->articles_count,
-                'follower'              => $this->statusCheck(),
+                'follower'              => auth()->guard('api')->id() || Auth::check() ? $this->isFollowedBy(
+                    auth()->guard('api')->id() ?? Auth::user()->id
+                ) : false,
                 'github_url'            => $this->github_url,
                 'user_followings_count' => $this->followings_count,
                 'user_followers_count'  => $this->followers_count,
@@ -38,14 +44,5 @@ class AuthorResource extends JsonResource
                 'self' => route('authors.show', ['author' => $this->id]),
             ],
         ];
-    }
-
-    public function statusCheck()
-    {
-        if (Auth::check()) {
-            return $this->isFollowedBy(Auth::user()->id);
-        }
-
-        return false;
     }
 }

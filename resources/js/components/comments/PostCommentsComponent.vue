@@ -5,33 +5,40 @@
             <span class="iconify" data-icon="bx:bx-comment-detail" data-inline="false"></span>
             <p class="transition-none xs:text-base">Şərhlər ({{ comments.length }})</p>
         </div>
-        <div class="space-y-4 w-full py-2 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
+        <div class="divide-y dark:divide-gray-700 relative w-full v rounded border bg-white dark:bg-dpaper dark:border-gray-700"
              v-if="comments.length > 0">
-            <div class="px-3.5" v-for="comment in comments">
+            <div class="px-3.5 py-2" v-for="comment in comments">
                 <div class="flex space-x-2 items-center">
                     <img :src="comment.relationships.author.attributes.avatar" alt="User image" class="w-4 h-4 rounded">
-                    <a :href="'/authors/@' + comment.relationships.author.attributes.username"
-                       class="inline-block align-text-top dark:text-gray-300">
-                        {{
-                            comment.relationships.author.attributes.name ? comment.relationships.author.attributes.name : '@' + comment.relationships.author.attributes.username
-                        }}
-                    </a>
-                    <p class="text-xs opacity-75 font-light dark:text-gray-300">
-                        {{ comment.attributes.created | moment('DD MMMM, H:mm') }}
-                    </p>
+                    <div class="flex space-x-2 items-baseline">
+                        <a :href="'/authors/@' + comment.relationships.author.attributes.username"
+                           class="inline-block align-text-top dark:text-gray-300">
+                            {{
+                                comment.relationships.author.attributes.name ? comment.relationships.author.attributes.name : '@' + comment.relationships.author.attributes.username
+                            }}
+                        </a>
+                        <p class="text-xs opacity-75 font-light dark:text-gray-300">
+                            {{ comment.attributes.created | moment('DD MMMM, H:mm') }}
+                        </p>
+                    </div>
                 </div>
                 <div class="dark:text-gray-400 font-light break-words">{{ comment.attributes.body }}</div>
             </div>
+            <div
+                class="absolute cursor-pointer -left-8 top-1/2 transform -translate-y-1/2 dark:bg-dpaper rounded border dark:border-gray-700"
+                style="margin-top: 0 !important;" @click="getComments">
+                <span id="spinner" class="iconify m-1 dark:text-gray-300" data-icon="el:refresh" data-inline="false"></span>
+            </div>
         </div>
         <form class="w-full mt-4 border bg-white w-full rounded
-                       dark:bg-gray-700 dark:border-gray-700 py-2 px-3.5"
+                       dark:bg-gray-800 shadow-inner dark:border-gray-700 py-2 px-3.5"
               @submit.prevent="send" method="post" v-if="auth_check">
             <p id="text" @input="contentEditableChange()"
                placeholder="Şərh, müəllifə minnətdarlıq ve ya konstruktiv tənqid mesajı yaz"
                class="relative w-full block pb-12 dark:text-gray-400 focus:outline-none focus:border-cerulean-500 "
                contenteditable>
             </p>
-            <button class="btn block ml-auto my-1 h-7 xs:mt-4" type="submit">Yazmaq</button>
+            <button class="btn-outline block ml-auto my-1 h-7 xs:mt-4" type="submit">Şərh yazmaq</button>
         </form>
         <div class="flex space-x-1 mt-2 bg-white dark:bg-dpaper dark:border-gray-700 rounded py-4 text-sm border"
              v-else>
@@ -57,6 +64,7 @@ export default {
     data: function () {
         return {
             comments: [],
+            loading: false
         }
     },
     async created() {
@@ -72,6 +80,7 @@ export default {
                 this.getComments()
                 document.getElementById("text").innerHTML = ''
             }).catch(response => {
+                this.loading = false
                 this.error_text = response.data.error
                 this.error = true
             })
@@ -80,13 +89,20 @@ export default {
             this.comment = document.getElementById("text").innerHTML;
         },
         async getComments() {
+            this.loading = true
+            let spinner = document.getElementById('spinner')
+            // spinner.classList.add('animate-spin')
             await axios.get('/api/articles/' + this.slug + '/relationships/comments').then(response => {
+                // let spinner = document.getElementById('spinner')
                 if (response.data.data.length !== 0) {
                     this.comments = response.data.data;
                     this.commentsNotEmpty = true;
                 }
+                // spinner.classList.remove('animate-spin')
+                this.loading = false
             })
                 .catch(error => {
+                    this.loading = false
                     // DEVELOPING PART
                     if (error.response) {
                         console.log(error.response.data);

@@ -13,6 +13,7 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
     .js('resources/js/pages/settings.js', 'public/js')
     .js('resources/js/scripts/scroller.js', 'public/js')
     .js('resources/js/pages/admin.js', 'public/js')
+    .js('resources/js/pages/author.js', 'public/js')
     .copy('resources/js/vendor/particles.json', 'public/assets')
 
     .js('resources/js/includes/header.js', 'public/js')

@@ -21,7 +21,7 @@ Route::prefix('articles')->group(
         Route::get('/', [ArticleController::class, 'index'])->middleware('api')->name('articles.index');
         Route::post('/', [ArticleController::class, 'store'])->name('article.store')->middleware('auth:api');
         Route::post('/vote', [ArticleController::class, 'vote'])->middleware('auth:api');
-        Route::get('/{article}', [ArticleController::class, 'show'])->middleware('api')->name('articles.show');
+        Route::get('/{article_json}', [ArticleController::class, 'show'])->middleware('api')->name('articles.show');
         Route::prefix('filter')->group(
             function () {
                 Route::get('day', [ArticleTopController::class, 'posts']);
@@ -32,34 +32,35 @@ Route::prefix('articles')->group(
         );
 
         Route::get(
-            '{article}/relationships/author',
+            '{article_json}/relationships/author',
             ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.relationships.author']
         );
         Route::get(
-            '{article}/author',
+            '{article_json}/author',
             ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
         );
-        Route::get('{article}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
+        Route::get('{article_json}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
             ->name('articles.relationships.comments');
         Route::get(
-            '{article}/comments',
+            '{article_json}/comments',
             ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
         );
         Route::get(
-            '{article}/relationships/hubs',
+            '{article_json}/relationships/hubs',
             ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.relationships.hubs']
         );
         Route::get(
-            '{article}/hubs',
+            '{article_json}/hubs',
             ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
         );
+
+        /**
+         * Comments Api.
+         */
+        Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
+
     }
 );
-
-/**
- * Comments Api.
- */
-Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
 
 
 /*
@@ -93,9 +94,11 @@ Route::get('/search_hub', [HubController::class, 'search_hub_by_key']);
  * Author Api
  */
 
-Route::apiResource('/authors', AuthorController::class);
 Route::prefix('authors')->group(
     function () {
+        Route::get('/', [AuthorController::class, 'index'])->name('authors.all');
+        Route::get('{author}', [AuthorController::class, 'show'])->name('authors.show');
+        Route::post('{author}', [AuthorController::class, 'follow'])->name('author.follow')->middleware('auth:api');
         Route::get('{id}/follow_check', [AuthorController::class, 'userFollowCheck']);
         Route::get('{id}/followings', [AuthorController::class, 'followings']);
         Route::get('{id}/followers', [AuthorController::class, 'followers']);

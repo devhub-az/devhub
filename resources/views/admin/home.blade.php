@@ -151,7 +151,7 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            @can(App\Policies\UserPolicy::BAN, $user)
+                            @can(App\Policies\AuthorPolicy::BAN, $user)
                                 @if ($user->isBanned())
                                     <button type="submit"
                                             class="btn-outline h-7 inline-flex justify-center bg-white font-medium text-gray-700 hover:bg-gray-50"
@@ -167,7 +167,7 @@
                         </td>
                         <td>
                             @if (Auth::check() && Auth::user()->isAdmin())
-                                @can(App\Policies\UserPolicy::DELETE, $user)
+                                @can(App\Policies\AuthorPolicy::DELETE, $user)
                                     <button type="submit"
                                             class="btn h-7 inline-flex justify-center bg-red-600 border-none hover:bg-red-700"
                                             @click.prevent="activeModal = 'deleteUser'">Удалить
@@ -175,7 +175,7 @@
                                 @endcan
                             @endif
                         </td>
-                        @can(App\Policies\UserPolicy::BAN, $user)
+                        @can(App\Policies\AuthorPolicy::BAN, $user)
                             @if ($user->isBanned())
                                 @include('include.modal', [
                                     'identifier' => 'unbanUser',

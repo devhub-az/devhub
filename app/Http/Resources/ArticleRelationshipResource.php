@@ -20,13 +20,13 @@ class ArticleRelationshipResource extends JsonResource
         return [
             'author'   => [
                 'links' => [
-                    'self'    => route('articles.relationships.author', ['article' => $this->id]),
-                    'related' => route('articles.author', ['article' => $this->id]),
+                    'self'    => route('articles.relationships.author', ['article_json' => $this->id]),
+                    'related' => route('articles.author', ['article_json' => $this->id]),
                 ],
                 'data'  => new AuthorResource($this->creator),
             ],
-            'comments' => (new ArticleCommentsRelationshipResource($this->comments))->additional(['article' => $this]),
-            'hubs'     => (new ArticleHubsRelationshipResource($this->hubs))->additional(['article' => $this]),
+            'comments' => (new ArticleCommentsRelationshipResource($this->comments))->additional(['article_json' => $this]),
+            'hubs'     => (new ArticleHubsRelationshipResource($this->hubs))->additional(['article_json' => $this]),
         ];
     }
 

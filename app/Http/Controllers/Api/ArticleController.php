@@ -57,9 +57,7 @@ class ArticleController extends Controller
         ArticleResource::withoutWrapping();
 
         return new ArticleResource(
-            $article->withcount(
-                'views',
-            )->firstOrFail()
+            $article
         );
     }
 
@@ -77,10 +75,8 @@ class ArticleController extends Controller
      */
     public function vote(VoteRequest $request): JsonResponse
     {
-        $user = auth()->user();
-
         $article = Article::findOrFail($request->id);
-        ($request->type === 'up') ? self::upOrDownVote($user, $article) : self::upOrDownVote($user, $article, 'down');
+        ($request->type === 'up') ? self::upOrDownVote($request->user(), $article) : self::upOrDownVote($request->user(), $article, 'down');
 
         return response()->json(['success' => 'success']);
     }

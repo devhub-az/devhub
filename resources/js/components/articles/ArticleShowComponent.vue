@@ -45,7 +45,7 @@
                         <a :href="'/article/' + post.attributes.slug + '#comments'" class="flex items-center">
                             <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
                             <p class="ml-1 text-gray-500 dark:text-gray-300">
-                                {{ post.attributes.comments_count ? post.attributes.comments_count : '0' }}
+                                {{ post.relationships.comments.data.length }}
                             </p>
                         </a>
                     </div>

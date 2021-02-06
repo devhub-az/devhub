@@ -67,11 +67,11 @@ Route::group(
 Route::prefix('article')->group(
     static function () {
         Route::get('create', [ArticleController::class, 'create'])->name('article.create');
-        Route::get('{article}', [ArticleController::class, 'show'])->name('article.show')->middleware('session');
-        Route::get('{article}/edit', [ArticleController::class, 'edit'])->name('article.edit');
-        Route::put('{article}', [ArticleController::class, 'update'])->name('article.update');
-        Route::delete('{article}', [ArticleController::class, 'delete'])->name('article.delete');
-        Route::post('/{article}/favorite', [ArticleController::class, 'favorite']);
+        Route::get('{article_show}', [ArticleController::class, 'show'])->name('article.show')->middleware('session');
+        Route::get('{article_show}/edit', [ArticleController::class, 'edit'])->name('article.edit');
+        Route::put('{article_show}', [ArticleController::class, 'update'])->name('article.update');
+        Route::delete('{article_show}', [ArticleController::class, 'delete'])->name('article.delete');
+        Route::post('/{article_show}/favorite', [ArticleController::class, 'favorite']);
     }
 );
 
@@ -109,14 +109,6 @@ Route::prefix('authors')->group(
     }
 );
 
-//Comments view
-//Route::prefix('comment')->group(
-//    static function () {
-//        Route::post('new-comment', [Api::class, 'newComment'])->name('new-comment');
-//        Route::post('/favorite/{id}', [Api::class, 'favorite']);
-//    }
-//);
-
 //About view
 Route::view('about', 'pages.about_us')->name('about');
 
@@ -135,8 +127,8 @@ Route::prefix('admin')->name('admin')->group(
 
 //    // Articles
 //    Route::get('articles', [AdminArticlesController::class, 'index'])->name('.articles');
-//    Route::put('articles/{article}/approve', [AdminArticlesController::class, 'approve'])->name('.articles.approve');
-//    Route::put('articles/{article}/disapprove', [AdminArticlesController::class, 'disapprove'])->name('.articles.disapprove');
-//    Route::put('articles/{article}/pinned', [AdminArticlesController::class, 'togglePinnedStatus'])->name('.articles.pinned');
+//    Route::put('articles/{article_show}/approve', [AdminArticlesController::class, 'approve'])->name('.articles.approve');
+//    Route::put('articles/{article_show}/disapprove', [AdminArticlesController::class, 'disapprove'])->name('.articles.disapprove');
+//    Route::put('articles/{article_show}/pinned', [AdminArticlesController::class, 'togglePinnedStatus'])->name('.articles.pinned');
     }
 );

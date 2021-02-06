@@ -15,13 +15,13 @@ class ArticleCommentsRelationshipResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        $article = $this->additional['article'];
+        $article = $this->additional['article_json'];
 
         return [
             'data'  => CommentIdentifierResource::collection($this->collection),
             'links' => [
-                'self'    => route('articles.relationships.comments', ['article' => $article->slug]),
-                'related' => route('articles.comments', ['article' => $article->slug]),
+                'self'    => route('articles.relationships.comments', ['article_json' => $article->slug]),
+                'related' => route('articles.comments', ['article_json' => $article->slug]),
             ],
         ];
     }
