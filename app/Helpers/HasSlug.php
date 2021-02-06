@@ -49,12 +49,12 @@ trait HasSlug
 
     private function generateUniqueSlug(string $value): string
     {
-        $slug    = $originalSlug = Str::slug($value) ?: Str::random(5);
+        $slug = $originalSlug = Str::slug($value) ?: Str::random(5);
         $counter = 0;
 
         while ($this->slugExists($slug, $this->id ?? null)) {
             $counter++;
-            $slug = $originalSlug . '-' . $counter;
+            $slug = $originalSlug.'-'.$counter;
         }
 
         return $slug;

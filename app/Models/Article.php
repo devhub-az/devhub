@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Eloquent;
 use App\Helpers\HasAuthor;
 use App\Helpers\HasHubs;
 use App\Helpers\HasSlug;
+use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

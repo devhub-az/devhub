@@ -28,7 +28,7 @@ class AuthorController extends Controller
             'pages.profile.show.posts',
             [
                 'user' => $user->toResponse($request)->getData(),
-                'url'  => '/api/authors/' . $user->id . '/posts',
+                'url'  => '/api/authors/'.$user->id.'/posts',
             ]
         );
     }
@@ -42,17 +42,17 @@ class AuthorController extends Controller
     {
         AuthorResource::withoutWrapping();
 
-        $user_col     = new AuthorResource($user);
-        $start_date   = Carbon::now()->subDays(30)->format('Y-m-d');
+        $user_col = new AuthorResource($user);
+        $start_date = Carbon::now()->subDays(30)->format('Y-m-d');
         $current_date = Carbon::now()->format('Y-m-d');
-        $period       = CarbonPeriod::create($start_date, $current_date);
+        $period = CarbonPeriod::create($start_date, $current_date);
 
         foreach ($period->toArray() as $date) {
             $week_dates[] = Carbon::parse($date)->format('Y-m-d');
-            $count[]      = Article::select('created_at')->where('author_id', $user->id)
+            $count[] = Article::select('created_at')->where('author_id', $user->id)
                 ->whereDate('created_at', Carbon::parse($date))
                 ->count();
-            $tasks[]      = $count;
+            $tasks[] = $count;
         }
 
         return view(
@@ -119,7 +119,7 @@ class AuthorController extends Controller
 
         $user = Auth::user();
 
-        $avatarName = $user->id . '_avatar' . time() . '.' . request()->avatar->getClientOriginalExtension();
+        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
 
         $request->avatar->storeAs('avatars', $avatarName);
 

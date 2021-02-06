@@ -58,10 +58,8 @@ Route::prefix('articles')->group(
          * Comments Api.
          */
         Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
-
     }
 );
-
 
 /*
  * Favorite Api

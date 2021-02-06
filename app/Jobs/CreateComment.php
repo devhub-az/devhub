@@ -17,8 +17,8 @@ final class CreateComment
     public function __construct(string $comment, string $article_id, User $author)
     {
         $this->article_id = $article_id;
-        $this->comment    = $comment;
-        $this->author     = $author;
+        $this->comment = $comment;
+        $this->author = $author;
     }
 
     public static function fromRequest(CommentRequest $request): self
