@@ -69,7 +69,7 @@ class LoginController extends Controller
                 'password'          => Hash::make(Str::random(24)),
             ]
         );
-        if ($auth->email_verified_at > Carbon::now()->subMinute()) {
+        if ($auth->wasRecentlyCreated) {
             $auth->addMediaFromUrl($user->avatar)->toMediaCollection('avatars');
         }
         Auth::login($auth, true);
