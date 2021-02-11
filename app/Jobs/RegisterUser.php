@@ -39,11 +39,11 @@ final class RegisterUser
 
     public function __construct(string $name, string $email, string $username, string $password, UploadedFile $image)
     {
-        $this->name     = $name;
-        $this->email    = $email;
+        $this->name = $name;
+        $this->email = $email;
         $this->username = $username;
         $this->password = $password;
-        $this->image    = $image;
+        $this->image = $image;
     }
 
     public static function fromRequest(RegisterRequest $request): self
