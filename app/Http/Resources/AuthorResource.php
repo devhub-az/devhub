@@ -24,7 +24,7 @@ class AuthorResource extends JsonResource
                 'name'                  => $this->name,
                 'username'              => $this->username,
                 'avatar'                => ($this->avatar !== 'default')
-                    ? $this->avatar
+                    ? $this->getMedia('avatars')->first()->getFullUrl()
                     : config(
                         'devhub.default_avatar'
                     ),

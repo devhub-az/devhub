@@ -2,11 +2,11 @@
     <div class="mt-1 relative">
         <button @click="show = !show" type="button" aria-haspopup="listbox" aria-expanded="true"
                 class="flex items-center focus:outline-none p-0 bg-none">
-            <img v-if="user.avatar !== 'default'" :src="'/upload/avatars/' + user.avatar"
-                 class="w-8 h-8 flex-none image-fit rounded lazyload"
+            <img v-if="user.avatar !== 'default'" :src="avatar_url"
+                 class="w-8 h-8 flex-none image-fit rounded object-cover lazyload"
                  alt="Profile image">
             <img v-else-if="user.avatar === 'default'" src="/upload/avatars/default.png"
-                 class="w-8 h-8 flex-none image-fit rounded lazyload"
+                 class="w-8 h-8 flex-none image-fit rounded object-cover lazyload"
                  alt="Profile image">
         </button>
         <transition name="fade">
@@ -14,11 +14,11 @@
                 <div
                     class="w-52 text-sm text-left border border-gray-300 bg-white dark:bg-dpaper dark:border-gray-700 rounded shadow-lg">
                     <div class="flex items-center p-3">
-                        <img v-if="user.avatar !== 'default'" :src="'/upload/avatars/' + user.avatar"
-                             class="h-10 w-10 rounded flex-no-shrink"
+                        <img v-if="user.avatar !== 'default'" :src="avatar_url"
+                             class="h-10 w-10 rounded object-cover flex-no-shrink"
                              alt="Profile image">
                         <img v-else-if="user.avatar === 'default'" src="/upload/avatars/default.png"
-                             class="h-8 w-8 rounded flex-no-shrink"
+                             class="h-8 w-8 rounded object-cover flex-no-shrink"
                              alt="Profile image">
                         <div class="ml-2">
                             <a :href="'/authors/@' + user.username"
@@ -66,7 +66,7 @@ import axios from "axios"
 
 export default {
     mixins: [clickaway],
-    props: ['user', 'fav'],
+    props: ['user', 'fav', 'avatar_url'],
     data() {
         return {
             show: false,

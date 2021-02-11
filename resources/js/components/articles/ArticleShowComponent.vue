@@ -32,6 +32,8 @@
                 <div id="markdown" class="markdown py-2">
                     <div
                         v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
+<!--                    <highlightjs autodetect :code="'var x = 5;'" />-->
+                    <pre v-highlightjs="'var x = 5;'"></pre>
                 </div>
             </div>
             <div
@@ -76,7 +78,9 @@ const edjsHTML = require('editorjs-html');
 const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
 
 function codeParser(block) {
-    return `<code>` + block.data.code + `</code>`
+    console.log(hljs.highlightAuto('<code>' + block.data.code + '</code>').value)
+    return `<code>` + hljs.highlightAuto(block.data.code).value + `</code>`
+    // return `<code>` + block.data.code + `</code>`
 }
 
 function imageParser(block) {

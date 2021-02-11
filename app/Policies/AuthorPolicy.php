@@ -13,7 +13,7 @@ final class AuthorPolicy
 
     public function follow(User $user, User $subject): bool
     {
-        return ! $user->isFollowedBy($subject) && $user->id !== $subject->id;
+        return !$subject->isFollowedBy($user) && $user->id !== $subject->id;
     }
 
     public function admin(User $user): bool

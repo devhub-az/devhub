@@ -54,8 +54,8 @@ final class Article extends Model
 
     protected $fillable = [
         'id',
-        'slug',
         'title',
+        'slug',
         'body',
         'author_id',
     ];

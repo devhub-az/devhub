@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
@@ -18,13 +19,9 @@ final class Hub extends Model
     use HasFactory;
     use Favoriteable;
 
-    protected $fillable = [
-        'name',
-    ];
-
     public $timestamps = false;
 
-    public function description()
+    public function description(): BelongsTo
     {
         return $this->belongsTo(Localization::class, 'id', 'idx');
     }

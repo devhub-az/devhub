@@ -43,7 +43,7 @@ final class CreateArticle
             'body' => $this->body,
         ]);
         $article->authoredBy($this->author);
-        $article->syncTags($this->hubs);
+        $article->syncHubs($this->hubs);
         $article->save();
 
         return $article;

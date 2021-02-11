@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Auth;
+use Carbon\Carbon;
 use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
@@ -61,13 +62,16 @@ class LoginController extends Controller
                 'description'       => $user->user['bio'],
                 'email'             => $user->email,
                 'username'          => $user->nickname,
+                'avatar'            => $user->id . '.jpeg',
                 'github_id'         => $user->id,
                 'email_verified_at' => \Carbon::now()->toDateTimeString(),
                 'github_url'        => $user->user['html_url'],
                 'password'          => Hash::make(Str::random(24)),
             ]
         );
-
+        if ($auth->email_verified_at > Carbon::now()->subMinute()) {
+            $auth->addMediaFromUrl($user->avatar)->toMediaCollection('avatars');
+        }
         Auth::login($auth, true);
 
         return back();

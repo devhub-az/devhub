@@ -61,7 +61,7 @@ class ArticleController extends Controller
         );
     }
 
-    public function store(ArticleRequest $request)
+    public function store(ArticleRequest $request): JsonResponse
     {
         $article = $this->dispatchNow(CreateArticle::fromRequest($request));
 

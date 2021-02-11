@@ -1,8 +1,5 @@
 <?php
 
-//    Route::post('post/image/cache', [PostController::class, 'upload_image']);
-//Route::middleware('auth')->get('articles_filter/favorite', [ArticleTopController::class, 'favorite']);
-
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\ArticleHubController;
 use App\Http\Controllers\Api\ArticleRelationshipController;
@@ -12,9 +9,10 @@ use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
 use App\Http\Controllers\Api\SavedController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('auth/checkEmail', 'Auth\LoginController@checkEmail');
+Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
 
 Route::prefix('articles')->group(
     function () {

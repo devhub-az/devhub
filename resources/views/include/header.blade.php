@@ -87,12 +87,14 @@
                     <i class="iconify" data-icon="topcoat:pencil"></i>
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
-                    <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"></dropdown>
+                    <dropdown :user="{{Auth::user()}}"
+                              :avatar_url="'{{ Auth::user()->getMedia('avatars')->first()->getFullUrl() }}'"
+                              :fav="'{{route("saved-posts")}}'"></dropdown>
                 </div>
                 <div class="m-auto w-6 h-6 lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
                     <img
-                        src="{{ (Auth::user()->avatar !== 'default') ? '/upload/avatars/' . Auth::user()->avatar : config('devhub.default_avatar') }}"
-                        alt="{{ __('devhub.authorLogo') }}" class="w-6 h-6 rounded ">
+                        src="{{ (Auth::user()->avatar !== 'default') ? Auth::user()->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
+                        alt="{{ __('devhub.authorLogo') }}" class="w-6 h-6 rounded">
                 </div>
             @endguest
         </div>

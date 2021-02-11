@@ -12,7 +12,7 @@ trait HasHubs
         return $this->hubs;
     }
 
-    public function syncTags(array $hubs)
+    public function syncHubs(array $hubs)
     {
         $this->save();
         $this->hubs()->sync($hubs);
@@ -25,6 +25,6 @@ trait HasHubs
 
     public function hubs(): morphToMany
     {
-        return $this->morphToMany(Hub::class, 'taggable');
+        return $this->morphToMany(Hub::class, 'taggable')->withTimestamps();
     }
 }

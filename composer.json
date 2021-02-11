@@ -27,7 +27,7 @@
         "overtrue/laravel-follow": "^2.2",
         "parsedown/laravel": "^1.1",
         "rennokki/laravel-eloquent-query-cache": "^2.5",
-        "spatie/laravel-sitemap": "^5.9"
+        "spatie/laravel-medialibrary": "^9.0.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

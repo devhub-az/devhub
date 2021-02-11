@@ -1,8 +1,10 @@
 let Vue = require('vue').default;
+// import hljs from 'highlight.js';
 import moment from "moment-mini"
 import httpPlugin from './../scripts/http';
 
 Vue.use(httpPlugin);
+// Vue.use(hljs.vuePlugin);
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);

@@ -2,7 +2,7 @@
     <div class="relative bg-cover bg-center p p-5">
         <div class="flex justify-between">
             <div class="flex">
-                <img class="rounded xs:h-16 xs:w-16 w-24 h-24"
+                <img class="rounded xs:h-16 xs:w-16 w-24 h-24 object-cover"
                      src="{{ $author->attributes->avatar }}"
                      alt="Profile image">
                 <div class="w-9/12 ml-2">

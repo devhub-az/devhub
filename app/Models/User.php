@@ -15,16 +15,19 @@ use Jcc\LaravelVote\Vote;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Class User.
  *
  * @mixin Eloquent
  */
-final class User extends Authenticatable implements MustVerifyEmail
+final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use Notifiable;
     use Followable;
+    use InteractsWithMedia;
     use HasApiTokens;
     use Vote;
     use Favoriter;

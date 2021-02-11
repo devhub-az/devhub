@@ -6,7 +6,7 @@
             <fieldset class="space-y-4">
                 <div class="grid grid-cols-settings gap-2 px-12 xs:mt-4 xs:block xs:px-0">
                     <img :src="previewPhoto"
-                         class="w-12 h-12 flex-none image-fit rounded lazyload ml-auto"
+                         class="w-12 h-12 flex-none image-fit rounded object-cover lazyload ml-auto"
                          alt="Profile image">
                     <div class="flex items-center">
                         <!-- File Input -->
@@ -130,12 +130,12 @@
 import axios from 'axios'
 
 export default {
-    props: ['auth'],
+    props: ['auth', 'avatar_url'],
     data() {
         return {
             fields: {},
             errors: {},
-            originalUrl: this.auth.avatar !== 'default' ? '/upload/avatars/' + this.auth.avatar : '/upload/avatars/default.png',
+            originalUrl: this.avatar_url,
             previewPhoto: '',
             fileName: null,
             emptyText: this.originalUrl ? 'Yeni bir şəkil seçilmədi' : 'Heç bir şəkil seçilməyib',

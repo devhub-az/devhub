@@ -166,7 +166,7 @@
     }
 }
 
-*:not(.iconify, #text, input ) {
+*:not(.iconify, #text, input, #title) {
     @apply transition-all duration-200 ease-in;
 }
 

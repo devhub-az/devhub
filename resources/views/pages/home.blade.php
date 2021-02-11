@@ -81,8 +81,8 @@
                                         <div class="flex items-start gap-3">
                                             <div class="relative w-12 h-12">
                                                 <img
-                                                    src="{{ ($author->avatar !== 'default') ? $author->avatar : config('devhub.default_avatar') }}"
-                                                    alt="hub image" class="w-12 h-12 rounded">
+                                                    src="{{ ($author->avatar !== 'default') ? $author->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
+                                                    alt="hub image" class="w-12 h-12 rounded object-cover">
                                                 @if ($author->isOnline())
                                                     <div class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
                                                 @endif

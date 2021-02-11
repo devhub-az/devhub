@@ -3,7 +3,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="flex-grow p-6 overflow-auto bg-gray-800">
         <div class="bg-gray-800 w-full pb-6">
             <div class="flex space-x-4 mx-auto w-full">
