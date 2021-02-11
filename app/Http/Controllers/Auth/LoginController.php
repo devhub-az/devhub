@@ -62,7 +62,7 @@ class LoginController extends Controller
                 'description'       => $user->user['bio'],
                 'email'             => $user->email,
                 'username'          => $user->nickname,
-                'avatar'            => $user->id . '.jpeg',
+                'avatar'            => $user->id.'.jpeg',
                 'github_id'         => $user->id,
                 'email_verified_at' => \Carbon::now()->toDateTimeString(),
                 'github_url'        => $user->user['html_url'],
