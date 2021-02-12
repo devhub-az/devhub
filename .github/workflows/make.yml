@@ -1,4 +1,4 @@
-name: make-master
+name: Docker init test
 on: [ push, pull_request ]
 
 jobs:
