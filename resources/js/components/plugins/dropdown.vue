@@ -54,6 +54,11 @@
                             Çıxmaq
                         </button>
                     </div>
+                    <div class="dark:border-gray-600 bg-gray-700 border-gray-200 py-0.5">
+                        <p class="block text-center font-medium text-sm w-full text-gray-700 dark:text-gray-300 px-4 py-1 text-left leading-tight">
+                            0.3.5 • <a :href="'/release-notes'" class="text-cerulean-100">Release Notes</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </transition>

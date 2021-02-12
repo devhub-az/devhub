@@ -1,4 +1,4 @@
-init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key passport migrate
+init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport migrate
 up: docker-up yarn-watch-d
 down: docker-down
 restart: down up
@@ -47,6 +47,9 @@ env:
 
 stop-watch:
 	docker stop yarn-watch
+
+storage:
+	docker-compose run --rm php php artisan storage:link
 
 key:
 	docker-compose run --rm php php artisan key:generate
