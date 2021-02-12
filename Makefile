@@ -34,7 +34,7 @@ yarn-upgrade:
 	docker-compose run --rm php yarn upgrade
 
 passport:
-	docker-compose run --rm php php artisan passport:install
+	docker-compose run --rm php php artisan passport:keys
 
 yarn-watch-d:
 	docker-compose run -d --name yarn-watch php yarn watch
