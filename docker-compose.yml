@@ -1,7 +1,7 @@
 version: '3'
 
 networks:
-  laravel:
+  devhub:
 
 services:
   nginx:
@@ -17,7 +17,7 @@ services:
       - php
       - mysql
     networks:
-      - laravel
+      - devhub
 
   mysql:
     image: mysql:8.0
@@ -37,7 +37,7 @@ services:
       - './.docker/mysql/data:/var/lib/mysql'
       - './.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
     networks:
-      - laravel
+      - devhub
 
   php:
     build:
@@ -49,4 +49,4 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - laravel
+      - devhub

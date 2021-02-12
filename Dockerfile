@@ -2,7 +2,7 @@ FROM php:8.0-fpm
 
 WORKDIR /var/www
 
-# Copy composer.json
+# Copy project
 COPY ./ /var/www/
 
 # Install dependencies
@@ -32,8 +32,9 @@ RUN docker-php-ext-install gd
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-FROM node:14.15.5
+# Install node js
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install nodejs -y
 
-WORKDIR /var/www
-
-RUN npm install -g yarn
+# Install yarn
+RUN npm --global install yarn
