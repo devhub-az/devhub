@@ -43,7 +43,7 @@ yarn-watch:
 	docker-compose run --rm php yarn watch
 
 env:
-	php -r "file_exists('.env') || copy('.env.example', '.env');"
+	docker-compose run --rm php php -r "file_exists('.env') || copy('.env.example', '.env');"
 
 stop-watch:
 	docker stop yarn-watch
