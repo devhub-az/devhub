@@ -32,9 +32,8 @@ RUN docker-php-ext-install gd
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+FROM node:14.15.5
 
-# TODO:FIX BUG
-# Install packages
-RUN composer update
+WORKDIR /var/www
 
-RUN php artisan key:generate
+RUN npm install -g yarn
