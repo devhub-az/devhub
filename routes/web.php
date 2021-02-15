@@ -112,6 +112,8 @@ Route::prefix('authors')->group(
 //About view
 Route::view('about', 'pages.about_us')->name('about');
 
+Route::view('release-notes', 'pages.release-notes')->name('release-notes');
+
 // Admin
 Route::prefix('admin')->name('admin')->group(
     function () {
