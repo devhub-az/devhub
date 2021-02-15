@@ -5146,10 +5146,10 @@ postcss-functions@^3:
     postcss "^6.0.9"
     postcss-value-parser "^3.3.0"
 
-postcss-import-url@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/postcss-import-url/-/postcss-import-url-6.0.0.tgz#57ff78067885d8b9b548d5baf08ba27af47c616e"
-  integrity sha512-TKRlOVKOeH6ZpSdXudXk/rr+BAmgmfxP0i6PIHeaQF5rgIOPEkMyI/8aJKespeTlxclAeS1lLRVDLffdYmvyPA==
+postcss-import-url@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/postcss-import-url/-/postcss-import-url-7.0.0.tgz#3469aa576732b9e1db8403779e6770d4fd844efe"
+  integrity sha512-b9pDNTxecZGjcJWNsyFa4QDusOVRzLCN1KR8y5g85QAefAk7Ls8tdKs8FPwFZjWjyQ19bVN/17+6iKTY4S3aXQ==
   dependencies:
     http-https "^1.0.0"
     is-url "^1.2.4"
@@ -6734,10 +6734,10 @@ vue-datepicker@^1.3.0:
   dependencies:
     moment "^2.11.1"
 
-vue-filepond@^6.0.2:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/vue-filepond/-/vue-filepond-6.0.3.tgz#199871e7d91f4d6a6c4ba5a4e653c6ce9cafbfa9"
-  integrity sha512-m0wArAdpgzOOs19bWA6zzYlHAb2aK+igPoKPZGrzpgKiiELPKW7XZ2OBDXzk7rhpFLkedujVrMqwjPyZfmQTTQ==
+vue-filepond@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/vue-filepond/-/vue-filepond-7.0.0.tgz#49f17551be0b1b10f0b0671bce432662d3e22bb5"
+  integrity sha512-FUqJqwOxVsz5BMYeK0tSFUAo7JhpTx+TMRA5XkYAzA1HH3KnkUz5tzvjDH+Pc282DTH2BIZOJe435BwYxYuHWg==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
