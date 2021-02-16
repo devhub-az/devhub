@@ -32,8 +32,6 @@
                 <div id="markdown" class="markdown py-2">
                     <div
                         v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
-<!--                    <highlightjs autodetect :code="'var x = 5;'" />-->
-                    <pre v-highlightjs="'var x = 5;'"></pre>
                 </div>
             </div>
             <div
@@ -73,14 +71,44 @@
 
 <script>
 import axios from "axios";
+import hljs from 'highlight.js/lib/core';
+if (localStorage.theme === 'dark') {
+    import('highlight.js/styles/atom-one-dark.css');
+} else {
+    import('highlight.js/styles/github.css');
+}
+
+
+// Syntax highlighting
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
+hljs.registerLanguage('html', require('highlight.js/lib/languages/xml'));
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
+hljs.registerLanguage('php', require('highlight.js/lib/languages/php'));
+hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+hljs.registerLanguage('csharp', require('highlight.js/lib/languages/csharp'));
+hljs.registerLanguage('c', require('highlight.js/lib/languages/c'));
+hljs.registerLanguage('c-like', require('highlight.js/lib/languages/c-like'));
+hljs.registerLanguage('go', require('highlight.js/lib/languages/go'));
+hljs.registerLanguage('java', require('highlight.js/lib/languages/java'));
+hljs.registerLanguage('swift', require('highlight.js/lib/languages/swift'));
+
+export const sanitizeHtml = function(markup) {
+    markup = markup.replace(/&/g, "&amp;");
+    markup = markup.replace(/</g, "&lt;");
+    markup = markup.replace(/>/g, "&gt;");
+    return markup;
+};
 
 const edjsHTML = require('editorjs-html');
 const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
 
 function codeParser(block) {
-    console.log(hljs.highlightAuto('<code>' + block.data.code + '</code>').value)
-    return `<code>` + hljs.highlightAuto(block.data.code).value + `</code>`
-    // return `<code>` + block.data.code + `</code>`
+    const markup = sanitizeHtml(block.data.code);
+    return `<pre><code id="output">${markup}</code></pre>`;
 }
 
 function imageParser(block) {
@@ -105,6 +133,7 @@ export default {
     },
     async created() {
         await this.getPost()
+        await hljs.highlightBlock(document.getElementById("output"))
     },
     methods: {
         async getPost() {

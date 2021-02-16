@@ -121,15 +121,11 @@
     }
 
     .markdown code {
-        @apply text-sm inline bg-gray-200 rounded px-1 py-05;
+        @apply text-sm rounded p-4;
     }
 
     .markdown pre {
-        @apply bg-gray-100 rounded p-4;
-    }
-
-    .markdown pre code {
-        @apply block bg-transparent p-0 overflow-visible rounded-none;
+        @apply rounded;
     }
 
     .markdown ul {
@@ -166,7 +162,7 @@
     }
 }
 
-*:not(.iconify, #text, input, #title) {
+*:not(.iconify, #text, input, #title, summary, details) {
     @apply transition-all duration-200 ease-in;
 }
 

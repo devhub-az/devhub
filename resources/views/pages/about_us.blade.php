@@ -20,6 +20,136 @@
                 </div>
             </div>
         </div>
+        <section class="lg:container xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
+            <div class="flex">
+                <div class="w-1/2">
+                    <h2 class="mb-6 font-sans text-3xl font-medium leading-none tracking-tight text-gray-900 sm:text-4xl mx-auto dark:text-gray-300">
+                        Mən necə müəllif ola bilərəm?
+                    </h2>
+                    <p class="leading-relaxed font-light dark:text-gray-400">
+                        На Девхабе интересуются IT и всеми сторонами современной жизни: программированием, технологиями,
+                        дизайном, наукой, образованием, играми, карьерой, здоровьем. Не обязательно писать хардкорно, но
+                        важно, чтобы была польза. Если у вас уже есть крутой материал на другой площадке, запостите его
+                        и
+                        здесь, чтобы сообщество Девхаба тоже его оценило.
+                    </p>
+                </div>
+                <div class="w-1/2">
+                    <img src="{{ asset('images/about/pro.svg') }}" alt="Post" class="w-2/3 ml-auto">
+                </div>
+            </div>
+        </section>
+        <section class="lg:container xl:container my-32 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
+            <div class="flex">
+                <div class="w-1/2">
+                    <img src="{{ asset('images/about/post.svg') }}" alt="Post" class="w-2/3 mr-auto">
+                </div>
+                <div class="w-1/2">
+                    <h2 class="mb-6 font-sans text-3xl font-medium leading-none tracking-tight text-gray-900 sm:text-4xl mx-auto dark:text-gray-300">
+                        Niyə paylaşma yazmaq faydalıdı?
+                    </h2>
+                    <ul class="list-decimal space-y-2 ml-5 font-light dark:text-gray-400">
+                        <li>
+                            <p class="leading-relaxed dark:text-gray-400">
+                                Написать пост — значит как следует разложить всё по полочкам, обобщить опыт и
+                                поделиться им с другими. Приносить пользу чертовски приятно, попробуйте.
+                            </p>
+                        </li>
+                        <li>
+                            <p class="leading-relaxed dark:text-gray-400">
+                                Никогда не угадаешь, кто прочитает ваш пост. Часто это те, кто разбирается в
+                                вопросе
+                                на голову лучше вас. Фидбэк от таких людей — возможно, самое ценное, что вы
+                                приобретете на Девхабе.
+                            </p>
+                        </li>
+                        <li>
+                            <p class="leading-relaxed dark:text-gray-400">
+                                Ваши публикации — это ваша репутация. Они лучше резюме расскажут, кто вы, чем
+                                занимаетесь и в чем разбираетесь.
+                            </p>
+                        </li>
+                        <li>
+                            <p class="leading-relaxed dark:text-gray-400">
+                                За первый крутой пост вы получите полноправный аккаунт и плюс в карму.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="lg:container xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
+            <h2 class="mb-6 font-sans text-center text-3xl mb-4 font-medium leading-none tracking-tight dark:text-gray-300 sm:text-4xl mx-auto">
+                Hansı formatı seçim?
+            </h2>
+            <about-example id="app"></about-example>
+            <div class="flex text-gray-700 space-x-2">
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Новости</p>
+                        <p class="text-sm dark:text-gray-400">Первыми узнали о сбое в Сети? Увидели новый продукт раньше
+                            всех?
+                            Прочитали
+                            свежий законопроект? Поделитесь с остальными.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Кейсы</p>
+                        <p class="text-sm dark:text-gray-400">Организовали умный дом за 10к рублей? Переехали в Новую
+                            Зеландию
+                            писать код по распознаванию киви? Пишите пост, это же очень интересно.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Туториалы</p>
+                        <p class="text-sm dark:text-gray-400">Справились с непростой задачей? Расскажите по пунктам, как
+                            ее
+                            решить — читатели будут благодарны.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Ретроспективы</p>
+                        <p class="text-sm dark:text-gray-400">Помните в подробностях, как зарождались вещи, к которым
+                            уже все
+                            привыкли? Кайф! Это то, что приятно почитать долгими зимними вечерами!</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Обзоры</p>
+                        <p class="text-sm dark:text-gray-400">Вы перепробовали кучу моноколес, стриминговых сервисов или
+                            сред
+                            разработки? Поделитесь, что там к чему, на что лучше обратить внимание.</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Мнения</p>
+                        <p class="text-sm dark:text-gray-400">У вас особый взгляд на острый вопрос? Хотите это обсудить?
+                            Напишите, что думаете, и готовьтесь провести вечер в комментариях.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Справочные</p>
+                        <p class="text-sm dark:text-gray-400">Вы глубоко изучили сложную тему? Готовы рассказать на
+                            пальцах,
+                            как все устроено? Дерзайте!</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Интервью</p>
+                        <p class="text-sm dark:text-gray-400">Есть доступ к человеку с необычным опытом? Срочно берите
+                            его в
+                            охапку и задавайте вопросы. А что он ответил, потом расскажите Хабру.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Дайджесты</p>
+                        <p class="text-sm dark:text-gray-400">Накопилась подборка интересных ссылок и хочется поделиться
+                            своими
+                            открытиями? Вперед! Мы тут очень любознательные и с большим кругозором.</p>
+                    </div>
+                    <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
+                        <p class="font-semibold mb-2 dark:text-gray-300">• Репортажи</p>
+                        <p class="text-sm dark:text-gray-400">Попали на знаковое мероприятие? Расскажите о самом
+                            интересном
+                            сообществу Девхаба.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
             <div class="pb-5 pt-4">
                 <div class="grid xs:block sm:block grid-cols-2 relative overflow-hidden">
@@ -131,10 +261,9 @@
                     </div>
                 </div>
             </div>
-            <about-example id="app"></about-example>
         </section>
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
-            <div class="py-10 border-b border-t dark:border-gray-700">
+            <div class="py-10">
                 <div class="grid relative xs:block sm:block grid-cols-2 overflow-hidden">
                     <div class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10"
                          style="box-shadow: inset 25px 0 25px -25px #aaaaaa;"></div>

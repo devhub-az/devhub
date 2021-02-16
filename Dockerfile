@@ -1,40 +1,24 @@
-FROM php:8.0-fpm
+FROM php:8.0-fpm-alpine
 
 WORKDIR /var/www
 
-# Copy project
-COPY ./ /var/www/
-
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    zip \
-    unzip
+RUN apk update && apk add --no-cache zip libzip-dev
 
-RUN docker-php-ext-install exif
-RUN docker-php-ext-install zip
+## Install extensions
+RUN docker-php-ext-install opcache zip pdo_mysql exif
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql
-
-RUN docker-php-ext-install mbstring
-
-RUN docker-php-ext-install gd
+RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
+COPY .docker/php /usr/local/etc/php/conf.d
 
 # Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
+
+# Folders chmod
+COPY --chown=www-data:www-data . /var/www/
 
 # Install node js
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-RUN apt-get install nodejs -y
+RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/v3.13/main/ nodejs=14.15.4-r0 npm
 
 # Install yarn
 RUN npm --global install yarn

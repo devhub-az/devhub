@@ -146,9 +146,6 @@ export default {
         await this.getPosts();
     },
     methods: {
-        async getHubPosts() {
-            this.posts = this.hub;
-        },
         async getPosts() {
             this.loading = true;
             await axios.get(this.url + '?page=' + this.pagination.current_page).then(({data}) => {

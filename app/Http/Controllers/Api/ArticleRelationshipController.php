@@ -22,10 +22,9 @@ class ArticleRelationshipController extends Controller
         return new CommentsResource($article->comments);
     }
 
-    public function hubs($id): HubsResource
+    public function hubs($article): HubsResource
     {
-        $article = Article::findOrFail($id);
-
+        dd($article->hubs);
         return new HubsResource($article->hubs);
     }
 }
