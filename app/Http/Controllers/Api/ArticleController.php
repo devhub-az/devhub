@@ -35,7 +35,7 @@ class ArticleController extends Controller
                 'comments' => function ($q) {
                     $q->with('creator');
                 },
-                'hubs'
+                'hubs',
             ]
         )->withcount(
             'views',

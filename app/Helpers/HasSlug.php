@@ -43,7 +43,7 @@ trait HasSlug
                             'followers'
                         );
                 },
-                'hubs'
+                'hubs',
             ]
         )->where('slug', $slug)->firstOrFail();
     }

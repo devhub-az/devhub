@@ -25,6 +25,7 @@ class ArticleRelationshipController extends Controller
     public function hubs($article): HubsResource
     {
         dd($article->hubs);
+
         return new HubsResource($article->hubs);
     }
 }
