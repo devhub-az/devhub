@@ -40,7 +40,6 @@ services:
       - devhub
 
   php:
-    command: ["./.docker/wait-for-it.sh", "mysql:3306", "--", "echo", "'mysql is up'"]
     build:
       context: .
       dockerfile: Dockerfile
