@@ -1,4 +1,4 @@
-init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport ps ping migrate
+init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport wait migrate
 up: composer-update docker-up yarn-watch-d
 down: docker-down
 restart: down up
@@ -17,13 +17,9 @@ docker-pull:
 
 docker-build:
 	docker-compose build --pull
-    
-ps:
-	cat .env
-	docker ps
 
-ping:
-	docker-compose run --rm php ping mysql
+wait:
+	docker wait mysql
 
 optimize:
 	docker-compose run --rm php php artisan optimize
