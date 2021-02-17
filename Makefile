@@ -3,6 +3,7 @@ up: composer-update docker-up yarn-watch-d
 down: docker-down
 restart: down up
 ps:
+    cat .env
     docker ps
 
 docker-up:
