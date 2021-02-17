@@ -2,8 +2,8 @@ init: docker-down docker-pull docker-build composer-update yarn-install docker-u
 up: composer-update docker-up yarn-watch-d
 down: docker-down
 restart: down up
+
 ps:
-    cat .env
     docker ps
 
 docker-up:
