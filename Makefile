@@ -3,9 +3,6 @@ up: composer-update docker-up yarn-watch-d
 down: docker-down
 restart: down up
 
-ps:
-    docker ps
-
 docker-up:
 	docker-compose up -d
 
@@ -20,6 +17,10 @@ docker-pull:
 
 docker-build:
 	docker-compose build --pull
+    
+ps:
+	cat .env
+	docker ps
 
 optimize:
 	docker-compose run --rm php php artisan optimize
