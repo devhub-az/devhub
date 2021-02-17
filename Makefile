@@ -19,7 +19,7 @@ docker-build:
 	docker-compose build --pull
 
 wait:
-	docker-compose --health-cmd='mysql ping --silent' -d devhub_php
+	docker-compose --health-cmd='mysql ping --silent' -d php
 
 optimize:
 	docker-compose run --rm php php artisan optimize
