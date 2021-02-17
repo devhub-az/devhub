@@ -1,7 +1,9 @@
-init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport migrate
+init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport ps migrate
 up: composer-update docker-up yarn-watch-d
 down: docker-down
 restart: down up
+ps:
+    docker ps
 
 docker-up:
 	docker-compose up -d
