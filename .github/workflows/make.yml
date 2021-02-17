@@ -31,7 +31,7 @@ jobs:
       - name: Composer update
         run: make composer-update
         
-      - name: Yanr install
+      - name: Yarn install
         run: make yarn-install
         
       - name: Docker up
