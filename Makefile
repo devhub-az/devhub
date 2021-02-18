@@ -56,3 +56,11 @@ migrate:
 
 migrate-fresh:
 	docker-compose run --rm php php artisan migrate:fresh --seed
+
+try-build:
+	REGISTRY=127.0.0.1 IMAGE_TAG=0 make build
+
+build: build-docker
+
+build-docker:
+	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}/devhub:${IMAGE_TAG} .
