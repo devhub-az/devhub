@@ -3,7 +3,7 @@ name: Pipeline
 on: [ push, pull_request ]
 
 env:
-    REGISTRY: docker.pkg.github.com/deworkerpro/demo-auction
+    REGISTRY: docker.pkg.github.com/hose1021/devhub
     REGISTRY_HOST: docker.pkg.github.com
 
 jobs:
