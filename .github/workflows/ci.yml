@@ -1,6 +1,6 @@
 name: Pipeline
 
-on: [ push, pull_request ]
+on: [ push ]
 
 env:
     REGISTRY: docker.pkg.github.com/hose1021/devhub
