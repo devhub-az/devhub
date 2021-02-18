@@ -12,6 +12,18 @@ jobs:
 
         steps:
             -   uses: actions/checkout@v2
+            
+            -   name: Cache composer
+                uses: actions/cache@v2
+                with:
+                    path: api/vendor
+                    key: composer-${{ hashFiles('composer.lock') }}
+      
+            -   name: Cache frontend yarn
+                uses: actions/cache@v2
+                with:
+                    path: node_modules
+                    key: yarn-${{ hashFiles('yarn.lock') }}
 
             -   name: Docker login
                 uses: azure/docker-login@v1
