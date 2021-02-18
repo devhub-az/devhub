@@ -1,9 +1,9 @@
 <template>
     <div class="mb-3">
         <article-loading v-if="loading"/>
-        <article v-if="!loading" id="post-content" class="w-full rounded bg-white border dark:border-gray-700">
-            <div id="sidebar"
-                 class="sticky top-0 flex justify-between items-center border-b bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
+        <article v-if="!loading" id="post-content" class="w-full rounded border dark:border-gray-700">
+            <div
+                class="sticky top-0 flex justify-between rounded-t items-center border-b bg-afooter dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
                 <div class="inline-flex">
                     <a :href="'/authors/@' + post.relationships.author.data.attributes.username"
                        class="inline-flex">
@@ -15,47 +15,53 @@
                     <p class="text-xs my-auto mr-auto pl-2 dark:text-gray-300">
                         {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
                     </p>
-
                 </div>
                 <div class="post-votes-sticky">
-                    <vote :auth_check="auth_check" :posts="post"/>
+                    <vote :item="post"/>
                     <div class="post-edit_author" v-if="auth_check">
                         <i class="mdi mdi-chevron-down"></i>
                     </div>
                 </div>
             </div>
-            <div class="px-3.5 dark:bg-dpaper">
+            <div class="px-3.5 bg-white dark:bg-dpaper">
                 <div class="py-2">
                     <p class="text-2xl xs:text-xl font-medium dark:text-gray-300">{{ post.attributes.title }}</p>
                 </div>
                 <hubs-tags v-if="typeof(post.relationships.hubs) !== `undefined` "
                            :data="post.relationships.hubs.data"></hubs-tags>
-                <div class="markdown py-2">
+                <div id="markdown" class="markdown py-2">
                     <div
                         v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
                 </div>
             </div>
             <div
-                class="grid lg:grid-cols-main border-t text-sm bg-gray-100 dark:bg-gray-800 dark:border-gray-700 px-3.5 py-2">
-                <div class="flex xs:justify-between items-center md:justify-between sm:justify-between">
+                class="grid lg:grid-cols-main rounded-b border-t text-sm bg-afooter dark:bg-gray-800 dark:border-gray-700 px-3.5 py-2">
+                <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                     <div class="flex items-center">
-                        <i class="iconify dark:text-gray-300" data-icon="mdi-eye-outline"/>
-                        <p class="ml-1 dark:text-gray-300">{{ post.attributes.views }}</p>
-                        <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Baxışların sayı</p>
+                        <i class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-eye-outline"/>
+                        <p class="ml-1 text-gray-500 dark:text-gray-300">{{ post.attributes.views }}</p>
+                    </div>
+                    <div>
+                        <a :href="'/article/' + post.attributes.slug + '#comments'" class="flex items-center">
+                            <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
+                            <p class="ml-1 text-gray-500 dark:text-gray-300">
+                                {{ post.relationships.comments.data.length }}
+                            </p>
+                        </a>
                     </div>
                     <favorite :post="post" :auth_check="auth_check"/>
-                    <div class="pl-2 flex items-center cursor-pointer" @click="copy(post.id)">
-                        <i class="iconify dark:text-gray-300" data-icon="mdi-share"/>
-                        <p class="ml-1 dark:text-gray-300 xs:hidden sm:hidden">Paylaş</p>
-                    </div>
                 </div>
                 <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                     :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' plus ' + post.attributes.downvotes + ' minus'"
+                     :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
                      data-balloon-pos="up">
-                    <div class="my-auto bg-gray-300 w-full rounded h-1 relative"
+                    <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
                          :class="{ 'default' : post.attributes.votes_sum === 0}">
-                        <div class="absolute h-1 bg-blue rounded"
-                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"></div>
+                        <div class="absolute h-1 bg-green-600 rounded-l"
+                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"
+                        style="width: 50%;"></div>
+                        <div class="absolute h-1 bg-red-600 rounded-r right-0"
+                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes_sum : '0'] +'%'"
+                             style="width: 50%;"></div>
                     </div>
                 </div>
             </div>
@@ -65,24 +71,56 @@
 
 <script>
 import axios from "axios";
+import hljs from 'highlight.js/lib/core';
+if (localStorage.theme === 'dark') {
+    import('highlight.js/styles/atom-one-dark.css');
+} else {
+    import('highlight.js/styles/github.css');
+}
+
+
+// Syntax highlighting
+hljs.registerLanguage('bash', require('highlight.js/lib/languages/bash'));
+hljs.registerLanguage('css', require('highlight.js/lib/languages/css'));
+hljs.registerLanguage('html', require('highlight.js/lib/languages/xml'));
+hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
+hljs.registerLanguage('json', require('highlight.js/lib/languages/json'));
+hljs.registerLanguage('markdown', require('highlight.js/lib/languages/markdown'));
+hljs.registerLanguage('php', require('highlight.js/lib/languages/php'));
+hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
+hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
+hljs.registerLanguage('csharp', require('highlight.js/lib/languages/csharp'));
+hljs.registerLanguage('c', require('highlight.js/lib/languages/c'));
+hljs.registerLanguage('c-like', require('highlight.js/lib/languages/c-like'));
+hljs.registerLanguage('go', require('highlight.js/lib/languages/go'));
+hljs.registerLanguage('java', require('highlight.js/lib/languages/java'));
+hljs.registerLanguage('swift', require('highlight.js/lib/languages/swift'));
+
+export const sanitizeHtml = function(markup) {
+    markup = markup.replace(/&/g, "&amp;");
+    markup = markup.replace(/</g, "&lt;");
+    markup = markup.replace(/>/g, "&gt;");
+    return markup;
+};
 
 const edjsHTML = require('editorjs-html');
 const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
 
 function codeParser(block) {
-    return `<code>` + block.data.code + `</code>`
+    const markup = sanitizeHtml(block.data.code);
+    return `<pre><code id="output">${markup}</code></pre>`;
 }
 
 function imageParser(block) {
     return `<img src="` + block.data.url + `" alt="` + block.data.caption + `">`
 }
 
-function emdebParser(block){
+function emdebParser(block) {
     return '<iframe class="w-full h-80" src="' + block.data.embed + '"></iframe>';
 }
 
 export default {
-    props: ['auth_check', 'id'],
+    props: ['auth_check', 'slug'],
     data: function () {
         return {
             loading: false,
@@ -95,11 +133,12 @@ export default {
     },
     async created() {
         await this.getPost()
+        await hljs.highlightBlock(document.getElementById("output"))
     },
     methods: {
         async getPost() {
             this.loading = true;
-            await axios.get('/api/articles/' + this.id).then(response => {
+            await axios.get('/api/articles/' + this.slug).then(response => {
                 this.loading = false;
                 this.post = response.data;
             }).catch(error => {

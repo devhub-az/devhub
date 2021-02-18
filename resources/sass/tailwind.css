@@ -23,6 +23,10 @@
 }
 
 @layer components {
+    .group:focus .group-focus\:flex {
+        display: flex;
+    }
+
     .input {
         @apply w-full px-2 h-10 resize-none rounded text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:focus:border-cerulean-500 font-light dark:bg-dpaper focus:border-cerulean-100 focus:outline-none transition-none
     }
@@ -117,15 +121,11 @@
     }
 
     .markdown code {
-        @apply text-sm inline bg-gray-200 rounded px-1 py-05;
+        @apply text-sm rounded p-4;
     }
 
     .markdown pre {
-        @apply bg-gray-100 rounded p-4;
-    }
-
-    .markdown pre code {
-        @apply block bg-transparent p-0 overflow-visible rounded-none;
+        @apply rounded;
     }
 
     .markdown ul {
@@ -162,8 +162,25 @@
     }
 }
 
-*:not(.iconify) {
+*:not(.iconify, #text, input, #title, summary, details) {
     @apply transition-all duration-200 ease-in;
+}
+
+[placeholder]:empty::before {
+    content: attr(placeholder);
+    @apply opacity-50 cursor-text
+}
+
+[placeholder]:empty:focus::before {
+    content: "";
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }   to {
+            transform: rotate(360deg);
+        }
 }
 
 html {

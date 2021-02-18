@@ -1,9 +1,8 @@
 @extends('layouts.layout')
 
-@section('title'){{ ucfirst($user->attributes->username) }} @stop
+@section('title'){{ ucfirst($author->attributes->username) }} @stop
 
 @section('main')
-    {{--    TODO create js for id="app"--}}
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:my-0" id="app">
         @include('pages.profile.include.header')
         <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">

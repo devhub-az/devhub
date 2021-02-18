@@ -18,7 +18,6 @@ class CreateHubsTable extends Migration
             $table->string('slug')->unique();
             $table->char('name', 50)->nullable();
             $table->integer('rating')->default(0);
-            $table->timestamps();
         });
     }
 

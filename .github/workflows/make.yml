@@ -1,0 +1,50 @@
+name: Docker init test
+on: [ push, pull_request ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Cache composer
+        uses: actions/cache@v2
+        with:
+          path: api/vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+      
+      - name: Cache frontend yarn
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      
+      - name: Docker pull
+        run: make docker-pull
+        
+      - name: Docker build
+        run: make docker-build
+        
+      - name: Docker pull
+        run: make docker-pull
+        
+      - name: Composer update
+        run: make composer-update
+        
+      - name: Yarn install
+        run: make yarn-install
+        
+      - name: Docker up
+        run: make docker-up
+        
+      - name: Copy .env
+        run: make env
+        
+      - name: Generate key
+        run: make key
+        
+      - name: Storage link create
+        run: make storage
+      
+      - name: Generate passport
+        run: make passport

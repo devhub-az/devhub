@@ -1,15 +1,15 @@
 <template>
     <div class="xs:hidden">
-        <span @click="follow(following.id)" v-if="!following.attributes.follower && !loading"
-              class="border text-sm rounded px-3 py-1 cursor-pointer hover:border-cerulean-500 dark:border-gray-700 dark:hover:border-cerulean-700">
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Izləmək</span>
+        <span @click="follow(id)" v-if="!follower && !loading"
+              class="btn-outline h-7">
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Abunə olmaq</span>
         </span>
-        <span @click="follow(following.id)" v-if="following.attributes.follower && !loading"
-              class="border-cerulean-500 text-sm text-white rounded px-3 py-1 cursor-pointer bg-cerulean-500 hover:border-gray-700 dark:bg-cerulean-700">
-            <span class="font-medium transition-none">İzləyirsiniz</span>
+        <span @click="follow(id)" v-if="follower && !loading"
+              class="btn h-7">
+            <span class="font-medium transition-none">Abunəsiniz</span>
         </span>
         <span v-if="loading"
-              class="border text-sm rounded px-3 py-1 cursor-pointer dark:border-gray-700">
+              class="btn-outline h-7">
             <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Gözləyin</span>
         </span>
     </div>
@@ -17,67 +17,33 @@
 
 <script>
 import axios from 'axios'
-import Noty from 'noty'
 
 export default {
-    props: ['id', 'auth_check', 'user', 'auth_user', 'follow_check'],
+    props: ['id', 'follow_check'],
     data: function () {
         return {
-            following: this.user,
             loading: false,
-        }
-    },
-    async created() {
-        if (this.auth_check) {
-            this.following['follower'] = this.follow_check
-        } else {
-            this.following['follower'] = false
+            follower: this.follow_check,
         }
     },
     methods: {
         follow: function (id) {
-            if (this.auth_check) {
-                this.loading = true;
-                axios.post('/authors/' + id + '/follow', {
-                    id: id,
+            this.loading = true;
+            axios.post('/api/authors/' + id, {
+                id: id,
+            })
+                .then(response => {
+                    if (response.data === 'followed') {
+                        this.follower = true;
+                    } else if (response.data === 'unfollowed') {
+                        this.follower = false;
+                    }
+                    this.loading = false;
                 })
-                    .then(response => {
-                        if (response.data) {
-                            new Noty({
-                                type: 'success',
-                                text: '<div class="notification-image">' +
-                                    '<i class="mdi mdi-account-check-outline"></i>' +
-                                    '</div> ' +
-                                    '<div class="text">İzləyirsiniz</div>',
-                            }).show();
-                            this.following.attributes.follower = true;
-                        } else if (!response.data) {
-                            new Noty({
-                                type: 'error',
-                                text: '<div class="notification-image">' +
-                                    '<i class="mdi mdi-account-remove-outline"></i>' +
-                                    '</div> ' +
-                                    '<div class="text">İzləmirsiz</div>',
-                            }).show();
-                            this.following.attributes.follower = false;
-                        }
-                        this.loading = false;
-                    })
-                    .catch(error => {
-                        console.log(error);
-                        new Noty({
-                            type: 'error',
-                            text: '<div class="notification-image"><span class="mdi mdi-x"/></div> Xəta',
-                        }).show();
-                        this.loading = false;
-                    });
-            } else
-                new Noty({
-                    type: 'success',
-                    text: '<div class="notification-image"><i class="mdi mdi-account-box"></i></div> ' +
-                        '<div class="text">Bu funksiyanı istifadə etmək üçün ' +
-                        '<a href="/register" class="notification-link">qeydiyyatdan keçin</a></div>',
-                }).show();
+                .catch(error => {
+                    console.log(error);
+                    this.loading = false;
+                });
         }
     }
 }

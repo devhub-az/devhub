@@ -56,7 +56,7 @@
                 <div class="font-semibold dark:text-gray-300">{{ user.attributes.rating }}</div>
                 <p class="text-sm uppercase dark:text-gray-300">REYTINQ</p>
             </div>
-            <user-follow-button :user="user" :id="user.id" :auth_check="auth_check"
+            <user-follow-button :id="user.id" :follow_check="user.attributes.follower"
                                 class="w-2/12 m-auto text-center"></user-follow-button>
         </div>
         <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-dpaper dark:border-gray-700"

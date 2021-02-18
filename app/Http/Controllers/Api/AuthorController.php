@@ -7,9 +7,12 @@ use App\Http\Requests\FilterRequest;
 use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\AuthorResource;
 use App\Http\Resources\AuthorsResource;
+use App\Jobs\FollowAuthor;
 use App\Models\Article;
 use App\Models\User;
+use App\Policies\AuthorPolicy;
 use App\Services\LogoUploadService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
@@ -19,24 +22,20 @@ class AuthorController extends Controller
     public function index(FilterRequest $request): AnonymousResourceCollection
     {
         return AuthorResource::collection(
-            User::select(
-                [
-                    'id',
-                    'name',
-                    'username',
-                    'avatar',
-                    'description',
-                    'karma',
-                    'rating',
-                ]
-            )->with('followers', 'followings')->withCount('articles', 'followers', 'followings')->orderBy(
-                $request->column ?? 'created_at',
-                $request->order ?? 'DESC'
-            )->paginate($request->perPage ?? '10')
+            User::withCount(['articles', 'followers', 'followings'])
+                ->with('followers', 'followings')
+                ->orderBy(
+                    $request->column ?? 'created_at',
+                    $request->order ?? 'DESC'
+                )->paginate($request->perPage ?? '10')
         );
     }
 
-    public function show($id)
+    /**
+     * @param int $id
+     * @return AuthorResource
+     */
+    public function show(int $id): AuthorResource
     {
         AuthorResource::withoutWrapping();
 
@@ -72,31 +71,15 @@ class AuthorController extends Controller
     }
 
     /**
-     * @param int $id
-     *
-     * @return AuthorsResource
+     * @param User $author
+     * @return mixed
+     * @throws AuthorizationException
      */
-    public function followings(int $id)
+    public function follow(User $author)
     {
-//        $user = User::findorfail($id);
-//        $followings = $user->followings()->select('name', 'avatar', 'rating', 'karma')->with('posts')->get();
+        $this->authorize(AuthorPolicy::FOLLOW, $author);
 
-        return new AuthorsResource(
-            User::with('articles')->findorfail($id)->followings
-        );
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return UsersCollection
-     */
-    public function followers(int $id)
-    {
-        $user = User::findorfail($id);
-        $followers = $user->followers()->select('name', 'avatar', 'rating', 'karma')->with('posts')->get();
-
-        return new UsersCollection($followers);
+        return $this->dispatchNow(new FollowAuthor($author));
     }
 
     /**

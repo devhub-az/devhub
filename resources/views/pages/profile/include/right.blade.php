@@ -5,28 +5,17 @@
 </div>
 
 <div class="border p-2 rounded mb-2 dark:bg-dpaper dark:border-gray-700">
-    <p class="font-medium mb-3 dark:text-gray-300">Izləyənlər</p>
-    <div class="flex -space-x-2 overflow-hidden p-1">
-        @if (count($user->relationships->followers->data) > 0)
-            @foreach($user->relationships->followers->data as $follower)
-                <img src="{{ $follower->attributes->avatar }}" alt="User profili"
-                     class="inline-block h-10 w-10 rounded-full ring-2 ring-gray-300">
+    <p class="font-medium mb-3 dark:text-gray-300">İzləyicilər</p>
+    <div class="flex flex-row-reverse justify-end mr-2">
+        @if (count($author->relationships->followers->data) > 0)
+            @foreach($author->relationships->followers->data as $follower)
+                <img
+                    src="{{ $follower->attributes->avatar }}"
+                    alt="User profili"
+                    class="border-2 border-white rounded-full h-10 w-10 -mr-2">
             @endforeach
         @else
-            <p class="dark:text-gray-400">Heç kim istifadəçini izləmir</p>
-        @endif
-    </div>
-</div>
-<div class="border p-2 rounded dark:bg-dpaper dark:border-gray-700">
-    <p class="font-medium mb-3 dark:text-gray-300">Izlənən</p>
-    <div class="flex -space-x-2 overflow-hidden p-1">
-        @if (count($user->relationships->followings->data) > 0)
-            @foreach($user->relationships->followings->data as $following)
-                <img src="{{ $following->attributes->avatar }}" alt="User profili"
-                     class="inline-block h-10 w-10 rounded-full ring-2 ring-gray-300">
-            @endforeach
-        @else
-            <p class="dark:text-gray-400">İstifadəçi heç kimi izləmir</p>
+            <p class="dark:text-gray-400">Heç kim izləmir</p>
         @endif
     </div>
 </div>
@@ -39,9 +28,11 @@
         gradient.addColorStop(0, "rgba(0, 174, 239, .3)");
         gradient.addColorStop(0.35, "rgba(255, 255, 255, 0)");
         gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
-        function randomScalingFactor(){
+
+        function randomScalingFactor() {
             return Math.random() * 3;
         }
+
         const myLineChart = new Chart(ctx, {
             type: 'line',
             data: {

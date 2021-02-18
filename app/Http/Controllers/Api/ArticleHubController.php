@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
-use App\Models\Hub;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -50,7 +49,7 @@ class ArticleHubController
                 ->whereHas(
                     'hubs',
                     function ($query) use ($id) {
-                        return $query->select('id')->where('id', '=', $id);
+                        $query->where('taggables.hub_id', '=', $id);
                     }
                 )
                 ->withcount(
@@ -88,7 +87,7 @@ class ArticleHubController
         )->whereHas(
             'hubs',
             function ($query) use ($id) {
-                return $query->select('id')->where('id', '=', $id);
+                $query->where('taggables.hub_id', '=', $id);
             }
         )->orderBy(
             'created_at',

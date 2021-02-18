@@ -16,13 +16,13 @@ class CommentIdentifierResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'      => 'comments',
-            'id'        => $this->id,
-            'body'      => $this->content,
-            'author'    => $this->author->username,
-            'avatar'    => $this->author->avatar,
-            'author_id' => $this->author->id,
-            'pivot'     => $this->pivot,
+            'type'          => 'comments',
+            'id'            => (string) $this->id,
+            'attributes'    => [
+                'id'   => $this->id,
+                'body' => $this->body,
+            ],
+            'relationships' => new CommentRelationshipResource($this),
         ];
     }
 }

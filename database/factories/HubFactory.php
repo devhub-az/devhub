@@ -22,7 +22,9 @@ class HubFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->text(15),
+            'slug' => $this->faker->slug,
+            'logo' => $this->faker->imageUrl(),
         ];
     }
 }

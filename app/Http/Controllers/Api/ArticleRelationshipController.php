@@ -17,16 +17,14 @@ class ArticleRelationshipController extends Controller
         return new AuthorResource($article->creator);
     }
 
-    public function comments($id): CommentsResource
+    public function comments($article): CommentsResource
     {
-        $article = Article::findOrFail($id);
-
         return new CommentsResource($article->comments);
     }
 
-    public function hubs($id): HubsResource
+    public function hubs($article): HubsResource
     {
-        $article = Article::findOrFail($id);
+        dd($article->hubs);
 
         return new HubsResource($article->hubs);
     }
