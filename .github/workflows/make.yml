@@ -1,6 +1,9 @@
 name: Docker init test
 on: [ push, pull_request ]
 
+env:
+    REGISTRY: docker.pkg.github.com/hose1021/devhub
+
 jobs:
   build:
     runs-on: ubuntu-latest
