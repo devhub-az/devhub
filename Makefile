@@ -70,4 +70,4 @@ build-docker:
             --file Dockerfile .
 
 push:
-	docker push
+	docker-compose push
