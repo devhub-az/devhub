@@ -24,7 +24,7 @@ jobs:
                 uses: rlespinasse/github-slug-action@v2.x
 
             -   name: Set image tag
-                run: echo "name=IMAGE_TAG::${{ env.GITHUB_REF_SLUG }}-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
+                run: echo "IMAGE_TAG=${{ env.GITHUB_REF_SLUG }}-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
 
             -   name: Build
                 run: make build
