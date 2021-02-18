@@ -64,3 +64,6 @@ build: build-docker
 
 build-docker:
 	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}:${IMAGE_TAG} .
+
+push:
+	docker push ${REGISTRY}:${IMAGE_TAG}
