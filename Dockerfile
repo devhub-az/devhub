@@ -18,7 +18,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY --chown=www-data:www-data . /var/www/
 
 # Install node js
-RUN apk add --no-cache --repository=http://dl-cdn.alpinelinux.org/alpine/v3.13/main/ nodejs=14.15.4-r0 npm
+RUN apk add --no-cache --update nodejs npm
 
 # Install yarn
 RUN npm --global install yarn
