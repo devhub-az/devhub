@@ -66,4 +66,4 @@ build-docker:
 	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}:${IMAGE_TAG} .
 
 push:
-	docker push ${REGISTRY}/devhub_php:${IMAGE_TAG}
+	docker push ${REGISTRY}/php:${IMAGE_TAG}
