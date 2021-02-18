@@ -1,0 +1,30 @@
+name: Pipeline
+
+on: [ push, pull_request ]
+
+env:
+    REGISTRY: docker.pkg.github.com/deworkerpro/demo-auction
+    REGISTRY_HOST: docker.pkg.github.com
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+            
+            -   name: Docker login
+                uses: azure/docker-login@v1
+                with:
+                    login-server: ${{ env.REGISTRY_HOST }}
+                    username: hose1021
+                    password: ${{ github.token }}
+                    
+            -   name: Inject branch slug
+                uses: rlespinasse/github-slug-action@v2.x
+
+            -   name: Set image tag
+                run: echo "::set-env name=IMAGE_TAG::${{ env.GITHUB_REF_SLUG }}-${GITHUB_RUN_NUMBER}"
+                
+            -   name: Push build cache images
+                run: make push-build
