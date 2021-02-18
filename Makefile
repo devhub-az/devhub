@@ -60,7 +60,13 @@ migrate-fresh:
 try-build:
 	REGISTRY=127.0.0.1 IMAGE_TAG=0 make build
 
-build: build-docker
+build: build-docker images
+
+images:
+	docker images
 
 build-docker:
 	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}:${IMAGE_TAG} .
+
+push:
+	docker push ${REGISTRY}:${IMAGE_TAG}
