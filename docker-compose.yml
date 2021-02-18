@@ -16,7 +16,6 @@ services:
     depends_on:
       - php
       - mysql
-      - mailhog
     networks:
       - devhub
 
@@ -43,13 +42,18 @@ services:
   mailhog:
     image: mailhog/mailhog
     container_name: mailhog
+    tty: true
     ports:
-      - "1025:1025"
-      - "8025:8025"
+      - '1025:1025'
+      - '8025:8025'
+    #this is optional
+    #restart: always
+    restart: on-failure
     networks:
       - devhub
 
   php:
+    command: ["./.docker/wait-for-it.sh", "mysql:3306", "--", "echo", "'mysql is up'"]
     build:
       context: .
       dockerfile: Dockerfile
@@ -60,3 +64,13 @@ services:
       - "9000:9000"
     networks:
       - devhub
+
+  registry:
+    image: registry:2
+    ports:
+    - "5000:5000"
+    volumes:
+    - registry:/var/lib/registry
+
+volumes:
+  registry:

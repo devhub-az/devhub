@@ -22,10 +22,31 @@ optimize:
 	docker-compose run --rm php php artisan optimize
 
 composer-install:
-	docker-compose run --rm php composer install
+	docker-compose run --rm php composer install --prefer-dist --no-progress --optimize-autoloader
+	rm -rf /root/.composer/cache
 
 composer-update:
-	docker-compose run --rm php composer update
+	docker-compose run --rm php composer update --prefer-dist --no-progress --optimize-autoloader
+	rm -rf /root/.composer/cache
+
+composer-install-p:
+	docker-compose run --rm php composer install --no-dev --prefer-dist --no-progress --optimize-autoloader
+	rm -rf /root/.composer/cache
+
+composer-update-p:
+	docker-compose run --rm php composer update --no-dev --prefer-dist --no-progress --optimize-autoloader
+	rm -rf /root/.composer/cache
+
+try-build:
+	REGISTRY=127.0.0.1 IMAGE_TAG=0 make build
+
+build: build-project
+
+build-project:
+	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}/devhub:${IMAGE_TAG} .
+
+push:
+	docker push ${REGISTRY}/devhub:${IMAGE_TAG}
 
 yarn-install:
 	docker-compose run --rm php yarn install
