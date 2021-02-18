@@ -69,4 +69,4 @@ build-docker:
 	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}:${IMAGE_TAG} .
 
 push:
-	docker push ${REGISTRY}:${IMAGE_TAG}
+	docker push hose1021/devhub/${REGISTRY}:${IMAGE_TAG}
