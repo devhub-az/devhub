@@ -70,4 +70,4 @@ build-docker:
             --file Dockerfile .
 
 push:
-	docker push ${REGISTRY}/devhub:${IMAGE_TAG}
+	docker push
