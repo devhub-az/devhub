@@ -63,7 +63,7 @@ try-build:
 build: build-docker
 
 build-docker:
-	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}:${IMAGE_TAG} .
+	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}/devhub:${IMAGE_TAG} .
 
 push:
-	docker push ${REGISTRY}/${IMAGE_TAG}:${IMAGE_TAG}
+	docker push ${REGISTRY}/devhub:${IMAGE_TAG}
