@@ -16,7 +16,7 @@ docker-pull:
 	docker-compose pull
 
 docker-build:
-	docker-compose build --pull
+	DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1 docker-compose build --build-arg BUILDKIT_INLINE_CACHE=1 --pull
 
 optimize:
 	docker-compose run --rm php php artisan optimize
@@ -63,7 +63,11 @@ try-build:
 build: build-docker
 
 build-docker:
-	docker --log-level=debug build --pull --file=Dockerfile --tag=${REGISTRY}/devhub:${IMAGE_TAG} .
+	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from ${REGISTRY}/devhub:cache \
+            --tag ${REGISTRY}/devhub:cache \
+            --tag ${REGISTRY}/devhub:${IMAGE_TAG} \
+            --file Dockerfile .
 
 push:
 	docker push ${REGISTRY}/devhub:${IMAGE_TAG}

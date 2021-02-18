@@ -50,9 +50,12 @@ services:
       - devhub
 
   php:
+    image: ${REGISTRY:-localhost}/devhub:cache
     build:
       context: .
       dockerfile: Dockerfile
+      cache_from:
+        - ${REGISTRY:-localhost}/devhub:cache
     container_name: php
     volumes:
       - './:/var/www'
