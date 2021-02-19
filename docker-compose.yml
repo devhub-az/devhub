@@ -11,7 +11,7 @@ services:
       - "8090:80"
     volumes:
       - ./:/var/www:cached
-      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/
+      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./.docker/data/logs/nginx:/var/log/nginx/
     depends_on:
       - php
@@ -35,7 +35,6 @@ services:
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - ./storage/mysql:/var/lib/mysql
       - './.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
     networks:
       - devhub

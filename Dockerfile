@@ -6,7 +6,7 @@ WORKDIR /var/www
 RUN apk update && apk add --no-cache zip libzip-dev
 
 ## Install extensions
-RUN docker-php-ext-install opcache zip pdo_mysql exif
+RUN docker-php-ext-install zip pdo_mysql exif
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY .docker/php /usr/local/etc/php/conf.d
