@@ -63,14 +63,21 @@ migrate-fresh:
 try-build:
 	REGISTRY=127.0.0.1 IMAGE_TAG=0 make build
 
-build: build-docker
+build: build-devhub build-devhub-nginx
 
-build-docker:
+build-devhub:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
             --cache-from ${REGISTRY}/devhub:cache \
             --tag ${REGISTRY}/devhub:cache \
             --tag ${REGISTRY}/devhub:${IMAGE_TAG} \
             --file Dockerfile .
+
+build-devhub-nginx:
+	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from ${REGISTRY}/devhub_nginx:cache \
+            --tag ${REGISTRY}/devhub_nginx:cache \
+            --tag ${REGISTRY}/devhub_nginx:${IMAGE_TAG} \
+            --file .docker/nginx/Dockerfile .
 
 push:
 	docker-compose push

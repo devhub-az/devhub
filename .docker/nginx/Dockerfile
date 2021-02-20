@@ -1,7 +1,7 @@
-FROM nginx:1.17-alpine
+FROM nginx:1.19-alpine
 
-COPY ./docker/common/nginx/conf.d /etc/nginx/conf.d
+COPY ./.docker/nginx/default.conf /etc/nginx/conf.d
 
-WORKDIR /app
+WORKDIR /app.docker/nginx/default.conf
 
 COPY ./public ./public

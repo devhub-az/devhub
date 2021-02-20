@@ -5,13 +5,15 @@ networks:
 
 services:
   nginx:
-    image: nginx:stable-alpine
+    image: ${REGISTRY:-localhost}/devhub_nginx
+      build:
+        context: .docker/nginx/Dockerfile
+        cache_from:
+          - ${REGISTRY:-localhost}/devhub_nginx:cache
     container_name: nginx
     ports:
       - "8090:80"
     volumes:
-      - ./:/var/www:cached
-      - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./.docker/data/logs/nginx:/var/log/nginx/
     depends_on:
       - php

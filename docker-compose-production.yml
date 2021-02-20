@@ -5,10 +5,10 @@ networks:
 
 services:
   nginx:
-    image: nginx:stable-alpine
-    container_name: nginx
-    build:
-      - dockerfile: .docker/nginx/Dockerfile
+    image: ${REGISTRY:-localhost}/devhub_nginx
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/html:/var/www/html:ro
     ports:
       - "80:80"
     depends_on:
