@@ -16,8 +16,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY ./composer.json ./
 
-CMD composer install --no-dev \
-    && rm -rf /root/.composer/cache
+CMD bash -c "composer install --no-dev"
+
+RUN rm -rf /root/.composer/cache
 
 # Folders chmod
 COPY --chown=www-data:www-data . /var/www/
