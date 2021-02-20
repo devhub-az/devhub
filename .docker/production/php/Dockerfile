@@ -14,7 +14,7 @@ COPY .docker/php /usr/local/etc/php/conf.d
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
 
-COPY ./composer.json ./composer.lock ./
+COPY composer.json composer.lock ./
 
 RUN composer install --no-dev --prefer-dist --no-progress --no-suggest --optimize-autoloader \
     && rm -rf /root/.composer/cache
