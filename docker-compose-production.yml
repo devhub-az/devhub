@@ -1,0 +1,54 @@
+version: '3'
+
+networks:
+  devhub:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    build:
+      - dockerfile: .docker/nginx/Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - php
+      - mysql
+      - mailhog
+    networks:
+      - devhub
+
+  mysql:
+    image: mysql:8.0
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - '${FORWARD_DB_PORT:-4306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
+      MYSQL_USER: '${DB_USERNAME:-root}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - devhub
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - devhub
+
+  php:
+    image: ${REGISTRY:-localhost}/devhub:cache
+    restart: always
+    container_name: php
+    ports:
+      - "9000:9000"
+    networks:
+      - devhub

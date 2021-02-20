@@ -76,11 +76,12 @@ push:
 	docker-compose push
 
 deploy:
-	scp -o StrictHostKeyChecking=no Dockerfile root@${HOST}:site_1/Dockerfile
-	scp -o StrictHostKeyChecking=no docker-compose.yml root@${HOST}:site_1/docker-compose.yml
-	ssh -o StrictHostKeyChecking=no root@${HOST} 'cd site_1 && env REGISTRY=${REGISTRY}'
-	ssh -o StrictHostKeyChecking=no root@${HOST} 'cd site_1 && env IMAGE_TAG=cache'
-	ssh -o StrictHostKeyChecking=no root@${HOST} 'cd site_1 && docker-compose pull'
-	ssh -o StrictHostKeyChecking=no root@${HOST} 'cd site_1 && docker-compose up --build --remove-orphans -d'
-	ssh -o StrictHostKeyChecking=no root@${HOST} 'rm -f site'
-	ssh -o StrictHostKeyChecking=no root@${HOST} 'ln -sr site_1 site'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -rf site_1'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'mkdir site_1'
+	scp -o StrictHostKeyChecking=no docker-compose-production.yml deploy@${HOST}:site_1/docker-compose.yml
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && echo "REGISTRY=${REGISTRY}" >> .env'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && echo "IMAGE_TAG=cache" >> .env'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && docker-compose pull'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && docker-compose up --build --remove-orphans -d'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f site'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr site_1 site'
