@@ -6,10 +6,10 @@ networks:
 services:
   nginx:
     image: ${REGISTRY:-localhost}/devhub_nginx
-      build:
-        context: .docker/nginx/Dockerfile
-        cache_from:
-          - ${REGISTRY:-localhost}/devhub_nginx:cache
+    build:
+      context: .docker/nginx/Dockerfile
+      cache_from:
+        - ${REGISTRY:-localhost}/devhub_nginx:cache
     container_name: nginx
     ports:
       - "8090:80"
