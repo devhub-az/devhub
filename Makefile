@@ -70,7 +70,7 @@ build-devhub:
             --cache-from ${REGISTRY}/devhub:cache \
             --tag ${REGISTRY}/devhub:cache \
             --tag ${REGISTRY}/devhub:${IMAGE_TAG} \
-            --file Dockerfile .
+            --file .docker/production/php/Dockerfile .
 
 build-devhub-nginx:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \

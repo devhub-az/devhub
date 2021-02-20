@@ -5,8 +5,10 @@ networks:
 
 services:
   nginx:
-    image: ${REGISTRY:-localhost}/devhub_nginx
+    container_name: nginx
+    image: ${REGISTRY:-localhost}/devhub_nginx:cache
     volumes:
+      - ./logs/nginx:/var/log/nginx/
       - /etc/letsencrypt:/etc/letsencrypt:ro
       - /var/www/html:/var/www/html:ro
     ports:
