@@ -7,7 +7,7 @@ services:
   nginx:
     image: ${REGISTRY:-localhost}/devhub_nginx:cache
     build:
-      context: .
+      context: ./
       dockerfile: .docker/nginx/Dockerfile
       cache_from:
         - ${REGISTRY:-localhost}/devhub_nginx:cache
