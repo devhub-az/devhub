@@ -11,6 +11,9 @@ RUN docker-php-ext-install zip pdo_mysql exif
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY .docker/php /usr/local/etc/php/conf.d
 
+# Folders chmod
+COPY --chown=www-data:www-data . /var/www/
+
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
 
@@ -19,9 +22,6 @@ COPY ./composer.json ./
 RUN composer install
 
 RUN rm -rf /root/.composer/cache
-
-# Folders chmod
-COPY --chown=www-data:www-data . /var/www/
 
 # Install node js
 RUN apk add --no-cache --update nodejs npm
