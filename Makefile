@@ -83,12 +83,12 @@ push:
 	docker-compose push
 
 deploy:
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -rf site_1'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'mkdir site_1'
-	scp -o StrictHostKeyChecking=no docker-compose-production.yml deploy@${HOST}:site_1/docker-compose.yml
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && echo "REGISTRY=${REGISTRY}" >> .env'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && echo "IMAGE_TAG=cache" >> .env'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && docker-compose pull'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd site_1 && docker-compose up --build --remove-orphans -d'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f site'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr site_1 site'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -rf devhub'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'mkdir devhub'
+	scp -o StrictHostKeyChecking=no docker-compose-production.yml deploy@${HOST}:devhub/docker-compose.yml
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "REGISTRY=${REGISTRY}" >> .env'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=cache" >> .env'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose pull'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --remove-orphans -d'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f devhub-cache'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr devhub devhub-cache'

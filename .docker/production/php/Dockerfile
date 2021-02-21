@@ -16,6 +16,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 COPY ./composer.json ./
 
+RUN composer install
+
 RUN rm -rf /root/.composer/cache
 
 # Folders chmod
