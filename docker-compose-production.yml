@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
     tty: true
     volumes:
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
     ports:
       - '${FORWARD_DB_PORT:-4306}:3306'
     environment:
