@@ -16,9 +16,17 @@ COPY --chown=www-data:www-data . /var/www/
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
 
-RUN composer install --no-dev
+RUN composer install
 
 RUN rm -rf /root/.composer/cache
+
+# Install node js
+RUN apk add --no-cache --update nodejs npm
+
+# Install yarn
+RUN npm --global install yarn
+
+RUN yarn prod
 
 COPY ./.docker/production/php/Makefile ./Makefile
 
