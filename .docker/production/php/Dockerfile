@@ -11,8 +11,7 @@ RUN docker-php-ext-install zip pdo_mysql exif
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 
 # Folders chmod
-RUN chown -R www-data:www-data /var/www \
-    && chmod 755 /var/www
+RUN chown -R www-data:www-data /var/www
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
