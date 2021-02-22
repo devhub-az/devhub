@@ -12,7 +12,7 @@ RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY ./.docker/develop/php/local.ini $PHP_INI_DIR/conf.d
 
 # Folders chmod
-RUN chown -R www-data:www-data /var/www
+COPY --chown=www-data:www-data . /var/www/
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
