@@ -16,8 +16,6 @@ COPY --chown=www-data:www-data . /var/www/
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
 
-COPY ./composer.json ./
-
 RUN composer install
 
 RUN rm -rf /root/.composer/cache

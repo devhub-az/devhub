@@ -74,7 +74,7 @@ build-devhub-nginx:
             --cache-from ${REGISTRY}/devhub_nginx:cache \
             --tag ${REGISTRY}/devhub_nginx:cache \
             --tag ${REGISTRY}/devhub_nginx:${IMAGE_TAG} \
-            --file .docker/nginx/Dockerfile .
+            --file .docker/production/nginx/Dockerfile .
 
 push:
 	docker-compose push
