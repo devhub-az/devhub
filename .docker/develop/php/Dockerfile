@@ -3,7 +3,7 @@ FROM php:8.0-fpm-alpine
 WORKDIR /var/www
 
 # Install dependencies
-RUN apk update && apk add --no-cache zip libzip-dev
+RUN apk update && apk add --no-cache zip libzip-dev make
 
 ## Install extensions
 RUN docker-php-ext-install zip pdo_mysql exif
