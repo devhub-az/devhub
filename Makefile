@@ -3,6 +3,9 @@ up: composer-update docker-up yarn-watch
 down: docker-down
 restart: down up
 
+HOST=82.148.29.4
+REGISTRY=docker.pkg.github.com/hose1021/devhub
+
 docker-up:
 	docker-compose up -d
 

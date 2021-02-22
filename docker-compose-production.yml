@@ -8,8 +8,7 @@ services:
     container_name: nginx
     image: ${REGISTRY:-localhost}/devhub_nginx:cache
     volumes:
-      - ./.docker/production/logs/nginx:/var/log/nginx/
-      - ./.docker/production/nginx/prod.conf:/etc/nginx/conf.d/default.conf
+      - ./../logs/nginx:/var/log/nginx/
       - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - "8090:80"
@@ -24,8 +23,8 @@ services:
     container_name: mysql
     restart: unless-stopped
     tty: true
-    volumes:
-      - ./.docker/production/mysql/my.cnf:/etc/mysql/my.cnf
+#    volumes:
+#      - ./.docker/production/mysql/my.cnf:/etc/mysql/my.cnf
     ports:
       - '${FORWARD_DB_PORT:-4306}:3306'
     environment:
