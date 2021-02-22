@@ -21,14 +21,6 @@ RUN composer install
 
 RUN rm -rf /root/.composer/cache
 
-# Install node js
-RUN apk add --no-cache --update nodejs npm
-
-# Install yarn
-RUN npm --global install yarn
-
-RUN yarn prod
-
 COPY ./.docker/develop/php/Makefile ./Makefile
 
 RUN make install
