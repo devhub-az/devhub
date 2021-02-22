@@ -12,7 +12,8 @@ RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY ./.docker/develop/php/local.ini $PHP_INI_DIR/conf.d
 
 # Folders chmod
-COPY --chown=www-data:www-data . /var/www/
+RUN chown -R www-data:www-data /var/www \
+    && chmod 755 /var/www
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
@@ -20,6 +21,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install
 
 RUN rm -rf /root/.composer/cache
+
+# Install node js
+RUN apk add --no-cache --update nodejs npm
+
+# Install yarn
+RUN npm --global install yarn
+
+RUN yarn prod
 
 COPY ./.docker/develop/php/Makefile ./Makefile
 

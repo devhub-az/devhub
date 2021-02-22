@@ -11,7 +11,8 @@ RUN docker-php-ext-install zip pdo_mysql exif
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 
 # Folders chmod
-COPY --chown=www-data:www-data . /var/www/
+RUN chown -R www-data:www-data /var/www \
+    && chmod 755 /var/www
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
@@ -22,6 +23,11 @@ RUN rm -rf /root/.composer/cache
 
 # Install node js
 RUN apk add --no-cache --update nodejs npm
+
+# Install yarn
+RUN npm --global install yarn
+
+RUN yarn prod
 
 COPY ./.docker/production/php/Makefile ./Makefile
 
