@@ -8,14 +8,14 @@ services:
     image: ${REGISTRY:-localhost}/devhub_nginx:cache
     build:
       context: ./
-      dockerfile: .docker/nginx/Dockerfile
+      dockerfile: .docker/develop/nginx/Dockerfile
       cache_from:
         - ${REGISTRY:-localhost}/devhub_nginx:cache
     container_name: nginx
     ports:
       - "8090:80"
     volumes:
-      - ./.docker/data/logs/nginx:/var/log/nginx/
+      - ./.docker/develop/logs/nginx:/var/log/nginx/
     depends_on:
       - php
       - mysql
@@ -24,8 +24,7 @@ services:
       - devhub
 
   mysql:
-    image: mysql:8.0
-    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    image: mysql:5.7
     container_name: mysql
     restart: unless-stopped
     tty: true
@@ -38,7 +37,7 @@ services:
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - './.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - './.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
     networks:
       - devhub
 
@@ -54,8 +53,8 @@ services:
   php:
     image: ${REGISTRY:-localhost}/devhub:cache
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: .docker/develop/php/Dockerfile
       cache_from:
         - ${REGISTRY:-localhost}/devhub:cache
     container_name: php

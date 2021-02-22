@@ -9,7 +9,7 @@ RUN apk update && apk add --no-cache zip libzip-dev
 RUN docker-php-ext-install zip pdo_mysql exif
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
-COPY .docker/php /usr/local/etc/php/conf.d
+COPY ./.docker/develop/php/local.ini $PHP_INI_DIR/conf.d
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
@@ -22,3 +22,7 @@ RUN apk add --no-cache --update nodejs npm
 
 # Install yarn
 RUN npm --global install yarn
+
+RUN yarn prod
+
+RUN make install

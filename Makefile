@@ -2,9 +2,7 @@ init: docker-down docker-pull docker-build composer-update yarn-install docker-u
 up: composer-update docker-up yarn-watch
 down: docker-down
 restart: down up
-
-HOST = 82.148.19.108
-REGISTRY=docker.pkg.github.com/hose1021/devhub
+install: env key storage passport migrate
 
 docker-up:
 	docker-compose up -d
