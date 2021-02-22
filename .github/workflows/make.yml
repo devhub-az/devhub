@@ -36,9 +36,6 @@ jobs:
       - name: Docker build
         run: make docker-build
         
-      - name: Docker pull
-        run: make docker-pull
-        
       - name: Composer update
         run: make composer-update
         
