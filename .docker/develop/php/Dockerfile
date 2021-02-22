@@ -17,12 +17,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Folders chmod
 COPY --chown=www-data:www-data . /var/www/
 
-# Install node js
-RUN apk add --no-cache --update nodejs npm
-
-# Install yarn
-RUN npm --global install yarn
-
-RUN yarn prod
+COPY ./.docker/develop/php/Makefile ./Makefile
 
 RUN make install

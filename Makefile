@@ -2,7 +2,6 @@ init: docker-down docker-pull docker-build composer-update yarn-install docker-u
 up: composer-update docker-up yarn-watch
 down: docker-down
 restart: down up
-install: env key storage passport migrate
 
 docker-up:
 	docker-compose up -d
