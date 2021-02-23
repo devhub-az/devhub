@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Requests\RegisterRequest;
+use App\Jobs\RegisterUser;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Ramsey\Uuid\Uuid;
 
 class RegisterController extends Controller
 {
@@ -38,46 +41,25 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware(RedirectIfAuthenticated::class);
     }
 
     /**
      * Get a validator for an incoming registration request.
-     *
      * @param array $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @return ValidatorContract
      */
-    protected function validator(array $data)
+    protected function validator(array $data): ValidatorContract
     {
-        return Validator::make(
-            $data,
-            [
-                'name'     => ['required', 'string', 'max:255'],
-                'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8', 'confirmed'],
-                'username' => ['required', 'string', 'max:255', 'unique:users'],
-            ]
-        );
+        return Validator::make($data, app(RegisterRequest::class)->rules());
     }
 
     /**
      * Create a new user instance after a valid registration.
-     *
-     * @param array $data
-     *
      * @return User
      */
-    protected function create(array $data)
+    protected function create(): User
     {
-        return User::create(
-            [
-                'id'       => Uuid::uuid4(),
-                'name'     => $data['name'],
-                'username' => $data['username'],
-                'email'    => $data['email'],
-                'password' => Hash::make($data['password']),
-            ]
-        );
+        return $this->dispatchNow(RegisterUser::fromRequest(app(RegisterRequest::class)));
     }
 }

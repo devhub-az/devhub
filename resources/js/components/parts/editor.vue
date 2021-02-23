@@ -1,19 +1,30 @@
 <template>
-    <form class="border bg-white border-t-0 dark:bg-dpaper dark:border-gray-700 dark:text-gray-300 text-black" @submit.prevent="onSubmit">
-        <div class="border-b flex dark:border-gray-700 bg-white dark:bg-gray-900 py-2 px-8 sticky top-0 z-10">
-            <p class="w-9/12 text-xl break-all">{{ title }}</p>
-            <button type="submit"
-                    class="btn h-7 ml-auto block">
-                Paylaşmaq
-            </button>
-        </div>
-        <div class="p-6 px-8">
-            <textarea placeholder="Başlıq" v-model="title"
-                      class="text-3xl h-10 w-full dark:bg-transparent border-none overflow-y-hidden focus:outline-none transition-none mb-4 resize-none"
-                      data-processed="true" autofocus/>
-            <div id="editorjs" class="cursor-text"></div>
+    <form @submit.prevent="onSubmit" class="space-y-4">
+        <div>
+            <div class="flex space-x-1">
+                <p class="text-red-500">*</p>
+                <p class="font-medium dark:text-gray-300">Basliq</p>
+            </div>
+            <div class="border bg-white dark:bg-dpaper dark:border-gray-700 dark:text-gray-300 text-black">
+                <input placeholder="Başlıq yazin" v-model="title"
+                   class="px-2 py-1 relative w-full block dark:text-gray-400 focus:outline-none transition-none"
+                   data-processed="true" contenteditable/>
+            </div>
         </div>
         <div>
+            <div class="flex space-x-1">
+                <p class="text-red-500">*</p>
+                <p class="font-medium dark:text-gray-300">Mətn</p>
+            </div>
+            <div class="border bg-white dark:bg-dpaper dark:border-gray-700 dark:text-gray-300 text-black">
+                <div id="editorjs" class="cursor-text py-1 px-2"></div>
+            </div>
+        </div>
+        <div class="space-y-1">
+            <div class="flex space-x-1">
+                <p class="text-red-500">*</p>
+                <p class="font-medium dark:text-gray-300">Hablar</p>
+            </div>
             <multiselect v-model="selected" @input="updateHubs" :options="hubs" tag-position="bottom" :custom-label='hubsName'
                          :multiple="true" label="name" :placeholder="$t('form.select_category')"
                          track-by="name" class="transition-none">
@@ -24,7 +35,12 @@
                     </div>
                 </template>
             </multiselect>
+            <p class="text-xs dark:text-gray-400">Выберите от 1 до 5 хабов по теме публикации</p>
         </div>
+
+        <button type="submit" class="btn h-7 ml-auto block">
+            Paylaşmaq
+        </button>
     </form>
 </template>
 
@@ -56,7 +72,7 @@ export default {
                 placeholder: 'Menyu açmaq üçün "Tab" düyməsini basın',
                 logLevel: 'ERROR',
                 tools: {
-                    linkTool:{
+                    linkTool: {
                         class: LinkTool,
                     },
                     header: {
@@ -88,9 +104,6 @@ export default {
                 },
                 i18n: {
                     messages: {
-                        /**
-                         * Other below: translation of different UI components of the editor.js core
-                         */
                         ui: {
                             "blockTunes": {
                                 "toggler": {
@@ -109,10 +122,6 @@ export default {
                                 }
                             }
                         },
-
-                        /**
-                         * Section for translation Tool Names: both block and inline tools $t('form.select_category')"
-                         */
                         toolNames: {
                             "Text": this.$t('form.Text'),
                             "Heading": this.$t('form.Heading'),
@@ -132,35 +141,18 @@ export default {
                         },
 
                         tools: {
-                            "warning": { // <-- 'Warning' tool will accept this dictionary section
+                            "warning": {
                                 "Title": "Название",
                                 "Message": "Сообщение",
                             },
-
-                            /**
-                             * Link is the internal Inline Tool
-                             */
                             "link": {
                                 "Add a link": "Вставьте ссылку"
                             },
-                            /**
-                             * The "stub" is an internal block tool, used to fit blocks that does not have the corresponded plugin
-                             */
                             "stub": {
                                 'The block can not be displayed correctly.': 'Блок не может быть отображен'
                             }
                         },
-
-                        /**
-                         * Section allows to translate Block Tunes
-                         */
                         blockTunes: {
-                            /**
-                             * Each subsection is the i18n dictionary that will be passed to the corresponded Block Tune plugin
-                             * The name of a plugin should be equal the name you specify in the 'tunes' section for that plugin
-                             *
-                             * Also, there are few internal block tunes: "delete", "moveUp" and "moveDown"
-                             */
                             "delete": {
                                 "Delete": this.$t('form.Delete')
                             },
@@ -225,3 +217,13 @@ export default {
     }
 }
 </script>
+
+<style>
+.multiselect__select {
+    display: none !important;
+}
+
+[type='text']:focus {
+    box-shadow: unset;
+}
+</style>

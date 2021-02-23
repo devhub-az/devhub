@@ -7,7 +7,7 @@
                 <span class="iconify transition-none "
                       :class="selected.icon === 'bx:bxs-hot' ? 'text-red-400' : 'dark:text-gray-300'"
                       :data-icon="selected.icon" data-inline="false"></span>
-                <span class="ml-1 block truncate dark:text-gray-300">
+                <span class="ml-1 block truncate text-black dark:text-gray-300">
                     {{ selected.name }}
                 </span>
             </span>
@@ -16,7 +16,8 @@
             </span>
         </button>
         <transition name="fade">
-            <div v-on-clickaway="hideDropdown" v-if="show" class="absolute mt-2 min-w-min w-full right-0 rounded-md border bg-white dark:bg-dpaper dark:border-gray-700 border-gray-300 shadow-lg z-20">
+            <div v-on-clickaway="hideDropdown" v-if="show" :class="side === 'bottom' ? 'bottom-8' : ''"
+                 class="absolute mt-2 min-w-min w-full right-0 rounded-md border bg-white dark:bg-dpaper dark:border-gray-700 border-gray-300 shadow-lg z-20">
                 <ul class="max-h-56 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                     <li id="listbox-item-0" role="option"
                         class="text-gray-900 cursor-default select-none relative">
@@ -44,6 +45,7 @@ export default {
     props: {
         menu: {type: Array, required: true},
         selected: {type: Object, required: true},
+        side: {type: String, required: false},
     },
     data: function () {
         return {

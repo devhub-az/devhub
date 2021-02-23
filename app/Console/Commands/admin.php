@@ -12,14 +12,14 @@ class admin extends Command
      *
      * @var string
      */
-    protected $signature = 'devhub:admin';
+    protected $signature = 'devhub:role';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Make User admin';
+    protected $description = 'Change User role';
 
     /**
      * Create a new command instance.
@@ -38,8 +38,24 @@ class admin extends Command
      */
     public function handle()
     {
+        $type = $this->ask('type?');
         $email = $this->ask('email');
-        User::where('email', $email)->update(['is_admin' => 1]);
+        switch ($type) {
+            case 0:
+                User::where('email', $email)->update(['type' => 0]);
+                break;
+            case 1:
+                User::where('email', $email)->update(['type' => 1, 'email_verified_at' => \Carbon::now()]);
+                break;
+            case 2:
+                User::where('email', $email)->update(['type' => 2]);
+                break;
+            case 3:
+                User::where('email', $email)->update(['type' => 3]);
+                break;
+            default:
+                break;
+        }
 
         return 'Done';
     }

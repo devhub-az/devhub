@@ -2,29 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Authenticate;
+use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\IdRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubResource;
+use App\Jobs\CreateArticle;
+use App\Jobs\DeleteArticle;
 use App\Models\Article;
 use App\Models\Hub;
-use App\Notifications\PostNotify;
+use App\Policies\ArticlePolicy;
 use App\Services\Canvas;
-use DB;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Auth\Middleware\EnsureEmailIsVerified;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
-use Throwable;
 
 class ArticleController extends Controller
 {
-    /**
-     * PostController constructor.
-     */
     public function __construct()
     {
-        $this->middleware('auth', ['only' => ['create', 'favorite', 'store', 'edit', 'vote', 'addFavorite']]);
+        $this->middleware(
+            [Authenticate::class, EnsureEmailIsVerified::class],
+            ['only' => ['create', 'favorite', 'store', 'edit', 'vote', 'addFavorite']]
+        );
     }
 
     /**
@@ -43,69 +49,14 @@ class ArticleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
-     * @throws Throwable
-     */
-    public function store(Request $request): JsonResponse
-    {
-        $request->validate(
-            [
-                'title' => 'required|string',
-                'body'  => 'string',
-                // 'tags' => 'required',
-            ]
-        );
-
-        DB::transaction(
-            function () use ($request) {
-                $share = new Article(
-                    [
-                        'name'      => $request->get('title'),
-                        'body'      => $request->get('body'),
-                        'author_id' => Auth::user()->id,
-                    ]
-                );
-                $share->save();
-
-                Notification::send(Auth::user()->followers, new PostNotify($share));
-
-                return redirect('/post/'.$share->id);
-            }
-        );
-
-        return response()->json(
-            [
-                'message' => 'New post created',
-            ],
-            200
-        );
-    }
-
-    /**
      * Display the specified resource.
      *
+     * @param Article $article
      * @param Request $request
-     * @param string  $slug
      * @return View
      */
-    public function show(Request $request, string $slug): view
+    public function show(Article $article, Request $request): view
     {
-        $article = Article::with(
-            [
-                'creator' => function ($query) {
-                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating', 'github_url')
-                        ->withCount(
-                            'articles',
-                            'followers'
-                        );
-                },
-            ]
-        )->where('slug', $slug)->firstOrFail();
-
         (new Canvas())->viewer($article);
 
         ArticleResource::withoutWrapping();
@@ -119,7 +70,7 @@ class ArticleController extends Controller
      *
      * @return JsonResponse
      */
-    public function addFavorite(IdRequest $request): JsonResponse
+    public function favorite(IdRequest $request): JsonResponse
     {
         $article = Article::findOrFail($request->get('id'));
         $user = Auth::user();
@@ -137,11 +88,22 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      *
-     * @return void
+     * @param Article $article
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
-    public function edit(): void
+    public function edit(Article $article)
     {
-        //
+        $this->authorize(ArticlePolicy::UPDATE, $article);
+
+        return view(
+            'articles.edit',
+            [
+                'article'      => $article,
+                'hubs'         => Hub::all(),
+                'selectedTags' => old('hubs', $article->hubs()->pluck('id')->toArray()),
+            ]
+        );
     }
 
     /**
@@ -159,10 +121,16 @@ class ArticleController extends Controller
      * Remove the specified resource from storage.
      *
      *
-     * @return void
+     * @param Article $article
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
-    public function destroy(): void
+    public function destroy(Article $article): RedirectResponse
     {
-        //
+        $this->authorize(ArticlePolicy::DELETE, $article);
+
+        $this->dispatchNow(new DeleteArticle($article));
+
+        return redirect()->route('home');
     }
 }

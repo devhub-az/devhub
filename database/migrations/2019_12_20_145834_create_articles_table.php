@@ -14,10 +14,11 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 191)->index();
+            $table->string('title', 191)->index();
             $table->string('slug')->unique();
-            $table->json('content');
+            $table->json('body');
             $table->uuid('author_id');
+            $table->foreign('author_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });

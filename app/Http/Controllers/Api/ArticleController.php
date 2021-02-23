@@ -7,13 +7,12 @@ use App\Http\Requests\Api\VoteRequest;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\ArticlesResource;
+use App\Jobs\CreateArticle;
 use App\Models\Article;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Uuid;
-use Str;
 use Throwable;
 
 class ArticleController extends Controller
@@ -28,11 +27,15 @@ class ArticleController extends Controller
         $articles = Article::with(
             [
                 'creator' => function ($query) {
-                    $query->select('id', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
+                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
                         'articles',
                         'followers'
                     );
                 },
+                'comments' => function ($q) {
+                    $q->with('creator');
+                },
+                'hubs',
             ]
         )->withcount(
             'views',
@@ -47,41 +50,23 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $id
-     *
+     * @param Article $article
      * @return ArticleResource
      */
-    public function show($id): ArticleResource
+    public function show(Article $article): ArticleResource
     {
         ArticleResource::withoutWrapping();
 
         return new ArticleResource(
-            Article::withcount(
-                'views',
-            )->findOrFail($id)
+            $article
         );
     }
 
     public function store(ArticleRequest $request): JsonResponse
     {
-        try {
-            $article = Article::create(
-                [
-                    'id'        => Uuid::uuid4(),
-                    'name'      => $request->title,
-                    'slug'      => Str::slug($request->title),
-                    'content'   => $request->body,
-                    'author_id' => $request->user()->id,
-                ]
-            );
-            $article->hubs()->sync($request->hubs);
+        $article = $this->dispatchNow(CreateArticle::fromRequest($request));
 
-            return new JsonResponse($article->slug);
-        } catch (Exception $exception) {
-            report($exception);
-
-            return new JsonResponse($exception->getMessage(), 500);
-        }
+        return new JsonResponse($article->slug);
     }
 
     /**
@@ -91,10 +76,8 @@ class ArticleController extends Controller
      */
     public function vote(VoteRequest $request): JsonResponse
     {
-        $user = auth()->user();
-
         $article = Article::findOrFail($request->id);
-        ($request->type === 'up') ? self::upOrDownVote($user, $article) : self::upOrDownVote($user, $article, 'down');
+        ($request->type === 'up') ? self::upOrDownVote($request->user(), $article) : self::upOrDownVote($request->user(), $article, 'down');
 
         return response()->json(['success' => 'success']);
     }

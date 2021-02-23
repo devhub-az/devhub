@@ -1,0 +1,46 @@
+version: '3'
+
+networks:
+  devhub:
+
+services:
+  nginx:
+    container_name: nginx
+    image: ${REGISTRY:-localhost}/devhub_nginx:cache
+    volumes:
+      - ./../logs/nginx:/var/log/nginx/
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - devhub
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+#    volumes:
+#      - ./.docker/production/mysql/my.cnf:/etc/mysql/my.cnf
+    ports:
+      - '${FORWARD_DB_PORT:-4306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
+      MYSQL_USER: '${DB_USERNAME:-root}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    networks:
+      - devhub
+
+  php:
+    image: ${REGISTRY:-localhost}/devhub:cache
+    restart: always
+    container_name: php
+    ports:
+      - "9000:9000"
+    networks:
+      - devhub

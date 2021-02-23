@@ -43,6 +43,7 @@ module.exports = {
             red: colors.red,
             header: '#1a1a1ae6',
             indigo: colors.indigo,
+            yellow: colors.yellow,
             cerulean: {
                 default: '#095977',
                 '100': '#0D84AF',

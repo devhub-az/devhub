@@ -1,8 +1,6 @@
-@auth
-    @if(auth()->user()->is_admin)
-        @include('admin.include.adminbar')
-    @endif
-@endif
+@can(App\Policies\AuthorPolicy::ADMIN, App\Models\User::class)
+    @include('admin.include.adminbar')
+@endcan
 <header class="border-t-4 border-cerulean-700 bg-header dark:bg-gray-800 sm:px-4 md:px-4" id="header">
     <div class="flex items-center justify-between h-12 xs:h-auto lg:container mx-auto">
         <div class="grid grid-flow-col xs:w-full gap-3 xs:gap-0 xs:flex">
@@ -28,19 +26,19 @@
                 id="menu">
                 <li>
                     <a href="{{ session('main-page') ?? route('home') }}"
-                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">Paylaşmalar</a>
+                       class=" hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{__('devhub.articles')}}</a>
                 </li>
                 <li>
                     <a href="{{ route('hubs-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">Hablar</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{__('devhub.hubs')}}</a>
                 </li>
                 <li>
                     <a href="{{ route('users-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('authors') || Request::is('authors/*')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">Müəlliflər</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('authors') || Request::is('authors/*')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{ __('devhub.authors') }}</a>
                 </li>
                 <li>
                     <a href="{{ route('about') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('about')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">Məlumat</a>
+                       class="hover:text-cerulean-500 transition {{ (Request::is('about')) ? 'text-cerulean-100' : 'text-gray-100 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{ __('devhub.about') }}</a>
                 </li>
             </ul>
         </div>
@@ -53,7 +51,7 @@
                        autocomplete="off"
                        name="search"
                        maxlength="48"
-                       minlength="3" placeholder="Paylaşma ya hab axtar" required="required">
+                       minlength="3" placeholder="{{ __('devhub.searchAll') }}" required="required">
                 <span class="iconify text-xl absolute left-2 translate-y-1/2 top-0 my-1.5 mr-4 dark:text-gray-700"
                       data-icon="mdi-magnify"></span>
                 <span onclick="closeSearch()"
@@ -72,11 +70,11 @@
                 <div class="flex items-center space-x-2">
                     <a href="{{ route('login') }}"
                        class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden">
-                        Daxil ol
+                        {{ __('devhub.login') }}
                     </a>
                     <a href="{{ route('register') }}"
                        class="btn text-xs px-4 h-7 xs:hidden sm:hidden">
-                        Qoşulmaq
+                        {{ __('devhub.register') }}
                     </a>
                 </div>
 
@@ -84,18 +82,19 @@
                 <dropdown-notification :notifications="{{ Auth::user()->Notifications }}"
                                        :count="{{ Auth::user()->unreadNotifications->count() }}">
                 </dropdown-notification>
-                <a href="{{ route('create_article') }}"
+                <a href="{{ route('article.create') }}"
                    class="hover:opacity-90 xs:hidden">
                     <i class="iconify" data-icon="topcoat:pencil"></i>
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
-                    <dropdown :user="{{Auth::user()}}" :fav="'{{route("saved-posts")}}'"
-                        {{ Auth::user()->is_admin ? ':admin="' . Auth::user()->is_admin . '"' : null }}></dropdown>
+                    <dropdown :user="{{Auth::user()}}"
+                              :avatar_url="'{{ Auth::user()->getMedia('avatars')->first()->getFullUrl() }}'"
+                              :fav="'{{route("saved-posts")}}'"></dropdown>
                 </div>
                 <div class="m-auto w-6 h-6 lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
                     <img
-                        src="{{ (Auth::user()->avatar !== 'default') ? '/upload/avatars/' . Auth::user()->avatar : config('devhub.default_avatar') }}"
-                        alt="User sekili" class="w-6 h-6 rounded ">
+                        src="{{ (Auth::user()->avatar !== 'default') ? Auth::user()->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
+                        alt="{{ __('devhub.authorLogo') }}" class="w-6 h-6 rounded">
                 </div>
             @endguest
         </div>
@@ -105,13 +104,13 @@
          class="hidden">
         <div class="px-2 pt-2 pb-3 space-y-1">
             <a href="{{ session('main-page') ?? route('home') }}"
-               class="{{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'bg-gray-900' : '' }}  text-white block px-3 py-2 rounded-md text-base font-medium">Paylaşmalar</a>
+               class="{{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'bg-gray-900' : '' }}  text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.articles') }}</a>
             <a href="{{ route('hubs-list') }}"
-               class=" {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Hablar</a>
+               class=" {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.hubs') }}</a>
             <a href="{{ route('users-list') }}"
-               class="{{ (Request::is('users') || Request::is('users/*')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Müəlliflər</a>
+               class="{{ (Request::is('users') || Request::is('users/*')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.authors') }}</a>
             <a href="{{ route('about') }}"
-               class="{{ (Request::is('about')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Məlumat</a>
+               class="{{ (Request::is('about')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.info') }}</a>
         </div>
     </nav>
 
@@ -122,29 +121,24 @@
                 <a
                     href="{{ '/users/@' . Auth::user()->username}}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Profilim
+                    {{ __('devhub.profile') }}
                 </a>
                 <hr class="my-2">
                 <a
                     href="{{'/settings' }}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Parametrlər
-                </a>
-                <a
-                    href="/admin"
-                    class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Admin panel
+                    {{ __('devhub.settings') }}
                 </a>
                 <a
                     href="fav"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Seçilmişlər
+                    {{ __('.devhub.favorites') }}
                 </a>
                 <hr class="my-2">
                 <a
                     href="#"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                    Çıxmaq
+                    {{ __('devhub.exit') }}
                 </a>
             </div>
         @endauth

@@ -29,9 +29,9 @@ class ArticleFactory extends Factory
         return [
             'id'        => $this->faker->uuid,
             'author_id' => $this->faker->randomElement(User::pluck('id')),
-            'name'      => $title,
+            'title'     => $title,
             'slug'      => Str::slug($title),
-            'content'   => $this->faker->realText(random_int(1000, 2000)),
+            'body'      => $this->faker->realText(random_int(1000, 2000)),
         ];
     }
 }

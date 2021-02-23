@@ -1,105 +1,120 @@
 <template>
-    <div id="comments" class="post-comments">
-        <div class="comment-header">
-            <div class="head">Şerhlər</div>
-            <div class="count">{{ comments.length }}</div>
+    <div>
+        <div id="comments"
+             class="flex mb-2 items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">
+            <span class="iconify" data-icon="bx:bx-comment-detail" data-inline="false"></span>
+            <p class="transition-none xs:text-base">Şərhlər ({{ comments.length }})</p>
         </div>
-        <div class="posts">
-            <div class="post-comment" v-if="comments" v-for="comment in comments">
-                <img class="comment-avatar" :src="'/images/profile/' + comment.avatar" alt="">
-                <div class="comment-body">
-                    <div class="flex">
-                        <a class="comment-author"
-                           :href="'/users/@' + comment.author">
-                            <span>{{ comment.author }}</span>
+        <div class="divide-y dark:divide-gray-700 relative w-full v rounded border bg-white dark:bg-dpaper dark:border-gray-700"
+             v-if="comments.length > 0">
+            <div class="px-3.5 py-2" v-for="comment in comments">
+                <div class="flex space-x-2 items-center">
+                    <img :src="comment.relationships.author.attributes.avatar" alt="User image" class="w-4 h-4 rounded">
+                    <div class="flex space-x-2 items-baseline">
+                        <a :href="'/authors/@' + comment.relationships.author.attributes.username"
+                           class="inline-block align-text-top dark:text-gray-300">
+                            {{
+                                comment.relationships.author.attributes.name ? comment.relationships.author.attributes.name : '@' + comment.relationships.author.attributes.username
+                            }}
                         </a>
-                        <comment-favorite :comment="comment" :auth_check="auth_check"></comment-favorite>
-                        <div class="comment-date">
-                            {{ comment.created_at | moment('DD MMMM, H:mm') }}
-                        </div>
-<!--                    <div class="comment-date">-->
-<!--                        {{ Carbon\Carbon::parse($comment->created_at)->locale('az')->isoformat('d MMMM Y H:mm') }}-->
-<!--                    </div>-->
+                        <p class="text-xs opacity-75 font-light dark:text-gray-300">
+                            {{ comment.attributes.created | moment('DD MMMM, H:mm') }}
+                        </p>
                     </div>
-                    <div class="comment-text" >{{ comment.body }}</div>
                 </div>
+                <div class="dark:text-gray-400 font-light break-words">{{ comment.attributes.body }}</div>
             </div>
-            <hr v-if="auth_check">
-            <form method="post" action="" v-if="auth_check">
-                <div class="post-comment">
-                    <img class="comment-avatar" :src="'/images/profile/' + user.avatar" alt="">
-                    <div class="comment-body">
-                        <span class="comment-author">{{ user.username }}</span>
-                        <textarea class="input comment-text" style="padding: 5px;" rows="4"
-                                  cols="20000"
-                                  name="body" id="editor"></textarea>
-                        <vue3-markdown-it />
-                        <button type="submit" class="btn btn-primary">Yazmag</button>
-                    </div>
-                    <input type="hidden" name="post_id" value="..."/>
-                    <input type="hidden" name="parent_id" value="..."/>
-                </div>
-            </form>
+            <div
+                class="absolute cursor-pointer -left-8 top-1/2 transform -translate-y-1/2 dark:bg-dpaper rounded border dark:border-gray-700"
+                style="margin-top: 0 !important;" @click="getComments">
+                <span id="spinner" class="iconify m-1 dark:text-gray-300" data-icon="el:refresh" data-inline="false"></span>
+            </div>
         </div>
-        <div class="info-block" v-if="!comments || !auth_check">
-            <i class="mdi mdi-information-outline"></i>
-            Yalnız <a href="/register">istifadəçilər</a> şərh yaza bilər. Xahiş edirik
-            <a href="/login">daxil olun</a>.
+        <form class="w-full mt-4 border bg-white w-full rounded
+                       dark:bg-gray-800 shadow-inner dark:border-gray-700 py-2 px-3.5"
+              @submit.prevent="send" method="post" v-if="auth_check">
+            <p id="text" @input="contentEditableChange()"
+               placeholder="Şərh, müəllifə minnətdarlıq ve ya konstruktiv tənqid mesajı yaz"
+               class="relative w-full block pb-12 dark:text-gray-400 focus:outline-none focus:border-cerulean-500 "
+               contenteditable>
+            </p>
+            <button class="btn-outline block ml-auto my-1 h-7 xs:mt-4" type="submit">Şərh yazmaq</button>
+        </form>
+        <div class="flex space-x-1 mt-2 bg-white dark:bg-dpaper dark:border-gray-700 rounded py-4 text-sm border"
+             v-else>
+            <div class="flex space-x-1 mx-auto">
+                <p class="dark:text-gray-300">Şərh yazmaq üçün</p>
+                <a href="/register"
+                   class="text-cerulean-100">
+                    qeydiyyatdan keçməlisiniz
+                </a>
+                <p class="dark:text-gray-300">və ya</p>
+                <a href="/login" class="text-cerulean-100">daxil olmalısınız</a>
+            </div>
+
         </div>
     </div>
 </template>
 
 <script>
-import VueMarkdownIt from 'vue3-markdown-it';
-    export default {
-        components: {
-            VueMarkdownIt
+import axios from 'axios'
+
+export default {
+    props: ['slug', 'auth_check', 'user'],
+    data: function () {
+        return {
+            comments: [],
+            loading: false
+        }
+    },
+    async created() {
+        await this.getComments();
+    },
+    methods: {
+        send() {
+            this.loading = true
+            axios.post('/api/articles/' + this.slug + '/comment', {
+                comment: this.comment,
+            }).then(() => {
+                this.loading = false
+                this.getComments()
+                document.getElementById("text").innerHTML = ''
+            }).catch(response => {
+                this.loading = false
+                this.error_text = response.data.error
+                this.error = true
+            })
         },
-        props: ['id', 'auth_check', 'user'],
-        data: function () {
-            return {
-                comments: [],
-                loading: false
-            }
+        contentEditableChange() {
+            this.comment = document.getElementById("text").innerHTML;
         },
-        async created() {
-            await this.getComments();
-        },
-        methods: {
-            async getComments() {
-                this.loading = true;
-                await axios.get('/api/comment/' + this.id).then(response => {
-                    this.loading = false;
-                    if (response.data.data.length !== 0) {
-                        this.comments = response.data.data;
-                        this.commentsNotEmpty = true;
+        async getComments() {
+            this.loading = true
+            let spinner = document.getElementById('spinner')
+            // spinner.classList.add('animate-spin')
+            await axios.get('/api/articles/' + this.slug + '/relationships/comments').then(response => {
+                // let spinner = document.getElementById('spinner')
+                if (response.data.data.length !== 0) {
+                    this.comments = response.data.data;
+                    this.commentsNotEmpty = true;
+                }
+                // spinner.classList.remove('animate-spin')
+                this.loading = false
+            })
+                .catch(error => {
+                    this.loading = false
+                    // DEVELOPING PART
+                    if (error.response) {
+                        console.log(error.response.data);
+                        console.log(error.response.status);
+                        console.log(error.response.headers);
+                    } else if (error.request) {
+                        console.log(error.request);
+                    } else {
+                        console.log('Error', error.message);
                     }
-                })
-                    .catch(error => {
-                        this.loading = false
-                        this.error = true
-                        // DEVELOPING PART
-                        if (error.response) {
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
-                        } else if (error.request) {
-                            console.log(error.request);
-                        } else {
-                            console.log('Error', error.message);
-                        }
-                    });
-            }
+                });
         }
     }
+}
 </script>
-
-<style scoped>
-    hr {
-        border-top: var(--color-border);
-    }
-
-    textarea {
-        resize: vertical;
-    }
-</style>

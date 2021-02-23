@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Hub;
 use App\Models\User;
 use App\Observers\ArticleObserver;
+use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -30,11 +31,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \Session::put('lang', 'az');
-        $this->app->singleton(Parsedown::class);
         \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
 
         Article::observe(ArticleObserver::class);
+        User::observe(UserObserver::class);
+
         Relation::morphMap([
             'posts'    => Article::class,
             'comments' => Comment::class,

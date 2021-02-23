@@ -16,7 +16,6 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "jackiedo/dotenv-editor": "^1.2",
         "jcc/laravel-vote": "dev-master",
-        "ksubileau/color-thief-php": "^1.4",
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
         "laravel/socialite": "^5.1",
@@ -28,19 +27,17 @@
         "overtrue/laravel-follow": "^2.2",
         "parsedown/laravel": "^1.1",
         "rennokki/laravel-eloquent-query-cache": "^2.5",
-        "spatie/laravel-sitemap": "^5.9"
+        "spatie/laravel-medialibrary": "^9.0.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "filp/whoops": "^2.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
-        "pestphp/pest": "^1.0",
-        "pestphp/pest-plugin-laravel": "^1.0",
         "phpunit/phpunit": "^9.3.3",
-        "rector/rector": "^0.9.1",
-        "roave/security-advisories": "dev-master"
+        "psalm/plugin-laravel": "^1.4",
+        "roave/security-advisories": "dev-master",
+        "vimeo/psalm": "^4.6"
     },
     "config": {
         "optimize-autoloader": true,
@@ -78,10 +75,12 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta"
+        "setup": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "php artisan key:generate",
+            "php artisan migrate --seed",
+            "npm install",
+            "npm run dev"
         ]
     }
 }

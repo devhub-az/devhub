@@ -1,64 +1,71 @@
 <?php
 
-//    Route::post('post/image/cache', 'Api\PostController@upload_image');
-//Route::middleware('auth')->get('articles_filter/favorite', 'Api\ArticleTopController@favorite');
+use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\ArticleHubController;
+use App\Http\Controllers\Api\ArticleRelationshipController;
+use App\Http\Controllers\Api\ArticleTopController;
+use App\Http\Controllers\Api\AuthorController;
+use App\Http\Controllers\Api\CommentController;
+use App\Http\Controllers\Api\HubController;
+use App\Http\Controllers\Api\SavedController;
+use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Route;
 
-Route::post('auth/checkEmail', 'Auth\LoginController@checkEmail');
+Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
 
 Route::prefix('articles')->group(
     function () {
-        Route::get('/', 'Api\ArticleController@index')->middleware('api')->name('articles.index');
-        Route::post('/', 'Api\ArticleController@store')->middleware('auth:api');
-        Route::post('/vote', 'Api\ArticleController@vote')->middleware('auth:api');
-        Route::get('/{article}', 'Api\ArticleController@show')->middleware('api')->name('articles.show');
+        Route::get('/', [ArticleController::class, 'index'])->middleware('api')->name('articles.index');
+        Route::post('/', [ArticleController::class, 'store'])->name('article.store')->middleware('auth:api');
+        Route::post('/vote', [ArticleController::class, 'vote'])->middleware('auth:api');
+        Route::get('/{article_json}', [ArticleController::class, 'show'])->middleware('api')->name('articles.show');
         Route::prefix('filter')->group(
             function () {
-                Route::get('day', 'Api\ArticleTopController@posts');
-                Route::get('week', 'Api\ArticleTopController@posts');
-                Route::get('month', 'Api\ArticleTopController@posts');
-                Route::get('favorite', 'Api\ArticleTopController@favorite')->middleware('auth:api');
+                Route::get('day', [ArticleTopController::class, 'posts']);
+                Route::get('week', [ArticleTopController::class, 'posts']);
+                Route::get('month', [ArticleTopController::class, 'posts']);
+                Route::get('favorite', [ArticleTopController::class, 'favorite'])->middleware('auth:api');
             }
         );
 
         Route::get(
-            '{article}/relationships/author',
+            '{article_json}/relationships/author',
             ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.relationships.author']
         );
         Route::get(
-            '{article}/author',
+            '{article_json}/author',
             ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
         );
+        Route::get('{article_json}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
+            ->name('articles.relationships.comments');
         Route::get(
-            '{article}/relationships/comments',
-            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.relationships.comments']
-        );
-        Route::get(
-            '{article}/comments',
+            '{article_json}/comments',
             ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
         );
         Route::get(
-            '{article}/relationships/hubs',
-            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.relationships.hubs']
+            '{article_json}/relationships/hubs', [ArticleRelationshipController::class, 'hubs'])->name(
+           'articles.relationships.hubs'
         );
         Route::get(
-            '{article}/hubs',
+            '{article_json}/hubs',
             ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
         );
+
+        /**
+         * Comments Api.
+         */
+        Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
     }
 );
-
-/**
- * Comments Api.
- */
-Route::apiResource('comments', 'Api\CommentController');
 
 /*
  * Favorite Api
  */
 Route::prefix('saved')->group(
     function () {
-        Route::get('posts', 'Api\SavedController@allPosts');
-        Route::get('comments', 'Api\SavedController@allComments');
+        Route::get('posts', [SavedController::class, 'allPosts']);
+        Route::get('comments', [SavedController::class, 'allComments']);
     }
 );
 
@@ -67,39 +74,41 @@ Route::prefix('saved')->group(
  */
 Route::prefix('hubs')->group(
     function () {
-        Route::get('/', 'Api\HubController@index')->middleware('api')->name('hubs.api.index');
-        Route::get('/{hub}', 'Api\HubController@show')->middleware('api')->name('hubs.api.show');
-        Route::get('/filter/all', 'Api\HubController@all')->middleware('api')->name('hubs.api.all');
-        Route::get('{hub}/top/day', 'Api\ArticleHubController@articles');
-        Route::get('{hub}/top/week', 'Api\ArticleHubController@articles');
-        Route::get('{hub}/top/month', 'Api\ArticleHubController@articles');
-        Route::get('{hub}/all', 'Api\ArticleHubController@all');
-        Route::post('/follow/{id}', 'Api\HubController@follow');
+        Route::get('/', [HubController::class, 'index'])->middleware('api')->name('hubs.api.index');
+        Route::get('/{hub}', [HubController::class, 'show'])->middleware('api')->name('hubs.api.show');
+        Route::get('/filter/all', [HubController::class, 'all'])->middleware('api')->name('hubs.api.all');
+        Route::get('{hub}/top/day', [ArticleHubController::class, 'articles']);
+        Route::get('{hub}/top/week', [ArticleHubController::class, 'articles']);
+        Route::get('{hub}/top/month', [ArticleHubController::class, 'articles']);
+        Route::get('{hub}/all', [ArticleHubController::class, 'all']);
+        Route::post('/follow/{id}', [HubController::class, 'follow']);
     }
 );
-Route::get('/search_hub', 'Api\HubController@search_hub_by_key');
+Route::get('/search_hub', [HubController::class, 'search_hub_by_key']);
 
 /*
  * Author Api
  */
 
-Route::apiResource('/authors', 'Api\AuthorController');
 Route::prefix('authors')->group(
     function () {
-        Route::get('{id}/follow_check', 'Api\AuthorController@userFollowCheck');
-        Route::get('{id}/followings', 'Api\AuthorController@followings');
-        Route::get('{id}/followers', 'Api\AuthorController@followers');
+        Route::get('/', [AuthorController::class, 'index'])->name('authors.all');
+        Route::get('{author}', [AuthorController::class, 'show'])->name('authors.show');
+        Route::post('{author}', [AuthorController::class, 'follow'])->name('author.follow')->middleware('auth:api');
+        Route::get('{id}/follow_check', [AuthorController::class, 'userFollowCheck']);
+        Route::get('{id}/followings', [AuthorController::class, 'followings']);
+        Route::get('{id}/followers', [AuthorController::class, 'followers']);
     }
 );
-Route::get('/search_user', 'Api\AuthorController@search_user_by_key');
+Route::get('/search_user', [AuthorController::class, 'search_user_by_key']);
 
 /*
  * Profile Api
  */
-//    Route::get('/users/{id}/posts', 'Api\UserController@posts');
-//    Route::post('/users/{id}/profile_update', 'Api\UserController@upload');
+//    Route::get('/users/{id}/posts', [UserController::class, 'posts']);
+//    Route::post('/users/{id}/profile_update', [UserController::class, 'upload']);
 
 /**
  * Search Api.
  */
-Route::get('search{search?}', 'Api\SearchController@results');
+Route::get('search{search?}', [SearchController::class, 'results']);

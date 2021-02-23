@@ -2,41 +2,54 @@
     <div class="relative bg-cover bg-center p p-5">
         <div class="flex justify-between">
             <div class="flex">
-                <img class="rounded xs:h-16 xs:w-16 w-24 h-24" src="https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349" alt="Profile image">
+                <img class="rounded xs:h-16 xs:w-16 w-24 h-24 object-cover"
+                     src="{{ $author->attributes->avatar }}"
+                     alt="Profile image">
                 <div class="w-9/12 ml-2">
                     <div class="text-2xl text-shadow dark:text-gray-300 xs:text-base flex items-center block">
-                        <p>{{ $user->attributes->name ?? '' }}
-                        {{ $user->attributes->surname ?? '' }}
-                            {{ '@' . $user->attributes->username }}</p>
+                        <p>{{ $author->attributes->name ?? '' }}
+                            {{ $author->attributes->surname ?? '' }}
+                            {{ '@' . $author->attributes->username }}</p>
                     </div>
 
-                    @if ( $user->attributes->description)
-                        <p class="text-sm text-shadow dark:text-gray-300 xs:text-xs mt-2">{{  $user->attributes->description }}</p>
+                    @if ( $author->attributes->description)
+                        <p class="text-sm text-shadow dark:text-gray-300 xs:text-xs mt-2">{{  $author->attributes->description }}</p>
                     @endif
 
                 </div>
             </div>
 
-
             <div class="flex py-2">
                 <div class="">
                     <div class="text-center text-xl xs:text-sm font-medium dark:text-gray-300"
-                        title="{{ $user->attributes->karma }}">
-                        {{ \Numeric::number_format_short($user->attributes->karma) }}
+                         title="{{ $author->attributes->karma }}">
+                        {{ \Numeric::number_format_short($author->attributes->karma) }}
                     </div>
                     <div class="text-sm text-shadow xs:text-xs font-light dark:text-gray-300">Karma</div>
                 </div>
                 <div class="ml-4">
                     <div class="text-center text-xl xs:text-sm font-medium dark:text-gray-300"
-                        title="{{ $user->attributes->rating }}">{{ \Numeric::number_format_short($user->attributes->rating) }}</div>
+                         title="{{ $author->attributes->rating }}">{{ \Numeric::number_format_short($author->attributes->rating) }}</div>
                     <div class="text-sm text-shadow xs:text-xs font-light dark:text-gray-300">Reytinq</div>
                 </div>
             </div>
 
         </div>
-        <div class="flex gap-2 mt-4 xs:justify-between">
-            <button class="btn-outline">Izləmək</button>
-            <button class="btn">Yazmag</button>
+        <div class="flex gap-2 mt-4 xs:justify-between" id="app">
+            @auth
+                @can(App\Policies\AuthorPolicy::FOLLOW, $user)
+                    <user-follow
+                        :id="'{{ $author->id }}'"
+                        @auth
+                        :follow_check="'{{ $author->attributes->follower }}'"
+                        @endauth
+                    ></user-follow>
+                @else
+                    <a href="{{ route('profile-settings') }}" class="btn-outline h-7">Profili yenile</a>
+                @endcan
+            @else
+                <button class="btn-outline h-7"><i class="mdi mdi-email"></i> Yazmag</button>
+            @endauth
         </div>
         <div class="flex xs:justify-between w-full mt-4 xs:overflow-y-auto">
             <div class="text-sm pr-8">
@@ -59,78 +72,14 @@
                 <div class="text-xs font-light dark:text-gray-300">Followers</div>
             </div>
         </div>
-
-        <div class="profile__info">
-
-            {{-- TODO:remove comments--}}
-            {{--            <div class="profile__user-button">--}}
-            {{--                @if (Auth::check())--}}
-            {{--                    @if(Auth::user()->id !== $user->id)--}}
-            {{--                        <user-follow-button--}}
-            {{--                            id="{{ $user->id }}" :user="{{ $user }}" @auth :auth_check="true"--}}
-            {{--                            :follow_check="'{{ $user->attributes->isFollowedBy(Auth::user()) }}'" @endauth--}}
-            {{--                        ></user-follow-button>--}}
-            {{--                    @else--}}
-            {{--                        <button class="btn btn-primary">Profili yenilə</button>--}}
-            {{--                    @endif--}}
-            {{--                @else--}}
-            {{--                    <user-follow-button--}}
-            {{--                        id="{{ $user->id }}" :user="{{ $user }}" @auth :auth_check="true"--}}
-            {{--                        :follow_check="'{{ $user->attributes->isFollowedBy(Auth::user()) }}'" @endauth--}}
-            {{--                    ></user-follow-button>--}}
-            {{--                    <button class="btn btn-outline"><i class="mdi mdi-email"></i> Yazmag</button>--}}
-            {{--                @endif--}}
-            {{--                <i class="btn btn-outline mdi mdi-dots-vertical"></i>--}}
-            {{--            </div>--}}
-        </div>
     </div>
 </div>
 
-{{--    <div class="profile__header">--}}
-{{--    </div>--}}
-{{--    <div class="profile__user">--}}
-{{--        <div class="avatar avatar_large image-lazy">--}}
-{{--            <img alt="Profile image"--}}
-{{--                 src="{{ $user->attributes->avatar !== 'user.jpg' ? asset('/upload/user_'. $user->attributes->id . '/logo/' . $user->attributes->avatar) : asset('/upload/default/logo/default.png') }}"--}}
-{{--                 class="image-loaded">--}}
-{{--        </div>--}}
-{{--        <div class="profile__info-name">--}}
-{{--            <div class="profile__nick">--}}
-{{--                <h2 class="profile__user-about-content">{{ $user->attributes->about }}</h2>--}}
-{{--                <h1 class="additionalName">{{ '@' . $user->attributes->username }} {{ $user->attributes->name ? ' | ' . $user->attributes->name . ' ' . $user->attributes->surname : ''}}</h1>--}}
-{{--            </div>--}}
-{{--            <div class="profile__rating">--}}
-{{--                <div>--}}
-{{--                    <div class="stacked-counter-karm__value"--}}
-{{--                         title="{{ $user->attributes->karma }}">{{ \Numeric::number_format_short($user->attributes->karma) }}</div>--}}
-{{--                    <div class="stacked-counter__label">Karma</div>--}}
-{{--                </div>--}}
-{{--                <div class="line"></div>--}}
-{{--                <div>--}}
-{{--                    <div class="stacked-counter-rait__value"--}}
-{{--                         title="{{ $user->attributes->rating }}">{{ \Numeric::number_format_short($user->attributes->rating) }}</div>--}}
-{{--                    <div class="stacked-counter__label">Reytinq</div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="profile__user-button">--}}
-{{--            @if (Auth::check())--}}
-{{--                @if(Auth::user()->id !== $user->attributes->id)--}}
-{{--                    <user-follow-button--}}
-{{--                            id="{{ $user->attributes->id }}" :user="{{ $user }}" @auth :auth_check="true"--}}
-{{--                            :follow_check="'{{ $user->attributes->isFollowedBy(Auth::user()) }}'" @endauth--}}
-{{--                    ></user-follow-button>--}}
-{{--                @else--}}
-{{--                    <button class="btn btn-primary">Profili yenilə</button>--}}
-{{--                @endif--}}
-{{--            @else--}}
-{{--                <user-follow-button--}}
-{{--                        id="{{ $user->attributes->id }}" :user="{{ $user }}" @auth :auth_check="true"--}}
-{{--                        :follow_check="'{{ $user->attributes->isFollowedBy(Auth::user()) }}'" @endauth--}}
-{{--                ></user-follow-button>--}}
-{{--                <button class="btn btn-outline"><i class="mdi mdi-email"></i> Yazmag</button>--}}
-{{--            @endif--}}
-{{--            <i class="btn btn-outline mdi mdi-dots-vertical"></i>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+@push('scripts')
+    <script type="text/javascript" src="{{ mix('js/author.js') }}" async></script>
+@endpush
+
+@section('styles')
+    @parent
+    <link rel="preload" href="{{ mix('js/author.js') }}" as="script">
+@endsection

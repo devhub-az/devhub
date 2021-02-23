@@ -1,5 +1,5 @@
 <template>
-    <form autocomplete="off" @submit.prevent="register" method="post" class="xs:max-w-xs w-96 text-left">
+    <form autocomplete="off" @submit.prevent="register" enctype="multipart/form-data" method="post" class="xs:max-w-xs w-96 text-left">
         <div class="pt-4 pb-2">
             <a href="/login/github"
                class="font-button mt-4 px-3 h-9 text-sm text-black border border-gray-800 relative inline-flex leading-4 justify-center font-medium items-center bg-white hover:bg-gray-100 w-full text-center rounded focus:outline-none">
@@ -46,6 +46,9 @@
                     Yoxlanır
                 </div>
                 <p class="text-red-700 text-sm">{{ errors && errors.email ? errors.email[0] : null }}</p>
+            </div>
+            <div class="relative mb-2">
+                <input type="file" name="image" class="form-control" @change="imagePreview($event)">
             </div>
             <div class="relative mb-2">
                 <input aria-invalid="true" autocomplete="current-password" id="password" name="password"
@@ -113,6 +116,12 @@ export default {
             username: null,
             name: null,
             email: null,
+            image: '',
+            config: {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            },
             password: null,
             password_confirmation: null,
             type: 'password',
@@ -125,6 +134,9 @@ export default {
         }
     },
     methods: {
+        imagePreview(e) {
+            this.image = e.target.files[0];
+        },
         checkEmail(email) {
             this.checking = true
             axios.post('api/auth/checkEmail', {
@@ -160,13 +172,15 @@ export default {
         },
         register() {
             this.loading = true
-            axios.post('/register', {
-                username: this.username,
-                name: this.name,
-                email: this.email,
-                password: this.password,
-                password_confirmation: this.password_confirmation,
-            }).then(response => {
+            const data = new FormData();
+            data.append('username', this.username);
+            data.append('name', this.name);
+            data.append('email', this.email);
+            data.append('image', this.image);
+            data.append('password', this.password);
+            data.append('password_confirmation', this.password_confirmation);
+
+            axios.post('/register', data).then(response => {
                 // this.loading = false
                 // if (response.data.success === false) {
                 //     this.error_text = response.data.error

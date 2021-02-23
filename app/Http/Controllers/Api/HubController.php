@@ -32,7 +32,7 @@ class HubController extends Controller
      */
     public function all(): Collection
     {
-        return Hub::select(['id', 'name', 'logo'])->get();
+        return Hub::select(['id', 'name', 'logo'])->orderBy('name')->get();
     }
 
     /**
