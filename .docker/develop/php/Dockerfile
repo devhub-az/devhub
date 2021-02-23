@@ -27,7 +27,7 @@ RUN apk add --no-cache --update nodejs npm
 # Install yarn
 RUN npm --global install yarn
 
-RUN yarn install
+RUN yarn install && yarn cache clean
 
 RUN yarn prod
 

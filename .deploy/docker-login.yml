@@ -1,0 +1,27 @@
+---
+-   name: Copy
+    hosts: site
+    remote_user: root
+    become: yes
+    become_user: deploy
+    tasks:
+        - copy:
+            src: files/TOKEN.txt
+            dest: /home/deploy/TOKEN.txt
+
+
+-   name: Log into private registry
+    hosts: site
+    remote_user: root
+    become: yes
+    become_user: deploy
+    vars_prompt:
+        -   name: registry
+            prompt: "Registry"
+            private: no
+        -   name: username
+            prompt: "Username"
+            private: no
+    tasks:
+        -   name: Log into private registry
+            shell: "cat /home/deploy/TOKEN.txt | docker login {{ registry }} -u {{ username }} --password-stdin"
