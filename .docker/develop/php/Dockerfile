@@ -27,6 +27,8 @@ RUN apk add --no-cache --update nodejs npm
 # Install yarn
 RUN npm --global install yarn
 
+RUN yarn install
+
 RUN yarn prod
 
 COPY ./.docker/develop/php/Makefile ./Makefile
