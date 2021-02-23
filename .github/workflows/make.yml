@@ -1,4 +1,4 @@
-name: Docker init test
+name: Develop docker test
 on: [ push, pull_request ]
 
 env:
