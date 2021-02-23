@@ -1,10 +1,9 @@
-name: Pipeline
+name: Pipeline (production test)
 
 on:
   push:
     branches:
       - main
-      - develop
 
 env:
     REGISTRY: docker.pkg.github.com/hose1021/devhub
