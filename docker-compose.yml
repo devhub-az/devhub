@@ -15,6 +15,7 @@ services:
     ports:
       - "8090:80"
     volumes:
+      - ./public:/var/www/public
       - ./.docker/develop/logs/nginx:/var/log/nginx/
     depends_on:
       - php

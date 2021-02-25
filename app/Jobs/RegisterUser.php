@@ -2,10 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;

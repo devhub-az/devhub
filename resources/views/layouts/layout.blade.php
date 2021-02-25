@@ -20,7 +20,7 @@
     {{-- CSS --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
+{{--    <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">--}}
     <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
 
     <!-- Scripts -->

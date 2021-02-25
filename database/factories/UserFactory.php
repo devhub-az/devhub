@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'id'                => $this->faker->uuid,
             'name'              => $this->faker->name,
             'username'          => $username,
-            'avatar'            => 'https://avatar.tobi.sh/'.$username.'.svg?text='.$username[0],
+            'avatar'            => $this->addMedia('https://avatar.tobi.sh/'.$username.'.svg?text='.$username[0])->toMediaCollection('avatars'),
             'description'       => $this->faker->sentence($nbWords = 6, $variableNbWords = true),
             'rating'            => $this->faker->numberBetween(0, 100),
             'karma'             => $this->faker->numberBetween(0, 100),
