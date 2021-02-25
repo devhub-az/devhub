@@ -14,7 +14,7 @@ jobs:
       - name: Cache composer
         uses: actions/cache@v2
         with:
-          path: api/vendor
+          path: vendor
           key: composer-${{ hashFiles('composer.lock') }}
       
       - name: Cache frontend yarn
