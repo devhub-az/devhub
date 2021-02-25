@@ -11,7 +11,7 @@ RUN yarn prod
 
 FROM nginx:1.19-alpine
 
-COPY ./common/nginx/snippets /etc/nginx/snippets
+COPY ./.docker/production/common/nginx/snippets /etc/nginx/snippets
 COPY ./.docker/production/nginx/prod.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder app/public /var/www/public
