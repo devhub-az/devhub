@@ -44,7 +44,7 @@ channels:
 
 ## Can I contribute?
 
-Yes you can!  Contributions are welcomed. Thank you for considering contributing to the DevHub! The contribution guide can be found below.
+Yes you can!  Contributions are welcomed. Thank you for considering contributing to the DevHub!
 
 ### Coding Style
 
