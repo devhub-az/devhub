@@ -18,7 +18,7 @@
                             <p class="dark:text-gray-400">Uğur və təcrübələrinizi öz həmkarları ilə bölüşün</p>
                         </div>
                         <a href="{{ route('register') }}"
-                           class="btn xs:block px-14 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">Qosulmag</a>
+                           class="btn xs:block px-4 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">Qoşulmag</a>
                     </div>
                 @endguest
                 <div class="mb-2 flex items-center justify-between dark:border-gray-700">
@@ -32,7 +32,7 @@
                             {'name': '{{ __('devhub.trends') }}', 'icon': 'bx:bxs-hot', 'url': '/'},
                             {'name': '{{ __('devhub.articlesNew') }}', 'icon': 'ant-design:clock-circle-outlined', 'url': '/all'},
                             {'name': '{{ __('devhub.articlesFollowing') }}', 'icon': 'mdi:book-multiple', 'url': '/favorite'}
-                        ]"
+                            ]"
                         @if (Request::is('top/*') || Request::is('/'))
                         :selected="{'name': '{{ __('devhub.trends') }}', 'icon': 'bx:bxs-hot'}"
                         @elseif (Request::url() === route('all'))
@@ -73,7 +73,8 @@
                 <div class="sticky top-2">
                     @if ($lastAuthors->count() > 0)
                         <div>
-                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Devhub-a qoşulanlar</p>
+                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Devhub-a
+                                qoşulanlar</p>
                             <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                                 <div
                                     class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
@@ -84,7 +85,8 @@
                                                     src="{{ ($author->avatar !== 'default') ? $author->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
                                                     alt="hub image" class="w-12 h-12 rounded object-cover">
                                                 @if ($author->isOnline())
-                                                    <div class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
+                                                    <div
+                                                        class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
                                                 @endif
                                             </div>
                                             <div>
@@ -102,28 +104,34 @@
                             </div>
                         </div>
                     @endif
-                    <div>
-                        <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən hablar</p>
-                        <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
-                            <div class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
-                                @foreach ($top_followed_hubs as $hub)
-                                    <a href="{{ '/hubs/' . $hub->slug }}" class="flex gap-3">
-                                        <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
-                                             alt="hub image" class="w-12 h-12 rounded">
-                                        <div>
-                                            <p class="font-semibold dark:text-gray-300 leading-5">
-                                                {{ $hub->name }}
-                                            </p>
-                                            <div class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
-                                                <span class="iconify" data-icon="mdi:account-group-outline" data-inline="false"></span>
-                                                <p>İzləyicilər {{ $hub->favorites_count ?? '' }}</p>
+                    @if ($top_followed_hubs->count() > 0)
+                        <div>
+                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən
+                                hablar</p>
+                            <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
+                                <div
+                                    class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
+                                    @foreach ($top_followed_hubs as $hub)
+                                        <a href="{{ '/hubs/' . $hub->slug }}" class="flex gap-3">
+                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
+                                                 alt="hub image" class="w-12 h-12 rounded">
+                                            <div>
+                                                <p class="font-semibold dark:text-gray-300 leading-5">
+                                                    {{ $hub->name }}
+                                                </p>
+                                                <div
+                                                    class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
+                                                    <span class="iconify" data-icon="mdi:account-group-outline"
+                                                          data-inline="false"></span>
+                                                    <p>İzləyicilər {{ $hub->favorites_count ?? '' }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                @endforeach
+                                        </a>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     <a class="flex justify-between border rounded p-4 mb-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
                        href="https://t.me/devhub_az" target="_blank"
                        rel="noopener">
@@ -134,7 +142,8 @@
                             </div>
                             <p class="text-sm dark:text-gray-300">{{ __('devhub.follow-telegram-channel') }}</p>
                         </div>
-                        <span class="iconify w-20 h-20 rounded-full dark:bg-white" style="color: #0088cc;" data-icon="cib:telegram"
+                        <span class="iconify w-20 h-20 rounded-full dark:bg-white" style="color: #0088cc;"
+                              data-icon="cib:telegram"
                               data-inline="false"></span>
                     </a>
                 </div>

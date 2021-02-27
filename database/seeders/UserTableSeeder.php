@@ -11,9 +11,9 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         if (App::environment() !== 'prod') {
-            User::factory()
-                ->count(30)
-                ->create();
+//            User::factory()
+//                ->count(30)
+//                ->create();
         }
     }
 }

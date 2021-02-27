@@ -7,7 +7,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.0",
         "barryvdh/laravel-ide-helper": "^2.6",
         "codex-team/editor.js": "dev-master",
         "fideloper/proxy": "^4.4",

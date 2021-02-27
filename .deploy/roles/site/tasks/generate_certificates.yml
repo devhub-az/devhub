@@ -1,7 +1,7 @@
 ---
 -   name: Check if certificate already exists
     stat:
-        path: /etc/letsencrypt/live/{{ item }}/cert.pem
+        path: /etc/letsencrypt/live/cert.pem
     register: letsencrypt_certs
     with_items: "{{ certbot_hosts }}"
 

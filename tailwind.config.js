@@ -59,7 +59,7 @@ module.exports = {
             blue: colors.blue,
             white: colors.white,
             pink: {
-                light: '#ff7ce5',
+                light: '#hff7ce5',
                 DEFAULT: '#ff49db',
                 dark: '#ff16d1',
             },
@@ -70,7 +70,7 @@ module.exports = {
             },
             wall: '#f4f4f4',
             footer: '#242729',
-            dwall: '#171c20',
+            dwall: '#141618',
             dpaper: '#1d2023',
             afooter: '#f9f9fb',
         },
