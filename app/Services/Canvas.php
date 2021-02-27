@@ -3,24 +3,9 @@
 namespace App\Services;
 
 use App\Models\Article;
-use App\Models\User;
 
 class Canvas
 {
-    /**
-     * Return an array of available user roles.
-     *
-     * @return array
-     */
-    public static function availableRoles(): array
-    {
-        return [
-            User::CONTRIBUTOR => 'Contributor',
-            User::EDITOR => 'Editor',
-            User::ADMIN => 'Admin',
-        ];
-    }
-
     /**
      * Check if a given URL is valid.
      *

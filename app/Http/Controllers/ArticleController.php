@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\IdRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubResource;
-use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Models\Article;
 use App\Models\Hub;
