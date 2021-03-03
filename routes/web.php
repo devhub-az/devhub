@@ -138,17 +138,17 @@ Route::prefix('admin')->name('admin')->group(
 
 // Localization
 Route::get('/js/lang', function () {
-    if(env('APP_ENV','none') !== 'prod'){
+    if (env('APP_ENV', 'none') !== 'prod') {
         Cache::forget('lang.js');
     }
     $strings = Cache::rememberForever('lang.js', function () {
         $lang = Session::get('locale');
 
-        $files   = glob(resource_path('lang/' . $lang . '/*.php'));
+        $files = glob(resource_path('lang/'.$lang.'/*.php'));
         $strings = [];
 
         foreach ($files as $file) {
-            $name           = basename($file, '.php');
+            $name = basename($file, '.php');
             $strings[$name] = require $file;
         }
 
@@ -156,5 +156,6 @@ Route::get('/js/lang', function () {
     });
 
     header('Content-Type: text/javascript');
-    return 'window.i18n = ' . json_encode($strings) . ';';
+
+    return 'window.i18n = '.json_encode($strings).';';
 })->name('assets.lang');
