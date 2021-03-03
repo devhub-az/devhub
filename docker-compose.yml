@@ -5,18 +5,12 @@ networks:
 
 services:
   nginx:
-    image: ${REGISTRY:-localhost}/devhub_nginx:cache
-    build:
-      context: ./
-      dockerfile: .docker/develop/nginx/Dockerfile
-      cache_from:
-        - ${REGISTRY:-localhost}/devhub_nginx:cache
+    image: nginx:alpine
     container_name: nginx
     ports:
       - "8090:80"
     volumes:
-      - ./public:/var/www/public
-      - ./storage:/var/www/storage
+      - ./:/var/www/
       - ./.docker/develop/logs/nginx:/var/log/nginx/
     depends_on:
       - php
@@ -31,15 +25,15 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - '${FORWARD_DB_PORT:-4306}:3306'
+      - ${FORWARD_DB_PORT:-4306}:3306
     environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
-      MYSQL_USER: '${DB_USERNAME:-root}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE:-devhub}
+      MYSQL_USER: ${DB_USERNAME:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: yes
     volumes:
-      - './.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - ./.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - devhub
 
@@ -61,7 +55,7 @@ services:
         - ${REGISTRY:-localhost}/devhub:cache
     container_name: php
     volumes:
-      - './:/var/www'
+      - ./:/var/www
     ports:
       - "9000:9000"
     networks:
