@@ -6,9 +6,11 @@ networks:
 services:
   nginx:
     container_name: nginx
-    image: ${REGISTRY:-localhost}/devhub_nginx:cache
+    image: nginx:alpine
     volumes:
       - ./../logs/nginx:/var/log/nginx/
+      - data:/var/www/
+      - nginx:/etc/nginx/conf.d/
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - "80:80"
@@ -40,7 +42,14 @@ services:
     image: ${REGISTRY:-localhost}/devhub:cache
     restart: always
     container_name: php
+    volumes:
+    - data:/var/www/
+    - nginx:/var/www/.docker/production/nginx/
     ports:
       - "9000:9000"
     networks:
       - devhub
+
+volumes:
+  data:
+  nginx:
