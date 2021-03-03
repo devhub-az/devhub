@@ -9,10 +9,9 @@ services:
     image: ${REGISTRY:-localhost}/devhub_nginx:cache
     volumes:
       - ./../logs/nginx:/var/log/nginx/
-      - /etc/letsencrypt:/etc/letsencrypt:ro
+#      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - "80:80"
-      - "443:443"
     depends_on:
       - php
       - mysql

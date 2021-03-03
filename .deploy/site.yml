@@ -5,5 +5,4 @@
   roles:
     - swap
     - docker
-#    - certbot
     - site

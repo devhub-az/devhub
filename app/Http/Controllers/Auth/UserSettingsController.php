@@ -10,8 +10,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class UserSettingsController extends Controller
 {
@@ -32,21 +32,15 @@ class UserSettingsController extends Controller
         );
     }
 
-    public function index(Request $request)
+    public function index(): Factory|View|Application
     {
         $this->user->email = substr_replace($this->user->email, '****', 1, strpos($this->user->email, '@') - 1);
 
         return view('auth.settings.profile', ['user' => $this->user]);
     }
 
-    public function update_avatar(Request $request)
+    public function update_avatar(Request $request): RedirectResponse
     {
-//        $request->validate([
-//            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//        ]);
-
-        dd(request()->avatar);
-
         $user = Auth::user();
 
         $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
