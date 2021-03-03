@@ -25,13 +25,13 @@ services:
     restart: unless-stopped
     tty: true
     ports:
-      - ${FORWARD_DB_PORT:-4306}:3306
+      - '${FORWARD_DB_PORT:-4306}:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: ${DB_DATABASE:-devhub}
-      MYSQL_USER: ${DB_USERNAME:-root}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ALLOW_EMPTY_PASSWORD: yes
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
+      MYSQL_USER: '${DB_USERNAME:-root}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
       - ./.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
