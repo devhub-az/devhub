@@ -11,7 +11,7 @@ class AuthorActivity
 {
     public static function activity(User $user): array
     {
-        $count= [];
+        $count = [];
         $start_date = Carbon::now()->subDays(30)->format('Y-m-d');
         $current_date = Carbon::now()->format('Y-m-d');
         $period = CarbonPeriod::create($start_date, $current_date);
