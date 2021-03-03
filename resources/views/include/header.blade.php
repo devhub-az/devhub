@@ -3,7 +3,7 @@
 @endcan
 <header class="bg-white dark:bg-gray-800 sm:px-4 md:px-4" id="header">
     <div class="flex items-center justify-between h-12 xs:h-auto lg:container mx-auto">
-        <div class="grid grid-flow-col xs:w-full gap-3 xs:gap-0 xs:flex">
+        <div class="grid grid-flow-col xs:w-max gap-3 xs:gap-0 xs:flex">
             <div id="mobile-menu__toggler" class="block lg:hidden">
                 <button id="mobile-menu__open"
                         class="p-2 items-center justify-center">
@@ -15,7 +15,7 @@
                 </button>
             </div>
 
-            <div class="flex items-center justify-center">
+            <div id="logo" class="flex items-center justify-center">
                 <a class="pr-2 md:text-2xl items-center xs:ml-0 xs:text-2xl"
                    href="{{ session('main-page') ?? route('home') }}">
                     <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
@@ -49,15 +49,14 @@
             @csrf
             <div class="w-full">
                 <input id="search_input" type="text"
-                       class="relative w-full rounded h-8 border pl-7"
+                       class="relative input w-full rounded h-8 border pl-7"
                        autocomplete="off"
                        name="search"
                        maxlength="48"
                        minlength="3" placeholder="{{ __('devhub.searchAll') }}" required="required">
                 <span class="iconify text-xl absolute left-2 translate-y-1/2 top-0 my-1.5 mr-4 dark:text-gray-700"
                       data-icon="mdi-magnify"></span>
-                <span onclick="closeSearch()"
-                      id="close-icon"
+                <span id="close-icon"
                       class="iconify cursor-pointer text-xl absolute right-2 translate-y-1/2 top-0 my-1.5 dark:text-gray-700"
                       data-icon="bx:bx-x-circle"></span>
             </div>

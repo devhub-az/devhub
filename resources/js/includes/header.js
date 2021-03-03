@@ -41,6 +41,7 @@ window.onload = function () {
             document.getElementById('search-icon').classList.add('hidden')
             document.getElementById('search_input').focus()
             document.getElementById('menu').classList.add('hidden')
+            document.getElementById("logo").classList.add('xs:hidden')
         },
         false
     );
@@ -51,6 +52,7 @@ window.onload = function () {
             document.getElementById('form_search').classList.add('hidden')
             document.getElementById('search-icon').classList.remove('hidden')
             document.getElementById('menu').classList.remove('hidden')
+            document.getElementById("logo").classList.remove('xs:hidden')
         },
         false
     );
