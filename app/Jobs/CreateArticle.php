@@ -44,7 +44,6 @@ final class CreateArticle
         ]);
         $article->authoredBy($this->author);
         $article->syncHubs($this->hubs);
-        $article->save();
 
         return $article;
     }
