@@ -2,7 +2,7 @@
     <div class="xs:hidden">
         <span @click="follow(id)" v-if="!follower && !loading"
               class="btn-outline h-7">
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Abunə olmaq</span>
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Подписаться</span>
         </span>
         <span @click="follow(id)" v-if="follower && !loading"
               class="btn h-7">

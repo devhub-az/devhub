@@ -89,14 +89,14 @@
                 <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
                     <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline"
                           data-inline="false"></span>
-                    <p class="dark:text-gray-300">Paylaşma tapılmadı</p>
+                    <p class="dark:text-gray-300">{{ trans('devhub.articles404') }}</p>
                 </div>
                 <p class="font-light text-center dark:text-gray-400">
-                    Kenar çubuğunda "Kimin izləməsi" ndə göstərilən bəzi istifadəçiləri izləyə bilərsiniz
+                    {{ trans('devhub.articles404Text') }}
                 </p>
                 <a href="/article/new"
-                   class="btn block flex w-max mx-auto xs:hidden">
-                    <i class="iconify" data-icon="mdi-plus"/> Yazmağ
+                   class="btn h-7 block flex w-max mx-auto xs:hidden">
+                    {{ trans('devhub.write') }}
                 </a>
             </div>
         </div>

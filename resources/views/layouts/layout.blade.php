@@ -77,6 +77,7 @@
 @include('include.footer')
 <script src="//code.iconify.design/1/1.0.6/iconify.min.js" async></script>
 <script type="text/javascript" src="{{ mix('js/scroller.js') }}" defer></script>
+<script src="/js/lang"></script>
 @stack('scripts')
 </body>
 </html>

@@ -1,3 +1,5 @@
+require('./../bootstrap');
+
 let Vue = require('vue').default;
 import moment from "moment-mini"
 import httpPlugin from './../scripts/http';

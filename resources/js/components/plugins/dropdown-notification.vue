@@ -9,7 +9,7 @@
             @keydown.up.exact.prevent="startArrowKeys"
             @keydown.down.exact.prevent="startArrowKeys"
             v-if="count === 0">
-            <i class="iconify cursor-pointer text-gray-100" data-icon="mdi-bell"></i>
+            <i class="iconify cursor-pointer text-gray-700" data-icon="mdi-bell"></i>
         </span>
         <span
             class="xs:hidden transition-none"
@@ -20,7 +20,7 @@
             @keydown.up.exact.prevent="startArrowKeys"
             @keydown.down.exact.prevent="startArrowKeys"
             v-if="count > 0">
-            <i class="iconify cursor-pointer text-gray-100 relative transition-none" data-icon="mdi-bell"></i>
+            <i class="iconify cursor-pointer text-gray-700 relative transition-none" data-icon="mdi-bell"></i>
             <span class="flex h-2 w-2 absolute -top-0.5 -right-0.5">
                 <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-cerulean-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2 w-2 bg-cerulean-500"></span>

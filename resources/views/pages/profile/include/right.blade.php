@@ -1,11 +1,5 @@
-<div class="mb-2">
-    <div class="border rounded bg-white dark:bg-dpaper dark:border-gray-700">
-        <canvas id="active" style="width: 102%; height: 4rem" class="-ml-2"></canvas>
-    </div>
-</div>
-
-<div class="border p-2 rounded mb-2 dark:bg-dpaper dark:border-gray-700">
-    <p class="font-medium mb-3 dark:text-gray-300">İzləyicilər</p>
+<div class="border p-4 rounded mb-2 bg-white dark:bg-dpaper dark:border-gray-700">
+    <p class="font-medium mb-3 dark:text-gray-300">Подписчики</p>
     <div class="flex flex-row-reverse justify-end mr-2">
         @if (count($author->relationships->followers->data) > 0)
             @foreach($author->relationships->followers->data as $follower)
@@ -15,8 +9,13 @@
                     class="border-2 border-white rounded-full h-10 w-10 -mr-2">
             @endforeach
         @else
-            <p class="dark:text-gray-400">Heç kim izləmir</p>
+            <p class="dark:text-gray-400">Никто не отслеживает</p>
         @endif
+    </div>
+</div>
+<div class="mb-2">
+    <div class="border px-4 rounded bg-white dark:bg-dpaper dark:border-gray-700">
+        <canvas id="active" style="width: 102%; height: 4rem" class="-ml-2"></canvas>
     </div>
 </div>
 

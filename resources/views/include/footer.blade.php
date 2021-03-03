@@ -1,47 +1,94 @@
-<footer class="text-gray-300 body-font bg-footer py-2 mt-auto">
-    <div class="flex justify-between xs:block items-center xs:h-auto lg:container mx-auto">
-        <div class="flex xs:block items-center">
+<footer class="body-font bg-white dark:bg-dpaper border-t dark:border-gray-700 pt-6 mt-auto w-full">
+    <div class="xs:h-auto lg:container mx-auto">
+        <div class="mb-8 w-32 xs:mx-auto">
             <a href="{{ route('home') }}"
-               class="flex title-font font-medium items-center md:justify-start justify-center text-gray-100 xs:pb-4">
-                <img src="{{ asset('images/DevHub_Compact_Logo.svg') }}" alt="DevHub Logo" width="40" height="40"
-                     class="xs:h-8">
+               class="font-medium text-gray-100 xs:pb-4 w-32">
+                <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
+                     class="xs:h-8 mb-4 w-32 hidden dark:block">
+                <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
+                     class="xs:h-8 mb-4 w-32 dark:hidden">
             </a>
-            <p class="text-sm text-gray-100 pl-4 py-2 my-auto xs:p-0 xs:text-center">
-                &copy; 2019 – {{ date('Y') }} <span class="lg:hidden md:hidden xl:hidden">«DevHub»</span>
-            </p>
-            <ul class="flex xs:hidden my-auto ml-4 flex-wrap uppercase text-sm" id="navbar-links">
-                <li class="ml-4">
-                    <a href="{{ session('main-page') ?? route('home') }}" class="text-gray-100 hover:text-gray-300">Paylaşmalar</a>
-                </li>
-                <li class="ml-4">
-                    <a href="{{ route('hubs-list') }}" class="text-gray-100 hover:text-gray-300">Hablar</a>
-                </li>
-                <li class="ml-4">
-                    <a href="{{ route('users-list') }}" class="text-gray-100 hover:text-gray-300">Müəlliflər</a>
-                </li>
-                <li class="ml-4">
-                    <a href="{{config('devhub.status_url')}}" class="text-gray-100 hover:text-gray-300">Status</a>
-                </li>
-                <li class="ml-4">
-                    <a href="{{ url('/about_us') }}" class="text-gray-100 hover:text-gray-300">MƏLUMAT</a>
-                </li>
-            </ul>
         </div>
-        <div class="relative xs:px-4" id="footer">
-            <select-menu :side="'bottom'" class="xs:w-1/2 xs:mx-auto"
-                         :menu="[
+        <div class="flex xs:block">
+            <div class="items-start flex w-2/3 justify-between xs:block xs:w-full xs:px-4 xs:space-y-4">
+                <div class="flex flex-col">
+                    <h3 class="dark:text-gray-300 font-medium mb-2">DevHub</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="text-gray-500 hover:text-black dark:hover:text-gray-300 cursor-pointer">О проекте</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-500 hover:text-black dark:hover:text-gray-300 cursor-pointer">Обновления</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex flex-col">
+                    <h3 class="dark:text-gray-300 font-medium mb-2">Информация</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="text-gray-500 hover:text-black dark:hover:text-gray-300 cursor-pointer">Как стать автором</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-500 hover:text-black dark:hover:text-gray-300 cursor-pointer">Правила</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex flex-col">
+                    <h3 class="dark:text-gray-300 font-medium mb-2">Помощь</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="text-gray-500 hover:text-black dark:hover:text-gray-300 cursor-pointer">Вопрос & Ответ</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-500 hover:text-black dark:hover:text-gray-300 cursor-pointer">Сообщить об ошибке</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-500 hover:text-black dark:hover:text-gray-300 cursor-pointer">Пожертвовать</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="footer" class="w-1/5 ml-auto xs:ml-0 xs:w-full xs:px-4 xs:pt-4">
+                <h3 class="dark:text-gray-300 font-medium mb-4">Язык & Тема</h3>
+                <div class="space-y-4">
+                    <select-menu class="xs:w-full"
+                                 :menu="[
                     {'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'},
                     {'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'},
                     {'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}
                     ]"
-                         @if (Session::get('locale') == 'az' || !Session::get('locale'))
-                         :selected="{'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'}"
-                         @elseif (Session::get('locale') == 'ru')
-                         :selected="{'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'}"
-                         @elseif (Session::get('locale') == 'en')
-                         :selected="{'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}"
-                @endif
-            ></select-menu>
+                                 @if (Session::get('locale') === 'az' || !Session::get('locale'))
+                                 :selected="{'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'}"
+                                 @elseif (Session::get('locale') === 'ru')
+                                 :selected="{'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'}"
+                                 @elseif (Session::get('locale') === 'en')
+                                 :selected="{'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}"
+                        @endif
+                    ></select-menu>
+                    <switcher class="xs:w-full"
+                                 :menu="[
+                    {'name': 'Dark', 'icon': 'bytesize:moon'},
+                    {'name': 'Light', 'icon': 'carbon:sun'},
+                    ]"
+                    ></switcher>
+                </div>
+            </div>
+        </div>
+        <div class="my-6 border-t border-gray-300 dark:border-gray-700 opacity-75 xs:w-full xs:px-4"></div>
+        <div class="flex justify-between justify-center xs:w-full xs:px-4 pb-4">
+            <p class="block text-sm text-gray-500 pb-4 my-auto xs:p-0 xs:text-center">
+                &copy; 2019 – {{ date('Y') }} <span class="">«DevHub»</span>
+            </p>
+            <div class="flex space-x-4 justify-center">
+                <a href="#">
+                    <span class="iconify text-2xl text-gray-400 hover:text-black dark:hover:text-gray-300"
+                          data-icon="ant-design:github-filled" data-inline="false"></span>
+                </a>
+                <a href="#">
+                    <span class="iconify text-2xl text-gray-400 hover:text-black dark:hover:text-gray-300" data-icon="cib:telegram"
+                          data-inline="false"></span>
+                </a>
+            </div>
         </div>
     </div>
 </footer>

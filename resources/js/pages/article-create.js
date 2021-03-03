@@ -1,3 +1,5 @@
+require('./../bootstrap');
+
 let Vue = require('vue').default;
 import httpPlugin from './../scripts/http';
 import VueI18n from 'vue-i18n'

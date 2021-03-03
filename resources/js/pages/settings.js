@@ -10,6 +10,7 @@ try {
 
 // Vue.component('about-slider', require('./../components/about/slider').default);
 Vue.component('profile-settings', require('./../components/auth/settings/ProfileComponent').default);
+Vue.component('delete-settings', require('./../components/auth/settings/DeleteComponent').default);
 
 new Vue().$mount('#app');
 

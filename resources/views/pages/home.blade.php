@@ -73,8 +73,9 @@
                 <div class="sticky top-2">
                     @if ($lastAuthors->count() > 0)
                         <div>
-                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Devhub-a
-                                qoşulanlar</p>
+                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
+                                {{ __('devhub.connected') }}
+                            </p>
                             <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                                 <div
                                     class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
@@ -106,8 +107,9 @@
                     @endif
                     @if ($top_followed_hubs->count() > 0)
                         <div>
-                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">Ən izləninən
-                                hablar</p>
+                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
+                                {{ __('devhub.watchedHubs') }}
+                            </p>
                             <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                                 <div
                                     class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
@@ -140,7 +142,7 @@
                                 class="text-gray-900 dark:text-gray-300 text-2xl pr-2 xs:border-none font-semibold md:text-2xl m-auto dark:text-gray-300">
                                 DevHub
                             </div>
-                            <p class="text-sm dark:text-gray-300">{{ __('devhub.follow-telegram-channel') }}</p>
+                            <p class="text-sm dark:text-gray-300">{{ __('devhub.followTelegramChannel') }}</p>
                         </div>
                         <span class="iconify w-20 h-20 rounded-full dark:bg-white" style="color: #0088cc;"
                               data-icon="cib:telegram"

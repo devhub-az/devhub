@@ -86,32 +86,32 @@
             <div class="flex text-gray-700 space-x-2">
                 <div class="space-y-4">
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Новости</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Новости</p>
                         <p class="text-sm dark:text-gray-400">Первыми узнали о сбое в Сети? Увидели новый продукт раньше
                             всех?
                             Прочитали
                             свежий законопроект? Поделитесь с остальными.</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Кейсы</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Кейсы</p>
                         <p class="text-sm dark:text-gray-400">Организовали умный дом за 10к рублей? Переехали в Новую
                             Зеландию
                             писать код по распознаванию киви? Пишите пост, это же очень интересно.</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Туториалы</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Туториалы</p>
                         <p class="text-sm dark:text-gray-400">Справились с непростой задачей? Расскажите по пунктам, как
                             ее
                             решить — читатели будут благодарны.</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Ретроспективы</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Ретроспективы</p>
                         <p class="text-sm dark:text-gray-400">Помните в подробностях, как зарождались вещи, к которым
                             уже все
                             привыкли? Кайф! Это то, что приятно почитать долгими зимними вечерами!</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Обзоры</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Обзоры</p>
                         <p class="text-sm dark:text-gray-400">Вы перепробовали кучу моноколес, стриминговых сервисов или
                             сред
                             разработки? Поделитесь, что там к чему, на что лучше обратить внимание.</p>
@@ -119,30 +119,30 @@
                 </div>
                 <div class="space-y-4">
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Мнения</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Мнения</p>
                         <p class="text-sm dark:text-gray-400">У вас особый взгляд на острый вопрос? Хотите это обсудить?
                             Напишите, что думаете, и готовьтесь провести вечер в комментариях.</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Справочные</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Справочные</p>
                         <p class="text-sm dark:text-gray-400">Вы глубоко изучили сложную тему? Готовы рассказать на
                             пальцах,
                             как все устроено? Дерзайте!</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Интервью</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Интервью</p>
                         <p class="text-sm dark:text-gray-400">Есть доступ к человеку с необычным опытом? Срочно берите
                             его в
                             охапку и задавайте вопросы. А что он ответил, потом расскажите Хабру.</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Дайджесты</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Дайджесты</p>
                         <p class="text-sm dark:text-gray-400">Накопилась подборка интересных ссылок и хочется поделиться
                             своими
                             открытиями? Вперед! Мы тут очень любознательные и с большим кругозором.</p>
                     </div>
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
-                        <p class="font-semibold mb-2 dark:text-gray-300">• Репортажи</p>
+                        <p class="font-semibold mb-2 dark:text-gray-300">Репортажи</p>
                         <p class="text-sm dark:text-gray-400">Попали на знаковое мероприятие? Расскажите о самом
                             интересном
                             сообществу Девхаба.</p>

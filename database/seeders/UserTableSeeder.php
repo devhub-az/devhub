@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\App;
 
 class UserTableSeeder extends Seeder
 {
-    public function run()
+    public function run(): void
     {
         if (App::environment() !== 'prod') {
 //            User::factory()

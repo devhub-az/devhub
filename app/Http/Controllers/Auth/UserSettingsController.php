@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserProfile;
 use App\Models\User;
 use Auth;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -75,10 +78,10 @@ class UserSettingsController extends Controller
      * Remove the specified resource from storage.
      *
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function destroy()
+    public function destroy(): Factory|View|Application
     {
-        //
+        return view('auth.settings.delete', ['user' => $this->user]);
     }
 }

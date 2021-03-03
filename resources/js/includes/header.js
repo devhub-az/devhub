@@ -18,7 +18,6 @@ Vue.filter('timeago', function (value) {
 
 Vue.component('dropdown', require('./../components/plugins/dropdown.vue').default);
 Vue.component('dropdown-notification', require('./../components/plugins/dropdown-notification.vue').default);
-Vue.component('switcher', require('./../components/parts/DarkSwitcher').default);
 
 new Vue({
     moment,

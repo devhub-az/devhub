@@ -28,7 +28,11 @@
     }
 
     .input {
-        @apply w-full px-2 h-10 resize-none rounded text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:focus:border-cerulean-500 font-light dark:bg-dpaper focus:border-cerulean-100 focus:outline-none transition-none
+        @apply w-full px-2 h-10 resize-none rounded border-gray-300 text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:focus:ring-cerulean-500 dark:bg-dpaper focus:ring-cerulean-500 focus:outline-none
+    }
+
+    .textarea{
+        @apply shadow-sm focus:ring-cerulean-500 hover:border-cerulean-100 dark:hover:border-cerulean-500 focus:border-cerulean-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md dark:border-gray-700 dark:text-gray-300 dark:bg-dpaper
     }
 
     .multiselect__tags, .multiselect__input, .multiselect__single, .multiselect__content-wrapper{
@@ -40,7 +44,7 @@
     }
 
     .btn-outline{
-        @apply cursor-pointer border xs:w-full text-sm rounded h-9 items-center inline-flex px-3 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none hover:text-cerulean-500 hover:border-cerulean-500 dark:hover:text-cerulean-300 dark:hover:border-cerulean-300
+        @apply cursor-pointer border xs:w-full text-sm rounded h-9 items-center inline-flex px-3 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none hover:border-cerulean-500 dark:hover:border-cerulean-300
     }
 
     .ce-block__content{
@@ -162,7 +166,7 @@
     }
 }
 
-*:not(.iconify, #text, input, #title, summary, details) {
+*:not(.iconify, #text, input, button, #trans-none, textarea, #title, summary, details) {
     @apply transition-all duration-200 ease-in;
 }
 

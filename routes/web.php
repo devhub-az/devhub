@@ -56,6 +56,7 @@ Route::group(
         Route::prefix('settings')->group(
             function () {
                 Route::get('/', [UserSettingsController::class, 'index'])->name('profile-settings');
+                Route::get('destroy', [UserSettingsController::class, 'destroy'])->name('destroy-settings');
                 Route::post('profile', [UserSettingsController::class, 'update']);
                 Route::post('avatar', [UserSettingsController::class, 'update_avatar']);
             }
@@ -134,3 +135,26 @@ Route::prefix('admin')->name('admin')->group(
 //    Route::put('articles/{article_show}/pinned', [AdminArticlesController::class, 'togglePinnedStatus'])->name('.articles.pinned');
     }
 );
+
+// Localization
+Route::get('/js/lang', function () {
+    if(env('APP_ENV','none') !== 'prod'){
+        Cache::forget('lang.js');
+    }
+    $strings = Cache::rememberForever('lang.js', function () {
+        $lang = Session::get('locale');
+
+        $files   = glob(resource_path('lang/' . $lang . '/*.php'));
+        $strings = [];
+
+        foreach ($files as $file) {
+            $name           = basename($file, '.php');
+            $strings[$name] = require $file;
+        }
+
+        return $strings;
+    });
+
+    header('Content-Type: text/javascript');
+    return 'window.i18n = ' . json_encode($strings) . ';';
+})->name('assets.lang');

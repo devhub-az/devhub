@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class HubsTableSeeder extends Seeder
 {
-    private function createHub(string $name, string $slug, string $logo)
+    private function createHub(string $name, string $slug, string $logo): void
     {
         Hub::factory()->create(compact('name', 'logo', 'slug'));
     }

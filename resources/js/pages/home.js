@@ -34,7 +34,9 @@ Vue.component('hub-follow-button', require('./../components/hubs/HubsFollowButto
 Vue.component('comment-favorite', require('./../components/parts/CommentFavorite').default);
 Vue.component('pagination', require('./../components/plugins/pagination').default);
 
+import _ from 'lodash';
+Vue.prototype.trans = string => _.get(window.i18n, string);
 
 new Vue({
-    moment,
+    moment
 }).$mount('#app');

@@ -23,6 +23,8 @@ class AuthorResource extends JsonResource
             'attributes'    => [
                 'name'                  => $this->name,
                 'username'              => $this->username,
+                'email'                 => $this->email,
+                'company'               => $this->company,
                 'avatar'                => ($this->avatar !== 'default')
                     ? $this->getMedia('avatars')->first()->getFullUrl()
                     : config(
@@ -35,9 +37,15 @@ class AuthorResource extends JsonResource
                 'follower'              => auth()->guard('api')->id() || Auth::check() ? $this->isFollowedBy(
                     auth()->guard('api')->id() ?? Auth::user()->id
                 ) : false,
-                'github_url'            => $this->github_url,
+                'website'               => $this->website,
+                'twitter'               => $this->twitter,
+                'github'                => $this->github,
+                'twitch'                => $this->twitch,
+                'telegram'              => $this->telegram,
+                'youtube'               => $this->youtube,
                 'user_followings_count' => $this->followings_count,
                 'user_followers_count'  => $this->followers_count,
+                'created_at'            => $this->created_at,
             ],
             'relationships' => new AuthorRelationshipResource($this),
             'links'         => [

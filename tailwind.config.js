@@ -69,7 +69,8 @@ module.exports = {
                 DEFAULT: '#222226',
             },
             wall: '#f4f4f4',
-            footer: '#242729',
+            footer: '#111',
+            fbtop: '#333',
             dwall: '#141618',
             dpaper: '#1d2023',
             afooter: '#f9f9fb',
@@ -88,7 +89,10 @@ module.exports = {
         },
     },
     variants: {
-        extend: {},
+        extend: {
+            display: ['dark'],
+            borderWidth: ['hover']
+        },
     },
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
 }
