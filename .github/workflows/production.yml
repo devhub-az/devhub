@@ -47,6 +47,12 @@ jobs:
 
             -   name: Docker up
                 run: make docker-up
+            
+            -   name: Composer update
+                run: make composer-update
+        
+            -   name: Yarn install
+                run: make yarn-install
 
             -   name: Copy .env
                 run: make env
