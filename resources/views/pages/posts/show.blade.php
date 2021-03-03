@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     <div class="flex flex-wrap px-4 h-10 items-center">
-                        @if($post->relationships->author->data->attributes->github_url)
+                        @if($post->relationships->author->data->attributes->github)
                             <a href="#"
                                class="py-1.5 mr-2 font-medium text-sm text-blue-light hover:text-blue-dark dark:text-gray-400">
                                 Github

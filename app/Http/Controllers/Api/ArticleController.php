@@ -24,20 +24,7 @@ class ArticleController extends Controller
      */
     public function index(): ArticlesResource
     {
-        $articles = Article::with(
-            [
-                'creator' => function ($query) {
-                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
-                        'articles',
-                        'followers'
-                    );
-                },
-                'comments' => function ($q) {
-                    $q->with('creator');
-                },
-                'hubs',
-            ]
-        )->withcount(
+        $articles = Article::withcount(
             'views',
         )->orderBy(
             'created_at',

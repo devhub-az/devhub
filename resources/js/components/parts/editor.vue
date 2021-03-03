@@ -26,7 +26,7 @@
                 <p class="font-medium dark:text-gray-300">Hablar</p>
             </div>
             <multiselect v-model="selected" @input="updateHubs" :options="hubs" tag-position="bottom" :custom-label='hubsName'
-                         :multiple="true" label="name" :placeholder="$t('form.select_category')"
+                         :multiple="true" label="name" :placeholder="this.trans('devhub.selectHub')"
                          track-by="name" class="transition-none">
                 <template slot="option" slot-scope="props" class="transition-none">
                     <div class="flex items-center space-x-1 transition-none">
@@ -101,69 +101,6 @@ export default {
                         class: List,
                         inlineToolbar: true,
                     },
-                },
-                i18n: {
-                    messages: {
-                        ui: {
-                            "blockTunes": {
-                                "toggler": {
-                                    "Click to tune": "Нажмите, чтобы настроить",
-                                    "or drag to move": "или перетащите"
-                                },
-                            },
-                            "inlineToolbar": {
-                                "converter": {
-                                    "Convert to": "Конвертировать в"
-                                }
-                            },
-                            "toolbar": {
-                                "toolbox": {
-                                    "Add": "Добавить"
-                                }
-                            }
-                        },
-                        toolNames: {
-                            "Text": this.$t('form.Text'),
-                            "Heading": this.$t('form.Heading'),
-                            "List": this.$t('form.List'),
-                            "Warning": this.$t('form.Warning'),
-                            "Checklist": this.$t('form.Checklist'),
-                            "Quote": this.$t('form.Quote'),
-                            "Code": this.$t('form.Code'),
-                            "Delimiter": this.$t('form.Delimiter'),
-                            "Raw HTML": this.$t('form.Raw'),
-                            "Table": this.$t('form.Table'),
-                            "Link": this.$t('form.Link'),
-                            "Marker": this.$t('form.Marker'),
-                            "Bold": this.$t('form.Bold'),
-                            "Italic": this.$t('form.Italic'),
-                            "InlineCode": this.$t('form.InlineCode'),
-                        },
-
-                        tools: {
-                            "warning": {
-                                "Title": "Название",
-                                "Message": "Сообщение",
-                            },
-                            "link": {
-                                "Add a link": "Вставьте ссылку"
-                            },
-                            "stub": {
-                                'The block can not be displayed correctly.': 'Блок не может быть отображен'
-                            }
-                        },
-                        blockTunes: {
-                            "delete": {
-                                "Delete": this.$t('form.Delete')
-                            },
-                            "moveUp": {
-                                "Move up": this.$t('form.Up')
-                            },
-                            "moveDown": {
-                                "Move down": this.$t('form.Down')
-                            }
-                        },
-                    }
                 },
             })
         }

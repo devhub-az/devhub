@@ -37,7 +37,7 @@ trait HasSlug
         return static::with(
             [
                 'creator' => function ($query) {
-                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating', 'github_url')
+                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating', 'github')
                         ->withCount(
                             'articles',
                             'followers'

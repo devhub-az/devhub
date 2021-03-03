@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title'){{ ucfirst($user->attributes->username) }} @stop
+@section('title'){{ ucfirst($author->attributes->username) }} @stop
 
 @section('main')
     {{--    TODO create js for id="app"--}}

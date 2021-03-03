@@ -5,7 +5,5 @@ import az from './az/index'
 export default {
     en,
     ru,
-    zh_cn,
-    es,
     az
 }

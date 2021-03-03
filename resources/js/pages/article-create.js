@@ -1,17 +1,7 @@
-require('./../bootstrap');
-
 let Vue = require('vue').default;
-import httpPlugin from './../scripts/http';
-import VueI18n from 'vue-i18n'
-import locales from './../lang/index'
+import httpPlugin from './../scripts/http'
 
-Vue.use(httpPlugin);
-Vue.use(VueI18n)
-
-const i18n = new VueI18n({
-    locale: 'az',
-    messages: locales
-})
+Vue.use(httpPlugin)
 
 try {
     window.Popper = require('popper.js').default;
@@ -19,6 +9,7 @@ try {
 
 Vue.component('editor', require('./../components/parts/editor').default);
 
-new Vue({
-    i18n,
-}).$mount('#app');
+import _ from 'lodash';
+Vue.prototype.trans = string => _.get(window.i18n, string);
+
+new Vue().$mount('#app');

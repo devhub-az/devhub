@@ -97,16 +97,15 @@ Route::prefix('authors')->group(
         Route::get('/', [AuthorController::class, 'userList'])->name('users-list');
         Route::post('{profileId}/follow', [ProfileController::class, 'follow']);
 //        TODO: ADD LINK FAVORITE (ProfileController)
-
-        Route::prefix('@{username}')->group(
-            static function () {
-                Route::get('posts', [AuthorController::class, 'showPosts'])->name('user_posts');
-                Route::get('/', [AuthorController::class, 'showInfo'])->name('user_info');
-                Route::get('followers', [AuthorController::class, 'showFollowers'])->name('user_followers');
-                Route::get('followings', [AuthorController::class, 'showFollowings'])->name('user_followings');
-                Route::get('favorites', [ProfileController::class, 'favorites']);
-            }
-        );
+    }
+);
+Route::prefix('@{username}')->group(
+    static function () {
+        Route::get('articles', [AuthorController::class, 'showArticles'])->name('user_articles');
+        Route::get('/', [AuthorController::class, 'showInfo'])->name('user_info');
+        Route::get('followers', [AuthorController::class, 'showFollowers'])->name('user_followers');
+        Route::get('followings', [AuthorController::class, 'showFollowings'])->name('user_followings');
+        Route::get('favorites', [ProfileController::class, 'favorites']);
     }
 );
 

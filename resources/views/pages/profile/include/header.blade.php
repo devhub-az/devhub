@@ -1,11 +1,11 @@
 <div class="border dark:border-gray-700 xs:border-none xs:shadow-none mb-2 bg-white dark:bg-dpaper ">
     <div class="relative bg-cover bg-center p-4">
         <div class="flex justify-between">
-            <div class="flex">
+            <div class="flex space-x-2">
                 <img class="rounded xs:h-16 xs:w-16 w-16 h-16 object-cover"
                      src="{{ $author->attributes->avatar }}"
                      alt="Profile image">
-                <div class="ml-2">
+                <div>
                     <div class="text-2xl text-shadow dark:text-gray-300 xs:text-base flex items-center mb-2">
                         <p>{{ $author->attributes->name ?? '' }}
                             {{ $author->attributes->surname ?? '' }}
@@ -27,9 +27,7 @@
                         @can(App\Policies\AuthorPolicy::FOLLOW, $user)
                             <user-follow
                                 :id="'{{ $author->id }}'"
-                                @auth
                                 :follow_check="'{{ $author->attributes->follower }}'"
-                                @endauth
                             ></user-follow>
                         @else
                             <a href="{{ route('profile-settings') }}" class="btn-outline h-7">Изменить</a>
@@ -43,6 +41,29 @@
                         ></user-follow>
                     @endauth
                 </div>
+            </div>
+        </div>
+        <div class="flex items-center space-x-2 mt-2">
+            <div class="flex items-center space-x-2">
+                <a target="_blank" class="text-xl" title="Github"
+                   href="https://github.com/{{ $author->attributes->github }}">
+                    <span id="trans-none" class="iconify dark:text-gray-400 dark:hover:text-gray-300" data-icon="ant-design:github-filled"
+                          data-inline="false"></span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-2">
+                <a target="_blank" class="text-xl" title="Вебсайт"
+                   href="{{ $author->attributes->website }}">
+                    <span id="trans-none" class="iconify dark:text-gray-400 dark:hover:text-gray-300" data-icon="akar-icons:link-chain"
+                          data-inline="false"></span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-2">
+                <a target="_blank" class="text-xl" title="Твиттер"
+                   href="https://twitter.com/{{ $author->attributes->twitter }}">
+                    <span id="trans-none" class="iconify dark:text-gray-400 dark:hover:text-gray-300" data-icon="akar-icons:twitter-fill"
+                          data-inline="false"></span>
+                </a>
             </div>
         </div>
     </div>

@@ -78,7 +78,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'remember_token',
         'type',
         'github_id',
-        'github_url',
+        'github',
         'website',
         'description',
         'status',
@@ -180,6 +180,6 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public static function findByUsername(string $username): self
     {
-        return static::where('username', $username)->firstOrFail();
+        return static::withCount(['followers', 'followings', 'articles'])->where('username', $username)->firstOrFail();
     }
 }

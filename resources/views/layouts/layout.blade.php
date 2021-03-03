@@ -42,7 +42,7 @@
 
 <div class="bg-cerulean-500 w-full">
     <div class="text-center mx-auto my-1">
-        <a href="https://github.com/hose1021/DevHub" target="_blank" class="text-white">
+        <a href="https://github.com/hose1021/DevHub" rel="noreferrer" target="_blank" class="text-white">
             DevHub-ın davamlı inkişafını dəstəkləyin →
         </a>
     </div>

@@ -15,6 +15,16 @@
                         </h3>
                     </div>
                     <div class="dark:bg-dpaper">
+                        @if ($author->attributes->description)
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                                    О себе
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
+                                    {{ $author->attributes->description }}
+                                </dd>
+                            </div>
+                        @endif
                         <div class="flex xs:block">
                             <div class="w-1/2">
                                 <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -53,16 +63,6 @@
                                 </div>
                             </div>
                         </div>
-                        @if ($author->attributes->description)
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                                    О себе
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
-                                    {{ $author->attributes->description }}
-                                </dd>
-                            </div>
-                        @endif
                         @if ($author->attributes->github || $author->attributes->website || $author->attributes->twitch || $author->attributes->telegram || $author->attributes->youtube || $author->attributes->twitter)
                             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">

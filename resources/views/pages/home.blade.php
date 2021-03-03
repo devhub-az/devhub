@@ -90,13 +90,13 @@
                                                         class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
                                                 @endif
                                             </div>
-                                            <div>
+                                            <div class="">
                                                 <a href="{{ route('user_info', $author->username) }}"
-                                                   class="font-semibold text-sm align-text-top dark:text-gray-300">
+                                                   class="font-semibold text-sm align-text-top dark:text-gray-300 leading-3">
                                                     {{ $author->name ?? $author->username }}
                                                 </a>
-                                                <p class="text-xs dark:text-gray-400">
-                                                    Qoşulub {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
+                                                <p class="text-xs dark:text-gray-400 leading-3">
+                                                    Присоединился {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
                                                 </p>
                                             </div>
                                         </div>
