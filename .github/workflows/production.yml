@@ -44,6 +44,30 @@ jobs:
 
             -   name: Build
                 run: make build
+                
+            -   name: Docker build
+                run: make docker-build
+        
+            -   name: Composer update
+                run: make composer-update
+
+            -   name: Yarn install
+                run: make yarn-install
+
+            -   name: Docker up
+                run: make docker-up
+
+            -   name: Copy .env
+                run: make env
+
+            -   name: Generate key
+                run: make key
+
+            -   name: Storage link create
+                run: make storage
+
+            -   name: Generate passport
+                run: make passport
 
             -   name: Push build
                 run: make push
