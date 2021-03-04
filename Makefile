@@ -3,9 +3,6 @@ up: composer-update docker-up yarn-watch
 down: docker-down
 restart: down up
 
-HOST=5.53.124.236
-REGISTRY=docker.pkg.github.com/hose1021/devhub
-
 docker-up:
 	docker-compose up -d
 
@@ -63,6 +60,11 @@ migrate-fresh:
 try-build:
 	REGISTRY=127.0.0.1 IMAGE_TAG=0 make build
 
+push-build-cache: push-build-cache-develop
+
+push-build-cache-develop:
+	docker push ${REGISTRY}/devhub:cache
+
 build: build-devhub
 
 build-devhub:
@@ -72,13 +74,6 @@ build-devhub:
             --tag ${REGISTRY}/devhub:${IMAGE_TAG} \
             --file .docker/production/php/Dockerfile .
 
-build-devhub-nginx:
-	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
-            --cache-from ${REGISTRY}/devhub_nginx:cache \
-            --tag ${REGISTRY}/devhub_nginx:cache \
-            --tag ${REGISTRY}/devhub_nginx:${IMAGE_TAG} \
-            --file .docker/production/nginx/Dockerfile .
-
 push:
 	docker-compose push
 
@@ -86,11 +81,12 @@ deploy:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -rf devhub'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'mkdir devhub'
 	scp -o StrictHostKeyChecking=no docker-compose-production.yml deploy@${HOST}:devhub/docker-compose.yml
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "COMPOSE_PROJECT_NAME=devhub" >> .env'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "REGISTRY=${REGISTRY}" >> .env'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=cache" >> .env'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose pull'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose run php .docker/production/common/wait-for-it mysql:3306 -t 60'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose run php php artisan migrate'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --remove-orphans -d'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose run php ./.docker/production/common/wait-for-it mysql:3306 -t 60'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose run php php artisan migrate'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f devhub-cache'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr devhub devhub-cache'

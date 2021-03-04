@@ -39,7 +39,7 @@ services:
       - devhub
 
   php:
-    image: ${REGISTRY:-localhost}/devhub:cache
+    image: ${REGISTRY:-localhost}/devhub:${IMAGE_TAG}
     restart: always
     container_name: php
     volumes:
