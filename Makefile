@@ -65,6 +65,9 @@ push-build-cache: push-build-cache-develop
 push-build-cache-develop:
 	docker push ${REGISTRY}/devhub:cache
 
+docker-down-clear:
+ 	COMPOSE_PROJECT_NAME=devhub docker-compose -f docker-compose.yml down -v --remove-orphans
+
 build: build-devhub
 
 build-devhub:
