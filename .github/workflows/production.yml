@@ -44,6 +44,9 @@ jobs:
 
             -   name: Build
                 run: make build
+                
+            -   name: Push build cache images
+                run: make push-build-cache
 
             -   name: Docker up
                 run: make docker-up
