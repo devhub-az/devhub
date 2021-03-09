@@ -1,10 +1,14 @@
 init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport migrate
 up: docker-up
 down: docker-down
+prod: docker-up-prod
 restart: down up
 
 docker-up:
 	docker-compose up -d
+
+docker-up-prod:
+	IMAGE_TAG=cache docker-compose -f docker-compose-production.yml up -d
 
 docker-down:
 	docker-compose down --remove-orphans
