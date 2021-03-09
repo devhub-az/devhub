@@ -12,10 +12,10 @@ services:
     volumes:
       - ./:/var/www/
       - ./.docker/develop/logs/nginx:/var/log/nginx/
+      - ./.docker/develop/nginx:/etc/nginx/conf.d/
     depends_on:
       - php
       - mysql
-      - mailhog
     networks:
       - devhub
 
@@ -37,15 +37,6 @@ services:
     networks:
       - devhub
 
-  mailhog:
-    image: mailhog/mailhog
-    container_name: mailhog
-    ports:
-      - "1025:1025"
-      - "8025:8025"
-    networks:
-      - devhub
-
   php:
     image: ${REGISTRY:-localhost}/devhub:cache
     build:
@@ -55,8 +46,9 @@ services:
         - ${REGISTRY:-localhost}/devhub:cache
     container_name: php
     volumes:
-      - ./:/var/www
+      - ./:/var/www/
     ports:
       - "9000:9000"
+#    command: sh -c 'wait-for-it api-postgres:5432 -t 60 && php bin/app.php migrations:migrate --no-interaction'
     networks:
       - devhub

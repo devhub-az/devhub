@@ -28,7 +28,7 @@
     }
 
     .input {
-        @apply w-full px-2 h-10 resize-none rounded border-gray-300 text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:focus:ring-cerulean-500 dark:bg-dpaper focus:ring-cerulean-500 focus:outline-none
+        @apply w-full px-2 h-10 resize-none rounded border-gray-300 text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:bg-dpaper focus:outline-none
     }
 
     .textarea{
@@ -40,7 +40,7 @@
     }
 
     .btn{
-        @apply cursor-pointer border xs:w-full focus:outline-none border-cerulean-100 text-sm rounded h-9 items-center inline-flex px-3 text-white bg-cerulean-100 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-300 hover:border-cerulean-300 dark:hover:border-cerulean-600
+        @apply cursor-pointer border xs:w-full focus:outline-none border-cerulean-100 text-sm rounded h-9 items-center inline-flex px-3 text-white bg-cerulean-100 dark:text-gray-200 hover:bg-cerulean-300 dark:hover:bg-cerulean-300
     }
 
     .btn-outline{

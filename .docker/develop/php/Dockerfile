@@ -1,25 +1,25 @@
 FROM php:8.0-fpm-alpine
 
-WORKDIR /var/www
-
 # Install dependencies
-RUN apk update && apk add --no-cache zip libzip-dev make
+RUN apk update && apk add --no-cache \
+    zip \
+    libzip-dev \
+    mysql-client \
+    make \
+    bash \
+    nano
 
 ## Install extensions
 RUN docker-php-ext-install zip pdo_mysql exif
 
-RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
+RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 COPY ./.docker/develop/php/local.ini $PHP_INI_DIR/conf.d
 
-# Folders chmod
-COPY --chown=www-data:www-data . /var/www/
+COPY .docker/common/wait-for-it.sh /usr/local/bin/wait-for-it
+RUN chmod 555 /usr/local/bin/wait-for-it
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
-
-RUN composer install
-
-RUN rm -rf /root/.composer/cache
 
 # Install node js
 RUN apk add --no-cache --update nodejs npm
@@ -27,10 +27,4 @@ RUN apk add --no-cache --update nodejs npm
 # Install yarn
 RUN npm --global install yarn
 
-RUN yarn install && yarn cache clean
-
-RUN yarn prod
-
-COPY ./.docker/develop/php/Makefile ./Makefile
-
-RUN make install
+WORKDIR /var/www

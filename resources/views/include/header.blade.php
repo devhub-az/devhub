@@ -44,6 +44,15 @@
                 </li>
             </ul>
         </div>
+{{--        <div class="fixed w-full h-screen top-0 bottom-0 left-0 z-40 bg-gray-700 bg-opacity-40">--}}
+{{--            <div class="absolute w-8/12 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="top:15%">--}}
+{{--                <span--}}
+{{--                    class="absolute text-gray-500 top-3.5 text-xl left-4 iconify mr-2 text-base transform -translate-y-1/2"--}}
+{{--                    data-icon="fluent:search-24-regular" data-inline="false"></span>--}}
+{{--                <input type="text"--}}
+{{--                       class="input w-full rounded-t focus:outline-none focus:ring-0 hover:border-none border-none px-12 h-12">--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <form id="form_search" action="/search-result" class="flex-1 absolute relative w-full items-center hidden"
               accept-charset="UTF-8" method="POST">
             @csrf
@@ -62,10 +71,16 @@
             </div>
         </form>
         <div class="grid xs:flex grid-flow-col space-x-4 text-xl xs:text-2xl xs:pr-2 items-center">
+{{--            <button id="s"--}}
+{{--                    class="flex items-center bg-gray-50 border rounded text-sm leading-3 px-2 py-1 text-gray-600 border-gray-300 focus:outline-none">--}}
+{{--                <span class="iconify mr-2 text-base" data-icon="fluent:search-24-regular" data-inline="false"></span>--}}
+{{--                Search Community--}}
+{{--            </button>--}}
             <span id="search-icon" class="iconify m-auto sm:text-2xl cursor-pointer text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100 transition-none"
                   data-icon="mdi-magnify"></span>
             @guest
-                <a href="/login" class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100">
+                <a href="/login"
+                   class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100">
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
                 <div class="flex items-center space-x-2">

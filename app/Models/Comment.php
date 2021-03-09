@@ -3,10 +3,16 @@
 namespace App\Models;
 
 use App\Helpers\HasAuthor;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
+/**
+ * Class User.
+ *
+ * @mixin Eloquent
+ */
 final class Comment extends Model
 {
     use HasAuthor;

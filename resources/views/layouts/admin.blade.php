@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ App::getLocale() }}">
 <head>
-{{--    @include('layouts._iubenda')--}}
-
     @include('include.meta')
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
     <meta name="theme-color" content="#ffffff">

@@ -1,5 +1,5 @@
 init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport migrate
-up: composer-update docker-up yarn-watch
+up: docker-up
 down: docker-down
 restart: down up
 
@@ -58,7 +58,7 @@ migrate-fresh:
 	docker-compose run --rm php php artisan migrate:fresh --seed
 
 try-build:
-	REGISTRY=127.0.0.1 IMAGE_TAG=0 make build
+	REGISTRY=localhost IMAGE_TAG=0 make build
 
 push-build-cache: push-build-cache-develop
 

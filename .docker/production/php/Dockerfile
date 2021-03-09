@@ -1,35 +1,38 @@
+FROM node:15-alpine as builder
+
+WORKDIR /app
+
+COPY ./package.json ./yarn.lock ./
+RUN yarn install && yarn cache clean
+
+COPY ./ ./
+
+RUN yarn prod
+
 FROM php:8.0-fpm-alpine
 
-WORKDIR /var/www
-
 # Install dependencies
-RUN apk update && apk add --no-cache zip libzip-dev make
+RUN apk update && apk add --no-cache zip mysql-client libzip-dev make nano parallel
 
 ## Install extensions
 RUN docker-php-ext-install zip pdo_mysql exif
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 
-# Folders chmod
-COPY --chown=www-data:www-data . /var/www/
+WORKDIR /var/www
+
+COPY ./ ./
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
 
-RUN composer install
+# Install packages
+RUN composer install --no-dev
 
 RUN rm -rf /root/.composer/cache
 
-# Install node js
-RUN apk add --no-cache --update nodejs npm
+COPY --from=builder /app/public ./public
 
-# Install yarn
-RUN npm --global install yarn
-
-RUN yarn install && yarn cache clean
-
-RUN yarn prod
-
-COPY ./.docker/production/php/Makefile ./Makefile
+COPY .docker/production/php/Makefile ./Makefile
 
 RUN make install

@@ -3,79 +3,81 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="flex-grow p-6 overflow-auto bg-gray-800">
-        <div class="bg-gray-800 w-full pb-6">
+    <div class="flex-grow p-6 overflow-auto bg-gray-100 space-y-4">
+        <div class="w-full pb-6">
             <div class="flex space-x-4 mx-auto w-full">
                 <div class="w-full lg:w-1/4">
                     <div
-                        class="widget w-full p-4 rounded-lg bg-gray-900 border border-gray-800 dark:bg-gray-900 dark:border-gray-800">
+                        class="w-full p-4 rounded-lg border border-gray-300">
                         <div class="flex flex-row items-center justify-between">
                             <div class="flex flex-col">
-                                <div class="text-xs uppercase text-gray-500">
+                                <div class="text-xs uppercase">
                                     Пользователей
                                     <span
-                                        class="text-green-500 text-sm font-semibold ml-1">+{{ $newUsers }}</span>
+                                        class="text-green-500 text-sm font-semibold ml-1">{{ $newUsers === 0 ? '' : '+ ' . $newUsers }}</span>
                                 </div>
                                 <div class="text-xl font-bold">
                                     {{ $users->count() }}
                                 </div>
                             </div>
-                            <span class="iconify text-3xl text-gray-500" data-icon="mi:users"
+                            <span class="iconify text-3xl" data-icon="mi:users"
                                   data-inline="false"></span>
                         </div>
                     </div>
                 </div>
                 <div class="w-full lg:w-1/4">
                     <div
-                        class="widget w-full p-4 rounded-lg bg-gray-900 border border-gray-800 dark:bg-gray-900 dark:border-gray-800">
+                        class="w-full p-4 rounded-lg border border-gray-300">
                         <div class="flex flex-row items-center justify-between">
                             <div class="flex flex-col">
-                                <div class="text-xs uppercase text-gray-500">
+                                <div class="text-xs uppercase">
                                     Постов
                                     <span
-                                        class="text-green-500 text-sm font-semibold ml-1">+{{ $newArticles }}</span>
+                                        class="text-green-500 text-sm font-semibold ml-1">{{ $newArticles === 0 ? '' : '+ ' . $newArticles }}</span>
                                 </div>
                                 <div class="text-xl font-bold">
                                     {{ $articles->count() }}
                                 </div>
                             </div>
-                            <span class="iconify text-3xl text-gray-500"
+                            <span class="iconify text-3xl"
                                   data-icon="mdi:newspaper-variant-multiple-outline" data-inline="false"></span>
                         </div>
                     </div>
                 </div>
                 <div class="w-full lg:w-1/4">
                     <div
-                        class="widget w-full p-4 rounded-lg bg-gray-900 border border-gray-800 dark:bg-gray-900 dark:border-gray-800">
+                        class="w-full p-4 rounded-lg border border-gray-300">
                         <div class="flex flex-row items-center justify-between">
                             <div class="flex flex-col">
-                                <div class="text-xs uppercase text-gray-500">
+                                <div class="text-xs uppercase">
                                     Просмотров
                                     <span
-                                        class="text-green-500 text-sm font-semibold ml-1">+{{ $newViews }}</span>
+                                        class="text-green-500 text-sm font-semibold ml-1">{{ $newViews === 0 ? '' : '+ ' . $newViews }}</span>
                                 </div>
                                 <div class="text-xl font-bold">
                                     {{ $views->count() }}
                                 </div>
                             </div>
-                            <span class="iconify text-3xl text-gray-500"
+                            <span class="iconify text-3xl"
                                   data-icon="mdi-eye-outline" data-inline="false"></span>
                         </div>
                     </div>
                 </div>
                 <div class="w-full lg:w-1/4">
                     <div
-                        class="widget w-full p-4 rounded-lg bg-gray-900 border border-gray-800 dark:bg-gray-900 dark:border-gray-800">
+                        class="w-full p-4 rounded-lg border border-gray-300">
                         <div class="flex flex-row items-center justify-between">
                             <div class="flex flex-col">
-                                <div class="text-xs uppercase text-gray-500">
+                                <div class="text-xs uppercase">
                                     Комментариев
+                                    <span
+                                        class="text-green-500 text-sm font-semibold ml-1">{{ $newComments === 0 ? '' : '+ ' . $newComments }}</span>
                                 </div>
                                 <div class="text-xl font-bold">
-                                    999
+                                    {{ $comments->count() }}
                                 </div>
                             </div>
-                            <span class="iconify text-3xl text-gray-500"
+                            <span class="iconify text-3xl"
                                   data-icon="bx:bx-comment-detail"></span>
                         </div>
                     </div>
@@ -83,48 +85,42 @@
             </div>
         </div>
         <div>
-            <p class="text-xl mb-2">Пользователи</p>
-            <table class="min-w-full divide-y rounded border border-gray-700 divide-gray-700">
-                <thead class="bg-gray-900">
+            <p class="text-xl font-semibold mb-2">Пользователи</p>
+            <table class="min-w-full divide-y rounded border border-gray-300 divide-gray-300 shadow">
+                <thead class="bg-gray-200 rounded">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Имя
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Эмейл
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Активность
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Присоединился
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                         Статус
                     </th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"></th>
+                    <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider"></th>
                 </tr>
                 </thead>
-                <tbody class="bg-gray-800 divide-y divide-gray-700">
+                <tbody class="divide-y divide-gray-700 bg-white hover:bg-gray-200">
                 @foreach ($users as $user)
-                    <tr class="hover:bg-gray-700 text-sm">
-                        <td class="flex inline-flex items-center space-x-4 px-6 py-4 whitespace-normal">
-                            <div>
-                                <img
-                                    src="{{($user->avatar !== 'default') ? '' . $user->avatar : config('devhub.default_avatar') }}"
-                                    alt=""
-                                    class="mr-1 md:mr-2 md:inline-block h-12 w-12 rounded object-cover">
-                            </div>
+                    <tr class="text-sm">
+                        <td class="flex inline-flex items-center space-x-2 px-6 py-4 whitespace-normal">
+                            <img
+                                src="{{ ($user->avatar !== 'default') ? $user->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
+                                alt="{{ __('devhub.authorLogo') }}"
+                                class="md:inline-block h-8 w-8 rounded object-cover">
                             <div class="w-40">
                                 <p class="text-sm">
                                     {{ $user->name }}
                                 </p>
                                 <p class="md:hidden text-xs text-gray-600 font-medium">{{ '@' . $user->username }}</p>
-                                <p class="md:table-cell text-xs text-gray-500 font-medium"
-                                   title="{{$user->description}}">
-                                    {{ Str::limit(strip_tags($user->description), 30) }}
-                                </p>
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
@@ -140,7 +136,7 @@
                                 <span class=""></span>
                             @elseif ($user->isAdmin())
                                 <span
-                                    class="font-medium text-white border border-gray-700 rounded bg-red-700 px-2 py-1">Admin</span>
+                                    class="font-medium border border-red-700 rounded text-red-700 px-2 py-1">Admin</span>
                             @elseif ($user->isModerator())
                                 <span
                                     class="font-medium text-white border border-gray-700 rounded bg-cerulean-700 px-2 py-1">Moderator</span>

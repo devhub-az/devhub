@@ -8,17 +8,18 @@
             <div class="w-left xs:w-full">
                 @guest()
                     <div
-                        class="p-5 mb-4 bg-white border dark:bg-dpaper dark:border-gray-700 rounded flex justify-between xs:block">
+                        class="p-5 mb-4 border dark:border-gray-700 rounded flex justify-between xs:block"
+                        style="background: conic-gradient(from 90deg at bottom right, cyan, rebeccapurple);">
                         <div class="xs:mb-2">
                             <div class="text-2xl flex items-center space-x-1 mb-1">
                                 <span
-                                    class="text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium dark:text-green-500">Beta</span>
-                                <p class="dark:text-gray-300">DevHub'a xoş gəlmisiniz 👋</p>
+                                    class="text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium text-white">Beta</span>
+                                <p class="text-white">DevHub'a xoş gəlmisiniz 👋</p>
                             </div>
-                            <p class="dark:text-gray-400">Uğur və təcrübələrinizi öz həmkarları ilə bölüşün</p>
+                            <p class="text-white">Uğur və təcrübələrinizi öz həmkarları ilə bölüşün</p>
                         </div>
                         <a href="{{ route('register') }}"
-                           class="btn xs:block px-4 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">Qoşulmag</a>
+                           class="btn-outline xs:block px-4 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">Qoşulmag</a>
                     </div>
                 @endguest
                 <div class="mb-2 flex items-center justify-between dark:border-gray-700">

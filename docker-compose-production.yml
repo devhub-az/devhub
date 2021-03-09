@@ -9,11 +9,12 @@ services:
     image: nginx:alpine
     volumes:
       - ./../logs/nginx:/var/log/nginx/
-      - data:/var/www/
+      - public:/var/www/public
+      - storage:/var/www/storage
       - nginx:/etc/nginx/conf.d/
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
-      - "80:80"
+      - "8090:80"
     depends_on:
       - php
       - mysql
@@ -43,7 +44,8 @@ services:
     restart: always
     container_name: php
     volumes:
-    - data:/var/www/
+    - public:/var/www/public
+    - storage:/var/www/storage
     - nginx:/var/www/.docker/production/nginx/
     ports:
       - "9000:9000"
@@ -51,5 +53,6 @@ services:
       - devhub
 
 volumes:
-  data:
+  public:
+  storage:
   nginx:
