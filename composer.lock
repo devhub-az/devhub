@@ -12885,16 +12885,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.14.0",
+            "version": "1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "b70f3cfb0a3a06c2fcd3a1974d6ca7cba3204504"
+                "reference": "6db166bbfa7c7fab14b24d7b40f1677a27630bcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/b70f3cfb0a3a06c2fcd3a1974d6ca7cba3204504",
-                "reference": "b70f3cfb0a3a06c2fcd3a1974d6ca7cba3204504",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/6db166bbfa7c7fab14b24d7b40f1677a27630bcf",
+                "reference": "6db166bbfa7c7fab14b24d7b40f1677a27630bcf",
                 "shasum": ""
             },
             "require": {
@@ -12949,7 +12949,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.14.0"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.15.0"
             },
             "funding": [
                 {
@@ -12961,7 +12961,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-03-04T11:11:21+00:00"
+            "time": "2021-03-09T16:53:08+00:00"
         },
         {
             "name": "spatie/macroable",
