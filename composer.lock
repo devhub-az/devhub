@@ -10721,16 +10721,16 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v6.16.0",
+            "version": "v6.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "c0297f31b95ba6e0f0e96d3c67d882d30680c83d"
+                "reference": "a82d3dc04d07620bbddef1dae3cbc105f7ce0181"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/c0297f31b95ba6e0f0e96d3c67d882d30680c83d",
-                "reference": "c0297f31b95ba6e0f0e96d3c67d882d30680c83d",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/a82d3dc04d07620bbddef1dae3cbc105f7ce0181",
+                "reference": "a82d3dc04d07620bbddef1dae3cbc105f7ce0181",
                 "shasum": ""
             },
             "require": {
@@ -10807,7 +10807,7 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2021-02-21T04:20:45+00:00"
+            "time": "2021-03-08T02:29:54+00:00"
         },
         {
             "name": "phar-io/manifest",
