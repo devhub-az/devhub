@@ -141,7 +141,6 @@ Route::group(['prefix' => 'status'], function () {
     Route::get('ping', [StatusController::class, 'ping']);
 });
 
-
 // Localization
 Route::get('/js/lang', function () {
     if (env('APP_ENV', 'none') !== 'prod') {
