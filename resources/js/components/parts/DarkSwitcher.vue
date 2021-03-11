@@ -11,8 +11,7 @@
                 </span>
             </span>
             <span class="ml-1 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <span class="iconify transition-none dark:text-gray-300" data-icon="heroicons-outline:selector"
-                      data-inline="false"></span>
+                <span class="iconify transition-none dark:text-gray-300" data-icon="heroicons-outline:chevron-down" data-inline="false"></span>
             </span>
         </button>
         <transition name="fade">

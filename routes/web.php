@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HubController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
@@ -134,6 +135,12 @@ Route::prefix('admin')->name('admin')->group(
 //    Route::put('articles/{article_show}/pinned', [AdminArticlesController::class, 'togglePinnedStatus'])->name('.articles.pinned');
     }
 );
+
+//Devhub alive status
+Route::group(['prefix' => 'status'], function () {
+    Route::get('ping', [StatusController::class, 'ping']);
+});
+
 
 // Localization
 Route::get('/js/lang', function () {

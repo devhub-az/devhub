@@ -1,23 +1,17 @@
-<div class="border dark:border-gray-700 xs:border-none xs:shadow-none mb-2 bg-white dark:bg-dpaper ">
+<div class="border dark:border-gray-700 xs:border-none xs:shadow-none mb-2 bg-white dark:bg-dpaper rounded">
     <div class="relative bg-cover bg-center p-4">
         <div class="flex justify-between">
-            <div class="flex space-x-2">
+            <div class="flex items-start space-x-2">
                 <img class="rounded xs:h-16 xs:w-16 w-16 h-16 object-cover"
                      src="{{ $author->attributes->avatar }}"
                      alt="Profile image">
-                <div>
-                    <div class="text-2xl text-shadow dark:text-gray-300 xs:text-base flex items-center mb-2">
-                        <p>{{ $author->attributes->name ?? '' }}
-                            {{ $author->attributes->surname ?? '' }}
-                            {{ '@' . $author->attributes->username }}</p>
+                <div class="space-y-1">
+                    <div class="text-2xl text-shadow dark:text-gray-300 xs:text-base flex items-center leading-6">
+                        {{ $author->attributes->name ?? '' }}
+                        {{ $author->attributes->surname ?? '' }}
                     </div>
-                    <div class="flex items-end space-x-1 text-sm">
-                        <p class="dark:text-gray-300">{{ \Numeric::number_format_short($author->attributes->rating) }}</p>
-                        <p class="dark:text-gray-400">Рейтинг</p>
-                        <div class="dark:text-gray-300" title="{{ $author->attributes->karma }}">
-                            {{ \Numeric::number_format_short($author->attributes->karma) }}
-                        </div>
-                        <div class="dark:text-gray-400">Карма</div>
+                    <div class="text-xl text-shadow dark:text-cerulean-100 xs:text-base flex items-center">
+                        {{ '@' . $author->attributes->username }}
                     </div>
                 </div>
             </div>

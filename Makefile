@@ -93,7 +93,5 @@ deploy:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose pull'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --remove-orphans -d'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose run php ./.docker/production/common/wait-for-it mysql:3306 -t 60'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose run php php artisan migrate'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f devhub-cache'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr devhub devhub-cache'

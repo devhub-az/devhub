@@ -27,20 +27,20 @@
             <ul class="grid relative grid-flow-col font-medium text-sm gap-3 md:hidden sm:hidden xs:hidden items-center justify-center"
                 id="menu">
                 <li>
-                    <a href="{{ session('main-page') ?? route('home') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-cerulean-100' : 'text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{__('devhub.articles')}}</a>
+                    <a id="trans-none" href="{{ session('main-page') ?? route('home') }}"
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.articles')}}</a>
                 </li>
                 <li>
-                    <a href="{{ route('hubs-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-cerulean-100' : 'text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{__('devhub.hubs')}}</a>
+                    <a id="trans-none" href="{{ route('hubs-list') }}"
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.hubs')}}</a>
                 </li>
                 <li>
-                    <a href="{{ route('users-list') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('authors') || Request::is('authors/*')) ? 'text-cerulean-100' : 'text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{ __('devhub.authors') }}</a>
+                    <a id="trans-none" href="{{ route('users-list') }}"
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('authors') || Request::is('authors/*') || Request::is('@*')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.authors') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route('about') }}"
-                       class="hover:text-cerulean-500 transition {{ (Request::is('about')) ? 'text-cerulean-100' : 'text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100' }}">{{ __('devhub.about') }}</a>
+                    <a id="trans-none" href="{{ route('about') }}"
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('about')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.about') }}</a>
                 </li>
             </ul>
         </div>
@@ -90,7 +90,7 @@
                     </a>
                     <a href="{{ route('register') }}"
                        class="btn text-xs px-4 h-7 xs:hidden sm:hidden">
-                        {{ __('devhub.register') }}
+                        {{ __('devhub.connect') }}
                     </a>
                 </div>
 

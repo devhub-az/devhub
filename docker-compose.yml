@@ -33,6 +33,7 @@ services:
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
+      - ./.docker/develop/mysql/data:/var/lib/mysql/
       - ./.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - devhub

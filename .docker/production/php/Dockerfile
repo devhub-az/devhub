@@ -1,7 +1,13 @@
 FROM php:8.0-fpm-alpine
 
 # Install dependencies
-RUN apk update && apk add --no-cache zip mysql-client libzip-dev make nano parallel
+RUN apk update && apk add --no-cache \
+     zip \
+     libzip-dev \
+     mysql-client \
+     make \
+     bash \
+     nano
 
 ## Install extensions
 RUN docker-php-ext-install zip pdo_mysql exif

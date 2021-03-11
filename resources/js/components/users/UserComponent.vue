@@ -26,7 +26,7 @@
         </div>
         <div class="pb-2 relative" id="hide">
             <input type="text" placeholder="Müəllif tapmaq" v-model="search"
-                   class="block w-full p-2 border dark:text-gray-400 hover:border-cerulean-500 dark:hover:border-cerulean-700 dark:bg-gray-700 dark:focus:border-cerulean-700 dark:border-gray-700 dark:focus:outline-none dark:focus:border-transparent focus:outline-none focus:border-cerulean-500 focus:border-transparent"
+                   class="input border rounded-none"
                    @keyup.enter="searchUnit">
             <span class="iconify absolute translate-y-1/2 top-0 my-3 mr-4 cursor-pointer right-0 dark:text-gray-400"
                   data-icon="mdi-magnify" @click="searchUnit"></span>

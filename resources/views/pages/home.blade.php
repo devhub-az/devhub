@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title')Əsas səhifə@stop
+@section('title'){{ __('devhub.homePage') }}@stop
 
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4" id="app">
@@ -9,17 +9,21 @@
                 @guest()
                     <div
                         class="p-5 mb-4 border dark:border-gray-700 rounded flex justify-between xs:block"
-                        style="background: conic-gradient(from 90deg at bottom right, cyan, rebeccapurple);">
+                        style="background: linear-gradient(270deg, #356599, #346497, #336192, #315c8c, #2e5885, #2c537f, #2b507a, #2a4f78);">
                         <div class="xs:mb-2">
                             <div class="text-2xl flex items-center space-x-1 mb-1">
-                                <span
-                                    class="text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium text-white">Beta</span>
-                                <p class="text-white">DevHub'a xoş gəlmisiniz 👋</p>
+                                <p class="text-white">
+                                    <span
+                                    class="inline-block align-middle text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium">{{ __('devhub.beta') }}</span>
+                                    {{ __('devhub.welcome') }}
+                                </p>
                             </div>
-                            <p class="text-white">Uğur və təcrübələrinizi öz həmkarları ilə bölüşün</p>
+                            <p class="text-white">{{ __('devhub.welcomeText') }}</p>
                         </div>
-                        <a href="{{ route('register') }}"
-                           class="btn-outline xs:block px-4 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">Qoşulmag</a>
+                        <a id="trans-none" href="{{ route('register') }}"
+                           class="btn shadow-lg xs:block px-4 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">
+                            {{ __('devhub.connect') }}
+                        </a>
                     </div>
                 @endguest
                 <div class="mb-2 flex items-center justify-between dark:border-gray-700">
@@ -47,17 +51,17 @@
                     <div
                         class="flex pb-2 rounded sm:text-center xs:text-center">
                         <a href="{{ url('/') }}"
-                           class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 rounded-l xs:rounded-l-none dark:text-gray-300 hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('/') ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border xs:w-full px-3 rounded-l xs:rounded-l-none hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('/') ? 'border-cerulean-700 bg-cerulean-100 text-white dark:text-cerulean-200 dark:bg-cerulean-900 dark:border-cerulean-200' : 'dark:text-gray-300 dark:bg-gray-800 bg-afooter dark:border-gray-700' }}"
                            rel="nofollow" title="Günün ən yaxşı paylaşmaları">
                             {{ __('devhub.day') }}
                         </a>
                         <a href="{{ url('top/week') }}"
-                           class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border xs:w-full px-3 xs:rounded-l-none hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('top/week')  ? 'border-cerulean-700 bg-cerulean-100 text-white dark:text-cerulean-200 dark:bg-cerulean-900 dark:border-cerulean-200' : 'dark:text-gray-300 dark:bg-gray-800 bg-afooter dark:border-gray-700' }}"
                            rel="nofollow" title="Həftənin ən yaxşı paylaşmaları">
                             {{ __('devhub.week') }}
                         </a>
                         <a href="{{ url('top/month') }}"
-                           class="border xs:w-full px-3 bg-afooter dark:bg-gray-800 rounded-r xs:rounded-r-none hover:border-cerulean-700 dark:hover:border-cerulean-200 dark:text-gray-300 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 dark:border-cerulean-200' : 'dark:border-gray-700' }}"
+                           class="border xs:w-full px-3 rounded-r xs:rounded-l-none hover:border-cerulean-700 dark:hover:border-cerulean-200 {{ Request::url() === url('top/month')  ? 'border-cerulean-700 bg-cerulean-100 text-white dark:text-cerulean-200 dark:bg-cerulean-900 dark:border-cerulean-200' : 'dark:text-gray-300 dark:bg-gray-800 bg-afooter dark:border-gray-700' }}"
                            rel="nofollow" title="Ayın ən yaxşı paylaşmaları">
                             {{ __('devhub.month') }}
                         </a>
@@ -75,7 +79,7 @@
                     @if ($lastAuthors->count() > 0)
                         <div>
                             <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
-                                {{ __('devhub.connected') }}
+                                {{ __('devhub.connectedToDevHub') }}
                             </p>
                             <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                                 <div
@@ -97,7 +101,7 @@
                                                     {{ $author->name ?? $author->username }}
                                                 </a>
                                                 <p class="text-xs dark:text-gray-400 leading-3">
-                                                    Присоединился {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
+                                                    {{ __('devhub.connected') }} {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
                                                 </p>
                                             </div>
                                         </div>
@@ -113,21 +117,23 @@
                             </p>
                             <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                                 <div
-                                    class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
+                                    class="flex flex-col rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
                                     @foreach ($top_followed_hubs as $hub)
-                                        <a href="{{ '/hubs/' . $hub->slug }}" class="flex gap-3">
-                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
-                                                 alt="hub image" class="w-12 h-12 rounded">
-                                            <div>
-                                                <p class="font-semibold dark:text-gray-300 leading-5">
-                                                    {{ $hub->name }}
-                                                </p>
-                                                <div
-                                                    class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
-                                                    <span class="iconify" data-icon="mdi:account-group-outline"
-                                                          data-inline="false"></span>
-                                                    <p>İzləyicilər {{ $hub->favorites_count ?? '' }}</p>
+                                        <a href="{{ '/hubs/' . $hub->slug }}">
+                                            <div class="flex items-center gap-2">
+                                                <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
+                                                     alt="hub image" class="w-12 h-12 rounded">
+                                                <div>
+                                                    <span class="inline-block font-semibold dark:text-gray-300 leading-5">
+                                                        {{ $hub->name }}
+                                                    </span>
                                                 </div>
+                                            </div>
+                                            <div
+                                                class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
+                                                <span class="iconify" data-icon="mdi:account-group-outline"
+                                                      data-inline="false"></span>
+                                                <p>{{ __('devhub.followers') }}: {{ $hub->favorites_count ?? '' }}</p>
                                             </div>
                                         </a>
                                     @endforeach
@@ -145,7 +151,7 @@
                             </div>
                             <p class="text-sm dark:text-gray-300">{{ __('devhub.followTelegramChannel') }}</p>
                         </div>
-                        <span class="iconify w-20 h-20 rounded-full dark:bg-white" style="color: #0088cc;"
+                        <span class="iconify w-16 h-16 rounded-full dark:bg-white" style="color: #0088cc;"
                               data-icon="cib:telegram"
                               data-inline="false"></span>
                     </a>

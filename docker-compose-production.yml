@@ -9,12 +9,11 @@ services:
     image: nginx:alpine
     volumes:
       - ./../logs/nginx:/var/log/nginx/
-      - public:/var/www/public
-      - storage:/var/www/storage
+      - devhub:/var/www/
       - nginx:/etc/nginx/conf.d/
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
-      - "8090:80"
+      - "80:80"
     depends_on:
       - php
       - mysql
@@ -28,6 +27,8 @@ services:
     tty: true
 #    volumes:
 #      - ./.docker/production/mysql/my.cnf:/etc/mysql/my.cnf
+    volumes:
+      - ./../data:/var/lib/mysql/
     ports:
       - '${FORWARD_DB_PORT:-4306}:3306'
     environment:
@@ -44,8 +45,7 @@ services:
     restart: always
     container_name: php
     volumes:
-    - public:/var/www/public
-    - storage:/var/www/storage
+    - devhub:/var/www/
     - nginx:/var/www/.docker/production/nginx/
     ports:
       - "9000:9000"
@@ -53,6 +53,5 @@ services:
       - devhub
 
 volumes:
-  public:
-  storage:
+  devhub:
   nginx:

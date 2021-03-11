@@ -5,14 +5,14 @@
                 class="relative w-full bg-white border dark:bg-dpaper dark:border-gray-700 border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 focus:border-none sm:text-sm">
             <span class="flex items-center">
                 <span class="iconify transition-none "
-                      :class="selected.icon === 'bx:bxs-hot' ? 'text-red-400' : 'dark:text-gray-300'"
+                      :class="selected.icon === 'bx:bxs-hot' ? 'text-cerulean-400' : 'dark:text-gray-300'"
                       :data-icon="selected.icon" data-inline="false"></span>
                 <span class="ml-1 block truncate text-black dark:text-gray-300">
                     {{ selected.name }}
                 </span>
             </span>
             <span class="ml-1 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                <span class="iconify transition-none dark:text-gray-300" data-icon="heroicons-outline:selector" data-inline="false"></span>
+                <span class="iconify transition-none dark:text-gray-300" data-icon="heroicons-outline:chevron-down" data-inline="false"></span>
             </span>
         </button>
         <transition name="fade">
