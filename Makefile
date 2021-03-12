@@ -96,5 +96,3 @@ deploy:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose pull'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --remove-orphans -d'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f devhub-latest'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr devhub devhub-latest'
