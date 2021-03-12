@@ -33,7 +33,7 @@ services:
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - ./.docker/develop/mysql/data:/var/lib/mysql/
+      - mysql:/var/lib/mysql/
       - ./.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - devhub
@@ -53,3 +53,6 @@ services:
 #    command: sh -c 'wait-for-it api-postgres:5432 -t 60 && php bin/app.php migrations:migrate --no-interaction'
     networks:
       - devhub
+
+volumes:
+  mysql:
