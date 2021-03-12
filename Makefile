@@ -10,6 +10,9 @@ docker-up:
 docker-up-prod:
 	IMAGE_TAG=latest docker-compose -f docker-compose-production.yml up -d
 
+docker-build-prod:
+	IMAGE_TAG=latest docker-compose -f docker-compose-production.yml build
+
 docker-down:
 	docker-compose down --remove-orphans
 

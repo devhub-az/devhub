@@ -9,7 +9,6 @@ services:
     image: nginx:alpine
     volumes:
       - ./../logs/nginx:/var/log/nginx/
-
       - nginx:/etc/nginx/conf.d/
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
