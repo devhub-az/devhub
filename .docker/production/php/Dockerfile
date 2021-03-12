@@ -5,12 +5,16 @@ RUN apk update && apk add --no-cache \
      zip \
      libzip-dev \
      mysql-client \
+     pcre-dev ${PHPIZE_DEPS} \
      make \
      bash \
      nano
 
 ## Install extensions
 RUN docker-php-ext-install zip pdo_mysql exif
+
+RUN pecl install redis \
+    && docker-php-ext-enable redis
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 

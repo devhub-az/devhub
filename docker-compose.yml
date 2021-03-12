@@ -16,6 +16,7 @@ services:
     depends_on:
       - php
       - mysql
+      - redis
     networks:
       - devhub
 
@@ -37,6 +38,15 @@ services:
       - ./.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - devhub
+
+  redis:
+    container_name: redis
+    image: redis:6.2-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - devhub
+
 
   php:
     image: ${REGISTRY:-localhost}/devhub:cache

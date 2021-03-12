@@ -143,9 +143,6 @@ Route::group(['prefix' => 'status'], function () {
 
 // Localization
 Route::get('/js/lang', function () {
-    if (env('APP_ENV', 'none') !== 'prod') {
-        Cache::forget('lang.js');
-    }
     $strings = Cache::rememberForever('lang.js', function () {
         $lang = Session::get('locale');
 

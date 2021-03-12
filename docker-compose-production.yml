@@ -11,12 +11,14 @@ services:
     volumes:
       - public:/var/www/public:ro
       - storage:/var/www/storage/app/public:ro
+      - lang:/var/www/resource/lang:ro
       - nginx:/etc/nginx/conf.d/
     ports:
       - "80:80"
     depends_on:
       - php
       - mysql
+      - redis
     networks:
       - devhub
 
@@ -38,6 +40,14 @@ services:
     networks:
       - devhub
 
+  redis:
+    container_name: redis
+    image: redis:6.2-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - devhub
+
   php:
     container_name: php
     image: ${REGISTRY:-localhost}/devhub:${IMAGE_TAG}
@@ -46,6 +56,7 @@ services:
     - public:/var/www/public
     - storage:/var/www/storage/app/public
     - nginx:/var/www/.docker/production/nginx/
+    - lang:/var/www/resource/lang:ro
     ports:
       - "9000:9000"
     networks:
@@ -55,3 +66,4 @@ volumes:
   public:
   storage:
   nginx:
+  lang:
