@@ -8,7 +8,7 @@ docker-up:
 	docker-compose up -d
 
 docker-up-prod:
-	IMAGE_TAG=cache docker-compose -f docker-compose-production.yml up -d
+	IMAGE_TAG=latest docker-compose -f docker-compose-production.yml up -d
 
 docker-down:
 	docker-compose down --remove-orphans
@@ -62,12 +62,12 @@ migrate-fresh:
 	docker-compose run --rm php php artisan migrate:fresh --seed
 
 try-build:
-	REGISTRY=localhost IMAGE_TAG=0 make build
+	REGISTRY=hose1021 IMAGE_TAG=0 make build
 
-push-build-cache: push-build-cache-develop
+push-build-latest: push-build-latest-develop
 
-push-build-cache-develop:
-	docker push ${REGISTRY}/devhub:cache
+push-build-latest-develop:
+	docker push ${REGISTRY}/devhub:latest
 
 docker-down-clear:
  	COMPOSE_PROJECT_NAME=devhub docker-compose -f docker-compose.yml down -v --remove-orphans
@@ -76,8 +76,8 @@ build: build-devhub
 
 build-devhub:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
-            --cache-from ${REGISTRY}/devhub:cache \
-            --tag ${REGISTRY}/devhub:cache \
+            --cache-from ${REGISTRY}/devhub:latest \
+            --tag ${REGISTRY}/devhub:latest \
             --tag ${REGISTRY}/devhub:${IMAGE_TAG} \
             --file .docker/production/php/Dockerfile .
 
@@ -93,5 +93,5 @@ deploy:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose pull'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --remove-orphans -d'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f devhub-cache'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr devhub devhub-cache'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f devhub-latest'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr devhub devhub-latest'

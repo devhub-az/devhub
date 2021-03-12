@@ -9,11 +9,11 @@ services:
     image: nginx:alpine
     volumes:
       - ./../logs/nginx:/var/log/nginx/
-      - devhub:/var/www/
+
       - nginx:/etc/nginx/conf.d/
 #      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
-      - "80:80"
+      - "8090:80"
     depends_on:
       - php
       - mysql
