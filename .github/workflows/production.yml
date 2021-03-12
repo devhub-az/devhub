@@ -7,7 +7,7 @@ on:
       - develop
 
 env:
-    REGISTRY: docker.pkg.github.com/hose1021/devhub
+    REGISTRY: hose1021
     REGISTRY_HOST: docker.pkg.github.com
 
 jobs:
