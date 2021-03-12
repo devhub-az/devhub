@@ -15,13 +15,13 @@ jobs:
 
         steps:
             -   uses: actions/checkout@v2
-            
+
             -   name: Cache composer
                 uses: actions/cache@v2
                 with:
                     path: api/vendor
                     key: composer-${{ hashFiles('composer.lock') }}
-      
+
             -   name: Cache frontend yarn
                 uses: actions/cache@v2
                 with:
@@ -40,18 +40,15 @@ jobs:
             -   name: Set image tag
                 run: echo "IMAGE_TAG=${{ env.GITHUB_REF_SLUG }}-${GITHUB_RUN_NUMBER}" >> $GITHUB_ENV
 
-            -   name: Build
-                run: make build
-                
             -   name: Push build cache images
                 run: make push-build-cache
 
             -   name: Docker up
                 run: make docker-up
-            
+
             -   name: Composer update
                 run: make composer-update
-        
+
             -   name: Yarn install
                 run: make yarn-install
 
@@ -66,6 +63,9 @@ jobs:
 
             -   name: Generate passport
                 run: make passport
+
+            -   name: Build
+                run: make build
 
             -   name: Push build
                 run: make push
