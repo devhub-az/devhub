@@ -7,9 +7,11 @@ services:
   nginx:
     container_name: nginx
     image: nginx:alpine
+    restart: always
     volumes:
+      - public:/var/www/public:ro
+      - storage:/var/www/storage/app/public:ro
       - nginx:/etc/nginx/conf.d/
-#      - /etc/letsencrypt:/etc/letsencrypt:ro
     ports:
       - "80:80"
     depends_on:
@@ -19,12 +21,10 @@ services:
       - devhub
 
   mysql:
-    image: mysql:5.7
     container_name: mysql
+    image: mysql:5.7
     restart: unless-stopped
     tty: true
-#    volumes:
-#      - ./.docker/production/mysql/my.cnf:/etc/mysql/my.cnf
     volumes:
       - ./../data:/var/lib/mysql/
     ports:
@@ -39,10 +39,12 @@ services:
       - devhub
 
   php:
+    container_name: php
     image: ${REGISTRY:-localhost}/devhub:${IMAGE_TAG}
     restart: always
-    container_name: php
     volumes:
+    - public:/var/www/public
+    - storage:/var/www/storage/app/public
     - nginx:/var/www/.docker/production/nginx/
     ports:
       - "9000:9000"
@@ -50,4 +52,6 @@ services:
       - devhub
 
 volumes:
+  public:
+  storage:
   nginx:
