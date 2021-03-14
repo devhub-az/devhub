@@ -57,11 +57,11 @@
                     {'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'},
                     {'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}
                     ]"
-                                 @if (Session::get('locale') === 'az' || !Session::get('locale'))
+                                 @if (Session::get('lang') === 'az' || !Session::get('lang'))
                                  :selected="{'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'}"
-                                 @elseif (Session::get('locale') === 'ru')
+                                 @elseif (Session::get('lang') === 'ru')
                                  :selected="{'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'}"
-                                 @elseif (Session::get('locale') === 'en')
+                                 @elseif (Session::get('lang') === 'en')
                                  :selected="{'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}"
                         @endif
                     ></select-menu>

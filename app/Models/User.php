@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Jcc\LaravelVote\Vote;
+use Jcc\LaravelVote\Traits\Voter;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
@@ -29,7 +29,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use Followable;
     use InteractsWithMedia;
     use HasApiTokens;
-    use Vote;
+    use Voter;
     use Favoriter;
     use SoftDeletes;
     use HasFactory;

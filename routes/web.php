@@ -25,7 +25,7 @@ Route::get(
     'lang/{locale}',
     function ($locale) {
         if (in_array($locale, \Config::get('app.locales'))) {
-            Session::put('locale', $locale);
+            Session::put('lang', $locale);
         }
         Carbon\Carbon::setLocale(config('app.locale'));
 
@@ -137,27 +137,29 @@ Route::prefix('admin')->name('admin')->group(
 );
 
 //Devhub alive status
-Route::group(['prefix' => 'status'], function () {
-    Route::get('ping', [StatusController::class, 'ping']);
-});
+Route::group(
+    ['prefix' => 'status'],
+    function () {
+        Route::get('ping', [StatusController::class, 'ping']);
+    }
+);
 
 // Localization
-Route::get('/js/lang', function () {
-    $strings = Cache::rememberForever('lang.js', function () {
-        $lang = Session::get('locale');
+Route::get(
+    '/js/lang',
+    function () {
+        $lang = Session::get('lang');
 
-        $files = glob(resource_path('lang/'.$lang.'/*.php'));
+        $files   = glob(resource_path('lang/' . $lang . '/*.php'));
         $strings = [];
 
         foreach ($files as $file) {
-            $name = basename($file, '.php');
+            $name           = basename($file, '.php');
             $strings[$name] = require $file;
         }
 
-        return $strings;
-    });
+        header('Content-Type: text/javascript');
 
-    header('Content-Type: text/javascript');
-
-    return 'window.i18n = '.json_encode($strings).';';
-})->name('assets.lang');
+        return 'window.i18n = ' . json_encode($strings) . ';';
+    }
+)->name('assets.lang');

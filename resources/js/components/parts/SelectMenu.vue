@@ -24,7 +24,7 @@
                         <div class="flex items-center cursor-pointer px-3 hover:bg-gray-300 group" @click="ChangePage(page)"
                              v-for="page in menu">
                             <span class="iconify transition-none"
-                                  :class="page.icon === 'bx:bxs-hot' ? 'text-red-400' : 'dark:group-hover:text-black dark:text-gray-300'"
+                                  :class="page.icon === 'bx:bxs-hot' ? 'text-cerulean-400' : 'dark:group-hover:text-black dark:text-gray-300'"
                                   :data-icon="page.icon" data-inline="false"></span>
                             <span class="ml-1 block truncate dark:text-gray-300 dark:group-hover:text-black">
                                 {{ page.name }}

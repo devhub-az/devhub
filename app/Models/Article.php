@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Jcc\LaravelVote\CanBeVoted;
+use Jcc\LaravelVote\Traits\Votable;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 /**
@@ -22,7 +22,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
 final class Article extends Model
 {
     use SoftDeletes;
-    use CanBeVoted;
+    use Votable;
     use HasSlug;
     use HasAuthor;
     use HasHubs;

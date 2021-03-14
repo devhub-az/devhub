@@ -2411,19 +2411,24 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jcc/laravel-vote.git",
-                "reference": "a49eedf4e7e22f828391b62eb56c9015261fc08c"
+                "reference": "d7cc174219b93c200232ed0003e9dc7216d4a4cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jcc/laravel-vote/zipball/a49eedf4e7e22f828391b62eb56c9015261fc08c",
-                "reference": "a49eedf4e7e22f828391b62eb56c9015261fc08c",
+                "url": "https://api.github.com/repos/jcc/laravel-vote/zipball/d7cc174219b93c200232ed0003e9dc7216d4a4cc",
+                "reference": "d7cc174219b93c200232ed0003e9dc7216d4a4cc",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "laravel/framework": "^5.5|~6.0|~7.0|~8.0",
+                "php": ">=7.2",
+                "symfony/polyfill-php80": "^1.22"
             },
             "require-dev": {
-                "phpunit/phpunit": "~5.0"
+                "friendsofphp/php-cs-fixer": "^2.18",
+                "mockery/mockery": "^1.3",
+                "orchestra/testbench": "^3.5|~4.0|~5.0|~6.0",
+                "phpstan/phpstan": "^0.12.81"
             },
             "default-branch": true,
             "type": "library",
@@ -2452,9 +2457,9 @@
             "description": "The package helps you to add user based vote system to your model",
             "support": {
                 "issues": "https://github.com/jcc/laravel-vote/issues",
-                "source": "https://github.com/jcc/laravel-vote/tree/v1.1.4"
+                "source": "https://github.com/jcc/laravel-vote/tree/master"
             },
-            "time": "2018-01-11T10:01:20+00:00"
+            "time": "2021-03-14T07:29:21+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -3160,41 +3165,43 @@
         },
         {
             "name": "lcobucci/jwt",
-            "version": "4.1.2",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "c544710aa18e079baf0027ca4c8236913f46945b"
+                "reference": "b80c4876a010cd8bfa9c78de64c930bb2fc8fb9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/c544710aa18e079baf0027ca4c8236913f46945b",
-                "reference": "c544710aa18e079baf0027ca4c8236913f46945b",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/b80c4876a010cd8bfa9c78de64c930bb2fc8fb9a",
+                "reference": "b80c4876a010cd8bfa9c78de64c930bb2fc8fb9a",
                 "shasum": ""
             },
             "require": {
-                "ext-hash": "*",
-                "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-openssl": "*",
-                "ext-sodium": "*",
                 "lcobucci/clock": "^2.0",
                 "php": "^7.4 || ^8.0"
             },
             "require-dev": {
-                "infection/infection": "^0.21",
+                "infection/infection": "^0.20",
                 "lcobucci/coding-standard": "^6.0",
-                "mikey179/vfsstream": "^1.6.7",
-                "phpbench/phpbench": "^1.0@alpha",
+                "mikey179/vfsstream": "^1.6",
+                "phpbench/phpbench": "^0.17",
                 "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "^0.12",
                 "phpstan/phpstan-deprecation-rules": "^0.12",
                 "phpstan/phpstan-phpunit": "^0.12",
                 "phpstan/phpstan-strict-rules": "^0.12",
                 "phpunit/php-invoker": "^3.1",
-                "phpunit/phpunit": "^9.5"
+                "phpunit/phpunit": "^9.4"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Lcobucci\\JWT\\": "src"
@@ -3218,7 +3225,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lcobucci/jwt/issues",
-                "source": "https://github.com/lcobucci/jwt/tree/4.1.2"
+                "source": "https://github.com/lcobucci/jwt/tree/4.0.1"
             },
             "funding": [
                 {
@@ -3230,7 +3237,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-02-19T19:37:15+00:00"
+            "time": "2021-01-28T00:13:50+00:00"
         },
         {
             "name": "league/commonmark",
@@ -5235,16 +5242,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.5",
+            "version": "3.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "7c751ea006577e4c2e83326d90c8b1e8c11b8ede"
+                "reference": "906a5fafabe5e6ba51ef3dc65b2722a677908837"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/7c751ea006577e4c2e83326d90c8b1e8c11b8ede",
-                "reference": "7c751ea006577e4c2e83326d90c8b1e8c11b8ede",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/906a5fafabe5e6ba51ef3dc65b2722a677908837",
+                "reference": "906a5fafabe5e6ba51ef3dc65b2722a677908837",
                 "shasum": ""
             },
             "require": {
@@ -5326,7 +5333,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.5"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.6"
             },
             "funding": [
                 {
@@ -5342,7 +5349,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-12T16:18:16+00:00"
+            "time": "2021-03-10T13:58:31+00:00"
         },
         {
             "name": "predis/predis",
@@ -5784,16 +5791,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.10.6",
+            "version": "v0.10.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "6f990c19f91729de8b31e639d6e204ea59f19cf3"
+                "reference": "a395af46999a12006213c0c8346c9445eb31640c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/6f990c19f91729de8b31e639d6e204ea59f19cf3",
-                "reference": "6f990c19f91729de8b31e639d6e204ea59f19cf3",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/a395af46999a12006213c0c8346c9445eb31640c",
+                "reference": "a395af46999a12006213c0c8346c9445eb31640c",
                 "shasum": ""
             },
             "require": {
@@ -5854,9 +5861,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.10.6"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.10.7"
             },
-            "time": "2021-01-18T15:53:43+00:00"
+            "time": "2021-03-14T02:14:56+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -11617,12 +11624,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "635360789eae558cd66e17c9454a58cb2334e80a"
+                "reference": "43a315341710475e88006a0e55864b348d3d781c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/635360789eae558cd66e17c9454a58cb2334e80a",
-                "reference": "635360789eae558cd66e17c9454a58cb2334e80a",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/43a315341710475e88006a0e55864b348d3d781c",
+                "reference": "43a315341710475e88006a0e55864b348d3d781c",
                 "shasum": ""
             },
             "conflict": {
@@ -11682,8 +11689,9 @@
                 "ezsystems/ezplatform-admin-ui": ">=1.3,<1.3.5|>=1.4,<1.4.6",
                 "ezsystems/ezplatform-admin-ui-assets": ">=4,<4.2.1|>=5,<5.0.1|>=5.1,<5.1.1",
                 "ezsystems/ezplatform-kernel": ">=1,<1.0.2.1",
+                "ezsystems/ezplatform-rest": ">=1.2,<=1.2.2|>=1.3,<=1.3.1",
                 "ezsystems/ezplatform-user": ">=1,<1.0.1",
-                "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.14.2|>=6,<6.7.9.1|>=6.8,<6.13.6.3|>=7,<7.2.4.1|>=7.3,<7.3.2.1|>=7.5,<7.5.7.1",
+                "ezsystems/ezpublish-kernel": ">=5.3,<5.3.12.1|>=5.4,<5.4.14.2|>=6,<6.7.9.1|>=6.8,<=6.13.8|>=7,<7.2.4.1|>=7.3,<7.3.2.1|>=7.5,<=7.5.15",
                 "ezsystems/ezpublish-legacy": ">=5.3,<5.3.12.6|>=5.4,<5.4.14.2|>=2011,<2017.12.7.3|>=2018.6,<2018.6.1.4|>=2018.9,<2018.9.1.3|>=2019.3,<2019.3.5.1",
                 "ezsystems/platform-ui-assets-bundle": ">=4.2,<4.2.3",
                 "ezsystems/repository-forms": ">=2.3,<2.3.2.1",
@@ -11711,6 +11719,7 @@
                 "illuminate/database": "<6.20.14|>=7,<7.30.4|>=8,<8.24",
                 "illuminate/encryption": ">=4,<=4.0.11|>=4.1,<=4.1.31|>=4.2,<=4.2.22|>=5,<=5.0.35|>=5.1,<=5.1.46|>=5.2,<=5.2.45|>=5.3,<=5.3.31|>=5.4,<=5.4.36|>=5.5,<5.5.40|>=5.6,<5.6.15",
                 "illuminate/view": ">=7,<7.1.2",
+                "impresscms/impresscms": "<=1.4.2",
                 "ivankristianto/phpwhois": "<=4.3",
                 "james-heinrich/getid3": "<1.9.9",
                 "joomla/archive": "<1.1.10",
@@ -11786,7 +11795,7 @@
                 "sensiolabs/connect": "<4.2.3",
                 "serluck/phpwhois": "<=4.2.6",
                 "shopware/core": "<=6.3.4",
-                "shopware/platform": "<=6.3.5",
+                "shopware/platform": "<=6.3.5.1",
                 "shopware/shopware": "<5.6.9",
                 "silverstripe/admin": ">=1.0.3,<1.0.4|>=1.1,<1.1.1",
                 "silverstripe/assets": ">=1,<1.4.7|>=1.5,<1.5.2",
@@ -11938,7 +11947,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-10T22:02:36+00:00"
+            "time": "2021-03-13T00:05:05+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -12968,16 +12977,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.15.1",
+            "version": "1.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "4b2a00b3992b068ff760c25c45e389543996e25b"
+                "reference": "c25f2c2cdf3221abce3b1250cb7296721acfd2b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/4b2a00b3992b068ff760c25c45e389543996e25b",
-                "reference": "4b2a00b3992b068ff760c25c45e389543996e25b",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/c25f2c2cdf3221abce3b1250cb7296721acfd2b8",
+                "reference": "c25f2c2cdf3221abce3b1250cb7296721acfd2b8",
                 "shasum": ""
             },
             "require": {
@@ -13032,7 +13041,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.15.1"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.17.1"
             },
             "funding": [
                 {
@@ -13044,7 +13053,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-03-10T11:38:37+00:00"
+            "time": "2021-03-13T12:50:02+00:00"
         },
         {
             "name": "spatie/macroable",

@@ -1,17 +1,17 @@
 @can(App\Policies\AuthorPolicy::ADMIN, App\Models\User::class)
     @include('admin.include.adminbar')
 @endcan
-<header class="bg-white dark:bg-gray-800 sm:px-4 md:px-4" id="header">
-    <div class="flex items-center justify-between h-12 xs:h-auto lg:container mx-auto">
+<header class="bg-white dark:bg-gray-800 sm:px-4 md:px-4 xs:px-4" id="header">
+    <div class="flex items-center justify-between h-12 lg:container mx-auto">
         <div class="grid grid-flow-col xs:w-max gap-3 xs:gap-0 xs:flex">
             <div id="mobile-menu__toggler" class="block lg:hidden">
                 <button id="mobile-menu__open"
-                        class="p-2 items-center justify-center">
-                    <i class="iconify text-2xl text-gray-100" data-icon="mdi-menu"></i>
+                        class="items-center pr-2 my-auto block h-full justify-center">
+                    <i class="iconify text-2xl text-gray-600 dark:text-gray-300" data-icon="mdi-menu"></i>
                 </button>
                 <button id="mobile-menu__close"
-                        class="hidden p-2 items-center justify-center">
-                    <i class="iconify text-2xl text-gray-100" data-icon="mdi-close"></i>
+                        class="hidden pr-2 items-center my-auto block h-full justify-center">
+                    <i class="iconify text-2xl text-gray-600 dark:text-gray-300" data-icon="mdi-close"></i>
                 </button>
             </div>
 
@@ -19,9 +19,9 @@
                 <a class="pr-2 md:text-2xl items-center xs:ml-0 xs:text-2xl"
                    href="{{ session('main-page') ?? route('home') }}">
                     <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                         height="36" class="xs:h-8 dark:hidden">
+                         height="2rem" class="xs:h-8 dark:hidden">
                     <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                         height="36" class="xs:h-8 hidden dark:block">
+                         height="2rem" class="xs:h-8 hidden dark:block">
                 </a>
             </div>
             <ul class="grid relative grid-flow-col font-medium text-sm gap-3 md:hidden sm:hidden xs:hidden items-center justify-center"
@@ -58,25 +58,25 @@
             @csrf
             <div class="w-full">
                 <input id="search_input" type="text"
-                       class="relative input w-full rounded h-8 border pl-7"
+                       class="relative input w-full rounded h-8 border pl-8"
                        autocomplete="off"
                        name="search"
                        maxlength="48"
                        minlength="3" placeholder="{{ __('devhub.searchAll') }}" required="required">
-                <span class="iconify text-xl absolute left-2 translate-y-1/2 top-0 my-1.5 mr-4 dark:text-gray-700"
+                <span class="iconify text-xl absolute left-2 translate-y-1/2 top-0 my-1.5 mr-4 dark:text-gray-300"
                       data-icon="mdi-magnify"></span>
                 <span id="close-icon"
-                      class="iconify cursor-pointer text-xl absolute right-2 translate-y-1/2 top-0 my-1.5 dark:text-gray-700"
+                      class="iconify cursor-pointer text-xl absolute right-2 translate-y-1/2 top-0 my-1.5 dark:text-gray-300"
                       data-icon="bx:bx-x-circle"></span>
             </div>
         </form>
-        <div class="grid xs:flex grid-flow-col space-x-4 text-xl xs:text-2xl xs:pr-2 items-center">
+        <div class="flex xs:flex space-x-4 text-xl xs:text-2xl items-center">
 {{--            <button id="s"--}}
 {{--                    class="flex items-center bg-gray-50 border rounded text-sm leading-3 px-2 py-1 text-gray-600 border-gray-300 focus:outline-none">--}}
 {{--                <span class="iconify mr-2 text-base" data-icon="fluent:search-24-regular" data-inline="false"></span>--}}
 {{--                Search Community--}}
 {{--            </button>--}}
-            <span id="search-icon" class="iconify m-auto sm:text-2xl cursor-pointer text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100 transition-none"
+            <span id="search-icon" class="iconify m-auto text-gray-600 xs:text-2xl cursor-pointer dark:text-gray-300 transition-none"
                   data-icon="mdi-magnify"></span>
             @guest
                 <a href="/login"
@@ -100,17 +100,17 @@
                 </dropdown-notification>
                 <a href="{{ route('article.create') }}"
                    class="hover:opacity-90 xs:hidden">
-                    <i class="iconify" data-icon="topcoat:pencil"></i>
+                    <span class="iconify dark:text-gray-300" data-icon="feather:plus-square" data-inline="false"></span>
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
                     <dropdown :user="{{Auth::user()}}"
                               :avatar_url="'{{ Auth::user()->getMedia('avatars')->first()->getFullUrl() }}'"
                               :fav="'{{route("saved-posts")}}'"></dropdown>
                 </div>
-                <div class="m-auto w-6 h-6 lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
+                <div class="m-auto lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
                     <img
                         src="{{ (Auth::user()->avatar !== 'default') ? Auth::user()->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
-                        alt="{{ __('devhub.authorLogo') }}" class="w-6 h-6 rounded">
+                        alt="{{ __('devhub.authorLogo') }}" class="w-6 h-6 rounded xs:w-8 xs:h-8">
                 </div>
             @endguest
         </div>
