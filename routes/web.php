@@ -150,16 +150,16 @@ Route::get(
     function () {
         $lang = Session::get('lang');
 
-        $files   = glob(resource_path('lang/' . $lang . '/*.php'));
+        $files = glob(resource_path('lang/'.$lang.'/*.php'));
         $strings = [];
 
         foreach ($files as $file) {
-            $name           = basename($file, '.php');
+            $name = basename($file, '.php');
             $strings[$name] = require $file;
         }
 
         header('Content-Type: text/javascript');
 
-        return 'window.i18n = ' . json_encode($strings) . ';';
+        return 'window.i18n = '.json_encode($strings).';';
     }
 )->name('assets.lang');
