@@ -29,8 +29,6 @@ services:
     tty: true
     volumes:
       - ./../data:/var/lib/mysql/
-    ports:
-      - '${FORWARD_DB_PORT:-4306}:3306'
     environment:
       MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
       MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
@@ -43,8 +41,6 @@ services:
   redis:
     container_name: redis
     image: redis:6.2-alpine
-    ports:
-      - "6379:6379"
     networks:
       - devhub
 
@@ -57,8 +53,6 @@ services:
     - storage:/var/www/storage/app/public
     - nginx:/var/www/.docker/production/nginx/
     - lang:/var/www/resource/lang:ro
-    ports:
-      - "9000:9000"
     networks:
       - devhub
 
