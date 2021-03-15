@@ -11,12 +11,13 @@ RUN apk update && apk add --no-cache \
      nano
 
 ## Install extensions
-RUN docker-php-ext-install zip pdo_mysql exif
+RUN docker-php-ext-install zip pdo_mysql exif opcache
 
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
+COPY ./.docker/production/php/conf.d /usr/local/etc/php/conf.d
 
 WORKDIR /var/www
 
