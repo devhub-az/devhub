@@ -60,7 +60,6 @@ services:
       - ./:/var/www/
     ports:
       - "9000:9000"
-#    command: sh -c 'wait-for-it api-postgres:5432 -t 60 && php bin/app.php migrations:migrate --no-interaction'
     networks:
       - devhub
 

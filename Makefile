@@ -98,3 +98,4 @@ deploy:
 #	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose down'
 #	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker volume rm devhub_public'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --renew-anon-volumes --remove-orphans -d'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose pull'
