@@ -116,7 +116,7 @@
     </div>
 
     <nav id="mobile-menu__items"
-         class="hidden">
+         class="hidden lg:hidden md:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <a href="{{ session('main-page') ?? route('home') }}"
                class="{{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-white bg-cerulean-500' : 'text-gray-700 dark:text-gray-300' }} hover:text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.articles') }}</a>
@@ -130,7 +130,7 @@
     </nav>
 
     <nav id="mobile-icon__items"
-         class="hidden">
+         class="hidden lg:hidden md:hidden">
         @auth
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a

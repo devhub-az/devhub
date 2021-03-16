@@ -9,10 +9,11 @@ services:
     container_name: nginx
     ports:
       - "8090:80"
+    volumes_from:
+      - php
     volumes:
-      - ./:/var/www/
       - ./.docker/develop/logs/nginx:/var/log/nginx/
-      - ./.docker/develop/nginx:/etc/nginx/conf.d/
+      - ./.docker/develop/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - php
       - mysql
