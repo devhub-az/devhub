@@ -8,9 +8,10 @@ services:
     container_name: nginx
     image: nginx:alpine
     restart: always
-    volumes_from:
-      - php
     volumes:
+      - public:/var/www/public:ro
+      - storage:/var/www/storage/app/public:ro
+      - lang:/var/www/resource/lang:ro
       - nginx:/etc/nginx/conf.d/
     ports:
       - "80:80"
@@ -48,11 +49,15 @@ services:
     image: ${REGISTRY:-localhost}/devhub:${IMAGE_TAG}
     restart: always
     volumes:
-      - data:/var/www/
+      - public:/var/www/public
+      - storage:/var/www/storage/app/public
       - nginx:/var/www/.docker/production/nginx/
+      - lang:/var/www/resource/lang:ro
     networks:
       - devhub
 
 volumes:
+  public:
+  storage:
   nginx:
-  data:
+  lang:

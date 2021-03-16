@@ -37,8 +37,6 @@ Vue.component('pagination', require('./../components/plugins/pagination').defaul
 import _ from 'lodash';
 Vue.prototype.trans = string => _.get(window.i18n, string);
 
-console.log(Vue.prototype.trans('devhub'))
-
 new Vue({
     moment
 }).$mount('#app');
