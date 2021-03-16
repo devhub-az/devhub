@@ -2,8 +2,8 @@
     <form autocomplete="off" @submit.prevent="login" method="post" class="xs:max-w-xs w-96">
         <a href="/login/github"
            class="btn-outline border-gray-300 dark:border-gray-300 rounded-lg w-full items-center dark:text-black">
-            <div class="block mx-auto flex">
-                <span class="iconify mr-2 text-base text-gray-700" data-icon="simple-icons:github" data-inline="false"></span>
+            <div class="mx-auto flex space-x-1">
+                <span class="iconify text-base text-gray-700" data-icon="simple-icons:github" data-inline="true"></span>
                 <p class="text-gray-700">GitHub ilə daxil olmaq</p>
             </div>
         </a>

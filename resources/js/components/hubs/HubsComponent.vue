@@ -40,33 +40,35 @@
                  :src="hub.attributes.logo"
                  alt="Hub logo">
             <a :href="'/hubs/' + hub.attributes.slug" class="w-8/12">
-                <div class="flex items-center space-x-4 font-semibold dark:text-gray-300">
-                    <p>{{ hub.attributes.name }}</p>
-                    <div class="flex items-center font-normal space-x-1 xs:hidden">
-                        <div class="flex items-center">
-                            <span class="iconify text-cerulean-500 dark:text-cerulean-100"
-                                  data-icon="mdi:account-multiple-plus-outline"
-                                  data-inline="false"></span>
-                            <p class="ml-1 text-sm text-cerulean-500 dark:text-cerulean-100">
-                                <span class="xs:hidden">İzləyici</span>
-                                {{ hub.attributes.hub_followers_count }}
-                            </p>
-                        </div>
-                        <div class="flex items-center">
-                            <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
-                                  data-inline="false"></span>
-                            <p class="ml-1 text-sm"
-                               :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : ''">
-                                <span class="xs:hidden">Reyting</span>
-                                {{ hub.attributes.rating }}
-                            </p>
+                <div class="h-16 overflow-y-hidden mb-2">
+                    <div class="flex items-center space-x-4 font-semibold dark:text-gray-300">
+                        <p>{{ hub.attributes.name }}</p>
+                        <div class="flex items-center font-normal space-x-1 xs:hidden">
+                            <div class="flex items-center">
+                                <span class="iconify text-cerulean-500 dark:text-cerulean-100"
+                                      data-icon="mdi:account-multiple-plus-outline"
+                                      data-inline="false"></span>
+                                <p class="ml-1 text-sm text-cerulean-500 dark:text-cerulean-100">
+                                    <span class="xs:hidden">İzləyici</span>
+                                    {{ hub.attributes.hub_followers_count }}
+                                </p>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
+                                      data-inline="false"></span>
+                                <p class="ml-1 text-sm"
+                                   :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : ''">
+                                    <span class="xs:hidden">Reyting</span>
+                                    {{ hub.attributes.rating }}
+                                </p>
+                            </div>
                         </div>
                     </div>
+                    <p class="text-sm w-full font-light pb-2 dark:text-gray-300">
+                        {{ hub.attributes.description }}
+                    </p>
                 </div>
-                <p class="text-sm w-full font-light pb-2 xs:text-xs dark:text-gray-300">
-                    {{ hub.attributes.description }}
-                </p>
-                <div class="flex items-center text-sm space-x-2">
+                <div class="flex items-center text-sm">
                     <div class="items-center hidden xs:flex">
                         <span class="iconify text-cerulean-500 dark:text-cerulean-100"
                               data-icon="mdi:account-multiple-plus-outline"
@@ -76,11 +78,11 @@
                             {{ hub.attributes.hub_followers_count }}
                         </p>
                     </div>
-                    <div class="items-center hidden xs:flex">
+                    <div class="items-center hidden xs:flex mx-2">
                         <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
                               data-inline="false"></span>
                         <p class="ml-1 text-sm"
-                           :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : ''">
+                           :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
                             <span class="xs:hidden">Reyting</span>
                             {{ hub.attributes.rating }}
                         </p>
@@ -95,7 +97,7 @@
             </a>
             <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check"
                                @follow-status-updated="hub.attributes.follower_check = $event" :auth_check="auth_check"
-                               class="w-2/12 xs:w-auto m-auto text-center" :classes="'h-7'"/>
+                               class="w-max m-auto text-center" :classes="'h-7'"/>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>

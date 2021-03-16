@@ -37,7 +37,7 @@
             <img :src="user.attributes.avatar"
                  class="w-16 h-16 rounded" alt="User profile">
             <div class="w-6/12">
-                <a :href="'/authors/@' + user.attributes.username">
+                <a :href="'/@' + user.attributes.username">
                     <div class="font-semibold dark:text-gray-300">{{ user.attributes.name }}
                         {{ '@' + user.attributes.username }}
                     </div>

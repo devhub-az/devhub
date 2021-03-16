@@ -28,19 +28,19 @@
                 id="menu">
                 <li>
                     <a id="trans-none" href="{{ session('main-page') ?? route('home') }}"
-                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.articles')}}</a>
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.articles')}}</a>
                 </li>
                 <li>
                     <a id="trans-none" href="{{ route('hubs-list') }}"
-                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.hubs')}}</a>
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.hubs')}}</a>
                 </li>
                 <li>
                     <a id="trans-none" href="{{ route('users-list') }}"
-                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('authors') || Request::is('authors/*') || Request::is('@*')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.authors') }}</a>
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('authors') || Request::is('authors/*') || Request::is('@*')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.authors') }}</a>
                 </li>
                 <li>
                     <a id="trans-none" href="{{ route('about') }}"
-                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 transition font-semibold {{ (Request::is('about')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.about') }}</a>
+                       class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('about')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.about') }}</a>
                 </li>
             </ul>
         </div>
@@ -83,24 +83,23 @@
                    class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100">
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
-                <div class="flex items-center space-x-2">
+                <div class="flex items-center space-x-2 xs:hidden sm:hidden">
                     <a href="{{ route('login') }}"
-                       class="btn-outline text-xs px-4 h-7 xs:hidden sm:hidden">
+                       class="btn-outline text-xs px-4 h-7">
                         {{ __('devhub.login') }}
                     </a>
                     <a href="{{ route('register') }}"
-                       class="btn text-xs px-4 h-7 xs:hidden sm:hidden">
+                       class="btn text-xs px-4 h-7">
                         {{ __('devhub.connect') }}
                     </a>
                 </div>
-
             @else
                 <dropdown-notification :notifications="{{ Auth::user()->Notifications }}"
                                        :count="{{ Auth::user()->unreadNotifications->count() }}">
                 </dropdown-notification>
                 <a href="{{ route('article.create') }}"
-                   class="hover:opacity-90 xs:hidden">
-                    <span class="iconify dark:text-gray-300" data-icon="feather:plus-square" data-inline="false"></span>
+                   class="btn h-6 w-6 p-0 hover:opacity-90 xs:hidden">
+                    <span class="iconify mx-auto dark:text-white" data-icon="ant-design:plus-outlined" data-inline="false"></span>
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
                     <dropdown :user="{{Auth::user()}}"
@@ -118,15 +117,15 @@
 
     <nav id="mobile-menu__items"
          class="hidden">
-        <div class="px-2 pt-2 pb-3 space-y-1">
+        <div class="pt-2 pb-3 space-y-1">
             <a href="{{ session('main-page') ?? route('home') }}"
-               class="{{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'bg-gray-900' : '' }}  text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.articles') }}</a>
+               class="{{ (Request::is('/') || Request::is('post/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'text-white bg-cerulean-500' : 'text-gray-700 dark:text-gray-300' }} hover:text-white hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.articles') }}</a>
             <a href="{{ route('hubs-list') }}"
-               class=" {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.hubs') }}</a>
+               class=" {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'text-white bg-cerulean-500' : 'text-gray-700 dark:text-gray-300' }} hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.hubs') }}</a>
             <a href="{{ route('users-list') }}"
-               class="{{ (Request::is('users') || Request::is('users/*')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.authors') }}</a>
+               class="{{ (Request::is('users') || Request::is('users/*')) ? 'text-white bg-cerulean-500' : 'text-gray-700 dark:text-gray-300' }} hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.authors') }}</a>
             <a href="{{ route('about') }}"
-               class="{{ (Request::is('about')) ? 'bg-gray-900' : '' }} text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.about') }}</a>
+               class="{{ (Request::is('about')) ? 'text-white bg-cerulean-500' : 'text-gray-700 dark:text-gray-300' }} hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">{{ __('devhub.about') }}</a>
         </div>
     </nav>
 
@@ -146,13 +145,13 @@
                     {{ __('devhub.settings') }}
                 </a>
                 <a
-                    href="fav"
+                    href="{{ url('/fav') }}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                     {{ __('.devhub.favorites') }}
                 </a>
                 <hr class="my-2">
                 <a
-                    href="#"
+                    href="{{ route('logout') }}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
                     {{ __('devhub.exit') }}
                 </a>

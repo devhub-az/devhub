@@ -2,15 +2,15 @@
     <div>
         <span @click="follow(id)" v-if="!follower_check && !loading"
               :class="'btn-outline ' + classes">
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Izləmək</span>
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Отслеживать</span>
         </span>
         <span @click="follow(id)" v-if="follower_check && !loading"
               :class="'btn ' + classes">
-            <span class="font-medium transition-none">İzləyirsiniz</span>
+            <span class="font-medium transition-none">Отслеживаете</span>
         </span>
         <span v-if="loading"
               :class="'btn-outline ' + classes">
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Gözləyin</span>
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Подождите</span>
         </span>
     </div>
 </template>

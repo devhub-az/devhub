@@ -6,11 +6,11 @@
         </span>
         <span @click="follow(id)" v-if="follower && !loading"
               class="btn h-7">
-            <span class="font-medium transition-none">Abunəsiniz</span>
+            <span class="font-medium transition-none">Подписаны</span>
         </span>
         <span v-if="loading"
               class="btn-outline h-7">
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Gözləyin</span>
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Подождите</span>
         </span>
     </div>
 </template>

@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="my-6 border-t border-gray-300 dark:border-gray-700 opacity-75 xs:w-full xs:px-4"></div>
-        <div class="flex justify-between justify-center xs:w-full xs:px-4 pb-4">
+        <div class="flex justify-between xs:w-full xs:px-4 pb-4">
             <p class="block text-sm text-gray-500 pb-4 my-auto xs:p-0 xs:text-center">
                 &copy; 2019 – {{ date('Y') }} <span class="">«DevHub»</span>
             </p>

@@ -14,6 +14,7 @@ use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes(['verify' => true]);
 Route::get('login/github', [LoginController::class, 'github']);
 Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);

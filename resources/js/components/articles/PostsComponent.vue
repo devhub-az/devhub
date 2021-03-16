@@ -95,7 +95,7 @@
                     {{ trans('devhub.articles404Text') }}
                 </p>
                 <a href="/article/new"
-                   class="btn h-7 block flex w-max mx-auto xs:hidden">
+                   class="btn h-7 flex w-max mx-auto xs:hidden">
                     {{ trans('devhub.write') }}
                 </a>
             </div>
