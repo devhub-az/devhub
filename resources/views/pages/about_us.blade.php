@@ -107,7 +107,7 @@
                 Hansı formatı seçim?
             </h2>
             <about-example id="app"></about-example>
-            <div class="flex text-gray-700 space-x-2 xs:block xs:space-y-4 xs:space-x-0 px-4">
+            <div class="flex text-gray-700 space-x-2 xs:block xs:space-y-4 xs:space-x-0">
                 <div class="space-y-4">
                     <div class="bg-white dark:bg-dpaper border p-2 h-28 dark:border-gray-700">
                         <p class="font-semibold mb-2 dark:text-gray-300">Новости</p>

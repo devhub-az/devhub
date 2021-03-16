@@ -98,8 +98,8 @@
                                        :count="{{ Auth::user()->unreadNotifications->count() }}">
                 </dropdown-notification>
                 <a href="{{ route('article.create') }}"
-                   class="btn h-6 w-6 p-0 hover:opacity-90 xs:hidden">
-                    <span class="iconify mx-auto dark:text-white" data-icon="ant-design:plus-outlined" data-inline="false"></span>
+                   class="btn h-6 w-6 p-0 xs:hidden">
+                    <span class="iconify mx-auto text-xl text-white dark:text-white" data-icon="bi:plus" data-inline="false"></span>
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
                     <dropdown :user="{{Auth::user()}}"
