@@ -10817,16 +10817,16 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v6.17.1",
+            "version": "v6.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "a5dc831264d4192954ea5abb9f4323e286429b3d"
+                "reference": "47e425b91c06b53936b05b06a0bc503211643e8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/a5dc831264d4192954ea5abb9f4323e286429b3d",
-                "reference": "a5dc831264d4192954ea5abb9f4323e286429b3d",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/47e425b91c06b53936b05b06a0bc503211643e8d",
+                "reference": "47e425b91c06b53936b05b06a0bc503211643e8d",
                 "shasum": ""
             },
             "require": {
@@ -10840,7 +10840,7 @@
                 "laravel/laravel": "8.x-dev",
                 "mockery/mockery": "^1.4.2",
                 "orchestra/canvas": "^6.1",
-                "phpunit/phpunit": "^8.4 || ^9.3.3"
+                "phpunit/phpunit": "^8.4 || ^9.3.3 || ^10.0"
             },
             "suggest": {
                 "laravel/framework": "Required for testing (^8.26).",
@@ -10903,7 +10903,7 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2021-03-09T22:59:25+00:00"
+            "time": "2021-03-16T05:44:15+00:00"
         },
         {
             "name": "phar-io/manifest",
