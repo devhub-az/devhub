@@ -60,8 +60,7 @@ services:
         - ${REGISTRY:-localhost}/devhub:latest
     container_name: php
     volumes:
-      - ./:/var/www/:cached
-      - ./.docker/develop/php/xlaravel.pool.conf:/usr/local/etc/php-fpm.d/xlaravel.pool.conf
+      - ./:/var/www/
     ports:
       - "9000:9000"
     networks:
