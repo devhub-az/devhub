@@ -3,22 +3,7 @@
         <p class="pb-2 dark:text-gray-300 text-lg font-medium leading-6 text-gray-900">Профиль</p>
         <form @submit.prevent="submit">
             <fieldset class="space-y-4 mt-4">
-                <div class="flex space-x-4">
-                    <div class="">
-                        <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                            Имя пользователя
-                        </label>
-                        <div class="mt-1 flex rounded-md shadow-sm">
-                            <span
-                                class="inline-flex items-center px-3 rounded-l-md border dark:border-gray-700 border-r-0 bg-gray-100 text-gray-600 text-sm dark:bg-gray-700 dark:text-gray-300">
-                                devhub.az/authors/@
-                            </span>
-                            <input type="text" name="username" id="username"
-                                   class="input rounded-none rounded-r-md"
-                                   placeholder="username" v-model="fields.username">
-                        </div>
-                        <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
-                    </div>
+                <div class="space-y-4">
                     <div>
                         <label for="avatar" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
                             Фото профиля
@@ -59,6 +44,21 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Имя пользователя
+                        </label>
+                        <div class="mt-1 flex rounded-md shadow-sm">
+                            <span
+                                class="inline-flex items-center px-3 rounded-l-md border dark:border-gray-700 border-r-0 bg-gray-100 text-gray-600 text-sm dark:bg-gray-700 dark:text-gray-300">
+                                @
+                            </span>
+                            <input type="text" name="username" id="username"
+                                   class="input rounded-none rounded-r-md"
+                                   placeholder="username" v-model="fields.username">
+                        </div>
+                        <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
+                    </div>
                 </div>
                 <div class="">
                     <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -72,17 +72,6 @@
                     <p class="mt-2 text-sm text-gray-500">
                         Вас будут узнавать по этому полю.
                     </p>
-                    <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
-                </div>
-                <div class="">
-                    <label for="male" class="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                        Пол
-                    </label>
-                    <div class="mt-1 flex rounded-md shadow-sm">
-                        <input type="text" name="name" id="male"
-                               class="input"
-                               placeholder="" v-model="fields.male">
-                    </div>
                     <div v-if="errors && errors.name" class="text-danger">{{ errors.name[0] }}</div>
                 </div>
                 <div>

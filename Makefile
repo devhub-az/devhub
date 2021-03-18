@@ -3,6 +3,7 @@ up: docker-up
 down: docker-down
 prod: docker-up-prod
 restart: down up
+update: composer-update yarn-upgrade
 
 docker-up:
 	docker-compose up -d

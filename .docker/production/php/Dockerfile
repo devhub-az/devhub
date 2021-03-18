@@ -7,6 +7,7 @@ RUN apk update && apk add --no-cache \
      mysql-client \
      pcre-dev ${PHPIZE_DEPS} \
      make \
+     shadow \
      bash \
      nano
 
@@ -17,7 +18,9 @@ RUN pecl install redis \
     && docker-php-ext-enable redis
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
+
 COPY ./.docker/production/php/conf.d /usr/local/etc/php/conf.d
+COPY ./.docker/develop/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
 
 WORKDIR /var/www
 
@@ -44,3 +47,12 @@ RUN yarn prod
 COPY .docker/production/php/Makefile ./Makefile
 
 RUN make install
+
+# Configure non-root user.
+ARG PUID=1000
+ENV PUID ${PUID}
+ARG PGID=1000
+ENV PGID ${PGID}
+
+RUN groupmod -o -g ${PGID} www-data && \
+    usermod -o -u ${PUID} -g www-data www-data

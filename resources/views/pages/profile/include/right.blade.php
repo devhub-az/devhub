@@ -27,11 +27,12 @@
     <div class="grid grid-cols-[repeat(auto-fill,2rem)] justify-between gap-2">
         @if (count($author->relationships->followers->data) > 0)
             @foreach($author->relationships->followers->data as $follower)
-                <img
-                    src="{{ $follower->attributes->avatar }}"
-                    alt="User profili"
-                    title="{{ $follower->attributes->name }}"
-                    class="border border-white dark:border-gray-700 object-cover rounded h-8 w-8">
+                <a href="{{ route('user_info', $follower->attributes->username) }}" title="{{ $follower->attributes->name }}">
+                    <img
+                        src="{{ $follower->attributes->avatar }}"
+                        alt="User profili"
+                        class="border dark:bg-gray-500 shadow-sm dark:border-gray-700 object-cover rounded h-8 w-8">
+                </a>
             @endforeach
         @else
             <p class="dark:text-gray-400">Никто не отслеживает</p>

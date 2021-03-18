@@ -2,6 +2,7 @@ version: "3.7"
 
 networks:
   devhub:
+    driver: bridge
 
 services:
   nginx:
@@ -13,7 +14,8 @@ services:
       - php
     volumes:
       - ./.docker/develop/logs/nginx:/var/log/nginx/
-      - ./.docker/develop/nginx/conf.d:/etc/nginx/conf.d
+      - ./.docker/develop/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./.docker/develop/nginx/sites-available:/etc/nginx/sites-available
     depends_on:
       - php
       - mysql
@@ -50,15 +52,16 @@ services:
 
 
   php:
-    image: ${REGISTRY:-localhost}/devhub:cache
+    image: ${REGISTRY:-localhost}/devhub:latest
     build:
       context: ./
       dockerfile: .docker/develop/php/Dockerfile
       cache_from:
-        - ${REGISTRY:-localhost}/devhub:cache
+        - ${REGISTRY:-localhost}/devhub:latest
     container_name: php
     volumes:
-      - ./:/var/www/
+      - ./:/var/www/:cached
+      - ./.docker/develop/php/xlaravel.pool.conf:/usr/local/etc/php-fpm.d/xlaravel.pool.conf
     ports:
       - "9000:9000"
     networks:
@@ -66,3 +69,4 @@ services:
 
 volumes:
   mysql:
+    driver: local

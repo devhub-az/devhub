@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bbbe46ebf2b9f0d4be8925ac6e655f6",
+    "content-hash": "10be246dda7872765bac7ccee0209368",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -840,6 +840,61 @@
                 }
             ],
             "time": "2020-11-13T08:04:11+00:00"
+        },
+        {
+            "name": "conedevelopment/i18n",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/conedevelopment/i18n.git",
+                "reference": "c13b5c651276480d2b9c13eee70c30cbc71528e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/conedevelopment/i18n/zipball/c13b5c651276480d2b9c13eee70c30cbc71528e4",
+                "reference": "c13b5c651276480d2b9c13eee70c30cbc71528e4",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0 || ^7.0 || ^8.0",
+                "php": "^7.2.5 || ^8.0"
+            },
+            "require-dev": {
+                "laravel/laravel": "8.x-dev",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pine\\I18n\\I18nServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pine\\I18n\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cone Development",
+                    "email": "hello@conedevelopment.com"
+                }
+            ],
+            "description": "Push your translations to the front-end.",
+            "support": {
+                "issues": "https://github.com/conedevelopment/i18n/issues",
+                "source": "https://github.com/conedevelopment/i18n/tree/v1.1.0"
+            },
+            "time": "2020-12-29T15:11:59+00:00"
         },
         {
             "name": "defuse/php-encryption",

@@ -14,7 +14,6 @@ use App\Http\Controllers\StatusController;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 Auth::routes(['verify' => true]);
 Route::get('login/github', [LoginController::class, 'github']);
 Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
@@ -159,8 +158,6 @@ Route::get(
             $strings[$name] = require $file;
         }
 
-        header('Content-Type: text/javascript');
-
-        return 'window.i18n = '.json_encode($strings).';';
+        return json_encode($strings);
     }
 )->name('assets.lang');
