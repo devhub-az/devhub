@@ -19,8 +19,8 @@ RUN pecl install redis \
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 
-COPY ./.docker/production/php/conf.d /usr/local/etc/php/conf.d
-COPY ./.docker/develop/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
+COPY ./.docker/production/php/local.ini $PHP_INI_DIR/conf.d
+COPY ./.docker/production/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
 
 WORKDIR /var/www
 
