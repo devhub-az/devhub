@@ -75,7 +75,7 @@
 
 {{-- Footer --}}
 @include('include.footer')
-<script src="//code.iconify.design/1/1.0.6/iconify.min.js" async></script>
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 <script type="text/javascript" src="{{ mix('js/scroller.js') }}" defer></script>
 <script>
     let translations = {!! \Cache::get('translations') !!};

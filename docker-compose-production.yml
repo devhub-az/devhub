@@ -6,13 +6,12 @@ networks:
 services:
   nginx:
     container_name: nginx
-    image: nginx:alpine
+    image: ${REGISTRY:-localhost}/devhub_nginx:${IMAGE_TAG}
     restart: always
     volumes:
       - public:/var/www/public:ro
       - storage:/var/www/storage/app/public:ro
       - lang:/var/www/resource/lang:ro
-      - nginx:/etc/nginx/conf.d/
     ports:
       - "80:80"
     depends_on:
@@ -24,7 +23,7 @@ services:
 
   mysql:
     container_name: mysql
-    image: mysql:5.7
+    image: ${REGISTRY:-localhost}/devhub_mysql:${IMAGE_TAG}
     restart: unless-stopped
     tty: true
     volumes:
@@ -51,13 +50,14 @@ services:
     volumes:
       - public:/var/www/public
       - storage:/var/www/storage/app/public
-      - nginx:/var/www/.docker/production/nginx/
-      - lang:/var/www/resource/lang:ro
+      - lang:/var/www/resource/lang
     networks:
       - devhub
 
 volumes:
   public:
+    driver: local
   storage:
-  nginx:
+    driver: local
   lang:
+    driver: local

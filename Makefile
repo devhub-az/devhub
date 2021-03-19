@@ -76,7 +76,7 @@ push-build-latest-develop:
 docker-down-clear:
  	COMPOSE_PROJECT_NAME=devhub docker-compose -f docker-compose.yml down -v --remove-orphans
 
-build: build-devhub
+build: build-devhub build-devhub_mysql build-devhub_nginx
 
 build-devhub:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
@@ -84,6 +84,19 @@ build-devhub:
             --tag ${REGISTRY}/devhub:latest \
             --tag ${REGISTRY}/devhub:${IMAGE_TAG} \
             --file .docker/production/php/Dockerfile .
+build-devhub_mysql:
+	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from ${REGISTRY}/devhub_mysql:latest \
+            --tag ${REGISTRY}/devhub_mysql:latest \
+            --tag ${REGISTRY}/devhub_mysql:${IMAGE_TAG} \
+            --file .docker/production/mysql/Dockerfile .
+
+build-devhub_nginx:
+	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from ${REGISTRY}/devhub_nginx:latest \
+            --tag ${REGISTRY}/devhub_nginx:latest \
+            --tag ${REGISTRY}/devhub_nginx:${IMAGE_TAG} \
+            --file .docker/production/nginx/Dockerfile .
 
 push:
 	docker-compose push

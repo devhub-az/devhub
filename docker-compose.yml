@@ -6,14 +6,18 @@ networks:
 
 services:
   nginx:
-    image: nginx:alpine
+    image: ${REGISTRY:-localhost}/devhub_nginx:latest
+    build:
+      context: ./
+      dockerfile: .docker/develop/nginx/Dockerfile
+      cache_from:
+        - ${REGISTRY:-localhost}/devhub_nginx:latest
     container_name: nginx
     ports:
       - "8090:80"
     volumes_from:
       - php
     volumes:
-      - ./.docker/develop/logs/nginx:/var/log/nginx/
       - ./.docker/develop/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./.docker/develop/nginx/sites-available:/etc/nginx/sites-available
     depends_on:
@@ -24,7 +28,12 @@ services:
       - devhub
 
   mysql:
-    image: mysql:5.7
+    image: ${REGISTRY:-localhost}/devhub_mysql:latest
+    build:
+      context: ./
+      dockerfile: .docker/develop/mysql/Dockerfile
+      cache_from:
+        - ${REGISTRY:-localhost}/devhub_mysql:latest
     container_name: mysql
     restart: unless-stopped
     tty: true
@@ -37,8 +46,7 @@ services:
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - mysql:/var/lib/mysql/
-      - ./.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - mysql:/var/lib/mysql
     networks:
       - devhub
 

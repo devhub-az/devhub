@@ -7,7 +7,6 @@ use App\Http\Controllers\Api\ArticleTopController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
-use App\Http\Controllers\Api\SavedController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -29,28 +28,28 @@ Route::prefix('articles')->group(
             }
         );
 
-        Route::get(
-            '{article_json}/relationships/author',
-            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.relationships.author']
-        );
-        Route::get(
-            '{article_json}/author',
-            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
-        );
-        Route::get('{article_json}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
-            ->name('articles.relationships.comments');
-        Route::get(
-            '{article_json}/comments',
-            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
-        );
+//        Route::get(
+//            '{article_json}/relationships/author',
+//            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.relationships.author']
+//        );
+//        Route::get(
+//            '{article_json}/author',
+//            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
+//        );
+//        Route::get('{article_json}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
+//            ->name('articles.relationships.comments');
+//        Route::get(
+//            '{article_json}/comments',
+//            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
+//        );
         Route::get(
             '{article_json}/relationships/hubs', [ArticleRelationshipController::class, 'hubs'])->name(
            'articles.relationships.hubs'
         );
-        Route::get(
-            '{article_json}/hubs',
-            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
-        );
+//        Route::get(
+//            '{article_json}/hubs',
+//            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
+//        );
 
         /**
          * Comments Api.
@@ -62,12 +61,12 @@ Route::prefix('articles')->group(
 /*
  * Favorite Api
  */
-Route::prefix('saved')->group(
-    function () {
-        Route::get('posts', [SavedController::class, 'allPosts']);
-        Route::get('comments', [SavedController::class, 'allComments']);
-    }
-);
+//Route::prefix('saved')->group(
+//    function () {
+//        Route::get('posts', [SavedController::class, 'allPosts']);
+//        Route::get('comments', [SavedController::class, 'allComments']);
+//    }
+//);
 
 /*
  * Hubs Api

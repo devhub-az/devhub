@@ -5,6 +5,15 @@ import axios from 'axios'
  */
 export const http = axios.create()
 
+function trans(key, replace = {}) {
+    let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations);
+
+    for (const placeholder in replace) {
+        translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+    }
+    return translation;
+}
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

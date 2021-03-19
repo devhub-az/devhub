@@ -11,9 +11,9 @@ use App\Http\Controllers\HubController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StatusController;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('login/github', [LoginController::class, 'github']);
 Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
@@ -161,3 +161,9 @@ Route::get(
         return json_encode($strings);
     }
 )->name('assets.lang');
+
+Route::get('test', function (){
+    sleep(1);
+
+    return new Response(['status' => 'success']);
+});
