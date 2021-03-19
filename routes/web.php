@@ -162,7 +162,7 @@ Route::get(
     }
 )->name('assets.lang');
 
-Route::get('test', function (){
+Route::get('test', function () {
     sleep(1);
 
     return new Response(['status' => 'success']);
