@@ -11,8 +11,8 @@ use App\Http\Controllers\HubController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StatusController;
-use Illuminate\Http\Response;
 use Carbon\Carbon;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
