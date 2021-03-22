@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Session::put('lang', 'az');
+        \Session::put('lang', 'ru');
         \Carbon\Carbon::setLocale('az');
         Schema::defaultStringLength(191);
 

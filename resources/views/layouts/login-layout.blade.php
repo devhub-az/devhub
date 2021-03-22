@@ -32,6 +32,8 @@
 </div>
 
 <script src="{{ asset('js/login.js') }}" async="async"></script>
+<script type="text/javascript" src="{{ mix('js/vendor.js') }}" defer></script>
+<script type="text/javascript" src="{{ mix('js/manifest.js') }}" defer></script>
 <script src="//code.iconify.design/1/1.0.6/iconify.min.js"></script>
 @yield('scripts')
 </body>

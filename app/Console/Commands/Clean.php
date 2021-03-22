@@ -39,14 +39,18 @@ class Clean extends Command
     public function handle()
     {
         $this->info('Cleaning Started ✅');
+        $this->info('-------------------');
         Artisan::call('config:cache');
         $this->info('Config Cached ✅');
         Artisan::call('config:clear');
         $this->info('Config Cleared ✅');
         Artisan::call('view:clear');
         $this->info('Views Cleared ✅');
+        Artisan::call('view:cache');
+        $this->info('Views Cached ✅');
         Artisan::call('cache:clear');
         $this->info('Cache Cleared ✅');
+        $this->info('-------------------');
         $this->info('Cleaning Ended ✅');
 
         return 0;

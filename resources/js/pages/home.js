@@ -2,6 +2,14 @@ let Vue = require('vue').default;
 import moment from "moment-mini"
 import httpPlugin from './../scripts/http';
 import Notifications from 'vue-notification'
+import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
+import VueI18n from 'vue-i18n';
+Vue.use(VueI18n);
+
+const i18n = new VueI18n({
+    locale: window.Language,
+    messages: languageBundle,
+})
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);
@@ -34,8 +42,7 @@ Vue.component('hub-follow-button', require('./../components/hubs/HubsFollowButto
 Vue.component('comment-favorite', require('./../components/parts/CommentFavorite').default);
 Vue.component('pagination', require('./../components/plugins/pagination').default);
 
-Vue.prototype.trans = trans()
-
 new Vue({
+    i18n: i18n,
     moment
 }).$mount('#app');

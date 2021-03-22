@@ -12,6 +12,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StatusController;
 use Illuminate\Http\Response;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
@@ -27,7 +28,7 @@ Route::get(
         if (in_array($locale, \Config::get('app.locales'))) {
             Session::put('lang', $locale);
         }
-        Carbon\Carbon::setLocale(config('app.locale'));
+        Carbon::setLocale(config('app.locale'));
 
         return redirect()->back();
     }
@@ -143,24 +144,6 @@ Route::group(
         Route::get('ping', [StatusController::class, 'ping']);
     }
 );
-
-// Localization
-Route::get(
-    '/js/lang',
-    function () {
-        $lang = Session::get('lang');
-
-        $files = glob(resource_path('lang/'.$lang.'/*.php'));
-        $strings = [];
-
-        foreach ($files as $file) {
-            $name = basename($file, '.php');
-            $strings[$name] = require $file;
-        }
-
-        return json_encode($strings);
-    }
-)->name('assets.lang');
 
 Route::get('test', function () {
     sleep(1);

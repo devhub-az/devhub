@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 
+mix.extract(['vue', 'jquery', 'axios', 'popper.js', 'moment-mini']);
+
 mix.disableNotifications();
 
 mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
@@ -27,5 +29,5 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
     .vue()
 
 if (mix.inProduction()) {
-    mix.version().sourceMaps();
+    mix.version();
 }

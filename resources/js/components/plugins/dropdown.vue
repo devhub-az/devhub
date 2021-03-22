@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-1 relative">
+    <div class="relative">
         <button @click="show = !show" type="button" aria-haspopup="listbox" aria-expanded="true"
                 class="flex items-center focus:outline-none p-0 bg-none">
             <img v-if="user.avatar !== 'default'" :src="avatar_url"

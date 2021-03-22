@@ -89,14 +89,14 @@
                 <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
                     <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline"
                           data-inline="false"></span>
-                    <p class="dark:text-gray-300">{{ trans('devhub.articles404') }}</p>
+                    <p class="dark:text-gray-300">{{ $t('devhub.articles404') }}</p>
                 </div>
                 <p class="font-light text-center dark:text-gray-400">
-                    {{ trans('devhub.articles404Text') }}
+                    {{ $t('devhub.articles404Text') }}
                 </p>
                 <a href="/article/new"
                    class="btn h-7 flex w-max mx-auto xs:hidden">
-                    {{ trans('devhub.write') }}
+                    {{ $t('devhub.write') }}
                 </a>
             </div>
         </div>

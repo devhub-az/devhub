@@ -1,9 +1,14 @@
 let Vue = require('vue').default;
+import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
+import VueI18n from 'vue-i18n';
+Vue.use(VueI18n);
 
-import _ from 'lodash';
-Vue.prototype.trans = string => _.get(window.i18n, string);
+const i18n = new VueI18n({
+    locale: window.Language,
+    messages: languageBundle,
+})
 
 Vue.component('select-menu', require('./../components/parts/SelectMenu').default);
 Vue.component('switcher', require('./../components/parts/DarkSwitcher').default);
 
-new Vue().$mount('#footer');
+new Vue({i18n: i18n}).$mount('#footer');

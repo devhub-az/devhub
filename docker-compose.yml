@@ -18,8 +18,8 @@ services:
     volumes_from:
       - php
     volumes:
-      - ./.docker/develop/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./.docker/develop/nginx/sites-available:/etc/nginx/sites-available
+      - ./:/var/www/
+      - ./.docker/develop/nginx/sites-available:/etc/nginx/conf.d/
     depends_on:
       - php
       - mysql

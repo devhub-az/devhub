@@ -2,7 +2,7 @@
     <div class="mt-1 relative">
         <button type="button" aria-haspopup="listbox" aria-expanded="true"
                 @click="show = !show"
-                class="relative w-full bg-white border dark:bg-dpaper dark:border-gray-700 border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 focus:border-none sm:text-sm">
+                class="relative w-full bg-white border dark:bg-dpaper dark:border-gray-700 border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-gray-100 transition-colors pl-3 pr-7 h-7 text-left focus:outline-none focus:ring-0 dark:focus:border-gray-700 sm:text-sm">
             <span class="flex items-center">
                 <span class="iconify transition-none dark:text-gray-300"
                       :data-icon="selected.icon" data-inline="false"></span>
@@ -48,14 +48,14 @@ export default {
         return {
             selected: {},
             themes: [
-                {'name': this.trans('devhub.dark'), 'icon': 'bytesize:moon'},
-                {'name': this.trans('devhub.light'), 'icon': 'carbon:sun'},
+                {'name': this.$t('devhub.dark'), 'icon': 'bytesize:moon'},
+                {'name': this.$t('devhub.light'), 'icon': 'carbon:sun'},
             ],
             show: false
         }
     },
     created() {
-        this.selected = localStorage.theme === 'dark' ? {'name': this.trans('devhub.dark'), 'icon': 'bytesize:moon'} : {'name': this.trans('devhub.light'), 'icon': 'carbon:sun'}
+        this.selected = localStorage.theme === 'dark' ? {'name': this.$t('devhub.dark'), 'icon': 'bytesize:moon'} : {'name': this.$t('devhub.light'), 'icon': 'carbon:sun'}
     },
     methods: {
         ChangeTheme(theme) {

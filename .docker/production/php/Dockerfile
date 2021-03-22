@@ -28,7 +28,7 @@ COPY --chown=www-data:www-data . /var/www/
 
 WORKDIR /var/www
 
-RUN composer install --no-dev
+RUN composer install --optimize-autoloader --no-dev
 
 RUN rm -rf /root/.composer/cache
 
@@ -39,6 +39,8 @@ RUN yarn prod
 COPY .docker/production/php/Makefile ./Makefile
 
 RUN make install
+
+RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
 
 ARG PUID=1000
 ENV PUID ${PUID}
