@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd1bf02f59d069f5e2334f136cae7b27",
+    "content-hash": "f4e00475f8e183a8c4c4dc1709139326",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2960,83 +2960,6 @@
                 "source": "https://github.com/laravel/framework"
             },
             "time": "2021-03-16T19:42:32+00:00"
-        },
-        {
-            "name": "laravel/horizon",
-            "version": "v5.7.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/horizon.git",
-                "reference": "c5863ba7ecd6ca53f1dc9eaf40ba59be38bf385a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/horizon/zipball/c5863ba7ecd6ca53f1dc9eaf40ba59be38bf385a",
-                "reference": "c5863ba7ecd6ca53f1dc9eaf40ba59be38bf385a",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-pcntl": "*",
-                "ext-posix": "*",
-                "illuminate/contracts": "^8.17",
-                "illuminate/queue": "^8.17",
-                "illuminate/support": "^8.17",
-                "nesbot/carbon": "^2.17",
-                "php": "^7.3|^8.0",
-                "ramsey/uuid": "^4.0",
-                "symfony/error-handler": "^5.0",
-                "symfony/process": "^5.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^6.0",
-                "phpunit/phpunit": "^9.0",
-                "predis/predis": "^1.1"
-            },
-            "suggest": {
-                "ext-redis": "Required to use the Redis PHP driver.",
-                "predis/predis": "Required when not using the Redis PHP driver (^1.1)."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Laravel\\Horizon\\HorizonServiceProvider"
-                    ],
-                    "aliases": {
-                        "Horizon": "Laravel\\Horizon\\Horizon"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Laravel\\Horizon\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Dashboard and code-driven configuration for Laravel queues.",
-            "keywords": [
-                "laravel",
-                "queue"
-            ],
-            "support": {
-                "issues": "https://github.com/laravel/horizon/issues",
-                "source": "https://github.com/laravel/horizon/tree/v5.7.2"
-            },
-            "time": "2021-03-16T16:18:27+00:00"
         },
         {
             "name": "laravel/passport",
@@ -11274,16 +11197,16 @@
         },
         {
             "name": "orchestra/testbench-core",
-            "version": "v6.18.0",
+            "version": "v6.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench-core.git",
-                "reference": "47e425b91c06b53936b05b06a0bc503211643e8d"
+                "reference": "e97234a2cffe510c3d76a4f9f4a5e47b730e5c92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/47e425b91c06b53936b05b06a0bc503211643e8d",
-                "reference": "47e425b91c06b53936b05b06a0bc503211643e8d",
+                "url": "https://api.github.com/repos/orchestral/testbench-core/zipball/e97234a2cffe510c3d76a4f9f4a5e47b730e5c92",
+                "reference": "e97234a2cffe510c3d76a4f9f4a5e47b730e5c92",
                 "shasum": ""
             },
             "require": {
@@ -11313,11 +11236,6 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "6.0-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Orchestra\\Testbench\\Foundation\\TestbenchServiceProvider"
-                    ]
                 }
             },
             "autoload": {
@@ -11360,7 +11278,7 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2021-03-16T05:44:15+00:00"
+            "time": "2021-03-21T00:28:32+00:00"
         },
         {
             "name": "phar-io/manifest",
