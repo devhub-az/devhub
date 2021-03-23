@@ -882,9 +882,9 @@
   integrity sha512-OxowV0yuE11G01czYM1dEQlz1F37ehX0ak5vAbZ9ncSXrPh0fDRw/fBxTY654FlmrsQ40UFom3owSG++tLvVGw==
 
 "@editorjs/simple-image@^1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@editorjs/simple-image/-/simple-image-1.4.0.tgz#4c96a3304f3cf477ccb13de82f40d03bd42e6c0e"
-  integrity sha512-rARMYyTP7OUzf+YhrgUpXzc1yHhER6a9G8mxdnuSF0N9Kt8r1BGqe808YNs20TfMRpYgMXHvP9iiKGgooSPhmg==
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@editorjs/simple-image/-/simple-image-1.4.1.tgz#16a847e0f21041dfac0af8235d19b8a8a756c493"
+  integrity sha512-8lqcMYKrxhnDNasqq4Id9/SwXymSofVb4SJBC7gQoJmNG9bfRgVEXLsEUnuLzn8ixkAYlK2oNTc7ioZdD8bEOw==
 
 "@fullhuman/postcss-purgecss@^3.1.3":
   version "3.1.3"
