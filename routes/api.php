@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\ArticleAuthorController;
+use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\ArticleHubController;
 use App\Http\Controllers\Api\ArticleRelationshipController;
 use App\Http\Controllers\Api\ArticleTopController;

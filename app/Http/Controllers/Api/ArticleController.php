@@ -91,6 +91,7 @@ class ArticleController extends Controller
                 $type === 'up' ? $target->creator->rating-- : $target->creator->rating++;
                 $target->author->save();
                 DB::commit();
+
                 return false;
             }
             foreach ($target->hubs as $hub) {
