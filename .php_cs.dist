@@ -15,7 +15,7 @@ $rules = [
     'binary_operator_spaces' => [
         'default' => 'single_space',
         "align_double_arrow": true,
-        "align_equals": true
+        "align_equals": true,
         'operators' => ['=>' => null]
     ],
     'blank_line_before_statement' => [
