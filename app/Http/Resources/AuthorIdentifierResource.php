@@ -20,9 +20,9 @@ class AuthorIdentifierResource extends JsonResource
             'type'       => 'authors',
             'id'         => (int) $this->id,
             'attributes' => [
-                'name'        => $this->name,
-                'username'    => $this->username,
-                'avatar'      => ($this->avatar !== 'default')
+                'name'     => $this->name,
+                'username' => $this->username,
+                'avatar'   => ($this->avatar !== 'default')
                     ? $this->getMedia('avatars')->first()->getFullUrl()
                     : config(
                         'devhub.default_avatar'
