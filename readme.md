@@ -52,9 +52,9 @@ DevHub follows the [PSR-2](https://github.com/php-fig/fig-standards/blob/master/
 coding standard and the [PSR-4](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
 autoloading standard.
 
-### StyleCI
+### PHP CS FIXER
 
-Don't worry if your code styling isn't perfect! StyleCI will automatically merge any style fixes into the DevHub
+Don't worry if your code styling isn't perfect! PHP CS FIXER will automatically merge any style fixes into the DevHub
 repository after pull requests are merged. This allows us to focus on the content of the contribution and not the code
 style.
 
