@@ -27,11 +27,11 @@ class ArticleFactory extends Factory
         $title = $this->faker->sentence(random_int(3, 10));
 
         return [
-            'id' => $this->faker->uuid,
+            'id'        => $this->faker->uuid,
             'author_id' => $this->faker->randomElement(User::pluck('id')),
-            'title' => $title,
-            'slug' => Str::slug($title),
-            'body' => $this->faker->realText(random_int(1000, 2000)),
+            'title'     => $title,
+            'slug'      => Str::slug($title),
+            'body'      => $this->faker->realText(random_int(1000, 2000)),
         ];
     }
 }

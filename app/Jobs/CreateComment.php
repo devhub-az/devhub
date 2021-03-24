@@ -35,8 +35,8 @@ final class CreateComment
         $comment = new Comment(
             [
                 'commentable_type' => 'articles',
-                'commentable_id' => $this->article_id,
-                'body' => $this->comment,
+                'commentable_id'   => $this->article_id,
+                'body'             => $this->comment,
             ]
         );
         $comment->authoredBy($this->author);

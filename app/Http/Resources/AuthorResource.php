@@ -18,37 +18,37 @@ class AuthorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'authors',
-            'id' => (string) $this->id,
+            'type'       => 'authors',
+            'id'         => (string) $this->id,
             'attributes' => [
-                'name' => $this->name,
+                'name'     => $this->name,
                 'username' => $this->username,
-                'email' => $this->email,
-                'company' => $this->company,
-                'avatar' => ($this->avatar !== 'default')
+                'email'    => $this->email,
+                'company'  => $this->company,
+                'avatar'   => ($this->avatar !== 'default')
                     ? $this->getMedia('avatars')->first()->getFullUrl()
                     : config(
                         'devhub.default_avatar'
                     ),
-                'description' => $this->description,
-                'karma' => $this->karma,
-                'rating' => $this->rating,
+                'description'    => $this->description,
+                'karma'          => $this->karma,
+                'rating'         => $this->rating,
                 'articles_count' => $this->articles_count,
-                'follower' => auth()->guard('api')->id() || Auth::check() ? $this->isFollowedBy(
+                'follower'       => auth()->guard('api')->id() || Auth::check() ? $this->isFollowedBy(
                     auth()->guard('api')->id() ?? Auth::user()->id
                 ) : false,
-                'website' => $this->website,
-                'twitter' => $this->twitter,
-                'github' => $this->github,
-                'twitch' => $this->twitch,
-                'telegram' => $this->telegram,
-                'youtube' => $this->youtube,
+                'website'               => $this->website,
+                'twitter'               => $this->twitter,
+                'github'                => $this->github,
+                'twitch'                => $this->twitch,
+                'telegram'              => $this->telegram,
+                'youtube'               => $this->youtube,
                 'user_followings_count' => $this->followings_count,
-                'user_followers_count' => $this->followers_count,
-                'created_at' => $this->created_at,
+                'user_followers_count'  => $this->followers_count,
+                'created_at'            => $this->created_at,
             ],
             'relationships' => new AuthorRelationshipResource($this),
-            'links' => [
+            'links'         => [
                 'self' => route('authors.show', ['author' => $this->id]),
             ],
         ];

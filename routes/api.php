@@ -47,8 +47,8 @@ Route::prefix('articles')->group(
             '{article_json}/relationships/hubs',
             [ArticleRelationshipController::class, 'hubs']
         )->name(
-                'articles.relationships.hubs'
-            );
+            'articles.relationships.hubs'
+        );
 //        Route::get(
 //            '{article_json}/hubs',
 //            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
