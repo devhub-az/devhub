@@ -21,7 +21,7 @@ class ArticleHubsRelationshipResource extends ResourceCollection
         $article = $this->additional['article_json'];
 
         return [
-            'data'  => HubsIdentifierResource::collection($this->collection),
+            'data' => HubsIdentifierResource::collection($this->collection),
         ];
     }
 

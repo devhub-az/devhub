@@ -9,7 +9,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Numeric;
 
 class HubController extends Controller
 {
@@ -42,8 +41,8 @@ class HubController extends Controller
         return view(
             'pages.hubs.show',
             [
-                'hub'                 => $hub->toResponse($request)->getData(),
-                'url'                 => $this->articlesApiRoute($hub),
+                'hub' => $hub->toResponse($request)->getData(),
+                'url' => $this->articlesApiRoute($hub),
             ]
         );
     }
@@ -61,7 +60,7 @@ class HubController extends Controller
         return view(
             'pages.hubs.hubs',
             [
-                'top_hubs'          => $top_hubs,
+                'top_hubs' => $top_hubs,
                 'top_followed_hubs' => $top_followed_hubs,
             ]
         );

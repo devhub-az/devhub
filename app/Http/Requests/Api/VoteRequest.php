@@ -24,7 +24,7 @@ class VoteRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'   => 'required|exists:articles,id',
+            'id' => 'required|exists:articles,id',
             'type' => 'required|string',
         ];
     }

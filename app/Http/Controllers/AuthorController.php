@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AuthorResource;
 use App\Models\User;
-use App\Services\AuthorActivity;
 use Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -22,8 +21,8 @@ class AuthorController extends Controller
             'pages.profile.show.articles',
             [
                 'author' => $user_col->toResponse($request)->getData(),
-                'user'   => $user,
-                'url'  => '/api/authors/'.$user->id.'/all',
+                'user' => $user,
+                'url' => '/api/authors/'.$user->id.'/all',
             ]
         );
     }
@@ -43,7 +42,7 @@ class AuthorController extends Controller
             'pages.profile.show.info',
             [
                 'author' => $user_col->toResponse($request)->getData(),
-                'user'   => $user,
+                'user' => $user,
             ]
         );
     }

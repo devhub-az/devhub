@@ -59,13 +59,13 @@ final class RegisterUser
     {
         $user = new User(
             [
-                'id'       => Uuid::uuid4(),
-                'name'     => $this->name,
+                'id' => Uuid::uuid4(),
+                'name' => $this->name,
                 'username' => $this->username,
-                'avatar'   => $this->image->getClientOriginalName(),
-                'email'    => $this->email,
+                'avatar' => $this->image->getClientOriginalName(),
+                'email' => $this->email,
                 'password' => Hash::make($this->password),
-                'type'     => User::DEFAULT,
+                'type' => User::DEFAULT,
             ]
         );
         $user->addMedia($this->image)->toMediaCollection('avatars');

@@ -24,7 +24,7 @@ class HubsResource extends ResourceCollection
     public function with($request)
     {
         return [
-            'links'    => [
+            'links' => [
                 'self' => route('hubs.api.index'),
             ],
         ];

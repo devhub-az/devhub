@@ -44,9 +44,11 @@ Route::prefix('articles')->group(
 //            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
 //        );
         Route::get(
-            '{article_json}/relationships/hubs', [ArticleRelationshipController::class, 'hubs'])->name(
-           'articles.relationships.hubs'
-        );
+            '{article_json}/relationships/hubs',
+            [ArticleRelationshipController::class, 'hubs']
+        )->name(
+                'articles.relationships.hubs'
+            );
 //        Route::get(
 //            '{article_json}/hubs',
 //            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']

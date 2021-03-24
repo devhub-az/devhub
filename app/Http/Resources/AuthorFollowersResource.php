@@ -20,17 +20,17 @@ class AuthorFollowersResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'       => 'followers',
-            'id'         => (int) $this->id,
+            'type' => 'followers',
+            'id' => (int) $this->id,
             'attributes' => [
-                'name'     => $this->name,
+                'name' => $this->name,
                 'username' => $this->username,
-                'avatar'   => $this->getMedia('avatars')->first()->getFullUrl(),
-                'about'    => $this->description,
-                'karma'    => $this->karma,
-                'rating'   => $this->rating,
+                'avatar' => $this->getMedia('avatars')->first()->getFullUrl(),
+                'about' => $this->description,
+                'karma' => $this->karma,
+                'rating' => $this->rating,
             ],
-            'links'      => [
+            'links' => [
                 'self' => route('authors.show', ['author' => $this->id]),
             ],
         ];

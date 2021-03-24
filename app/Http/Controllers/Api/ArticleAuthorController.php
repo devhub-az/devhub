@@ -6,7 +6,6 @@ use App\Http\Resources\ArticlesResource;
 use App\Models\Article;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
  * Class ArticleHubController.
@@ -28,12 +27,15 @@ class ArticleAuthorController
         switch ($request->segment(4)) {
             case 'day':
                 self::$count = $day;
+
                 break;
             case 'week':
                 self::$count = $week;
+
                 break;
             case 'month':
                 self::$count = $month;
+
                 break;
         }
     }
