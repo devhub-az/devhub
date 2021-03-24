@@ -84,11 +84,11 @@
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
                 <div class="flex items-center space-x-2 xs:hidden sm:hidden">
-                    <a href="{{ route('login') }}"
+                    <a href="{{ route('login') }}" id="trans-none"
                        class="btn-outline text-xs px-4 h-7">
                         {{ __('devhub.login') }}
                     </a>
-                    <a href="{{ route('register') }}"
+                    <a href="{{ route('register') }}" id="trans-none"
                        class="btn text-xs px-4 h-7">
                         {{ __('devhub.connect') }}
                     </a>
@@ -104,7 +104,7 @@
                 <div class="hidden m-auto lg:block xl:block">
                     <dropdown :user="{{Auth::user()}}"
                               :avatar_url="'{{ Auth::user()->getMedia('avatars')->first()->getFullUrl() }}'"
-                              :fav="'{{route("saved-posts")}}'"></dropdown>
+                              :fav="'{{route("saved-articles")}}'"></dropdown>
                 </div>
                 <div class="m-auto lg:hidden xl:hidden md:hidden" id="mobile-icon__open">
                     <img

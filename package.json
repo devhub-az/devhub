@@ -43,6 +43,7 @@
         "@editorjs/simple-image": "^1.4.0",
         "alpinejs": "^2.8.0",
         "animate.css": "^4.1.0",
+        "aos": "^2.3.4",
         "autoprefixer": "10.2.5",
         "easydropdown": "^4.2.0",
         "editorjs-html": "^3.0.3",

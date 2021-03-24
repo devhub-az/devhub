@@ -10,10 +10,10 @@
             <div class="profile__left">
                 @include('pages.profile.include.tabs')
                 <div class="markdown-body">
-                    <posts
+                    <articles
                             :url="'{{ $url }}'"
                             @auth :auth_check="true" @endauth
-                    ></posts>
+                    ></articles>
                 </div>
             </div>
 
@@ -25,9 +25,4 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
-        const stickyblock = stickybits('#default-block', {
-            stickyBitStickyOffset: 10,
-        });
-    </script>
 @endsection

@@ -18,7 +18,6 @@
         "jcc/laravel-vote": "dev-master",
         "laravel/framework": "^8.12",
         "laravel/passport": "^10.1",
-        "laravel/sanctum": "^2.9",
         "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",

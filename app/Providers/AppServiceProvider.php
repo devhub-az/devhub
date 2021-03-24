@@ -38,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
 
         Relation::morphMap([
-            'posts'    => Article::class,
+            'articles'    => Article::class,
             'comments' => Comment::class,
             'users'    => User::class,
             'hubs'     => Hub::class,

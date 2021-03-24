@@ -19,11 +19,11 @@ class AuthorController extends Controller
         $user_col = new AuthorResource($user);
 
         return view(
-            'pages.profile.show.posts',
+            'pages.profile.show.articles',
             [
                 'author' => $user_col->toResponse($request)->getData(),
                 'user'   => $user,
-                'url'  => '/api/authors/'.$user->id.'/articles',
+                'url'  => '/api/authors/'.$user->id.'/all',
             ]
         );
     }

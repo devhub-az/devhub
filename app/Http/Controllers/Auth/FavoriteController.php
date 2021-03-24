@@ -14,7 +14,7 @@ class FavoriteController extends Controller
 
     public function indexPosts(): View
     {
-        return view('auth.favorite.posts', ['url' => '/api/saved/posts']);
+        return view('auth.favorite.articles', ['url' => '/api/saved/articles']);
     }
 
     public function indexComments(): View

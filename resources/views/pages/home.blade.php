@@ -67,10 +67,10 @@
                         </a>
                     </div>
                 @endif
-                <posts
+                <articles
                     :url="'{{ $url }}'"
                     @auth :auth_check="true" @endauth
-                ></posts>
+                ></articles>
             </div>
 
             {{-- Right --}}

@@ -64,7 +64,7 @@
             </div>
         </section>
         <section class="flex space-x-5 xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:block xs:space-y-4 xs:space-x-0 px-4">
-            <div class="rounded-xl w-full px-12 pt-12"
+            <div class="rounded-xl w-full px-12 pt-12" data-aos="fade-up"
                  style="background: linear-gradient(rgba(241, 235, 235, 0.95), rgba(240, 240, 240, 0.9)) rgb(90 130 242)">
                 <span class="iconify text-5xl text-cerulean-100" data-icon="gg:feed" data-inline="false"></span>
                 <h1 class="text-xl py-4 font-semibold text-cerulean-100">
@@ -85,7 +85,7 @@
                          alt="" height="353" width="232">
                 </div>
             </div>
-            <div class="rounded-xl w-full px-12 pt-12"
+            <div class="rounded-xl w-full px-12 pt-12" data-aos="fade-up"
                  style="background: conic-gradient(from 90deg at 50% 0%, #353535, 50%, #222, #111)">
                 <span class="iconify text-5xl text-cerulean-100" data-icon="gg:feed" data-inline="false"></span>
                 <h1 class="text-xl py-4 font-semibold text-cerulean-100">Как писать классно</h1>
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </section>
-        <section class="lg:container xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
+        <section class="lg:container xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" data-aos="fade-up">
             <h2 class="mb-6 font-sans text-center text-3xl mb-4 font-medium leading-none tracking-tight dark:text-gray-300 sm:text-4xl mx-auto">
                 Hansı formatı seçim?
             </h2>
@@ -183,11 +183,9 @@
                             <a href="/hubs" class="font-medium text-cerulean-500">hablardan</a> istifadə
                             edin.</p>
                     </div>
-                    <div class="absolute top-0 bottom-0 xs:hidden sm:hidden right-0 w-20 z-10"
-                         style="box-shadow: inset -25px 0 25px -25px #aaaaaa;"></div>
-                    <div id="left"
-                         class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 ml-60 xs:hidden sm:hidden"
-                         style="width: 120%">
+                    <div class="absolute top-0 bottom-0 xs:hidden sm:hidden right-0 w-20 z-10 shadow-lwhite dark:shadow-lblack"></div>
+                    <div class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 xs:hidden sm:hidden"
+                         data-aos="fade-left" style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
                                 <div title="Paylaşmanın müəllifi" class="inline-flex no-underline">
@@ -289,11 +287,9 @@
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
             <div class="py-10">
                 <div class="grid relative xs:block sm:block grid-cols-2 overflow-hidden">
-                    <div class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10"
-                         style="box-shadow: inset 25px 0 25px -25px #aaaaaa;"></div>
-                    <div id="right"
-                         class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 -ml-60 xs:hidden sm:hidden"
-                         style="width: 120%">
+                    <div class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10 shadow-rwhite dark:shadow-rblack"></div>
+                    <div class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 ml-[-20%] dark:border-gray-700 xs:hidden sm:hidden"
+                         data-aos="fade-right" style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
                                 <div title="Paylaşmanın müəllifi" class="inline-flex no-underline">
@@ -410,20 +406,6 @@
                     Töhfə vermək
                 </a>
             </div>
-            <div class="section__dots-bg dots-bg" style="
-    height: 25rem;
-    margin: 0 auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    opacity: 1;
-    background-position: 0 100%;
-    background-repeat: repeat-x;
-    background-size: 14px;
-    background-image: url(https://svgshare.com/i/SPJ.svg);
-    "></div>
         </section>
     </div>
 @endsection
@@ -431,63 +413,9 @@
 
 @push('scripts')
     <script type="text/javascript" src="{{ mix('js/about-us.js') }}"></script>
-    <script>
-        $(window).scroll(function () {
-            /* Check the location of each desired element */
-            $('#right').each(function (i) {
-                const bottom_of_object = $(this).offset().top + $(this).outerHeight();
-                const bottom_of_window = $(window).scrollTop() + $(window).height();
-                /* If the object is completely visible in the window, fade it in */
-                if (bottom_of_window > bottom_of_object) {
-
-                    $(this).addClass('leftToRight');
-
-                }
-            });
-
-            $('#left').each(function (i) {
-                const bottom_of_object = $(this).offset().top + $(this).outerHeight();
-                const bottom_of_window = $(window).scrollTop() + $(window).height();
-                /* If the object is completely visible in the window, fade it in */
-                if (bottom_of_window > bottom_of_object) {
-
-                    $(this).addClass('rightToLeft');
-
-                }
-            });
-        });
-    </script>
 @endpush
 
 @section('styles')
     @parent
-    <link rel="stylesheet" type="text/css" property="stylesheet" href="{{ asset('css/animate.min.css') }}">
     <link rel="preload" href="{{ mix('js/about-us.js') }}" as="script">
-    <style>
-        .leftToRight {
-            animation: leftToRight 3s ease-out forwards;
-        }
-
-        .rightToLeft {
-            animation: rightToLeft 3s ease-out forwards;
-        }
-
-        @keyframes leftToRight {
-            0% {
-                transform: translateX(0rem);
-            }
-            100% {
-                transform: translateX(10rem);
-            }
-        }
-
-        @keyframes rightToLeft {
-            0% {
-                transform: translateX(0rem);
-            }
-            100% {
-                transform: translateX(-10rem);
-            }
-        }
-    </style>
 @endsection

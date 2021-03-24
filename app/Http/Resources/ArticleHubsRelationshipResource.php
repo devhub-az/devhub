@@ -22,14 +22,10 @@ class ArticleHubsRelationshipResource extends ResourceCollection
 
         return [
             'data'  => HubsIdentifierResource::collection($this->collection),
-            'links' => [
-                'self'    => route('articles.relationships.hubs', ['article_json' => $article->id]),
-                'related' => route('articles.hubs', ['article_json' => $article->id]),
-            ],
         ];
     }
 
-    public function with($request)
+    public function with($request): array
     {
         return [
             'links' => [

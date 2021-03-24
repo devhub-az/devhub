@@ -29,26 +29,26 @@ class Session
     }
 
     /**
-     * Get the viewed posts in session.
+     * Get the viewed articles in session.
      *
      * @return Collection
      */
     protected function getViewedPostsInSession(): Collection
     {
-        return collect(session()->get('viewed_posts'));
+        return collect(session()->get('viewed_articles'));
     }
 
     /**
      * Prune expired views from the session.
      *
-     * @param Collection $posts
+     * @param Collection $articles
      * @return void
      */
-    protected function pruneExpiredViews(Collection $posts)
+    protected function pruneExpiredViews(Collection $articles)
     {
-        foreach ($posts as $key => $value) {
+        foreach ($articles as $key => $value) {
             if ($value < now()->subSeconds(3600)->timestamp) {
-                session()->forget('viewed_posts.'.$key);
+                session()->forget('viewed_articles.'.$key);
             }
         }
     }
@@ -56,14 +56,14 @@ class Session
     /**
      * Prune expired visits from the session.
      *
-     * @param Collection $posts
+     * @param Collection $articles
      * @return void
      */
-    protected function pruneExpiredVisits(Collection $posts)
+    protected function pruneExpiredVisits(Collection $articles)
     {
-        foreach ($posts as $key => $value) {
+        foreach ($articles as $key => $value) {
             if (! Date::createFromTimestamp($value['timestamp'])->isToday()) {
-                session()->forget('visited_posts.'.$key);
+                session()->forget('visited_articles.'.$key);
             }
         }
     }

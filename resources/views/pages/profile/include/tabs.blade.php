@@ -7,7 +7,7 @@
             </p>
         </a>
         <a id="trans-none" href="{{ route('user_articles', $author->attributes->username) }}"
-           class="text-xs py-2 hover:border-b-2 hover:border-cerulean-100 {{ Route::currentRouteName() === 'user_posts' ? 'border-b-2 bottom-0 border-cerulean-100 text-cerulean-100' : 'text-gray-500 dark:text-gray-300' }}">
+           class="text-xs py-2 hover:border-b-2 hover:border-cerulean-100 {{ Route::currentRouteName() === 'user_articles' ? 'border-b-2 bottom-0 border-cerulean-100 text-cerulean-100' : 'text-gray-500 dark:text-gray-300' }}">
             <p class="text-sm xs:text-xs">
                 {{ \Numeric::number_format_short($author->attributes->articles_count) }}
                 Публикации

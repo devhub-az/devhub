@@ -13,10 +13,11 @@ class CreateVotesTable extends Migration
     public function up()
     {
         Schema::create('votes', function (Blueprint $table) {
+            $table->increments('id');
             $table->uuid('user_id');
             $table->uuid('votable_id');
             $table->string('votable_type')->index();
-            $table->enum('type', ['up_vote', 'down_vote'])->default('up_vote');
+            $table->string('vote_type', 16)->default('up_vote');
 
             $table->timestamps();
         });

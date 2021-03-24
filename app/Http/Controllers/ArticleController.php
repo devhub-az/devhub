@@ -39,7 +39,7 @@ class ArticleController extends Controller
         $hubs = new HubResource(Hub::get());
 
         return view(
-            'pages.posts.create',
+            'pages.articles.create',
             [
                 'hubs' => $hubs,
             ]
@@ -60,7 +60,7 @@ class ArticleController extends Controller
         ArticleResource::withoutWrapping();
         $article_json = new ArticleResource($article);
 
-        return view('pages.posts.show', ['post' => $article_json->toResponse($request)->getData()]);
+        return view('pages.articles.show', ['article' => $article_json->toResponse($request)->getData()]);
     }
 
     /**

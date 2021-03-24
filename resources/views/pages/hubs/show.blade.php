@@ -80,7 +80,7 @@
                             @endif
                         ></select-menu>
                     </div>
-                    <posts :url="'{{ $url }}'" @auth :auth_check="true" @endauth></posts>
+                    <articles :url="'{{ $url }}'" @auth :auth_check="true" @endauth></articles>
                 </div>
 
                 {{-- Right --}}

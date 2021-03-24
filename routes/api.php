@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\Api\ArticleAuthorController;
 use App\Http\Controllers\Api\ArticleHubController;
 use App\Http\Controllers\Api\ArticleRelationshipController;
 use App\Http\Controllers\Api\ArticleTopController;
@@ -21,9 +22,9 @@ Route::prefix('articles')->group(
         Route::get('/{article_json}', [ArticleController::class, 'show'])->middleware('api')->name('articles.show');
         Route::prefix('filter')->group(
             function () {
-                Route::get('day', [ArticleTopController::class, 'posts']);
-                Route::get('week', [ArticleTopController::class, 'posts']);
-                Route::get('month', [ArticleTopController::class, 'posts']);
+                Route::get('day', [ArticleTopController::class, 'articles']);
+                Route::get('week', [ArticleTopController::class, 'articles']);
+                Route::get('month', [ArticleTopController::class, 'articles']);
                 Route::get('favorite', [ArticleTopController::class, 'favorite'])->middleware('auth:api');
             }
         );
@@ -63,7 +64,7 @@ Route::prefix('articles')->group(
  */
 //Route::prefix('saved')->group(
 //    function () {
-//        Route::get('posts', [SavedController::class, 'allPosts']);
+//        Route::get('articles', [SavedController::class, 'allPosts']);
 //        Route::get('comments', [SavedController::class, 'allComments']);
 //    }
 //);
@@ -94,6 +95,8 @@ Route::prefix('authors')->group(
         Route::get('/', [AuthorController::class, 'index'])->name('authors.all');
         Route::get('{author}', [AuthorController::class, 'show'])->name('authors.show');
         Route::post('{author}', [AuthorController::class, 'follow'])->name('author.follow')->middleware('auth:api');
+        Route::get('{id}/all', [ArticleAuthorController::class, 'articles']);
+        Route::get('{id}/follow_check', [AuthorController::class, 'userFollowCheck']);
         Route::get('{id}/follow_check', [AuthorController::class, 'userFollowCheck']);
         Route::get('{id}/followings', [AuthorController::class, 'followings']);
         Route::get('{id}/followers', [AuthorController::class, 'followers']);
@@ -104,7 +107,7 @@ Route::get('/search_user', [AuthorController::class, 'search_user_by_key']);
 /*
  * Profile Api
  */
-//    Route::get('/users/{id}/posts', [UserController::class, 'posts']);
+//    Route::get('/users/{id}/articles', [UserController::class, 'articles']);
 //    Route::post('/users/{id}/profile_update', [UserController::class, 'upload']);
 
 /**

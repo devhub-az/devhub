@@ -87,4 +87,9 @@ final class Article extends Model
     {
         return $this->hubs()->pluck('hub_id')->toArray();
     }
+
+    public function countTotalVotes(): int
+    {
+        return $this->upVoters()->count() - $this->downVoters()->count();
+    }
 }

@@ -12,10 +12,10 @@
             <div class="page-header page-header_110">
                 <h1 class="page-header__title">Sorgu üçün axtarış nəticələri: {{ $query }}</h1>
             </div>
-            <posts
+            <articles
                     :url="'{{ $url }}'"
                     @auth :auth_check="true" @endauth
-            ></posts>
+            ></articles>
         </div>
     </div>
 @endsection

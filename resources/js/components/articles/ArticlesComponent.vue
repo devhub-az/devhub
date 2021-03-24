@@ -1,9 +1,9 @@
 <template>
     <div class="mb-3">
-        <posts-loading v-if="loading"/>
-        <div v-if="!loading && !postsEmpty">
+        <articles-loading v-if="loading"/>
+        <div v-if="!loading && !articlesEmpty">
             <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
-                 v-for="post in posts">
+                 v-for="post in articles">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
                         <a v-bind:href="'/authors/@' + post.relationships.author.data.attributes.username"
@@ -60,16 +60,16 @@
                         </div>
                     </div>
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                         :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
+                         :aria-label="post.attributes.votes + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
                          data-balloon-pos="up">
                         <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
-                             :class="{ 'default' : post.attributes.votes_sum === 0}">
+                             :class="{ 'default' : post.attributes.votes === 0}">
                             <div class="absolute h-1 bg-green-600 rounded-l"
-                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"
-                                 style="width: 50%;"></div>
+                                 :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes : '0'] +'%'">
+                            </div>
                             <div class="absolute h-1 bg-red-600 rounded-r right-0"
-                                 :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes_sum : '0'] +'%'"
-                                 style="width: 50%;"></div>
+                                 :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes : '0'] +'%'">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             <h1 style="font-family: 'Nunito', sans-serif;"><span
                 style="border-right: 2px solid; padding: 0 15px 0 15px;">500</span> Server error</h1>
         </div>
-        <div v-else-if="postsEmpty"
+        <div v-else-if="articlesEmpty"
              class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border py-10">
             <div class="w-2/3 mx-auto space-y-4 xs:w-full xs:px-4">
                 <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
@@ -125,7 +125,7 @@ export default {
     props: ['url', 'auth_check', 'hub'],
     data: function () {
         return {
-            posts: [],
+            articles: [],
             notification: {
                 message: '',
                 type: '',
@@ -136,7 +136,7 @@ export default {
             error: false,
             loading: false,
             hovered: false,
-            postsEmpty: false,
+            articlesEmpty: false,
             pagination: {
                 'current_page': 1
             },
@@ -151,15 +151,15 @@ export default {
             await axios.get(this.url + '?page=' + this.pagination.current_page).then(({data}) => {
                 this.loading = false;
                 if (data.data.length !== 0) {
-                    this.posts = data.data;
+                    this.articles = data.data;
                     this.pagination = data.meta;
                     if (this.pagination.last_page > 50) {
                         this.pagination.last_page = 50;
                     }
-                    for (let i = 0; i < this.posts.length; i++) {
-                        this.id[i] = this.posts[i].id;
+                    for (let i = 0; i < this.articles.length; i++) {
+                        this.id[i] = this.articles[i].id;
                     }
-                } else this.postsEmpty = true;
+                } else this.articlesEmpty = true;
             })
                 .catch(error => {
                     this.loading = false
@@ -168,8 +168,8 @@ export default {
         },
         async findVillainIdx(id) {
             let currindex = null;
-            for (let i = 0; i < this.$data.posts.length; i++) {
-                if (id === this.$data.posts[i].data.id) {
+            for (let i = 0; i < this.$data.articles.length; i++) {
+                if (id === this.$data.articles[i].data.id) {
                     currindex = i;
                     break;
                 }

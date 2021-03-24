@@ -26,8 +26,8 @@ try {
     window.$ = window.jQuery = require('jquery');
 } catch (e) {}
 
-Vue.component('posts', require('../components/articles/PostsComponent').default);
-Vue.component('posts-loading', require('./../components/plugins/loading/PostsLoading').default);
+Vue.component('articles', require('../components/articles/ArticlesComponent').default);
+Vue.component('articles-loading', require('./../components/plugins/loading/ArticleLoading').default);
 
 /**
  * Parts

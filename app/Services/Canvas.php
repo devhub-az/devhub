@@ -54,7 +54,7 @@ class Canvas
      */
     protected function wasRecentlyViewed(Article $article): bool
     {
-        $viewed = session()->get('viewed_posts', []);
+        $viewed = session()->get('viewed_articles', []);
 
         return array_key_exists($article->id, $viewed);
     }
@@ -67,6 +67,6 @@ class Canvas
      */
     protected function storeInSession(Article $article): void
     {
-        session()->put("viewed_posts.{$article->id}", now()->timestamp);
+        session()->put("viewed_articles.{$article->id}", now()->timestamp);
     }
 }

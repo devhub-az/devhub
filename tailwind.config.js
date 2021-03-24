@@ -1,18 +1,6 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-    // purge: {
-    //     enabled: true,
-    //     preserveHtmlElements: false,
-    //     content: [
-    //         './resources/**/*.blade.php',
-    //         './resources/**/*.js',
-    //         './resources/**/*.vue',
-    //     ],
-    //     options: {
-    //         safelist: ["dark"],
-    //     },
-    // },
     purge: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
@@ -79,6 +67,12 @@ module.exports = {
             width: {
                 'left': '70%',
                 'right': '30%',
+            },
+            boxShadow: {
+                rwhite: 'inset 40px 0 25px -25px #aaa',
+                rblack: 'inset 40px 0 25px -25px #333',
+                lwhite: 'inset -40px 0 25px -25px #aaa',
+                lblack: 'inset -40px 0 25px -25px #333',
             },
             gridTemplateColumns: {
                 'main': '72% 27%;',

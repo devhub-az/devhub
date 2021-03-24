@@ -34,63 +34,43 @@
         </div>
         <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
-             class="flex gap-4 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700"
+             class="flex gap-3 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700"
              :id="hub.id + '_block'">
             <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1 dark:bg-dwall"
                  :src="hub.attributes.logo"
                  alt="Hub logo">
             <a :href="'/hubs/' + hub.attributes.slug" class="w-8/12">
                 <div class="h-16 overflow-y-hidden mb-2">
-                    <div class="flex items-center space-x-4 font-semibold dark:text-gray-300">
+                    <div class="space-x-4 font-semibold dark:text-gray-300">
                         <p>{{ hub.attributes.name }}</p>
-                        <div class="flex items-center font-normal space-x-1 xs:hidden">
-                            <div class="flex items-center">
-                                <span class="iconify text-cerulean-500 dark:text-cerulean-100"
-                                      data-icon="mdi:account-multiple-plus-outline"
-                                      data-inline="false"></span>
-                                <p class="ml-1 text-sm text-cerulean-500 dark:text-cerulean-100">
-                                    <span class="xs:hidden">İzləyici</span>
-                                    {{ hub.attributes.hub_followers_count }}
-                                </p>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
-                                      data-inline="false"></span>
-                                <p class="ml-1 text-sm"
-                                   :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : ''">
-                                    <span class="xs:hidden">Reyting</span>
-                                    {{ hub.attributes.rating }}
-                                </p>
-                            </div>
-                        </div>
                     </div>
                     <p class="text-sm w-full font-light pb-2 dark:text-gray-300">
-                        {{ hub.attributes.description }}
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus beatae cumque dolorum ea esse exercitationem fuga labore minus molestiae, nam nesciunt quae quasi quos recusandae repudiandae tempore totam, voluptatem.
                     </p>
                 </div>
-                <div class="flex items-center text-sm">
-                    <div class="items-center hidden xs:flex">
+                <div class="flex items-center text-xs">
+                    <div class="items-center flex">
                         <span class="iconify text-cerulean-500 dark:text-cerulean-100"
-                              data-icon="mdi:account-multiple-plus-outline"
+                              data-icon="mdi:account-group-outline"
                               data-inline="false"></span>
-                        <p class="ml-1 text-sm text-cerulean-500 dark:text-cerulean-100">
-                            <span class="xs:hidden">İzləyici</span>
+                        <p class="ml-1 text-sm dark:text-gray-300">
+                            <span class="xs:hidden">{{ $t('devhub.followers') }}</span>
                             {{ hub.attributes.hub_followers_count }}
                         </p>
                     </div>
-                    <div class="items-center hidden xs:flex mx-2">
+                    <div class="items-center flex mx-2">
                         <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
                               data-inline="false"></span>
                         <p class="ml-1 text-sm"
                            :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
-                            <span class="xs:hidden">Reyting</span>
+                            <span class="xs:hidden">{{ $t('devhub.rating') }}</span>
                             {{ hub.attributes.rating }}
                         </p>
                     </div>
                     <div class="flex items-center">
                         <i class="iconify dark:text-gray-300" data-icon="mdi-text-box-multiple-outline"></i>
                         <p class="ml-1 text-sm font-light dark:text-gray-300">
-                            <span class="xs:hidden">Paylaşım</span> {{ hub.attributes.articles_count }}
+                            <span class="xs:hidden">{{ $t('devhub.articles') }}</span> {{ hub.attributes.articles_count }}
                         </p>
                     </div>
                 </div>

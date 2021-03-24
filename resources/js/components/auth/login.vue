@@ -1,6 +1,6 @@
 <template>
     <form autocomplete="off" @submit.prevent="login" method="post" class="xs:max-w-xs w-96">
-        <a href="/login/github"
+        <a href="/login/github" id="trans-none"
            class="btn-outline border-gray-300 dark:border-gray-300 rounded-lg w-full items-center dark:text-black">
             <div class="mx-auto flex space-x-1">
                 <span class="iconify text-base text-gray-700" data-icon="simple-icons:github" data-inline="true"></span>
@@ -14,22 +14,22 @@
         </div>
         <div class="pb-2 space-y-4">
             <input aria-invalid="true" autocomplete="off" id="email" name="email"
-                   placeholder="Elektron poçt"
+                   placeholder="geremy@mailer.io"
                    type="text" inputmode="text"
                    class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md rounded-lg hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors mb-2"
-                   aria-label="Elektron poçt"
+                   aria-label="geremy@mailer.io"
                    autocorrect="off" autocapitalize="none"
                    spellcheck="false"
                    value="" v-model="email">
             <div class="relative">
                 <input aria-invalid="true" autocomplete="current-password" id="password" name="password"
-                       placeholder="Şifrə"
-                       :type="type" inputmode="text"
+                       placeholder="••••••••"
+                       :type="type" inputmode="password"
                        class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors"
                        aria-label="Şifrə"
-                       autocorrect="off" autocapitalize="none"
+                       autocapitalize="none"
                        spellcheck="false"
-                       value="" v-model="password">
+                       v-model="password">
                 <div v-if="type === 'password'" @click="typeChange()">
                     <span class="iconify absolute translate-y-1/2 text-gray-400 top-0 my-3 mr-4 cursor-pointer right-0"
                           data-icon="mdi:eye-off"></span>

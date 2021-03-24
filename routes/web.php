@@ -21,7 +21,6 @@ Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
 //Route::get('/forgot-password', function () {
 //    return view('auth.forgot-password');
 //})->middleware('guest')->name('password.request');
-
 Route::get(
     'lang/{locale}',
     function ($locale) {
@@ -34,22 +33,22 @@ Route::get(
     }
 );
 
-Route::get('/', [HomeController::class, 'postsApiRoute'])->name('home');
-Route::get('top/week', [HomeController::class, 'postsApiRoute'])->name('top.week');
-Route::get('top/month', [HomeController::class, 'postsApiRoute'])->name('top.month');
-Route::get('all', [HomeController::class, 'postsApiRoute'])->name('all');
+Route::get('/', [HomeController::class, 'articlesApiRoute'])->name('home');
+Route::get('top/week', [HomeController::class, 'articlesApiRoute'])->name('top.week');
+Route::get('top/month', [HomeController::class, 'articlesApiRoute'])->name('top.month');
+Route::get('all', [HomeController::class, 'articlesApiRoute'])->name('all');
 
 //Auth routes
 Route::group(
     ['middleware' => ['auth']],
     static function () {
-        Route::get('favorite', [HomeController::class, 'postsApiRoute'])->name('favorite');
+        Route::get('favorite', [HomeController::class, 'articlesApiRoute'])->name('favorite');
         Route::get('tracker', [Auth::class, 'index'])->name('tracker');
         Route::get('tracker/remove/all', [Auth::class, 'deleteAll'])->name('delete-all-trackers');
 
         Route::prefix('saved')->group(
             function () {
-                Route::get('/posts', [Auth::class, 'indexPosts'])->name('saved-posts');
+                Route::get('/articles', [Auth::class, 'indexPosts'])->name('saved-articles');
 
                 Route::get('/comments', [Auth::class, 'indexComments'])->name('saved-comments');
             }

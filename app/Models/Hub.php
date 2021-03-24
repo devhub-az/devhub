@@ -28,7 +28,7 @@ final class Hub extends Model
 
 //    public function articles()
 //    {
-//        return $this->belongsToMany(Article::class, 'post_hubs', 'hub_id', 'posts_id');
+//        return $this->belongsToMany(Article::class, 'post_hubs', 'hub_id', 'articles_id');
 //    }
 
     public function articles(): MorphToMany

@@ -22,22 +22,28 @@
 </div>
 <div class="border p-4 rounded mb-2 bg-white dark:bg-dpaper dark:border-gray-700">
     <p class="font-medium mb-3 dark:text-gray-300">
-        Подписчики <span class="font-light">{{ count($author->relationships->followers->data) }}</span>
+        Подписчики
+        @if(count($author->relationships->followers->data) !== 0)
+            <span class="text-white rounded-full px-1 bg-gray-400 dark:bg-gray-600">
+                {{ count($author->relationships->followers->data) }}
+            </span>
+        @endif
     </p>
-    <div class="grid grid-cols-[repeat(auto-fill,2rem)] justify-between gap-2">
-        @if (count($author->relationships->followers->data) > 0)
+    @if (count($author->relationships->followers->data) > 0)
+        <div class="grid grid-cols-[repeat(auto-fill,2rem)] justify-between gap-2">
             @foreach($author->relationships->followers->data as $follower)
-                <a href="{{ route('user_info', $follower->attributes->username) }}" title="{{ $follower->attributes->name }}">
+                <a href="{{ route('user_info', $follower->attributes->username) }}"
+                   title="{{ $follower->attributes->name }}">
                     <img
                         src="{{ $follower->attributes->avatar }}"
                         alt="User profili"
                         class="border dark:bg-gray-500 shadow-sm dark:border-gray-700 object-cover rounded h-8 w-8">
                 </a>
             @endforeach
-        @else
-            <p class="dark:text-gray-400">Никто не отслеживает</p>
-        @endif
-    </div>
+        </div>
+    @else
+        <p class="dark:text-gray-400">Никто не отслеживает</p>
+    @endif
 </div>
 
 @push('scripts')

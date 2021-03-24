@@ -12,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Jcc\LaravelVote\Traits\Voter;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
 use Spatie\MediaLibrary\HasMedia;
@@ -161,7 +161,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     }
 
     /**
-     * Get posts ids where comments was wrote.
+     * Get articles ids where comments was wrote.
      *
      * @return array
      */

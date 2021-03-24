@@ -47,7 +47,7 @@ class AuthorController extends Controller
      *
      * @return AuthorResource
      */
-    public function userFollowCheck(int $id)
+    public function userFollowCheck(int $id): AuthorResource
     {
         return new AuthorResource(User::findorfail($id));
     }
@@ -57,7 +57,7 @@ class AuthorController extends Controller
      *
      * @return ArticlesResource
      */
-    public function posts(int $id): ArticlesResource
+    public function articles(int $id): ArticlesResource
     {
         return new ArticlesResource(
             Article::where('author_id', $id)
@@ -75,7 +75,7 @@ class AuthorController extends Controller
      * @return mixed
      * @throws AuthorizationException
      */
-    public function follow(User $author)
+    public function follow(User $author): mixed
     {
         $this->authorize(AuthorPolicy::FOLLOW, $author);
 

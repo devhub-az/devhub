@@ -25,23 +25,17 @@ class ArticleTopController extends Controller
      */
     public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
     {
-        switch ($request->segment(4)) {
-            case 'day':
-                self::$count = $day;
-                break;
-            case 'week':
-                self::$count = $week;
-                break;
-            case 'month':
-                self::$count = $month;
-                break;
-        }
+        self::$count = match ($request->segment(4)) {
+            'day' => $day,
+            'week' => $week,
+            'month' => $month,
+        };
     }
 
     /**
      * @return ArticlesResource
      */
-    public function posts(): ArticlesResource
+    public function articles(): ArticlesResource
     {
         $articles = Article::with('hubs')
             ->withcount(
@@ -63,7 +57,7 @@ class ArticleTopController extends Controller
 
         $sorted = $articles->get()->sortBy(
             function ($articles) {
-                return $articles->countTotalVotes();
+                return $articles->voters()->count();
             },
             null,
             true
