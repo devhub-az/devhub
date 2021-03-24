@@ -19,9 +19,9 @@
                 <a class="pr-2 md:text-2xl items-center xs:ml-0 xs:text-2xl"
                    href="{{ session('main-page') ?? route('home') }}">
                     <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                         height="2rem" class="xs:h-8 dark:hidden">
+                         height="2.25rem" class="xs:h-9 dark:hidden">
                     <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                         height="2rem" class="xs:h-8 hidden dark:block">
+                         height="2.25rem" class="xs:h-9 hidden dark:block">
                 </a>
             </div>
             <ul class="grid relative grid-flow-col font-medium text-sm gap-3 md:hidden sm:hidden xs:hidden items-center justify-center"

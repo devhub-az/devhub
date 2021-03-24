@@ -5,7 +5,7 @@
             <div
                 class="sticky top-0 flex justify-between rounded-t items-center border-b bg-afooter dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
                 <div class="inline-flex">
-                    <a :href="'/authors/@' + post.relationships.author.data.attributes.username"
+                    <a :href="'/@' + post.relationships.author.data.attributes.username"
                        class="inline-flex">
                         <img class="w-6 h-6 flex-none image-fit rounded lazyload"
                              :src="post.relationships.author.data.attributes.avatar" alt="user avatar">
@@ -52,16 +52,16 @@
                     <favorite :post="post" :auth_check="auth_check"/>
                 </div>
                 <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                     :aria-label="post.attributes.votes_sum + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
+                     :aria-label="post.attributes.votes + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
                      data-balloon-pos="up">
                     <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
-                         :class="{ 'default' : post.attributes.votes_sum === 0}">
+                         :class="{ 'default' : post.attributes.votes === 0}">
                         <div class="absolute h-1 bg-green-600 rounded-l"
-                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes_sum : '0'] +'%'"
-                        style="width: 50%;"></div>
+                             :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes : '0'] +'%'">
+                        </div>
                         <div class="absolute h-1 bg-red-600 rounded-r right-0"
-                             :style="'width:' + [post.attributes.votes_sum !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes_sum : '0'] +'%'"
-                             style="width: 50%;"></div>
+                             :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes : '0'] +'%'">
+                        </div>
                     </div>
                 </div>
             </div>

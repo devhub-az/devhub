@@ -24,7 +24,7 @@
     <p class="font-medium mb-3 dark:text-gray-300">
         Подписчики
         @if(count($author->relationships->followers->data) !== 0)
-            <span class="text-white rounded-full px-1 bg-gray-400 dark:bg-gray-600">
+            <span class="text-black text-xs bg-gray-200 dark:bg-gray-600 rounded-lg py-0.5 px-1.5">
                 {{ count($author->relationships->followers->data) }}
             </span>
         @endif

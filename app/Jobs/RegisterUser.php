@@ -66,6 +66,8 @@ final class RegisterUser
                 'email'    => $this->email,
                 'password' => Hash::make($this->password),
                 'type'     => User::DEFAULT,
+//                TODO:REMOVE IT
+                'email_verified_at' => \Carbon::now()->toDateTimeString(),
             ]
         );
         $user->addMedia($this->image)->toMediaCollection('avatars');

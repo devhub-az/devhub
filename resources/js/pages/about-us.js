@@ -1,5 +1,5 @@
-let Vue = require('vue').default;
-import httpPlugin from './../scripts/http';
+let Vue = require('vue').default
+import httpPlugin from './../scripts/http'
 import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
 import VueI18n from 'vue-i18n';
 import AOS from 'aos';

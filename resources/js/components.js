@@ -55,4 +55,4 @@ Vue.component('profile-settings', () => import('./components/auth/settings/Profi
  * Comments
  */
 Vue.component('comments-favorite', () => import('./components/comments/FavoriteCommentsComponent.vue'));
-Vue.component('comments', () => import('./components/comments/PostCommentsComponent.vue'));
+Vue.component('comments', () => import('./components/comments/ArticleCommentsComponent.vue'));

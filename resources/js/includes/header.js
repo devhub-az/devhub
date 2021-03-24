@@ -7,7 +7,9 @@ console.log('oooooooooo.                         ooooo   ooooo              .o8 
     'o888bood8P\'   `Y8bod8P\'     `8\'     o888o   o888o  `V88V"V8P\'  `Y8bod8P\'')
 
 import Vue from "vue";
-import moment from "moment-mini"
+import moment from "moment"
+
+moment.locale(window.Language)
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);

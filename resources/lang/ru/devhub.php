@@ -21,6 +21,7 @@ return [
     'connected'             => 'Присоединился',
     'followers'             => 'Подписчиков',
     'connectedToDevHub'     => 'Присоединившиеся к DevHub',
+    'follow'                => 'Подписаться',
     'watchedHubs'           => 'Тренды хабов',
     'supportUs'             => 'Поддержите постоянное развитие DevHub',
     'connect'               => 'Зарегистрироваться',

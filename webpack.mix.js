@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 
-mix.extract(['vue', 'jquery', 'axios', 'popper.js', 'moment-mini']);
+mix.extract(['vue', 'jquery', 'axios', 'popper.js', 'moment', 'lodash']);
 
 mix.disableNotifications();
 

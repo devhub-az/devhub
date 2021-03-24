@@ -21,7 +21,7 @@
                              class="h-8 w-8 rounded object-cover flex-no-shrink"
                              alt="Profile image">
                         <div class="ml-2">
-                            <a :href="'/authors/@' + user.username"
+                            <a :href="'/@' + user.username"
                                class="font-semibold text-gray-900 dark:text-gray-300 leading-none">
                                 {{ user.name ? user.name : '@' + user.username }}</a>
                         </div>

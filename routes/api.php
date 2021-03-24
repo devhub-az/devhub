@@ -37,8 +37,8 @@ Route::prefix('articles')->group(
 //            '{article_json}/author',
 //            ['uses' => 'Api\ArticleRelationshipController'.'@author', 'as' => 'articles.author']
 //        );
-//        Route::get('{article_json}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
-//            ->name('articles.relationships.comments');
+        Route::get('{article_json}/relationships/comments', [ArticleRelationshipController::class, 'comments'])
+            ->name('articles.relationships.comments');
 //        Route::get(
 //            '{article_json}/comments',
 //            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']

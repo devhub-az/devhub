@@ -14,7 +14,9 @@
                             <div class="text-2xl flex items-center space-x-1 mb-1">
                                 <p class="text-white">
                                     <span
-                                    class="inline-block align-middle text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium">{{ __('devhub.beta') }}</span>
+                                        class="inline-block align-middle text-xs border rounded-3xl border-green-500 px-2 py-0.5 font-medium">
+                                        {{ __('devhub.beta') }}
+                                    </span>
                                     {{ __('devhub.welcome') }}
                                 </p>
                             </div>
@@ -124,7 +126,8 @@
                                                 <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
                                                      alt="hub image" class="w-12 h-12 rounded">
                                                 <div>
-                                                    <span class="inline-block font-semibold dark:text-gray-300 leading-5">
+                                                    <span
+                                                        class="inline-block font-semibold dark:text-gray-300 leading-5">
                                                         {{ $hub->name }}
                                                     </span>
                                                 </div>

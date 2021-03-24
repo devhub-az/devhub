@@ -3,39 +3,39 @@
         <articles-loading v-if="loading"/>
         <div v-if="!loading && !articlesEmpty">
             <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
-                 v-for="post in articles">
+                 v-for="article in articles">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
-                        <a v-bind:href="'/authors/@' + post.relationships.author.data.attributes.username"
+                        <a v-bind:href="'/@' + article.relationships.author.data.attributes.username"
                            class="inline-flex no-underline"
                            title="Paylaşmanın müəllifi">
                             <img height="32" width="32"
                                  alt="user avatar" class="w-6 h-6 flex-none image-fit rounded lazyload"
-                                 :src="post.relationships.author.data.attributes.avatar">
+                                 :src="article.relationships.author.data.attributes.avatar">
                             <p class="text-sm pl-2 m-auto dark:text-gray-300">
-                                {{ '@' + post.relationships.author.data.attributes.username }}</p>
+                                {{ '@' + article.relationships.author.data.attributes.username }}</p>
                         </a>
                         <p class="text-xs my-auto mr-auto pl-2 dark:text-gray-300">
-                            {{ post.attributes.created_at | moment('DD MMMM, H:mm') }}
+                            {{ article.attributes.created_at | moment('DD MMMM, H:mm') }}
                         </p>
                         <div class="flex items-center text-sm my-auto xs:hidden md:hidden sm:hidden"
                              aria-label="Oxumaq vaxtı" data-balloon-pos="left">
                             <span class="iconify dark:text-gray-300" data-icon="mdi-clock-outline"></span>
-                            <p class="ml-1 dark:text-gray-300">{{ post.attributes.read_time }}</p>
+                            <p class="ml-1 dark:text-gray-300">{{ article.attributes.read_time }}</p>
                         </div>
                     </div>
                     <div class="grid grid-flow-col py-2">
-                        <a :href="'/article/' + post.attributes.slug"
+                        <a :href="'/article/' + article.attributes.slug"
                            class="my-auto text-2xl xs:text-xl dark:text-gray-300">
-                            {{ post.attributes.title }}
+                            {{ article.attributes.title }}
                         </a>
-                        <vote :item="post"/>
+                        <vote :item="article"/>
                     </div>
-                    <hubs-tags v-if="post.relationships.hubs.data.length" :data="post.relationships.hubs.data"
+                    <hubs-tags v-if="article.relationships.hubs.data.length" :data="article.relationships.hubs.data"
                                :auth_check="auth_check"/>
                     <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
                         <div
-                            v-for="block in edjsParser.parse(JSON.parse(post.attributes.body)).slice(0,2)"
+                            v-for="block in edjsParser.parse(JSON.parse(article.attributes.body)).slice(0,2)"
                             v-html="block.length > 700 ? block.slice(0,600) + '...' : block"></div>
                     </div>
                 </div>
@@ -44,31 +44,31 @@
                     <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                         <div class="flex items-center">
                             <i class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-eye-outline"/>
-                            <p class="ml-1 text-gray-500 dark:text-gray-300">{{ post.attributes.views }}</p>
+                            <p class="ml-1 text-gray-500 dark:text-gray-300">{{ article.attributes.views }}</p>
                         </div>
                         <div>
-                            <a :href="'/article/' + post.attributes.slug + '#comments'" class="flex items-center">
+                            <a :href="'/article/' + article.attributes.slug + '#comments'" class="flex items-center">
                                 <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
                                 <p class="ml-1 text-gray-500 dark:text-gray-300">
-                                    {{ post.relationships.comments.data.length }}
+                                    {{ article.relationships.comments.data.length }}
                                 </p>
                             </a>
                         </div>
-                        <favorite :post="post" :auth_check="auth_check"/>
-                        <div class=" flex items-center cursor-pointer" @click="copy(post.id)">
+                        <favorite :article="article" :auth_check="auth_check"/>
+                        <div class=" flex items-center cursor-pointer" @click="copy(article.id)">
                             <span class="iconify text-gray-500 dark:text-gray-300" data-icon="fa-solid:share-alt" data-inline="false"></span>
                         </div>
                     </div>
                     <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                         :aria-label="post.attributes.votes + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
+                         :aria-label="article.attributes.votes + ' səs: ' + article.attributes.upvotes + ' artı ' + article.attributes.downvotes + ' mənfi'"
                          data-balloon-pos="up">
                         <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
-                             :class="{ 'default' : post.attributes.votes === 0}">
+                             :class="{ 'default' : article.attributes.votes === 0}">
                             <div class="absolute h-1 bg-green-600 rounded-l"
-                                 :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes : '0'] +'%'">
+                                 :style="'width:' + [article.attributes.votes !== 0 ? 100 * article.attributes.upvotes / article.attributes.votes : '0'] +'%'">
                             </div>
                             <div class="absolute h-1 bg-red-600 rounded-r right-0"
-                                 :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes : '0'] +'%'">
+                                 :style="'width:' + [article.attributes.votes !== 0 ? 100 * article.attributes.downvotes / article.attributes.votes : '0'] +'%'">
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
             <pagination v-if="pagination.last_page > 1" :pagination="pagination" :offset="5"
                         @paginate="getPosts()"/>
         </div>
-        <div v-else-if="error" class="post-content__item"
+        <div v-else-if="error" class="article-content__item"
              style="text-align: center; display: grid; grid-gap: 12px;">
             <span style="font-size: 5rem; opacity: .7;">¯\_(ツ)_/¯</span>
             <h1 style="font-family: 'Nunito', sans-serif;"><span
@@ -177,7 +177,7 @@ export default {
             return currindex;
         },
         async copy(id) {
-            const link = window.location.origin + '/post/' + id;
+            const link = window.location.origin + '/article/' + id;
             // this.$clipboard(link);
         }
     },
