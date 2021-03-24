@@ -12,6 +12,7 @@ $rules = [
     'trailing_comma_in_multiline_array' => true,
     'phpdoc_scalar' => true,
     'unary_operator_spaces' => true,
+    'align_double_arrow' => true,
     'binary_operator_spaces' => true,
     'blank_line_before_statement' => [
         'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
