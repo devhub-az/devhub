@@ -57,10 +57,10 @@ class HomeController extends Controller
                 return view(
                     'pages.home',
                     [
-                                'url' => '/api/articles',
-                                'top_followed_hubs' => $top_followed_hubs,
-                                'lastAuthors' => $lastAuthors,
-                            ]
+                        'url' => '/api/articles',
+                        'top_followed_hubs' => $top_followed_hubs,
+                        'lastAuthors' => $lastAuthors,
+                    ]
                 );
             case 'favorite' && Auth::user()->followings(Hub::class)->count() !== null
                 && Auth::user()
