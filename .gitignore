@@ -14,3 +14,5 @@ composer.phar
 composer.lock
 yarn-error.log
 .idea
+.php_cs
+.php_cs.cache
