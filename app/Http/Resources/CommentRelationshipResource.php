@@ -16,7 +16,7 @@ class CommentRelationshipResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'author'   => new AuthorIdentifierResource($this->creator),
+            'author' => new AuthorIdentifierResource($this->creator),
         ];
     }
 

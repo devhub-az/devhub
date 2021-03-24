@@ -130,11 +130,11 @@ return [
             //database set to 0 since only database 0 is supported in redis cluster
             'database' => '0',
             //redis key prefix for this connection
-            'prefix'   => 'd:',
+            'prefix' => 'd:',
         ],
 
         //connection used by the cache facade when redis cache is configured in config/cache.php
-        'cache'   => [
+        'cache' => [
             'url'      => env('REDIS_URL'),
             'host'     => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD'),
@@ -142,7 +142,7 @@ return [
             //database set to 0 since only database 0 is supported in redis cluster
             'database' => '0',
             //redis key prefix for this connection
-            'prefix'   => 'c:',
+            'prefix' => 'c:',
         ],
         //connection used by the session when redis cache is configured in config/session.php
         'session' => [
@@ -153,11 +153,11 @@ return [
             //database set to 0 since only database 0 is supported in redis cluster
             'database' => '0',
             //redis key prefix for this connection
-            'prefix'   => 's:',
+            'prefix' => 's:',
         ],
 
         //connection used by the queue when redis cache is configured in config/queue.php
-        'queue'   => [
+        'queue' => [
             'url'      => env('REDIS_URL'),
             'host'     => env('REDIS_HOST', '127.0.0.1'),
             'password' => env('REDIS_PASSWORD'),
@@ -165,7 +165,7 @@ return [
             //database set to 0 since only database 0 is supported in redis cluster
             'database' => '0',
             //redis key prefix for this connection
-            'prefix'   => 'q:',
+            'prefix' => 'q:',
         ],
 
     ],

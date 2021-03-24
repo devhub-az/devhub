@@ -18,7 +18,7 @@ class ArticleCommentsRelationshipResource extends ResourceCollection
         $article = $this->additional['article_json'];
 
         return [
-            'data'  => CommentIdentifierResource::collection($this->collection),
+            'data' => CommentIdentifierResource::collection($this->collection),
         ];
     }
 

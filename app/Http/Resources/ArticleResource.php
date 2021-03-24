@@ -17,14 +17,14 @@ class ArticleResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'          => 'articles',
-            'id'            => (string) $this->id,
-            'attributes'    => [
+            'type'       => 'articles',
+            'id'         => (string) $this->id,
+            'attributes' => [
                 'id'            => (string) $this->id,
                 'title'         => $this->title,
                 'slug'          => $this->slug,
                 'body'          => $this->body, //\Str::words($this->body, 87, ''),
-                'votes'     => $this->voters()->count(),
+                'votes'         => $this->voters()->count(),
                 'upvotes'       => $this->upVoters()->count(),
                 'downvotes'     => $this->downVoters()->count(),
                 'views'         => $this->views_count,
@@ -33,7 +33,7 @@ class ArticleResource extends JsonResource
                 'is_down_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasDownVoted($this->setAppends([]))
                     : false,
                 //                'favorite'   => $this->statusCheck('favorites'),
-                'read_time'     => $this->readTime($this->body),
+                'read_time' => $this->readTime($this->body),
                 //                'favorites'  => $this->bookmarkers_count,
             ],
             'relationships' => new ArticleRelationshipResource($this),

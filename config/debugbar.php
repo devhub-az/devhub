@@ -138,14 +138,14 @@ return [
             'show_name' => true,   // Also show the users name/email in the debugbar
         ],
         'db' => [
-            'with_params'       => true,   // Render SQL with the parameters substituted
-            'backtrace'         => true,   // Use a backtrace to find the origin of the query in your files.
-            'timeline'          => false,  // Add the queries to the timeline
-            'explain'           => [                 // Show EXPLAIN output on queries
+            'with_params' => true,   // Render SQL with the parameters substituted
+            'backtrace'   => true,   // Use a backtrace to find the origin of the query in your files.
+            'timeline'    => false,  // Add the queries to the timeline
+            'explain'     => [                 // Show EXPLAIN output on queries
                 'enabled' => false,
                 'types'   => ['SELECT'],     // // workaround ['SELECT'] only. https://github.com/barryvdh/laravel-debugbar/issues/888 ['SELECT', 'INSERT', 'UPDATE', 'DELETE']; for MySQL 5.6.3+
             ],
-            'hints'             => true,    // Show hints for common mistakes
+            'hints' => true,    // Show hints for common mistakes
         ],
         'mail' => [
             'full_log' => false,

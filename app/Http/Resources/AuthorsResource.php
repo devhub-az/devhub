@@ -24,7 +24,7 @@ class AuthorsResource extends ResourceCollection
     public function with($request)
     {
         return [
-            'links'    => [
+            'links' => [
                 'self' => route('authors.index'),
             ],
         ];

@@ -80,6 +80,7 @@ class ArticleController extends Controller
     {
         $hasVoted = $user->{'has'.ucfirst($type).'Voted'}($target);
         DB::beginTransaction();
+
         try {
             $user->{$type.'Vote'}($target);
             if ($hasVoted) {

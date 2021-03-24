@@ -18,23 +18,23 @@ class AuthorResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'          => 'authors',
-            'id'            => (string) $this->id,
-            'attributes'    => [
-                'name'                  => $this->name,
-                'username'              => $this->username,
-                'email'                 => $this->email,
-                'company'               => $this->company,
-                'avatar'                => ($this->avatar !== 'default')
+            'type'       => 'authors',
+            'id'         => (string) $this->id,
+            'attributes' => [
+                'name'     => $this->name,
+                'username' => $this->username,
+                'email'    => $this->email,
+                'company'  => $this->company,
+                'avatar'   => ($this->avatar !== 'default')
                     ? $this->getMedia('avatars')->first()->getFullUrl()
                     : config(
                         'devhub.default_avatar'
                     ),
-                'description'           => $this->description,
-                'karma'                 => $this->karma,
-                'rating'                => $this->rating,
-                'articles_count'        => $this->articles_count,
-                'follower'              => auth()->guard('api')->id() || Auth::check() ? $this->isFollowedBy(
+                'description'    => $this->description,
+                'karma'          => $this->karma,
+                'rating'         => $this->rating,
+                'articles_count' => $this->articles_count,
+                'follower'       => auth()->guard('api')->id() || Auth::check() ? $this->isFollowedBy(
                     auth()->guard('api')->id() ?? Auth::user()->id
                 ) : false,
                 'website'               => $this->website,

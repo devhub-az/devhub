@@ -13,9 +13,9 @@ class Numeric
         $karma = User::sum('karma');
 
         return [
-            'users' => number_format($users),
+            'users'   => number_format($users),
             'ratings' => number_format($ratings),
-            'karma' => number_format($karma),
+            'karma'   => number_format($karma),
             //            'cache' => number_format(count($cache)),
         ];
     }

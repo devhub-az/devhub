@@ -17,8 +17,8 @@ class ArticleRelationshipResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'author'   => [
-                'data'  => new AuthorResource($this->author),
+            'author' => [
+                'data' => new AuthorResource($this->author),
             ],
             'comments' => (new ArticleCommentsRelationshipResource($this->comments))->additional(['article_json' => $this]),
             'hubs'     => (new ArticleHubsRelationshipResource($this->hubs))->additional(['article_json' => $this]),

@@ -30,7 +30,7 @@ class AuthorFollowersResource extends JsonResource
                 'karma'    => $this->karma,
                 'rating'   => $this->rating,
             ],
-            'links'      => [
+            'links' => [
                 'self' => route('authors.show', ['author' => $this->id]),
             ],
         ];

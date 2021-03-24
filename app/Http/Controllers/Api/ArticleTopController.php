@@ -26,8 +26,8 @@ class ArticleTopController extends Controller
     public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
     {
         self::$count = match ($request->segment(4)) {
-            'day' => $day,
-            'week' => $week,
+            'day'   => $day,
+            'week'  => $week,
             'month' => $month,
         };
     }

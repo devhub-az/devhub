@@ -35,9 +35,9 @@ class Canvas
 
             $data = [
                 'article_id' => $article->id,
-                'ip' => request()->getClientIp(),
-                'agent' => request()->header('user_agent'),
-                'referer' => self::isValid($referer) ? self::trim($referer) : false,
+                'ip'         => request()->getClientIp(),
+                'agent'      => request()->header('user_agent'),
+                'referer'    => self::isValid($referer) ? self::trim($referer) : false,
             ];
 
             $article->views()->create($data);

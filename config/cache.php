@@ -38,14 +38,14 @@ return [
         ],
 
         'array' => [
-            'driver' => 'array',
+            'driver'    => 'array',
             'serialize' => false,
         ],
 
         'database' => [
-            'driver'     => 'database',
-            'table'      => 'cache',
-            'connection' => null,
+            'driver'          => 'database',
+            'table'           => 'cache',
+            'connection'      => null,
             'lock_connection' => null,
         ],
 
@@ -74,15 +74,15 @@ return [
         ],
 
         'redis' => [
-            'driver'     => 'redis',
-            'connection' => 'cache',
+            'driver'          => 'redis',
+            'connection'      => 'cache',
             'lock_connection' => 'cache',
         ],
 
         'redis:session' => [
-            'driver' => 'redis',
+            'driver'     => 'redis',
             'connection' => 'default',
-            'prefix' => 'session', // ta-da
+            'prefix'     => 'session', // ta-da
         ],
 
         'dynamodb' => [

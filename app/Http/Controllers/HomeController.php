@@ -26,7 +26,7 @@ class HomeController extends Controller
 
                 return view(
                     'pages.home',
-                    ['url'               => '/api/articles/filter/day',
+                    ['url'                  => '/api/articles/filter/day',
                         'top_followed_hubs' => $top_followed_hubs,
                         'lastAuthors'       => $lastAuthors,
                     ]
@@ -36,7 +36,7 @@ class HomeController extends Controller
 
                 return view(
                     'pages.home',
-                    ['url'               => '/api/articles/filter/week',
+                    ['url'                  => '/api/articles/filter/week',
                         'top_followed_hubs' => $top_followed_hubs,
                         'lastAuthors'       => $lastAuthors,
                     ]
@@ -46,7 +46,7 @@ class HomeController extends Controller
 
                 return view(
                     'pages.home',
-                    ['url'               => '/api/articles/filter/month',
+                    ['url'                  => '/api/articles/filter/month',
                         'top_followed_hubs' => $top_followed_hubs,
                         'lastAuthors'       => $lastAuthors,
                     ]
@@ -54,12 +54,13 @@ class HomeController extends Controller
             case 'all':
                 session(['main-page' => '/all']);
 
-                return view('pages.home',
-                            [
-                                'url'               => '/api/articles',
-                                'top_followed_hubs' => $top_followed_hubs,
-                                'lastAuthors'       => $lastAuthors,
-                            ]
+                return view(
+                    'pages.home',
+                    [
+                        'url'               => '/api/articles',
+                        'top_followed_hubs' => $top_followed_hubs,
+                        'lastAuthors'       => $lastAuthors,
+                    ]
                 );
             case 'favorite' && Auth::user()->followings(Hub::class)->count() !== null
                 && Auth::user()
@@ -69,7 +70,7 @@ class HomeController extends Controller
 
                 return view(
                     'pages.home',
-                    ['url'               => '/api/articles/filter/favorite',
+                    ['url'                  => '/api/articles/filter/favorite',
                         'top_followed_hubs' => $top_followed_hubs,
                         'lastAuthors'       => $lastAuthors,
                     ]

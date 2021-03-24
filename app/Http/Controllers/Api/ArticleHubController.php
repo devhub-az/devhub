@@ -28,12 +28,15 @@ class ArticleHubController
         switch ($request->segment(4)) {
             case 'day':
                 self::$count = $day;
+
                 break;
             case 'week':
                 self::$count = $week;
+
                 break;
             case 'month':
                 self::$count = $month;
+
                 break;
         }
     }

@@ -44,15 +44,17 @@ Route::prefix('articles')->group(
 //            ['uses' => 'Api\ArticleRelationshipController'.'@comments', 'as' => 'articles.comments']
 //        );
         Route::get(
-            '{article_json}/relationships/hubs', [ArticleRelationshipController::class, 'hubs'])->name(
-           'articles.relationships.hubs'
+            '{article_json}/relationships/hubs',
+            [ArticleRelationshipController::class, 'hubs']
+        )->name(
+            'articles.relationships.hubs'
         );
 //        Route::get(
 //            '{article_json}/hubs',
 //            ['uses' => 'Api\ArticleRelationshipController'.'@hubs', 'as' => 'articles.hubs']
 //        );
 
-        /**
+        /*
          * Comments Api.
          */
         Route::post('{article}/comment', [CommentController::class, 'store'])->middleware('auth:api');
@@ -110,7 +112,7 @@ Route::get('/search_user', [AuthorController::class, 'search_user_by_key']);
 //    Route::get('/users/{id}/articles', [UserController::class, 'articles']);
 //    Route::post('/users/{id}/profile_update', [UserController::class, 'upload']);
 
-/**
+/*
  * Search Api.
  */
 Route::get('search{search?}', [SearchController::class, 'results']);
