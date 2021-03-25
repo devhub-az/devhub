@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Jcc\LaravelVote\Traits\Votable;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Class User.
@@ -22,6 +23,7 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
 final class Article extends Model
 {
     use SoftDeletes;
+    use QueryCacheable;
     use Votable;
     use HasSlug;
     use HasAuthor;
@@ -30,6 +32,12 @@ final class Article extends Model
     use Favoriteable;
 
     protected $vote = User::class;
+
+    public $cacheFor = 3600;
+    public $cacheTags = ['articles'];
+    public $cachePrefix = 'articles_';
+    protected static $flushCacheOnUpdate = true;
+
 
     /**
      * The "type" of the auto-incrementing ID.

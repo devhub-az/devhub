@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Class Hub.
@@ -18,6 +19,12 @@ final class Hub extends Model
 {
     use HasFactory;
     use Favoriteable;
+    use QueryCacheable;
+
+    public $cacheFor = 3600;
+    public $cacheTags = ['hubs'];
+    public $cachePrefix = 'hubs_';
+    protected static $flushCacheOnUpdate = true;
 
     public $timestamps = false;
 

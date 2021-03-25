@@ -15,6 +15,7 @@ use Jcc\LaravelVote\Traits\Voter;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -33,6 +34,12 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use Favoriter;
     use SoftDeletes;
     use HasFactory;
+    use QueryCacheable;
+
+    public $cacheFor = 3600;
+    public $cacheTags = ['authors'];
+    public $cachePrefix = 'authors_';
+    protected static $flushCacheOnUpdate = true;
 
     /**
      * The primary key for the model.
