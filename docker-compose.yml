@@ -15,11 +15,8 @@ services:
     container_name: nginx
     ports:
       - "8090:80"
-    volumes_from:
-      - php
     volumes:
       - ./:/var/www/
-      - ./.docker/develop/nginx/sites-available:/etc/nginx/conf.d/
     depends_on:
       - php
       - mysql

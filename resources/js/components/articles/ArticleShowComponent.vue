@@ -29,7 +29,7 @@
                 </div>
                 <hubs-tags v-if="typeof(post.relationships.hubs) !== `undefined` "
                            :data="post.relationships.hubs.data"></hubs-tags>
-                <div id="markdown" class="markdown py-2">
+                <div id="markdown" class="prose py-2">
                     <div
                         v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
                 </div>
