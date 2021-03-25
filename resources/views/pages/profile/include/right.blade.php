@@ -30,7 +30,7 @@
         @endif
     </p>
     @if (count($author->relationships->followers->data) > 0)
-        <div class="grid grid-cols-[repeat(auto-fill,2rem)] justify-between gap-2">
+        <div class="grid grid-cols-[repeat(auto-fill,2rem)] justify-between space-x-2">
             @foreach($author->relationships->followers->data as $follower)
                 <a href="{{ route('user_info', $follower->attributes->username) }}"
                    title="{{ $follower->attributes->name }}">

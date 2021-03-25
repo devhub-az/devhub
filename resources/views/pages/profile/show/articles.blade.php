@@ -6,7 +6,7 @@
     {{--    TODO create js for id="app"--}}
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" id="app">
         @include('pages.profile.include.header')
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
+        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main space-x-3 md:space-x-4">
             <div class="profile__left">
                 @include('pages.profile.include.tabs')
                 <div class="markdown-body">

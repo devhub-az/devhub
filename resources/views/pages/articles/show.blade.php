@@ -10,7 +10,7 @@
 
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4 xs:px-4" id="app">
+        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main space-x-3 md:space-x-4 xs:px-4" id="app">
             <div>
                 <article-show :slug="'{{ $article->attributes->slug }}'"
                               @auth :auth_check="true" @endauth></article-show>
@@ -19,7 +19,7 @@
                     <p class="text-xl dark:text-gray-300">
                         Paylaş
                     </p>
-                    <div class="text-2xl gap-2 flex">
+                    <div class="text-2xl space-x-2 flex">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}"
                            onclick="window.open(this.href, 'Опубликовать ссылку в Facebook', 'width=640,height=436,toolbar=0,status=0'); return false;"
                            title="Опубликовать ссылку в Facebook">

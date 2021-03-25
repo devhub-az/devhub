@@ -34,7 +34,7 @@
         </div>
         <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
-             class="flex gap-3 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700"
+             class="flex space-x-3 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700"
              :id="hub.id + '_block'">
             <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1 dark:bg-dwall"
                  :src="hub.attributes.logo"
@@ -81,7 +81,7 @@
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>
-        <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-dpaper dark:border-gray-700"
+        <div class="bg-white rounded border text-center grid space-x-2 py-24 dark:bg-dpaper dark:border-gray-700"
              v-if="!loading && hubs.length === 0">
             <span class="opacity-75" style="font-size: 5rem">
                 <span class="iconify mx-auto text-red-700 dark:text-red-500" data-icon="el:remove-sign"

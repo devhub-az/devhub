@@ -3,7 +3,7 @@
 @section('title')Paylaşma yazmag @stop
 
 @section('main')
-    <div class="flex gap-3 xs:block mt-2 md:gap-4 lg:container xl:container mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto"
+    <div class="flex space-x-3 xs:block mt-2 md:space-x-4 lg:container xl:container mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto"
          id="app">
         <div class="w-left xs:w-full">
             <editor></editor>
@@ -16,7 +16,7 @@
                     </p>
                     <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
                         <div class="overflow-hidden divide-y rounded bg-white dark:bg-transparent text-black p-5">
-                            <div class="flex items-center gap-3 pb-3">
+                            <div class="flex items-center space-x-3 pb-3">
                                 <div class="relative w-10 h-10">
                                     <span class="iconify w-10 h-10 rounded" data-icon="ic:outline-check-box"
                                           data-inline="false"></span>
@@ -25,7 +25,7 @@
                                     Соблюдайте правила сайта
                                 </div>
                             </div>
-                            <div class="flex items-center gap-3 py-3">
+                            <div class="flex items-center space-x-3 py-3">
                                 <div class="relative w-10 h-10">
                                     <span class="iconify w-10 h-10 rounded" data-icon="ri:article-line"
                                           data-inline="false"></span>
@@ -34,7 +34,7 @@
                                     Следуйте советам и заботливо оформляйте посты
                                 </div>
                             </div>
-                            <div class="flex items-center gap-3 pt-3">
+                            <div class="flex items-center space-x-3 pt-3">
                                 <div class="relative w-10 h-10">
                                     <span class="iconify w-10 h-10 rounded" data-icon="eva:image-fill"
                                           data-inline="false"></span>

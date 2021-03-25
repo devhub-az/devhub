@@ -13,7 +13,7 @@
             </div>
             <div class="grid grid-flow-col">
                 <div class="bg-gray-400 w-5/6 h-5 my-2 rounded xs:w-full"></div>
-                <div class="flex gap-1 ml-auto text-2xl xs:text-xl">
+                <div class="flex space-x-1 ml-auto text-2xl xs:text-xl">
                     <div class="iconify" data-icon="mdi-thumb-up-outline"/>
                     <div class="animate-spin w-6 h-6">
                         <div class="iconify" data-icon="mdi-loading"></div>

@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="flex">
-                <div class="flex gap-2 mt-4 xs:justify-between" id="app">
+                <div class="flex space-x-2 mt-4 xs:justify-between" id="app">
                     @auth
                         @can(App\Policies\AuthorPolicy::FOLLOW, $user)
                             <user-follow

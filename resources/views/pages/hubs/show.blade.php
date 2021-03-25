@@ -60,7 +60,7 @@
             </div>
         </div>
         <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4">
-            <div class="flex gap-3 xs:block md:gap-4">
+            <div class="flex space-x-3 xs:block md:space-x-4">
                 <div class="w-left xs:w-full">
                     <div class="mb-2 flex items-center justify-between dark:border-gray-700">
                         <div class="flex items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">

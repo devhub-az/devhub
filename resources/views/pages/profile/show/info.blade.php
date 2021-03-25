@@ -5,7 +5,7 @@
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:my-0" id="app">
         @include('pages.profile.include.header')
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
+        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main space-x-3 md:space-x-4">
             <div>
                 @include('pages.profile.include.tabs')
                 <div class="bg-white border dark:border-gray-700 dark:bg-dpaper overflow-hidden sm:rounded-lg">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="dark:bg-dpaper">
                         @if ($author->attributes->description)
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                                     О себе
                                 </dt>
@@ -27,7 +27,7 @@
                         @endif
                         <div class="flex xs:block">
                             <div class="w-1/2">
-                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                                         Почта
                                     </dt>
@@ -35,7 +35,7 @@
                                         {{ $author->attributes->email }}
                                     </dd>
                                 </div>
-                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                                         Авторизован
                                     </dt>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="w-1/2">
-                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                                         Работает в
                                     </dt>
@@ -53,7 +53,7 @@
                                         {{ $author->attributes->company }}
                                     </dd>
                                 </div>
-                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                                     <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                                         Откуда
                                     </dt>
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                         @if ($author->attributes->github || $author->attributes->website || $author->attributes->twitch || $author->attributes->telegram || $author->attributes->youtube || $author->attributes->twitter)
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
                                     @if ($author->attributes->website)
                                         <div class="flex items-center space-x-2">
@@ -94,7 +94,7 @@
                             </div>
                         @endif
                         @if ($author->relationships->hubs_following->data)
-                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                                 <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
                                     Интересы
                                 </dt>
@@ -107,7 +107,7 @@
                                 </dd>
                             </div>
                         @endif
-                        <div class="dark:bg-dpaper px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <div class="dark:bg-dpaper px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
                             <dt class="text-sm font-medium mb-2 text-gray-500 dark:text-gray-300">
                                 Резюме (CV)
                             </dt>

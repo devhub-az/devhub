@@ -211,7 +211,7 @@
                                 </div>
                                 <div
                                     aria-label="32 səs: 28 / 4" data-balloon-pos="left"
-                                    class="flex gap-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto">
+                                    class="flex space-x-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto">
                                     <span
                                         class="text-green-600 hover:text-green-600 iconify transition-none cursor-pointer"
                                         data-icon="mdi-thumb-up-outline"></span>
@@ -315,7 +315,7 @@
                                 </div>
                                 <div
                                     aria-label="32 səs: 28 / 4" data-balloon-pos="left"
-                                    class="flex gap-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto">
+                                    class="flex space-x-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto">
                                     <span
                                         class="text-green-600 hover:text-green-600 iconify transition-none cursor-pointer"
                                         data-icon="mdi-thumb-up-outline"></span>

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex gap-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto"
+    <div class="flex space-x-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto"
          :title="item.attributes.votes + ':  ↑ ' + [item.attributes.upvotes === 0 ? '0' : item.attributes.upvotes ] + ' ↓ ' + [item.attributes.downvotes === 0 ? '0' : item.downvotes]">
         <span @click="upVote(item.id)" class="transition-none"
               :class="item.attributes.is_up_voted ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">

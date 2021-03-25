@@ -33,7 +33,7 @@
         </div>
         <users-loading v-if="loading"></users-loading>
         <div v-for="user in users" v-if="!loading && users"
-             class="flex gap-4 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700" :id="user.id">
+             class="flex space-x-4 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700" :id="user.id">
             <img :src="user.attributes.avatar"
                  class="w-16 h-16 rounded" alt="User profile">
             <div class="w-6/12">
@@ -59,7 +59,7 @@
             <user-follow-button :id="user.id" :follow_check="user.attributes.follower"
                                 class="w-2/12 m-auto text-center"></user-follow-button>
         </div>
-        <div class="bg-white rounded border text-center grid gap-2 py-24 dark:bg-dpaper dark:border-gray-700"
+        <div class="bg-white rounded border text-center grid space-x-2 py-24 dark:bg-dpaper dark:border-gray-700"
              v-if="!loading && users.length === 0">
             <span class="opacity-75" style="font-size: 5rem">
                 <span class="iconify mx-auto text-red-700 dark:text-red-500" data-icon="el:remove-sign"

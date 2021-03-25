@@ -3,7 +3,7 @@
 @endcan
 <header class="bg-white dark:bg-gray-800 sm:px-4 md:px-4 xs:px-4" id="header">
     <div class="flex items-center justify-between h-12 lg:container mx-auto">
-        <div class="grid grid-flow-col xs:w-max gap-3 xs:gap-0 xs:flex">
+        <div class="grid grid-flow-col xs:w-max space-x-3 xs:space-x-0 xs:flex">
             <div id="mobile-menu__toggler" class="block lg:hidden">
                 <button id="mobile-menu__open"
                         class="items-center pr-2 my-auto block h-full justify-center">
@@ -24,7 +24,7 @@
                          height="2.25rem" class="xs:h-9 hidden dark:block">
                 </a>
             </div>
-            <ul class="grid relative grid-flow-col font-medium text-sm gap-3 md:hidden sm:hidden xs:hidden items-center justify-center"
+            <ul class="grid relative grid-flow-col font-medium text-sm space-x-3 md:hidden sm:hidden xs:hidden items-center justify-center"
                 id="menu">
                 <li>
                     <a id="trans-none" href="{{ session('main-page') ?? route('home') }}"
