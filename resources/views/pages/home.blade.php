@@ -4,7 +4,7 @@
 
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4" id="app">
-        <div class="flex gap-3 xs:block md:gap-4">
+        <div class="flex space-x-3 xs:space-x-0 xs:block">
             <div class="w-left xs:w-full">
                 @guest()
                     <div
@@ -87,7 +87,7 @@
                                 <div
                                     class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
                                     @foreach ($lastAuthors as $author)
-                                        <div class="flex items-start gap-3">
+                                        <div class="flex items-start space-x-2">
                                             <div class="relative w-12 h-12">
                                                 <img
                                                     src="{{ ($author->avatar !== 'default') ? $author->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
@@ -122,7 +122,7 @@
                                     class="flex flex-col rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
                                     @foreach ($top_followed_hubs as $hub)
                                         <a href="{{ '/hubs/' . $hub->slug }}">
-                                            <div class="flex items-center gap-2">
+                                            <div class="flex items-center space-x-2">
                                                 <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
                                                      alt="hub image" class="w-12 h-12 rounded">
                                                 <div>
