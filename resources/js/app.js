@@ -16,7 +16,6 @@ console.log(' ____             _   _       _\n' +
 require('./bootstrap');
 
 window.Vue = require('vue');
-window.moment = require('moment-mini');
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 

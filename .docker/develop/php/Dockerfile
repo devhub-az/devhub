@@ -10,7 +10,6 @@ RUN apk update && apk add --no-cache \
     bash \
     tzdata \
     nano \
-    pcre-dev ${PHPIZE_DEPS} \
     nodejs npm \
     && pecl install redis \
     && docker-php-ext-enable redis \

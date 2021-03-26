@@ -55,7 +55,6 @@ services:
     networks:
       - devhub
 
-
   php:
     image: ${REGISTRY:-localhost}/devhub:latest
     build:
