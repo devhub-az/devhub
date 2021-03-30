@@ -3,24 +3,9 @@
 namespace App\Services;
 
 use App\Models\Article;
-use App\Models\User;
 
 class Canvas
 {
-    /**
-     * Return an array of available user roles.
-     *
-     * @return array
-     */
-    public static function availableRoles(): array
-    {
-        return [
-            User::CONTRIBUTOR => 'Contributor',
-            User::EDITOR => 'Editor',
-            User::ADMIN => 'Admin',
-        ];
-    }
-
     /**
      * Check if a given URL is valid.
      *
@@ -50,9 +35,9 @@ class Canvas
 
             $data = [
                 'article_id' => $article->id,
-                'ip' => request()->getClientIp(),
-                'agent' => request()->header('user_agent'),
-                'referer' => self::isValid($referer) ? self::trim($referer) : false,
+                'ip'         => request()->getClientIp(),
+                'agent'      => request()->header('user_agent'),
+                'referer'    => self::isValid($referer) ? self::trim($referer) : false,
             ];
 
             $article->views()->create($data);
@@ -69,7 +54,7 @@ class Canvas
      */
     protected function wasRecentlyViewed(Article $article): bool
     {
-        $viewed = session()->get('viewed_posts', []);
+        $viewed = session()->get('viewed_articles', []);
 
         return array_key_exists($article->id, $viewed);
     }
@@ -82,6 +67,6 @@ class Canvas
      */
     protected function storeInSession(Article $article): void
     {
-        session()->put("viewed_posts.{$article->id}", now()->timestamp);
+        session()->put("viewed_articles.{$article->id}", now()->timestamp);
     }
 }

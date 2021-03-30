@@ -56,7 +56,7 @@ export default {
 
 .dark .dark\:slider:after {
     content: "";
-    background: linear-gradient(to right, #171c20 0, rgb(255 255 255 / 0%) 30%, rgb(23 28 32 / 0%) 70%, #171c20 100%);
+    background: linear-gradient(to right, #141618 0, rgb(255 255 255 / 0%) 30%, rgb(23 28 32 / 0%) 70%, #141618 100%);
     position: absolute;
     left: 0;
     top: 0;

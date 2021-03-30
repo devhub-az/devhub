@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Hub;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -20,8 +21,11 @@ class AuthorRelationshipResource extends JsonResource
             'followings' => [
                 'data' => AuthorFollowersResource::collection($this->followings),
             ],
-            'followers'  => [
+            'followers' => [
                 'data' => AuthorFollowersResource::collection($this->followers),
+            ],
+            'hubs_following' => [
+                'data' => AuthorHubsResource::collection($this->getFavoriteItems(Hub::class)->get()),
             ],
         ];
     }

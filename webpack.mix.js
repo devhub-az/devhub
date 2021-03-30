@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 
+mix.extract(['vue', 'jquery', 'axios', 'popper.js', 'moment', 'lodash']);
+
 mix.disableNotifications();
 
 mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
@@ -21,11 +23,11 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
     .js('resources/js/login.js', 'public/js')
     .postCss("resources/sass/tailwind.css", "public/css", [
             require('postcss-import'),
-            require('tailwindcss'),
+            require('@tailwindcss/jit'),
             require('autoprefixer'),
         ])
     .vue()
 
 if (mix.inProduction()) {
-    mix.version().sourceMaps();
+    mix.version();
 }

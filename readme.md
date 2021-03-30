@@ -3,9 +3,8 @@
 </p>
 
 <p align="center">
-    <a href="LICENSE"><img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="LICENSE"></a>
+    <a href="LICENCE.md"><img src="https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg" alt="LICENSE"></a>
     <a href="https://depfu.com/github/hose1021/DevHub?project_id=18162"><img src="https://badges.depfu.com/badges/2fc07bc9db4846f71b7181a4a304efe5/overview.svg" alt="Depfu"></a>
-    <img src="https://github.styleci.io/repos/229919912/shield?style=flat" alt="StyleCI">
     <img src="https://img.shields.io/github/v/release/hose1021/DevHub" alt="Version">
     <img src="https://img.shields.io/badge/Conventional%20Commits-1.0.0-red.svg" alt="Conventional commits">
 </p>
@@ -44,7 +43,7 @@ channels:
 
 ## Can I contribute?
 
-Yes you can!  Contributions are welcomed. Thank you for considering contributing to the DevHub! The contribution guide can be found below.
+Yes you can!  Contributions are welcomed. Thank you for considering contributing to the DevHub!
 
 ### Coding Style
 
@@ -52,9 +51,9 @@ DevHub follows the [PSR-2](https://github.com/php-fig/fig-standards/blob/master/
 coding standard and the [PSR-4](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
 autoloading standard.
 
-### StyleCI
+### PHP CS FIXER
 
-Don't worry if your code styling isn't perfect! StyleCI will automatically merge any style fixes into the DevHub
+Don't worry if your code styling isn't perfect! PHP CS FIXER will automatically merge any style fixes into the DevHub
 repository after pull requests are merged. This allows us to focus on the content of the contribution and not the code
 style.
 
@@ -66,4 +65,4 @@ create [github Issie](https://github.com/hose1021/DevHub/issues) with label `bug
 All security vulnerabilities will be promptly addressed.
 
 ## License
-These design files are licensed under CC-by-NC, as found in the [LICENSE](LICENSE) file.
+These design files are licensed under CC-by-NC, as found in the [LICENSE](LICENCE.md) file.

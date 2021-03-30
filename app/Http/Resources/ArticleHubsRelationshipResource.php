@@ -21,15 +21,11 @@ class ArticleHubsRelationshipResource extends ResourceCollection
         $article = $this->additional['article_json'];
 
         return [
-            'data'  => HubsIdentifierResource::collection($this->collection),
-            'links' => [
-                'self'    => route('articles.relationships.hubs', ['article_json' => $article->id]),
-                'related' => route('articles.hubs', ['article_json' => $article->id]),
-            ],
+            'data' => HubsIdentifierResource::collection($this->collection),
         ];
     }
 
-    public function with($request)
+    public function with($request): array
     {
         return [
             'links' => [

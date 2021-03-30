@@ -11,8 +11,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Jcc\LaravelVote\CanBeVoted;
+use Jcc\LaravelVote\Traits\Votable;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
 /**
  * Class User.
@@ -22,7 +23,8 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
 final class Article extends Model
 {
     use SoftDeletes;
-    use CanBeVoted;
+    use QueryCacheable;
+    use Votable;
     use HasSlug;
     use HasAuthor;
     use HasHubs;
@@ -30,6 +32,12 @@ final class Article extends Model
     use Favoriteable;
 
     protected $vote = User::class;
+
+    public $cacheFor = 3600;
+    public $cacheTags = ['articles'];
+    public $cachePrefix = 'articles_';
+    protected static $flushCacheOnUpdate = true;
+
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -86,5 +94,10 @@ final class Article extends Model
     public function getHubsIdsAttribute(): array
     {
         return $this->hubs()->pluck('hub_id')->toArray();
+    }
+
+    public function countTotalVotes(): int
+    {
+        return $this->upVoters()->count() - $this->downVoters()->count();
     }
 }

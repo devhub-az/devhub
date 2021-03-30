@@ -20,7 +20,7 @@
     {{-- CSS --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">
+{{--    <link rel="stylesheet" href="{{ asset('css/balloon.css') }}" media="print" onload="this.media='all'">--}}
     <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
@@ -42,8 +42,8 @@
 
 <div class="bg-cerulean-500 w-full">
     <div class="text-center mx-auto my-1">
-        <a href="https://github.com/hose1021/DevHub" target="_blank" class="text-white">
-            DevHub-ın davamlı inkişafını dəstəkləyin →
+        <a href="https://github.com/hose1021/DevHub" rel="noreferrer" target="_blank" class="text-white">
+            {{ __('devhub.supportUs') }} →
         </a>
     </div>
 </div>
@@ -75,7 +75,9 @@
 
 {{-- Footer --}}
 @include('include.footer')
-<script src="//code.iconify.design/1/1.0.6/iconify.min.js" async></script>
+<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+<script type="text/javascript" src="{{ mix('js/vendor.js') }}" defer></script>
+<script type="text/javascript" src="{{ mix('js/manifest.js') }}" defer></script>
 <script type="text/javascript" src="{{ mix('js/scroller.js') }}" defer></script>
 @stack('scripts')
 </body>

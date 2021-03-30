@@ -1,13 +1,18 @@
 init: docker-down docker-pull docker-build composer-update yarn-install docker-up env key storage passport migrate
-up: composer-update docker-up yarn-watch
+up: docker-up
 down: docker-down
+prod: docker-up-prod
 restart: down up
-
-HOST=82.148.29.4
-REGISTRY=docker.pkg.github.com/hose1021/devhub
+update: composer-update yarn-upgrade
 
 docker-up:
 	docker-compose up -d
+
+docker-up-prod:
+	IMAGE_TAG=latest docker-compose -f docker-compose-production.yml up -d
+
+docker-build-prod:
+	IMAGE_TAG=latest docker-compose -f docker-compose-production.yml build
 
 docker-down:
 	docker-compose down --remove-orphans
@@ -61,21 +66,35 @@ migrate-fresh:
 	docker-compose run --rm php php artisan migrate:fresh --seed
 
 try-build:
-	REGISTRY=127.0.0.1 IMAGE_TAG=0 make build
+	REGISTRY=hose1021 IMAGE_TAG=0 make build
 
-build: build-devhub build-devhub-nginx
+push-build-latest: push-build-latest-develop
+
+push-build-latest-develop:
+	docker push ${REGISTRY}/devhub:latest
+
+docker-down-clear:
+ 	COMPOSE_PROJECT_NAME=devhub docker-compose -f docker-compose.yml down -v --remove-orphans
+
+build: build-devhub build-devhub_mysql build-devhub_nginx
 
 build-devhub:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
-            --cache-from ${REGISTRY}/devhub:cache \
-            --tag ${REGISTRY}/devhub:cache \
+            --cache-from ${REGISTRY}/devhub:latest \
+            --tag ${REGISTRY}/devhub:latest \
             --tag ${REGISTRY}/devhub:${IMAGE_TAG} \
             --file .docker/production/php/Dockerfile .
-
-build-devhub-nginx:
+build-devhub_mysql:
 	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
-            --cache-from ${REGISTRY}/devhub_nginx:cache \
-            --tag ${REGISTRY}/devhub_nginx:cache \
+            --cache-from ${REGISTRY}/devhub_mysql:latest \
+            --tag ${REGISTRY}/devhub_mysql:latest \
+            --tag ${REGISTRY}/devhub_mysql:${IMAGE_TAG} \
+            --file .docker/production/mysql/Dockerfile .
+
+build-devhub_nginx:
+	DOCKER_BUILDKIT=1 docker --log-level=debug build --pull --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from ${REGISTRY}/devhub_nginx:latest \
+            --tag ${REGISTRY}/devhub_nginx:latest \
             --tag ${REGISTRY}/devhub_nginx:${IMAGE_TAG} \
             --file .docker/production/nginx/Dockerfile .
 
@@ -86,9 +105,10 @@ deploy:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -rf devhub'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'mkdir devhub'
 	scp -o StrictHostKeyChecking=no docker-compose-production.yml deploy@${HOST}:devhub/docker-compose.yml
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "COMPOSE_PROJECT_NAME=devhub" >> .env'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "REGISTRY=${REGISTRY}" >> .env'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=cache" >> .env'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && echo "IMAGE_TAG=${IMAGE_TAG}" >> .env'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose pull'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose down'
+	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker volume rm devhub_public'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --remove-orphans -d'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'rm -f devhub-cache'
-	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'ln -sr devhub devhub-cache'

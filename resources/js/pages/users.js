@@ -1,21 +1,21 @@
-let Vue = require('vue').default;
-import httpPlugin from './../scripts/http';
+let Vue = require('vue').default
+import httpPlugin from './../scripts/http'
 
-Vue.use(httpPlugin);
+Vue.use(httpPlugin)
 
 try {
-    window.Popper = require('popper.js').default;
-    window.$ = window.jQuery = require('jquery');
+    window.Popper = require('popper.js').default
+    window.$ = window.jQuery = require('jquery')
 } catch (e) {}
 
-Vue.component('users-list', require('./../components/users/UserComponent').default);
-Vue.component('users-loading', require('./../components/plugins/loading/UsersLoading').default);
+Vue.component('users-list', require('./../components/users/UserComponent').default)
+Vue.component('users-loading', require('./../components/plugins/loading/UsersLoading').default)
 
 /**
  * Parts
  */
 
-Vue.component('user-follow-button', require('./../components/users/UsersFollowButtonComponent').default);
-Vue.component('pagination', require('./../components/plugins/pagination').default);
+Vue.component('user-follow-button', require('./../components/users/UsersFollowButtonComponent').default)
+Vue.component('pagination', require('./../components/plugins/pagination').default)
 
-new Vue().$mount('#app');
+new Vue().$mount('#app')

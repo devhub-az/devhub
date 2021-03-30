@@ -7,8 +7,8 @@ use App\Http\Requests\UserProfile;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class UserSettingsController extends Controller
 {
@@ -29,21 +29,15 @@ class UserSettingsController extends Controller
         );
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $this->user->email = substr_replace($this->user->email, '****', 1, strpos($this->user->email, '@') - 1);
 
         return view('auth.settings.profile', ['user' => $this->user]);
     }
 
-    public function update_avatar(Request $request)
+    public function update_avatar(Request $request): RedirectResponse
     {
-//        $request->validate([
-//            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//        ]);
-
-        dd(request()->avatar);
-
         $user = Auth::user();
 
         $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
@@ -71,14 +65,8 @@ class UserSettingsController extends Controller
         return response()->json($user);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     *
-     * @return Response
-     */
     public function destroy()
     {
-        //
+        return view('auth.settings.delete', ['user' => $this->user]);
     }
 }

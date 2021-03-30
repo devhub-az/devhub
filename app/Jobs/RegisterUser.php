@@ -2,10 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Exceptions\CannotCreateUser;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
@@ -68,6 +66,8 @@ final class RegisterUser
                 'email'    => $this->email,
                 'password' => Hash::make($this->password),
                 'type'     => User::DEFAULT,
+//                TODO:REMOVE IT
+                'email_verified_at' => \Carbon::now()->toDateTimeString(),
             ]
         );
         $user->addMedia($this->image)->toMediaCollection('avatars');

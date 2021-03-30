@@ -43,15 +43,19 @@ class admin extends Command
         switch ($type) {
             case 0:
                 User::where('email', $email)->update(['type' => 0]);
+
                 break;
             case 1:
                 User::where('email', $email)->update(['type' => 1, 'email_verified_at' => \Carbon::now()]);
+
                 break;
             case 2:
                 User::where('email', $email)->update(['type' => 2]);
+
                 break;
             case 3:
                 User::where('email', $email)->update(['type' => 3]);
+
                 break;
             default:
                 break;

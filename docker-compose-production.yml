@@ -1,4 +1,4 @@
-version: '3'
+version: "3.7"
 
 networks:
   devhub:
@@ -6,27 +6,28 @@ networks:
 services:
   nginx:
     container_name: nginx
-    image: ${REGISTRY:-localhost}/devhub_nginx:cache
+    image: ${REGISTRY:-localhost}/devhub_nginx:${IMAGE_TAG}
+    restart: always
     volumes:
-      - ./../logs/nginx:/var/log/nginx/
-      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - public:/var/www/public:ro
+      - storage:/var/www/storage/app/public:ro
+      - lang:/var/www/resource/lang:ro
     ports:
       - "80:80"
     depends_on:
       - php
       - mysql
+      - redis
     networks:
       - devhub
 
   mysql:
-    image: mysql:5.7
     container_name: mysql
+    image: ${REGISTRY:-localhost}/devhub_mysql:${IMAGE_TAG}
     restart: unless-stopped
     tty: true
-#    volumes:
-#      - ./.docker/production/mysql/my.cnf:/etc/mysql/my.cnf
-    ports:
-      - '${FORWARD_DB_PORT:-4306}:3306'
+    volumes:
+      - ./../data:/var/lib/mysql/
     environment:
       MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
       MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
@@ -36,11 +37,27 @@ services:
     networks:
       - devhub
 
-  php:
-    image: ${REGISTRY:-localhost}/devhub:cache
-    restart: always
-    container_name: php
-    ports:
-      - "9000:9000"
+  redis:
+    container_name: redis
+    image: redis:6.2-alpine
     networks:
       - devhub
+
+  php:
+    container_name: php
+    image: ${REGISTRY:-localhost}/devhub:${IMAGE_TAG}
+    restart: always
+    volumes:
+      - public:/var/www/public
+      - storage:/var/www/storage/app/public
+      - lang:/var/www/resource/lang
+    networks:
+      - devhub
+
+volumes:
+  public:
+    driver: local
+  storage:
+    driver: local
+  lang:
+    driver: local

@@ -1,30 +1,36 @@
-version: '3'
+version: "3.7"
 
 networks:
   devhub:
+    driver: bridge
 
 services:
   nginx:
-    image: ${REGISTRY:-localhost}/devhub_nginx:cache
+    image: ${REGISTRY:-localhost}/devhub_nginx:latest
     build:
       context: ./
       dockerfile: .docker/develop/nginx/Dockerfile
       cache_from:
-        - ${REGISTRY:-localhost}/devhub_nginx:cache
+        - ${REGISTRY:-localhost}/devhub_nginx:latest
     container_name: nginx
     ports:
       - "8090:80"
     volumes:
-      - ./.docker/develop/logs/nginx:/var/log/nginx/
+      - ./:/var/www/
     depends_on:
       - php
       - mysql
-      - mailhog
+      - redis
     networks:
       - devhub
 
   mysql:
-    image: mysql:5.7
+    image: ${REGISTRY:-localhost}/devhub_mysql:latest
+    build:
+      context: ./
+      dockerfile: .docker/develop/mysql/Dockerfile
+      cache_from:
+        - ${REGISTRY:-localhost}/devhub_mysql:latest
     container_name: mysql
     restart: unless-stopped
     tty: true
@@ -37,30 +43,38 @@ services:
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - './.docker/develop/mysql/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - mysql:/var/lib/mysql
     networks:
       - devhub
 
-  mailhog:
-    image: mailhog/mailhog
-    container_name: mailhog
+  redis:
+    container_name: redis
+    image: redis:6.2-alpine
     ports:
-      - "1025:1025"
-      - "8025:8025"
+      - "6379:6379"
     networks:
       - devhub
 
   php:
-    image: ${REGISTRY:-localhost}/devhub:cache
+    image: ${REGISTRY:-localhost}/devhub:latest
     build:
       context: ./
       dockerfile: .docker/develop/php/Dockerfile
       cache_from:
-        - ${REGISTRY:-localhost}/devhub:cache
+        - ${REGISTRY:-localhost}/devhub:latest
     container_name: php
+    environment:
+      PHP_IDE_CONFIG: 'serverName=docker'
     volumes:
-      - './:/var/www'
+      - ./:/var/www/
+      - ./.docker/develop/prof:/var/www/prof
+#      - ./.docker/develop/php/local.ini:/usr/local/etc/php/conf.d
+      - ./.docker/develop/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     ports:
       - "9000:9000"
     networks:
       - devhub
+
+volumes:
+  mysql:
+    driver: local

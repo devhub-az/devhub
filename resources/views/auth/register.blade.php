@@ -13,8 +13,3 @@
         <register></register>
     </div>
 @endsection
-
-{{--@section('scripts')--}}
-{{--    <script src="{{ asset('js/scripts/particles.min.js') }}"></script>--}}
-{{--    <script src="{{ asset('js/scripts/particles.json') }}"></script>--}}
-{{--@endsection--}}

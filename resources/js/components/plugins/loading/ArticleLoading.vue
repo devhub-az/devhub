@@ -6,9 +6,9 @@
                 <span class="text-sm pl-2 m-auto bg-gray-300 w-2/6"></span>
             </div>
             <div class=" my-auto mr-auto pl-2 bg-gray-300 w-1/6 h-4 my-2 rounded"></div>
-            <div class="flex gap-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto">
+            <div class="flex space-x-1 ml-auto pl-2 text-2xl items-center xs:text-xl mb-auto">
                 <div class="bg-gray-400 w-5/6 h-5 my-2 rounded xs:w-full"></div>
-                <div class="flex gap-1 ml-auto text-2xl xs:text-xl">
+                <div class="flex space-x-1 ml-auto text-2xl xs:text-xl">
                     <div class="iconify" data-icon="mdi-thumb-up-outline"/>
                     <div class="animate-spin w-6 h-6">
                         <div class="iconify" data-icon="mdi-loading"></div>

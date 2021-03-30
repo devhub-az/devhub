@@ -3,32 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\AuthorResource;
-use App\Models\Article;
-use App\Models\Hub;
 use App\Models\User;
 use Auth;
-use Carbon\CarbonPeriod;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class AuthorController extends Controller
 {
-    public function showPosts(Request $request, $username)
+    public function showArticles(Request $request, User $user): View
     {
         AuthorResource::withoutWrapping();
 
-        $user = new AuthorResource(
-            User::withCount(['followers', 'followings'])->where('username', $username)->firstorfail()
-        );
+        $user_col = new AuthorResource($user);
 
         return view(
-            'pages.profile.show.posts',
+            'pages.profile.show.articles',
             [
-                'user' => $user->toResponse($request)->getData(),
-                'url'  => '/api/authors/'.$user->id.'/posts',
+                'author' => $user_col->toResponse($request)->getData(),
+                'user'   => $user,
+                'url'    => '/api/authors/'.$user->id.'/all',
             ]
         );
     }
@@ -43,25 +37,13 @@ class AuthorController extends Controller
         AuthorResource::withoutWrapping();
 
         $user_col = new AuthorResource($user);
-        $start_date = Carbon::now()->subDays(30)->format('Y-m-d');
-        $current_date = Carbon::now()->format('Y-m-d');
-        $period = CarbonPeriod::create($start_date, $current_date);
-
-        foreach ($period->toArray() as $date) {
-            $week_dates[] = Carbon::parse($date)->format('Y-m-d');
-            $count[] = Article::select('created_at')->where('author_id', $user->id)
-                ->whereDate('created_at', Carbon::parse($date))
-                ->count();
-            $tasks[] = $count;
-        }
 
         return view(
             'pages.profile.show.info',
             [
                 'author' => $user_col->toResponse($request)->getData(),
                 'user'   => $user,
-            ],
-            compact('count')
+            ]
         );
     }
 
@@ -127,5 +109,14 @@ class AuthorController extends Controller
         $user->save();
 
         return back()->with('success', 'You have successfully upload image.');
+    }
+
+    public function popover(string $id)
+    {
+        $author = User::find($id);
+
+        return view('popover.author', [
+            'author' => $author,
+        ]);
     }
 }

@@ -28,7 +28,11 @@
     }
 
     .input {
-        @apply w-full px-2 h-10 resize-none rounded text-base hover:border-cerulean-100 border dark:border-gray-700 dark:text-gray-300 dark:hover:border-cerulean-500 dark:focus:border-cerulean-500 font-light dark:bg-dpaper focus:border-cerulean-100 focus:outline-none transition-none
+        @apply w-full px-2 h-10 rounded text-base hover:border-cerulean-100 border dark:border-gray-700 dark:focus:border-cerulean-500   dark:text-gray-300 dark:hover:border-cerulean-500 dark:bg-dpaper focus:outline-none focus:ring-0
+    }
+
+    .textarea{
+        @apply shadow-sm focus:ring-0 hover:border-cerulean-100 dark:hover:border-cerulean-500 focus:border-cerulean-500 mt-1 block w-full sm:text-sm rounded-md dark:border-gray-700 dark:text-gray-300 dark:bg-dpaper
     }
 
     .multiselect__tags, .multiselect__input, .multiselect__single, .multiselect__content-wrapper{
@@ -36,11 +40,11 @@
     }
 
     .btn{
-        @apply cursor-pointer border xs:w-full focus:outline-none border-cerulean-100 text-sm rounded h-9 items-center inline-flex px-3 text-white bg-cerulean-100 dark:text-gray-200 dark:border-cerulean-500 hover:bg-cerulean-300 dark:hover:bg-cerulean-300 hover:border-cerulean-300 dark:hover:border-cerulean-600
+        @apply cursor-pointer border xs:w-full focus:outline-none border-cerulean-100 text-sm rounded h-9 items-center inline-flex px-3 text-white bg-cerulean-100 dark:text-gray-200 hover:bg-cerulean-300 dark:hover:bg-cerulean-300
     }
 
     .btn-outline{
-        @apply cursor-pointer border xs:w-full text-sm rounded h-9 items-center inline-flex px-3 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none hover:text-cerulean-500 hover:border-cerulean-500 dark:hover:text-cerulean-300 dark:hover:border-cerulean-300
+        @apply cursor-pointer border xs:w-full text-sm rounded h-9 items-center inline-flex px-3 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none hover:border-cerulean-500 dark:hover:border-cerulean-300
     }
 
     .ce-block__content{
@@ -64,105 +68,47 @@
         @apply markdown
     }
 
-    .markdown {
-        @apply text-gray-900 dark:text-gray-400 leading-normal break-words text-base
+    .prose{
+        @apply dark:text-gray-400
     }
 
-    .markdown > * + * {
-        @apply mt-0 mb-4;
+    .prose h3{
+        @apply dark:text-gray-300
     }
 
-    .markdown li + li {
-        @apply mt-1;
+    .prose a{
+        @apply text-cerulean-100
     }
 
-    .markdown li > p + p {
-        @apply mt-6;
+    [type='text'],
+    [type='email'],
+    [type='url'],
+    [type='password'],
+    [type='number'],
+    [type='date'],
+    [type='datetime-local'],
+    [type='month'],
+    [type='search'],
+    [type='tel'],
+    [type='time'],
+    [type='week'],
+    [multiple],
+    textarea,
+    select{
+        border-color: #e9e9e9;
     }
 
-    .markdown strong {
-        @apply font-semibold;
-    }
-
-    .markdown a {
-        @apply font-medium text-cerulean-700;
-    }
-
-    .markdown strong a {
-        @apply font-bold;
-    }
-
-    .markdown h1 {
-        @apply leading-tight border-b text-2xl font-semibold mt-6 pb-2 mb-2;
-    }
-
-    .markdown h2 {
-        @apply leading-tight border-b text-xl font-semibold mt-6 pb-2 mb-2;
-    }
-
-    .markdown h3 {
-        @apply leading-snug text-lg font-semibold mt-6 mb-2;
-    }
-
-    .markdown h4 {
-        @apply leading-none text-base font-semibold mt-6;
-    }
-
-    .markdown h5 {
-        @apply leading-tight text-base font-semibold mt-6;
-    }
-
-    .markdown h6 {
-        @apply leading-tight text-base font-semibold text-gray-600 mt-6;
-    }
-
-    .markdown blockquote {
-        @apply text-base border-l-4 border-gray-300 pl-4 pr-4 text-gray-600;
-    }
-
-    .markdown code {
-        @apply text-sm rounded p-4;
-    }
-
-    .markdown pre {
-        @apply rounded;
-    }
-
-    .markdown ul {
-        @apply text-base pl-8 list-disc;
-    }
-
-    .markdown ol {
-        @apply text-base pl-8 list-decimal;
-    }
-
-    .markdown kbd {
-        @apply text-xs inline-block rounded border px-1 py-05 align-middle font-normal shadow;
-    }
-
-    .markdown table {
-        @apply text-base border-gray-600;
-    }
-
-    .markdown th {
-        @apply border py-1 px-3;
-    }
-
-    .markdown img {
-        @apply mx-auto w-full my-5;
-    }
-
-    .markdown td {
-        @apply border py-1 px-3;
-    }
-
-    /* Override pygments style background color. */
-    .markdown .highlight pre {
-        @apply bg-gray-100 !important;
-    }
 }
 
-*:not(.iconify, #text, input, #title, summary, details) {
+@keyframes blink { 50% { fill: transparent }}
+.dot {
+    animation: 1s blink infinite;
+    fill: #71717a;
+}
+.dot:nth-child(2) { animation-delay: 250ms }
+.dot:nth-child(3) { animation-delay: 500ms }
+
+*:not(.iconify, #text, input, button, #trans-none, textarea, #title, summary, details) {
     @apply transition-all duration-200 ease-in;
 }
 

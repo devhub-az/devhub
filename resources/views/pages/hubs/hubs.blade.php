@@ -1,67 +1,79 @@
 @extends('layouts.layout')
 
-@section('title')Hablar @stop
+@section('title'){{ __('devhub.hubs') }} @stop
 
 @section('main')
     <div class="container w-full my-4 mx-auto xs:px-4">
-        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main gap-2 md:gap-4 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main space-x-2 md:space-x-4 space-x-5">
             <div id="app">
                 <hubs-list
                     fetch-url="{{ route('hubs.api.index') }}"
                     locale="{{ App::getLocale() }}"
                     @auth :auth_check="true" @endauth
-{{--                     {'name': 'Paylaşma', 'type': 'articles_count'}--}}
+                    {{--                     {'name': 'Paylaşma', 'type': 'articles_count'}--}}
                     :columns="[{'name': 'Ad', 'type': 'name'},{'name': 'İzləyicilər','type': 'favorites_count'},{'name': 'Reytinq', 'type': 'rating'}]"
                 ></hubs-list>
             </div>
-            {{-- Right --}}
+
             <div>
                 <div class="sticky top-2">
                     <div>
-                        <div class="flex items-center space-x-1 font-medium text-base mb-1">
-                            <span class="iconify dark:text-gray-300" data-icon="mdi:trending-up" data-inline="false"></span>
-                            <p class="text-gray-700 dark:text-gray-400">Ən sevimli</p>
-                        </div>
-                        <div class="mb-5 p-5 space-y-2 rounded bg-white dark:bg-dpaper border dark:border-gray-700 space-y-2">
-                            @foreach ($top_hubs as $hub)
-                                <a href="/hubs/{{ $hub['id'] ?? '' }}" class="flex gap-3">
-                                    <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
-                                          class="w-12 h-12 rounded dark:bg-dwall" alt="hub image">
-                                    <div>
-                                        <p class="font-semibold dark:text-gray-300">
-                                            {{ $hub['name'] }}
-                                        </p>
-                                        <span class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
-                                            <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
+                        <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
+                            {{ __('devhub.ratedHubs') }}
+                        </p>
+                        <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
+                            <div
+                                class="flex flex-col rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
+                                @foreach ($top_hubs as $hub)
+                                    <a href="{{ '/hubs/' . $hub->slug }}">
+                                        <div class="flex items-center space-x-2">
+                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
+                                                 alt="hub image" class="w-12 h-12 rounded">
+                                            <div>
+                                                <span class="inline-block font-semibold dark:text-gray-300 leading-5">
+                                                    {{ $hub->name }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
+                                            <span class="iconify text-green-600 dark:text-green-500"
+                                                  data-icon="mdi:trending-up"
                                                   data-inline="false"></span>
-                                            <p>Reyting {{ $hub['rating'] ?? '' }}</p>
-                                        </span>
-                                    </div>
-                                </a>
-                            @endforeach
+                                            <p>{{ __('devhub.rating') }}: {{ $hub->rating ?? '' }}</p>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <div>
-                        <div class="flex items-center space-x-1 font-medium text-base text-gray-700 mb-1">
-                            <span class="iconify dark:text-gray-300" data-icon="mdi:account-multiple-plus-outline" data-inline="false"></span>
-                            <p class="text-gray-700 dark:text-gray-400">Ən izləninən</p>
-                        </div>
-                        <div class="mb-5 p-5 space-y-2 rounded bg-white dark:bg-dpaper border dark:border-gray-700 space-y-2">
-                            @foreach ($top_followed_hubs as $hub)
-                                <a href="/hubs/{{ $hub['id'] ?? '' }}" class="flex gap-3">
-                                    <img src="{{ strtolower($hub['logo']) ?? '/images/empty/code.png' }}"
-                                         class="w-12 h-12 rounded dark:bg-dwall" alt="hub image">
-                                    <div>
-                                        <p class="font-semibold dark:text-gray-300 leading-5">
-                                            {{ $hub['name'] }}
-                                        </p>
-                                        <span class="flex space-x-1 mt-2 items-center text-xs dark:text-gray-300">
-                                            <span class="iconify" data-icon="mdi:account-group-outline" data-inline="false"></span>
-                                            <p>İzləyicilər {{ $hub['favorites_count'] ?? '' }}</p>
-                                        </span>
-                                    </div>
-                                </a>
-                            @endforeach
+                        <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
+                            {{ __('devhub.watchedHubs') }}
+                        </p>
+                        <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
+                            <div
+                                class="flex flex-col rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
+                                @foreach ($top_followed_hubs as $hub)
+                                    <a href="{{ '/hubs/' . $hub->slug }}">
+                                        <div class="flex items-center space-x-2">
+                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
+                                                 alt="hub image" class="w-12 h-12 rounded">
+                                            <div>
+                                                <span class="inline-block font-semibold dark:text-gray-300 leading-5">
+                                                    {{ $hub->name }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
+                                            <span class="iconify" data-icon="mdi:account-group-outline"
+                                                  data-inline="false"></span>
+                                            <p>{{ __('devhub.followers') }}: {{ $hub->favorites_count ?? '' }}</p>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

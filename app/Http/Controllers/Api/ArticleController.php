@@ -24,20 +24,7 @@ class ArticleController extends Controller
      */
     public function index(): ArticlesResource
     {
-        $articles = Article::with(
-            [
-                'creator' => function ($query) {
-                    $query->select('id', 'name', 'username', 'avatar', 'description', 'karma', 'rating')->withCount(
-                        'articles',
-                        'followers'
-                    );
-                },
-                'comments' => function ($q) {
-                    $q->with('creator');
-                },
-                'hubs',
-            ]
-        )->withcount(
+        $articles = Article::withcount(
             'views',
         )->orderBy(
             'created_at',
@@ -79,7 +66,7 @@ class ArticleController extends Controller
         $article = Article::findOrFail($request->id);
         ($request->type === 'up') ? self::upOrDownVote($request->user(), $article) : self::upOrDownVote($request->user(), $article, 'down');
 
-        return response()->json(['success' => 'success']);
+        return response()->json(['result' => 'true']);
     }
 
     /**
@@ -92,8 +79,8 @@ class ArticleController extends Controller
     public static function upOrDownVote(User $user, $target, string $type = 'up'): bool
     {
         $hasVoted = $user->{'has'.ucfirst($type).'Voted'}($target);
-
         DB::beginTransaction();
+
         try {
             $user->{$type.'Vote'}($target);
             if ($hasVoted) {
@@ -103,7 +90,7 @@ class ArticleController extends Controller
                     $hub->save();
                 }
                 $type === 'up' ? $target->creator->rating-- : $target->creator->rating++;
-                $target->creator->save();
+                $target->author->save();
                 DB::commit();
 
                 return false;
@@ -113,7 +100,7 @@ class ArticleController extends Controller
                 $hub->save();
             }
             $type === 'up' ? $target->creator->rating++ : $target->creator->rating--;
-            $target->creator->save();
+            $target->author->save();
             DB::commit();
         } catch (Exception $e) {
             DB::rollback();

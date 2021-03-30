@@ -9,7 +9,7 @@
            @click.prevent="changePage(1)">
             <i class="iconify" data-icon="mdi-chevron-double-left"></i>
         </a>
-        <a :class="isCurrentPage(page) ? 'text-cerulean-600 dark:text-cerulean-600 hover:text-cerulean-600' : 'text-gray-500 dark:text-gray-400 dark:hover:text-gray-400 hover:text-gray-700'"
+        <a :class="isCurrentPage(page) ? 'text-cerulean-600 dark:text-cerulean-100 hover:text-cerulean-600' : 'text-gray-500 dark:text-gray-400 dark:hover:text-gray-400 hover:text-gray-700'"
            @click.prevent="changePage(page)"
            class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white dark:bg-transparent dark:border-gray-700 text-sm leading-5
            font-medium focus:z-10 focus:outline-none focus:border-blue_def-300
@@ -23,7 +23,6 @@
            @click.prevent="changePage(pagination.last_page)">
             <i class="iconify" data-icon="mdi-chevron-double-right"></i>
         </a>
-
     </nav>
 </template>
 

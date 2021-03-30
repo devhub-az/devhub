@@ -7,7 +7,9 @@ console.log('oooooooooo.                         ooooo   ooooo              .o8 
     'o888bood8P\'   `Y8bod8P\'     `8\'     o888o   o888o  `V88V"V8P\'  `Y8bod8P\'')
 
 import Vue from "vue";
-import moment from "moment-mini"
+import moment from "moment"
+
+moment.locale(window.Language)
 
 Vue.filter('moment', function (value, format) {
     return moment(value).format(format);
@@ -18,7 +20,6 @@ Vue.filter('timeago', function (value) {
 
 Vue.component('dropdown', require('./../components/plugins/dropdown.vue').default);
 Vue.component('dropdown-notification', require('./../components/plugins/dropdown-notification.vue').default);
-Vue.component('switcher', require('./../components/parts/DarkSwitcher').default);
 
 new Vue({
     moment,
@@ -42,6 +43,7 @@ window.onload = function () {
             document.getElementById('search-icon').classList.add('hidden')
             document.getElementById('search_input').focus()
             document.getElementById('menu').classList.add('hidden')
+            document.getElementById("logo").classList.add('xs:hidden')
         },
         false
     );
@@ -52,6 +54,7 @@ window.onload = function () {
             document.getElementById('form_search').classList.add('hidden')
             document.getElementById('search-icon').classList.remove('hidden')
             document.getElementById('menu').classList.remove('hidden')
+            document.getElementById("logo").classList.remove('xs:hidden')
         },
         false
     );

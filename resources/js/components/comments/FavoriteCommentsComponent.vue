@@ -1,6 +1,6 @@
 <template>
     <div class="comment-content">
-<!--        <posts-loading v-if="loading"/>-->
+<!--        <articles-loading v-if="loading"/>-->
         <div v-if="!loading">
             <div v-if="commentsNotEmpty">
                 <div class="comment-content__item" v-for="comment in comments">

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Requests\ArticleRequest;
 use App\Http\Requests\IdRequest;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\HubResource;
-use App\Jobs\CreateArticle;
 use App\Jobs\DeleteArticle;
 use App\Models\Article;
 use App\Models\Hub;
@@ -41,7 +39,7 @@ class ArticleController extends Controller
         $hubs = new HubResource(Hub::get());
 
         return view(
-            'pages.posts.create',
+            'pages.articles.create',
             [
                 'hubs' => $hubs,
             ]
@@ -62,7 +60,7 @@ class ArticleController extends Controller
         ArticleResource::withoutWrapping();
         $article_json = new ArticleResource($article);
 
-        return view('pages.posts.show', ['post' => $article_json->toResponse($request)->getData()]);
+        return view('pages.articles.show', ['article' => $article_json->toResponse($request)->getData()]);
     }
 
     /**

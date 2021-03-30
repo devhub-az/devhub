@@ -3,13 +3,13 @@ window.Vue = require('vue');
 /**
  * Posts
  */
-Vue.component('posts', () => import('./components/articles/PostsComponent'));
+Vue.component('articles', () => import('./components/articles/ArticlesComponent'));
 Vue.component('post-show', () => import('./components/articles/PostShowComponent'));
 
 /**
  * Loading
  */
-Vue.component('posts-loading', () => import('./components/plugins/loading/PostsLoading'));
+Vue.component('articles-loading', () => import('./components/plugins/loading/PostsLoading'));
 Vue.component('hubs-loading', () => import('./components/plugins/loading/HubsLoading'));
 Vue.component('users-loading', () => import('./components/plugins/loading/UsersLoading'));
 
@@ -55,4 +55,4 @@ Vue.component('profile-settings', () => import('./components/auth/settings/Profi
  * Comments
  */
 Vue.component('comments-favorite', () => import('./components/comments/FavoriteCommentsComponent.vue'));
-Vue.component('comments', () => import('./components/comments/PostCommentsComponent.vue'));
+Vue.component('comments', () => import('./components/comments/ArticleCommentsComponent.vue'));

@@ -25,7 +25,7 @@ class FilterRequest extends FormRequest
     {
         return [
             'column' => 'in:name,articles_count,favorites_count,karma,rating',
-            'order' => 'in:desc,asc',
+            'order'  => 'in:desc,asc',
         ];
     }
 }

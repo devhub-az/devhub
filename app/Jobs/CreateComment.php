@@ -34,7 +34,7 @@ final class CreateComment
     {
         $comment = new Comment(
             [
-                'commentable_type' => 'posts',
+                'commentable_type' => 'articles',
                 'commentable_id'   => $this->article_id,
                 'body'             => $this->comment,
             ]

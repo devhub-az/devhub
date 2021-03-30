@@ -30,15 +30,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Session::put('lang', 'az');
-        \Carbon\Carbon::setLocale('az');
+        \Session::put('lang', 'ru');
+        \Carbon\Carbon::setLocale(config('app.locale'));
         Schema::defaultStringLength(191);
 
         Article::observe(ArticleObserver::class);
         User::observe(UserObserver::class);
 
         Relation::morphMap([
-            'posts'    => Article::class,
+            'articles' => Article::class,
             'comments' => Comment::class,
             'users'    => User::class,
             'hubs'     => Hub::class,

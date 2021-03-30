@@ -40,11 +40,10 @@ final class CreateArticle
     {
         $article = new Article([
             'title' => $this->title,
-            'body' => $this->body,
+            'body'  => $this->body,
         ]);
         $article->authoredBy($this->author);
         $article->syncHubs($this->hubs);
-        $article->save();
 
         return $article;
     }

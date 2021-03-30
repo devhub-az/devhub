@@ -3,13 +3,26 @@
 namespace App\Models;
 
 use App\Helpers\HasAuthor;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 
+/**
+ * Class User.
+ *
+ * @mixin Eloquent
+ */
 final class Comment extends Model
 {
     use HasAuthor;
+    use QueryCacheable;
+
+    public $cacheFor = 3600;
+    public $cacheTags = ['comments'];
+    public $cachePrefix = 'comments_';
+    protected static $flushCacheOnUpdate = true;
 
     /**
      * {@inheritdoc}

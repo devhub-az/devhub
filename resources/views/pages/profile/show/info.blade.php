@@ -5,56 +5,130 @@
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:my-0" id="app">
         @include('pages.profile.include.header')
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main gap-3 md:gap-4">
+        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main space-x-3 md:space-x-4">
             <div>
                 @include('pages.profile.include.tabs')
-                <div class="border p-4 bg-white dark:border-gray-700 dark:bg-dpaper">
-                    <div class="mb-4 border-b-0">
-                        <p class="text-2xl mb-5 dark:text-gray-300">
-                            İş təcrübəsi
-                        </p>
-                        <div class="mb-2">
-                            <p class="text-xl font-medium dark:text-gray-400">
-                                Founder
-                            </p>
-                            <p class="dark:text-gray-400">
-                                DevHub · Полный рабочий день
-                            </p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Dec 1999 - Nov 2010 · {{ 2010-1999 . ' il' }}</p>
-                        </div>
-                        <div class="mb-2">
-                            <p class="text-xl font-medium dark:text-gray-400">
-                                Веб-специалист
-                            </p>
-                            <p class="dark:text-gray-400">
-                                AAEmu · Полный рабочий день
-                            </p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Dec 1999 - Nov 2010 · {{ 2010-1999 . ' il' }}</p>
-                        </div>
+                <div class="bg-white border dark:border-gray-700 dark:bg-dpaper overflow-hidden sm:rounded-lg">
+                    <div class="px-4 pt-4 sm:px-6">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-300">
+                            Информация
+                        </h3>
                     </div>
-                </div>
-                <div class="border border-t-0 p-4 bg-white dark:border-gray-700 dark:bg-dpaper">
-                    <div class="mb-4">
-                        <p class="text-2xl mb-5 dark:text-gray-300">
-                            Təhsil
-                        </p>
-                        <div class="mb-2">
-                            <p class="text-xl font-medium dark:text-gray-400">
-                                Московский Государственный Университет им. М.В. Ломоносова (МГУ)
-                            </p>
-                            <p class="dark:text-gray-400">
-                                Бакалавр, Математика и компьютерные науки
-                            </p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Dec 1999 - Nov 2010 · {{ 2010-1999 . ' il' }}</p>
+                    <div class="dark:bg-dpaper">
+                        @if ($author->attributes->description)
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                                    О себе
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
+                                    {{ $author->attributes->description }}
+                                </dd>
+                            </div>
+                        @endif
+                        <div class="flex xs:block">
+                            <div class="w-1/2">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                                        Почта
+                                    </dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
+                                        {{ $author->attributes->email }}
+                                    </dd>
+                                </div>
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                                        Авторизован
+                                    </dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
+                                        {{ \Carbon::createFromTimeStamp(strtotime($author->attributes->created_at))->isoFormat('D MMMM YYYY') }}
+                                    </dd>
+                                </div>
+                            </div>
+                            <div class="w-1/2">
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                                        Работает в
+                                    </dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
+                                        {{ $author->attributes->company }}
+                                    </dd>
+                                </div>
+                                <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                                        Откуда
+                                    </dt>
+                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
+                                        Баку
+                                    </dd>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-2">
-                            <p class="text-xl font-medium dark:text-gray-400">
-                                Московский Государственный Университет им. М.В. Ломоносова (МГУ)
-                            </p>
-                            <p class="dark:text-gray-400">
-                                Бакалавр, Математика и компьютерные науки
-                            </p>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">Dec 1999 - Nov 2010 · {{ 2010-1999 . ' il' }}</p>
+                        @if ($author->attributes->github || $author->attributes->website || $author->attributes->twitch || $author->attributes->telegram || $author->attributes->youtube || $author->attributes->twitter)
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
+                                    @if ($author->attributes->website)
+                                        <div class="flex items-center space-x-2">
+                                            <span class="iconify" data-icon="akar-icons:link-chain"
+                                                  data-inline="false"></span>
+                                            <a target="_blank"
+                                               href="{{ $author->attributes->website }}">{{ $author->attributes->website }}</a>
+                                        </div>
+                                    @endif
+                                    @if ($author->attributes->github)
+                                        <div class="flex items-center space-x-2">
+                                            <span class="iconify" data-icon="ant-design:github-filled"
+                                                  data-inline="false"></span>
+                                            <a target="_blank"
+                                               href="https://github.com/{{ $author->attributes->github }}">{{ $author->attributes->github }}</a>
+                                        </div>
+                                    @endif
+                                    @if ($author->attributes->twitter)
+                                        <div class="flex items-center space-x-2">
+                                            <span class="iconify" data-icon="akar-icons:twitter-fill"
+                                                  data-inline="false"></span>
+                                            <a target="_blank"
+                                               href="https://twitter.com/{{ $author->attributes->twitter }}">{{ $author->attributes->twitter }}</a>
+                                        </div>
+                                    @endif
+                                </dd>
+                            </div>
+                        @endif
+                        @if ($author->relationships->hubs_following->data)
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                                    Интересы
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900">
+                                    @foreach($author->relationships->hubs_following->data as $hub)
+                                        <div class="btn-outline h-7 my-1 xs:w-max">
+                                            {{ $hub->name }}
+                                        </div>
+                                    @endforeach
+                                </dd>
+                            </div>
+                        @endif
+                        <div class="dark:bg-dpaper px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">
+                            <dt class="text-sm font-medium mb-2 text-gray-500 dark:text-gray-300">
+                                Резюме (CV)
+                            </dt>
+                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                <ul class="border border-gray-200 dark:border-gray-700 rounded-md divide-y divide-gray-200 dark:divide-gray-700">
+                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
+                                        <div class="w-0 flex-1 flex items-center">
+                                            <span class="iconify flex-shrink-0 h-5 w-5 text-gray-400"
+                                                  data-icon="ion:attach-sharp" data-inline="false"></span>
+                                            <span class="ml-2 flex-1 w-0 truncate dark:text-gray-300">
+                                                resume_back_end_developer.pdf
+                                            </span>
+                                        </div>
+                                        <div class="ml-4 flex-shrink-0">
+                                            <a href="#" class="font-medium text-cerulean-100 hover:text-cerulean-200">
+                                                Открыть
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </dd>
                         </div>
                     </div>
                 </div>

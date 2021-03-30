@@ -1,5 +1,5 @@
 <template>
-    <div class="mt-1 relative">
+    <div class="relative">
         <button @click="show = !show" type="button" aria-haspopup="listbox" aria-expanded="true"
                 class="flex items-center focus:outline-none p-0 bg-none">
             <img v-if="user.avatar !== 'default'" :src="avatar_url"
@@ -21,7 +21,7 @@
                              class="h-8 w-8 rounded object-cover flex-no-shrink"
                              alt="Profile image">
                         <div class="ml-2">
-                            <a :href="'/authors/@' + user.username"
+                            <a :href="'/@' + user.username"
                                class="font-semibold text-gray-900 dark:text-gray-300 leading-none">
                                 {{ user.name ? user.name : '@' + user.username }}</a>
                         </div>
@@ -41,11 +41,6 @@
                     <div class="dark:border-gray-700 border-gray-200 py-1">
                         <a :href="'/settings'"
                            class="block text-gray-700 dark:text-gray-300 px-4 py-2 leading-tight hover:bg-gray-200 dark:hover:bg-gray-700">Parametrlər</a>
-                        <div
-                            class="flex items-center justify-between text-gray-700 dark:text-gray-300 px-4 py-2 leading-tight hover:bg-gray-200 dark:hover:bg-gray-700">
-                            <p>Gecə modu</p>
-                            <switcher></switcher>
-                        </div>
                     </div>
                     <div class="bg-gray-300 dark:bg-gray-700" style="height: 1px;"></div>
                     <div class="dark:border-gray-700 border-gray-200 py-1">

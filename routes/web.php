@@ -10,44 +10,45 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HubController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\StatusController;
+use Carbon\Carbon;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
 Auth::routes(['verify' => true]);
 Route::get('login/github', [LoginController::class, 'github']);
 Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
 //Route::get('/forgot-password', function () {
 //    return view('auth.forgot-password');
 //})->middleware('guest')->name('password.request');
-
 Route::get(
     'lang/{locale}',
     function ($locale) {
         if (in_array($locale, \Config::get('app.locales'))) {
-            Session::put('locale', $locale);
+            Session::put('lang', $locale);
         }
-        Carbon\Carbon::setLocale(config('app.locale'));
+        Carbon::setLocale(config('app.locale'));
 
         return redirect()->back();
     }
 );
 
-Route::get('/', [HomeController::class, 'postsApiRoute'])->name('home');
-Route::get('top/week', [HomeController::class, 'postsApiRoute'])->name('top.week');
-Route::get('top/month', [HomeController::class, 'postsApiRoute'])->name('top.month');
-Route::get('all', [HomeController::class, 'postsApiRoute'])->name('all');
+Route::get('/', [HomeController::class, 'articlesApiRoute'])->name('home');
+Route::get('top/week', [HomeController::class, 'articlesApiRoute'])->name('top.week');
+Route::get('top/month', [HomeController::class, 'articlesApiRoute'])->name('top.month');
+Route::get('all', [HomeController::class, 'articlesApiRoute'])->name('all');
 
 //Auth routes
 Route::group(
     ['middleware' => ['auth']],
     static function () {
-        Route::get('favorite', [HomeController::class, 'postsApiRoute'])->name('favorite');
+        Route::get('favorite', [HomeController::class, 'articlesApiRoute'])->name('favorite');
         Route::get('tracker', [Auth::class, 'index'])->name('tracker');
         Route::get('tracker/remove/all', [Auth::class, 'deleteAll'])->name('delete-all-trackers');
 
         Route::prefix('saved')->group(
             function () {
-                Route::get('/posts', [Auth::class, 'indexPosts'])->name('saved-posts');
+                Route::get('/articles', [Auth::class, 'indexPosts'])->name('saved-articles');
 
                 Route::get('/comments', [Auth::class, 'indexComments'])->name('saved-comments');
             }
@@ -56,6 +57,7 @@ Route::group(
         Route::prefix('settings')->group(
             function () {
                 Route::get('/', [UserSettingsController::class, 'index'])->name('profile-settings');
+                Route::get('destroy', [UserSettingsController::class, 'destroy'])->name('destroy-settings');
                 Route::post('profile', [UserSettingsController::class, 'update']);
                 Route::post('avatar', [UserSettingsController::class, 'update_avatar']);
             }
@@ -96,16 +98,15 @@ Route::prefix('authors')->group(
         Route::get('/', [AuthorController::class, 'userList'])->name('users-list');
         Route::post('{profileId}/follow', [ProfileController::class, 'follow']);
 //        TODO: ADD LINK FAVORITE (ProfileController)
-
-        Route::prefix('@{username}')->group(
-            static function () {
-                Route::get('posts', [AuthorController::class, 'showPosts'])->name('user_posts');
-                Route::get('/', [AuthorController::class, 'showInfo'])->name('user_info');
-                Route::get('followers', [AuthorController::class, 'showFollowers'])->name('user_followers');
-                Route::get('followings', [AuthorController::class, 'showFollowings'])->name('user_followings');
-                Route::get('favorites', [ProfileController::class, 'favorites']);
-            }
-        );
+    }
+);
+Route::prefix('@{username}')->group(
+    static function () {
+        Route::get('articles', [AuthorController::class, 'showArticles'])->name('user_articles');
+        Route::get('/', [AuthorController::class, 'showInfo'])->name('user_info');
+        Route::get('followers', [AuthorController::class, 'showFollowers'])->name('user_followers');
+        Route::get('followings', [AuthorController::class, 'showFollowings'])->name('user_followings');
+        Route::get('favorites', [ProfileController::class, 'favorites']);
     }
 );
 
@@ -134,3 +135,23 @@ Route::prefix('admin')->name('admin')->group(
 //    Route::put('articles/{article_show}/pinned', [AdminArticlesController::class, 'togglePinnedStatus'])->name('.articles.pinned');
     }
 );
+
+// Popover
+Route::group(['prefix' => 'popover'], function () {
+    Route::get('author/{id}', [AuthorController::class, 'popover']);
+});
+
+
+//Devhub alive status
+Route::group(
+    ['prefix' => 'status'],
+    function () {
+        Route::get('ping', [StatusController::class, 'ping']);
+    }
+);
+
+Route::get('test', function () {
+    sleep(1);
+
+    return new Response(['status' => 'success']);
+});

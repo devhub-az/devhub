@@ -11,10 +11,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Jcc\LaravelVote\Vote;
+use Jcc\LaravelVote\Traits\Voter;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
+use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -29,10 +30,16 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use Followable;
     use InteractsWithMedia;
     use HasApiTokens;
-    use Vote;
+    use Voter;
     use Favoriter;
     use SoftDeletes;
     use HasFactory;
+    use QueryCacheable;
+
+    public $cacheFor = 3600;
+    public $cacheTags = ['authors'];
+    public $cachePrefix = 'authors_';
+    protected static $flushCacheOnUpdate = true;
 
     /**
      * The primary key for the model.
@@ -78,7 +85,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'remember_token',
         'type',
         'github_id',
-        'github_url',
+        'github',
         'website',
         'description',
         'status',
@@ -103,7 +110,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    public function id(): int
+    public function id(): string
     {
         return $this->id;
     }
@@ -161,7 +168,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     }
 
     /**
-     * Get posts ids where comments was wrote.
+     * Get articles ids where comments was wrote.
      *
      * @return array
      */
@@ -180,6 +187,6 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public static function findByUsername(string $username): self
     {
-        return static::where('username', $username)->firstOrFail();
+        return static::withCount(['followers', 'followings', 'articles'])->where('username', $username)->firstOrFail();
     }
 }
