@@ -119,5 +119,4 @@ class AuthorController extends Controller
             'author' => $author,
         ]);
     }
-
 }
