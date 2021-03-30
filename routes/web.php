@@ -136,6 +136,12 @@ Route::prefix('admin')->name('admin')->group(
     }
 );
 
+// Popover
+Route::group(['prefix' => 'popover'], function () {
+    Route::get('author/{id}', [AuthorController::class, 'popover']);
+});
+
+
 //Devhub alive status
 Route::group(
     ['prefix' => 'status'],

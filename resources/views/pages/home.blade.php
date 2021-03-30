@@ -162,11 +162,10 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @push('scripts')
-    <script type="text/javascript" src="{{ mix('js/home.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/home.js') }}" defer></script>
 @endpush
 
 @section('styles')

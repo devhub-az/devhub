@@ -162,7 +162,7 @@
 </header>
 
 @push('scripts')
-    <script type="text/javascript" src="{{ mix('js/header.js') }}" async></script>
+    <script type="text/javascript" src="{{ mix('js/header.js') }}" defer></script>
 @endpush
 
 @section('styles')

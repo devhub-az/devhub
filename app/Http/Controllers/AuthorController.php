@@ -110,4 +110,14 @@ class AuthorController extends Controller
 
         return back()->with('success', 'You have successfully upload image.');
     }
+
+    public function popover(string $id)
+    {
+        $author = User::find($id);
+
+        return view('popover.author', [
+            'author' => $author,
+        ]);
+    }
+
 }

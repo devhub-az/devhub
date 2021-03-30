@@ -7,7 +7,8 @@
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
                         <a v-bind:href="'/@' + article.relationships.author.data.attributes.username"
-                           class="inline-flex no-underline"
+                           class="inline-flex no-underline author-popover"
+                           :data-id="article.relationships.author.data.id"
                            title="Paylaşmanın müəllifi">
                             <img height="32" width="32"
                                  alt="user avatar" class="w-6 h-6 flex-none image-fit rounded lazyload"
@@ -18,7 +19,7 @@
                         <p class="text-xs my-auto mr-auto pl-2 dark:text-gray-300">
                             {{ article.attributes.created_at | moment('DD MMMM, H:mm') }}
                         </p>
-                        <div class="flex items-center text-sm my-auto xs:hidden md:hidden sm:hidden"
+                        <div class="flex items-center text-sm my-auto xs:hidden md:hidden sm:hidden read-time"
                              aria-label="Oxumaq vaxtı" data-balloon-pos="left">
                             <span class="iconify dark:text-gray-300" data-icon="mdi-clock-outline"></span>
                             <p class="ml-1 dark:text-gray-300">{{ article.attributes.read_time }}</p>
@@ -54,13 +55,13 @@
                                 </p>
                             </a>
                         </div>
-                        <favorite :article="article" :auth_check="auth_check"/>
+<!--                        <favorite :article="article" :auth_check="auth_check"/>-->
                         <div class=" flex items-center cursor-pointer" @click="copy(article.id)">
                             <span class="iconify text-gray-500 dark:text-gray-300" data-icon="fa-solid:share-alt" data-inline="false"></span>
                         </div>
                     </div>
-                    <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                         :aria-label="article.attributes.votes + ' səs: ' + article.attributes.upvotes + ' artı ' + article.attributes.downvotes + ' mənfi'"
+                    <div class="progress my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
+                         :aria-label="$t('devhub.votes') + ' ' + article.attributes.votes + ': ↑' + article.attributes.upvotes + ' ' + $t('devhub.and') + ' ↓' + article.attributes.downvotes"
                          data-balloon-pos="up">
                         <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
                              :class="{ 'default' : article.attributes.votes === 0}">
@@ -105,6 +106,7 @@
 
 <script>
 import axios from "axios"
+import tippy from "tippy.js";
 
 const edjsHTML = require('editorjs-html');
 const edjsParser = edjsHTML({code: codeParser, image: imageParser, embed: emdebParser});
@@ -144,6 +146,52 @@ export default {
     },
     async created() {
         await this.getPosts();
+        require('../../scripts/tippy')
+        const config = {
+            allowHTML: true,
+            maxWidth: 350,
+            interactive: true,
+            animation: "shift-away-subtle",
+            delay: [200, 50],
+            content: `<div class="p-3" style="width: 350px;"><p class="text-center">` + this.$t('devhub.loading') + `</p></div>`,
+        };
+        tippy(".author-popover", {
+            ...config,
+            onShow(instance) {
+                const id = instance.reference.getAttribute("data-id");
+                window.fetch(`/popover/author/${id}`)
+                    .then((response) => response.text())
+                    .then((blob) => {
+                        instance.setContent(blob);
+                    })
+                    .catch((error) => {
+                        instance.setContent(`<div class="p-3">Something went wrong!</div>`);
+                    });
+            },
+            onHidden(instance) {
+                instance.setContent(config.content);
+                instance._src = null;
+                instance._error = null;
+            },
+        });
+        tippy(".progress", {
+            ...config,
+            onShow(instance) {
+                const label = instance.reference.getAttribute("aria-label");
+                instance.setContent(label)
+            },
+            onHidden(instance) {
+                instance.setContent(config.content);
+                instance._src = null;
+                instance._error = null;
+            },
+        });
+
+        tippy(".read-time", {
+            allowHTML: true,
+            placement: "left",
+            content: this.$t('devhub.readTime'),
+        });
     },
     methods: {
         async getPosts() {

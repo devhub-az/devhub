@@ -4,6 +4,7 @@ import Notifications from 'vue-notification'
 import moment from "moment"
 import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader'
 import VueI18n from 'vue-i18n'
+require('../scripts/tippy')
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
@@ -18,7 +19,6 @@ try {
     window.Popper = require('popper.js').default
     window.$ = window.jQuery = require('jquery')
 } catch (e) {}
-
 
 moment.locale(window.Language)
 

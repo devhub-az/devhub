@@ -110,7 +110,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'email_verified_at' => 'datetime',
     ];
 
-    public function id(): int
+    public function id(): string
     {
         return $this->id;
     }

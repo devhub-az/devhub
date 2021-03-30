@@ -55,6 +55,8 @@
         "postcss-import-url": "^7.0.0",
         "reset-css": "^5.0.1",
         "tailwindcss": "^2.0.2",
+        "tippy.js": "^6.3.1",
+        "koenig-editor": "file:lib/koenig-editor",
         "v-clipboard": "^2.2.3",
         "vue-clickaway": "^2.2.2",
         "vue-cookies": "^1.7.3",

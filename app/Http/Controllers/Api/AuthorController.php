@@ -32,10 +32,10 @@ class AuthorController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return AuthorResource
      */
-    public function show(int $id): AuthorResource
+    public function show(string $id): AuthorResource
     {
         AuthorResource::withoutWrapping();
 

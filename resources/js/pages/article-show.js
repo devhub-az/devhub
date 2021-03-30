@@ -1,6 +1,15 @@
 let Vue = require('vue').default
 import moment from "moment"
 import httpPlugin from './../scripts/http'
+require('../scripts/tippy')
+import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader'
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n)
+
+const i18n = new VueI18n({
+    locale: window.Language,
+    messages: languageBundle,
+})
 
 Vue.use(httpPlugin)
 
@@ -34,5 +43,6 @@ Vue.component('hub-follow-button', require('./../components/hubs/HubsFollowButto
 Vue.component('comment-favorite', require('./../components/parts/CommentFavorite').default)
 
 new Vue({
+    i18n: i18n,
     moment,
 }).$mount('#app')

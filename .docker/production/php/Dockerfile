@@ -24,7 +24,9 @@ RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY ./.docker/production/php/local.ini $PHP_INI_DIR/conf.d
 COPY ./.docker/production/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
 
-COPY --chown=www-data:www-data . /var/www/
+COPY . /var/www/
+
+RUN chown -R www-data /var/www
 
 WORKDIR /var/www
 

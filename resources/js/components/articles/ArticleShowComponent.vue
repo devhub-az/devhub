@@ -1,37 +1,38 @@
 <template>
     <div class="mb-3">
         <article-loading v-if="loading"/>
-        <article v-if="!loading" id="post-content" class="w-full rounded border dark:border-gray-700">
+        <article v-if="!loading" id="article-content" class="w-full rounded border dark:border-gray-700">
             <div
                 class="sticky top-0 flex justify-between rounded-t items-center border-b bg-afooter dark:bg-gray-800 dark:border-gray-700 px-3.5 py-1 z-10">
                 <div class="inline-flex">
-                    <a :href="'/@' + post.relationships.author.data.attributes.username"
-                       class="inline-flex">
+                    <a :href="'/@' + article.relationships.author.data.attributes.username"
+                       class="inline-flex author-popover"
+                       :data-id="article.relationships.author.data.id">
                         <img class="w-6 h-6 flex-none image-fit rounded lazyload"
-                             :src="post.relationships.author.data.attributes.avatar" alt="user avatar">
+                             :src="article.relationships.author.data.attributes.avatar" alt="user avatar">
                         <p class="text-sm pl-2 m-auto dark:text-gray-300">
-                            {{ '@' + post.relationships.author.data.attributes.username }}</p>
+                            {{ '@' + article.relationships.author.data.attributes.username }}</p>
                     </a>
                     <p class="text-xs my-auto mr-auto pl-2 dark:text-gray-300">
-                        {{ post.attributes.created_at |  moment('DD MMMM, H:mm') }}
+                        {{ article.attributes.created_at |  moment('DD MMMM, H:mm') }}
                     </p>
                 </div>
-                <div class="post-votes-sticky">
-                    <vote :item="post"/>
-                    <div class="post-edit_author" v-if="auth_check">
+                <div class="article-votes-sticky">
+                    <vote :item="article"/>
+                    <div class="article-edit_author" v-if="auth_check">
                         <i class="mdi mdi-chevron-down"></i>
                     </div>
                 </div>
             </div>
             <div class="px-3.5 bg-white dark:bg-dpaper">
                 <div class="py-2">
-                    <p class="text-2xl xs:text-xl font-medium dark:text-gray-300">{{ post.attributes.title }}</p>
+                    <p class="text-2xl xs:text-xl font-medium dark:text-gray-300">{{ article.attributes.title }}</p>
                 </div>
-                <hubs-tags v-if="typeof(post.relationships.hubs) !== `undefined` "
-                           :data="post.relationships.hubs.data"></hubs-tags>
+                <hubs-tags v-if="typeof(article.relationships.hubs) !== `undefined` "
+                           :data="article.relationships.hubs.data"></hubs-tags>
                 <div id="markdown" class="prose py-2">
                     <div
-                        v-for="block in edjsParser.parse(JSON.parse(post.attributes.body))" v-html="block"></div>
+                        v-for="block in edjsParser.parse(JSON.parse(article.attributes.body))" v-html="block"></div>
                 </div>
             </div>
             <div
@@ -39,28 +40,28 @@
                 <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                     <div class="flex items-center">
                         <i class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-eye-outline"/>
-                        <p class="ml-1 text-gray-500 dark:text-gray-300">{{ post.attributes.views }}</p>
+                        <p class="ml-1 text-gray-500 dark:text-gray-300">{{ article.attributes.views }}</p>
                     </div>
                     <div>
-                        <a :href="'/article/' + post.attributes.slug + '#comments'" class="flex items-center">
+                        <a :href="'/article/' + article.attributes.slug + '#comments'" class="flex items-center">
                             <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
                             <p class="ml-1 text-gray-500 dark:text-gray-300">
-                                {{ post.relationships.comments.data.length }}
+                                {{ article.relationships.comments.data.length }}
                             </p>
                         </a>
                     </div>
-                    <favorite :post="post" :auth_check="auth_check"/>
+                    <!--                    <favorite :article="article" :auth_check="auth_check"/>-->
                 </div>
-                <div class="my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
-                     :aria-label="post.attributes.votes + ' səs: ' + post.attributes.upvotes + ' artı ' + post.attributes.downvotes + ' mənfi'"
+                <div class="progress my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
+                     :aria-label="$t('devhub.votes') + ' ' + article.attributes.votes + ': ↑' + article.attributes.upvotes + ' ' + $t('devhub.and') + ' ↓' + article.attributes.downvotes"
                      data-balloon-pos="up">
                     <div class="my-auto bg-gray-300 dark:bg-gray-600 w-full rounded h-1 relative"
-                         :class="{ 'default' : post.attributes.votes === 0}">
+                         :class="{ 'default' : article.attributes.votes === 0}">
                         <div class="absolute h-1 bg-green-600 rounded-l"
-                             :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.upvotes / post.attributes.votes : '0'] +'%'">
+                             :style="'width:' + [article.attributes.votes !== 0 ? 100 * article.attributes.upvotes / article.attributes.votes : '0'] +'%'">
                         </div>
                         <div class="absolute h-1 bg-red-600 rounded-r right-0"
-                             :style="'width:' + [post.attributes.votes !== 0 ? 100 * post.attributes.downvotes / post.attributes.votes : '0'] +'%'">
+                             :style="'width:' + [article.attributes.votes !== 0 ? 100 * article.attributes.downvotes / article.attributes.votes : '0'] +'%'">
                         </div>
                     </div>
                 </div>
@@ -72,6 +73,8 @@
 <script>
 import axios from "axios";
 import hljs from 'highlight.js/lib/core';
+import tippy from "tippy.js";
+
 if (localStorage.theme === 'dark') {
     import('highlight.js/styles/atom-one-dark.css');
 } else {
@@ -96,7 +99,7 @@ hljs.registerLanguage('go', require('highlight.js/lib/languages/go'));
 hljs.registerLanguage('java', require('highlight.js/lib/languages/java'));
 hljs.registerLanguage('swift', require('highlight.js/lib/languages/swift'));
 
-export const sanitizeHtml = function(markup) {
+export const sanitizeHtml = function (markup) {
     markup = markup.replace(/&/g, "&amp;");
     markup = markup.replace(/</g, "&lt;");
     markup = markup.replace(/>/g, "&gt;");
@@ -125,22 +128,45 @@ export default {
         return {
             loading: false,
             edjsParser: edjsHTML(),
-            post: {
-                attributes: [],
-                relationships: []
-            },
+            article: {},
         }
     },
     async created() {
-        await this.getPost()
-        await hljs.highlightBlock(document.getElementById("output"))
+        await this.getPost().then(() => {
+            const config = {
+                allowHTML: true,
+                maxWidth: 350,
+                interactive: true,
+                animation: "shift-away-subtle",
+                delay: [200, 50],
+                content: `<div class="p-3" style="width: 350px;"><p class="text-center">Загрузка</p></div>`,
+            };
+            tippy(".progress", {
+                ...config,
+                onShow(instance) {
+                    const label = instance.reference.getAttribute("aria-label");
+                    instance.setContent(label)
+                },
+                onHidden(instance) {
+                    instance.setContent(config.content);
+                    instance._src = null;
+                    instance._error = null;
+                },
+            });
+        });
+        if (document.getElementById("output")) {
+            await hljs.highlightBlock(document.getElementById("output"))
+        }
     },
     methods: {
         async getPost() {
             this.loading = true;
-            await axios.get('/api/articles/' + this.slug).then(response => {
+            await axios.get('/api/articles/' + this.slug).then(({data}) => {
                 this.loading = false;
-                this.post = response.data;
+                if (data.length !== 0) {
+                    this.article = data;
+                }
+
             }).catch(error => {
                 this.loading = false
                 this.error = true
