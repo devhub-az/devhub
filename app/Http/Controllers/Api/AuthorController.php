@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FilterRequest;
-use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\AuthorResource;
 use App\Http\Resources\AuthorsResource;
 use App\Jobs\FollowAuthor;
-use App\Models\Article;
 use App\Models\User;
 use App\Policies\AuthorPolicy;
 use App\Services\LogoUploadService;
