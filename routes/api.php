@@ -95,6 +95,7 @@ Route::get('/search_hub', [HubController::class, 'search_hub_by_key']);
 Route::prefix('authors')->group(
     function () {
         Route::get('/', [AuthorController::class, 'index'])->name('authors.all');
+        Route::get('{id}/articles', [ArticleAuthorController::class, 'articles'])->name('authors.articles');
         Route::get('{author}', [AuthorController::class, 'show'])->name('authors.show');
         Route::post('{author}', [AuthorController::class, 'follow'])->name('author.follow')->middleware('auth:api');
         Route::get('{id}/all', [ArticleAuthorController::class, 'articles']);

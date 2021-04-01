@@ -50,6 +50,7 @@
         "emojione": "^4.5.0",
         "highlight.js": "^10.6.0",
         "js-cookie": "^2.2.1",
+        "medium-zoom": "^1.0.6",
         "moment": "^2.29.1",
         "noty": "^3.2.0-beta",
         "postcss-import-url": "^7.0.0",

@@ -29,7 +29,7 @@ class ArticleController extends Controller
         )->orderBy(
             'created_at',
             'DESC'
-        )->take(50)->paginate(5);
+        )->take(50)->paginate(10);
 
         return new ArticlesResource($articles);
     }

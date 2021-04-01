@@ -2,9 +2,12 @@
     <div class="relative bg-cover bg-center p-4">
         <div class="flex justify-between">
             <div class="flex items-start space-x-2">
-                <img class="rounded shadow-sm border dark:border-gray-700 xs:h-16 xs:w-16 w-16 h-16 object-cover"
-                     src="{{ $author->attributes->avatar }}"
-                     alt="Profile image">
+                <figure>
+                    <img id="zoom-scrollOffset"
+                         class="rounded shadow-sm border dark:border-gray-700 xs:h-16 xs:w-16 w-16 h-16 object-cover"
+                         src="{{ $author->attributes->avatar }}"
+                         alt="Profile image">
+                </figure>
                 <div class="space-y-1">
                     <div class="flex items-end space-x-2">
                         <div class="text-2xl text-shadow dark:text-gray-300 xs:text-base flex items-center leading-6">
@@ -12,7 +15,8 @@
                             {{ $author->attributes->surname ?? '' }}
                         </div>
                     </div>
-                    <div class="text-cerulean-100 text-xl text-shadow dark:text-cerulean-100 xs:text-base flex items-center">
+                    <div
+                        class="text-cerulean-100 text-xl text-shadow dark:text-cerulean-100 xs:text-base flex items-center">
                         {{ '@' . $author->attributes->username }}
                     </div>
                 </div>

@@ -72,6 +72,10 @@
         @apply dark:text-gray-400
     }
 
+    .prose p{
+        @apply dark:text-gray-300
+    }
+
     .prose h3{
         @apply dark:text-gray-300
     }

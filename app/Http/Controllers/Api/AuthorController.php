@@ -53,24 +53,6 @@ class AuthorController extends Controller
     }
 
     /**
-     * @param int $id
-     *
-     * @return ArticlesResource
-     */
-    public function articles(int $id): ArticlesResource
-    {
-        return new ArticlesResource(
-            Article::where('author_id', $id)
-                ->orderByRaw('(upvoters_count - downvoters_count) DESC')
-                ->orderBy('created_at', 'DESC')
-                ->with('creator:id,username,avatar')
-                ->withCount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
-                ->take(50)
-                ->paginate(5)
-        );
-    }
-
-    /**
      * @param User $author
      * @return mixed
      * @throws AuthorizationException

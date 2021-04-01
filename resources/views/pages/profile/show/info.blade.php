@@ -5,8 +5,8 @@
 @section('main')
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:my-0" id="app">
         @include('pages.profile.include.header')
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main space-x-3 md:space-x-4">
-            <div>
+        <div class="flex space-x-3 xs:space-x-0 xs:block">
+            <div class="w-left xs:w-full">
                 @include('pages.profile.include.tabs')
                 <div class="bg-white border dark:border-gray-700 dark:bg-dpaper overflow-hidden sm:rounded-lg">
                     <div class="px-4 pt-4 sm:px-6">
@@ -134,7 +134,7 @@
                 </div>
             </div>
 
-            <div class="content_right">
+            <div class="w-right xs:w-full">
                 @include('pages.profile.include.right')
             </div>
         </div>

@@ -89,7 +89,7 @@
                                     @foreach ($lastAuthors as $author)
                                         <div class="flex items-start space-x-2">
                                             <div class="relative w-12 h-12">
-                                                <img
+                                                <img id="zoom-scrollOffset"
                                                     src="{{ ($author->avatar !== 'default') ? $author->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
                                                     alt="hub image" class="w-12 h-12 rounded object-cover">
                                                 @if ($author->isOnline())

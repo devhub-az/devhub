@@ -34,7 +34,7 @@
                     </div>
                     <hubs-tags v-if="article.relationships.hubs.data.length" :data="article.relationships.hubs.data"
                                :auth_check="auth_check"/>
-                    <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
+                    <div class="prose my-2 xs:hidden md:hidden sm:hidden">
                         <div
                             v-for="block in edjsParser.parse(JSON.parse(article.attributes.body)).slice(0,2)"
                             v-html="block.length > 700 ? block.slice(0,600) + '...' : block"></div>

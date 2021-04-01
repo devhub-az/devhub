@@ -103,7 +103,7 @@ class ArticleTopController extends Controller
      *
      * @return array
      */
-    public function favoriteIds(object $items)
+    public function favoriteIds(object $items): array
     {
         $itemIds = [];
 
