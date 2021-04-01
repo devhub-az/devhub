@@ -20,7 +20,7 @@ return [
     'followedArticles404'   => 'Подписывайтесь на интересные вам теги, сообщества, пользователей — и читайте персональное «Свежее».',
     'followers'             => 'Abunəçilər',
     'followTelegramChannel' => 'Teleqram kanalına qoşulun',
-    'homePage'              => 'Əsas',
+    'homePage'              => 'Əsas səhifə',
     'hubs'                  => 'Hablar',
     'light'                 => 'Açıq',
     'loading'               => 'Yüklənmə',
