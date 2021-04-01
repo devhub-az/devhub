@@ -17,7 +17,7 @@ class HomeController extends Controller
      * @param Request $request
      * @return Application|Factory|View
      */
-    public function articlesApiRoute(Request $request): Factory|View|Application
+    public function articlesApiRoute(Request $request): Factory | View | Application
     {
         $lastAuthors = new AuthorsResource(User::orderBy('created_at', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
