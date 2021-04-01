@@ -9,7 +9,9 @@ use App\Jobs\DeleteUser;
 use App\Jobs\UnbanUser;
 use App\Models\User;
 use App\Policies\AuthorPolicy;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Http\RedirectResponse;
 
 class UsersController extends Controller
 {
@@ -18,27 +20,36 @@ class UsersController extends Controller
         $this->middleware([Authenticate::class, VerifyAdmins::class]);
     }
 
-    public function ban(User $user)
+    public function ban(User $user): RedirectResponse
     {
-        $this->authorize(AuthorPolicy::BAN, $user);
+        try {
+            $this->authorize(AuthorPolicy::BAN, $user);
+        } catch (AuthorizationException $e) {
+        }
 
         $this->dispatchNow(new BanUser($user));
 
         return back();
     }
 
-    public function unban(User $user)
+    public function unban(User $user): RedirectResponse
     {
-        $this->authorize(AuthorPolicy::BAN, $user);
+        try {
+            $this->authorize(AuthorPolicy::BAN, $user);
+        } catch (AuthorizationException $e) {
+        }
 
         $this->dispatchNow(new UnbanUser($user));
 
         return back();
     }
 
-    public function delete(User $user)
+    public function delete(User $user): RedirectResponse
     {
-        $this->authorize(AuthorPolicy::DELETE, $user);
+        try {
+            $this->authorize(AuthorPolicy::DELETE, $user);
+        } catch (AuthorizationException $e) {
+        }
 
         $this->dispatchNow(new DeleteUser($user));
 

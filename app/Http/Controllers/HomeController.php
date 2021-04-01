@@ -6,12 +6,18 @@ use App\Http\Resources\AuthorsResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Hub;
 use App\Models\User;
-use Auth;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function articlesApiRoute(Request $request)
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function articlesApiRoute(Request $request): Factory|View|Application
     {
         $lastAuthors = new AuthorsResource(User::orderBy('created_at', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
@@ -62,23 +68,22 @@ class HomeController extends Controller
                         'lastAuthors'       => $lastAuthors,
                     ]
                 );
-            case 'favorite' && Auth::user()->followings(Hub::class)->count() !== null
-                && Auth::user()
-                    ->followings()
-                    ->count() !== null:
-                session(['main-page' => '/favorite']);
-
-                return view(
-                    'pages.home',
-                    ['url'                  => '/api/articles/filter/favorite',
-                        'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
-                    ]
-                );
+                // TODO:FIX
+//            case 'favorite' && Auth::user()->followings(Hub::class)->count() !== null
+//                && Auth::user()
+//                    ->followings()
+//                    ->count() !== null:
+//                session(['main-page' => '/favorite']);
+//
+//                return view(
+//                    'pages.home',
+//                    ['url'                  => '/api/articles/filter/favorite',
+//                        'top_followed_hubs' => $top_followed_hubs,
+//                        'lastAuthors'       => $lastAuthors,
+//                    ]
+//                );
             default:
                 abort(404);
         }
-
-        return response("User can't perform this action.", 500);
     }
 }

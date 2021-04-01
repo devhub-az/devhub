@@ -4,8 +4,8 @@
 
 @section('main')
     <div class="container w-full my-4 mx-auto xs:px-4">
-        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main space-x-2 md:space-x-4 space-x-5">
-            <div id="app">
+        <div class="flex space-x-3 xs:space-x-0 xs:block">
+            <div class="w-left xs:w-full" id="app">
                 <hubs-list
                     fetch-url="{{ route('hubs.api.index') }}"
                     locale="{{ App::getLocale() }}"
@@ -15,7 +15,7 @@
                 ></hubs-list>
             </div>
 
-            <div>
+            <div class="w-right xs:w-full">
                 <div class="sticky top-2">
                     <div>
                         <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">

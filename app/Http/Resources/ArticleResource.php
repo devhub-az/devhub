@@ -53,8 +53,7 @@ class ArticleResource extends JsonResource
     }
 
     /**
-     * @param $text
-     *
+     * @param string $text
      * @return string
      */
     public function readTime(string $text): string

@@ -69,13 +69,6 @@ class ArticleController extends Controller
         return response()->json(['result' => 'true']);
     }
 
-    /**
-     * @param        $user
-     * @param        $target
-     * @param string $type
-     * @return bool
-     * @throws Throwable
-     */
     public static function upOrDownVote(User $user, $target, string $type = 'up'): bool
     {
         $hasVoted = $user->{'has'.ucfirst($type).'Voted'}($target);

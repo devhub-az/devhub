@@ -28,7 +28,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 
 #COPY ./.docker/develop/php/local.ini $PHP_INI_DIR/conf.d
-COPY ./.docker/develop/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
+#COPY ./.docker/develop/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
 
 WORKDIR /var/www
 

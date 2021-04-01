@@ -34,50 +34,52 @@
         </div>
         <hubs-loading v-if="loading" :loading="loading"/>
         <div v-for="hub in hubs" v-if="!loading"
-             class="flex space-x-3 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700"
+             class="flex space-x-3 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700 xs:block xs:space-x-0 xs:space-y-2"
              :id="hub.id + '_block'">
-            <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1 dark:bg-dwall"
-                 :src="hub.attributes.logo"
-                 alt="Hub logo">
-            <a :href="'/hubs/' + hub.attributes.slug" class="w-8/12">
-                <div class="h-16 overflow-y-hidden mb-2">
-                    <div class="space-x-4 font-semibold dark:text-gray-300">
-                        <p>{{ hub.attributes.name }}</p>
-                    </div>
-                    <p class="text-sm w-full font-light pb-2 dark:text-gray-300">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus beatae cumque dolorum ea esse exercitationem fuga labore minus molestiae, nam nesciunt quae quasi quos recusandae repudiandae tempore totam, voluptatem.
-                    </p>
-                </div>
-                <div class="flex items-center text-xs">
-                    <div class="items-center flex">
-                        <span class="iconify text-cerulean-500 dark:text-cerulean-100"
-                              data-icon="mdi:account-group-outline"
-                              data-inline="false"></span>
-                        <p class="ml-1 text-sm dark:text-gray-300">
-                            <span class="xs:hidden">{{ $t('devhub.followers') }}</span>
-                            {{ hub.attributes.hub_followers_count }}
+            <div class="flex space-x-3">
+                <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1 dark:bg-dwall"
+                     :src="hub.attributes.logo"
+                     alt="Hub logo">
+                <a :href="'/hubs/' + hub.attributes.slug" class="w-10/12">
+                    <div class="h-16 overflow-y-hidden mb-2">
+                        <div class="space-x-4 font-semibold dark:text-gray-300">
+                            <p>{{ hub.attributes.name }}</p>
+                        </div>
+                        <p class="text-sm w-full font-light pb-2 dark:text-gray-300">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus beatae cumque dolorum ea esse exercitationem fuga labore minus molestiae, nam nesciunt quae quasi quos recusandae repudiandae tempore totam, voluptatem.
                         </p>
                     </div>
-                    <div class="items-center flex mx-2">
-                        <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
-                              data-inline="false"></span>
-                        <p class="ml-1 text-sm"
-                           :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
-                            <span class="xs:hidden">{{ $t('devhub.rating') }}</span>
-                            {{ hub.attributes.rating }}
-                        </p>
+                    <div class="flex items-center text-xs">
+                        <div class="items-center flex">
+                            <span class="iconify text-cerulean-500 dark:text-cerulean-100"
+                                  data-icon="mdi:account-group-outline"
+                                  data-inline="false"></span>
+                            <p class="ml-1 text-sm dark:text-gray-300">
+                                <span class="xs:hidden">{{ $t('devhub.followers') }}</span>
+                                {{ hub.attributes.hub_followers_count }}
+                            </p>
+                        </div>
+                        <div class="items-center flex mx-2">
+                            <span class="iconify text-green-600 dark:text-green-500" data-icon="mdi:trending-up"
+                                  data-inline="false"></span>
+                            <p class="ml-1 text-sm"
+                               :class="hub.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
+                                <span class="xs:hidden">{{ $t('devhub.rating') }}</span>
+                                {{ hub.attributes.rating }}
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="iconify dark:text-gray-300" data-icon="mdi-text-box-multiple-outline"></i>
+                            <p class="ml-1 text-sm font-light dark:text-gray-300">
+                                <span class="xs:hidden">{{ $t('devhub.articles') }}</span> {{ hub.attributes.articles_count }}
+                            </p>
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <i class="iconify dark:text-gray-300" data-icon="mdi-text-box-multiple-outline"></i>
-                        <p class="ml-1 text-sm font-light dark:text-gray-300">
-                            <span class="xs:hidden">{{ $t('devhub.articles') }}</span> {{ hub.attributes.articles_count }}
-                        </p>
-                    </div>
-                </div>
-            </a>
+                </a>
+            </div>
             <hub-follow-button :id="hub.id" :follower_check="hub.attributes.follower_check"
                                @follow-status-updated="hub.attributes.follower_check = $event" :auth_check="auth_check"
-                               class="w-max m-auto text-center" :classes="'h-7'"/>
+                               class="w-10/12 xs:w-full m-auto text-center" :classes="'h-7 xs:h-auto xs:py-1'"/>
         </div>
         <pagination v-if="pagination.last_page > 1 && !loading" :pagination="pagination" :offset="5"
                     @paginate="getHubs()"/>
