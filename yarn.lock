@@ -847,9 +847,9 @@
   integrity sha512-gXtTce915fHp3H9i4IqhTxEDbbkT2heFfYiW/bhFHsCmZDpyGzfZxi94kmrEqDmbxXjV49ZZ6GZbR26If13KJw==
 
 "@editorjs/editorjs@^2.19.1":
-  version "2.19.3"
-  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.19.3.tgz#cb0c804bf06f9953f8a78d6af8c7fa85ca2d804f"
-  integrity sha512-2IdR164W1csszDZmtCu91q0q7iQ39BBl82bGlNGaXTEiVLr0sySPcmM7v/3DITldEjE+Uovupclba8YAi40KKQ==
+  version "2.20.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.20.0.tgz#1e0dc7e6c1433c34c9d2d3e42153313c2dbb3514"
+  integrity sha512-e6DWi8bMypFhovq9R6cefaDWVfrlVU++Q7ABp79+MxZIuC/SKAW5EtxBbKPL22H/Mc3bJIhZCxOqEl70HBh2yw==
   dependencies:
     codex-notifier "^1.1.2"
     codex-tooltip "^1.0.1"
