@@ -33,7 +33,7 @@ class ArticleResource extends JsonResource
                 'is_down_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasDownVoted($this->setAppends([]))
                     : false,
                 'read_time' => $this->readTime($this->body),
-                'real' => $this->num,
+                'real'      => $this->num,
             ],
             'relationships' => new ArticleRelationshipResource($this),
             'links'         => [
