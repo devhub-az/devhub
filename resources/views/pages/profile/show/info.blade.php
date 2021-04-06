@@ -50,7 +50,7 @@
                                         Работает в
                                     </dt>
                                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 dark:text-gray-400">
-                                        {{ $author->attributes->company }}
+                                        {{ $author->attributes->company ?? __('devhub.undefined') }}
                                     </dd>
                                 </div>
                                 <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:space-x-4 sm:px-6">

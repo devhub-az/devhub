@@ -94,7 +94,7 @@
 </footer>
 
 @push('scripts')
-    <script type="text/javascript" src="{{ mix('js/footer.js') }}" async></script>
+    <script type="text/javascript" src="{{ mix('js/footer.js') }}" defer></script>
 @endpush
 
 @section('styles')

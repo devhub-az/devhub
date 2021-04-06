@@ -3,7 +3,6 @@
 @section('title')Login səhifəsi @stop
 
 @section('main')
-    {{--    <div id="particles-js" class="absolute h-full w-full"></div>--}}
     <div class="xs:pt-20 text-center absolute top-1/2 left-1/2 -mr-1/2"
          style="transform: translate(-50%, -50%)">
         <a href="{{ route('home') }}"

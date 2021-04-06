@@ -12,7 +12,6 @@
     "devDependencies": {
         "@kirschbaum-development/laravel-translations-loader": "^1.2.0",
         "@tailwindcss/forms": "^0.3.0",
-        "@tailwindcss/jit": "^0.1.0",
         "@tailwindcss/typography": "^0.4.0",
         "axios": "^0.21",
         "jquery": "^3.2",
@@ -55,7 +54,7 @@
         "noty": "^3.2.0-beta",
         "postcss-import-url": "^7.0.0",
         "reset-css": "^5.0.1",
-        "tailwindcss": "^2.0.2",
+        "tailwindcss": "^2.1.0",
         "tippy.js": "^6.3.1",
         "v-clipboard": "^2.2.3",
         "vue-clickaway": "^2.2.2",

@@ -26,8 +26,8 @@ class ArticleTopController extends Controller
     public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
     {
         self::$count = match ($request->segment(4)) {
-            'day'   => $day,
-            'week'  => $week,
+            'day' => $day,
+            'week' => $week,
             'month' => $month,
         };
     }
@@ -37,12 +37,8 @@ class ArticleTopController extends Controller
      */
     public function articles(): ArticlesResource
     {
-        $articles = Article::with('hubs')
-            ->withcount(
-                [
-                    'views',
-                ]
-            )
+        $articles  = Article::with('hubs')
+            ->withcount('views')
             ->orderBy(
                 'created_at',
                 'DESC'
@@ -50,18 +46,26 @@ class ArticleTopController extends Controller
                 'created_at',
                 '>=',
                 Carbon::now()->subDays(self::$count)->startOfDay()
-            )
-            ->take(50);
-
+            );
         $paginated = $articles->paginate(10);
 
-        $sorted = $articles->get()->sortBy(
+        $sorted = $articles->get()->sortByDesc(
             function ($articles) {
-                return $articles->voters()->count();
-            },
-            null,
-            true
-        );
+                $articles->up   = $articles->upVoters()->count();
+                $articles->down = $articles->downVoters()->count();
+                if ($articles->up === 0) {
+                    return -$articles->down;
+                }
+                $n             = $articles->up + $articles->down;
+                $z             = 1.64485; //1.0 = 85%, 1.6 = 95%
+                $phat          = $articles->up / $n;
+                $articles->num =
+                    ($phat + $z * $z / (2 * $n) - $z * SQRT(($phat * (1 - $phat) + $z * $z / (4 * $n)) / $n)) / (1
+                        + $z * $z / $n);
+
+                return $articles->num;
+            }
+        )->take(50);
 
         $articles = new LengthAwarePaginator($sorted, $paginated->total(), $paginated->perPage());
 
@@ -76,13 +80,13 @@ class ArticleTopController extends Controller
     {
         $author = User::findOrFail($request->user()->id);
         if ($author->followings->count() > 0) {
-            $authorsIds = $author->followings->pluck('id');
-            $articleAuthors = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
+            $authorsIds        = $author->followings->pluck('id');
+            $articleAuthors    = User::with('articles')->select('id')->whereIn('id', $authorsIds)->get();
             $articleAuthorsIds = $this->favoriteIds($articleAuthors);
         }
         if ($author->getFavoriteItems(Hub::class)->count() > 0) {
-            $hubsIds = $author->getFavoriteItems(Hub::class)->pluck('id');
-            $articleHubs =
+            $hubsIds        = $author->getFavoriteItems(Hub::class)->pluck('id');
+            $articleHubs    =
                 Hub::with('articles')->withCount('articles')->select('id')->whereIn('id', $hubsIds)->get();
             $articleHubsIds = $this->favoriteIds($articleHubs);
         }

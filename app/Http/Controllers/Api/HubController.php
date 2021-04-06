@@ -55,6 +55,7 @@ class HubController extends Controller
      */
     public function follow(Request $request): JsonResponse
     {
+        Hub::flushQueryCache();
         $user = auth()->guard('api')->user();
         $hub = Hub::findOrFail($request->get('id'));
         if (isset($hub) && ! $hub->isFavoritedBy($user)) {

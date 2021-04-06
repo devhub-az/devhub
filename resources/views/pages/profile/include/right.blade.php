@@ -5,17 +5,26 @@
                 <p class="dark:text-gray-300">
                     {{ \Numeric::number_format_short($author->attributes->rating) }}
                 </p>
-                <p class="dark:text-gray-400">
-                    {{ __('devhub.rating') }}
-                </p>
+                <div class="flex items-center space-x-1">
+                    <span class="iconify text-green-600 text-sm dark:text-green-500" data-icon="tabler:trending-up"
+                          data-inline="false"></span>
+                    <p class="dark:text-gray-400">
+                        {{ __('devhub.rating') }}
+                    </p>
+                </div>
             </div>
             <div class="mx-auto">
                 <p class="dark:text-gray-300" title="{{ $author->attributes->karma }}">
                     {{ \Numeric::number_format_short($author->attributes->karma) }}
                 </p>
-                <p class="dark:text-gray-400">
-                    {{ __('devhub.karma') }}
-                </p>
+                <div class="flex items-center space-x-1">
+                    <span class="iconify text-sm text-yellow-500 dark:text-yellow-100"
+                          data-icon="tabler:bolt"
+                          data-inline="false"></span>
+                    <p class="dark:text-gray-400">
+                        {{ __('devhub.karma') }}
+                    </p>
+                </div>
             </div>
 
         </div>

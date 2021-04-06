@@ -105,7 +105,7 @@ Route::prefix('authors')->group(
         Route::get('{id}/followers', [AuthorController::class, 'followers']);
     }
 );
-Route::get('/search_user', [AuthorController::class, 'search_user_by_key']);
+Route::get('search_user', [AuthorController::class, 'search_user_by_key']);
 
 /*
  * Profile Api
@@ -116,4 +116,5 @@ Route::get('/search_user', [AuthorController::class, 'search_user_by_key']);
 /*
  * Search Api.
  */
-Route::get('search{search?}', [SearchController::class, 'results']);
+Route::get('search/articles/search={search}', [SearchController::class, 'articles']);
+Route::get('search/authors/search={search}', [SearchController::class, 'authors']);

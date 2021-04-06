@@ -24,14 +24,13 @@
                         </div>
                         <a id="trans-none" href="{{ route('register') }}"
                            class="btn shadow-lg xs:block px-4 font-medium my-auto xs:py-2 xs:text-center xs:w-full xs:m-0">
-                            {{ __('devhub.connect') }}
+                            {{ __('devhub.register') }}
                         </a>
                     </div>
                 @endguest
                 <div class="mb-2 flex items-center justify-between dark:border-gray-700">
                     <div class="flex items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">
-                        <span class="iconify" data-icon="mdi:newspaper-variant-multiple-outline"
-                              data-inline="false"></span>
+                        <span class="iconify" data-icon="tabler:mist" data-inline="false"></span>
                         <p class="transition-none xs:text-base">{{ __('devhub.articles') }}</p>
                     </div>
                     <select-menu
@@ -134,7 +133,7 @@
                                             </div>
                                             <div
                                                 class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
-                                                <span class="iconify" data-icon="mdi:account-group-outline"
+                                                <span class="iconify" data-icon="tabler:users"
                                                       data-inline="false"></span>
                                                 <p>{{ __('devhub.followers') }}: {{ $hub->favorites_count ?? '' }}</p>
                                             </div>
@@ -144,7 +143,7 @@
                             </div>
                         </div>
                     @endif
-                    <a class="flex justify-between border rounded p-4 mb-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-700 dark:hover:border-cerulean-700"
+                    <a class="flex justify-between border rounded p-4 mb-4 bg-white dark:bg-transparent dark:border-gray-700 hover:border-cerulean-200 dark:hover:border-cerulean-700"
                        href="https://t.me/devhub_az" target="_blank"
                        rel="noopener">
                         <div class="w-2/3">
