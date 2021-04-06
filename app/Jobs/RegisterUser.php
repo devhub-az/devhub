@@ -4,7 +4,6 @@ namespace App\Jobs;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 
@@ -28,7 +27,7 @@ final class RegisterUser
     public function __construct(string $username, string $email, string $password)
     {
         $this->username = $username;
-        $this->email    = $email;
+        $this->email = $email;
         $this->password = $password;
     }
 
@@ -45,11 +44,11 @@ final class RegisterUser
     {
         $user = new User(
             [
-                'id'                => Uuid::uuid4(),
-                'username'          => $this->username,
-                'email'             => $this->email,
-                'password'          => Hash::make($this->password),
-                'type'              => User::DEFAULT,
+                'id'       => Uuid::uuid4(),
+                'username' => $this->username,
+                'email'    => $this->email,
+                'password' => Hash::make($this->password),
+                'type'     => User::DEFAULT,
                 //                TODO:REMOVE IT
                 'email_verified_at' => \Carbon::now()->toDateTimeString(),
             ]
