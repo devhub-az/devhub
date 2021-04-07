@@ -67,10 +67,10 @@ class ArticleController extends Controller
         ($request->type === 'up')
             ? self::upOrDownVote($request->user(), $article)
             : self::upOrDownVote(
-            $request->user(),
-            $article,
-            'down'
-        );
+                $request->user(),
+                $article,
+                'down'
+            );
 
         return response()->json(['result' => 'true']);
     }

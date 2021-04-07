@@ -13,7 +13,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StatusController;
 use Carbon\Carbon;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
