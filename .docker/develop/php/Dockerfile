@@ -1,4 +1,4 @@
-FROM php:8-fpm-alpine
+FROM php:8-cli-alpine
 
 RUN apk update && apk add --no-cache \
     zip \
@@ -30,6 +30,8 @@ RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
 #COPY ./.docker/develop/php/local.ini $PHP_INI_DIR/conf.d
 #COPY ./.docker/develop/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
 
+RUN docker-php-ext-install sockets
+
 WORKDIR /var/www
 
 ARG PUID=1000
@@ -39,3 +41,11 @@ ENV PGID ${PGID}
 
 RUN groupmod -o -g ${PGID} www-data && \
     usermod -o -u ${PUID} -g www-data www-data
+
+EXPOSE 8000
+
+CMD ["php", "artisan", "octane:start"]
+
+#TODO: add cron
+#COPY ./.docker/common/crontab /etc/crontabs/root
+#CMD crond -f

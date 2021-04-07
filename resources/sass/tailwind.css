@@ -32,7 +32,7 @@
     }
 
     .textarea{
-        @apply shadow-sm focus:ring-0 hover:border-cerulean-100 dark:hover:border-cerulean-500 focus:border-cerulean-500 mt-1 block w-full sm:text-sm rounded-md dark:border-gray-700 dark:text-gray-300 dark:bg-dpaper
+        @apply shadow-sm focus:ring-0 hover:border-cerulean-100 dark:hover:border-cerulean-500 focus:border-cerulean-100 mt-1 block w-full sm:text-sm rounded-md dark:border-gray-700 dark:text-gray-300 dark:bg-dpaper
     }
 
     .multiselect__tags, .multiselect__input, .multiselect__single, .multiselect__content-wrapper{
