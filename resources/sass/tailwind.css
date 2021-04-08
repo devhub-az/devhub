@@ -64,11 +64,8 @@
         padding-bottom: 0.125rem;
     }
 
-    .ce-block__content{
-        @apply markdown
-    }
-
     .prose{
+        max-width: none;
         @apply dark:text-gray-400
     }
 

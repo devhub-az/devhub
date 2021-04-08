@@ -396,10 +396,10 @@
         </section>
         <section class="lg:container xl:container mt-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto py-12 relative">
             <div class="px-32 mb-12">
-                <h1 class="text-4xl py-4 font-semibold text-black text-center">
+                <h1 class="text-4xl py-4 font-semibold text-black text-center dark:text-gray-300">
                     Access even outside of the browser
                 </h1>
-                <p class="px-16 text-center text-lg">
+                <p class="px-16 text-center text-lg dark:text-gray-400">
                     Raindrop.io is available as Chrome, Firefox, Safari, and Edge extension. <br>
                     But we also have Web, Windows, Mac, iPad, iPhone, and Android app.
                 </p>
@@ -408,65 +408,65 @@
         </section>
         <section class="lg:container xl:container mt-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto py-12 relative">
             <div class="px-32">
-                <h1 class="text-4xl py-4 font-semibold text-black text-center">
+                <h1 class="text-4xl py-4 font-semibold text-black text-center dark:text-gray-300">
                     Но подождите, это еще не все
                 </h1>
             </div>
             <div class="grid grid-cols-3 mt-2">
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl" data-icon="tabler:device-floppy" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:device-floppy" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">Сохраняйте статьи</p>
-                        <p class="text-base">Сохраняйте что бы не потерять интересные статьи.</p>
+                        <p class="font-medium text-xl dark:text-gray-300">Сохраняйте статьи</p>
+                        <p class="text-base dark:text-gray-400">Сохраняйте что бы не потерять интересные статьи.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl" data-icon="tabler:flag" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:flag" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">Языки</p>
-                        <p class="text-base">Английский, Русский, Азербайджанский.</p>
+                        <p class="font-medium text-xl dark:text-gray-300">Языки</p>
+                        <p class="text-base dark:text-gray-400">Английский, Русский, Азербайджанский.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
                     <span class="iconify text-3xl text-yellow-500" data-icon="tabler:bolt" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">Карма</p>
-                        <p class="text-base">Зарабатывайте карму и будьте первыми в рейтинге.</p>
+                        <p class="font-medium text-xl dark:text-gray-300">Карма</p>
+                        <p class="text-base dark:text-gray-400">Зарабатывайте карму и будьте первыми в рейтинге.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-2xl" data-icon="tabler:message" data-inline="false"></span>
+                    <span class="iconify text-2xl dark:text-gray-300" data-icon="tabler:message" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">Комментарии</p>
-                        <p class="text-base">Участвуйте в обсуждениях.</p>
+                        <p class="font-medium text-xl dark:text-gray-300">Комментарии</p>
+                        <p class="text-base dark:text-gray-400">Участвуйте в обсуждениях.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl" data-icon="tabler:file-invoice" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:file-invoice" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">CV</p>
-                        <p class="text-base">Делитесь своим Сиви в профиле для работадателей.</p>
+                        <p class="font-medium text-xl dark:text-gray-300">CV</p>
+                        <p class="text-base dark:text-gray-400">Делитесь своим Сиви в профиле для работадателей.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-2xl" data-icon="tabler:eye" data-inline="false"></span>
+                    <span class="iconify text-2xl dark:text-gray-300" data-icon="tabler:eye" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">Темы</p>
-                        <p class="text-base">Тёмная или светлая, ваш выбор.</p>
+                        <p class="font-medium text-xl dark:text-gray-300">Темы</p>
+                        <p class="text-base dark:text-gray-400">Тёмная или светлая, ваш выбор.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl" data-icon="tabler:mist" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:mist" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">Своя лента новостей</p>
-                        <p class="text-base">Следите за статьями интересуещих вас авторов или хабов</p>
+                        <p class="font-medium text-xl dark:text-gray-300">Своя лента новостей</p>
+                        <p class="text-base dark:text-gray-400">Следите за статьями интересуещих вас авторов или хабов</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-4xl" data-icon="octicon:pencil-24" data-inline="false"></span>
+                    <span class="iconify text-4xl dark:text-gray-300" data-icon="octicon:pencil-24" data-inline="false"></span>
                     <div>
-                        <p class="font-medium text-xl">Делитесь опытом</p>
-                        <p class="text-base">Пишите статьи, делитесь опытом и становитесь популярные среди коллег.</p>
+                        <p class="font-medium text-xl dark:text-gray-300">Делитесь опытом</p>
+                        <p class="text-base dark:text-gray-400">Пишите статьи, делитесь опытом и становитесь популярные среди коллег.</p>
                     </div>
                 </div>
             </div>

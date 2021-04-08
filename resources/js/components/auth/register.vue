@@ -1,10 +1,12 @@
 <template>
-    <form autocomplete="off" @submit.prevent="register" enctype="multipart/form-data" method="post" class="xs:max-w-xs w-96 text-left">
+    <form autocomplete="off" @submit.prevent="register" enctype="multipart/form-data" method="post"
+          class="xs:max-w-xs w-96 text-left">
         <div class="pt-4 pb-2">
             <a href="/login/github"
                class="btn-outline w-full items-center dark:text-black">
                 <div class="mx-auto flex">
-                    <span class="iconify mr-2 text-base text-gray-700" data-icon="simple-icons:github" data-inline="false"></span>
+                    <span class="iconify mr-2 text-base text-gray-700" data-icon="simple-icons:github"
+                          data-inline="false"></span>
                 </div>
             </a>
             <div class="my-4 items-center flex">
@@ -138,12 +140,7 @@ export default {
 
             axios.post('/register', data).then(response => {
                 this.loading = false
-                if (response.data.success === false) {
-                    this.error_text = response.data.error
-                    this.error = true
-                } else if (response.data.success === true) {
-                    window.location = '/';
-                }
+                window.location = '/';
             }).catch(error => {
                 this.loading = false
                 this.errors = error.response.data.errors

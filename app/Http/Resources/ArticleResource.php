@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,8 +26,8 @@ class ArticleResource extends JsonResource
                 'slug'          => $this->slug,
                 'body'          => $this->body, //\Str::words($this->body, 87, ''),
                 'votes'         => $this->voters()->count(),
-                'upvotes'       => $this->up,
-                'downvotes'     => $this->down,
+                'upvotes'       => $this->up ?? $this->upVoters()->count(),
+                'downvotes'     => $this->down ?? $this->downVoters()->count(),
                 'views'         => $this->views_count,
                 'created_at'    => $this->created_at,
                 'is_up_voted'   => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasUpVoted($this->setAppends([])) : false,
@@ -57,9 +58,10 @@ class ArticleResource extends JsonResource
      */
     public function readTime(string $text): string
     {
+        CarbonInterval::setLocale(config('app.locale'));
         $words = str_word_count(strip_tags($text));
         $minutes = ceil($words / 250);
 
-        return $minutes.' dəqiqə';
+        return CarbonInterval::minute($minutes)->cascade()->forHumans();
     }
 }

@@ -9,15 +9,15 @@
 @stop
 
 @section('main')
-    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main space-x-3 md:space-x-4 xs:px-4" id="app">
-            <div>
+    <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto xs:px-4" id="app">
+        <div class="flex space-x-3 xs:space-x-0 xs:block">
+            <div class="w-left xs:w-full">
                 <article-show :slug="'{{ $article->attributes->slug }}'"
                               @auth :auth_check="true" @endauth></article-show>
                 <div
                     class="flex justify-between items-center border bg-white dark:bg-dpaper dark:border-gray-700 w-full px-3.5 py-3 rounded">
                     <p class="text-xl dark:text-gray-300">
-                        Paylaş
+                        {{ __('devhub.share') }}
                     </p>
                     <div class="text-2xl space-x-2 flex">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ URL::current() }}"
@@ -44,7 +44,7 @@
                           :user="{{ Auth::user() }}" @endauth class="mt-10"></comments>
             </div>
 
-            <div class="sticky top-0">
+            <div class="w-right xs:w-full">
                 <div class="sticky top-2">
                     <div
                         class="xs:w-full bg-white rounded dark:bg-dpaper border dark:border-gray-700 overflow-hidden">
@@ -83,19 +83,19 @@
                                 <p class="font-semibold dark:text-gray-300">
                                     {{ \Numeric::number_format_short($article->relationships->author->data->attributes->karma) }}
                                 </p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Karma</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('devhub.karma') }}</p>
                             </div>
                             <div class="flex items-center space-x-1">
                                 <p class="font-semibold dark:text-gray-300">
                                     {{ \Numeric::number_format_short($article->relationships->author->data->attributes->rating) }}
                                 </p>
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Reytinq</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('devhub.rating') }}</p>
                             </div>
                             <div class="flex items-center space-x-1">
                                 <p class="font-semibold ml-auto dark:text-gray-300">
                                     {{ \Numeric::number_format_short($article->relationships->author->data->attributes->user_followers_count) }}
                                 </p>
-                                <span class="text-sm text-gray-500 dark:text-gray-400">İzləyicilər</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400">{{ __('devhub.followers') }}</span>
                             </div>
                         </div>
                         <div class="flex flex-wrap px-4 h-10 items-center">

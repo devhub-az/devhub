@@ -100,7 +100,7 @@
                 </a>
                 <div class="hidden m-auto lg:block xl:block">
                     <dropdown :user="{{Auth::user()}}"
-                              :avatar_url="'{{ Auth::user()->getMedia('avatars')->first()->getFullUrl() }}'"
+                              :avatar_url="'{{ (Auth::user()->avatar !== 'default') ? Auth::user()->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}'"
                               :fav="'{{route("saved-articles")}}'"></dropdown>
                 </div>
                 <div class="m-auto lg:hidden xl:hidden md:hidden" id="mobile-icon__open">

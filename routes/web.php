@@ -24,8 +24,8 @@ Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
 Route::get(
     'lang/{locale}',
     function ($locale) {
-        if (in_array($locale, \Config::get('app.locales'))) {
-            Session::put('lang', $locale);
+        if (in_array($locale, config('app.locales'))) {
+            cache()->put('lang', $locale);
         }
         Carbon::setLocale(config('app.locale'));
 
