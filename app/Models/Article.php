@@ -23,7 +23,7 @@ use Rennokki\QueryCache\Traits\QueryCacheable;
 final class Article extends Model
 {
     use SoftDeletes;
-    use QueryCacheable;
+//    use QueryCacheable;
     use Votable;
     use HasSlug;
     use HasAuthor;
@@ -33,10 +33,10 @@ final class Article extends Model
 
     protected $vote = User::class;
 
-    public $cacheFor = 3600;
-    public $cacheTags = ['articles'];
-    public $cachePrefix = 'articles_';
-    protected static $flushCacheOnUpdate = true;
+//    public $cacheFor = 3600;
+//    public $cacheTags = ['articles'];
+//    public $cachePrefix = 'articles_';
+//    protected static $flushCacheOnUpdate = true;
 
 
     /**

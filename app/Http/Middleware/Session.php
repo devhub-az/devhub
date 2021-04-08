@@ -11,13 +11,11 @@ use Illuminate\Support\Facades\Date;
 class Session
 {
     /**
-     * Handle the incoming request.
-     *
-     * @param $request
-     * @param $next
+     * @param Request $request
+     * @param Closure $next
      * @return Response
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         $viewedPosts = $this->getViewedPostsInSession();
 

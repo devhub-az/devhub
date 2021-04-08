@@ -24,8 +24,8 @@ Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
 Route::get(
     'lang/{locale}',
     function ($locale) {
-        if (in_array($locale, \Config::get('app.locales'))) {
-            Session::put('lang', $locale);
+        if (in_array($locale, config('app.locales'))) {
+            cache()->put('lang', $locale);
         }
         Carbon::setLocale(config('app.locale'));
 
@@ -41,7 +41,7 @@ Route::get('all', [HomeController::class, 'articlesApiRoute'])->name('all');
 //Auth routes
 Route::group(
     ['middleware' => ['auth']],
-    static function () {
+    function () {
         Route::get('favorite', [HomeController::class, 'articlesApiRoute'])->name('favorite');
         Route::get('tracker', [Auth::class, 'index'])->name('tracker');
         Route::get('tracker/remove/all', [Auth::class, 'deleteAll'])->name('delete-all-trackers');
@@ -66,8 +66,9 @@ Route::group(
 );
 
 // Articles view
-Route::prefix('article')->group(
-    static function () {
+Route::group(
+    ['prefix' => 'article'],
+    function () {
         Route::get('create', [ArticleController::class, 'create'])->name('article.create');
         Route::get('{article_show}', [ArticleController::class, 'show'])->name('article.show')->middleware('session');
         Route::get('{article_show}/edit', [ArticleController::class, 'edit'])->name('article.edit');
@@ -78,8 +79,9 @@ Route::prefix('article')->group(
 );
 
 // Hubs view
-Route::prefix('hubs')->group(
-    static function () {
+Route::group(
+    ['prefix' => 'hubs'],
+    function () {
         Route::get('/', [HubController::class, 'index'])->name('hubs-list');
         Route::get('/{slug}', [HubController::class, 'show']);
         Route::get('/{slug}/top/week', [HubController::class, 'show'])->name('hubs.week');
@@ -89,8 +91,13 @@ Route::prefix('hubs')->group(
 );
 
 //Search view
-Route::get('search-result', [SearchController::class, 'index'])->name('search-result');
-Route::post('search-result', [SearchController::class, 'index']);
+Route::group(
+    ['prefix' => 'search', 'as' => 'search.'],
+    function () {
+        Route::get('articles', [SearchController::class, 'articles'])->name('articles');
+        Route::get('authors', [SearchController::class, 'authors'])->name('authors');
+    }
+);
 
 //Users view
 Route::prefix('authors')->group(
@@ -100,8 +107,9 @@ Route::prefix('authors')->group(
 //        TODO: ADD LINK FAVORITE (ProfileController)
     }
 );
-Route::prefix('@{username}')->group(
-    static function () {
+Route::group(
+    ['prefix' => '@{username}'],
+    function () {
         Route::get('articles', [AuthorController::class, 'showArticles'])->name('user_articles');
         Route::get('/', [AuthorController::class, 'showInfo'])->name('user_info');
         Route::get('followers', [AuthorController::class, 'showFollowers'])->name('user_followers');
@@ -116,7 +124,8 @@ Route::view('about', 'pages.about_us')->name('about');
 Route::view('release-notes', 'pages.release-notes')->name('release-notes');
 
 // Admin
-Route::prefix('admin')->name('admin')->group(
+Route::group(
+    ['prefix' => 'admin', 'as' => 'admin'],
     function () {
         Route::get('/', [AdminController::class, 'index']);
 
@@ -137,10 +146,12 @@ Route::prefix('admin')->name('admin')->group(
 );
 
 // Popover
-Route::group(['prefix' => 'popover'], function () {
-    Route::get('author/{id}', [AuthorController::class, 'popover']);
-});
-
+Route::group(
+    ['prefix' => 'popover'],
+    function () {
+        Route::get('author/{id}', [AuthorController::class, 'popover']);
+    }
+);
 
 //Devhub alive status
 Route::group(
@@ -150,8 +161,11 @@ Route::group(
     }
 );
 
-Route::get('test', function () {
-    sleep(1);
+Route::get(
+    'test',
+    function () {
+        sleep(1);
 
-    return new Response(['status' => 'success']);
-});
+        return new Response(['status' => 'success']);
+    }
+);

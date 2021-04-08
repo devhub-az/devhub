@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
             'users',
             function (Blueprint $table) {
                 $table->uuid('id')->primary();
-                $table->string('name')->index();
+                $table->string('name')->index()->nullable();
                 $table->string('username')->unique()->index();
                 $table->string('avatar')->default('default');
                 $table->string('description')->nullable();

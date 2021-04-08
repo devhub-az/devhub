@@ -1,8 +1,8 @@
 <template>
-    <div class="mb-3">
+    <div>
         <articles-loading v-if="loading"/>
-        <div v-if="!loading && !articlesEmpty">
-            <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
+        <div class="space-y-3" v-if="!loading && !articlesEmpty">
+            <div class="w-full rounded border bg-white dark:bg-dpaper dark:border-gray-700"
                  v-for="article in articles">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">
@@ -21,7 +21,7 @@
                         </p>
                         <div class="flex items-center text-sm my-auto xs:hidden md:hidden sm:hidden read-time"
                              aria-label="Oxumaq vaxtı" data-balloon-pos="left">
-                            <span class="iconify dark:text-gray-300" data-icon="mdi-clock-outline"></span>
+                            <span class="iconify dark:text-gray-300" data-icon="tabler:clock"></span>
                             <p class="ml-1 dark:text-gray-300">{{ article.attributes.read_time }}</p>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     </div>
                     <hubs-tags v-if="article.relationships.hubs.data.length" :data="article.relationships.hubs.data"
                                :auth_check="auth_check"/>
-                    <div class="markdown my-2 xs:hidden md:hidden sm:hidden">
+                    <div class="prose my-2 xs:hidden md:hidden sm:hidden">
                         <div
                             v-for="block in edjsParser.parse(JSON.parse(article.attributes.body)).slice(0,2)"
                             v-html="block.length > 700 ? block.slice(0,600) + '...' : block"></div>
@@ -44,20 +44,21 @@
                     class="grid lg:grid-cols-main border-t rounded-b text-sm bg-afooter dark:bg-gray-800 dark:border-gray-700 mt-2 px-3.5 h-10">
                     <div class="flex xs:justify-between items-center md:justify-between sm:justify-between space-x-10">
                         <div class="flex items-center">
-                            <i class="iconify text-gray-500 dark:text-gray-300" data-icon="mdi-eye-outline"/>
+                            <i class="iconify text-gray-500 dark:text-gray-300" data-icon="tabler:eye"/>
                             <p class="ml-1 text-gray-500 dark:text-gray-300">{{ article.attributes.views }}</p>
                         </div>
                         <div>
                             <a :href="'/article/' + article.attributes.slug + '#comments'" class="flex items-center">
-                                <i class="iconify text-gray-500 dark:text-gray-300" data-icon="bx:bx-comment-detail"/>
+                                <i class="iconify text-gray-500 dark:text-gray-300" data-icon="tabler:message"/>
                                 <p class="ml-1 text-gray-500 dark:text-gray-300">
                                     {{ article.relationships.comments.data.length }}
                                 </p>
                             </a>
                         </div>
+                        <span class="iconify text-gray-500 dark:text-gray-300" data-icon="tabler:device-floppy" data-inline="false"></span>
 <!--                        <favorite :article="article" :auth_check="auth_check"/>-->
                         <div class=" flex items-center cursor-pointer" @click="copy(article.id)">
-                            <span class="iconify text-gray-500 dark:text-gray-300" data-icon="fa-solid:share-alt" data-inline="false"></span>
+                            <span class="iconify text-gray-500 dark:text-gray-300" data-icon="tabler:share" data-inline="false"></span>
                         </div>
                     </div>
                     <div class="progress my-auto h-1 balloon xs:hidden md:hidden sm:hidden"
@@ -88,14 +89,14 @@
              class="bg-white dark:bg-dpaper dark:border-gray-700 rounded border py-10">
             <div class="w-2/3 mx-auto space-y-4 xs:w-full xs:px-4">
                 <div class="font-bold space-x-1 flex justify-center items-center text-center text-2xl pb-2">
-                    <span class="iconify dark:text-gray-300" data-icon="mdi:close-box-multiple-outline"
+                    <span class="iconify dark:text-gray-300" data-icon="tabler:square-x"
                           data-inline="false"></span>
                     <p class="dark:text-gray-300">{{ $t('devhub.articles404') }}</p>
                 </div>
                 <p class="font-light text-center dark:text-gray-400">
                     {{ $t('devhub.articles404Text') }}
                 </p>
-                <a href="/article/new"
+                <a href="/article/create"
                    class="btn h-7 flex w-max mx-auto xs:hidden">
                     {{ $t('devhub.write') }}
                 </a>

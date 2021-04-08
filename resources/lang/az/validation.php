@@ -14,6 +14,7 @@ return [
         'age'                   => 'Возраст',
         'available'             => 'Доступно',
         'body'                  => 'Mətn',
+        'hubs'                  => 'Hablar',
         'city'                  => 'Город',
         'content'               => 'Контент',
         'country'               => 'Страна',
@@ -110,7 +111,7 @@ return [
     'mimes'     => ' :attribute :values tipində fayl olmalıdır',
     'mimetypes' => ' :attribute :values tipində fayl olmalıdır',
     'min'       => [
-        'array'   => ' :attribute minimum :min hədd\'dən ibarət ola bilər',
+        'array'   => ' :attribute minimum :min ola bilər',
         'file'    => ' :attribute minimum :min KB ölçüsündə ola bilər',
         'numeric' => ' :attribute minimum :min rəqəmdən ibarət ola bilər',
         'string'  => ' :attribute minimum :min simvoldan ibarət ola bilər',

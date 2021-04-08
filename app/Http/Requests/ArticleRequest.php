@@ -11,7 +11,7 @@ class ArticleRequest extends FormRequest
         return [
             'title'  => 'required|max:100',
             'body'   => 'required',
-            'hubs'   => 'array|nullable',
+            'hubs'   => 'required|array|min:3',
             'hubs.*' => 'exists:hubs,id',
         ];
     }

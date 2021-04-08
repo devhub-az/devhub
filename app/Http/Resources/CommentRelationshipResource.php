@@ -2,16 +2,14 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CommentRelationshipResource extends JsonResource
 {
     /**
-     * Transform the resource collection into an array.
-     *
-     * @param  \Illuminate\Http\Request
-     *
-     * @return array
+     * @param Request $request
+     * @return AuthorIdentifierResource[]
      */
     public function toArray($request)
     {

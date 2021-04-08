@@ -25,7 +25,7 @@ class AuthorsResource extends ResourceCollection
     {
         return [
             'links' => [
-                'self' => route('authors.index'),
+                'self' => route('authors.all'),
             ],
         ];
     }

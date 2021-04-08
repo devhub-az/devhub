@@ -22,6 +22,7 @@ class CreateArticlesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+        DB::statement('ALTER TABLE articles ADD FULLTEXT INDEX articles_title (title)');
     }
 
     /**

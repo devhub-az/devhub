@@ -22,6 +22,16 @@
 
     @yield('styles')
 
+    <script>
+        window.Language = '{{ config('app.locale') }}';
+
+        window.Laravel = <?php echo json_encode(
+            [
+                'csrfToken' => csrf_token(),
+            ]
+        ); ?>
+    </script>
+
 </head>
 
 <body data-theme="{{ Cookie::get('atr') ?? 'default' }}" class="flex bg-gray-100 font-sans flex-col min-h-screen"

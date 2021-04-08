@@ -1,24 +1,25 @@
 <template>
-    <form autocomplete="off" @submit.prevent="register" enctype="multipart/form-data" method="post" class="xs:max-w-xs w-96 text-left">
+    <form autocomplete="off" @submit.prevent="register" enctype="multipart/form-data" method="post"
+          class="xs:max-w-xs w-96 text-left">
         <div class="pt-4 pb-2">
             <a href="/login/github"
-               class="btn-outline border-gray-300 dark:border-gray-300 rounded-lg w-full items-center dark:text-black">
+               class="btn-outline w-full items-center dark:text-black">
                 <div class="mx-auto flex">
-                    <span class="iconify mr-2 text-base text-gray-700" data-icon="simple-icons:github" data-inline="false"></span>
-                    <p class="text-gray-700">GitHub ilə daxil olmaq</p>
+                    <span class="iconify mr-2 text-base text-gray-700" data-icon="simple-icons:github"
+                          data-inline="false"></span>
                 </div>
             </a>
             <div class="my-4 items-center flex">
                 <div class="mr-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
-                <div class="text-sm">və ya</div>
+                <div class="text-sm">{{ $t('devhub.or') }}</div>
                 <div class="ml-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
             </div>
             <div class="relative mb-2">
                 <input aria-invalid="true" autocomplete="off" id="username" name="username"
                        placeholder="richard" title="İstifadəçi adı"
                        type="text" inputmode="text"
-                       class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md rounded-lg hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors mb-2"
-                       :class="errors && errors.username ? 'border-red-500 focus:border-red-500' : 'border-gray-300 hover:border-blue-light focus:border-blue-light'"
+                       class="input"
+                       :class="errors && errors.username ? 'border-red-500 focus:border-red-500' : 'hover:border-blue-light focus:border-blue-light'"
                        autocapitalize="none"
                        spellcheck="false"
                        value="" v-model="username">
@@ -32,8 +33,8 @@
                 <input aria-invalid="true" autocomplete="off" id="email" name="email"
                        placeholder="richard.hendricks@piedpiper.com"
                        type="text" inputmode="text" title="Elektron poçt"
-                       class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md rounded-lg hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors mb-2 "
-                       :class="error || (errors && errors.email) ? 'border-red-500 focus:border-red-500' : (success ? 'border-green-500 hover:border-green-500 focus:border-green-500' : 'border-gray-300 hover:border-blue-light focus:border-blue-light')"
+                       class="input"
+                       :class="error || (errors && errors.email) ? 'border-red-500 focus:border-red-500' : (success ? 'border-green-500 hover:border-green-500 focus:border-green-500' : 'hover:border-blue-light focus:border-blue-light')"
                        autocorrect="off" autocapitalize="none"
                        spellcheck="false"
                        value="" v-model="email">
@@ -43,8 +44,8 @@
                 <input aria-invalid="true" autocomplete="current-password" id="password" name="password"
                        placeholder="••••••••"
                        :type="type" inputmode="text"
-                       class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md rounded-lg hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors mb-2"
-                       :class="errors && errors.password ? 'border-red-500 focus:border-red-500' : 'border-gray-300 hover:border-blue-light focus:border-blue-light'"
+                       class="input"
+                       :class="errors && errors.password ? 'border-red-500 focus:border-red-500' : 'hover:border-blue-light focus:border-blue-light'"
                        autocapitalize="none"
                        spellcheck="false"
                        value="" v-model="password">
@@ -63,7 +64,7 @@
                        name="password_confirmation"
                        placeholder="Şifrə təsdiqlə"
                        :type="typeConfirm" inputmode="text"
-                       class="mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md rounded-lg hover:border-cerulean-500 focus:outline-none focus:border-cerulean-500 focus:border-transparent transition-colors mb-2"
+                       class="input"
                        aria-label="Şifrəni təsdiqlə" autocapitalize="none"
                        spellcheck="false"
                        value="" v-model="password_confirmation">
@@ -80,11 +81,11 @@
                 </span>
             </button>
             <button v-else type="submit" class="btn w-full shadow-sm rounded-md text-center border-none">
-                <span class="block mx-auto">Qeydiyyatdan keçmək</span>
+                <span class="block mx-auto">{{ $t('devhub.register') }}</span>
             </button>
         </div>
         <div class="mt-4 bg-white rounded py-4 text-sm text-center border">
-            Hesabınız var? <a href="/login" class="text-cerulean-500">Daxil olmaq</a>
+            {{ $t('devhub.areRegistered') }} <a href="/login" class="text-cerulean-500">{{ $t('devhub.login') }}</a>
         </div>
     </form>
 </template>
@@ -139,12 +140,7 @@ export default {
 
             axios.post('/register', data).then(response => {
                 this.loading = false
-                if (response.data.success === false) {
-                    this.error_text = response.data.error
-                    this.error = true
-                } else if (response.data.success === true) {
-                    window.location = '/';
-                }
+                window.location = '/';
             }).catch(error => {
                 this.loading = false
                 this.errors = error.response.data.errors

@@ -4,26 +4,27 @@ namespace App\Http\Middleware;
 
 use App;
 use Closure;
-use Config;
-use Session;
+use Exception;
+use Illuminate\Http\Request;
 
 class Localization
 {
     /**
      * Handle an incoming request.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure                 $next
+     * @param Request $request
+     * @param Closure $next
      *
      * @return mixed
+     * @throws Exception
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next): mixed
     {
-        $raw_locale = Session::get('lang');
-        if (in_array($raw_locale, Config::get('app.locales'))) {
+        $raw_locale = cache('lang');
+        if (in_array($raw_locale, config('app.locales'))) {
             $locale = $raw_locale;
         } else {
-            $locale = Config::get('app.locale');
+            $locale = config('app.locale');
         }
         App::setLocale($locale);
 

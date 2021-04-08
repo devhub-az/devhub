@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -25,16 +26,15 @@ class ArticleResource extends JsonResource
                 'slug'          => $this->slug,
                 'body'          => $this->body, //\Str::words($this->body, 87, ''),
                 'votes'         => $this->voters()->count(),
-                'upvotes'       => $this->upVoters()->count(),
-                'downvotes'     => $this->downVoters()->count(),
+                'upvotes'       => $this->up ?? $this->upVoters()->count(),
+                'downvotes'     => $this->down ?? $this->downVoters()->count(),
                 'views'         => $this->views_count,
                 'created_at'    => $this->created_at,
                 'is_up_voted'   => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasUpVoted($this->setAppends([])) : false,
                 'is_down_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasDownVoted($this->setAppends([]))
                     : false,
-                //                'favorite'   => $this->statusCheck('favorites'),
                 'read_time' => $this->readTime($this->body),
-                //                'favorites'  => $this->bookmarkers_count,
+                'real'      => $this->num,
             ],
             'relationships' => new ArticleRelationshipResource($this),
             'links'         => [
@@ -53,15 +53,15 @@ class ArticleResource extends JsonResource
     }
 
     /**
-     * @param $text
-     *
+     * @param string $text
      * @return string
      */
     public function readTime(string $text): string
     {
+        CarbonInterval::setLocale(config('app.locale'));
         $words = str_word_count(strip_tags($text));
         $minutes = ceil($words / 250);
 
-        return $minutes.' dəqiqə';
+        return CarbonInterval::minute($minutes)->cascade()->forHumans();
     }
 }

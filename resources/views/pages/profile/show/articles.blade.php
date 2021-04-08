@@ -6,18 +6,16 @@
     {{--    TODO create js for id="app"--}}
     <div class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto" id="app">
         @include('pages.profile.include.header')
-        <div class="grid grid-cols-1 tb:grid-cols-main lg:grid-cols-main space-x-3 md:space-x-4">
-            <div class="profile__left">
+        <div class="flex space-x-3 xs:space-x-0 xs:block">
+            <div class="w-left xs:w-full">
                 @include('pages.profile.include.tabs')
-                <div class="markdown-body">
-                    <articles
-                            :url="'{{ $url }}'"
-                            @auth :auth_check="true" @endauth
-                    ></articles>
-                </div>
+                <articles
+                    :url="'{{ '/api/authors/' . $author->id . '/articles' }}'"
+                    @auth :auth_check="true" @endauth
+                ></articles>
             </div>
 
-            <div class="content_right">
+            <div class="w-right xs:w-full">
                 @include('pages.profile.include.right')
             </div>
         </div>

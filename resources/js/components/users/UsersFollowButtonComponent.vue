@@ -1,16 +1,16 @@
 <template>
-    <div class="xs:hidden">
+    <div>
         <span @click="follow(id)" v-if="!follower && !loading"
-              class="btn-outline h-7">
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Подписаться</span>
+              class="w-max xs:w-full h-7 xs:h-auto xs:py-1 btn">
+            <span class="text-sm mx-auto font-medium transition-none">{{ $t('devhub.follow') }}</span>
         </span>
         <span @click="follow(id)" v-if="follower && !loading"
-              class="btn h-7">
-            <span class="font-medium transition-none">Подписаны</span>
+              class="w-max xs:w-full h-7 xs:h-auto xs:py-1 btn-outline">
+            <span class="font-medium mx-auto transition-none">{{ $t('devhub.follower') }}</span>
         </span>
         <span v-if="loading"
-              class="btn-outline h-7">
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-300 transition-none">Подождите</span>
+              class="w-max xs:w-full h-7 xs:h-auto xs:py-1 btn-outline">
+            <span class="text-sm font-medium mx-auto text-gray-600 dark:text-gray-300 transition-none">{{ $t('devhub.loading') }}</span>
         </span>
     </div>
 </template>

@@ -9,14 +9,14 @@
 @section('main')
     <div id="app">
         @include('pages.profile.include.header')
-        <div class="page-profile">
-            <div class="profile__left">
+        <div class="flex space-x-3 xs:space-x-0 xs:block">
+            <div class="w-left xs:w-full">
                 @include('pages.profile.include.tabs')
                 <users-list :url="'{{'/api/users/' . $user->id . '/followers'}}'"
                             @auth :auth_check="true" @endauth></users-list>
             </div>
 
-            <div class="content_right">
+            <div class="w-right xs:w-full">
                 @include('pages.profile.include.right')
             </div>
         </div>

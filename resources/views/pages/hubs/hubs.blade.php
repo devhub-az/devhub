@@ -4,18 +4,16 @@
 
 @section('main')
     <div class="container w-full my-4 mx-auto xs:px-4">
-        <div class="grid grid-cols-1 md:grid-cols-main lg:grid-cols-main space-x-2 md:space-x-4 space-x-5">
-            <div id="app">
+        <div class="flex space-x-3 xs:space-x-0 xs:block">
+            <div class="w-left xs:w-full" id="app">
                 <hubs-list
                     fetch-url="{{ route('hubs.api.index') }}"
-                    locale="{{ App::getLocale() }}"
                     @auth :auth_check="true" @endauth
-                    {{--                     {'name': 'Paylaşma', 'type': 'articles_count'}--}}
-                    :columns="[{'name': 'Ad', 'type': 'name'},{'name': 'İzləyicilər','type': 'favorites_count'},{'name': 'Reytinq', 'type': 'rating'}]"
+                    :columns="[{'name': '' + $t('devhub.name') + '', 'type': 'name'},{'name': '' + $t('devhub.followers') + '','type': 'favorites_count'},{'name': '' + $t('devhub.rating') + '', 'type': 'rating'}]"
                 ></hubs-list>
             </div>
 
-            <div>
+            <div class="w-right xs:w-full">
                 <div class="sticky top-2">
                     <div>
                         <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
@@ -38,7 +36,7 @@
                                         <div
                                             class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
                                             <span class="iconify text-green-600 dark:text-green-500"
-                                                  data-icon="mdi:trending-up"
+                                                  data-icon="tabler:trending-up"
                                                   data-inline="false"></span>
                                             <p>{{ __('devhub.rating') }}: {{ $hub->rating ?? '' }}</p>
                                         </div>
@@ -67,7 +65,7 @@
                                         </div>
                                         <div
                                             class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
-                                            <span class="iconify" data-icon="mdi:account-group-outline"
+                                            <span class="iconify" data-icon="tabler:users"
                                                   data-inline="false"></span>
                                             <p>{{ __('devhub.followers') }}: {{ $hub->favorites_count ?? '' }}</p>
                                         </div>

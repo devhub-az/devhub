@@ -57,11 +57,11 @@
                     {'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'},
                     {'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}
                     ]"
-                                 @if (Session::get('lang') === 'az' || !Session::get('lang'))
+                                 @if (cache('lang') === 'az' || !cache('lang'))
                                  :selected="{'name': 'Azərbaycan', 'icon': 'twemoji:flag-for-flag-azerbaijan', 'url': '/lang/az'}"
-                                 @elseif (Session::get('lang') === 'ru')
+                                 @elseif (cache('lang') === 'ru')
                                  :selected="{'name': 'Русский', 'icon': 'twemoji:flag-for-flag-russia', 'url': '/lang/ru'}"
-                                 @elseif (Session::get('lang') === 'en')
+                                 @elseif (cache('lang') === 'en')
                                  :selected="{'name': 'English', 'icon': 'twemoji:flag-for-flag-united-kingdom', 'url': '/lang/en'}"
                         @endif
                     ></select-menu>
@@ -94,7 +94,7 @@
 </footer>
 
 @push('scripts')
-    <script type="text/javascript" src="{{ mix('js/footer.js') }}" async></script>
+    <script type="text/javascript" src="{{ mix('js/footer.js') }}" defer></script>
 @endpush
 
 @section('styles')

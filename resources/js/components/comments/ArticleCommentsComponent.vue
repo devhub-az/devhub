@@ -3,7 +3,7 @@
         <div id="comments"
              class="flex mb-2 items-center space-x-1 font-medium text-gray-700 dark:text-gray-400 xs:pr-2">
             <span class="iconify" data-icon="bx:bx-comment-detail" data-inline="false"></span>
-            <p class="transition-none xs:text-base">Şərhlər ({{ comments.length }})</p>
+            <p class="transition-none xs:text-base">{{ $t('devhub.comments')}} ({{ comments.length }})</p>
         </div>
         <div class="relative w-full rounded border bg-white dark:bg-dpaper dark:border-gray-700"
              v-if="comments.length > 0">
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="flex space-x-1 mt-2 bg-white dark:bg-dpaper dark:border-gray-700 rounded py-4 text-sm border"
-             v-else>
+             v-if="!auth_check">
             <div class="flex space-x-1 mx-auto">
                 <p class="dark:text-gray-300">Şərh yazmaq üçün</p>
                 <a href="/register"
@@ -52,9 +52,9 @@
                 <a href="/login" class="text-cerulean-100">daxil olmalısınız</a>
             </div>
         </div>
-        <form class="w-full mt-4 border bg-white w-full rounded
+        <form v-else class="w-full mt-4 border bg-white w-full rounded
                        dark:bg-gray-800 shadow-inner dark:border-gray-700 py-2 px-3.5"
-              @submit.prevent="send" method="post" v-if="auth_check">
+              @submit.prevent="send" method="post">
             <p id="text" @input="contentEditableChange()"
                placeholder="Şərh, müəllifə minnətdarlıq ve ya konstruktiv tənqid mesajı yaz"
                class="relative w-full block pb-12 dark:text-gray-400 focus:outline-none focus:border-cerulean-500 "

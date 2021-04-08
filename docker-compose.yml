@@ -67,7 +67,6 @@ services:
       PHP_IDE_CONFIG: 'serverName=docker'
     volumes:
       - ./:/var/www/
-      - ./.docker/develop/prof:/var/www/prof
 #      - ./.docker/develop/php/local.ini:/usr/local/etc/php/conf.d
       - ./.docker/develop/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     ports:

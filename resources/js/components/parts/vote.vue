@@ -4,7 +4,7 @@
         <span @click="upVote(item.id)" class="transition-none"
               :class="item.attributes.is_up_voted ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
             <span class="hover:text-green-600 cursor-pointer iconify transition-none"
-                  data-icon="mdi-thumb-up-outline"/>
+                  data-icon="tabler:thumb-up"/>
         </span>
         <transition name="slide" mode="out-in">
             <p class="mx-0.5 relative dark:text-gray-300" :key="item.attributes.votes">
@@ -14,7 +14,7 @@
         <span @click="downVote(item.id)" class="transition-none"
               :class="item.attributes.is_down_voted ? 'text-red-600 dark:text-red-600' : 'dark:text-gray-300'">
             <span class="hover:text-red-600 cursor-pointer iconify transition-none"
-                  data-icon="mdi-thumb-down-outline"/>
+                  data-icon="tabler:thumb-up" data-rotate="180deg"/>
         </span>
     </div>
 </template>

@@ -95,6 +95,7 @@ Route::get('/search_hub', [HubController::class, 'search_hub_by_key']);
 Route::prefix('authors')->group(
     function () {
         Route::get('/', [AuthorController::class, 'index'])->name('authors.all');
+        Route::get('{id}/articles', [ArticleAuthorController::class, 'articles'])->name('authors.articles');
         Route::get('{author}', [AuthorController::class, 'show'])->name('authors.show');
         Route::post('{author}', [AuthorController::class, 'follow'])->name('author.follow')->middleware('auth:api');
         Route::get('{id}/all', [ArticleAuthorController::class, 'articles']);
@@ -104,7 +105,7 @@ Route::prefix('authors')->group(
         Route::get('{id}/followers', [AuthorController::class, 'followers']);
     }
 );
-Route::get('/search_user', [AuthorController::class, 'search_user_by_key']);
+Route::get('search_user', [AuthorController::class, 'search_user_by_key']);
 
 /*
  * Profile Api
@@ -115,4 +116,5 @@ Route::get('/search_user', [AuthorController::class, 'search_user_by_key']);
 /*
  * Search Api.
  */
-Route::get('search{search?}', [SearchController::class, 'results']);
+Route::get('search/articles/search={search}', [SearchController::class, 'articles']);
+Route::get('search/authors/search={search}', [SearchController::class, 'authors']);

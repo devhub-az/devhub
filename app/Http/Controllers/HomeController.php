@@ -6,14 +6,20 @@ use App\Http\Resources\AuthorsResource;
 use App\Http\Resources\HubsResource;
 use App\Models\Hub;
 use App\Models\User;
-use Auth;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function articlesApiRoute(Request $request)
+    /**
+     * @param Request $request
+     * @return Application|Factory|View
+     */
+    public function articlesApiRoute(Request $request): Factory | View | Application
     {
-        $lastAuthors = new AuthorsResource(User::orderBy('created_at', 'DESC')->take(5)->get());
+        $top_karma = new AuthorsResource(User::orderBy('karma', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
             Hub::withCount('favorites')->orderBy(
                 'favorites_count',
@@ -28,7 +34,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/day',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'top/week':
@@ -38,7 +44,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/week',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'top/month':
@@ -48,7 +54,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/month',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'all':
@@ -59,26 +65,25 @@ class HomeController extends Controller
                     [
                         'url'               => '/api/articles',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
-            case 'favorite' && Auth::user()->followings(Hub::class)->count() !== null
-                && Auth::user()
-                    ->followings()
-                    ->count() !== null:
-                session(['main-page' => '/favorite']);
-
-                return view(
-                    'pages.home',
-                    ['url'                  => '/api/articles/filter/favorite',
-                        'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
-                    ]
-                );
+                // TODO:FIX
+//            case 'favorite' && Auth::user()->followings(Hub::class)->count() !== null
+//                && Auth::user()
+//                    ->followings()
+//                    ->count() !== null:
+//                session(['main-page' => '/favorite']);
+//
+//                return view(
+//                    'pages.home',
+//                    ['url'                  => '/api/articles/filter/favorite',
+//                        'top_followed_hubs' => $top_followed_hubs,
+//                        'top_karma'       => $top_karma,
+//                    ]
+//                );
             default:
                 abort(404);
         }
-
-        return response("User can't perform this action.", 500);
     }
 }

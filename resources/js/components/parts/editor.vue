@@ -5,36 +5,28 @@
                 <p class="text-red-500">*</p>
                 <p class="font-medium dark:text-gray-300">Basliq</p>
             </div>
-            <div class="border bg-white dark:bg-dpaper dark:border-gray-700 dark:text-gray-300 text-black">
-                <input placeholder="Başlıq yazin" v-model="title"
-                   class="px-2 py-1 relative w-full block dark:text-gray-400 focus:outline-none transition-none"
+            <input placeholder="Başlıq yazin" v-model="title"
+                   class="input"
                    data-processed="true" contenteditable/>
-            </div>
+            <p class="text-red-700 text-sm">{{ errors && errors.title ? errors.title[0] : null }}</p>
         </div>
         <div>
             <div class="flex space-x-1">
                 <p class="text-red-500">*</p>
                 <p class="font-medium dark:text-gray-300">Mətn</p>
             </div>
-            <div class="border bg-white dark:bg-dpaper dark:border-gray-700 dark:text-gray-300 text-black">
-                <div id="editorjs" class="cursor-text py-1 px-2"></div>
+            <div class="textarea bg-white dark:bg-dpaper prose">
+                <div id="editorjs" class="cursor-text"></div>
             </div>
+            <p class="text-red-700 text-sm">{{ errors && errors.body ? errors.body[0] : null }}</p>
         </div>
         <div class="space-y-1">
             <div class="flex space-x-1">
                 <p class="text-red-500">*</p>
                 <p class="font-medium dark:text-gray-300">Hablar</p>
             </div>
-            <multiselect v-model="selected" @input="updateHubs" :options="hubs" tag-position="bottom" :custom-label='hubsName'
-                         :multiple="true" label="name" :placeholder="this.trans('devhub.selectHub')"
-                         track-by="name" class="transition-none">
-                <template slot="option" slot-scope="props" class="transition-none">
-                    <div class="flex items-center space-x-1 transition-none">
-                        <img class="w-8 h-8 rounded" :src="'/' + props.option.logo" :alt="props.option.name">
-                        <span class="transition-none">{{ props.option.name }}</span>
-                    </div>
-                </template>
-            </multiselect>
+            <v-selectize :options="hubs" v-model="selected" key-by="id" label="name" :keys="['name', 'id']" multiple/>
+            <p class="text-red-700 text-sm">{{ errors && errors.hubs ? errors.hubs[0] : null }}</p>
             <p class="text-xs dark:text-gray-400">Выберите от 1 до 5 хабов по теме публикации</p>
         </div>
 
@@ -47,8 +39,8 @@
 <script>
 import EditorJS from '@editorjs/editorjs';
 import axios from 'axios'
-import Multiselect from 'vue-multiselect'
-import 'vue-multiselect/dist/vue-multiselect.min.css'
+import 'selectize/dist/css/selectize.css'
+import VSelectize from '@isneezy/vue-selectize'
 
 const Header = require('@editorjs/header')
 const InlineCode = require('@editorjs/inline-code');
@@ -60,7 +52,7 @@ import List from '@editorjs/list';
 // const LinkTool = require('@editorjs/link');
 export default {
     components: {
-        Multiselect,
+        VSelectize,
     },
     data: function () {
         return {
@@ -68,6 +60,7 @@ export default {
             selected: [],
             selectedIDs: [],
             hubs: [],
+            errors: null,
             editor: new EditorJS({
                 placeholder: 'Menyu açmaq üçün "Tab" düyməsini basın',
                 logLevel: 'ERROR',
@@ -143,12 +136,18 @@ export default {
         },
         async onSubmit() {
             this.loading = true
+            this.selected.forEach(element => {
+                this.selectedIDs.push(element.id)
+            })
             axios.post('/api/articles', {
                 title: this.title,
                 body: JSON.stringify(await this.editor.save()),
                 hubs: this.selectedIDs
             }).then(response => {
                 window.location = '/article/' + response.data;
+            }).catch(error => {
+                this.loading = false
+                this.errors = error.response.data.errors
             })
         }
     }
@@ -162,5 +161,18 @@ export default {
 
 [type='text']:focus {
     box-shadow: unset;
+}
+
+.ce-block__content{
+    margin: 0 0.5rem;
+}
+
+.ce-toolbar__actions{
+    right: -15px;
+    top: 10px;
+}
+
+.ce-toolbar__plus{
+    left: -60px;
 }
 </style>

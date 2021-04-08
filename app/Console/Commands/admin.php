@@ -34,9 +34,9 @@ class admin extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return string
      */
-    public function handle()
+    public function handle(): string
     {
         $type = $this->ask('type?');
         $email = $this->ask('email');

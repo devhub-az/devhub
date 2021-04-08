@@ -2,13 +2,13 @@
     <div>
         <div class="flex pb-1 justify-between items-center">
             <div class="flex items-center space-x-1 font-medium">
-                <span class="iconify text-gray-700 dark:text-gray-400" data-icon="mdi:account-multiple"
+                <span class="iconify text-gray-700 dark:text-gray-400" data-icon="tabler:users"
                       data-inline="false"></span>
                 <p class="transition-none text-gray-700 cursor-default dark:text-gray-400"
                    title="Hablar müəyyən mövzularda nəşrlərin yerləşdirildiyi bölmələrdir.">Müəlliflər</p>
             </div>
             <div
-                class="ml-auto px-2 w-1/2 overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:hidden">
+                class="ml-auto px-2 w-max space-x-3 overflow-hidden mb-2 flex items-center justify-between dark:border-gray-700 xs:hidden">
                 <div class="flex items-center cursor-pointer font-medium text-gray-700 dark:text-gray-400"
                      v-for="column in columns" :key="column.type"
                      @click="sortByColumn(column.type)">
@@ -33,31 +33,45 @@
         </div>
         <users-loading v-if="loading"></users-loading>
         <div v-for="user in users" v-if="!loading && users"
-             class="flex space-x-4 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700" :id="user.id">
+             class="flex space-x-3 border mb-2 p-2 bg-white dark:bg-dpaper dark:border-gray-700 xs:block xs:space-x-0 xs:space-y-2" :id="user.id">
             <img :src="user.attributes.avatar"
                  class="w-16 h-16 rounded" alt="User profile">
-            <div class="w-6/12">
+            <div class="w-10/12">
                 <a :href="'/@' + user.attributes.username">
                     <div class="font-semibold dark:text-gray-300">{{ user.attributes.name }}
                         {{ '@' + user.attributes.username }}
                     </div>
-                    <div class="text-sm w-full pb-2 xs:text-xs dark:text-gray-300">{{ user.attributes.about }}</div>
+                    <div class="text-sm w-full pb-2 xs:text-xs dark:text-gray-300">{{ user.attributes.description }}</div>
                 </a>
-            </div>
-            <div class="w-1/12 m-auto text-center xs:hidden">
-                <div class="font-semibold dark:text-gray-300">{{ user.attributes.articles_count }}</div>
-                <p class="text-sm uppercase dark:text-gray-300">Paylaşım</p>
-            </div>
-            <div class="w-1/12 m-auto text-center xs:hidden">
-                <div class="font-semibold dark:text-gray-300">{{ user.attributes.karma }}</div>
-                <p class="text-sm uppercase dark:text-gray-300">KARMA</p>
-            </div>
-            <div class="w-1/12 m-auto text-center xs:hidden">
-                <div class="font-semibold dark:text-gray-300">{{ user.attributes.rating }}</div>
-                <p class="text-sm uppercase dark:text-gray-300">REYTINQ</p>
+                <div class="flex items-center text-xs">
+                    <div class="items-center flex">
+                        <span class="iconify text-yellow-500 dark:text-yellow-100"
+                              data-icon="tabler:bolt"
+                              data-inline="false"></span>
+                        <p class="ml-1 text-sm dark:text-gray-300">
+                            <span class="xs:hidden">{{ $t('devhub.karma') }}</span>
+                            {{ user.attributes.karma }}
+                        </p>
+                    </div>
+                    <div class="items-center flex mx-2">
+                        <span class="iconify text-green-600 dark:text-green-500" data-icon="tabler:trending-up"
+                              data-inline="false"></span>
+                        <p class="ml-1 text-sm"
+                           :class="user.attributes.rating > 0 ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
+                            <span class="xs:hidden">{{ $t('devhub.rating') }}</span>
+                            {{ user.attributes.rating }}
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="iconify dark:text-gray-300" data-icon="tabler:mist"></i>
+                        <p class="ml-1 text-sm dark:text-gray-300">
+                            <span class="xs:hidden">{{ $t('devhub.articles') }}</span> {{ user.attributes.articles_count }}
+                        </p>
+                    </div>
+                </div>
             </div>
             <user-follow-button :id="user.id" :follow_check="user.attributes.follower"
-                                class="w-2/12 m-auto text-center"></user-follow-button>
+                                class="xs:w-full w-max my-auto px-6 text-center"></user-follow-button>
         </div>
         <div class="bg-white rounded border text-center grid space-x-2 py-24 dark:bg-dpaper dark:border-gray-700"
              v-if="!loading && users.length === 0">

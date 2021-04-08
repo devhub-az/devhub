@@ -4,17 +4,11 @@ namespace App\Jobs;
 
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 
 final class RegisterUser
 {
-    /**
-     * @var string
-     */
-    private $name;
-
     /**
      * @var string
      */
@@ -30,28 +24,19 @@ final class RegisterUser
      */
     private $password;
 
-    /**
-     * @var array
-     */
-    private $image;
-
-    public function __construct(string $name, string $email, string $username, string $password, UploadedFile $image)
+    public function __construct(string $username, string $email, string $password)
     {
-        $this->name = $name;
-        $this->email = $email;
         $this->username = $username;
+        $this->email = $email;
         $this->password = $password;
-        $this->image = $image;
     }
 
     public static function fromRequest(RegisterRequest $request): self
     {
         return new static(
-            $request->name,
-            $request->email,
             $request->username,
+            $request->email,
             $request->password,
-            $request->image
         );
     }
 
@@ -60,17 +45,14 @@ final class RegisterUser
         $user = new User(
             [
                 'id'       => Uuid::uuid4(),
-                'name'     => $this->name,
                 'username' => $this->username,
-                'avatar'   => $this->image->getClientOriginalName(),
                 'email'    => $this->email,
                 'password' => Hash::make($this->password),
                 'type'     => User::DEFAULT,
-//                TODO:REMOVE IT
+                //                TODO:REMOVE IT
                 'email_verified_at' => \Carbon::now()->toDateTimeString(),
             ]
         );
-        $user->addMedia($this->image)->toMediaCollection('avatars');
         $user->save();
 
         return $user;

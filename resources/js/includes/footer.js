@@ -1,6 +1,13 @@
 let Vue = require('vue').default;
 import languageBundle from '@kirschbaum-development/laravel-translations-loader!@kirschbaum-development/laravel-translations-loader';
 import VueI18n from 'vue-i18n';
+import mediumZoom from 'medium-zoom'
+
+const zoomScrollOffset = mediumZoom('#zoom-scrollOffset', {
+    scrollOffset: 0,
+    background: 'rgba(25, 18, 25, .9)',
+})
+
 Vue.use(VueI18n);
 
 const i18n = new VueI18n({

@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FilterRequest;
-use App\Http\Resources\ArticlesResource;
 use App\Http\Resources\AuthorResource;
 use App\Http\Resources\AuthorsResource;
 use App\Jobs\FollowAuthor;
-use App\Models\Article;
 use App\Models\User;
 use App\Policies\AuthorPolicy;
 use App\Services\LogoUploadService;
@@ -50,24 +48,6 @@ class AuthorController extends Controller
     public function userFollowCheck(int $id): AuthorResource
     {
         return new AuthorResource(User::findorfail($id));
-    }
-
-    /**
-     * @param int $id
-     *
-     * @return ArticlesResource
-     */
-    public function articles(int $id): ArticlesResource
-    {
-        return new ArticlesResource(
-            Article::where('author_id', $id)
-                ->orderByRaw('(upvoters_count - downvoters_count) DESC')
-                ->orderBy('created_at', 'DESC')
-                ->with('creator:id,username,avatar')
-                ->withCount(['upvoters', 'downvoters', 'voters', 'views', 'bookmarkers', 'comments'])
-                ->take(50)
-                ->paginate(5)
-        );
     }
 
     /**
