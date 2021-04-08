@@ -34,7 +34,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/day',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'top_karma'       => $top_karma,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'top/week':
@@ -44,7 +44,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/week',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'top_karma'       => $top_karma,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'top/month':
@@ -54,7 +54,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/month',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'top_karma'       => $top_karma,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'all':
@@ -65,7 +65,7 @@ class HomeController extends Controller
                     [
                         'url'               => '/api/articles',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'top_karma'       => $top_karma,
+                        'top_karma'         => $top_karma,
                     ]
                 );
                 // TODO:FIX
