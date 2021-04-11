@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -57,9 +58,10 @@ class ArticleResource extends JsonResource
      */
     public function readTime(string $text): string
     {
+        CarbonInterval::setLocale(config('app.locale'));
         $words = str_word_count(strip_tags($text));
         $minutes = ceil($words / 250);
 
-        return $minutes.' dəqiqə';
+        return CarbonInterval::minute($minutes)->cascade()->forHumans();
     }
 }

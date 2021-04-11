@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function articlesApiRoute(Request $request): Factory | View | Application
     {
-        $lastAuthors = new AuthorsResource(User::orderBy('created_at', 'DESC')->take(5)->get());
+        $top_karma = new AuthorsResource(User::orderBy('karma', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
             Hub::withCount('favorites')->orderBy(
                 'favorites_count',
@@ -34,7 +34,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/day',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'top/week':
@@ -44,7 +44,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/week',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'top/month':
@@ -54,7 +54,7 @@ class HomeController extends Controller
                     'pages.home',
                     ['url'                  => '/api/articles/filter/month',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
             case 'all':
@@ -65,7 +65,7 @@ class HomeController extends Controller
                     [
                         'url'               => '/api/articles',
                         'top_followed_hubs' => $top_followed_hubs,
-                        'lastAuthors'       => $lastAuthors,
+                        'top_karma'         => $top_karma,
                     ]
                 );
                 // TODO:FIX
@@ -79,7 +79,7 @@ class HomeController extends Controller
 //                    'pages.home',
 //                    ['url'                  => '/api/articles/filter/favorite',
 //                        'top_followed_hubs' => $top_followed_hubs,
-//                        'lastAuthors'       => $lastAuthors,
+//                        'top_karma'       => $top_karma,
 //                    ]
 //                );
             default:

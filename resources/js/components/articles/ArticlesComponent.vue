@@ -1,8 +1,8 @@
 <template>
-    <div class="mb-3">
+    <div>
         <articles-loading v-if="loading"/>
-        <div v-if="!loading && !articlesEmpty">
-            <div class="w-full mb-3 rounded border bg-white dark:bg-dpaper dark:border-gray-700"
+        <div class="space-y-3" v-if="!loading && !articlesEmpty">
+            <div class="w-full rounded border bg-white dark:bg-dpaper dark:border-gray-700"
                  v-for="article in articles">
                 <div class="px-3.5">
                     <div class="flex align-middle pt-3">

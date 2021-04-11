@@ -30,8 +30,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Session::put('lang', 'ru');
-        \Carbon\Carbon::setLocale(config('app.locale'));
         Schema::defaultStringLength(191);
 
         Article::observe(ArticleObserver::class);

@@ -26,9 +26,7 @@
                     </p>
                 </div>
             </div>
-
         </div>
-
     </div>
     <div class="border p-4 rounded mb-2 bg-white dark:bg-dpaper dark:border-gray-700">
         <p class="font-medium mb-3 dark:text-gray-300">

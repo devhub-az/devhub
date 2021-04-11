@@ -77,69 +77,74 @@
             {{-- Right --}}
             <div class="w-right xs:w-full">
                 <div class="sticky top-2">
-                    @if ($lastAuthors->count() > 0)
-                        <div>
-                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
-                                {{ __('devhub.connectedToDevHub') }}
-                            </p>
-                            <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
-                                <div
-                                    class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
-                                    @foreach ($lastAuthors as $author)
+                    @if ($top_karma->count() > 0)
+                        <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
+                            {{ __('devhub.bestKarma') }}
+                        </p>
+                        <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
+                            <div
+                                class="overflow-hidden rounded bg-white dark:bg-transparent text-black p-5">
+                                @foreach ($top_karma as $author)
+                                    <a href="{{ route('user_info', $author->username) }}">
                                         <div class="flex items-start space-x-2">
                                             <div class="relative w-12 h-12">
                                                 <img id="zoom-scrollOffset"
-                                                    src="{{ ($author->avatar !== 'default') ? $author->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
-                                                    alt="hub image" class="w-12 h-12 rounded object-cover">
+                                                     src="{{ ($author->avatar !== 'default') ? $author->getMedia('avatars')->first()->getFullUrl() : config('devhub.default_avatar') }}"
+                                                     alt="Author image" class="w-12 h-12 rounded object-cover">
                                                 @if ($author->isOnline())
                                                     <div
                                                         class="absolute -bottom-1 -right-1 h-4 w-4 border-2 border-white dark:border-dpaper rounded-full bg-green-400 z-2"></div>
                                                 @endif
                                             </div>
-                                            <div class="">
-                                                <a href="{{ route('user_info', $author->username) }}"
-                                                   class="font-semibold text-sm align-text-top dark:text-gray-300 leading-3">
+                                            <div class="w-3/4 leading-3">
+                                                <p class="font-semibold text-sm align-text-top dark:text-gray-300">
                                                     {{ $author->name ?? $author->username }}
-                                                </a>
-                                                <p class="text-xs dark:text-gray-400 leading-3">
-                                                    {{ __('devhub.connected') }} {{ \Carbon::createFromTimeStamp(strtotime($author->created_at))->diffForHumans() }}
+                                                </p>
+                                                <p class="text-xs dark:text-gray-400">
+                                                    {{ $author->description }}
                                                 </p>
                                             </div>
                                         </div>
-                                    @endforeach
-                                </div>
+                                        <div
+                                            class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
+                                            <span class="iconify text-yellow-500 dark:text-yellow-100"
+                                                  data-icon="tabler:bolt"
+                                                  data-inline="false"></span>
+                                            <p>{{ __('devhub.karma') }}
+                                                : {{ \Numeric::number_format_short($author->karma) }}</p>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     @endif
                     @if ($top_followed_hubs->count() > 0)
-                        <div>
-                            <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
-                                {{ __('devhub.watchedHubs') }}
-                            </p>
-                            <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
-                                <div
-                                    class="flex flex-col rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
-                                    @foreach ($top_followed_hubs as $hub)
-                                        <a href="{{ '/hubs/' . $hub->slug }}">
-                                            <div class="flex items-center space-x-2">
-                                                <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
-                                                     alt="hub image" class="w-12 h-12 rounded">
-                                                <div>
-                                                    <span
-                                                        class="inline-block font-semibold dark:text-gray-300 leading-5">
-                                                        {{ $hub->name }}
-                                                    </span>
-                                                </div>
+                        <p class="font-medium text-base text-gray-700 mb-1 dark:text-gray-400">
+                            {{ __('devhub.watchedHubs') }}
+                        </p>
+                        <div class="mb-5 rounded dark:bg-dpaper border dark:border-gray-700">
+                            <div
+                                class="flex flex-col rounded bg-white dark:bg-transparent text-black p-5 space-y-2">
+                                @foreach ($top_followed_hubs as $hub)
+                                    <a href="{{ '/hubs/' . $hub->slug }}">
+                                        <div class="flex items-center space-x-2">
+                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
+                                                 alt="hub image" class="w-12 h-12 rounded">
+                                            <div>
+                                                <span
+                                                    class="inline-block font-semibold dark:text-gray-300 leading-5">
+                                                    {{ $hub->name }}
+                                                </span>
                                             </div>
-                                            <div
-                                                class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
-                                                <span class="iconify" data-icon="tabler:users"
-                                                      data-inline="false"></span>
-                                                <p>{{ __('devhub.followers') }}: {{ $hub->favorites_count ?? '' }}</p>
-                                            </div>
-                                        </a>
-                                    @endforeach
-                                </div>
+                                        </div>
+                                        <div
+                                            class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
+                                            <span class="iconify" data-icon="tabler:users"
+                                                  data-inline="false"></span>
+                                            <p>{{ __('devhub.followers') }}: {{ $hub->favorites_count ?? '' }}</p>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     @endif
