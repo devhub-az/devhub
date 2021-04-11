@@ -37,14 +37,14 @@ services:
     networks:
       - devhub
 
-  devhub:
+  php:
     image: ${REGISTRY:-localhost}/devhub:latest
     build:
       context: ./
       dockerfile: .docker/develop/php/Dockerfile
       cache_from:
         - ${REGISTRY:-localhost}/devhub:latest
-    container_name: devhub
+    container_name: php
     tty: true
     environment:
       PHP_IDE_CONFIG: 'serverName=docker'
