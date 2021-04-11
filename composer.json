@@ -17,7 +17,7 @@
         "jackiedo/dotenv-editor": "^1.2",
         "jcc/laravel-vote": "dev-master",
         "laravel/framework": "^8.12",
-        "laravel/octane": "^0.1.0",
+        "laravel/octane": "^0.1.1",
         "laravel/passport": "^10.1",
         "laravel/socialite": "^5.1",
         "laravel/tinker": "^2.5",
