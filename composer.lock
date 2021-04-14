@@ -2560,16 +2560,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.36.2",
+            "version": "v8.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "0debd8ad6b5aa1f61ccc73910adf049af4ca0444"
+                "reference": "cf4082973abc796ec285190f0603380021f6d26f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/0debd8ad6b5aa1f61ccc73910adf049af4ca0444",
-                "reference": "0debd8ad6b5aa1f61ccc73910adf049af4ca0444",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/cf4082973abc796ec285190f0603380021f6d26f",
+                "reference": "cf4082973abc796ec285190f0603380021f6d26f",
                 "shasum": ""
             },
             "require": {
@@ -2724,7 +2724,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-04-07T12:37:22+00:00"
+            "time": "2021-04-13T13:49:49+00:00"
         },
         {
             "name": "laravel/passport",
@@ -4404,16 +4404,16 @@
         },
         {
             "name": "overtrue/laravel-follow",
-            "version": "2.2.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-follow.git",
-                "reference": "b7d6c870b1b437122b37499e2f0fce7170dec388"
+                "reference": "0090336791a222f3969519fda6422f5882f0cb6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/b7d6c870b1b437122b37499e2f0fce7170dec388",
-                "reference": "b7d6c870b1b437122b37499e2f0fce7170dec388",
+                "url": "https://api.github.com/repos/overtrue/laravel-follow/zipball/0090336791a222f3969519fda6422f5882f0cb6d",
+                "reference": "0090336791a222f3969519fda6422f5882f0cb6d",
                 "shasum": ""
             },
             "require": {
@@ -4462,9 +4462,9 @@
             "description": "User follow unfollow system for Laravel.",
             "support": {
                 "issues": "https://github.com/overtrue/laravel-follow/issues",
-                "source": "https://github.com/overtrue/laravel-follow/tree/2.2.1"
+                "source": "https://github.com/overtrue/laravel-follow/tree/2.3.0"
             },
-            "time": "2020-11-29T04:54:40+00:00"
+            "time": "2021-04-13T12:11:36+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
