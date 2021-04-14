@@ -63,7 +63,8 @@
                 </div>
             </div>
         </section>
-        <section class="flex space-x-5 xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:block xs:space-y-4 xs:space-x-0 px-4">
+        <section
+            class="flex space-x-5 xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:block xs:space-y-4 xs:space-x-0 px-4">
             <div class="rounded-xl w-full px-12 pt-12" data-aos="fade-up"
                  style="background: linear-gradient(rgba(241, 235, 235, 0.95), rgba(240, 240, 240, 0.9)) rgb(90 130 242)">
                 <span class="iconify text-5xl text-cerulean-100" data-icon="gg:feed" data-inline="false"></span>
@@ -90,7 +91,8 @@
                 <span class="iconify text-5xl text-cerulean-100" data-icon="gg:feed" data-inline="false"></span>
                 <h1 class="text-xl py-4 font-semibold text-cerulean-100">Как писать классно</h1>
                 <p class="text-white font-semibold text-xl">
-                    На случай, если вы не знаете, как подступиться к тому или иному формату, мы написали короткие гайды, о том, как сделать ваши материалы полезными и оформить так, чтобы было удобно читать.
+                    На случай, если вы не знаете, как подступиться к тому или иному формату, мы написали короткие гайды,
+                    о том, как сделать ваши материалы полезными и оформить так, чтобы было удобно читать.
                     <span class="text-gray-400">Лента помогает отслеживать за интересными новшествами в мире IT.</span>
                 </p>
                 <div class="relative w-1/2 mt-12 mx-auto">
@@ -183,9 +185,11 @@
                             <a href="/hubs" class="font-medium text-cerulean-500">hablardan</a> istifadə
                             edin.</p>
                     </div>
-                    <div class="absolute top-0 bottom-0 xs:hidden sm:hidden right-0 w-20 z-10 shadow-lwhite dark:shadow-lblack"></div>
-                    <div class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 xs:hidden sm:hidden"
-                         data-aos="fade-left" style="width: 120%">
+                    <div
+                        class="absolute top-0 bottom-0 xs:hidden sm:hidden right-0 w-20 z-10 shadow-lwhite dark:shadow-lblack"></div>
+                    <div
+                        class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 dark:border-gray-700 xs:hidden sm:hidden"
+                        data-aos="fade-left" style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
                                 <div title="Paylaşmanın müəllifi" class="inline-flex no-underline">
@@ -287,9 +291,11 @@
         <section class="lg:container xl:container my-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto">
             <div class="py-10">
                 <div class="grid relative xs:block sm:block grid-cols-2 overflow-hidden">
-                    <div class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10 shadow-rwhite dark:shadow-rblack"></div>
-                    <div class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 ml-[-20%] dark:border-gray-700 xs:hidden sm:hidden"
-                         data-aos="fade-right" style="width: 120%">
+                    <div
+                        class="absolute top-0 bottom-0 xs:hidden sm:hidden w-20 z-10 shadow-rwhite dark:shadow-rblack"></div>
+                    <div
+                        class="w-full rounded bg-white dark:bg-transparent border dark:text-gray-300 ml-[-20%] dark:border-gray-700 xs:hidden sm:hidden"
+                        data-aos="fade-right" style="width: 120%">
                         <div class="px-3.5">
                             <div class="flex align-middle pt-3">
                                 <div title="Paylaşmanın müəllifi" class="inline-flex no-underline">
@@ -400,7 +406,7 @@
                     Access even outside of the browser
                 </h1>
                 <p class="px-16 text-center text-lg dark:text-gray-400">
-                    Raindrop.io is available as Chrome, Firefox, Safari, and Edge extension. <br>
+                    DevHub is available as Chrome, Firefox, Safari, and Edge extension. <br>
                     But we also have Web, Windows, Mac, iPad, iPhone, and Android app.
                 </p>
             </div>
@@ -414,14 +420,16 @@
             </div>
             <div class="grid grid-cols-3 mt-2">
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:device-floppy" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:device-floppy"
+                          data-inline="false"></span>
                     <div>
                         <p class="font-medium text-xl dark:text-gray-300">Сохраняйте статьи</p>
                         <p class="text-base dark:text-gray-400">Сохраняйте что бы не потерять интересные статьи.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:flag" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:flag"
+                          data-inline="false"></span>
                     <div>
                         <p class="font-medium text-xl dark:text-gray-300">Языки</p>
                         <p class="text-base dark:text-gray-400">Английский, Русский, Азербайджанский.</p>
@@ -435,14 +443,16 @@
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-2xl dark:text-gray-300" data-icon="tabler:message" data-inline="false"></span>
+                    <span class="iconify text-2xl dark:text-gray-300" data-icon="tabler:message"
+                          data-inline="false"></span>
                     <div>
                         <p class="font-medium text-xl dark:text-gray-300">Комментарии</p>
                         <p class="text-base dark:text-gray-400">Участвуйте в обсуждениях.</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:file-invoice" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:file-invoice"
+                          data-inline="false"></span>
                     <div>
                         <p class="font-medium text-xl dark:text-gray-300">CV</p>
                         <p class="text-base dark:text-gray-400">Делитесь своим Сиви в профиле для работадателей.</p>
@@ -456,19 +466,41 @@
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:mist" data-inline="false"></span>
+                    <span class="iconify text-3xl dark:text-gray-300" data-icon="tabler:mist"
+                          data-inline="false"></span>
                     <div>
                         <p class="font-medium text-xl dark:text-gray-300">Своя лента новостей</p>
-                        <p class="text-base dark:text-gray-400">Следите за статьями интересуещих вас авторов или хабов</p>
+                        <p class="text-base dark:text-gray-400">Следите за статьями интересуещих вас авторов или
+                            хабов</p>
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-4xl dark:text-gray-300" data-icon="octicon:pencil-24" data-inline="false"></span>
+                    <span class="iconify text-4xl dark:text-gray-300" data-icon="octicon:pencil-24"
+                          data-inline="false"></span>
                     <div>
                         <p class="font-medium text-xl dark:text-gray-300">Делитесь опытом</p>
-                        <p class="text-base dark:text-gray-400">Пишите статьи, делитесь опытом и становитесь популярные среди коллег.</p>
+                        <p class="text-base dark:text-gray-400">Пишите статьи, делитесь опытом и становитесь популярные
+                            среди коллег.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section class="lg:container xl:container mt-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto py-12 relative">
+            <div class="px-32 py-2 text-center">
+                <h1 class="text-4xl py-4 font-semibold text-black dark:text-gray-300">
+                    Contributors
+                </h1>
+				<p class="px-16 text-center text-lg dark:text-gray-400">
+					Спасибо за ваш вклад
+				</p>
+            </div>
+            <div class="flex flex-wrap justify-center">
+                @foreach($contributors as $contributor)
+                    <a href="{{$contributor->html_url}}" target='_blank' class="border m-2 dark:border-gray-700 rounded">
+                        <img src="{{$contributor->avatar_url}}" alt="{{$contributor->login}}" class="w-24 h-24 rounded-t">
+                        <p class="text-center dark:text-gray-400 p-2">{{$contributor->login}}</p>
+                    </a>
+                @endforeach
             </div>
         </section>
     </div>

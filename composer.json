@@ -27,6 +27,7 @@
         "overtrue/laravel-follow": "^2.2",
         "parsedown/laravel": "^1.1",
         "predis/predis": "^1.1",
+        "qcod/laravel-gamify": "^1.0",
         "rennokki/laravel-eloquent-query-cache": "^2.6",
         "sentry/sentry-laravel": "^2.3",
         "spatie/laravel-medialibrary": "^9.0.0"
@@ -38,6 +39,7 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",
         "nunomaduro/larastan": "^0.7.1",
+        "nunomaduro/phpinsights": "dev-master",
         "phpunit/phpunit": "^9.3.3",
         "psalm/plugin-laravel": "^1.4",
         "roave/security-advisories": "dev-master",

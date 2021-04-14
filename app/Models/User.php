@@ -15,6 +15,7 @@ use Jcc\LaravelVote\Traits\Voter;
 use Laravel\Passport\HasApiTokens;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Overtrue\LaravelFollow\Followable;
+use QCod\Gamify\Gamify;
 use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -31,6 +32,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use InteractsWithMedia;
     use HasApiTokens;
     use Voter;
+    use Gamify;
     use Favoriter;
     use SoftDeletes;
     use HasFactory;
