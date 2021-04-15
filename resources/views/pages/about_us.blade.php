@@ -3,10 +3,25 @@
 @section('title')Məlumat @stop
 
 @section('main')
-    <div class="about__content">
-        <div class="relative w-full h-96 bg-cover bg-center xs:bg-left"
-             style="background-image: url({{ asset('images/about/about_main.jpg') }})">
-            <div class="absolute xs:bg-black w-full h-96 xs:opacity-25"></div>
+    <div class="relative">
+        <div class="absolute mx-auto left-0 right-0 h-96 -top-56 h-screen container" style="z-index: -1;">
+{{--            <div class="absolute top-0 w-full bg-white h-96"></div>--}}
+            <svg class="w-full h-full">
+                <circle class="md:hidde xs:hidden stroke-current text-gray-700" fill="none" stroke-width="1" cx="505" cy="505"
+                        r="600">
+                </circle>
+                <circle fill="none" class="stroke-current text-gray-700 md:hidden xs:hidden" stroke-width="1" cx="505" cy="505"
+                        r="432">
+                </circle>
+                <circle fill="none" class="stroke-current text-gray-700 xs:hidden" stroke-width="1" cx="505" cy="505"
+                        r="306">
+                </circle>
+                <circle fill="none" class="stroke-current text-gray-700" stroke-width="1" cx="505" cy="505"
+                        r="207">
+                </circle>
+            </svg>
+        </div>
+        <div class="relative w-full py-24 bg-cover bg-center xs:bg-left">
             <div class="relative flex flex-col text-center w-full mb-12 text-white text-center py-6">
                 <div class="w-1/3 md:w-full sm:w-full xs:w-full px-2 mx-auto">
                     <p class="text-4xl"><span class="font-medium">DevHub</span>-a xoş gəlmisiniz</p>
@@ -483,24 +498,6 @@
                             среди коллег.</p>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="lg:container xl:container mt-4 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto py-12 relative">
-            <div class="px-32 py-2 text-center">
-                <h1 class="text-4xl py-4 font-semibold text-black dark:text-gray-300">
-                    Contributors
-                </h1>
-				<p class="px-16 text-center text-lg dark:text-gray-400">
-					Спасибо за ваш вклад
-				</p>
-            </div>
-            <div class="flex flex-wrap justify-center">
-                @foreach($contributors as $contributor)
-                    <a href="{{$contributor->html_url}}" target='_blank' class="border m-2 dark:border-gray-700 rounded">
-                        <img src="{{$contributor->avatar_url}}" alt="{{$contributor->login}}" class="w-24 h-24 rounded-t">
-                        <p class="text-center dark:text-gray-400 p-2">{{$contributor->login}}</p>
-                    </a>
-                @endforeach
             </div>
         </section>
     </div>

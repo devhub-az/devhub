@@ -14,14 +14,13 @@
                     <i class="iconify text-2xl text-gray-600 dark:text-gray-300" data-icon="mdi-close"></i>
                 </button>
             </div>
-            <div class="flex xs:w-max space-x-3 xs:space-x-0 xs:flex">
+            <div class="flex xs:w-max space-x-3 xs:space-x-0 xs:flex items-center">
                 <div id="logo" class="flex items-center justify-center">
-                    <a class="pr-2 md:text-2xl items-center xs:ml-0 xs:text-2xl"
-                       href="{{ session('main-page') ?? route('home') }}">
-                        <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                             height="2.25rem" class="xs:h-9 dark:hidden">
-                        <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                             height="2.25rem" class="xs:h-9 hidden dark:block">
+                    <a href="{{ session('main-page') ?? route('home') }}" class="flex items-center space-x-2">
+                        <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo"
+                             class="h-8 xs:h-9 hidden dark:block">
+                        <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo"
+                             class="h-8 xs:h-9 dark:hidden">
                     </a>
                 </div>
 
@@ -29,33 +28,34 @@
                     id="menu">
                     <li>
                         <a id="trans-none" href="{{ session('main-page') ?? route('home') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.articles')}}</a>
+                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.articles')}}</a>
                     </li>
                     <li>
                         <a id="trans-none" href="{{ route('hubs-list') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.hubs')}}</a>
+                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.hubs')}}</a>
                     </li>
                     <li>
                         <a id="trans-none" href="{{ route('users-list') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('authors') || Request::is('authors/*') || Request::is('@*')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.authors') }}</a>
+                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('authors') || Request::is('authors/*') || Request::is('@*')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.authors') }}</a>
                     </li>
                     <li>
                         <a id="trans-none" href="{{ route('about') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-2 font-semibold {{ (Request::is('about')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.about') }}</a>
+                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('about')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.about') }}</a>
                     </li>
                 </ul>
             </div>
         </div>
-{{--        <div class="fixed w-full h-screen top-0 bottom-0 left-0 z-40 bg-gray-700 bg-opacity-40">--}}
-{{--            <div class="absolute w-8/12 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="top:15%">--}}
-{{--                <span--}}
-{{--                    class="absolute text-gray-500 top-3.5 text-xl left-4 iconify mr-2 text-base transform -translate-y-1/2"--}}
-{{--                    data-icon="fluent:search-24-regular" data-inline="false"></span>--}}
-{{--                <input type="text"--}}
-{{--                       class="input w-full rounded-t focus:outline-none focus:ring-0 hover:border-none border-none px-12 h-12">--}}
-{{--            </div>--}}
-{{--        </div>--}}
-        <form id="form_search" action="{{ route('search.articles') }}" class="flex-1 absolute relative w-full items-center hidden"
+        {{--        <div class="fixed w-full h-screen top-0 bottom-0 left-0 z-40 bg-gray-700 bg-opacity-40">--}}
+        {{--            <div class="absolute w-8/12 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="top:15%">--}}
+        {{--                <span--}}
+        {{--                    class="absolute text-gray-500 top-3.5 text-xl left-4 iconify mr-2 text-base transform -translate-y-1/2"--}}
+        {{--                    data-icon="fluent:search-24-regular" data-inline="false"></span>--}}
+        {{--                <input type="text"--}}
+        {{--                       class="input w-full rounded-t focus:outline-none focus:ring-0 hover:border-none border-none px-12 h-12">--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
+        <form id="form_search" action="{{ route('search.articles') }}"
+              class="flex-1 absolute relative w-full items-center hidden"
               accept-charset="UTF-8" method="GET">
             @csrf
             <div class="w-full">
@@ -65,15 +65,17 @@
                        name="search"
                        maxlength="48"
                        minlength="3" placeholder="{{ __('devhub.searchAll') }}" required="required">
-                <span class="iconify text-gray-600 text-lg absolute left-2 translate-y-1/2 top-0 my-1 mr-4 dark:text-gray-300"
-                      data-icon="tabler:search"></span>
+                <span
+                    class="iconify text-gray-600 text-lg absolute left-2 translate-y-1/2 top-0 my-1 mr-4 dark:text-gray-300"
+                    data-icon="tabler:search"></span>
                 <span id="close-icon"
                       class="iconify text-gray-600 cursor-pointer text-lg absolute right-2 translate-y-1/2 top-0 my-1 dark:text-gray-300"
                       data-icon="tabler:x"></span>
             </div>
         </form>
         <div class="flex xs:flex space-x-4 text-xl xs:text-2xl items-center">
-            <span id="search-icon" class="iconify text-lg m-auto text-gray-600 xs:text-2xl cursor-pointer dark:text-gray-300 transition-none"
+            <span id="search-icon"
+                  class="iconify text-lg m-auto text-gray-600 xs:text-2xl cursor-pointer dark:text-gray-300 transition-none"
                   data-icon="tabler:search"></span>
             @guest
                 <a href="/login"

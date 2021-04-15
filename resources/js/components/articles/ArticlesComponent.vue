@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import axios from "axios"
+import axios from "axios";
 import tippy from "tippy.js";
 
 const edjsHTML = require('editorjs-html');
