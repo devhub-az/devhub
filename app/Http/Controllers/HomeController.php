@@ -17,10 +17,9 @@ class HomeController extends Controller
      * @param Request $request
      * @return Application|Factory|View
      */
-    public function articlesApiRoute(Request $request): Factory|View|Application
+    public function articlesApiRoute(Request $request): Factory | View | Application
     {
-
-        $top_karma         = new AuthorsResource(User::orderBy('karma', 'DESC')->take(5)->get());
+        $top_karma = new AuthorsResource(User::orderBy('karma', 'DESC')->take(5)->get());
         $top_followed_hubs = new HubsResource(
             Hub::withCount('favorites')->orderBy(
                 'favorites_count',

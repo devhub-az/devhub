@@ -11,7 +11,7 @@ class AboutController
     /**
      * @return Factory|View|Application
      */
-    public function index(): Factory|View|Application
+    public function index(): Factory | View | Application
     {
         return view('pages.about_us');
     }

@@ -46,6 +46,7 @@ final class CreateArticle
         $article->authoredBy($this->author);
         $article->syncHubs($this->hubs);
         givePoint(new PostCreated($article));
+
         return $article;
     }
 }
