@@ -919,9 +919,9 @@
     vue-click-outside "^1.1.0"
 
 "@kirschbaum-development/laravel-translations-loader@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@kirschbaum-development/laravel-translations-loader/-/laravel-translations-loader-1.2.0.tgz#46df222c1e603171593a549e9c522455c3d6a730"
-  integrity sha512-ONK0AOswCazRmf2iZzBPbkX7iIflKunadTBzeIpMuweXbb5jDTXFIDbdXZA0BP+0lnnzmEUSR3YMCL4kLrWoqQ==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@kirschbaum-development/laravel-translations-loader/-/laravel-translations-loader-1.3.0.tgz#11ab1904d36c4334264166b9d9c4eb2ec21dc305"
+  integrity sha512-ANin5Sdr3ryHnZUp9dSHGdgBrV9SVDWxtWtHhVPEwSkw/CWa2X7jwnnIxm0imbXQy5Bs9ASgyAgC5HUbn1z7+w==
   dependencies:
     klaw-sync "^6.0.0"
     loader-utils "^1.1.0"
