@@ -869,9 +869,9 @@
     codex-tooltip "^1.0.2"
 
 "@editorjs/embed@^2.4.0":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@editorjs/embed/-/embed-2.4.1.tgz#746c7b1336da6be26d869b7548cfb083789d83fd"
-  integrity sha512-HNWRRoAWPBKC9CEXfNNhrUc49KkDhy1s6qxdUF4uCd6Gi7nct37+X+g0oFnFH6f6JVDEtc1GZTB0kDmJMzo90Q==
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/@editorjs/embed/-/embed-2.4.3.tgz#60f53fa5b6ed308e2ebc36c1227b45098befc44d"
+  integrity sha512-/o8QqRDzZ5fhcxSIV7LmLHaDUvlHeqFlAbw5J3YquAFpGfsBOuG1MnklegPJn1AhcncpjxfjMgXYp3vls/j7Gg==
 
 "@editorjs/header@^2.6.1":
   version "2.6.1"
