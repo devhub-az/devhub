@@ -870,9 +870,9 @@
     nanoid "^3.1.22"
 
 "@editorjs/embed@^2.4.0":
-  version "2.4.3"
-  resolved "https://registry.yarnpkg.com/@editorjs/embed/-/embed-2.4.3.tgz#60f53fa5b6ed308e2ebc36c1227b45098befc44d"
-  integrity sha512-/o8QqRDzZ5fhcxSIV7LmLHaDUvlHeqFlAbw5J3YquAFpGfsBOuG1MnklegPJn1AhcncpjxfjMgXYp3vls/j7Gg==
+  version "2.4.6"
+  resolved "https://registry.yarnpkg.com/@editorjs/embed/-/embed-2.4.6.tgz#7db8bc84d90c947d1fff037c96973d587168692e"
+  integrity sha512-c/1TzBBMrU1hpPHRWXlVanBhgyoPZvE2A3qHt23rMVxJVvzu13Zozj0ZOO8pL1XGcubf+Yvalxu7AURn7X3jPw==
 
 "@editorjs/header@^2.6.1":
   version "2.6.1"
