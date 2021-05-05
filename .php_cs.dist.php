@@ -1,7 +1,18 @@
 <?php
 
-use PhpCsFixer\Config;
-use PhpCsFixer\Finder;
+$finder = Symfony\Component\Finder\Finder::create()
+    ->in([
+        $project_path . '/app',
+        $project_path . '/config',
+        $project_path . '/database',
+        $project_path . '/resources',
+        $project_path . '/routes',
+        $project_path . '/tests',
+    ])
+    ->name('*.php')
+    ->notName('*.blade.php')
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true);
 
 $rules = [
     '@PSR2' => true,
@@ -32,23 +43,8 @@ $rules = [
     'single_trait_insert_per_statement' => true,
 ];
 
-$project_path = getcwd();
-$finder = Finder::create()
-    ->in([
-        $project_path . '/app',
-        $project_path . '/config',
-        $project_path . '/database',
-        $project_path . '/resources',
-        $project_path . '/routes',
-        $project_path . '/tests',
-    ])
-    ->name('*.php')
-    ->notName('*.blade.php')
-    ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
-
-return Config::create()
-    ->setFinder($finder)
+return (new PhpCsFixer\Config())
     ->setRules($rules)
+    ->setFinder($finder)
     ->setRiskyAllowed(true)
     ->setUsingCache(true);
