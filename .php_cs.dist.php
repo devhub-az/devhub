@@ -2,12 +2,12 @@
 
 $finder = Symfony\Component\Finder\Finder::create()
     ->in([
-        $project_path . '/app',
-        $project_path . '/config',
-        $project_path . '/database',
-        $project_path . '/resources',
-        $project_path . '/routes',
-        $project_path . '/tests',
+        __DIR__ . '/app',
+        __DIR__ . '/config',
+        __DIR__ . '/database',
+        __DIR__ . '/resources',
+        __DIR__ . '/routes',
+        __DIR__ . '/tests',
     ])
     ->name('*.php')
     ->notName('*.blade.php')
