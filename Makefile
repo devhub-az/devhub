@@ -6,7 +6,7 @@ restart: down up
 update: composer-update yarn-upgrade
 
 docker-up:
-	docker compose up -d
+	docker-compose up -d
 
 docker-up-prod:
 	IMAGE_TAG=latest docker-compose -f docker-compose-production.yml up -d
