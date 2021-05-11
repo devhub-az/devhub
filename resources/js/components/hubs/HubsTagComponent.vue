@@ -1,6 +1,6 @@
 <template>
     <div class="flex break-words flex-wrap">
-        <div class="border relative rounded text-sm cursor-pointer px-2 mr-2 my-1"
+        <div class="border relative rounded text-sm cursor-pointer px-3 py-0.5 mr-2 my-1"
              v-for="hub in data"
              :class="(hub.follower_check ? 'bg-cerulean-100 border-cerulean-100 text-white dark:text-gray-300 dark:border-cerulean-700 dark:hover:border-cerulean-700' : 'border-gray-200 dark:text-gray-300 hover:border-cerulean-500 dark:border-gray-700 text-gray-700 dark:hover:border-cerulean-700') + (hub.hover ? 'popup-active': '')"
              @mouseenter="trigger(hub)"

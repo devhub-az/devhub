@@ -27,20 +27,20 @@
                 <ul class="grid relative grid-flow-col font-medium text-sm space-x-3 md:hidden sm:hidden xs:hidden items-center justify-center"
                     id="menu">
                     <li>
-                        <a id="trans-none" href="{{ session('main-page') ?? route('home') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.articles')}}</a>
+                        <a href="{{ session('main-page') ?? route('home') }}"
+                           class="hover:border-b-2 trans-none hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('/') || Request::is('article/*') || Request::is('all') || Request::is('top/*') || Request::is('favorite')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.articles')}}</a>
                     </li>
                     <li>
-                        <a id="trans-none" href="{{ route('hubs-list') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.hubs')}}</a>
+                        <a href="{{ route('hubs-list') }}"
+                           class="hover:border-b-2 trans-none hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('hubs/*') || Request::is('hubs')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{__('devhub.hubs')}}</a>
                     </li>
                     <li>
-                        <a id="trans-none" href="{{ route('users-list') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('authors') || Request::is('authors/*') || Request::is('@*')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.authors') }}</a>
+                        <a href="{{ route('users-list') }}"
+                           class="hover:border-b-2 trans-none hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('authors') || Request::is('authors/*') || Request::is('@*')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.authors') }}</a>
                     </li>
                     <li>
-                        <a id="trans-none" href="{{ route('about') }}"
-                           class="hover:border-b-2 hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('about')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.about') }}</a>
+                        <a href="{{ route('about') }}"
+                           class="hover:border-b-2 trans-none hover:border-cerulean-100 pb-1 font-semibold {{ (Request::is('about')) ? 'dark:text-white border-b-2 border-cerulean-100' : 'text-gray-500 hover:text-black dark:text-gray-300' }}">{{ __('devhub.about') }}</a>
                     </li>
                 </ul>
             </div>
@@ -83,12 +83,12 @@
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
                 <div class="flex items-center space-x-2 xs:hidden sm:hidden">
-                    <a href="{{ route('login') }}" id="trans-none"
-                       class="btn-outline text-xs px-4 h-7">
+                    <a href="{{ route('login') }}"
+                       class="btn-outline text-xs px-4 h-7 trans-none">
                         {{ __('devhub.login') }}
                     </a>
-                    <a href="{{ route('register') }}" id="trans-none"
-                       class="btn text-xs px-4 h-7">
+                    <a href="{{ route('register') }}"
+                       class="btn text-xs px-4 h-7 trans-none">
                         {{ __('devhub.register') }}
                     </a>
                 </div>

@@ -33,7 +33,6 @@ class ArticleResource extends JsonResource
                 'is_up_voted'   => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasUpVoted($this->setAppends([])) : false,
                 'is_down_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasDownVoted($this->setAppends([]))
                     : false,
-                'read_time' => $this->readTime($this->body),
                 'real'      => $this->num,
             ],
             'relationships' => new ArticleRelationshipResource($this),
@@ -50,18 +49,5 @@ class ArticleResource extends JsonResource
         }
 
         return $text;
-    }
-
-    /**
-     * @param string $text
-     * @return string
-     */
-    public function readTime(string $text): string
-    {
-        CarbonInterval::setLocale(config('app.locale'));
-        $words = str_word_count(strip_tags($text));
-        $minutes = ceil($words / 250);
-
-        return CarbonInterval::minute($minutes)->cascade()->forHumans();
     }
 }

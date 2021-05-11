@@ -25,7 +25,7 @@
                                 @foreach ($top_hubs as $hub)
                                     <a href="{{ '/hubs/' . $hub->slug }}">
                                         <div class="flex items-center space-x-2">
-                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
+                                            <img src="{{'/images/hubs/' . strtolower($hub->logo) . ".png" }}"
                                                  alt="hub image" class="w-12 h-12 rounded">
                                             <div>
                                                 <span class="inline-block font-semibold dark:text-gray-300 leading-5">
@@ -55,7 +55,7 @@
                                 @foreach ($top_followed_hubs as $hub)
                                     <a href="{{ '/hubs/' . $hub->slug }}">
                                         <div class="flex items-center space-x-2">
-                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
+                                            <img src="{{'/images/hubs/' . strtolower($hub->logo) . ".png" }}"
                                                  alt="hub image" class="w-12 h-12 rounded">
                                             <div>
                                                 <span class="inline-block font-semibold dark:text-gray-300 leading-5">

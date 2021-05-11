@@ -16,11 +16,11 @@
                     <p class="transition-none xs:text-base">{{ column.name }}</p>
                     <div :class="order === 'desc' && column.type === sortedColumn ? 'block' : 'hidden'">
                         <span class="iconify font-light dark:text-gray-300"
-                              data-icon="bi:arrow-up"></span>
+                              data-icon="tabler:arrow-up"></span>
                     </div>
                     <div :class="order === 'asc' && column.type === sortedColumn ? 'block' : 'hidden'">
                         <span class="iconify font-light dark:text-gray-300"
-                              data-icon="bi:arrow-down"></span>
+                              data-icon="tabler:arrow-down"></span>
                     </div>
                 </div>
             </div>
@@ -38,7 +38,7 @@
              :id="hub.id + '_block'">
             <div class="flex space-x-3">
                 <img :id="hub.id" v-if="hub.attributes.logo" class="w-16 h-16 rounded p-1 dark:bg-dwall"
-                     :src="hub.attributes.logo"
+                     :src="'/images/hubs/' + hub.attributes.logo + '.png'"
                      alt="Hub logo">
                 <a :href="'/hubs/' + hub.attributes.slug" class="w-10/12">
                     <div class="h-16 overflow-y-hidden mb-2">

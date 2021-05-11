@@ -490,7 +490,7 @@
                     </div>
                 </div>
                 <div class="flex space-x-2 p-4">
-                    <span class="iconify text-4xl dark:text-gray-300" data-icon="octicon:pencil-24"
+                    <span class="iconify text-6xl dark:text-gray-300" data-icon="tabler:pencil"
                           data-inline="false"></span>
                     <div>
                         <p class="font-medium text-xl dark:text-gray-300">Делитесь опытом</p>

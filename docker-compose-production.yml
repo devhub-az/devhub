@@ -2,6 +2,7 @@ version: "3.7"
 
 networks:
   devhub:
+    driver: bridge
 
 services:
   nginx:
@@ -31,7 +32,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
       MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
-      MYSQL_USER: '${DB_USERNAME:-root}'
+#      MYSQL_USER: '${DB_USERNAME:-root}'
       MYSQL_PASSWORD: '${DB_PASSWORD}'
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     networks:
