@@ -13,12 +13,12 @@ class HubResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'       => 'hubs',
-            'id'         => (int) $this->id,
+            'type' => 'hubs',
+            'id' => (int) $this->id,
             'attributes' => [
-                'name'   => $this->name,
-                'slug'   => $this->slug,
-                'logo'   => ($this->logo) ? '/'.strtolower($this->logo) : '/images/empty/code.png',
+                'name' => $this->name,
+                'slug' => $this->slug,
+                'logo' => ($this->logo) ? '/'.strtolower($this->logo) : '/images/empty/code.png',
                 'rating' => $this->rating,
                 //                'description'         => $this->description['az'],
                 'hub_followers_count' => $this->favorites_count > 0 ?

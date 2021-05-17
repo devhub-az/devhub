@@ -60,7 +60,7 @@ class HubController extends Controller
         return view(
             'pages.hubs.hubs',
             [
-                'top_hubs'          => $top_hubs,
+                'top_hubs' => $top_hubs,
                 'top_followed_hubs' => $top_followed_hubs,
             ]
         );

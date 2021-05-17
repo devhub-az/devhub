@@ -3,10 +3,10 @@
         <div class="mb-8 w-32 xs:mx-auto">
             <a href="{{ route('home') }}"
                class="font-medium text-gray-100 xs:pb-4 w-32">
-                <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                     class="xs:h-8 mb-4 w-32 hidden dark:block">
-                <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="128"
-                     class="xs:h-8 mb-4 w-32 dark:hidden">
+                <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo"
+                     class="h-8 xs:h-9 mb-4 hidden dark:block">
+                <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo"
+                     class="h-8 xs:h-9 mb-4 dark:hidden">
             </a>
         </div>
         <div class="flex xs:block">

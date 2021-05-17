@@ -57,16 +57,16 @@ class LoginController extends Controller
                 'github_id' => $user->id,
             ],
             [
-                'name'              => $user->name ?? '',
-                'description'       => $user->user['bio'],
-                'email'             => $user->email,
-                'username'          => $user->nickname,
-                'avatar'            => $user->id.'.jpeg',
-                'github_id'         => $user->id,
-                'website'           => $user->user['blog'],
-                'twitter'           => $user->user['twitter_username'],
+                'name' => $user->name ?? '',
+                'description' => $user->user['bio'],
+                'email' => $user->email,
+                'username' => $user->nickname,
+                'avatar' => $user->id.'.jpeg',
+                'github_id' => $user->id,
+                'website' => $user->user['blog'],
+                'twitter' => $user->user['twitter_username'],
                 'email_verified_at' => \Carbon::now()->toDateTimeString(),
-                'password'          => Hash::make(Str::random(24)),
+                'password' => Hash::make(Str::random(24)),
             ]
         );
         $auth->github = $user->user['login'];

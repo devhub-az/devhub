@@ -15,9 +15,7 @@
                 <p class="text-red-500">*</p>
                 <p class="font-medium dark:text-gray-300">Mətn</p>
             </div>
-            <div class="textarea bg-white dark:bg-dpaper prose">
-                <div id="editorjs" class="cursor-text"></div>
-            </div>
+            <div id="editorjs" class="textarea prose"></div>
             <p class="text-red-700 text-sm">{{ errors && errors.body ? errors.body[0] : null }}</p>
         </div>
         <div class="space-y-1">
@@ -25,9 +23,16 @@
                 <p class="text-red-500">*</p>
                 <p class="font-medium dark:text-gray-300">Hablar</p>
             </div>
-            <v-selectize :options="hubs" v-model="selected" key-by="id" label="name" :keys="['name', 'id']" multiple/>
+            <v-selectize :options="hubs" class="textarea" @search="text = $event" v-model="selected" placeholder="Выберите от 1 до 5 хабов по теме публикации" keyBy="id"
+                         label="name"
+                         :keys="['name', 'id']" multiple>
+                <template slot="item" slot-scope="{item}">{{item.name}}</template>
+                <template slot="option" slot-scope="{option}">
+                    <label class="dark:text-gray-300">{{ option.name }}</label>
+                </template>
+            </v-selectize>
+<!--            <v-selectize :options="hubs" v-model="selected" key-by="id" label="name" :keys="['name', 'id']" multiple/>-->
             <p class="text-red-700 text-sm">{{ errors && errors.hubs ? errors.hubs[0] : null }}</p>
-            <p class="text-xs dark:text-gray-400">Выберите от 1 до 5 хабов по теме публикации</p>
         </div>
 
         <button type="submit" class="btn h-7 ml-auto block">
@@ -39,7 +44,7 @@
 <script>
 import EditorJS from '@editorjs/editorjs';
 import axios from 'axios'
-import 'selectize/dist/css/selectize.css'
+import './../plugins/assets/selectize.css'
 import VSelectize from '@isneezy/vue-selectize'
 
 const Header = require('@editorjs/header')
@@ -159,20 +164,21 @@ export default {
     display: none !important;
 }
 
+
 [type='text']:focus {
     box-shadow: unset;
 }
 
-.ce-block__content{
+.ce-block__content {
     margin: 0 0.5rem;
 }
 
-.ce-toolbar__actions{
+.ce-toolbar__actions {
     right: -15px;
     top: 10px;
 }
 
-.ce-toolbar__plus{
+.ce-toolbar__plus {
     left: -60px;
 }
 </style>
