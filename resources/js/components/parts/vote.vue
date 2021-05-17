@@ -4,17 +4,23 @@
         <span @click="upVote(item.id)" class="transition-none"
               :class="item.attributes.is_up_voted ? 'text-green-600 dark:text-green-500' : 'dark:text-gray-300'">
             <span class="hover:text-green-600 cursor-pointer iconify transition-none"
-                  data-icon="tabler:thumb-up"/>
+                  data-icon="tabler:chevron-up"/>
         </span>
         <transition name="slide" mode="out-in">
-            <p class="mx-0.5 relative dark:text-gray-300" :key="item.attributes.votes">
-                {{ odds }}
-            </p>
+            <div v-if="odds > 0" class="bg-[#eefbf3] dark:bg-green-700 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded" :key="item.attributes.votes">
+                <p class="text-green-600 dark:text-green-400 font-medium">{{"+" + odds }}</p>
+            </div>
+            <div v-if="odds === 0" class="bg-gray-200 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded" :key="item.attributes.votes">
+                <p class="dark:text-gray-500 font-medium">{{ odds }}</p>
+            </div>
+            <div v-if="odds < 0" class="bg-red-200 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded" :key="item.attributes.votes">
+                <p class="text-red-600 font-medium">{{ odds }}</p>
+            </div>
         </transition>
         <span @click="downVote(item.id)" class="transition-none"
               :class="item.attributes.is_down_voted ? 'text-red-600 dark:text-red-600' : 'dark:text-gray-300'">
             <span class="hover:text-red-600 cursor-pointer iconify transition-none"
-                  data-icon="tabler:thumb-up" data-rotate="180deg"/>
+                  data-icon="tabler:chevron-up" data-rotate="180deg"/>
         </span>
     </div>
 </template>

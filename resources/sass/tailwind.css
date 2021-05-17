@@ -31,27 +31,31 @@
         @apply w-full px-2 h-10 rounded text-base hover:border-cerulean-100 border dark:border-gray-700 dark:focus:border-cerulean-500 dark:text-gray-300 dark:hover:border-cerulean-500 dark:bg-dpaper focus:outline-none focus:border-cerulean-100 focus:ring-0
     }
 
-    .textarea{
-        @apply shadow-sm focus:ring-0 hover:border-cerulean-100 dark:hover:border-cerulean-500 focus:border-cerulean-100 mt-1 block w-full sm:text-sm rounded-md dark:border-gray-700 dark:text-gray-300 dark:bg-dpaper
+    .textarea {
+        @apply border bg-white focus:ring-0 hover:border-cerulean-100 dark:hover:border-cerulean-500 focus:border-cerulean-500 mt-2 block w-full sm:text-sm rounded dark:border-gray-700 dark:text-gray-300 dark:bg-dpaper
     }
 
-    .multiselect__tags, .multiselect__input, .multiselect__single, .multiselect__content-wrapper{
-        @apply  rounded-none dark:bg-dpaper dark:text-gray-300 dark:border-gray-700
+    .multiselect__tags, .multiselect__input, .multiselect__single, .multiselect__content-wrapper {
+        @apply rounded-none dark:bg-dpaper dark:text-gray-300 dark:border-gray-700
     }
 
-    .btn{
+    .selectize-dropdown{
+        @apply dark:bg-dpaper bg-white
+    }
+
+    .btn {
         @apply cursor-pointer border xs:w-full focus:outline-none border-cerulean-100 text-sm rounded h-9 items-center inline-flex px-3 text-white bg-cerulean-100 dark:text-gray-200 hover:bg-cerulean-300 dark:hover:bg-cerulean-300
     }
 
-    .btn-outline{
+    .btn-outline {
         @apply cursor-pointer border xs:w-full text-sm rounded h-9 items-center inline-flex px-3 border-gray-300 dark:border-gray-600 dark:text-gray-300 focus:outline-none hover:border-cerulean-500 dark:hover:border-cerulean-300
     }
 
-    .ce-block__content{
+    .ce-block__content {
         @apply w-full max-w-full
     }
 
-    .ce-toolbar__content{
+    .ce-toolbar__content {
         @apply max-w-full
     }
 
@@ -64,20 +68,20 @@
         padding-bottom: 0.125rem;
     }
 
-    .prose{
+    .prose {
         max-width: none;
         @apply dark:text-gray-400
     }
 
-    .prose p{
+    .prose p {
         @apply dark:text-gray-300
     }
 
-    .prose h3{
+    .prose h3 {
         @apply dark:text-gray-300
     }
 
-    .prose a{
+    .prose a {
         @apply text-cerulean-100
     }
 
@@ -98,18 +102,28 @@
     select{
         border-color: #e9e9e9;
     }
-
 }
 
-@keyframes blink { 50% { fill: transparent }}
+@keyframes blink {
+    50% {
+        fill: transparent
+    }
+}
+
 .dot {
     animation: 1s blink infinite;
     fill: #71717a;
 }
-.dot:nth-child(2) { animation-delay: 250ms }
-.dot:nth-child(3) { animation-delay: 500ms }
 
-*:not(.iconify, #text, input, button, #trans-none, textarea, #title, summary, details) {
+.dot:nth-child(2) {
+    animation-delay: 250ms
+}
+
+.dot:nth-child(3) {
+    animation-delay: 500ms
+}
+
+*:not(.iconify, #text, input, button, .trans-none, textarea, #title, summary, details) {
     @apply transition-all duration-200 ease-in;
 }
 
@@ -125,9 +139,10 @@
 @keyframes spin {
     from {
         transform: rotate(0deg);
-    }   to {
-            transform: rotate(360deg);
-        }
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 html {
@@ -149,12 +164,15 @@ html {
     width: 10px;
     height: 10px;
 }
+
 ::-webkit-scrollbar-thumb {
     background: #D3D1CB;
 }
+
 ::-webkit-scrollbar-track {
     background: #EDECE9;
 }
+
 /* End scrollbar*/
 
 .toggle:before {
@@ -172,7 +190,13 @@ html {
 }
 
 @keyframes animate {
-    0%   { transform: scale(1); }
-    50%  { transform: scale(0); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

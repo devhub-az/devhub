@@ -24,9 +24,9 @@ class ViewFactory extends Factory
     {
         return [
             'article_id' => $this->faker->randomElement(Article::pluck('id')),
-            'ip'         => $this->faker->ipv4,
-            'agent'      => $this->faker->userAgent,
-            'referer'    => $this->faker->url,
+            'ip' => $this->faker->ipv4,
+            'agent' => $this->faker->userAgent,
+            'referer' => $this->faker->url,
         ];
     }
 }

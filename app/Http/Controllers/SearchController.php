@@ -20,9 +20,9 @@ class SearchController extends Controller
         $url = '/api/search/articles/search='.$query;
 
         return view('pages.search.result', [
-            'type'  => 'articles',
+            'type' => 'articles',
             'query' => $query,
-            'url'   => $url,
+            'url' => $url,
         ]);
     }
 
@@ -37,9 +37,9 @@ class SearchController extends Controller
         $url = '/api/search/authors/search='.$query;
 
         return view('pages.search.result', [
-            'type'  => 'authors',
+            'type' => 'authors',
             'query' => $query,
-            'url'   => $url,
+            'url' => $url,
         ]);
     }
 }

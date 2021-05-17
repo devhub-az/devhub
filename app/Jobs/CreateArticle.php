@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Gamify\Points\PostCreated;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\User;
@@ -40,10 +41,11 @@ final class CreateArticle
     {
         $article = new Article([
             'title' => $this->title,
-            'body'  => $this->body,
+            'body' => $this->body,
         ]);
         $article->authoredBy($this->author);
         $article->syncHubs($this->hubs);
+        givePoint(new PostCreated($article));
 
         return $article;
     }

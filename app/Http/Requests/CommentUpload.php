@@ -24,7 +24,7 @@ class CommentUpload extends FormRequest
     public function rules()
     {
         return [
-            'body'    => 'required|string',
+            'body' => 'required|string',
             'post_id' => 'required|int',
         ];
     }

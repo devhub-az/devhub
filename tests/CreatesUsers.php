@@ -33,10 +33,10 @@ trait CreatesUsers
     protected function createUser(array $attributes = []): User
     {
         return User::factory()->create(array_merge([
-            'name'            => 'John Doe',
-            'username'        => 'johndoe',
-            'email'           => 'john@example.com',
-            'password'        => bcrypt('password'),
+            'name' => 'John Doe',
+            'username' => 'johndoe',
+            'email' => 'john@example.com',
+            'password' => bcrypt('password'),
             'github_username' => 'johndoe',
         ], $attributes));
     }

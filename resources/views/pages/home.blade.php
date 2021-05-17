@@ -128,14 +128,19 @@
                                 @foreach ($top_followed_hubs as $hub)
                                     <a href="{{ '/hubs/' . $hub->slug }}">
                                         <div class="flex items-center space-x-2">
-                                            <img src="{{'/' . strtolower($hub->logo) ?? '/images/empty/code.png' }}"
-                                                 alt="hub image" class="w-12 h-12 rounded">
-                                            <div>
-                                                <span
-                                                    class="inline-block font-semibold dark:text-gray-300 leading-5">
-                                                    {{ $hub->name }}
-                                                </span>
-                                            </div>
+{{--                                            <picture>--}}
+{{--                                                <source--}}
+{{--                                                    srcset="{{'/images/hubs/res/' . strtolower($hub->logo) . ".webp" }}"--}}
+{{--                                                    type="image/webp">--}}
+{{--                                                <img src="{{'/images/hubs/' . strtolower($hub->logo) . ".png" }}"--}}
+{{--                                                     alt="Hub logo" width="48" class="w-12 h-12 rounded">--}}
+{{--                                            </picture>--}}
+                                            <img src="{{'/images/hubs/' . strtolower($hub->logo) . ".png" }}"
+                                                 alt="Hub logo" width="48" class="w-12 h-12 rounded">
+                                            <span
+                                                class="inline-block font-semibold dark:text-gray-300 leading-5">
+                                                {{ $hub->name }}
+                                            </span>
                                         </div>
                                         <div
                                             class="flex ml-14 space-x-1 items-center text-xs dark:text-gray-300">
