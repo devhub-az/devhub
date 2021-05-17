@@ -17,12 +17,12 @@ class AuthorIdentifierResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'       => 'authors',
-            'id'         => (int) $this->id,
+            'type' => 'authors',
+            'id' => (int) $this->id,
             'attributes' => [
-                'name'     => $this->name,
+                'name' => $this->name,
                 'username' => $this->username,
-                'avatar'   => ($this->avatar !== 'default')
+                'avatar' => ($this->avatar !== 'default')
                     ? $this->getMedia('avatars')->first()->getFullUrl()
                     : config(
                         'devhub.default_avatar'

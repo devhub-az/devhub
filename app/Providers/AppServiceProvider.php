@@ -38,8 +38,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::morphMap([
             'articles' => Article::class,
             'comments' => Comment::class,
-            'users'    => User::class,
-            'hubs'     => Hub::class,
+            'users' => User::class,
+            'hubs' => Hub::class,
         ]);
     }
 }

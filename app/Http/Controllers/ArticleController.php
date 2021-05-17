@@ -97,8 +97,8 @@ class ArticleController extends Controller
         return view(
             'articles.edit',
             [
-                'article'      => $article,
-                'hubs'         => Hub::all(),
+                'article' => $article,
+                'hubs' => Hub::all(),
                 'selectedTags' => old('hubs', $article->hubs()->pluck('id')->toArray()),
             ]
         );

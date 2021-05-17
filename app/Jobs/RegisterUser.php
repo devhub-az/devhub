@@ -44,11 +44,11 @@ final class RegisterUser
     {
         $user = new User(
             [
-                'id'       => Uuid::uuid4(),
+                'id' => Uuid::uuid4(),
                 'username' => $this->username,
-                'email'    => $this->email,
+                'email' => $this->email,
                 'password' => Hash::make($this->password),
-                'type'     => User::DEFAULT,
+                'type' => User::DEFAULT,
                 //                TODO:REMOVE IT
                 'email_verified_at' => \Carbon::now()->toDateTimeString(),
             ]

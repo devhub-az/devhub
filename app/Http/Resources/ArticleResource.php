@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Carbon\CarbonInterval;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -18,25 +17,25 @@ class ArticleResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type'       => 'articles',
-            'id'         => (string) $this->id,
+            'type' => 'articles',
+            'id' => (string) $this->id,
             'attributes' => [
-                'id'            => (string) $this->id,
-                'title'         => $this->title,
-                'slug'          => $this->slug,
-                'body'          => $this->body, //\Str::words($this->body, 87, ''),
-                'votes'         => $this->voters()->count(),
-                'upvotes'       => $this->up ?? $this->upVoters()->count(),
-                'downvotes'     => $this->down ?? $this->downVoters()->count(),
-                'views'         => $this->views_count,
-                'created_at'    => $this->created_at,
-                'is_up_voted'   => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasUpVoted($this->setAppends([])) : false,
+                'id' => (string) $this->id,
+                'title' => $this->title,
+                'slug' => $this->slug,
+                'body' => $this->body, //\Str::words($this->body, 87, ''),
+                'votes' => $this->voters()->count(),
+                'upvotes' => $this->up ?? $this->upVoters()->count(),
+                'downvotes' => $this->down ?? $this->downVoters()->count(),
+                'views' => $this->views_count,
+                'created_at' => $this->created_at,
+                'is_up_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasUpVoted($this->setAppends([])) : false,
                 'is_down_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasDownVoted($this->setAppends([]))
                     : false,
-                'real'      => $this->num,
+                'real' => $this->num,
             ],
             'relationships' => new ArticleRelationshipResource($this),
-            'links'         => [
+            'links' => [
                 'self' => route('articles.show', ['article_json' => $this->id]),
             ],
         ];
