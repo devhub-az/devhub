@@ -2821,9 +2821,9 @@ easydropdown@^4.2.0:
     helpful-merge "0.2.0"
 
 editorjs-html@^3.0.3:
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/editorjs-html/-/editorjs-html-3.0.5.tgz#9bff82b0b619f9b92ec4b3f014b1f34fcfc8d7e0"
-  integrity sha512-n0DImmrxbWZje5OG+7tk28GD8HpqHN77X829+BXPwE1WZ4bCvQmlzPXAhrF995VQOOyanj2KQ8cOb6DlXov2Ag==
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/editorjs-html/-/editorjs-html-3.2.1.tgz#0131d1cc678aeab7f18375e30331e3e93347e11d"
+  integrity sha512-3P1Oa6B+4xTlTr6XWewvfUR6fBzWyKt4V1MjDecA+WWMR3kWRunJYKDwydmjJSDV+UEUCkrRBv+lKd1xou3jkQ==
 
 ee-first@1.1.1:
   version "1.1.1"
