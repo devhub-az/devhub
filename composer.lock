@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0cf226c5cee3011daa42a9917a418340",
+    "content-hash": "5cf06edba5ecfe3cdcad3132a69b0646",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4447,16 +4447,16 @@
         },
         {
             "name": "overtrue/laravel-favorite",
-            "version": "3.0.0",
+            "version": "4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/laravel-favorite.git",
-                "reference": "3fc253f6a2f3f17953601ff8c24fed6abc07ed07"
+                "reference": "ca3b885d2641dd2d86dbae92eedc8a59f4891bca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/laravel-favorite/zipball/3fc253f6a2f3f17953601ff8c24fed6abc07ed07",
-                "reference": "3fc253f6a2f3f17953601ff8c24fed6abc07ed07",
+                "url": "https://api.github.com/repos/overtrue/laravel-favorite/zipball/ca3b885d2641dd2d86dbae92eedc8a59f4891bca",
+                "reference": "ca3b885d2641dd2d86dbae92eedc8a59f4891bca",
                 "shasum": ""
             },
             "require": {
@@ -4464,7 +4464,7 @@
             },
             "require-dev": {
                 "brainmaestro/composer-git-hooks": "^2.7",
-                "friendsofphp/php-cs-fixer": "^2.16",
+                "friendsofphp/php-cs-fixer": "^3.0",
                 "laravel/framework": "^8.0",
                 "mockery/mockery": "^1.2",
                 "orchestra/testbench": "^6.0",
@@ -4479,12 +4479,10 @@
                 },
                 "hooks": {
                     "pre-commit": [
-                        "composer test",
                         "composer fix-style"
                     ],
                     "pre-push": [
-                        "composer test",
-                        "composer check-style"
+                        "composer test"
                     ]
                 }
             },
@@ -4506,9 +4504,9 @@
             "description": "User favorite features for Laravel Application.",
             "support": {
                 "issues": "https://github.com/overtrue/laravel-favorite/issues",
-                "source": "https://github.com/overtrue/laravel-favorite/tree/3.0.0"
+                "source": "https://github.com/overtrue/laravel-favorite/tree/4.0.0"
             },
-            "time": "2020-12-02T15:12:51+00:00"
+            "time": "2021-05-21T14:17:58+00:00"
         },
         {
             "name": "overtrue/laravel-follow",
