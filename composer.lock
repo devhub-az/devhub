@@ -11629,25 +11629,25 @@
         },
         {
             "name": "orchestra/testbench",
-            "version": "v6.17.1",
+            "version": "v6.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "d6df638c569899443a1e4dc14a33490837201784"
+                "reference": "022e72b16f56a35254c343e57a306564d20d85b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/d6df638c569899443a1e4dc14a33490837201784",
-                "reference": "d6df638c569899443a1e4dc14a33490837201784",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/022e72b16f56a35254c343e57a306564d20d85b2",
+                "reference": "022e72b16f56a35254c343e57a306564d20d85b2",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^8.25",
                 "mockery/mockery": "^1.4.2",
-                "orchestra/testbench-core": "^6.21.3",
+                "orchestra/testbench-core": "^6.22",
                 "php": "^7.3 || ^8.0",
                 "phpunit/phpunit": "^8.4 || ^9.3.3",
-                "spatie/laravel-ray": "^1.17.1"
+                "spatie/laravel-ray": "^1.18"
             },
             "type": "library",
             "extra": {
@@ -11678,7 +11678,7 @@
             ],
             "support": {
                 "issues": "https://github.com/orchestral/testbench/issues",
-                "source": "https://github.com/orchestral/testbench/tree/v6.17.1"
+                "source": "https://github.com/orchestral/testbench/tree/v6.18.0"
             },
             "funding": [
                 {
@@ -11690,7 +11690,7 @@
                     "type": "liberapay"
                 }
             ],
-            "time": "2021-05-18T23:14:29+00:00"
+            "time": "2021-05-25T04:04:31+00:00"
         },
         {
             "name": "orchestra/testbench-core",
