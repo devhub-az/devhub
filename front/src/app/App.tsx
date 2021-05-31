@@ -1,13 +1,16 @@
 import React from 'react';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Home from './components/home';
+import About from './components/about';
 
-function App() {
+const App: React.FunctionComponent = () => {
   return (
-    <div className="App">
-      <p>
-        It works!
-      </p>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route component={Home} path="/" exact/>
+        <Route component={About} path="/about" exact/>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
