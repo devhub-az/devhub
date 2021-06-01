@@ -45,20 +45,11 @@
                 </ul>
             </div>
         </div>
-        {{--        <div class="fixed w-full h-screen top-0 bottom-0 left-0 z-40 bg-gray-700 bg-opacity-40">--}}
-        {{--            <div class="absolute w-8/12 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="top:15%">--}}
-        {{--                <span--}}
-        {{--                    class="absolute text-gray-500 top-3.5 text-xl left-4 iconify mr-2 text-base transform -translate-y-1/2"--}}
-        {{--                    data-icon="fluent:search-24-regular" data-inline="false"></span>--}}
-        {{--                <input type="text"--}}
-        {{--                       class="input w-full rounded-t focus:outline-none focus:ring-0 hover:border-none border-none px-12 h-12">--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
         <form id="form_search" action="{{ route('search.articles') }}"
               class="flex-1 absolute relative w-full items-center hidden"
               accept-charset="UTF-8" method="GET">
             @csrf
-            <div class="w-full">
+            <div class="w-full ml-2">
                 <input id="search_input" type="text"
                        class="relative input w-full rounded h-7 border pl-8"
                        autocomplete="off"
@@ -66,10 +57,10 @@
                        maxlength="48"
                        minlength="3" placeholder="{{ __('devhub.searchAll') }}" required="required">
                 <span
-                    class="iconify text-gray-600 text-lg absolute left-2 translate-y-1/2 top-0 my-1 mr-4 dark:text-gray-300"
+                    class="iconify text-gray-600 text-lg absolute left-4 translate-y-1/2 top-0 my-1 mr-4 dark:text-gray-300"
                     data-icon="tabler:search"></span>
                 <span id="close-icon"
-                      class="iconify text-gray-600 cursor-pointer text-lg absolute right-2 translate-y-1/2 top-0 my-1 dark:text-gray-300"
+                      class="iconify text-gray-600 cursor-pointer text-lg absolute right-0 translate-y-1/2 top-0 my-1 dark:text-gray-300"
                       data-icon="tabler:x"></span>
             </div>
         </form>
