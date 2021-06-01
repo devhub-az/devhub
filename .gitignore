@@ -23,3 +23,15 @@ public/assets
 public/css
 public/js
 storage/mysql
+storage/*.key
+/.vagrant
+*.meta.*
+_ide_*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+.history
+.ionide
