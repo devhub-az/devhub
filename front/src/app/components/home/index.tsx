@@ -5,7 +5,7 @@ const Home: React.FunctionComponent = () => {
     return (
         <>
             <Header />
-            Home page!
+            <div className={'text-center'}>Home page!</div>
         </>
     );
 }
