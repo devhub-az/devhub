@@ -5,7 +5,6 @@
 @section('main')
     <div class="relative">
         <div class="absolute mx-auto left-0 right-0 h-96 -top-56 h-screen container" style="z-index: -1;">
-{{--            <div class="absolute top-0 w-full bg-white h-96"></div>--}}
             <svg class="w-full h-full">
                 <circle class="md:hidde xs:hidden stroke-current text-gray-700" fill="none" stroke-width="1" cx="505" cy="505"
                         r="600">
