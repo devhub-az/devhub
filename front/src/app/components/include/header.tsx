@@ -40,13 +40,13 @@ const Header: React.FunctionComponent = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/"
+                            <NavLink to="/hubs"
                                      className="hover:border-b-2 trans-none hover:border-cerulean-100 pb-1 font-semibold">
                                 Хабы
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/"
+                            <NavLink to="/authors"
                                      className="hover:border-b-2 trans-none hover:border-cerulean-100 pb-1 font-semibold">
                                 Авторы
                             </NavLink>
