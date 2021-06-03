@@ -1,9 +1,11 @@
-import * as reactPlugin from 'vite-plugin-react'
-import type { UserConfig } from 'vite'
+import { defineConfig } from 'vite';
+// @ts-ignore
+import reactRefresh from '@vitejs/plugin-react-refresh';
 
-const config: UserConfig = {
-  jsx: 'react',
-  plugins: [reactPlugin]
-}
-
-export default config
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [reactRefresh()],
+  build: {
+    outDir: 'production',
+  },
+})
