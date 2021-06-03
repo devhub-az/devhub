@@ -39,7 +39,7 @@
         @apply rounded-none dark:bg-dpaper dark:text-gray-300 dark:border-gray-700
     }
 
-    .selectize-dropdown{
+    .selectize-dropdown {
         @apply dark:bg-dpaper bg-white
     }
 
@@ -99,7 +99,7 @@
     [type='week'],
     [multiple],
     textarea,
-    select{
+    select {
         border-color: #e9e9e9;
     }
 }

@@ -14,17 +14,17 @@ const App: React.FunctionComponent = () => {
     return (
         <BrowserRouter>
             <Header/>
-                <Switch>
-                    <Route exact component={Home} path="/"/>
-                    <Route exact component={Hubs} path="/hubs"/>
-                    {/* <Route exact component={} path="/hubs:name"/> */}
-                    <Route exact component={Authors} path="/authors"/>
-                    <Route exact component={About} path="/about"/>
-                    <Route exact component={ServerError} path="/server-error"/>
-                    {/* <Route exact component={} path="/article/:id"> */}
-                    <Route component={NotFoundError} path="*"/>
-                </Switch>
-            <Footer />
+            <Switch>
+                <Route exact component={Home} path="/"/>
+                <Route exact component={Hubs} path="/hubs"/>
+                {/* <Route exact component={} path="/hubs:name"/> */}
+                <Route exact component={Authors} path="/authors"/>
+                <Route exact component={About} path="/about"/>
+                <Route exact component={ServerError} path="/server-error"/>
+                {/* <Route exact component={} path="/article/:id"> */}
+                <Route component={NotFoundError} path="*"/>
+            </Switch>
+            <Footer/>
         </BrowserRouter>
     );
 }

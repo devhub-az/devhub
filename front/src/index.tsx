@@ -4,8 +4,8 @@ import './index.css';
 import App from './app/App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <App/>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
