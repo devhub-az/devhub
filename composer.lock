@@ -14278,16 +14278,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.18.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "4795633baffc7a1778e2be4a35f90a137f88ee7d"
+                "reference": "db2f33bfa656b496f921faab70a96bab73d161dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/4795633baffc7a1778e2be4a35f90a137f88ee7d",
-                "reference": "4795633baffc7a1778e2be4a35f90a137f88ee7d",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/db2f33bfa656b496f921faab70a96bab73d161dd",
+                "reference": "db2f33bfa656b496f921faab70a96bab73d161dd",
                 "shasum": ""
             },
             "require": {
@@ -14304,6 +14304,7 @@
             },
             "require-dev": {
                 "facade/ignition": "^2.5",
+                "guzzlehttp/guzzle": "^7.3",
                 "laravel/framework": "^7.20|^8.19",
                 "orchestra/testbench-core": "^5.0|^6.0",
                 "phpunit/phpunit": "^9.3",
@@ -14342,7 +14343,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.18.0"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.19.0"
             },
             "funding": [
                 {
@@ -14354,7 +14355,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-05-23T09:58:54+00:00"
+            "time": "2021-06-04T13:46:38+00:00"
         },
         {
             "name": "spatie/macroable",
