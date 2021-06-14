@@ -41,7 +41,7 @@
         "@editorjs/list": "1.6.2",
         "@editorjs/simple-image": "^1.4.0",
         "@isneezy/vue-selectize": "^0.6.1",
-        "alpinejs": "^2.8.0",
+        "alpinejs": "^3.0.1",
         "animate.css": "^4.1.0",
         "aos": "^2.3.4",
         "autoprefixer": "10.2.6",
