@@ -2669,16 +2669,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.46.0",
+            "version": "v8.47.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a18266c612e0e6aba5e0174b3c873d2d217dccfb"
+                "reference": "93db226946453f4285558b7c3166ddb6e7ea5400"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a18266c612e0e6aba5e0174b3c873d2d217dccfb",
-                "reference": "a18266c612e0e6aba5e0174b3c873d2d217dccfb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/93db226946453f4285558b7c3166ddb6e7ea5400",
+                "reference": "93db226946453f4285558b7c3166ddb6e7ea5400",
                 "shasum": ""
             },
             "require": {
@@ -2833,7 +2833,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-06-08T13:36:46+00:00"
+            "time": "2021-06-15T14:00:32+00:00"
         },
         {
             "name": "laravel/passport",
@@ -14282,16 +14282,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.19.1",
+            "version": "1.20.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "5afa1c020a61637f6f1f8c660ab7702e7bbc4d3d"
+                "reference": "1ecabbea3166fe098edc3b3a1314bcd5045d1833"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/5afa1c020a61637f6f1f8c660ab7702e7bbc4d3d",
-                "reference": "5afa1c020a61637f6f1f8c660ab7702e7bbc4d3d",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/1ecabbea3166fe098edc3b3a1314bcd5045d1833",
+                "reference": "1ecabbea3166fe098edc3b3a1314bcd5045d1833",
                 "shasum": ""
             },
             "require": {
@@ -14347,7 +14347,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.19.1"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.20.1"
             },
             "funding": [
                 {
@@ -14359,7 +14359,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-06-11T18:10:35+00:00"
+            "time": "2021-06-15T11:40:39+00:00"
         },
         {
             "name": "spatie/macroable",
