@@ -10,11 +10,11 @@
                 <div class="w-9/12 flex">
                     @if (isset($hub->attributes->logo))
                         <img class="rounded xs:h-16 xs:w-16 w-16 h-16"
-                             src="{{ asset(strtolower($hub->attributes->logo)) }}"
+                             src="{{'/images/hubs/' . strtolower($hub->attributes->logo) . ".png" }}"
                              alt="Hub logo">
                     @else
                         <img class="rounded xs:h-16 xs:w-16 w-16 h-16" src="{{ asset('/images/empty/code.png') }}"
-                             alt="">
+                             alt="Hub logo">
                     @endif
                     <div class="ml-4">
                         <div class="relative flex space-x-1 text-xl">
@@ -27,8 +27,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div
-                            class="text-sm text-shadow dark:text-gray-300 xs:text-xs mt-2">
+                        <div class="text-sm text-shadow dark:text-gray-300 xs:text-xs mt-2">
                             Məlumatların qorunması
                         </div>
                     </div>
