@@ -1059,9 +1059,9 @@
   integrity sha512-gXtTce915fHp3H9i4IqhTxEDbbkT2heFfYiW/bhFHsCmZDpyGzfZxi94kmrEqDmbxXjV49ZZ6GZbR26If13KJw==
 
 "@editorjs/editorjs@^2.19.1":
-  version "2.22.0"
-  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.22.0.tgz#440ba336e0a20898b365a316adb78debe0e92c42"
-  integrity sha512-BwHuY8hUcN3A67AykWd8uRwUWMoQQKSjfnlFD0r6W5cD/niLznxFC5iF/uA8QEVHMvU0Rl9UluHdzpZZbAB2bQ==
+  version "2.22.1"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.22.1.tgz#a55442d7e4d3c44475cccad594caf6477b83a09b"
+  integrity sha512-9vaacsrs45XvMkFKSS0NQM6YxHzp/Z1Li7ZS7TUWkZRxl/eZ/WdNuOtij+CoXFSgZs4w8UbHOjbirIa5wnbH0Q==
   dependencies:
     codex-notifier "^1.1.2"
     codex-tooltip "^1.0.2"
@@ -5500,7 +5500,7 @@ postcss@^7.0.14:
     source-map "^0.6.1"
     supports-color "^6.1.0"
 
-postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.10, postcss@^8.2.15:
+postcss@^8.1.6, postcss@^8.2.1, postcss@^8.2.15:
   version "8.3.5"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.3.5.tgz#982216b113412bc20a86289e91eb994952a5b709"
   integrity sha512-NxTuJocUhYGsMiMFHDUkmjSKT3EdH4/WbGF6GCi1NDGk+vbcUTun4fpbOqaPtD8IIsztA2ilZm2DhYCuyN58gA==
