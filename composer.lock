@@ -64,16 +64,16 @@
         },
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.10.0",
+            "version": "v2.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "73b1012b927633a1b4cd623c2e6b1678e6faef08"
+                "reference": "8d8302ff6adb55f8b844c798b8b1ffdee142f7e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/73b1012b927633a1b4cd623c2e6b1678e6faef08",
-                "reference": "73b1012b927633a1b4cd623c2e6b1678e6faef08",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/8d8302ff6adb55f8b844c798b8b1ffdee142f7e5",
+                "reference": "8d8302ff6adb55f8b844c798b8b1ffdee142f7e5",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-ide-helper/issues",
-                "source": "https://github.com/barryvdh/laravel-ide-helper/tree/v2.10.0"
+                "source": "https://github.com/barryvdh/laravel-ide-helper/tree/v2.9.1"
             },
             "funding": [
                 {
@@ -150,7 +150,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-09T06:17:55+00:00"
+            "time": "2021-03-15T19:22:08+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",
@@ -12734,20 +12734,20 @@
         },
         {
             "name": "psalm/plugin-laravel",
-            "version": "v1.4.6",
+            "version": "v1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/psalm-plugin-laravel.git",
-                "reference": "1ff7fd2a0dd843a8e2254768b9b1274b377f429f"
+                "reference": "7f15023e45ef086b58264641eae65403af3bda5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/1ff7fd2a0dd843a8e2254768b9b1274b377f429f",
-                "reference": "1ff7fd2a0dd843a8e2254768b9b1274b377f429f",
+                "url": "https://api.github.com/repos/psalm/psalm-plugin-laravel/zipball/7f15023e45ef086b58264641eae65403af3bda5f",
+                "reference": "7f15023e45ef086b58264641eae65403af3bda5f",
                 "shasum": ""
             },
             "require": {
-                "barryvdh/laravel-ide-helper": "^2.9.2",
+                "barryvdh/laravel-ide-helper": ">=2.8.0 <2.9.2",
                 "ext-simplexml": "*",
                 "illuminate/container": "^6.0 || ^7.0 || ^8.0",
                 "illuminate/contracts": "^6.0 || ^7.0 || ^8.0",
@@ -12756,7 +12756,7 @@
                 "illuminate/support": "^6.0 || ^7.0 || ^8.0",
                 "orchestra/testbench": "^3.8 || ^4.0 || ^5.0 || ^6.0",
                 "php": "^7.3|^8",
-                "vimeo/psalm": "^4.0"
+                "vimeo/psalm": "^4.8.1"
             },
             "require-dev": {
                 "codeception/codeception": "^4.1.6",
@@ -12793,9 +12793,9 @@
             "description": "A Laravel plugin for Psalm",
             "support": {
                 "issues": "https://github.com/psalm/psalm-plugin-laravel/issues",
-                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v1.4.6"
+                "source": "https://github.com/psalm/psalm-plugin-laravel/tree/v1.4.9"
             },
-            "time": "2021-06-09T17:55:44+00:00"
+            "time": "2021-07-05T15:18:55+00:00"
         },
         {
             "name": "psr/cache",
