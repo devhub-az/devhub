@@ -94,7 +94,6 @@ hljs.registerLanguage('scss', require('highlight.js/lib/languages/scss'));
 hljs.registerLanguage('yaml', require('highlight.js/lib/languages/yaml'));
 hljs.registerLanguage('csharp', require('highlight.js/lib/languages/csharp'));
 hljs.registerLanguage('c', require('highlight.js/lib/languages/c'));
-hljs.registerLanguage('c-like', require('highlight.js/lib/languages/c-like'));
 hljs.registerLanguage('go', require('highlight.js/lib/languages/go'));
 hljs.registerLanguage('java', require('highlight.js/lib/languages/java'));
 hljs.registerLanguage('swift', require('highlight.js/lib/languages/swift'));
