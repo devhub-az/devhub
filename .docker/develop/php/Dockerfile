@@ -1,4 +1,8 @@
-FROM php:8-cli-alpine
+# Here we are going to install PHP extension requirements that did not come
+# with the default PHP container. This will be necessary for Laravel and Swoole.
+FROM php:8.0-cli-alpine3.13 as php-base
+
+WORKDIR /var/www
 
 RUN apk update && apk add --no-cache \
     zip \
@@ -10,43 +14,57 @@ RUN apk update && apk add --no-cache \
     bash \
     tzdata \
     nano \
-    supervisor \
-    nodejs npm \
-    && pecl install redis \
-    && docker-php-ext-enable redis \
-    && docker-php-ext-install sockets \
+    nodejs npm
+
+RUN pecl install redis
+
+RUN docker-php-ext-enable redis \
     && docker-php-ext-install zip pdo_mysql exif opcache pcntl \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit \
     && npm --global install yarn \
     && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
+RUN apk add --no-cache --virtual php_dependencies $PHPIZE_DEPS && \
+    apk add --no-cache libstdc++ && \
+    docker-php-ext-install bcmath ctype pdo_mysql pcntl && \
+    pecl install swoole && \
+    docker-php-ext-enable swoole && \
+    apk del php_dependencies && \
+    chown -R www-data:www-data /var/www
 
-ENV TZ=Asia/Baku
 
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# This stage is so that we can build up everything that doesn't require Laravel
+# so as to not bust the caching for those items.
+FROM php-base as octane-base
+    # This really shouldn't be modified, so we aren't advertising the env variable.
+    # It allows us to globally install chokidar without modifying the Laravel package.json.
+ENV NODE_PATH "/home/www-data/.npm-global/lib/node_modules"
 
-RUN mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
+RUN apk add --no-cache nodejs npm && \
+    mkdir "/home/www-data/.npm-global/" && \
+    npm config set prefix "/home/www-data/.npm-global/" && \
+    npm install -g chokidar
 
-#COPY ./.docker/develop/php/local.ini $PHP_INI_DIR/conf.d
-#COPY ./.docker/develop/php/xlaravel.pool.conf /usr/local/etc/php-fpm.d/
-RUN docker-php-ext-install sockets
+# This is our final container. We will copy over our built version of Laravel.
+FROM octane-base
 
-COPY ./.docker/develop/php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+USER www-data
 
-WORKDIR /var/www
+# Allow the user to specify Swoole options via ENV variables.
+ENV SWOOLE_MAX_REQUESTS "500"
+ENV SWOOLE_TASK_WORKERS "auto"
+ENV SWOOLE_WATCH $true
+ENV SWOOLE_WORKERS "auto"
 
-ARG PUID=1000
-ENV PUID ${PUID}
-ARG PGID=1000
-ENV PGID ${PGID}
+# Expose the ports that Octane is using.
+EXPOSE 8000
 
-RUN groupmod -o -g ${PGID} www-data && \
-    usermod -o -u ${PUID} -g www-data www-data
+# Run Swoole
+CMD if [[ -z $SWOOLE_WATCH ]] ; then \
+    php artisan octane:start --server="swoole" --host="0.0.0.0" --workers=${SWOOLE_WORKERS} --task-workers=${SWOOLE_TASK_WORKERS} --max-requests=${SWOOLE_MAX_REQUESTS} ; \
+else \
+    php artisan octane:start --server="swoole" --host="0.0.0.0" --workers=${SWOOLE_WORKERS} --task-workers=${SWOOLE_TASK_WORKERS} --max-requests=${SWOOLE_MAX_REQUESTS} --watch ; \
+fi
 
-ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
-
-#TODO: add cron
-#COPY ./.docker/common/crontab /etc/crontabs/root
-#CMD crond -f
+# Check the health status using the Octane status command.
+HEALTHCHECK CMD php artisan octane:status --server="swoole"
