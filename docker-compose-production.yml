@@ -1,65 +1,71 @@
 version: "3.7"
 
 networks:
-  devhub:
-    driver: bridge
+    devhub:
+        driver: bridge
 
 services:
-  nginx:
-    container_name: nginx
-    image: ${REGISTRY:-localhost}/devhub_nginx:${IMAGE_TAG}
-    restart: always
-    volumes:
-      - public:/var/www/public:ro
-      - storage:/var/www/storage/app/public:ro
-      - lang:/var/www/resource/lang:ro
-    ports:
-      - "80:80"
-    depends_on:
-      - php
-      - mysql
-      - redis
-    networks:
-      - devhub
+    nginx:
+        container_name: nginx
+        image: ${REGISTRY:-localhost}/devhub_nginx:${IMAGE_TAG}
+        restart: always
+        volumes:
+            - public:/var/www/public:ro
+            - storage:/var/www/storage/app/public:ro
+            - lang:/var/www/resource/lang:ro
+        ports:
+            - "8090:80"
+        depends_on:
+            - php
+            - mysql
+            - redis
+        networks:
+            - devhub
 
-  mysql:
-    container_name: mysql
-    image: ${REGISTRY:-localhost}/devhub_mysql:${IMAGE_TAG}
-    restart: unless-stopped
-    tty: true
-    volumes:
-      - ./../data:/var/lib/mysql/
-    environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
-#      MYSQL_USER: '${DB_USERNAME:-root}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    networks:
-      - devhub
+    mysql:
+        container_name: mysql
+        image: ${REGISTRY:-localhost}/devhub_mysql:${IMAGE_TAG}
+        restart: unless-stopped
+        tty: true
+        volumes:
+            - ./../data:/var/lib/mysql/
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
+            #      MYSQL_USER: '${DB_USERNAME:-root}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        networks:
+            - devhub
 
-  redis:
-    container_name: redis
-    image: redis:6.2-alpine
-    restart: unless-stopped
-    networks:
-      - devhub
+    redis:
+        container_name: redis
+        image: redis:6.2-alpine
+        restart: unless-stopped
+        networks:
+            - devhub
 
-  php:
-    container_name: php
-    image: ${REGISTRY:-localhost}/devhub:${IMAGE_TAG}
-    restart: always
-    volumes:
-      - public:/var/www/public
-      - storage:/var/www/storage/app/public
-      - lang:/var/www/resource/lang
-    networks:
-      - devhub
+    php:
+        container_name: php
+        image: ${REGISTRY:-localhost}/devhub:${IMAGE_TAG}
+        restart: always
+        volumes:
+            - public:/var/www/public
+            - storage:/var/www/storage/app/public
+            - lang:/var/www/resource/lang
+        networks:
+            - devhub
+        deploy:
+            restart_policy:
+                condition: on-failure
+                delay: 5s
+                max_attempts: 5
+                window: 120s
 
 volumes:
-  public:
-    driver: local
-  storage:
-    driver: local
-  lang:
-    driver: local
+    public:
+        driver: local
+    storage:
+        driver: local
+    lang:
+        driver: local

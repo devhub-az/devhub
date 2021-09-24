@@ -1,7 +1,7 @@
 @can(App\Policies\AuthorPolicy::ADMIN, App\Models\User::class)
     @include('admin.include.adminbar')
 @endcan
-<header class="bg-white dark:bg-gray-800 sm:px-4 md:px-4 xs:px-4" id="header">
+<header class="bg-white dark:bg-gray-800 sm:px-4 md:px-4 xs:px-4 trans-none" id="header">
     <div class="flex items-center justify-between h-12 lg:container mx-auto">
         <div class="flex items-center xs:space-x-0">
             <div id="mobile-menu__toggler" class="lg:hidden xl:hidden">
@@ -75,11 +75,11 @@
                 </a>
                 <div class="flex items-center space-x-2 xs:hidden sm:hidden">
                     <a href="{{ route('login') }}"
-                       class="btn-outline text-xs px-4 h-7 trans-none">
+                       class="btn-outline text-xs px-4 h-7">
                         {{ __('devhub.login') }}
                     </a>
                     <a href="{{ route('register') }}"
-                       class="btn text-xs px-4 h-7 trans-none">
+                       class="btn text-xs px-4 h-7">
                         {{ __('devhub.register') }}
                     </a>
                 </div>

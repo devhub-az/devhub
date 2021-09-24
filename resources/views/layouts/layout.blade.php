@@ -39,13 +39,13 @@
 <body class="flex bg-wall font-sans flex-col min-h-screen overflow-x-hidden dark:bg-dwall"
       itemscope itemtype="http://schema.org/WebPage">
 
-<div class="bg-cerulean-500 w-full">
-    <div class="text-center mx-auto my-1">
-        <a href="https://github.com/hose1021/DevHub" rel="noreferrer" target="_blank" class="text-white">
-            {{ __('devhub.supportUs') }} →
-        </a>
-    </div>
-</div>
+{{--<div class="bg-cerulean-500 w-full">--}}
+{{--    <div class="text-center mx-auto my-1">--}}
+{{--        <a href="https://github.com/hose1021/DevHub" rel="noreferrer" target="_blank" class="text-white">--}}
+{{--            {{ __('devhub.supportUs') }} →--}}
+{{--        </a>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 {{-- Header --}}
 @include('include.header')
