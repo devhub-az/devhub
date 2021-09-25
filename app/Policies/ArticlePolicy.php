@@ -7,11 +7,11 @@ use App\Models\User;
 
 final class ArticlePolicy
 {
-    const UPDATE = 'update';
-    const DELETE = 'delete';
-    const APPROVE = 'approve';
-    const DISAPPROVE = 'disapprove';
-    const PINNED = 'togglePinnedStatus';
+    public const UPDATE = 'update';
+    public const DELETE = 'delete';
+    public const APPROVE = 'approve';
+    public const DISAPPROVE = 'disapprove';
+    public const PINNED = 'togglePinnedStatus';
 
     public function update(User $user, Article $article): bool
     {

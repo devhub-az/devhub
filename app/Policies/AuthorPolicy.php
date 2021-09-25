@@ -6,10 +6,10 @@ use App\Models\User;
 
 final class AuthorPolicy
 {
-    const FOLLOW = 'follow';
-    const ADMIN = 'admin';
-    const BAN = 'ban';
-    const DELETE = 'delete';
+    public const FOLLOW = 'follow';
+    public const ADMIN = 'admin';
+    public const BAN = 'ban';
+    public const DELETE = 'delete';
 
     public function follow(User $user, User $subject): bool
     {
