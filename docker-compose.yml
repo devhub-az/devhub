@@ -1,79 +1,79 @@
 version: "3.7"
 
-networks:
-  devhub:
-    driver: bridge
-
 services:
-  nginx:
-    image: ${REGISTRY:-localhost}/devhub_nginx:latest
-    build:
-      context: ./
-      dockerfile: .docker/develop/nginx/Dockerfile
-      cache_from:
-        - ${REGISTRY:-localhost}/devhub_nginx:latest
-    container_name: nginx
-    ports:
-      - "8090:80"
-    volumes:
-      - ./:/var/www/
-    depends_on:
-      - php
-      - mysql
-      - redis
-    networks:
-      - devhub
+    nginx:
+        image: ${REGISTRY:-localhost}/devhub_nginx:latest
+        build:
+            context: ./
+            dockerfile: .docker/develop/nginx/Dockerfile
+            cache_from:
+                - ${REGISTRY:-localhost}/devhub_nginx:latest
+        container_name: nginx
+        ports:
+            - "8090:80"
+        volumes:
+            - ./:/var/www/
+        depends_on:
+            - php
+            - mysql
+            - redis
+        networks:
+            - devhub
 
-  mysql:
-    image: ${REGISTRY:-localhost}/devhub_mysql:latest
-    build:
-      context: ./
-      dockerfile: .docker/develop/mysql/Dockerfile
-      cache_from:
-        - ${REGISTRY:-localhost}/devhub_mysql:latest
-    container_name: mysql
-    restart: unless-stopped
-    tty: true
-    ports:
-      - '${FORWARD_DB_PORT:-4306}:3306'
-    environment:
-      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
-      MYSQL_USER: '${DB_USERNAME:-root}'
-      MYSQL_PASSWORD: '${DB_PASSWORD}'
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    volumes:
-      - mysql:/var/lib/mysql
-    networks:
-      - devhub
+    mysql:
+        image: ${REGISTRY:-localhost}/devhub_mysql:latest
+        build:
+            context: ./
+            dockerfile: .docker/develop/mysql/Dockerfile
+            cache_from:
+                - ${REGISTRY:-localhost}/devhub_mysql:latest
+        container_name: mysql
+        restart: unless-stopped
+        tty: true
+        ports:
+            - '${FORWARD_DB_PORT:-4306}:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE:-devhub}'
+            MYSQL_USER: '${DB_USERNAME:-root}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - mysql:/var/lib/mysql
+        networks:
+            - devhub
 
-  redis:
-    container_name: redis
-    image: redis:6.2-alpine
-    ports:
-      - "6379:6379"
-    networks:
-      - devhub
+    redis:
+        container_name: redis
+        image: redis:6.2-alpine
+        ports:
+            - "6379:6379"
+        networks:
+            - devhub
 
-  php:
-    image: ${REGISTRY:-localhost}/devhub:latest
-    build:
-      context: ./
-      dockerfile: .docker/develop/php/Dockerfile
-      cache_from:
-        - ${REGISTRY:-localhost}/devhub:latest
-    container_name: php
-    environment:
-      PHP_IDE_CONFIG: 'serverName=docker'
-    volumes:
-      - ./:/var/www/
-#      - ./.docker/develop/php/local.ini:/usr/local/etc/php/conf.d
-      - ./.docker/develop/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
-    ports:
-      - "9000:9000"
-    networks:
-      - devhub
+    php:
+        image: ${REGISTRY:-localhost}/devhub:latest
+        build:
+            context: ./
+            dockerfile: .docker/develop/php/Dockerfile
+            cache_from:
+                - ${REGISTRY:-localhost}/devhub:latest
+        container_name: php
+        environment:
+            PHP_IDE_CONFIG: 'serverName=docker'
+        volumes:
+            - ./:/var/www/
+            #      - ./.docker/develop/php/local.ini:/usr/local/etc/php/conf.d
+            - ./.docker/develop/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+        ports:
+            - "9000:9000"
+        networks:
+            - devhub
+
+networks:
+    devhub:
+        driver: bridge
 
 volumes:
-  mysql:
-    driver: local
+    mysql:
+        driver: local

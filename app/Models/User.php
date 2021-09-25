@@ -50,9 +50,9 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
      */
     protected $primaryKey = 'id';
 
-    const DEFAULT = 1;
-    const MODERATOR = 2;
-    const ADMIN = 3;
+    public const DEFAULT = 1;
+    public const MODERATOR = 2;
+    public const ADMIN = 3;
 
     /**
      * The "type" of the auto-incrementing ID.

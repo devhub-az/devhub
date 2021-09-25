@@ -3,38 +3,47 @@
 @section('title')Məlumat @stop
 
 @section('main')
-    <div class="relative">
-        <div class="absolute mx-auto left-0 right-0 h-96 -top-56 h-screen container" style="z-index: -1;">
-{{--            <div class="absolute top-0 w-full bg-white h-96"></div>--}}
-            <svg class="w-full h-full">
-                <circle class="md:hidde xs:hidden stroke-current text-gray-700" fill="none" stroke-width="1" cx="505" cy="505"
-                        r="600">
-                </circle>
-                <circle fill="none" class="stroke-current text-gray-700 md:hidden xs:hidden" stroke-width="1" cx="505" cy="505"
-                        r="432">
-                </circle>
-                <circle fill="none" class="stroke-current text-gray-700 xs:hidden" stroke-width="1" cx="505" cy="505"
-                        r="306">
-                </circle>
-                <circle fill="none" class="stroke-current text-gray-700" stroke-width="1" cx="505" cy="505"
-                        r="207">
-                </circle>
-            </svg>
-        </div>
-        <div class="relative w-full py-24 bg-cover bg-center xs:bg-left">
-            <div class="relative flex flex-col text-center w-full mb-12 text-white text-center py-6">
-                <div class="w-1/3 md:w-full sm:w-full xs:w-full px-2 mx-auto">
-                    <p class="text-4xl"><span class="font-medium">DevHub</span>-a xoş gəlmisiniz</p>
-                    <img src="{{ asset('images/DevHub_Compact_Logo.svg') }}" alt="Logo image" width="158"
-                         class="mx-auto py-8 xs:w-3/12">
-                    <p class="leading-6 text-shadow">
-                        <span class="font-medium">DevHub</span>-ın əsas vəzifəsi Azərbaycan
-                        proqramçılarının təcrübələri və uğurlarını
-                        digər proqramçılar ilə bölüşməsinə kömək etməkdir.
-                    </p>
-                </div>
+    <div class="bg-radial-green bg-no-repeat bg-contain bg-opacity-60 relative">
+        <div class="xl:container py-20 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:px-4 space-y-4">
+            <div>
+                <h1 class="text-7xl dark:text-gray-300 px-4 sm:text-5xl w-auto font-bold text-center mx-auto max-w-5xl leading-tight sm:px-0">
+                    Делитесь знаниями и опытом с коллегами по IT
+                </h1>
+                <h3 class="text-xl dark:text-gray-400 leading-normal font-normal text-vanilla-300 px-4 sm:px-0 max-w-3xl mx-auto text-center">
+                    DevHub-ın əsas vəzifəsi Azərbaycan proqramçılarının təcrübələri və uğurlarını.
+                </h3>
             </div>
+            <div class="flex space-x-2 items-center max-w-xl mx-auto">
+                <a href="#"
+                   class="flex items-center dark:text-gray-300 text-center flex-row w-full px-4 py-3 leading-none rounded-sm font-semibold bg-cerulean-500">
+                    GitHub
+                </a>
+                <a href="#"
+                   class="flex items-center dark:text-gray-300 text-center flex-row w-full px-4 py-3 leading-none rounded-sm font-semibold bg-cerulean-500">
+                    GitHub
+                </a>
+                <a href="#"
+                   class="flex items-center dark:text-gray-300 text-center flex-row w-full px-4 py-3 leading-none rounded-sm font-semibold bg-cerulean-500">
+                    GitHub
+                </a>
+            </div>
+
+            {{--            <div class="relative w-full py-24 bg-cover bg-center xs:bg-left">--}}
+            {{--                <div class="relative flex flex-col text-center w-full mb-12 text-white text-center py-6">--}}
+            {{--                    <div class="w-1/3 md:w-full sm:w-full xs:w-full px-2 mx-auto">--}}
+            {{--                        <p class="text-4xl"><span class="font-medium">DevHub</span>-a xoş gəlmisiniz</p>--}}
+            {{--                        <img src="{{ asset('images/DevHub_Compact_Logo.svg') }}" alt="Logo image" width="158"--}}
+            {{--                             class="mx-auto py-8 xs:w-3/12">--}}
+            {{--                        <p class="leading-6 text-shadow">--}}
+            {{--                            <span class="font-medium">DevHub</span>-ın əsas vəzifəsi Azərbaycan--}}
+            {{--                            proqramçılarının təcrübələri və uğurlarını--}}
+            {{--                            digər proqramçılar ilə bölüşməsinə kömək etməkdir.--}}
+            {{--                        </p>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
         </div>
+
         <section class="xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:px-4">
             <div class="flex space-x-10 rounded-xl w-full px-12 py-12 xs:block"
                  style="background: linear-gradient(161deg, rgba(64, 229, 255, 0.5), rgba(20, 91, 252, 0.5)) rgb(107 107 107)">

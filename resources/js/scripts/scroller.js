@@ -61,3 +61,37 @@ window.$ = window.jQuery = require('jquery');
     scroller.addEventListener('click', doScroll);
 
 })();
+
+// var num = 200; //number of pixels before modifying styles
+//
+// $(window).bind('scroll', function () {
+//     if ($(window).scrollTop() > num) {
+//         $('.menu').addClass('fixed');
+//     } else {
+//         $('.menu').removeClass('fixed');
+//     }
+// });
+
+$(document).ready(function() {
+    // grab the initial top offset of the navigation
+    var stickyNavTop = $("header").offset().top;
+
+    // our function that decides weather the navigation bar should have "fixed" css position or not.
+    var stickyNav = function(){
+        var scrollTop = $(window).scrollTop(); // our current vertical position from the top
+
+        // if we've scrolled more than the navigation, change its position to fixed to stick to top,
+        // otherwise change it back to relative
+        if (scrollTop > stickyNavTop) {
+            $("header").addClass('sticky top-0 dark:border-gray-700 w-full backdrop-blur bg-opacity-25 dark:backdrop-blur border-b dark:bg-opacity-25 no-filter:bg-opacity-95 z-50');
+        } else {
+            $("header").removeClass('sticky top-0 dark:border-gray-700 backdrop-blur bg-opacity-25 dark:backdrop-blur dark:bg-opacity-25 border-b no-filter:bg-opacity-95 w-full');
+        }
+    };
+
+    stickyNav();
+    // and run it again every time you scroll
+    $(window).scroll(function() {
+        stickyNav();
+    });
+});
