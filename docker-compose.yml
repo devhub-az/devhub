@@ -1,9 +1,5 @@
 version: "3.7"
 
-networks:
-  devhub:
-    driver: bridge
-
 services:
   mysql:
     image: ${REGISTRY:-localhost}/devhub_mysql:latest
@@ -28,13 +24,13 @@ services:
     networks:
       - devhub
 
-  redis:
-    container_name: redis
-    image: redis:6.2-alpine
-    ports:
-      - "6379:6379"
-    networks:
-      - devhub
+    redis:
+        container_name: redis
+        image: redis:6.2-alpine
+        ports:
+            - "6379:6379"
+        networks:
+            - devhub
 
   php:
     image: ${REGISTRY:-localhost}/devhub:latest
@@ -56,5 +52,5 @@ services:
       - devhub
 
 volumes:
-  mysql:
-    driver: local
+    mysql:
+        driver: local

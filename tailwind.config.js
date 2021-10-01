@@ -69,6 +69,9 @@ module.exports = {
                 'left': '70%',
                 'right': '30%',
             },
+            backgroundImage: {
+                'radial-green': 'radial-gradient(56.75% 26.75% at 0 0,rgb(13 132 175 / 55%) 0,rgb(41 106 154 / 0%) 100%)',
+            },
             boxShadow: {
                 rwhite: 'inset 40px 0 25px -25px #aaa',
                 rblack: 'inset 40px 0 25px -25px #333',

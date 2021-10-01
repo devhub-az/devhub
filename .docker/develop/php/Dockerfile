@@ -32,7 +32,6 @@ RUN apk add --no-cache --virtual php_dependencies $PHPIZE_DEPS && \
     apk del php_dependencies && \
     chown -R www-data:www-data /var/www
 
-
 # This stage is so that we can build up everything that doesn't require Laravel
 # so as to not bust the caching for those items.
 FROM php-base as octane-base
