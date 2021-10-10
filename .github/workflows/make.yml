@@ -36,8 +36,8 @@ jobs:
       - name: Docker build
         run: make docker-build
         
-      - name: Composer update
-        run: make composer-update
+      - name: Composer install
+        run: make composer-install
         
       - name: Yarn install
         run: make yarn-install
