@@ -69,17 +69,17 @@
                   class="iconify text-lg m-auto text-gray-600 xs:text-2xl cursor-pointer dark:text-gray-300 transition-none"
                   data-icon="tabler:search"></span>
             @guest
-                <a href="/login"
+                <a href="{{ route('login') }}"
                    class="lg:hidden xl:hidden md:hidden sm:block xs:block text-2xl text-gray-700 dark:text-gray-100 dark:hover:text-cerulean-100">
                     <i class="iconify" data-icon="mdi-account-outline"></i>
                 </a>
                 <div class="flex items-center space-x-2 xs:hidden sm:hidden">
                     <a href="{{ route('login') }}"
-                       class="btn-outline text-xs px-4 h-7">
+                       class="btn-outline trans-none text-xs px-4 h-7">
                         {{ __('devhub.login') }}
                     </a>
                     <a href="{{ route('register') }}"
-                       class="btn text-xs px-4 h-7">
+                       class="btn trans-none text-xs px-4 h-7">
                         {{ __('devhub.register') }}
                     </a>
                 </div>

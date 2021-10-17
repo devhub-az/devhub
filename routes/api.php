@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
-Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
+//Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
 
 Route::prefix('articles')->group(
     function () {
@@ -101,20 +101,20 @@ Route::prefix('authors')->group(
         Route::get('{id}/all', [ArticleAuthorController::class, 'articles']);
         Route::get('{id}/follow_check', [AuthorController::class, 'userFollowCheck']);
         Route::get('{id}/follow_check', [AuthorController::class, 'userFollowCheck']);
-        Route::get('{id}/followings', [AuthorController::class, 'followings']);
-        Route::get('{id}/followers', [AuthorController::class, 'followers']);
+//        Route::get('{id}/followings', [AuthorController::class, 'followings']);
+//        Route::get('{id}/followers', [AuthorController::class, 'followers']);
     }
 );
-Route::get('search_user', [AuthorController::class, 'search_user_by_key']);
-
-/*
- * Profile Api
- */
-//    Route::get('/users/{id}/articles', [UserController::class, 'articles']);
-//    Route::post('/users/{id}/profile_update', [UserController::class, 'upload']);
-
-/*
- * Search Api.
- */
-Route::get('search/articles/search={search}', [SearchController::class, 'articles']);
-Route::get('search/authors/search={search}', [SearchController::class, 'authors']);
+//Route::get('search_user', [AuthorController::class, 'search_user_by_key']);
+//
+///*
+// * Profile Api
+// */
+////    Route::get('/users/{id}/articles', [UserController::class, 'articles']);
+////    Route::post('/users/{id}/profile_update', [UserController::class, 'upload']);
+//
+///*
+// * Search Api.
+// */
+//Route::get('search/articles/search={search}', [SearchController::class, 'articles']);
+//Route::get('search/authors/search={search}', [SearchController::class, 'authors']);

@@ -44,14 +44,14 @@ Route::group(
     ['middleware' => ['auth']],
     function () {
         Route::get('favorite', [HomeController::class, 'articlesApiRoute'])->name('favorite');
-        Route::get('tracker', [Auth::class, 'index'])->name('tracker');
-        Route::get('tracker/remove/all', [Auth::class, 'deleteAll'])->name('delete-all-trackers');
+//        Route::get('tracker', [Auth::class, 'index'])->name('tracker');
+//        Route::get('tracker/remove/all', [Auth::class, 'deleteAll'])->name('delete-all-trackers');
 
         Route::prefix('saved')->group(
             function () {
-                Route::get('/articles', [Auth::class, 'indexPosts'])->name('saved-articles');
+//                Route::get('/articles', [Auth::class, 'indexPosts'])->name('saved-articles');
 
-                Route::get('/comments', [Auth::class, 'indexComments'])->name('saved-comments');
+//                Route::get('/comments', [Auth::class, 'indexComments'])->name('saved-comments');
             }
         );
 
@@ -74,7 +74,7 @@ Route::group(
         Route::get('{article_show}', [ArticleController::class, 'show'])->name('article.show')->middleware('session');
         Route::get('{article_show}/edit', [ArticleController::class, 'edit'])->name('article.edit');
         Route::put('{article_show}', [ArticleController::class, 'update'])->name('article.update');
-        Route::delete('{article_show}', [ArticleController::class, 'delete'])->name('article.delete');
+//        Route::delete('{article_show}', [ArticleController::class, 'delete'])->name('article.delete');
         Route::post('/{article_show}/favorite', [ArticleController::class, 'favorite']);
     }
 );
@@ -115,7 +115,7 @@ Route::group(
         Route::get('/', [AuthorController::class, 'showInfo'])->name('user_info');
         Route::get('followers', [AuthorController::class, 'showFollowers'])->name('user_followers');
         Route::get('followings', [AuthorController::class, 'showFollowings'])->name('user_followings');
-        Route::get('favorites', [ProfileController::class, 'favorites']);
+//        Route::get('favorites', [ProfileController::class, 'favorites']);
     }
 );
 
@@ -133,7 +133,7 @@ Route::group(
         //Logs
         Route::get('logs', [AdminController::class, 'logs'])->name('.logs');
         // Users
-        Route::get('users/{username}', [UsersController::class, 'show'])->name('.users.show');
+//        Route::get('users/{username}', [UsersController::class, 'show'])->name('.users.show');
         Route::put('users/{username}/ban', [UsersController::class, 'ban'])->name('.users.ban');
         Route::put('users/{username}/unban', [UsersController::class, 'unban'])->name('.users.unban');
         Route::delete('users/{username}', [UsersController::class, 'delete'])->name('.users.delete');
@@ -146,27 +146,27 @@ Route::group(
     }
 );
 
-// Popover
-Route::group(
-    ['prefix' => 'popover'],
-    function () {
-        Route::get('author/{id}', [AuthorController::class, 'popover']);
-    }
-);
-
-//Devhub alive status
-Route::group(
-    ['prefix' => 'status'],
-    function () {
-        Route::get('ping', [StatusController::class, 'ping']);
-    }
-);
-
-Route::get(
-    'test',
-    function () {
-        sleep(1);
-
-        return new Response(['status' => 'success']);
-    }
-);
+//// Popover
+//Route::group(
+//    ['prefix' => 'popover'],
+//    function () {
+//        Route::get('author/{id}', [AuthorController::class, 'popover']);
+//    }
+//);
+//
+////Devhub alive status
+//Route::group(
+//    ['prefix' => 'status'],
+//    function () {
+//        Route::get('ping', [StatusController::class, 'ping']);
+//    }
+//);
+//
+//Route::get(
+//    'test',
+//    function () {
+//        sleep(1);
+//
+//        return new Response(['status' => 'success']);
+//    }
+//);
