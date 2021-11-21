@@ -1,4 +1,4 @@
-init: docker-down docker-pull docker-build composer-install yarn-install docker-up env key storage passport migrate
+init: docker-down docker-build composer-install yarn-install docker-up env key storage passport migrate yarn-prod
 up: docker-up
 down: docker-down
 prod: docker-up-prod
@@ -42,11 +42,11 @@ yarn-install:
 yarn-upgrade:
 	docker-compose run --rm php yarn upgrade
 
+yarn-prod:
+	docker-compose run --rm php yarn prod
+
 passport:
 	docker-compose run --rm php php artisan passport:keys
-
-yarn-watch:
-	docker-compose run php yarn watch
 
 env:
 	docker-compose run --rm php php -r "file_exists('.env') || copy('.env.example', '.env');"
