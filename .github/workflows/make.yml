@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: symfonycorp/security-checker-action@v2
       
       - name: Cache composer
         uses: actions/cache@v2
@@ -36,8 +37,8 @@ jobs:
       - name: Docker build
         run: make docker-build
         
-      - name: Composer update
-        run: make composer-update
+      - name: Composer install
+        run: make composer-install
         
       - name: Yarn install
         run: make yarn-install
