@@ -22,8 +22,11 @@ final class Hub extends Model
     use QueryCacheable;
 
     public $cacheFor = 3600;
+
     public $cacheTags = ['hubs'];
+
     public $cachePrefix = 'hubs_';
+
     protected static $flushCacheOnUpdate = true;
 
     public $timestamps = false;
