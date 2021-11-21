@@ -28,7 +28,7 @@
         "parsedown/laravel": "^1.1",
         "predis/predis": "^1.1",
         "qcod/laravel-gamify": "^1.0",
-        "rennokki/laravel-eloquent-query-cache": "^2.6",
+        "rennokki/laravel-eloquent-query-cache": "^3.1",
         "sentry/sentry-laravel": "^2.3",
         "spatie/laravel-medialibrary": "^9.0.0"
     },
