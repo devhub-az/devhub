@@ -29,7 +29,7 @@
         "vue-loader": "15.9.2",
         "vue-multiselect": "^2.1.6",
         "vue-template-compiler": "^2.6.12",
-        "webpack-cli": "^4.3.1"
+        "webpack-cli": "^4.9.1"
     },
     "dependencies": {
         "@editorjs/code": "^2.6.0",
