@@ -38,7 +38,6 @@ final class Article extends Model
 //    public $cachePrefix = 'articles_';
 //    protected static $flushCacheOnUpdate = true;
 
-
     /**
      * The "type" of the auto-incrementing ID.
      *

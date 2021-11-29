@@ -21,7 +21,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserTableSeeder::class);
         $this->call(HubsTableSeeder::class);
+        $this->call(CountriesTableSeeder::class);
+        $this->call(CurrenciesTableSeeder::class);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::enableQueryLog();
+        ini_set('memory_limit', '128M');
     }
 }

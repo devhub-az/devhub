@@ -20,8 +20,11 @@ final class Comment extends Model
     use QueryCacheable;
 
     public $cacheFor = 3600;
+
     public $cacheTags = ['comments'];
+
     public $cachePrefix = 'comments_';
+
     protected static $flushCacheOnUpdate = true;
 
     /**

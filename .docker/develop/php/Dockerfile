@@ -18,9 +18,6 @@ RUN apk update && apk add --no-cache \
     && npm --global install yarn \
     && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
-RUN pecl install xdebug \
-    && docker-php-ext-enable xdebug
-
 ENV TZ=Asia/Baku
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone

@@ -3,45 +3,34 @@
 @section('title')Məlumat @stop
 
 @section('main')
-    <div class="bg-radial-green bg-no-repeat bg-contain bg-opacity-60 relative">
-        <div class="xl:container py-20 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:px-4 space-y-4">
-            <div>
+    <div class="bg-radial-green bg-no-repeat bg-contain bg-opacity-60 relative" data-aos-easing="ease-out-quart" data-aos-duration="750" data-aos-delay="0">
+        <div class="xl:container py-20 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:px-4 space-y-56">
+            <div class="space-y-5">
                 <h1 class="text-7xl dark:text-gray-300 px-4 sm:text-5xl w-auto font-bold text-center mx-auto max-w-5xl leading-tight sm:px-0">
                     Делитесь знаниями и опытом с коллегами по IT
                 </h1>
-                <h3 class="text-xl dark:text-gray-400 leading-normal font-normal text-vanilla-300 px-4 sm:px-0 max-w-3xl mx-auto text-center">
+                <h3 class="text-xl dark:text-gray-400 leading-normal font-normal text-vanilla-300 px-4 sm:px-0 max-w-lg mx-auto text-center">
                     DevHub-ın əsas vəzifəsi Azərbaycan proqramçılarının təcrübələri və uğurlarını.
                 </h3>
             </div>
-            <div class="flex space-x-2 items-center max-w-xl mx-auto">
-                <a href="#"
-                   class="flex items-center dark:text-gray-300 text-center flex-row w-full px-4 py-3 leading-none rounded-sm font-semibold bg-cerulean-500">
-                    GitHub
-                </a>
-                <a href="#"
-                   class="flex items-center dark:text-gray-300 text-center flex-row w-full px-4 py-3 leading-none rounded-sm font-semibold bg-cerulean-500">
-                    GitHub
-                </a>
-                <a href="#"
-                   class="flex items-center dark:text-gray-300 text-center flex-row w-full px-4 py-3 leading-none rounded-sm font-semibold bg-cerulean-500">
-                    GitHub
-                </a>
+            <div class="grid grid-cols-4 gap-6 mx-auto" data-aos="fade-down" data-aos-anchor="[data-aos-id-stats]">
+                <div data-aos="fade-down" data-aos-anchor="[data-aos-id-stats]"
+                   class="py-10 px-1 bg-[#2e2e33] text-center">
+                    <div class="text-gray-100 text-4xl font-bold">2.4M</div>
+                </div>
+                <div data-aos="fade-down" data-aos-anchor="[data-aos-id-stats]" data-aos-delay="100"
+                   class="py-10 px-1 bg-[#2e2e33] text-center">
+                    <div class="text-gray-100 text-4xl font-bold">2.4M</div>
+                </div>
+                <div data-aos="fade-down" data-aos-anchor="[data-aos-id-stats]" data-aos-delay="200"
+                   class="py-10 px-1 bg-[#2e2e33] text-center">
+                    <div class="text-gray-100 text-4xl font-bold">2.4M</div>
+                </div>
+                <div data-aos="fade-down" data-aos-anchor="[data-aos-id-stats]" data-aos-delay="300"
+                   class="py-10 px-1 bg-[#2e2e33] text-center">
+                    <div class="text-gray-100 text-4xl font-bold">2.4M</div>
+                </div>
             </div>
-
-            {{--            <div class="relative w-full py-24 bg-cover bg-center xs:bg-left">--}}
-            {{--                <div class="relative flex flex-col text-center w-full mb-12 text-white text-center py-6">--}}
-            {{--                    <div class="w-1/3 md:w-full sm:w-full xs:w-full px-2 mx-auto">--}}
-            {{--                        <p class="text-4xl"><span class="font-medium">DevHub</span>-a xoş gəlmisiniz</p>--}}
-            {{--                        <img src="{{ asset('images/DevHub_Compact_Logo.svg') }}" alt="Logo image" width="158"--}}
-            {{--                             class="mx-auto py-8 xs:w-3/12">--}}
-            {{--                        <p class="leading-6 text-shadow">--}}
-            {{--                            <span class="font-medium">DevHub</span>-ın əsas vəzifəsi Azərbaycan--}}
-            {{--                            proqramçılarının təcrübələri və uğurlarını--}}
-            {{--                            digər proqramçılar ilə bölüşməsinə kömək etməkdir.--}}
-            {{--                        </p>--}}
-            {{--                    </div>--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
         </div>
 
         <section class="xl:container my-20 mx-4 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:px-4">

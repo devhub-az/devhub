@@ -15,6 +15,8 @@ return [
     'authors' => 'Müəlliflər',
     'beta' => 'Beta',
     'register' => 'Qeydiyyatdan keçmək',
+    'name' => 'Ad',
+    'karma' => 'Karma',
     'connected' => 'Qoşulub',
     'connectedToDevHub' => 'DevHub-a qoşulanlar',
     'dark' => 'Tünd',

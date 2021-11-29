@@ -39,8 +39,11 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     use QueryCacheable;
 
     public $cacheFor = 3600;
+
     public $cacheTags = ['authors'];
+
     public $cachePrefix = 'authors_';
+
     protected static $flushCacheOnUpdate = true;
 
     /**
