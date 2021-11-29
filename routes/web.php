@@ -13,9 +13,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StatusController;
 use Carbon\Carbon;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
@@ -26,7 +25,6 @@ Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
 Route::post('/forgot-password', function (Request $request) {
-
     $status = Password::sendResetLink(
         $request->get('email')
     );

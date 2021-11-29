@@ -57,7 +57,7 @@ class HubController extends Controller
     {
         $user = auth()->guard('api')->user();
         $hub = Hub::findOrFail($request->get('id'));
-        if (isset($hub) && !$hub->hasBeenFavoritedBy($user)) {
+        if (isset($hub) && ! $hub->hasBeenFavoritedBy($user)) {
             $user->favorite($hub);
 
             return response()->json(['success' => 'success']);

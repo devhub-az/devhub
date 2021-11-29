@@ -8,10 +8,9 @@ use App\Http\Controllers\Api\ArticleTopController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
-use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 //Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
 
@@ -102,8 +101,7 @@ Route::prefix('authors')->group(
 //----------------------------------
 
 
-Route::post('/mail/test', function(Request $request){
-
+Route::post('/mail/test', function (Request $request) {
     Mail::to($request->to)->send(new TestMail($request->subject, $request->message));
 
     return response()->json([
