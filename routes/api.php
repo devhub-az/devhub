@@ -9,8 +9,11 @@ use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
 use App\Http\Controllers\Api\SearchController;
+use App\Http\Controllers\Api\TokenController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/sanctum/token', TokenController::class);
 
 //Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
 
