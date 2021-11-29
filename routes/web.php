@@ -13,15 +13,28 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StatusController;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['verify' => true]);
 Route::get('login/github', [LoginController::class, 'github']);
 Route::get('login/github/redirect', [LoginController::class, 'githubRedirect']);
-//Route::get('/forgot-password', function () {
-//    return view('auth.forgot-password');
-//})->middleware('guest')->name('password.request');
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+Route::post('/forgot-password', function (Request $request) {
+
+    $status = Password::sendResetLink(
+        $request->get('email')
+    );
+
+    return $status === Password::RESET_LINK_SENT
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
 Route::get(
     'lang/{locale}',
     function ($locale) {
@@ -49,7 +62,7 @@ Route::group(
 
         Route::prefix('saved')->group(
             function () {
-//                Route::get('/articles', [Auth::class, 'indexPosts'])->name('saved-articles');
+                Route::get('/articles', [Auth::class, 'indexPosts'])->name('saved-articles');
 
 //                Route::get('/comments', [Auth::class, 'indexComments'])->name('saved-comments');
             }

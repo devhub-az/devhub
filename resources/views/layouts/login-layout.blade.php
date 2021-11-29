@@ -34,7 +34,7 @@
 
 </head>
 
-<body data-theme="{{ Cookie::get('atr') ?? 'default' }}" class="flex bg-gray-100 font-sans flex-col min-h-screen"
+<body data-theme="{{ Cookie::get('atr') ?? 'default' }}" class="flex bg-wall dark:bg-dwall font-sans flex-col min-h-screen"
       style="linear-gradient(to top, rgb(202 202 202) 13%, rgb(243, 244, 246) 57%);">
 
 <div id="app">

@@ -1,5 +1,5 @@
 <p align="center">
-<img src="public/images/DevHub_Monochrome_Full_Logo.png" width="400">
+<img src="https://raw.githubusercontent.com/devhub-az/devhub/master/public/images/DevHub_Monochrome_Full_Logo.png" width="400">
 </p>
 
 <p align="center">
@@ -11,7 +11,7 @@
 ## About DevHub
 
 [AZ] **DevHub**, proqramçılar üçün informasiya texnologiyaları sahəsindəki məqalələri və istifadəçi nəşrlərini özündə birləşdirən bir blogdur.
-DevHub, ölkədə İT savadlılığının inkişafı üçün çalışan Azərbaycan developerlərinə yönəlib. 
+DevHub, ölkədə İT savadlılığının inkişafı üçün çalışan Azərbaycan developerlərinə yönəlib.
 DevHub-ın əsas vəzifəsi Azərbaycan proqramçılarının təcrübələri və uğurlarını digər proqramçılar ilə bölüşməsinə kömək etməkdir.
 DevHub, Tailwind, Vue, Laravel kimi müasir veb texnologiyalarından istifadə edir.
 
@@ -24,7 +24,7 @@ DevHub uses modern web technologies such as Tailwind, Vue, Laravel.
 
 [RU] **DevHub** это блог для программистов, который включает в себя статьи и публикации пользователей на темы в сфере информационных технологий.
 DevHub ориентирован на азербайджанских разработчиков с целью создать пространство для развития IT грамотности в стране.
-Основной задачей DevHub является помогать азербайджанским программистам обмениваться своим опытом и успехами с другими программистами. 
+Основной задачей DevHub является помогать азербайджанским программистам обмениваться своим опытом и успехами с другими программистами.
 DevHub использует такие современные веб-технологии, как Tailwind, Vue, Laravel.
 
 ## Setup, help & support.

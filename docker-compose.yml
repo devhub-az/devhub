@@ -1,16 +1,14 @@
-version: "3.7"
+version: "3.9"
 
 services:
-    nginx:
+    api:
         image: ${REGISTRY:-localhost}/devhub_nginx:latest
         build:
             context: ./
             dockerfile: .docker/develop/nginx/Dockerfile
             cache_from:
                 - ${REGISTRY:-localhost}/devhub_nginx:latest
-        container_name: nginx
-        ports:
-            - "8090:80"
+        container_name: api
         volumes:
             - ./:/var/www/
         depends_on:
@@ -18,7 +16,7 @@ services:
             - mysql
             - redis
         networks:
-            - devhub
+            - front_devhub
 
     mysql:
         image: ${REGISTRY:-localhost}/devhub_mysql:latest
@@ -41,7 +39,7 @@ services:
         volumes:
             - mysql:/var/lib/mysql
         networks:
-            - devhub
+            - front_devhub
 
     redis:
         container_name: redis
@@ -49,7 +47,16 @@ services:
         ports:
             - "6379:6379"
         networks:
-            - devhub
+            - front_devhub
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        container_name: mailhog
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+        networks:
+            - front_devhub
 
     php:
         image: ${REGISTRY:-localhost}/devhub:latest
@@ -68,10 +75,10 @@ services:
         ports:
             - "9000:9000"
         networks:
-            - devhub
+            - front_devhub
 
 networks:
-    devhub:
+    front_devhub:
         driver: bridge
 
 volumes:

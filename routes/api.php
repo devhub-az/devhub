@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\HubController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 //Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
 
@@ -61,15 +62,6 @@ Route::prefix('articles')->group(
     }
 );
 
-/*
- * Favorite Api
- */
-//Route::prefix('saved')->group(
-//    function () {
-//        Route::get('articles', [SavedController::class, 'allPosts']);
-//        Route::get('comments', [SavedController::class, 'allComments']);
-//    }
-//);
 
 /*
  * Hubs Api
@@ -105,16 +97,16 @@ Route::prefix('authors')->group(
 //        Route::get('{id}/followers', [AuthorController::class, 'followers']);
     }
 );
-//Route::get('search_user', [AuthorController::class, 'search_user_by_key']);
-//
-///*
-// * Profile Api
-// */
-////    Route::get('/users/{id}/articles', [UserController::class, 'articles']);
-////    Route::post('/users/{id}/profile_update', [UserController::class, 'upload']);
-//
-///*
-// * Search Api.
-// */
-//Route::get('search/articles/search={search}', [SearchController::class, 'articles']);
-//Route::get('search/authors/search={search}', [SearchController::class, 'authors']);
+
+// Mails
+//----------------------------------
+
+
+Route::post('/mail/test', function(Request $request){
+
+    Mail::to($request->to)->send(new TestMail($request->subject, $request->message));
+
+    return response()->json([
+        'success' => true,
+    ]);
+});

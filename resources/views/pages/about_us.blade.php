@@ -7,7 +7,7 @@
         <div class="xl:container py-20 sm:mx-0 xs:mx-0 lg:mx-auto xl:mx-auto overflow-hidden xs:px-4 space-y-56">
             <div class="space-y-5">
                 <h1 class="text-7xl dark:text-gray-300 px-4 sm:text-5xl w-auto font-bold text-center mx-auto max-w-5xl leading-tight sm:px-0">
-                    Делитесь знаниями и опытом с коллегами по IT
+                    {{ trans('devhub.about_title') }}
                 </h1>
                 <h3 class="text-xl dark:text-gray-400 leading-normal font-normal text-vanilla-300 px-4 sm:px-0 max-w-lg mx-auto text-center">
                     DevHub-ın əsas vəzifəsi Azərbaycan proqramçılarının təcrübələri və uğurlarını.
