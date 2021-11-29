@@ -5,8 +5,14 @@
 
 version: 2
 updates:
-  - package-ecosystem: ["composer", "npm"] # See documentation for possible values
+  - package-ecosystem: "composer" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
     open-pull-requests-limit: 10
+    
+   # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
