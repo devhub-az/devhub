@@ -40,6 +40,7 @@ class TestMail extends Command
     {
         $name = 'Cloudways';
         Mail::to('hose1021@gmail.com')->send(new \App\Mail\TestMail($name));
+
         return true;
     }
 }
