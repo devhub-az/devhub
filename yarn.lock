@@ -1241,9 +1241,9 @@ alphanum-sort@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
 
-alpinejs@^3.0.1:
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.5.2.tgz#bea3776402f32b2a5bed2d8005cef366da823371"
+alpinejs@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.6.1.tgz#b12328b92a0cd6db3387898cb74897bab1a795b2"
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
