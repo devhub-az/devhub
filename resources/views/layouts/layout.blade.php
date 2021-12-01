@@ -20,7 +20,7 @@
     {{-- CSS --}}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="{{ mix('css/tailwind.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/tailwind.css') }}" rel="stylesheet">
 
     <!-- Scripts -->
     <script>

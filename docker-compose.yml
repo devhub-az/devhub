@@ -51,6 +51,15 @@ services:
         networks:
             - devhub
 
+    mailhog:
+        image: mailhog/mailhog:latest
+        container_name: mailhog
+        ports:
+            - "8003:1025"
+            - "8025:8025"
+        networks:
+            - devhub
+
     php:
         image: ${REGISTRY:-localhost}/devhub:latest
         build:

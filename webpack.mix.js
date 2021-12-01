@@ -21,9 +21,9 @@ mix.copy('node_modules/animate.css/animate.min.css', 'public/css')
     .js('resources/js/includes/footer.js', 'public/js')
     .js('resources/js/login.js', 'public/js')
     .postCss("resources/sass/tailwind.css", "public/css", [
-        require('postcss-import'),
-        require("tailwindcss"),
         require('autoprefixer'),
+        require('postcss-import'),
+        require('tailwindcss'),
     ])
     .vue()
 
