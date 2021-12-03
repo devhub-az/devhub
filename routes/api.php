@@ -12,7 +12,6 @@ use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::prefix('auth')->group(function () {
     Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
     Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
