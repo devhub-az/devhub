@@ -15,22 +15,22 @@ class ArticleTopController extends Controller
 {
     private static int $count;
 
-    /**
-     * PostController constructor.
-     *
-     * @param Request $request
-     * @param int     $day
-     * @param int     $week
-     * @param int     $month
-     */
-    public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
-    {
-        self::$count = match ($request->segment(4)) {
-            'day' => $day,
-            'week' => $week,
-            'month' => $month,
-        };
-    }
+//    /**
+//     * PostController constructor.
+//     *
+//     * @param Request $request
+//     * @param int     $day
+//     * @param int     $week
+//     * @param int     $month
+//     */
+//    public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
+//    {
+//        self::$count = match ($request->segment(4)) {
+//            'day' => $day,
+//            'week' => $week,
+//            'month' => $month,
+//        };
+//    }
 
     /**
      * @return ArticlesResource

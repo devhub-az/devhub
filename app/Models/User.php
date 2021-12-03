@@ -94,6 +94,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'website',
         'description',
         'status',
+        'activation_token'
     ];
 
     /**
@@ -122,7 +123,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function types(): int
     {
-        return (int) $this->type;
+        return (int)$this->type;
     }
 
     public function isModerator(): bool
@@ -137,7 +138,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function isBanned(): bool
     {
-        return ! is_null($this->banned_at);
+        return !is_null($this->banned_at);
     }
 
     public function isLoggedInUser(): bool
@@ -187,7 +188,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
      */
     public function isOnline()
     {
-        return Cache::has('user-online-'.$this->id);
+        return Cache::has('user-online-' . $this->id);
     }
 
     public static function findByUsername(string $username): self

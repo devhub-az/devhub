@@ -5,22 +5,25 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\ArticleHubController;
 use App\Http\Controllers\Api\ArticleRelationshipController;
 use App\Http\Controllers\Api\ArticleTopController;
-use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Auth\VerificationController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
-use App\Http\Controllers\Api\TokenController;
-use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-//Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
 
-Route::post('/sanctum/token', TokenController::class);
+Route::prefix('auth')->group(function () {
+    Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+    Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 
-Route::post('login', [AuthController::class, 'login']);
-Route::post('register', [AuthController::class, 'register']);
-Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::get('me', [AuthController::class, 'details'])->middleware('auth:sanctum');
+
+    Route::post('/password/email', [AuthController::class, 'sendPasswordResetLinkEmail'])->middleware('throttle:5,1')->name('password.email');
+    Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
+});
 
 Route::prefix('articles')->group(
     function () {
@@ -104,15 +107,3 @@ Route::prefix('authors')->group(
 //        Route::get('{id}/followers', [AuthorController::class, 'followers']);
     }
 );
-
-// Mails
-//----------------------------------
-
-
-Route::post('/mail/test', function (Request $request) {
-    Mail::to($request->to)->send(new TestMail($request->subject, $request->message));
-
-    return response()->json([
-        'success' => true,
-    ]);
-});
