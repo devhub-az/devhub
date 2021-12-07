@@ -16,7 +16,7 @@ class ForceJson
     {
         $request->headers->set('Accept', 'application/json');
         $response = $next($request);
-        if (!empty($response->exception) && $response->exception instanceof NotFoundHttpException) {
+        if (! empty($response->exception) && $response->exception instanceof NotFoundHttpException) {
             return response()->json(['message' => "Not found"], 404);
         }
 

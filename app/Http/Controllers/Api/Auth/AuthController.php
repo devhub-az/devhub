@@ -5,16 +5,16 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use function auth;
+use function bcrypt;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
-use Str;
-use function auth;
-use function bcrypt;
 use function response;
+use Str;
 
 class AuthController extends Controller
 {
@@ -40,7 +40,6 @@ class AuthController extends Controller
         return response()->json(['token' => $token], 201);
     }
 
-
     /**
      * Handles Login Request
      *
@@ -53,6 +52,7 @@ class AuthController extends Controller
 
         if (Hash::check($request->get('password'), $user->password)) {
             $token = $user->createToken($request->email);
+
             return response()->json([
                 'user' => $user,
                 'token_type' => 'Bearer',
@@ -73,7 +73,6 @@ class AuthController extends Controller
     {
         return response()->json(['user' => auth()->user()]);
     }
-
 
     /**
      * Logout user (Revoke the token)
