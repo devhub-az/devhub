@@ -5,20 +5,20 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
-use function auth;
-use function bcrypt;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
-use function response;
+use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Str;
 
 class AuthController extends Controller
 {
-    public function register(Request $request): JsonResponse
+    public function register(Request $request)
     {
         $this->validate($request, [
             'username' => 'required|min:3',
@@ -30,38 +30,35 @@ class AuthController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'activation_token' => Str::random(40)
         ]);
 
-        $user->sendEmailVerificationNotification();
+//        $user->sendEmailVerificationNotification();
 
-        $token = $user->createToken($request->username)->plainTextToken;
+//        $token = $user->createToken($request->username)->plainTextToken;
 
-        return response()->json(['token' => $token], 201);
+//        return response()->json(['token' => $token], 201);
     }
 
     /**
      * Handles Login Request
      *
      * @param LoginRequest $request
-     * @return JsonResponse
+     * @return array
+     * @throws AuthenticationException
      */
-    public function login(LoginRequest $request): JsonResponse
+    public function login(LoginRequest $request)
     {
-        $user = User::where('email', $request->get('email'))->firstOrFail();
-
-        if (Hash::check($request->get('password'), $user->password)) {
-            $token = $user->createToken($request->email);
-
-            return response()->json([
-                'user' => $user,
-                'token_type' => 'Bearer',
-                'token' => $token->plainTextToken
-
-            ]);
-        } else {
-            return response()->json(['error' => 'UnAuthorised'], 401);
+        if(!auth()->attempt($request->only('email', 'password'))){
+            throw new AuthenticationException("Email or password is not valid");
         }
+
+
+        $token = auth()->user()->createToken('user-token');
+
+        return [
+            'message' => ['successfully logged in'],
+            'token' => $token->plainTextToken
+        ];
     }
 
     /**
@@ -71,7 +68,7 @@ class AuthController extends Controller
      */
     public function details(): JsonResponse
     {
-        return response()->json(['user' => auth()->user()]);
+        return response()->json(auth()->user());
     }
 
     /**
