@@ -9,11 +9,9 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 use Str;
 
 class AuthController extends Controller
@@ -48,7 +46,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if(!auth()->attempt($request->only('email', 'password'))){
+        if (! auth()->attempt($request->only('email', 'password'))) {
             throw new AuthenticationException("Email or password is not valid");
         }
 
