@@ -19,23 +19,19 @@ class AuthorResource extends JsonResource
     {
         return [
             'type' => 'authors',
-            'id' => (string) $this->id,
+            'id' => (string)$this->id,
             'attributes' => [
                 'name' => $this->name,
                 'username' => $this->username,
                 'email' => $this->email,
                 'company' => $this->company,
-                'avatar' => ($this->avatar !== 'default')
-                    ? $this->getMedia('avatars')->first()->getFullUrl()
-                    : config(
-                        'devhub.default_avatar'
-                    ),
+                'avatar' => $this->getMedia('avatars')->first() ? $this->getMedia('avatars')->first()->getFullUrl() : null,
                 'description' => $this->description,
                 'karma' => $this->karma,
                 'rating' => $this->rating,
                 'articles_count' => $this->articles_count,
-                'follower' => auth()->guard('api')->id() || Auth::check() ? $this->isFollowedBy(
-                    auth()->guard('api')->id() ?? Auth::user()->id
+                'follower' => auth()->guard('sanctum')->id() || Auth::check() ? $this->isFollowedBy(
+                    auth()->guard('sanctum')->id() ?? Auth::user()->id
                 ) : false,
                 'website' => $this->website,
                 'twitter' => $this->twitter,

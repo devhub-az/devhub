@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\AuthorResource;
 use App\Models\User;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Auth\Events\PasswordReset;
@@ -46,7 +47,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if (! auth()->attempt($request->only('email', 'password'))) {
+        if (!auth()->attempt($request->only('email', 'password'))) {
             throw new AuthenticationException("Email or password is not valid");
         }
 
@@ -62,22 +63,21 @@ class AuthController extends Controller
     /**
      * Returns Authenticated User Details
      *
-     * @return JsonResponse
+     * @return AuthorResource
      */
-    public function details(): JsonResponse
+    public function details(): AuthorResource
     {
-        return response()->json(auth()->user());
+        return new AuthorResource(auth('sanctum')->user());
     }
 
     /**
      * Logout user (Revoke the token)
      *
-     * @param Request $request
      * @return JsonResponse [string] message
      */
-    public function logout(Request $request): JsonResponse
+    public function logout(): JsonResponse
     {
-        $request->user()->tokens()->delete();
+        auth('sanctum')->user()->tokens()->where('id', auth('sanctum')->id())->delete();
 
         return response()->json([
             'message' => 'Successfully logged out'

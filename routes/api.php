@@ -19,6 +19,7 @@ Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::get('user', [AuthController::class, 'details']);
+    Route::post('logout', [AuthController::class, 'logout']);
 
     Route::post('/password/email', [AuthController::class, 'sendPasswordResetLinkEmail'])->middleware('throttle:5,1')->name('password.email');
     Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
