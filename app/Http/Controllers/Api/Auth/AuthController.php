@@ -47,7 +47,7 @@ class AuthController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        if (!auth()->attempt($request->only('email', 'password'))) {
+        if (! auth()->attempt($request->only('email', 'password'))) {
             throw new AuthenticationException("Email or password is not valid");
         }
 
