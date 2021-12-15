@@ -77,10 +77,10 @@ class AuthController extends Controller
      */
     public function logout(): JsonResponse
     {
-        auth('sanctum')->user()->tokens()->where('id', auth('sanctum')->id())->delete();
+        auth('sanctum')->user()->currentAccessToken()->delete();
 
         return response()->json([
-            'message' => 'Successfully logged out'
+            'message' => 'You have been successfully logged out',
         ]);
     }
 

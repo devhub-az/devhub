@@ -23,12 +23,9 @@ class HubResource extends JsonResource
                 //                'description'         => $this->description['az'],
                 'hub_followers_count' => $this->favorites_count > 0 ?
                     Numeric::number_format_short($this->favorites_count) : '0',
-                'follower_check' => auth()->guard('api')->id() ? $this->isFavoritedBy(auth()->guard('api')->user())
+                'follower_check' => auth('sanctum')->id() ? $this->isFavoritedBy(auth('sanctum')->user())
                     : false,
                 'articles_count' => $this->articles_count,
-            ],
-            'links' => [
-                'self' => route('hubs.api.show', ['hub' => $this->id]),
             ],
         ];
     }

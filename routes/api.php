@@ -78,14 +78,15 @@ Route::prefix('articles')->group(
  */
 Route::prefix('hubs')->group(
     function () {
-        Route::get('/', [HubController::class, 'index'])->middleware('api')->name('hubs.api.index');
-        Route::get('/{hub}', [HubController::class, 'show'])->middleware('api')->name('hubs.api.show');
-        Route::get('/filter/all', [HubController::class, 'all'])->middleware('api')->name('hubs.api.all');
-        Route::get('{hub}/top/day', [ArticleHubController::class, 'articles']);
-        Route::get('{hub}/top/week', [ArticleHubController::class, 'articles']);
-        Route::get('{hub}/top/month', [ArticleHubController::class, 'articles']);
-        Route::get('{hub}/all', [ArticleHubController::class, 'all']);
-        Route::post('/follow/{id}', [HubController::class, 'follow']);
+//        Route::get('/', [HubController::class, 'index'])->middleware('api')->name('hubs.api.index');
+        Route::get('top', [HubController::class, 'top']);
+//        Route::get('/{hub}', [HubController::class, 'show'])->middleware('api')->name('hubs.api.show');
+//        Route::get('/filter/all', [HubController::class, 'all'])->middleware('api')->name('hubs.api.all');
+//        Route::get('{hub}/top/day', [ArticleHubController::class, 'articles']);
+//        Route::get('{hub}/top/week', [ArticleHubController::class, 'articles']);
+//        Route::get('{hub}/top/month', [ArticleHubController::class, 'articles']);
+//        Route::get('{hub}/all', [ArticleHubController::class, 'all']);
+//        Route::post('/follow/{id}', [HubController::class, 'follow']);
     }
 );
 Route::get('/search_hub', [HubController::class, 'search_hub_by_key']);
