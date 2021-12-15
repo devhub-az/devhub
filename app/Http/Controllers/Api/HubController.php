@@ -10,7 +10,6 @@ use App\Models\Hub;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Support\Collection;
 
 class HubController extends Controller
@@ -65,7 +64,7 @@ class HubController extends Controller
     {
         $user = auth()->guard('api')->user();
         $hub = Hub::findOrFail($request->get('id'));
-        if (isset($hub) && !$hub->hasBeenFavoritedBy($user)) {
+        if (isset($hub) && ! $hub->hasBeenFavoritedBy($user)) {
             $user->favorite($hub);
 
             return response()->json(['success' => 'success']);
