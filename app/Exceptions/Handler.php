@@ -52,8 +52,9 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
     {
-        if ($e instanceof ValidationException)
+        if ($e instanceof ValidationException) {
             return response()->json(['message' => __('validation.message'), 'errors' => $e->validator->getMessageBag()], 422);
+        }
 
         if ($e instanceof ModelNotFoundException && $request->wantsJson()) {
             return response()->json(['message' => 'Not found'], 404);

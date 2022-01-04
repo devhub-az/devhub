@@ -16,7 +16,7 @@ class HubResource extends JsonResource
             'id' => (int)$this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'logo' => ($this->logo) ? '/' . strtolower($this->logo) : '/images/empty/code.png',
+            'logo' => ($this->logo) ? '/'.strtolower($this->logo) : '/images/empty/code.png',
             'rating' => $this->rating,
             //                'description'         => $this->description['az'],
             'hub_followers_count' => Numeric::number_format_short($this->followers_count),

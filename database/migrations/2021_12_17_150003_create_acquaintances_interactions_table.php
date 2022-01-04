@@ -15,7 +15,7 @@ class CreateAcquaintancesInteractionsTable extends Migration
             $table->id();
 
             $userModel = config('auth.providers.users.model');
-            $userModel = (new $userModel);
+            $userModel = (new $userModel());
 
             $userIdFkType = config('acquaintances.tables.interactions_user_id_fk_column_type');
             $table->{$userIdFkType}('user_id')->index();

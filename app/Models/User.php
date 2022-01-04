@@ -11,12 +11,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Cache;
 use Laravel\Sanctum\HasApiTokens;
+use Multicaret\Acquaintances\Traits\CanBeFollowed;
+use Multicaret\Acquaintances\Traits\CanFollow;
 use Multicaret\Acquaintances\Traits\CanVote;
 use QCod\Gamify\Gamify;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Multicaret\Acquaintances\Traits\CanFollow;
-use Multicaret\Acquaintances\Traits\CanBeFollowed;
 
 /**
  * Class User.
@@ -25,7 +25,8 @@ use Multicaret\Acquaintances\Traits\CanBeFollowed;
  */
 final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use CanFollow, CanBeFollowed;
+    use CanFollow;
+    use CanBeFollowed;
     use CanVote;
     use Notifiable;
     use InteractsWithMedia;

@@ -8,10 +8,8 @@ use Illuminate\Database\Schema\Blueprint;
  */
 class CreateAcquaintancesFriendshipsGroupsTable extends Migration
 {
-
     public function up()
     {
-
         Schema::create(config('acquaintances.tables.friendship_groups'), function (Blueprint $table) {
             $table->id();
 
@@ -25,14 +23,11 @@ class CreateAcquaintancesFriendshipsGroupsTable extends Migration
                   ->onDelete('cascade');
 
             $table->unique(['friendship_id', 'friend_id', 'friend_type', 'group_id'], 'unique');
-
         });
-
     }
 
     public function down()
     {
         Schema::dropIfExists(config('acquaintances.tables.friendship_groups'));
     }
-
 }

@@ -28,12 +28,15 @@ class ArticleHubController
         switch ($request->segment(4)) {
             case 'day':
                 self::$count = $day;
+
                 break;
             case 'week':
                 self::$count = $week;
+
                 break;
             case 'month':
                 self::$count = $month;
+
                 break;
         }
     }
@@ -46,12 +49,13 @@ class ArticleHubController
     {
         return new ArticlesResource(
             Article::with('hubs')
-                ->whereHas('hubs',
+                ->whereHas(
+                    'hubs',
                     function ($query) use ($id) {
                         $query->where('taggables.hub_id', '=', $id);
                     }
                 )
-                ->withcount('views',)
+                ->withcount('views', )
                 ->orderBy('created_at', 'DESC')
                 ->where('created_at', '>=', Carbon::now()->subDays(self::$count)->startOfDay())
                 ->take(50)->paginate(10)

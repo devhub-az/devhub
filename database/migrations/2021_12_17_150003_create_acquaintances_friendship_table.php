@@ -5,10 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateAcquaintancesFriendshipTable extends Migration
 {
-
     public function up()
     {
-
         Schema::create(config('acquaintances.tables.friendships'), function (Blueprint $table) {
             $table->id();
             $table->morphs('sender');
@@ -16,12 +14,10 @@ class CreateAcquaintancesFriendshipTable extends Migration
             $table->string('status')->default('pending')->comment('pending/accepted/denied/blocked/');
             $table->timestamps();
         });
-
     }
 
     public function down()
     {
         Schema::dropIfExists(config('acquaintances.tables.friendships'));
     }
-
 }

@@ -15,10 +15,10 @@ class HubController extends Controller
     public function articlesApiRoute(HubResource $hub)
     {
         return match (request()->path()) {
-            'hubs/' . $hub->slug => '/api/hubs/' . $hub->id . '/top/day',
-            'hubs/' . $hub->slug . '/top/week' => '/api/hubs/' . $hub->id . '/top/week',
-            'hubs/' . $hub->slug . '/top/month' => '/api/hubs/' . $hub->id . '/top/month',
-            'hubs/' . $hub->slug . '/all' => '/api/hubs/' . $hub->id . '/all',
+            'hubs/'.$hub->slug => '/api/hubs/'.$hub->id.'/top/day',
+            'hubs/'.$hub->slug.'/top/week' => '/api/hubs/'.$hub->id.'/top/week',
+            'hubs/'.$hub->slug.'/top/month' => '/api/hubs/'.$hub->id.'/top/month',
+            'hubs/'.$hub->slug.'/all' => '/api/hubs/'.$hub->id.'/all',
             default => response()->json([], 404),
         };
     }

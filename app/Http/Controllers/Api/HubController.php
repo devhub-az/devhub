@@ -52,8 +52,10 @@ class HubController extends Controller
     {
         $user = auth('sanctum')->user();
         $hub = Hub::findOrFail($id);
+
         try {
             $user->toggleFollow($hub);
+
             return response()->json('success');
         } catch (Exception $exception) {
             return response()->json($exception);
