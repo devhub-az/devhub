@@ -18,8 +18,6 @@ class ArticleHubsRelationshipResource extends ResourceCollection
      */
     public function toArray($request)
     {
-        $article = $this->additional['article_json'];
-
         return [
             'data' => HubsIdentifierResource::collection($this->collection),
         ];

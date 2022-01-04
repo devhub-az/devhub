@@ -15,19 +15,16 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "itsgoingd/clockwork": "^5.1",
         "jackiedo/dotenv-editor": "^1.2",
-        "jcc/laravel-vote": "dev-master",
         "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.12",
         "laravel/socialite": "^5.1",
         "laravel/telescope": "^4.6",
         "laravel/tinker": "^2.5",
         "mews/purifier": "~3.0",
-        "overtrue/laravel-favorite": "^4.0",
-        "overtrue/laravel-follow": "^3.1",
+        "multicaret/laravel-acquaintances": "^3.5",
         "parsedown/laravel": "^1.1",
         "predis/predis": "^1.1",
         "qcod/laravel-gamify": "^1.0",
-        "rennokki/laravel-eloquent-query-cache": "^3.1",
         "sentry/sentry-laravel": "^2.3",
         "spatie/laravel-medialibrary": "^9.9"
     },
@@ -41,7 +38,6 @@
         "nunomaduro/phpinsights": "dev-master",
         "phpunit/phpunit": "^9.3.3",
         "psalm/plugin-laravel": "^1.4",
-        "roave/security-advisories": "dev-master",
         "vimeo/psalm": "^4.6"
     },
     "config": {

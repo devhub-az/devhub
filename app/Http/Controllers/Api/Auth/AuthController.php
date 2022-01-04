@@ -25,7 +25,7 @@ class AuthController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        $user = User::create([
+        User::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -45,9 +45,9 @@ class AuthController extends Controller
      * @return array
      * @throws AuthenticationException
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): array
     {
-        if (! auth()->attempt($request->only('email', 'password'))) {
+        if (!auth()->attempt($request->only('email', 'password'))) {
             throw new AuthenticationException("Email or password is not valid");
         }
 
@@ -63,11 +63,12 @@ class AuthController extends Controller
     /**
      * Returns Authenticated User Details
      *
+     * @param Request $request
      * @return AuthorResource
      */
-    public function details(): AuthorResource
+    public function details(Request $request): AuthorResource
     {
-        return new AuthorResource(auth('sanctum')->user());
+        return new AuthorResource($request->user());
     }
 
     /**

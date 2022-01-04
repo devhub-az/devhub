@@ -15,30 +15,32 @@ class ArticleTopController extends Controller
 {
     private static int $count;
 
-//    /**
-//     * PostController constructor.
-//     *
-//     * @param Request $request
-//     * @param int     $day
-//     * @param int     $week
-//     * @param int     $month
-//     */
-//    public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
-//    {
-//        self::$count = match ($request->segment(4)) {
-//            'day' => $day,
-//            'week' => $week,
-//            'month' => $month,
-//        };
-//    }
+    /**
+     * PostController constructor.
+     *
+     * @param Request $request
+     * @param int $day
+     * @param int $week
+     * @param int $month
+     */
+    public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
+    {
+        self::$count = match ($request->segment(4)) {
+            'day' => $day,
+            'week' => $week,
+            'month' => $month,
+        };
+    }
 
     /**
+     * TODO: need refactoring
+     *
      * @return ArticlesResource
      */
     public function articles(): ArticlesResource
     {
-        $articles = Article::with('hubs')
-            ->withcount('views')
+        $articles = Article::with('hubs', 'author:id,name,username')
+            ->withcount('views', 'upvoters', 'downvoters')
             ->orderBy(
                 'created_at',
                 'DESC'
@@ -51,8 +53,8 @@ class ArticleTopController extends Controller
 
         $sorted = $articles->get()->sortByDesc(
             function ($articles) {
-                $articles->up = $articles->upVoters()->count();
-                $articles->down = $articles->downVoters()->count();
+                $articles->up = $articles->upvoters_count;
+                $articles->down = $articles->downvoters_count;
                 if ($articles->up === 0) {
                     return -$articles->down;
                 }
@@ -65,7 +67,7 @@ class ArticleTopController extends Controller
 
                 return $articles->num;
             }
-        )->take(50);
+        );
 
         $articles = new LengthAwarePaginator($sorted, $paginated->total(), $paginated->perPage());
 

@@ -9,78 +9,57 @@ use App\Http\Resources\HubsResource;
 use App\Models\Hub;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class HubController extends Controller
 {
-    /**
-     * @param FilterRequest $request
-     * @return HubsResource
-     */
     public function index(FilterRequest $request): HubsResource
     {
         return new HubsResource(
-            Hub::withCount(['articles', 'favorites'])
+            Hub::withCount(['articles', 'followers'])
                 ->orderBy($request->get('column'), $request->get('order'))
                 ->paginate($request->perPage)
         );
     }
 
-    /**
-     * @return Collection
-     */
     public function all(): Collection
     {
         return Hub::select(['id', 'name', 'logo'])->orderBy('name')->get();
     }
 
-    /**
-     * @param $id
-     *
-     * @return HubResource
-     */
-    public function show($id): HubResource
+    public function show($slug): HubResource
     {
         HubResource::withoutWrapping();
 
-        return new HubResource(Hub::findorfail($id));
+        return new HubResource(Hub::where('slug', $slug)->firstOrFail());
     }
 
-    public function top(): HubsResource
+    public function topRated(): HubsResource
     {
         return new HubsResource(
-            Hub::withCount('favorites')->orderBy('favorites_count', 'desc')->take(5)->get()
+            Hub::withCount('followers')->orderBy('followers_count', 'desc')->take(5)->get()
         );
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     * @throws Exception
-     */
-    public function follow(Request $request): JsonResponse
+    public function topFollowed(): HubsResource
     {
-        $user = auth()->guard('api')->user();
-        $hub = Hub::findOrFail($request->get('id'));
-        if (isset($hub) && ! $hub->hasBeenFavoritedBy($user)) {
-            $user->favorite($hub);
-
-            return response()->json(['success' => 'success']);
-        }
-        if ($hub->hasBeenFavoritedBy($user)) {
-            $user->unfavorite($hub);
-
-            return response()->json(['delete' => 'delete']);
-        }
-
-        return response()->json(['error' => 'error'], 401);
+        return new HubsResource(
+            Hub::withCount('followers')->orderBy('followers_count', 'desc')->take(5)->get()
+        );
     }
 
-    /**
-     * @return HubsResource
-     */
+    public function follow(int $id): JsonResponse
+    {
+        $user = auth('sanctum')->user();
+        $hub = Hub::findOrFail($id);
+        try {
+            $user->toggleFollow($hub);
+            return response()->json('success');
+        } catch (Exception $exception) {
+            return response()->json($exception);
+        }
+    }
+
     public function search_hub_by_key(): HubsResource
     {
         $key = \Request::get('q');

@@ -20,13 +20,9 @@ class Localization
      */
     public function handle($request, Closure $next): mixed
     {
-        $raw_locale = cache('lang');
-        if (in_array($raw_locale, config('app.locales'))) {
-            $locale = $raw_locale;
-        } else {
-            $locale = config('app.locale');
+        if ($request->header('Accept-Language')) {
+            \App::setLocale($request->header('Accept-Language'));
         }
-        App::setLocale($locale);
 
         return $next($request);
     }

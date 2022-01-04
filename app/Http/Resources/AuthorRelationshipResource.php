@@ -25,7 +25,7 @@ class AuthorRelationshipResource extends JsonResource
                 'data' => AuthorFollowersResource::collection($this->followers),
             ],
             'hubs_following' => [
-                'data' => AuthorHubsResource::collection($this->getFavoriteItems(Hub::class)->get()),
+                'data' => AuthorHubsResource::collection($this->followers(Hub::class)->get()),
             ],
         ];
     }
