@@ -816,9 +816,9 @@
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@editorjs/inline-code/-/inline-code-1.3.1.tgz#4890e30d00dcaeacafbcb30459309dfd740b0d4b"
 
-"@editorjs/link@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@editorjs/link/-/link-2.3.1.tgz#f4525192670429dd97a1fcc52e607deaa26dddef"
+"@editorjs/link@^2.4.0":
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/link/-/link-2.4.0.tgz#f54e41854e2453116999da985b745a182db14069"
   dependencies:
     "@babel/runtime" "^7.10.2"
 
