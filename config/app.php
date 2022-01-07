@@ -166,6 +166,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Parsedown\Providers\ParsedownServiceProvider::class,
         Mews\Purifier\PurifierServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -180,6 +181,7 @@ return [
         //        App\Providers\BroadcastServiceProvider::class,
         //        App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
         Jackiedo\DotenvEditor\DotenvEditorServiceProvider::class,
 
     ],
