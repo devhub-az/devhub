@@ -9,6 +9,7 @@ use App\Http\Resources\HubsResource;
 use App\Models\Hub;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class HubController extends Controller
@@ -62,11 +63,8 @@ class HubController extends Controller
         }
     }
 
-    public function search_hub_by_key(): HubsResource
+    public function search_hub_by_key(Request $request): HubsResource
     {
-        $key = \Request::get('q');
-        $hub = Hub::where('name', 'LIKE', "%{$key}%")->withCount(['articles', 'favorites'])->paginate();
-
-        return new HubsResource($hub);
+        return new HubsResource(Hub::where('name', 'LIKE', "%{$request->get('q')}%")->withCount(['articles'])->paginate());
     }
 }

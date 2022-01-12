@@ -46,7 +46,9 @@
                             <p>{{ hub.attributes.name }}</p>
                         </div>
                         <p class="text-sm w-full font-light pb-2 dark:text-gray-300">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus beatae cumque dolorum ea esse exercitationem fuga labore minus molestiae, nam nesciunt quae quasi quos recusandae repudiandae tempore totam, voluptatem.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusamus beatae cumque dolorum
+                            ea esse exercitationem fuga labore minus molestiae, nam nesciunt quae quasi quos recusandae
+                            repudiandae tempore totam, voluptatem.
                         </p>
                     </div>
                     <div class="flex items-center text-xs">
@@ -71,7 +73,8 @@
                         <div class="flex items-center">
                             <i class="iconify dark:text-gray-300" data-icon="tabler:mist"></i>
                             <p class="ml-1 text-sm dark:text-gray-300">
-                                <span class="xs:hidden">{{ $t('devhub.articles') }}</span> {{ hub.attributes.articles_count }}
+                                <span class="xs:hidden">{{ $t('devhub.articles') }}</span>
+                                {{ hub.attributes.articles_count }}
                             </p>
                         </div>
                     </div>
