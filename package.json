@@ -21,7 +21,7 @@
         "postcss": "^8.4.5",
         "postcss-import": "^14.0.0",
         "postcss-loader": "^6.1.0",
-        "sass": "^1.45.1",
+        "sass": "^1.48.0",
         "sass-loader": "^12.4.0",
         "sass-resources-loader": "^2.0.3",
         "stickybits": "^3.7.7",
