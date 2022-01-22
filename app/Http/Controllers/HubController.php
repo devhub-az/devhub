@@ -14,18 +14,13 @@ class HubController extends Controller
 {
     public function articlesApiRoute(HubResource $hub)
     {
-        switch (request()->path()) {
-            case 'hubs/'.$hub->slug:
-                return '/api/hubs/'.$hub->id.'/top/day';
-            case 'hubs/'.$hub->slug.'/top/week':
-                return '/api/hubs/'.$hub->id.'/top/week';
-            case 'hubs/'.$hub->slug.'/top/month':
-                return '/api/hubs/'.$hub->id.'/top/month';
-            case 'hubs/'.$hub->slug.'/all':
-                return '/api/hubs/'.$hub->id.'/all';
-            default:
-                return response()->json([], 404);
-        }
+        return match (request()->path()) {
+            'hubs/'.$hub->slug => '/api/hubs/'.$hub->id.'/top/day',
+            'hubs/'.$hub->slug.'/top/week' => '/api/hubs/'.$hub->id.'/top/week',
+            'hubs/'.$hub->slug.'/top/month' => '/api/hubs/'.$hub->id.'/top/month',
+            'hubs/'.$hub->slug.'/all' => '/api/hubs/'.$hub->id.'/all',
+            default => response()->json([], 404),
+        };
     }
 
     /**

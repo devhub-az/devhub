@@ -14,39 +14,25 @@ class ArticleResource extends JsonResource
      *
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'type' => 'articles',
-            'id' => (string) $this->id,
+            'id' => $this->id,
             'attributes' => [
-                'id' => (string) $this->id,
+                'id' => $this->id,
                 'title' => $this->title,
                 'slug' => $this->slug,
                 'body' => $this->body, //\Str::words($this->body, 87, ''),
-                'votes' => $this->voters()->count(),
-                'upvotes' => $this->up ?? $this->upVoters()->count(),
-                'downvotes' => $this->down ?? $this->downVoters()->count(),
+                'votes' => $this->voters_count,
+                'upvotes' => $this->up ?? $this->upvoters_count,
+                'downvotes' => $this->down ?? $this->downvoters_count,
                 'views' => $this->views_count,
-                'created_at' => $this->created_at,
-                'is_up_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasUpVoted($this->setAppends([])) : false,
-                'is_down_voted' => auth()->guard('api')->id() ? auth()->guard('api')->user()->hasDownVoted($this->setAppends([]))
-                    : false,
-                'real' => $this->num,
+                'created_at' => $this->created_at->diffForHumans(),
+                'is_up_voted' => auth('sanctum')->id() ? $this->isUpvotedBy(auth('sanctum')->user()) : false,
+                'is_down_voted' => auth('sanctum')->id() ? $this->isDownvotedBy(auth('sanctum')->user()) : false,
             ],
             'relationships' => new ArticleRelationshipResource($this),
-            'links' => [
-                'self' => route('articles.show', ['article_json' => $this->id]),
-            ],
         ];
-    }
-
-    public function text(string $text)
-    {
-        if (preg_match('/^.{1,512}\b/s', $text, $match)) {
-            $text = $match[0].(strlen($match[0]) < strlen($text) ? '...' : '');
-        }
-
-        return $text;
     }
 }

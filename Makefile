@@ -113,3 +113,12 @@ deploy:
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose down'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker volume rm devhub_public'
 	ssh -o StrictHostKeyChecking=no deploy@${HOST} 'cd devhub && docker-compose up --build --remove-orphans -d'
+
+banner:
+	@echo "oooooooooo.                        ooooo   ooooo              .o8      "
+	@echo "888      Y8b                        888     888               888      "
+	@echo "888      888  .ooooo.  oooo  oooo   888     888   oooo  oooo  888oooo.     Using DevHub at work? Work for Devhub."
+	@echo "888      888 d88   88b  88.  .88    888ooooo888   888   888   d88   88b     https://github.com/hose1021/DevHub"
+	@echo "888      888 888ooo888   88..88     888     888   888   888   888   888"
+	@echo "888     d88  888   .8     888       888     888   888   888   888   888            Made with ❤ by Hose"
+	@echo "o888bood8P   Y8bod8P       8       o888o   o888o  V88VV8P     Y8bod8P"

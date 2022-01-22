@@ -9,14 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Jcc\LaravelVote\Traits\Voter;
-use Laravel\Passport\HasApiTokens;
-use Overtrue\LaravelFavorite\Traits\Favoriter;
-use Overtrue\LaravelFollow\Followable;
+use Laravel\Sanctum\HasApiTokens;
+use Multicaret\Acquaintances\Traits\CanBeFollowed;
+use Multicaret\Acquaintances\Traits\CanFollow;
+use Multicaret\Acquaintances\Traits\CanVote;
 use QCod\Gamify\Gamify;
-use Rennokki\QueryCache\Traits\QueryCacheable;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -27,24 +25,15 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  */
 final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
+    use CanFollow;
+    use CanBeFollowed;
+    use CanVote;
     use Notifiable;
-    use Followable;
     use InteractsWithMedia;
     use HasApiTokens;
-    use Voter;
     use Gamify;
-    use Favoriter;
     use SoftDeletes;
     use HasFactory;
-    use QueryCacheable;
-
-    public $cacheFor = 3600;
-
-    public $cacheTags = ['authors'];
-
-    public $cachePrefix = 'authors_';
-
-    protected static $flushCacheOnUpdate = true;
 
     /**
      * The primary key for the model.
@@ -81,7 +70,6 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     protected $fillable = [
         'name',
         'email',
-        'avatar',
         'password',
         'confirm_code',
         'username',
@@ -94,6 +82,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'website',
         'description',
         'status',
+        'activation_token'
     ];
 
     /**
@@ -122,7 +111,7 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
     public function types(): int
     {
-        return (int) $this->type;
+        return (int)$this->type;
     }
 
     public function isModerator(): bool
@@ -138,11 +127,6 @@ final class User extends Authenticatable implements MustVerifyEmail, HasMedia
     public function isBanned(): bool
     {
         return ! is_null($this->banned_at);
-    }
-
-    public function isLoggedInUser(): bool
-    {
-        return $this->id() === Auth::id();
     }
 
     public function hasPassword(): bool

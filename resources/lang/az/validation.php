@@ -58,6 +58,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'message' => 'Verilən məlumat etibarsızdır',
     'date' => ' :attribute tarix formatında olmalıdır',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => ' :attribute :format formatında olmalıdır',

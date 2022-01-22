@@ -5,20 +5,31 @@ use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\ArticleHubController;
 use App\Http\Controllers\Api\ArticleRelationshipController;
 use App\Http\Controllers\Api\ArticleTopController;
+use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\Auth\VerificationController;
 use App\Http\Controllers\Api\AuthorController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\HubController;
-use App\Http\Controllers\Api\SearchController;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
-//Route::post('auth/checkEmail', [LoginController::class, 'checkEmail']);
+Route::prefix('auth')->group(function () {
+    Route::get('email/verify/{id}', [VerificationController::class, 'verify'])->name('verification.verify');
+    Route::get('email/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::get('user', [AuthController::class, 'details'])->middleware('auth:sanctum');
+    Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::post('/password/email', [AuthController::class, 'sendPasswordResetLinkEmail'])->middleware('throttle:5,1')->name('password.email');
+    Route::post('/password/reset', [AuthController::class, 'resetPassword'])->name('password.reset');
+});
 
 Route::prefix('articles')->group(
     function () {
-        Route::get('/', [ArticleController::class, 'index'])->middleware('api')->name('articles.index');
+        Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
         Route::post('/', [ArticleController::class, 'store'])->name('article.store')->middleware('auth:api');
-        Route::post('/vote', [ArticleController::class, 'vote'])->middleware('auth:api');
+        Route::post('/vote', [ArticleController::class, 'vote'])->middleware('auth:sanctum');
         Route::get('/{article_json}', [ArticleController::class, 'show'])->middleware('api')->name('articles.show');
         Route::prefix('filter')->group(
             function () {
@@ -61,29 +72,22 @@ Route::prefix('articles')->group(
     }
 );
 
-/*
- * Favorite Api
- */
-//Route::prefix('saved')->group(
-//    function () {
-//        Route::get('articles', [SavedController::class, 'allPosts']);
-//        Route::get('comments', [SavedController::class, 'allComments']);
-//    }
-//);
 
 /*
  * Hubs Api
  */
 Route::prefix('hubs')->group(
     function () {
-        Route::get('/', [HubController::class, 'index'])->middleware('api')->name('hubs.api.index');
-        Route::get('/{hub}', [HubController::class, 'show'])->middleware('api')->name('hubs.api.show');
-        Route::get('/filter/all', [HubController::class, 'all'])->middleware('api')->name('hubs.api.all');
+        Route::get('/', [HubController::class, 'index'])->name('hubs.api.index');
+        Route::get('top_rated', [HubController::class, 'topRated']);
+        Route::get('top_followed', [HubController::class, 'topFollowed']);
+        Route::post('/follow/{id}', [HubController::class, 'follow']);
+        Route::get('/{slug}', [HubController::class, 'show']);
+        Route::get('/filter/all', [HubController::class, 'all'])->name('hubs.api.all');
         Route::get('{hub}/top/day', [ArticleHubController::class, 'articles']);
         Route::get('{hub}/top/week', [ArticleHubController::class, 'articles']);
         Route::get('{hub}/top/month', [ArticleHubController::class, 'articles']);
         Route::get('{hub}/all', [ArticleHubController::class, 'all']);
-        Route::post('/follow/{id}', [HubController::class, 'follow']);
     }
 );
 Route::get('/search_hub', [HubController::class, 'search_hub_by_key']);
@@ -105,16 +109,3 @@ Route::prefix('authors')->group(
 //        Route::get('{id}/followers', [AuthorController::class, 'followers']);
     }
 );
-//Route::get('search_user', [AuthorController::class, 'search_user_by_key']);
-//
-///*
-// * Profile Api
-// */
-////    Route::get('/users/{id}/articles', [UserController::class, 'articles']);
-////    Route::post('/users/{id}/profile_update', [UserController::class, 'upload']);
-//
-///*
-// * Search Api.
-// */
-//Route::get('search/articles/search={search}', [SearchController::class, 'articles']);
-//Route::get('search/authors/search={search}', [SearchController::class, 'authors']);

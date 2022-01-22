@@ -3,7 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -32,9 +36,10 @@ class Handler extends ExceptionHandler
      *
      * @param Throwable $exception
      *
-     * @throws Exception
-     *
      * @return void
+     * @throws Throwable
+     *
+     * @throws Exception
      */
     public function report(Throwable $exception)
     {
@@ -43,5 +48,18 @@ class Handler extends ExceptionHandler
         }
 
         parent::report($exception);
+    }
+
+    public function render($request, Throwable $e): Response|JsonResponse|\Symfony\Component\HttpFoundation\Response
+    {
+        if ($e instanceof ValidationException) {
+            return response()->json(['message' => __('validation.message'), 'errors' => $e->validator->getMessageBag()], 422);
+        }
+
+        if ($e instanceof ModelNotFoundException && $request->wantsJson()) {
+            return response()->json(['message' => 'Not found'], 404);
+        }
+
+        return parent::render($request, $e);
     }
 }

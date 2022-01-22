@@ -13,9 +13,6 @@ return [
     'admin_email' => env('ADMIN_EMAIL') ?: 'admin@admin.com',
     'admin_password' => env('ADMIN_PASSWORD') ?: 'admin12345',
 
-    // Default Avatar
-    'default_avatar' => env('DEFAULT_AVATAR') ?: '/upload/avatars/default.png',
-
     // Default Icon
     'default_icon' => env('DEFAULT_ICON') ?: '/images/favicon.ico',
 

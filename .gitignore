@@ -11,7 +11,6 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 composer.phar
-composer.lock
 yarn-error.log
 .idea
 .php_cs

@@ -45,4 +45,5 @@ return [
     'welcome' => 'Devhub-a xoş gəlmisiniz 👋',
     'welcomeText' => 'Öz nailiyyətlərinizi və təcrübələrinizi həmkarlarınızla bölüşün',
     'write' => 'Yazmaq',
+    'about_title' => 'İT həmkarları ilə bilik və təcrübə paylaşın'
 ];

@@ -1,21 +1,21 @@
 <template>
     <form autocomplete="off" @submit.prevent="login" method="post" class="xs:max-w-xs w-96">
-        <a href="/login/github" id="trans-none"
-           class="btn-outline border-gray-300 dark:border-gray-300 w-full items-center dark:text-black">
+        <a href="/login/github"
+           class="btn-outline trans-none border-gray-300 dark:border-gray-300 w-full items-center dark:text-black">
             <div class="mx-auto flex space-x-1">
-                <span class="iconify text-base text-gray-700" data-icon="simple-icons:github" data-inline="true"></span>
+                <span class="iconify text-base text-gray-700 dark:text-gray-300" data-icon="simple-icons:github" data-inline="true"></span>
             </div>
         </a>
         <div class="my-4 items-center flex">
             <div class="mr-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
-            <div class="text-sm">{{ $t('devhub.or') }}</div>
+            <div class="text-sm dark:text-gray-300">{{ $t('devhub.or') }}</div>
             <div class="ml-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
         </div>
         <div class="pb-2 space-y-4">
             <input aria-invalid="true" autocomplete="off" id="email" name="email"
                    placeholder="richard.hendricks@piedpiper.com"
                    type="text" inputmode="text"
-                   class="input !bg-white !border-gray-200 !text-black"
+                   class="input bg-white dark:bg-dpaper border-gray-200 text-black dark:text-white placeholder-gray-500 caret-white"
                    aria-label="geremy@mailer.io"
                    autocorrect="off" autocapitalize="none"
                    spellcheck="false"
@@ -24,7 +24,7 @@
                 <input aria-invalid="true" autocomplete="current-password" id="password" name="password"
                        placeholder="••••••••"
                        :type="type" inputmode="password"
-                       class="input !bg-white !border-gray-200 !text-black"
+                       class="input bg-white dark:bg-dpaper border-gray-200 text-black dark:text-white placeholder-gray-500 caret-white"
                        aria-label="Şifrə"
                        autocapitalize="none"
                        spellcheck="false"
@@ -51,10 +51,10 @@
         </div>
         <div class="mt-4">
             <a class="block text-center text-sm text-cerulean-500"
-               href="/#">
+               href="/forgot-password">
                 {{ $t('devhub.forgotPassword') }}
             </a>
-            <div class="mt-2 bg-white rounded py-4 text-sm border">
+            <div class="mt-2 bg-white dark:bg-dpaper dark:text-gray-300 dark:border-gray-700 rounded py-4 text-sm border">
                 {{ $t('devhub.notRegistered') }}
                 <a href="/register"
                    class="text-cerulean-500">

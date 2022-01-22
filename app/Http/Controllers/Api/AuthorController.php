@@ -30,14 +30,14 @@ class AuthorController extends Controller
     }
 
     /**
-     * @param string $id
+     * @param string $username
      * @return AuthorResource
      */
-    public function show(string $id): AuthorResource
+    public function show(string $username): AuthorResource
     {
         AuthorResource::withoutWrapping();
 
-        return new AuthorResource(User::withCount(['articles', 'followers', 'followings'])->findOrFail($id));
+        return new AuthorResource(User::withCount(['articles', 'followers', 'followings'])->where('username', $username)->firstOrFail());
     }
 
     /**

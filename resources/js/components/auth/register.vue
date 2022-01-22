@@ -3,15 +3,14 @@
           class="xs:max-w-xs w-96 text-left">
         <div class="pt-4 pb-2">
             <a href="/login/github"
-               class="btn-outline w-full items-center dark:text-black">
-                <div class="mx-auto flex">
-                    <span class="iconify mr-2 text-base text-gray-700" data-icon="simple-icons:github"
-                          data-inline="false"></span>
+               class="btn-outline trans-none border-gray-300 dark:border-gray-300 w-full items-center dark:text-black">
+                <div class="mx-auto flex space-x-1">
+                    <span class="iconify text-base text-gray-700 dark:text-gray-300" data-icon="simple-icons:github" data-inline="true"></span>
                 </div>
             </a>
             <div class="my-4 items-center flex">
                 <div class="mr-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
-                <div class="text-sm">{{ $t('devhub.or') }}</div>
+                <div class="text-sm dark:text-gray-300">{{ $t('devhub.or') }}</div>
                 <div class="ml-3 flex-grow border-t border-gray-300" aria-hidden="true"></div>
             </div>
             <div class="relative mb-2">
@@ -84,7 +83,7 @@
                 <span class="block mx-auto">{{ $t('devhub.register') }}</span>
             </button>
         </div>
-        <div class="mt-4 bg-white rounded py-4 text-sm text-center border">
+        <div class="mt-4 bg-white text-center dark:bg-dpaper dark:text-gray-300 dark:border-gray-700 rounded py-4 text-sm border">
             {{ $t('devhub.areRegistered') }} <a href="/login" class="text-cerulean-500">{{ $t('devhub.login') }}</a>
         </div>
     </form>

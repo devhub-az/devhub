@@ -7,13 +7,17 @@
                   data-icon="tabler:chevron-up"/>
         </span>
         <transition name="slide" mode="out-in">
-            <div v-if="odds > 0" class="bg-[#eefbf3] dark:bg-green-700 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded" :key="item.attributes.votes">
-                <p class="text-green-600 dark:text-green-400 font-medium">{{"+" + odds }}</p>
+            <div v-if="odds > 0"
+                 class="bg-[#eefbf3] dark:bg-green-700 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded"
+                 :key="item.attributes.votes">
+                <p class="text-green-600 dark:text-green-400 font-medium">{{ "+" + odds }}</p>
             </div>
-            <div v-if="odds === 0" class="bg-gray-200 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded" :key="item.attributes.votes">
+            <div v-if="odds === 0" class="bg-gray-200 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded"
+                 :key="item.attributes.votes">
                 <p class="dark:text-gray-500 font-medium">{{ odds }}</p>
             </div>
-            <div v-if="odds < 0" class="bg-red-200 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded" :key="item.attributes.votes">
+            <div v-if="odds < 0" class="bg-red-200 px-3 mx-0.5 relative dark:text-gray-300 text-base rounded"
+                 :key="item.attributes.votes">
                 <p class="text-red-600 font-medium">{{ odds }}</p>
             </div>
         </transition>
@@ -75,7 +79,7 @@ export default {
                                 this.item.attributes.votes--
                                 this.odds++
                             } else {
-                                this.item.attributes.votes  === 0 ? this.item.attributes.votes++ : this.item.attributes.votes--
+                                this.item.attributes.votes === 0 ? this.item.attributes.votes++ : this.item.attributes.votes--
                                 this.odds--
                             }
                             this.item.attributes.is_down_voted = !this.item.attributes.is_down_voted

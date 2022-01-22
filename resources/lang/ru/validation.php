@@ -50,6 +50,7 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+    'message' => 'Данные недействительны',
     'date' => 'Поле :attribute не является датой.',
     'date_equals' => 'Поле :attribute должно быть датой равной :date.',
     'date_format' => 'Поле :attribute не соответствует формату :format.',

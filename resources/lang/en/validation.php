@@ -44,6 +44,7 @@ return [
         'numeric' => 'The :attribute must be greater than :value.',
         'string' => 'The :attribute must be greater than :value characters.',
     ],
+    'message' => 'The given data is invalid',
     'gte' => [
         'array' => 'The :attribute must have :value items or more.',
         'file' => 'The :attribute must be greater than or equal :value kilobytes.',

@@ -43,7 +43,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function github()
+    public function github(): \Symfony\Component\HttpFoundation\RedirectResponse
     {
         return Socialite::driver('github')->redirect();
     }

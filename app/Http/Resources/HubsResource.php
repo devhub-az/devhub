@@ -14,19 +14,10 @@ class HubsResource extends ResourceCollection
      *
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'data' => HubResource::collection($this->collection),
-        ];
-    }
-
-    public function with($request)
-    {
-        return [
-            'links' => [
-                'self' => route('hubs.api.index'),
-            ],
         ];
     }
 }

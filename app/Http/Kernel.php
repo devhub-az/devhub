@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\ForceJson;
+use App\Http\Middleware\Localization;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -9,18 +11,19 @@ class Kernel extends HttpKernel
     /**
      * The application's global HTTP middleware stack.
      *
-     * These middleware are run during every request to your application.
+     * This middleware is run during every request to your application.
      *
      * @var array
      */
     protected $middleware = [
-//        \App\Http\Middleware\TrustProxies::class,
-//        \Fruitcake\Cors\HandleCors::class,
-//        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
+        \App\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
+        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\MinifyHtml::class,
+//        ForceJson::class,
+        Localization::class,
     ];
 
     /**
@@ -36,18 +39,11 @@ class Kernel extends HttpKernel
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\OnlineStatus::class,
-            \App\Http\Middleware\CheckUser::class,
-            \App\Http\Middleware\Localization::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\RedirectIfBanned::class,
-            \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
         ],
-
         'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
-            \App\Http\Middleware\Localization::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
@@ -55,7 +51,7 @@ class Kernel extends HttpKernel
     /**
      * The application's route middleware.
      *
-     * These middleware may be assigned to groups or used individually.
+     * This middleware may be assigned to group or used individually.
      *
      * @var array
      */

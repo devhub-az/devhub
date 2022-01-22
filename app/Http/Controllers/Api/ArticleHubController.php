@@ -19,9 +19,9 @@ class ArticleHubController
      * PostController constructor.
      *
      * @param Request $request
-     * @param int     $day
-     * @param int     $week
-     * @param int     $month
+     * @param int $day
+     * @param int $week
+     * @param int $month
      */
     public function __construct(Request $request, int $day = 1, int $week = 7, int $month = 30)
     {
@@ -45,7 +45,7 @@ class ArticleHubController
      * @param int $id
      * @return ArticlesResource
      */
-    public function articles(int $id): ArticlesResource
+    public function articles(string $id): ArticlesResource
     {
         return new ArticlesResource(
             Article::with('hubs')
@@ -55,17 +55,9 @@ class ArticleHubController
                         $query->where('taggables.hub_id', '=', $id);
                     }
                 )
-                ->withcount(
-                    'views',
-                )
-                ->orderBy(
-                    'created_at',
-                    'DESC'
-                )->where(
-                    'created_at',
-                    '>=',
-                    Carbon::now()->subDays(self::$count)->startOfDay()
-                )
+                ->withcount('views', )
+                ->orderBy('created_at', 'DESC')
+                ->where('created_at', '>=', Carbon::now()->subDays(self::$count)->startOfDay())
                 ->take(50)->paginate(10)
         );
     }
@@ -90,7 +82,7 @@ class ArticleHubController
         )->whereHas(
             'hubs',
             function ($query) use ($id) {
-                $query->where('taggables.hub_id', '=', $id);
+                $query->where('taggables.hub_id', $id);
             }
         )->orderBy(
             'created_at',

@@ -7,8 +7,10 @@
          style="transform: translate(-50%, -50%)">
         <a href="{{ route('home') }}"
            class="text-black font-bold hover:text-gray-200 md:text-2xl m-auto">
-            <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="188"
-                 height="36" class="mb-10 mx-auto">
+            <img src="{{ asset('images/DevHub_Chrome_Full_Logo.svg') }}" alt="DevHub Logo" width="188" height="36"
+                 class="mb-10 mx-auto hidden dark:block">
+            <img src="{{ asset('images/DevHub_Monochrome_Full_Logo.svg') }}" alt="DevHub Logo" width="188" height="36"
+                 class="mb-10 mx-auto dark:hidden">
         </a>
         <login></login>
     </div>
