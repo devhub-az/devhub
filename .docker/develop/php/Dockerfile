@@ -14,8 +14,7 @@ RUN apk update && apk add --no-cache \
     shadow \
     bash \
     tzdata \
-    nano \
-    nodejs npm
+    nano
 
 RUN pecl install redis \
     && docker-php-ext-enable redis
@@ -23,9 +22,6 @@ RUN pecl install redis \
 RUN docker-php-ext-install zip pdo_mysql exif opcache pcntl
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --quit
-
-RUN npm --global install yarn \
-    && rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
 ENV TZ=Asia/Baku
 
