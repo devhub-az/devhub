@@ -1589,16 +1589,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.83.7",
+            "version": "v8.83.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "0706abf5c99d3b14149fcf79c95074dadd40b203"
+                "reference": "cf430301ad17656b3d918995bcdd0454c3c119b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/0706abf5c99d3b14149fcf79c95074dadd40b203",
-                "reference": "0706abf5c99d3b14149fcf79c95074dadd40b203",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/cf430301ad17656b3d918995bcdd0454c3c119b9",
+                "reference": "cf430301ad17656b3d918995bcdd0454c3c119b9",
                 "shasum": ""
             },
             "require": {
@@ -1758,7 +1758,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-04-05T15:08:10+00:00"
+            "time": "2022-04-12T13:49:56+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -1955,16 +1955,16 @@
         },
         {
             "name": "laravel/telescope",
-            "version": "v4.8.2",
+            "version": "v4.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/telescope.git",
-                "reference": "88e3ded3e1fc301a82403820b2f68ec5a9e092e3"
+                "reference": "bb23d58161032c8745d38348452afcbcd8adfc78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/telescope/zipball/88e3ded3e1fc301a82403820b2f68ec5a9e092e3",
-                "reference": "88e3ded3e1fc301a82403820b2f68ec5a9e092e3",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/bb23d58161032c8745d38348452afcbcd8adfc78",
+                "reference": "bb23d58161032c8745d38348452afcbcd8adfc78",
                 "shasum": ""
             },
             "require": {
@@ -2017,9 +2017,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/telescope/issues",
-                "source": "https://github.com/laravel/telescope/tree/v4.8.2"
+                "source": "https://github.com/laravel/telescope/tree/v4.8.3"
             },
-            "time": "2022-04-01T14:27:12+00:00"
+            "time": "2022-04-11T14:29:02+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -2404,16 +2404,16 @@
         },
         {
             "name": "league/mime-type-detection",
-            "version": "1.9.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/mime-type-detection.git",
-                "reference": "aa70e813a6ad3d1558fc927863d47309b4c23e69"
+                "reference": "3e4a35d756eedc67096f30240a68a3149120dae7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/aa70e813a6ad3d1558fc927863d47309b4c23e69",
-                "reference": "aa70e813a6ad3d1558fc927863d47309b4c23e69",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/3e4a35d756eedc67096f30240a68a3149120dae7",
+                "reference": "3e4a35d756eedc67096f30240a68a3149120dae7",
                 "shasum": ""
             },
             "require": {
@@ -2444,7 +2444,7 @@
             "description": "Mime-type detection for Flysystem",
             "support": {
                 "issues": "https://github.com/thephpleague/mime-type-detection/issues",
-                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.9.0"
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.10.0"
             },
             "funding": [
                 {
@@ -2456,7 +2456,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-21T11:48:40+00:00"
+            "time": "2022-04-11T12:49:04+00:00"
         },
         {
             "name": "league/oauth1-client",
@@ -2688,16 +2688,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.4.0",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "d7fd7450628561ba697b7097d86db72662f54aef"
+                "reference": "4192345e260f1d51b365536199744b987e160edc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/d7fd7450628561ba697b7097d86db72662f54aef",
-                "reference": "d7fd7450628561ba697b7097d86db72662f54aef",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/4192345e260f1d51b365536199744b987e160edc",
+                "reference": "4192345e260f1d51b365536199744b987e160edc",
                 "shasum": ""
             },
             "require": {
@@ -2771,7 +2771,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.4.0"
+                "source": "https://github.com/Seldaek/monolog/tree/2.5.0"
             },
             "funding": [
                 {
@@ -2783,7 +2783,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-14T12:44:37+00:00"
+            "time": "2022-04-08T15:43:54+00:00"
         },
         {
             "name": "multicaret/laravel-acquaintances",
@@ -14761,5 +14761,5 @@
         "php": "^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
