@@ -38,7 +38,7 @@
         "nunomaduro/larastan": "^1.0",
         "nunomaduro/phpinsights": "dev-master",
         "phpunit/phpunit": "^9.3.3",
-        "psalm/plugin-laravel": "^1.4",
+        "psalm/plugin-laravel": "^2.0",
         "vimeo/psalm": "^4.6"
     },
     "autoload": {
