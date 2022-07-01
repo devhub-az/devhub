@@ -42,7 +42,7 @@ class ArticleHubController
     }
 
     /**
-     * @param int $id
+     * @param string $id
      * @return ArticlesResource
      */
     public function articles(string $id): ArticlesResource
@@ -55,7 +55,7 @@ class ArticleHubController
                         $query->where('taggables.hub_id', '=', $id);
                     }
                 )
-                ->withcount('views', )
+                ->withcount('views')
                 ->orderBy('created_at', 'DESC')
                 ->where('created_at', '>=', Carbon::now()->subDays(self::$count)->startOfDay())
                 ->take(50)->paginate(10)
