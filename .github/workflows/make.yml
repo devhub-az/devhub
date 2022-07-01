@@ -25,9 +25,6 @@ jobs:
            username: hose1021
            password: ${{ github.token }}
 
-      - name: Docker pull
-        run: make docker-pull
-
       - name: Docker build
         run: make docker-build
 
